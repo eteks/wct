@@ -1,17 +1,7 @@
-<html>
-<head>
-	<title>Sports</title>
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<script type="text/javascript" src="js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
-</head>
-<body>
-	<div class="row">		
+<?php require_once "header.php" ?>		
 		<div class="container align_center">
 			<span class="sports">DISTRICT</span>
 		</div><!--end container-->
-
 		<div class="align_margin"></div>
 		<div class="container">
 			<div class="col-md-8">
@@ -38,44 +28,35 @@
 				  <table class="table table_adjust">
 				    <thead>
 				      <tr>
-				        <th>Firstname</th>
-				        <th>Lastname</th>
-				        <th>Email</th>
+				        <th class="align_center">SLNO</th>
+				        <th class="align_center">District/Taluka</th>
+				        <th class="align_center">Action</th>
 				      </tr>
 				    </thead>
 				    <tbody>
-				      <tr>
-				        <td>John</td>
-				        <td>Doe</td>
-				        <td>john@example.com</td>
+				      <tr class="align_center">
+				        <td>01</td>
+				        <td>Virudhunagar</td>
+				        <td>Edit <span class="align_left1">Delete</span></td>
 				      </tr>
-				      <tr>
-				        <td>Mary</td>
-				        <td>Moe</td>
-				        <td>mary@example.com</td>
-				      </tr>
-				      <tr>
-				        <td>July</td>
-				        <td>Dooley</td>
-				        <td>july@example.com</td>
-				      </tr>
+				      <tr class="align_center">
+				        <td>02</td>
+				        <td>Vilupuram</td>
+				       <td>Edit <span class="align_left1">Delete</span></td>
+				      </tr>				   
 				    </tbody>
 				  </table>
 				</div>
 			</div>
 		</div><!-- end  container-->
 		<div class="align_margin"></div>				
-	</div>
-
-	<div class="container align_center">              
-	  <ul class="pagination">
-	    <li><a href="#">1</a></li>
-	    <li><a href="#">2</a></li>
-	    <li><a href="#">3</a></li>
-	    <li><a href="#">4</a></li>
-	    <li><a href="#">5</a></li>
-	  </ul>
-	</div>	
-</body>
-</html>
-</html>
+		<div class="container align_center">              
+		  <ul class="pagination">
+		    <li><a href="#">1</a></li>
+		    <li><a href="#">2</a></li>
+		    <li><a href="#">3</a></li>
+		    <li><a href="#">4</a></li>
+		    <li><a href="#">5</a></li>
+		  </ul>
+		</div>	
+<?php require_once "footer.php" ?>
