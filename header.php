@@ -54,10 +54,10 @@
         <ul class="nav nav-justified submenu-align">
           <li>
             <ul class="nav nav-justified submenu_list collapse" id="one">
-                <li><a href="#" id="">SPORTS</a></li>
-                <li><a href="#" id="">CATEGORY</a></li>
-                <li><a href="#" id="">STATE</a></li>
-                <li><a href="#" id="">DISTRICT</a></li>
+                <li><a href="sports.php" id="">SPORTS</a></li>
+                <li><a href="category.php" id="">CATEGORY</a></li>
+                <li><a href="state.php" id="">STATE</a></li>
+                <li><a href="district.php" id="">DISTRICT</a></li>
                 <li><a href="#" id="">TEST</a></li>
                 <li><a href="#" id="">TEST BATTERY</a></li>
                 <li><a href="#" id="">RANGE</a></li>
@@ -66,7 +66,7 @@
            <li>
              <ul class="nav nav-justified submenu_list collapse" id="two">
                 <li><a href="#" id="">ADD ATHLETES</a></li>
-                <li><a href="#" id="">CREATE SCHEDULE</a></li>
+                <li><a href="create_schedule.php" id="">CREATE SCHEDULE</a></li>
                 <li><a href="#" id="">ASSIGN SCHEDULE</a></li>
                 <li><a href="#" id="">RESULT</a></li>
               </ul>

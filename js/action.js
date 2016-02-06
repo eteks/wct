@@ -9,8 +9,23 @@ function delete_center_align(){
       $('.delete_div').css({'margin-top': -height / 2 + "px", 'margin-left': -width / 2 + "px"});
 }
 
-
+function package_menu() {
+    var wh = window.innerHeight;
+    var smh = wh - 43;
+    if (wh < 200) {
+        $('.footer').css({'top': smh + "px"});
+        $('body').css({'height': wh + "px", 'max-height': "200px"});
+    } else {
+        $('.footer').css('top', '100%');
+        $('body').css('height', "200px", 'max-height', "200px");
+    }
+}
+$(window).resize(function () {
+    package_menu();
+  });
 $(document).ready(function () {
+  
+  package_menu();
 
  	state_center_align();
  	delete_center_align();
@@ -21,9 +36,17 @@ $(document).ready(function () {
         $('.popup_fade').show();
         $('.state_div, .close_btn').show();
         document.body.style.overflow = 'hidden';
+          $.ajax({
+       type: "POST",
+       url: "district.php?loaddistrict=true",
+       // url:"../functions/district_function.php?loaddistrict=true",
+       data: {'state_val': $('.choose_state option:selected').text() },
+       success: function (data) {
+         // alert(data);
+       }
+     });
     });
     $('.delete_state').click(function(){
-
         delete_center_align();
         $('.popup_fade').show();
         $('.delete_div, .close_btn').show();

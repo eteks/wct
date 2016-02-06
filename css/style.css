@@ -51,12 +51,9 @@
     background: hsl(220, 12%, 30%) none repeat scroll 0 0;
     color: hsl(0, 0%, 100%);
     font-family: Montserrat;
-    height: 34px;
-    padding: 8px 0 0;
+    line-height: 2;
     text-align: center;
     width: 100%;
-    bottom: 0;
-    position: relative !important;
 }
 .user_txt {
     line-height: 2;
@@ -411,10 +408,10 @@ select {
     color: #fff !important;
 }
 .delete_state{
-    cursor: pointer;
-    float: left;
+   cursor: pointer;
+    float: right;
     position: relative;
-    right: 40%;
+    right: 25%;
 }
 .del_title {
     font-size: 18px;
@@ -433,4 +430,28 @@ select {
 }
 .states_list,.district_list{
     display: none;
+}
+.footer {
+    padding: 0 !important;
+}
+.ui-menu{
+    background: hsl(0, 0%, 100%) none repeat scroll 0 0;
+    height: auto;
+    left: 499.5px;
+    list-style: outside none none;
+    overflow-y: scroll;
+    padding: 0;
+    position: relative;
+    top: -158px;
+    width: 335px;
+    z-index: 1;
+}
+.ui-menu-item a:hover {
+    text-decoration: none !important;
+}
+.ui-menu-item {
+    cursor: pointer;
+    font-size: 15px;
+    font-family: Montserrat;
+    padding: 2px 0 0 6px;
 }
