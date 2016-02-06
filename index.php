@@ -13,7 +13,6 @@
 			// Login Failed
 			echo "<script>alert('Emailid / Password Not Match')</script>";
 		}
-	}
 ?>
 <form role="form" action="" method="post" name="login_form">
 	<div class="select_user_content">

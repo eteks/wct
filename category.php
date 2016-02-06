@@ -17,7 +17,7 @@
 					</form>
 				</div>
 				<div class="container">           
-				  <table class="table table_adjust">
+				  <table class="table">
 				    <thead>
 				      <tr>
 				        <th class="align_center">SLNO</th>

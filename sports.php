@@ -23,7 +23,7 @@ require_once "functions/sports_function.php";
 </div><!-- end  container-->
 <div class="align_margin"></div>
 <div class="container">
-  	<table class="table table_adjust" id="sports_table">
+  	<table class="table" id="sports_table">
 	    <thead>
 			<tr>
 				<th class="align_center">SLNO</th>
@@ -47,7 +47,6 @@ require_once "functions/sports_function.php";
 				<td>Cricket</td>
 				<td>Edit <span class="align_left1">Delete</span></td>
 			</tr>
-
 		</tbody>
   	</table>
 </div>
