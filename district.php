@@ -1,16 +1,15 @@
 <?php require_once "header.php" ?>		
-		<div class="container align_center">
+		<div class="container align_center align-height">
 			<span class="sports">DISTRICT</span>
 		</div><!--end container-->
-		<div class="align_margin"></div>
 		<div class="container">
 			<div class="col-md-8">
 				<div class="col-md-4"></div>
-				<div class="col-md-8 align_left">
+				<div class="col-md-8 col-xs-12 align_left">
 					<form>
 						<div class="form-group">
 						  <label for="sel1">Select the State</label>
-						  <select class="form-control adjust_width" id="sel1">
+						  <select class="form-control adjust_width classic" id="sel1">
 						    <option>Madurai</option>
 						    <option>Virudhunagar</option>
 						    <option>Vilupuram</option>						   
@@ -25,7 +24,7 @@
 					</form>
 				</div>
 				<div class="container">           
-				  <table class="table table_adjust">
+				  <table class="table">
 				    <thead>
 				      <tr>
 				        <th class="align_center">SLNO</th>
