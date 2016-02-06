@@ -7,12 +7,20 @@ $(document).ready(function () {
    $('[data-toggle=collapse]').parent('li').removeClass('active');
    $(this).parent('li').toggleClass('active');
  });
- $('[name=optradio]').change(function(){ 
-  	if($(this).val() == "administrator"){
-  		$(this).attr('checked',checked);
-  		// window.location.href="index.php";
-  	}
-  	else
-  		window.location.href="sports.php";
+
+ $('.sports_submit_act').click(function() {
+     var form_data = $('#sports_form').serialize();
+    //  alert(form_data);
+     $.ajax({
+        type: "POST",
+        url: "functions/sports_function.php",
+        data: form_data,
+        cache: false,
+        success: function(html) {
+            // alert(html);
+            $('#sports_table tr:last').after(html);
+        }
+    });
  });
+
 });

@@ -1,11 +1,13 @@
 <?php
 class dbConnect {
+    public $DB_HOST='localhost';
+    public $DB_USER='root';
+    public $DB_PASSWORD='';
+    public $DB_DATABASE='welocity';
     function __construct() {
-        require_once('config.php');
-        $conn = mysql_connect(DB_HOST, DB_USER, DB_PASSWORD);
-        mysql_select_db(DB_DATABASE, $conn);
-        if(!$conn)
-        {
+        $conn = mysql_connect($this->DB_HOST, $this->DB_USER, $this->DB_PASSWORD);
+        mysql_select_db($this->DB_DATABASE, $conn);
+        if(!$conn){
             die ("Cannot connect to the database");
         }
         return $conn;
@@ -14,5 +16,5 @@ class dbConnect {
         mysql_close();
     }
 }
-$db = new dbConnect();           
+$db = new dbConnect();
 ?>
