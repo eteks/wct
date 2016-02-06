@@ -11,6 +11,7 @@ function delete_center_align(){
 
 
 $(document).ready(function () {
+
  	state_center_align();
  	delete_center_align();
 
@@ -50,4 +51,34 @@ $(document).ready(function () {
   	else
   		window.location.href="sports.php";
  	});
+
+	// Autocomplete results for states list
+	var states_list = [];
+		$('.states_list li').each(function(){
+			states_list.push($(this).text());
+	});
+	$('.statesname').focus(function (e) {
+		$(this).autocomplete({
+			source: states_list,
+	 	});
+	});
+	$('.choose_state').change(function(){ 
+	  	$.ajax({
+			type: "POST",
+			url: "district.php?loaddistrict=true",
+			data: {'state_val': $('.choose_state option:selected').text() },
+			success: function (data) {
+				// alert(data);
+                // if(html== 'nil'){
+                //     $('.branchs,.teacher,.classs,.subjects').empty();
+                //     alert('no branch available');
+                // }
+                // else{
+                //     $(".branchs").html('<option>Select branch</option>'+html);
+                // }
+
+			}
+		});
+	});
+
 });

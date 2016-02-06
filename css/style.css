@@ -126,7 +126,7 @@
 .clear_both{
 	clear: both;
 }
-.sportsname{
+.sportsname,.statesname{
 	width: 100%;
 }
 .align_margin{
@@ -377,5 +377,8 @@ select {
     height: 100px;
     color: #33859f;
     text-align: center;
-     line-height: 3;
+    line-height: 3;
+}
+.states_list,.district_list{
+    display: none;
 }

@@ -1,4 +1,20 @@
-<?php require_once "header.php" ?>		
+<?php require_once 'header.php';
+	  require_once 'functions/states_function.php';
+	  $statesFunction = new statesFunction();
+	  if(isset($_POST['states'])){
+		$statesname = $_POST['states_name'];
+		if (in_array($statesname, $STATES)) {
+			$states = $statesFunction->isStatesExist($statesname);
+			if(!$states){
+				$statesinsert = $statesFunction->statesInsert($statesname);
+				if($statesinsert){echo "<script>alert('State Inserted')</script>";}else{
+					echo "<script>alert('State Not Inserted')</script>";}
+			}
+			else {echo "<script>alert('State Already Exist')</script>";}
+		}
+		else{echo "<script>alert('No State Present in that Name')</script>";}
+	  }
+?>		
 		<div class="container align_center">
 			<span class="sports">STATE</span>
 		</div><!--end container-->
@@ -8,12 +24,12 @@
 			<div class="col-md-8">
 				<div class="col-md-6"></div>
 				<div class="col-md-6">
-					<form>
+					<form name="states_form" action="state.php" method="post">
 						<div class="align_margin">					
 							<label>Enter the State</label><br>
-							<input type="text" class="sportsname">
-						</div>
-						<button type="button" class="btn btn-primary align_right submit">Submit</button>			
+							<input type="text" class="statesname" name="states_name" required>
+						</div>	
+						<input type="submit" class="btn btn-primary align_right submit" name="states" value="Submit">																						
 					</form>
 				</div>
 				<div class="container">           
@@ -21,25 +37,31 @@
 				    <thead>
 				      <tr>
 				        <th class="align_center">SLNO</th>
-				        <th class="align_center">District/Taluka</th>
+				        <th class="align_center">State Name</th>
 				        <th class="align_center">Action</th>
 				      </tr>
 				    </thead>
 				    <tbody>
-				      <tr class="align_center">
-				        <td>01</td>
-				        <td>Virudhunagar</td>
-				        <td class="edit_state">Edit</td> 
-				        <td class="delete_state">Delete</td>
-				      </tr>
-				      <tr class="align_center">
-				        <td>02</td>
-				        <td>Vilupuram</td>
-				       	<td class="edit_state">Edit</td> 
-				        <td class="delete_state">Delete</td>
-				      </tr>				   
+				     <?php
+                        $query = $statesFunction->statesSelect();
+                        while ($row = mysql_fetch_array($query)) {
+                            ?>
+                            <tr class="align_center">
+						        <td><?php echo $row['states_id']; ?></td>
+						        <td><?php echo $row['states_name']; ?></td>
+						        <td class="edit_state">Edit</td> 
+				        		<td class="delete_state">Delete</td>
+					        </tr>                         
+                     <?php } ?>		   
 				    </tbody>
 				  </table>
+				</div>
+				<div class="states_list">
+					<ul>
+						<?php foreach ($STATES as $key => $value) { ?>
+						    <li><?php echo $value; ?></li>
+						<?php } ?>
+					</ul>
 				</div>
 			</div>
 		</div><!-- end  container-->

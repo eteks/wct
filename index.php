@@ -45,8 +45,7 @@
 					    </div>
 					    <div class="checkbox">
 					      <label class="remember_txt"><input type="checkbox"> Remember me</label>
-					    </div>
-					    <!-- <button type="submit" class="btn btn-default login_btn" name="login">Login</button> -->
+					    </div>					
 					    <input type="submit" class="btn btn-default login_btn" value="Login"  name="login"/> 
 					    <span class="forget_txt">Forget Password?</span>
 				  	</form>
