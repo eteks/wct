@@ -122,6 +122,7 @@
   	font-size: 60px;
     font-weight: bold;
     position: relative;
+    font-family:  Montserrat;
 }
 .clear_both{
 	clear: both;
@@ -146,12 +147,47 @@
     left: 50px;
     position: relative;
 }
-
+.align_height{
+    line-height: 2;
+}
+.fl{
+    float: left;
+}
+.positioning_r{
+    position: relative;
+}
+.row_color{
+    color: #006687;
+}
+.delete_color {
+    color: rgb(87, 102, 107);
+    font-weight: bold;
+}
+.align_left_icon{
+    margin-right: 10px;
+    border-radius: 0 !important;
+}
+.align_right_icon{
+    margin-left: 10px !important;
+    border-radius: 0 !important; 
+}
 .submit{
 	background: none repeat scroll 0 0 #006687;
     height: 45px;
     width: 135px;
     border-radius: 0 !important;
+    font-weight: bold;
+    font-family: Montserrat;
+}
+.clear{
+    background-color: #ffffff !important;
+    color: #006687 !important;
+    height: 45px;
+    width: 135px;
+    border-radius: 0 !important;
+    font-weight: bold;
+    font-family: Montserrat;
+    margin-right: 10px;
 }
 .container_holder {   
     width: 785px;
@@ -169,8 +205,14 @@
 .adjust_width{
 	width: 410px;
 	height: 34px;
-	border-radius: none !important;
+	/*border-radius:  0 !important;*/
 	box-shadow: none !important;
+}
+.adjust_width_tiny{
+    width: 115px !important;
+    height: 34px;
+    border-radius: 0 !important;
+    box-shadow: none !important;
 }
 .align_margin_right{
 	margin-right: 48px;
@@ -184,10 +226,20 @@
 border-top: 0 !important;
 }
 .table > thead > tr > th{
-	border-bottom:0 !important;
+	border-bottom: 1px !important;
 }
 . table > tbody{
 	border:1px solid !important;
+}
+.state_table > tbody td{
+    border:1px solid;
+     border-bottom: 0 !important
+}
+.state_table > thead{
+    border-bottom: 1px solid;
+}
+.state_table > tbody tr:last-child{
+    border-bottom: 1px solid !important;
 }
 .align-height{
     line-height: 2;

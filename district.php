@@ -47,7 +47,7 @@
 					</form>
 				</div>
 				<div class="container">           
-				  <table class="table">
+				  <table class="table state_table">
 				    <thead>
 				      <tr>
 				        <th class="align_center">SLNO</th>
@@ -70,8 +70,7 @@
 				  </table>
 				</div>
 			</div>
-		</div><!-- end  container-->
-		<div class="align_margin"></div>				
+		</div><!-- end  container-->					
 		<div class="container align_center">              
 		  <ul class="pagination">
 		    <li><a href="#">1</a></li>
@@ -80,7 +79,7 @@
 		    <li><a href="#">4</a></li>
 		    <li><a href="#">5</a></li>
 		  </ul>
-		</div>	
+		</div>	<!-- end  container-->
 		<div class="district_list">
 			<ul>
 			</ul>
