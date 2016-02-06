@@ -33,7 +33,7 @@
 					</form>
 				</div>
 				<div class="container">           
-				  <table class="table table_adjust">
+				  <table class="table">
 				    <thead>
 				      <tr>
 				        <th class="align_center">SLNO</th>
@@ -49,7 +49,8 @@
                             <tr class="align_center">
 						        <td><?php echo $row['states_id']; ?></td>
 						        <td><?php echo $row['states_name']; ?></td>
-						        <td>Edit <span class="align_left1">Delete</span></td>
+						        <td class="edit_state">Edit</td> 
+				        		<td class="delete_state">Delete</td>
 					        </tr>                         
                      <?php } ?>		   
 				    </tbody>
@@ -64,5 +65,20 @@
 				</div>
 			</div>
 		</div><!-- end  container-->
-			
+		<div class="popup_fade cancel_btn"></div><!--popup_fade-->
+		<div class="container">
+            <div class="state_div">
+          		<code class="close_btn cancel_btn"> </code>
+          			<div class="container state-content col-md-12">		
+	          			<form>
+							<div class="align_margin">	
+								<label>Enter the State</label><br>
+								<input type="text" class="sportsname">
+							</div><!--align_margin-->
+							<button type="button" class="btn btn-primary align_right submit">Submit</button>			
+						</form>
+					</div><!--tate-content-->
+			</div><!--state_div-->
+		</div><!--container-->
+
 <?php require_once "footer.php" ?>

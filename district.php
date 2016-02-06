@@ -18,18 +18,17 @@
 		// else{echo "<script>alert('No State Present in that Name')</script>";}
 	  }
 ?>		
-		<div class="container align_center">
+		<div class="container align_center align-height">
 			<span class="sports">DISTRICT</span>
 		</div><!--end container-->
-		<div class="align_margin"></div>
 		<div class="container">
 			<div class="col-md-8">
 				<div class="col-md-4"></div>
-				<div class="col-md-8 align_left">
+				<div class="col-md-8 col-xs-12 align_left">
 					<form method="post" action="district.php" name="district_form">
 						<div class="form-group">
 						  <label for="sel1">Select the State</label>
-						  <select class="form-control adjust_width choose_state" id="sel1" name="district_state">
+						  <select class="form-control adjust_width classic choose_state" id="sel1" name="district_state">
 						  <option value="0">Select State</option>
 						  <?php
 	                        $query = $statesFunction->statesSelect();
@@ -48,7 +47,7 @@
 					</form>
 				</div>
 				<div class="container">           
-				  <table class="table table_adjust">
+				  <table class="table">
 				    <thead>
 				      <tr>
 				        <th class="align_center">SLNO</th>
