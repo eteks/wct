@@ -24,9 +24,7 @@ $(window).resize(function () {
     package_menu();
   });
 $(document).ready(function () {
-  
   package_menu();
-
  	state_center_align();
  	delete_center_align();
 
@@ -36,15 +34,6 @@ $(document).ready(function () {
         $('.popup_fade').show();
         $('.state_div, .close_btn').show();
         document.body.style.overflow = 'hidden';
-          $.ajax({
-       type: "POST",
-       url: "district.php?loaddistrict=true",
-       // url:"../functions/district_function.php?loaddistrict=true",
-       data: {'state_val': $('.choose_state option:selected').text() },
-       success: function (data) {
-         // alert(data);
-       }
-     });
     });
     $('.delete_state').click(function(){
         delete_center_align();
@@ -67,14 +56,6 @@ $(document).ready(function () {
 	   $(this).parent('li').toggleClass('active');
 	});
 
- 	$('[name=optradio]').change(function(){ 
-  	if($(this).val() == "administrator"){
-  		$(this).attr('checked',checked);
-  		// window.location.href="index.php";
-  	}
-  	else
-  		window.location.href="sports.php";
- 	});
 
 	// Autocomplete results for states list
 	var states_list = [];
@@ -86,7 +67,7 @@ $(document).ready(function () {
 			source: states_list,
 	 	});
 	});
-	// $('.choose_state').change(function(){ 
+	// $('.choose_state').change(function(){
 	//   	$.ajax({
 	// 		type: "POST",
 	// 		url: "district.php?loaddistrict=true",
@@ -97,4 +78,19 @@ $(document).ready(function () {
 	// 		}
 	// 	});
 	// });
+
+    $('.sports_submit_act').click(function() {
+        var form_data = $('#sports_form').serialize();
+       //  alert(form_data);
+        $.ajax({
+           type: "POST",
+           url: "functions/sports_function.php",
+           data: form_data,
+           cache: false,
+           success: function(html) {
+               // alert(html);
+               $('#sports_table tr:last').after(html);
+           }
+       });
+    });
 });

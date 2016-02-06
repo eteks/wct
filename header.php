@@ -1,5 +1,4 @@
-<?php require_once "common.php";
-  session_start(); ?> 
+<?php require_once "common.php";?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,29 +12,32 @@
  <script type="text/javascript" src="js/jquery-ui.min.js"></script>
  <script type="text/javascript" src="js/bootstrap.js"></script>
  <script type="text/javascript" src="js/action.js"></script>
- 
+
 </head>
 <body>
-
   <nav class="navbar navbar-inverse header_bg">
       <div class="container header_content">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>                        
-          </button>
-          <a class="logo_img" href="#"></a>
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="logo_img" href="#"></a>
         </div><!--navbar-header-->
         <div class="collapse navbar-collapse" id="myNavbar">
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">REGISTER</a></li>
-            <li><a href="#">LOGIN</a></li>
-          </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <?php if(!isset($_SESSION['login'])) { ?>
+                <li><a href="#">REGISTER</a></li>
+                <!-- <li><a href="#">LOGIN</a></li> -->
+                <?php }else{ ?>
+                    <li><a href="logout.php">Logout</a></li>
+                <?php } ?>
+            </ul>
         </div><!--collapse-->
       </div><!--header_content-->
   </nav>
-<?php if ((strpos($url,'index.php') == false) && ($_SESSION['admin'])){ ?>
+<?php if(isset($_SESSION['login'])) { ?>
     <div class="container-fluid menu_list">
       <ul class="nav nav-justified navbar-default nav_holder">
         <li class="dropdown">
@@ -90,5 +92,3 @@
           </div><!--delete_div-->
       </div><!--container-->
 <?php }?>
-</body>
-</html>

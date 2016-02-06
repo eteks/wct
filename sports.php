@@ -1,4 +1,8 @@
-<?php require_once "header.php"; ?>	
+<?php
+require_once "session.php";
+require_once "header.php";
+require_once "functions/sports_function.php";
+?>
 		<div class="container align_center align_height">
 			<span class="sports">SPORTS</span>
 		</div><!--end container-->		
@@ -17,7 +21,7 @@
 			</div>
 		</div><!-- end  container-->		
 		<div class="container">           
-		  <table class="table state_table">
+		  <table class="table state_table" id="sports_table">
 		    <thead>
 		      <tr class="row_color">
 		        <th class="align_center">SLNO</th>
@@ -69,15 +73,14 @@
             <div class="state_div">
           		<code class="close_btn cancel_btn"> </code>
           			<div class="container state-content col-md-12">		
-	          			<form>
+	          			<form name="sports_form" id="sports_form">
 							<div class="align_margin">	
 								<label>Enter the name of the Sports</label><br>
-								<input type="text" class="sportsname">
+								<input type="text" class="sportsname" name="sports_name">
 							</div><!--align_margin-->
-							<button type="button" class="btn btn-primary align_right submit">Submit</button>			
+							<button type="button" class="btn btn-primary align_right submit sports_submit_act">Submit</button>			
 						</form>
 					</div><!--tate-content-->
 			</div><!--state_div-->
 		</div><!--container-->
 <?php require_once "footer.php" ?>
-
