@@ -1,13 +1,4 @@
-<html>
-<head>
-	<title>Sports</title>
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<script type="text/javascript" src="js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
-</head>
-<body>
-	<div class="row">		
+<?php require_once "header.php" ?>		
 		<div class="container align_center">
 			<span class="sports">STATE</span>
 		</div><!--end container-->
@@ -25,9 +16,30 @@
 						<button type="button" class="btn btn-primary align_right submit">Submit</button>			
 					</form>
 				</div>
+				<div class="container">           
+				  <table class="table table_adjust">
+				    <thead>
+				      <tr>
+				        <th class="align_center">SLNO</th>
+				        <th class="align_center">District/Taluka</th>
+				        <th class="align_center">Action</th>
+				      </tr>
+				    </thead>
+				    <tbody>
+				      <tr class="align_center">
+				        <td>01</td>
+				        <td>Virudhunagar</td>
+				        <td>Edit <span class="align_left1">Delete</span></td>
+				      </tr>
+				      <tr class="align_center">
+				        <td>02</td>
+				        <td>Vilupuram</td>
+				       <td>Edit <span class="align_left1">Delete</span></td>
+				      </tr>				   
+				    </tbody>
+				  </table>
+				</div>
 			</div>
 		</div><!-- end  container-->
-		<div class="align_margin"></div>		
-	</div>	
-</body>
-</html>
+			
+<?php require_once "footer.php" ?>

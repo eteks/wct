@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
- <title>Welocity</title>
+ <title>Velocity</title>
  <meta charset="utf-8">
    <meta name="viewport" content="width=device-width, initial-scale=1">
  <link rel="stylesheet" type="text/css" href="css/style.css">
@@ -9,7 +9,7 @@
  
  <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
  <script type="text/javascript" src="js/bootstrap.js"></script>
- <script type="text/javascript" src="//code.jquery.com/jquery-1.8.0.min.js"></script> 
+ <script type="text/javascript" src="js/action.js"></script>
  
 </head>
 <body>
@@ -32,6 +32,44 @@
         </div><!--collapse-->
       </div><!--header_content-->
   </nav>
-
+  <div class="container-fluid">
+    <ul class="nav nav-justified navbar-default">
+      <li class="dropdown">
+        <a href="#" data-toggle="collapse" data-target="#one">MASTER</a>
+      </li>
+      <li class="dropdown">
+        <a href="#" data-toggle="collapse" data-target="#two">TRANSACTION</a>
+      </li>
+      <li class="dropdown">
+        <a href="#">REPORTS</a>
+      </li>
+      
+    </ul>
+</div>
+<div class="container-fluid">
+  <nav id="submenu">
+    <ul class="nav nav-justified">
+      <li>
+        <ul class="nav nav-justified collapse" id="one">
+           <li><a href="#" id="">SPORTS</a></li>
+        <li><a href="#" id="">CATEGORY</a></li>
+        <li><a href="#" id="">STATE</a></li>
+        <li><a href="#" id="">DISTRICT</a></li>
+        <li><a href="#" id="">TEST</a></li>
+        <li><a href="#" id="">TEST BATTERY</a></li>
+        <li><a href="#" id="">RANGE</a></li>
+        </ul>
+       </li>
+       <li>
+         <ul class="nav nav-justified collapse" id="two">
+            <li><a href="#" id="">ADD ATHLETES</a></li>
+            <li><a href="#" id="">CREATE SCHEDULE</a></li>
+            <li><a href="#" id="">ASSIGN SCHEDULE</a></li>
+            <li><a href="#" id="">RESULT</a></li>
+          </ul>
+       </li>
+    </ul>
+  </nav>
+</div>
 </body>
 </html>
