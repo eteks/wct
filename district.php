@@ -1,18 +1,22 @@
 <?php require_once "header.php";
 	  require_once 'functions/states_function.php';
+	  require_once 'functions/district_function.php';
 	  $statesFunction = new statesFunction();	
-	  
-	//   if(isset($_GET['loaddistrict'])){
-	//   		echo "<script>alert('start')</script>";
-	//   	foreach ($STATES AS $key => $value) {
-	//   		echo "<script>alert('key'+$key)</script>";
-	//   		echo "<script>alert('value'+$value)</script>";
-	//   		// echo "<script>alert('getvalue'+$_GET['loaddistrict'])</script>";
-	//   		if (strcmp($key, $_GET['loaddistrict']) == 0) {
-	//   			return $value;
-	//   	}
-	//   }
-	// }
+	  $districtFunction = new districtFunction();
+	  if(isset($_POST['district'])){
+	  	$stateid = $_POST['district_state'];
+		$districtnamename = $_POST['district_name'];
+		// if (in_array($statesname, $STATES)) {
+			$district = $districtFunction->isDistrictExist($district_name);
+			if(!$district){
+				$districtinsert = $districtFunction->districtInsert($stateid,$districtname);
+				if($districtinsert){echo "<script>alert('District Inserted')</script>";}else{
+					echo "<script>alert('District Not Inserted')</script>";}
+			}
+			else {echo "<script>alert('District Already Exist')</script>";}
+		// }
+		// else{echo "<script>alert('No State Present in that Name')</script>";}
+	  }
 ?>		
 		<div class="container align_center">
 			<span class="sports">DISTRICT</span>
@@ -22,10 +26,10 @@
 			<div class="col-md-8">
 				<div class="col-md-4"></div>
 				<div class="col-md-8 align_left">
-					<form>
+					<form method="post" action="district.php" name="district_form">
 						<div class="form-group">
 						  <label for="sel1">Select the State</label>
-						  <select class="form-control adjust_width choose_state" id="sel1">
+						  <select class="form-control adjust_width choose_state" id="sel1" name="district_state">
 						  <option value="0">Select State</option>
 						  <?php
 	                        $query = $statesFunction->statesSelect();
@@ -37,10 +41,10 @@
 						</div>
 						<div class="align_margin">					
 							<label>District/Taluka</label><br>
-							<input type="text" class="districts">
+							<input type="text" class="districts" name="district_name">
 						</div>
 
-						<button type="button" class="btn btn-primary align_right submit">Submit</button>			
+						<input type="submit" class="btn btn-primary align_right submit" name="district">		
 					</form>
 				</div>
 				<div class="container">           

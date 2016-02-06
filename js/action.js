@@ -28,22 +28,15 @@ $(document).ready(function () {
 			source: states_list,
 	 	});
 	});
-	$('.choose_state').change(function(){ 
-	  	$.ajax({
-			type: "POST",
-			url: "district.php?loaddistrict=true",
-			data: {'state_val': $('.choose_state option:selected').text() },
-			success: function (data) {
-				// alert(data);
-                // if(html== 'nil'){
-                //     $('.branchs,.teacher,.classs,.subjects').empty();
-                //     alert('no branch available');
-                // }
-                // else{
-                //     $(".branchs").html('<option>Select branch</option>'+html);
-                // }
-
-			}
-		});
-	});
+	// $('.choose_state').change(function(){ 
+	//   	$.ajax({
+	// 		type: "POST",
+	// 		url: "district.php?loaddistrict=true",
+	// 		// url:"../functions/district_function.php?loaddistrict=true",
+	// 		data: {'state_val': $('.choose_state option:selected').text() },
+	// 		success: function (data) {
+	// 			// alert(data);
+	// 		}
+	// 	});
+	// });
 });
