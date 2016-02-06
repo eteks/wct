@@ -47,12 +47,12 @@
                         while ($row = mysql_fetch_array($query)) {
                             ?>
                             <tr class="align_center">
-						        <td><?php echo $row['states_id']; ?></td>
-						        <td><?php echo $row['states_name']; ?></td>
-						        <td class="edit_state">Edit</td> 
-				        		<td class="delete_state">Delete</td>
-					        </tr>                         
-                     <?php } ?>		   
+				              <td><?php echo $row['states_id']; ?></td>
+				              <td><?php echo $row['states_name']; ?></td>
+				              <td class="edit_state">Edit</td> 
+				              <td class="delete_state">Delete</td>
+				             </tr>                         
+                     <?php } ?>	   
 				    </tbody>
 				  </table>
 				</div>
