@@ -1,4 +1,19 @@
-<?php require_once "header.php" ?>		
+<?php require_once "header.php";
+	  require_once 'functions/states_function.php';
+	  $statesFunction = new statesFunction();	
+	  
+	//   if(isset($_GET['loaddistrict'])){
+	//   		echo "<script>alert('start')</script>";
+	//   	foreach ($STATES AS $key => $value) {
+	//   		echo "<script>alert('key'+$key)</script>";
+	//   		echo "<script>alert('value'+$value)</script>";
+	//   		// echo "<script>alert('getvalue'+$_GET['loaddistrict'])</script>";
+	//   		if (strcmp($key, $_GET['loaddistrict']) == 0) {
+	//   			return $value;
+	//   	}
+	//   }
+	// }
+?>		
 		<div class="container align_center">
 			<span class="sports">DISTRICT</span>
 		</div><!--end container-->
@@ -10,10 +25,14 @@
 					<form>
 						<div class="form-group">
 						  <label for="sel1">Select the State</label>
-						  <select class="form-control adjust_width" id="sel1">
-						    <option>Madurai</option>
-						    <option>Virudhunagar</option>
-						    <option>Vilupuram</option>						   
+						  <select class="form-control adjust_width choose_state" id="sel1">
+						  <option value="0">Select State</option>
+						  <?php
+	                        $query = $statesFunction->statesSelect();
+	                        while ($row = mysql_fetch_array($query)) {
+	                            ?>
+	                            <option value="<?php echo $row['states_id']; ?>"><?php echo $row['states_name']; ?></option>	                                            
+	                      <?php } ?>							   
 						  </select>
 						</div>
 						<div class="align_margin">					
@@ -59,4 +78,8 @@
 		    <li><a href="#">5</a></li>
 		  </ul>
 		</div>	
+		<div class="district_list">
+			<ul>
+			</ul>
+		</div>
 <?php require_once "footer.php" ?>

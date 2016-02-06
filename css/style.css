@@ -125,7 +125,7 @@
 .clear_both{
 	clear: both;
 }
-.sportsname{
+.sportsname,.statesname{
 	width: 100%;
 }
 .align_margin{
@@ -188,4 +188,7 @@ border-top: 0 !important;
 
 .collapsing {
     display:none;
+}
+.states_list,.district_list{
+    display: none;
 }

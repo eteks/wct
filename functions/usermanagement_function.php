@@ -34,7 +34,7 @@ session_start();
 				 
 		}
 		public function isUserExist($emailid){
-			$qr = mysql_query("SELECT * FROM users WHERE emailid = '".$emailid."'");
+			$qr = mysql_query("SELECT * FROM users WHERE usermanagement_username = '".$emailid."'");
 			echo $row = mysql_num_rows($qr);
 			if($row > 0){
 				return true;
@@ -44,5 +44,4 @@ session_start();
 		}
 
 	}
-$usermanagementFunction = new usermanagementFunction(); 
 ?>
