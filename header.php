@@ -1,3 +1,5 @@
+<?php require_once "common.php";
+  session_start(); ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,6 +34,7 @@
         </div><!--collapse-->
       </div><!--header_content-->
   </nav>
+<?php if ((strpos($url,'index.php') == false) && ($_SESSION['admin'])){ ?>
   <div class="container-fluid">
     <ul class="nav nav-justified navbar-default">
       <li class="dropdown">
@@ -71,5 +74,6 @@
     </ul>
   </nav>
 </div>
+<?php }?>
 </body>
 </html>

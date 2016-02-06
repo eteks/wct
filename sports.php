@@ -1,4 +1,4 @@
-<?php require_once "header.php" ?>		
+<?php require_once "header.php"; ?>	
 		<div class="container align_center">
 			<span class="sports">SPORTS</span>
 		</div><!--end container-->
