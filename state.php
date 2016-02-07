@@ -44,6 +44,15 @@
                         $query = $statesFunction->statesSelect();
                         while ($row = mysql_fetch_array($query)) {
                             ?>
+<<<<<<< HEAD
+                            <tr class="align_center">
+				              <td><?php echo $row['states_id']; ?></td>
+				              <td><?php echo $row['states_name']; ?></td>
+				              <td class="edit_state">Edit</td> 
+				              <td class="delete_state">Delete</td>
+				             </tr>                         
+                     <?php } ?>	   
+=======
                             <tr class="align_center delete_color">
 						        <td><?php echo $row['states_id']; ?></td>
 						        <td><?php echo $row['states_name']; ?></td>
@@ -51,6 +60,7 @@
 				        		<td class="delete_state">Delete</td>
 					        </tr>                         
                      <?php } ?>		   
+>>>>>>> fa55c040f2c18fb6535e6ffebf1128708f91b905
 				    </tbody>
 				  </table>
 				</div>

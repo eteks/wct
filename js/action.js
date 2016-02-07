@@ -23,6 +23,7 @@ $(document).ready(function () {
         document.body.style.overflow = 'hidden';
     });
     $('.delete_state').click(function(){
+
         delete_center_align();
         $('.popup_fade').show();
         $('.delete_div, .close_btn').show();
