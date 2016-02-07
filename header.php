@@ -1,5 +1,5 @@
-<?php require_once "common.php";
-  session_start(); ?> 
+<?php require_once "common.php"; ?>
+  <!--session_start(); ?>--> 
 <!DOCTYPE html>
 <html>
 <head>

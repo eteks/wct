@@ -43,6 +43,17 @@
 		      </tr>				   
 		    </tbody>
 		  </table>
-		</div>	
+		</div>
+		<div class="container align_center">		          
+		  	<ul class="pagination">
+		  		<li><a href="#" class="align_left_icon"><i class="fa fa-angle-double-left"></i></a></li>    	
+			    <li><a href="#">1</a></li>
+			    <li><a href="#">2</a></li>
+			    <li><a href="#">3</a></li>
+			    <li><a href="#">4</a></li>
+			    <li><a href="#">5</a></li>
+			    <li><a href="#" class="align_right_icon"><i class="fa fa-angle-double-right"></i></a></li>
+			</ul>		   
+		</div><!-- end  container-->	
 <?php require_once "footer.php" ?>
 
