@@ -1,27 +1,49 @@
-<?php require_once "header.php" ?>		
-		<div class="container align_center">
+<?php require_once "header.php";
+	  require_once 'functions/states_function.php';
+	  require_once 'functions/district_function.php';
+	  $statesFunction = new statesFunction();	
+	  $districtFunction = new districtFunction();
+	  if(isset($_POST['district'])){
+	  	$stateid = $_POST['district_state'];
+		$districtnamename = $_POST['district_name'];
+		// if (in_array($statesname, $STATES)) {
+			$district = $districtFunction->isDistrictExist($district_name);
+			if(!$district){
+				$districtinsert = $districtFunction->districtInsert($stateid,$districtname);
+				if($districtinsert){echo "<script>alert('District Inserted')</script>";}else{
+					echo "<script>alert('District Not Inserted')</script>";}
+			}
+			else {echo "<script>alert('District Already Exist')</script>";}
+		// }
+		// else{echo "<script>alert('No State Present in that Name')</script>";}
+	  }
+?>		
+		<div class="container align_center align-height">
 			<span class="sports">DISTRICT</span>
 		</div><!--end container-->
-		<div class="align_margin"></div>
 		<div class="container">
 			<div class="col-md-8">
 				<div class="col-md-4"></div>
-				<div class="col-md-8 align_left">
-					<form>
+				<div class="col-md-8 col-xs-12 align_left">
+					<form method="post" action="district.php" name="district_form">
 						<div class="form-group">
 						  <label for="sel1">Select the State</label>
-						  <select class="form-control adjust_width" id="sel1">
-						    <option>Madurai</option>
-						    <option>Virudhunagar</option>
-						    <option>Vilupuram</option>						   
+						  <select class="form-control adjust_width classic choose_state" id="sel1" name="district_state">
+						  <option value="0">Select State</option>
+						  <?php
+	                        $query = $statesFunction->statesSelect();
+	                        while ($row = mysql_fetch_array($query)) {
+	                            ?>
+	                            <option value="<?php echo $row['states_id']; ?>"><?php echo $row['states_name']; ?></option>	                                            
+	                      <?php } ?>							   
 						  </select>
 						</div>
 						<div class="align_margin">					
 							<label>District/Taluka</label><br>
-							<input type="text" class="districts">
+							<input type="text" class="districts" name="district_name">
 						</div>
 
-						<button type="button" class="btn btn-primary align_right submit">Submit</button>			
+						<input type="submit" class="btn btn-primary align_right submit" name="district">		
 					</form>
 				</div>
 				<div class="container">           
@@ -57,5 +79,9 @@
 		    <li><a href="#">4</a></li>
 		    <li><a href="#">5</a></li>
 		  </ul>
-		</div><!-- end  container-->	
+		</div>	<!-- end  container-->
+		<div class="district_list">
+			<ul>
+			</ul>
+		</div>
 <?php require_once "footer.php" ?>
