@@ -1,9 +1,7 @@
 <?php require_once "header.php"; ?>	
-		<div class="container align_center">
+		<div class="container align_center align_height">
 			<span class="sports">SPORTS</span>
-		</div><!--end container-->
-
-		<div class="align_margin"></div>
+		</div><!--end container-->		
 		<div class="container">
 			<div class="col-md-8">
 				<div class="col-md-6"></div>
@@ -17,10 +15,9 @@
 					</form>
 				</div>
 			</div>
-		</div><!-- end  container-->
-		<div class="align_margin"></div>
+		</div><!-- end  container-->		
 		<div class="container">           
-		  <table class="table table_adjust">
+		  <table class="table state_table">
 		    <thead>
 		      <tr>
 		        <th class="align_center">SLNO</th>
