@@ -1,5 +1,10 @@
-<?php require_once "header.php" ?>
-	<div class="container">		
+<?php
+require_once "session.php";
+require_once "header.php";
+require_once "functions/category_function.php";
+$obj = new sportsfunction();
+?>
+	<div class="container">
 		<div class="container align_center align_height">
 			<span class="sports">CATEGORY</span>
 		</div><!--end container-->
@@ -8,14 +13,14 @@
 				<div class="col-md-6"></div>
 				<div class="col-md-6 align_margin">
 					<form>
-						<div class="align_margin">					
+						<div class="align_margin">
 							<label>Enter the Category Name</label><br>
 							<input type="text" class="sportsname">
 						</div>
-						<button type="button" class="btn btn-primary align_right submit">Submit</button>			
+						<button type="button" class="btn btn-primary align_right submit">Submit</button>
 					</form>
 				</div>
-				<div class="container">           
+				<div class="container">
 				  <table class="table state_table">
 				    <thead>
 				      <tr class="row_color">
@@ -40,35 +45,35 @@
 				        	<span class="edit_state">Edit</span>
 				        	<span class="delete_state">Delete</span>
 				        </td>
-				      </tr>				   
+				      </tr>
 				    </tbody>
 				  </table>
 				</div>
 			</div>
 		</div><!-- end  container-->
-		<div class="container align_center">		          
+		<div class="container align_center">
 		  	<ul class="pagination">
-		  		<li><a href="#" class="align_left_icon"><i class="fa fa-angle-double-left"></i></a></li>    	
+		  		<li><a href="#" class="align_left_icon"><i class="fa fa-angle-double-left"></i></a></li>
 			    <li><a href="#">1</a></li>
 			    <li><a href="#">2</a></li>
 			    <li><a href="#">3</a></li>
 			    <li><a href="#">4</a></li>
 			    <li><a href="#">5</a></li>
 			    <li><a href="#" class="align_right_icon"><i class="fa fa-angle-double-right"></i></a></li>
-			</ul>		   
+			</ul>
 		</div><!-- end  container-->
-	</div>		
+	</div>
 	<div class="popup_fade cancel_btn"></div><!--popup_fade-->
 		<div class="container">
             <div class="state_div">
           		<code class="close_btn cancel_btn"> </code>
-          			<div class="container state-content col-md-12">		
+          			<div class="container state-content col-md-12">
 	          			<form>
-							<div class="align_margin">	
+							<div class="align_margin">
 								<label>Enter the Category Name</label><br>
 								<input type="text" class="sportsname">
 							</div><!--align_margin-->
-							<button type="button" class="btn btn-primary align_right submit">Submit</button>			
+							<button type="button" class="btn btn-primary align_right submit">Submit</button>
 						</form>
 					</div><!--tate-content-->
 			</div><!--state_div-->
