@@ -17,7 +17,7 @@ $obj = new sportsfunction();
 							<label>Enter the Category Name</label><br>
 							<input type="text" class="sportsname">
 						</div>
-						<button type="button" class="btn btn-primary align_right submit">Submit</button>
+						<input type="submit" class="btn btn-primary align_right clear" name="category" value="Submit">
 					</form>
 				</div>
 				<div class="container">
@@ -67,13 +67,16 @@ $obj = new sportsfunction();
 		<div class="container">
             <div class="state_div">
           		<code class="close_btn cancel_btn"> </code>
+          		<div class="edit_title">
+                	<span class="del_txt">EDIT</span>
+              	</div><!--edit_title-->
           			<div class="container state-content col-md-12">
-	          			<form>
-							<div class="align_margin">
-								<label>Enter the Category Name</label><br>
-								<input type="text" class="sportsname">
-							</div><!--align_margin-->
-							<button type="button" class="btn btn-primary align_right submit">Submit</button>
+								<form>
+						<div class="align_margin">
+							<label>Enter the Category Name</label><br>
+							<input type="text" class="sportsname">
+						</div><!--align_margin-->
+							<input type="submit" class="btn btn-primary align_right clear" name="category" value="Submit">		
 						</form>
 					</div><!--tate-content-->
 			</div><!--state_div-->

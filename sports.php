@@ -17,7 +17,7 @@ $obj = new sportsfunction();
 					<input type="text" class="sportsname" name="sports_name">
 					<input type="hidden" name="sports_add" value="1">
 				</div>
-				<button type="button" class="btn btn-primary align_right submit sports_submit_act">Submit</button>
+				<button type="button" class="btn btn-primary align_right clear sports_submit_act">Submit</button>
 			</form>
 		</div>
 	</div>
@@ -60,7 +60,7 @@ $obj = new sportsfunction();
 					<input type="hidden" class="sports_update_id" name="sports_id">
 					<input type="hidden" name="sportd_update" value="1">
 				</div><!--align_margin-->
-				<button type="button" class="btn btn-primary align_right submit sports_update_act">Submit</button>
+				<button type="button" class="btn btn-primary align_right clear sports_update_act">Submit</button>
 			</form>
 		</div><!--tate-content-->
 	</div><!--state_div-->
