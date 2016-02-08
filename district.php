@@ -5,9 +5,9 @@
 	  $districtFunction = new districtFunction();
 	  if(isset($_POST['district'])){
 	  	$stateid = $_POST['district_state'];
-		$districtnamename = $_POST['district_name'];
+		$districtname = $_POST['district_name'];
 		// if (in_array($statesname, $STATES)) {
-			$district = $districtFunction->isDistrictExist($district_name);
+			$district = $districtFunction->isDistrictExist($districtname);
 			if(!$district){
 				$districtinsert = $districtFunction->districtInsert($stateid,$districtname);
 				if($districtinsert){echo "<script>alert('District Inserted')</script>";}else{
@@ -55,23 +55,21 @@
 				        <th class="align_center">Action</th>
 				      </tr>
 				    </thead>
-				    <tbody>
-				      <tr class="align_center delete_color">
-				        <td>01</td>
-				        <td>Virudhunagar</td>
-				        <td>
-				        	<span class="edit_state">Edit</span>
-				        	<span class="delete_state">Delete</span>
-				        </td>
-				      </tr>
-				      <tr class="align_center delete_color">
-				        <td>02</td>
-				        <td>Vilupuram</td>
-				       <td>
-				        	<span class="edit_state">Edit</span>
-				        	<span class="delete_state">Delete</span>
-				        </td>
-				      </tr>				   
+				    <tbody>  
+				      <?php
+                        $query = $districtFunction->districtSelect();
+                        while ($row = mysql_fetch_array($query)) {
+                            ?>
+                            <tr class="align_center delete_color">
+						        <td><?php echo $row['district_id']; ?></td>
+						        <td><?php echo $row['states_name']; ?></td>
+						        <td><?php echo $row['district_name']; ?></td>
+						        <td>
+						        	<span class="edit_state">Edit</span>
+						        	<span class="delete_state">Delete</span>
+						        </td> 				    
+					        </tr>                         
+                     <?php } ?>	 
 				    </tbody>
 				  </table>
 				</div>

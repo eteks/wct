@@ -45,10 +45,11 @@
                         while ($row = mysql_fetch_array($query)) {
                             ?>
                             <tr class="align_center delete_color">
+                            <input type="hidden" name="states_id" value="<?php echo $row['states_id']; ?>">
 						        <td><?php echo $row['states_id']; ?></td>
 						        <td><?php echo $row['states_name']; ?></td>
 						        <td>
-						        	<span class="edit_state">Edit</span>
+						        	<span class="edit_state" onclick="editfunction(<?php echo $row['states_id'] ?>)">Edit</span>
 						        	<span class="delete_state">Delete</span>
 						        </td> 				    
 					        </tr>                         
@@ -82,12 +83,13 @@
             <div class="state_div">
           		<code class="close_btn cancel_btn"> </code>
           			<div class="container state-content col-md-12">		
-	          			<form>
-							<div class="align_margin">	
+	          			<form name="edit_states_form" method="post">
+							<div class="align_margin">					
 								<label>Enter the State</label><br>
-								<input type="text" class="sportsname">
-							</div><!--align_margin-->
-							<button type="button" class="btn btn-primary align_right submit">Submit</button>			
+								<input type="hidden" class="statesid" name="edit_states_id">
+								<input type="text" class="statesname" name="edit_states_name" required>
+							</div>		
+							<input type="submit" class="btn btn-primary align_right submit edit_states" name="edit_states" value="Submit">																						
 						</form>
 					</div><!--tate-content-->
 			</div><!--state_div-->

@@ -20,6 +20,25 @@ function package_menu() {
         $('body').css('height', "200px", 'max-height', "200px");
     }
 }
+
+function editfunction(data_id){
+    $.ajax({
+     type: "POST",
+     url: "functions/edit_and_delete_function.php",
+     data: {data_id:data_id},
+     cache: false,
+     success: function(data) {
+      var obj = JSON.parse(data);
+      $.each(obj, function(i){
+        $('[name=edit_states_id]').val(obj[i].states_id);
+        $('[name=edit_states_name]').val(obj[i].states_name);
+      });
+      $('.popup_fade').show();
+      $('.state_div, .close_btn').show();
+      document.body.style.overflow = 'hidden';
+     }
+  });
+}
 $(window).resize(function () {
     package_menu();
   });
@@ -29,12 +48,12 @@ $(document).ready(function () {
  	delete_center_align();
 
 //Edit popup
-  	$('.edit_state').click(function(){
-        state_center_align();
-        $('.popup_fade').show();
-        $('.state_div, .close_btn').show();
-        document.body.style.overflow = 'hidden';
-    });
+  	// $('.edit_state').click(function(){
+   //      state_center_align();
+   //      $('.popup_fade').show();
+   //      $('.state_div, .close_btn').show();
+   //      document.body.style.overflow = 'hidden';
+   //  });
     $('.delete_state').click(function(){
         delete_center_align();
         $('.popup_fade').show();
@@ -67,17 +86,6 @@ $(document).ready(function () {
 			source: states_list,
 	 	});
 	});
-	// $('.choose_state').change(function(){
-	//   	$.ajax({
-	// 		type: "POST",
-	// 		url: "district.php?loaddistrict=true",
-	// 		// url:"../functions/district_function.php?loaddistrict=true",
-	// 		data: {'state_val': $('.choose_state option:selected').text() },
-	// 		success: function (data) {
-	// 			// alert(data);
-	// 		}
-	// 	});
-	// });
 
     $('.sports_submit_act').click(function() {
         var form_data = $('#sports_form').serialize();
@@ -93,4 +101,19 @@ $(document).ready(function () {
            }
        });
     });
+
+    $('.edit_states').click(function(){
+      var form_data = $('[name=edit_states_form]').serialize();
+        $.ajax({
+           type: "POST",
+           url: "functions/edit_and_delete_function.php?editdata=true",
+           data: form_data,
+           cache: false,
+           success: function(html) {
+               // alert(html);
+               
+           }
+       });
+    });
+
 });

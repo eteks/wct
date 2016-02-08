@@ -408,7 +408,7 @@ select {
     color: #fff !important;
 }
 .delete_state{
-   cursor: pointer;
+    cursor: pointer;
     float: right;
     position: relative;
     right: 25%;
