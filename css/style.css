@@ -716,3 +716,51 @@ button, input, optgroup, select, textarea {
     font-family: Montserrat;
     color: #C6C6C6 !important;
 }
+.footer {
+    padding: 0 !important;
+}
+.ui-menu{
+    background: hsl(0, 0%, 100%) none repeat scroll 0 0;
+    height: auto;
+    left: 499.5px;
+    list-style: outside none none;
+    overflow-y: scroll;
+    padding: 0;
+    position: relative;
+    top: -158px;
+    width: 335px;
+    z-index: 1;
+}
+.ui-menu-item a:hover {
+    text-decoration: none !important;
+}
+.ui-menu-item {
+    cursor: pointer;
+    font-size: 15px;
+    font-family: Montserrat;
+    padding: 2px 0 0 6px;
+}
+/*for pagination add by muthu*/
+.paging-nav {
+      text-align: center;
+      padding-top: 2px;
+}
+
+.paging-nav a {
+  background: none repeat scroll 0 0 #fff;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  color: #337ab7;
+  display: inline-block;
+  margin: auto 1px;
+  padding: 6px 12px;
+  text-decoration: none !important;
+}
+
+.paging-nav .selected-page {
+      font-weight: bold;
+}
+#sports_table tbody{
+  border: 1px solid #000;
+}
+/*end pagination*/

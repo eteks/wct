@@ -28,18 +28,18 @@
 				      <tr class="align_center delete_color">
 				        <td>01</td>
 				        <td>Under 14 Boys</td>
-				        <td>
+				         <td>
 				        	<span class="edit_state">Edit</span>
-		        			<span class="delete_state">Delete</span>
+				        	<span class="delete_state">Delete</span>
 				        </td>
 				      </tr>
 				      <tr class="align_center delete_color">
 				        <td>02</td>
 				        <td>Under 14 Girls</td>
-				       <td>
-				       		<span class="edit_state">Edit</span>
-		        			<span class="delete_state">Delete</span>
-				       </td>
+				        <td>
+				        	<span class="edit_state">Edit</span>
+				        	<span class="delete_state">Delete</span>
+				        </td>
 				      </tr>				   
 				    </tbody>
 				  </table>

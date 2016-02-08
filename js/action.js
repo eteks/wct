@@ -39,10 +39,43 @@ function range_center_align(){
       $('.range_div').css({'margin-top': -height / 2 + "px", 'margin-left': -width / 2 + "px"});
 }
 
-$(document).ready(function () {
+function package_menu() {
+    var wh = window.innerHeight;
+    var smh = wh - 43;
+    if (wh < 200) {
+        $('.footer').css({'top': smh + "px"});
+        $('body').css({'height': wh + "px", 'max-height': "200px"});
+    } else {
+        $('.footer').css('top', '100%');
+        $('body').css('height', "200px", 'max-height', "200px");
+    }
+}
 
+function editfunction(data_id){
+    $.ajax({
+     type: "POST",
+     url: "functions/edit_and_delete_function.php",
+     data: {data_id:data_id},
+     cache: false,
+     success: function(data) {
+      var obj = JSON.parse(data);
+      $.each(obj, function(i){
+        $('[name=edit_states_id]').val(obj[i].states_id);
+        $('[name=edit_states_name]').val(obj[i].states_name);
+      });
+      $('.popup_fade').show();
+      $('.state_div, .close_btn').show();
+      document.body.style.overflow = 'hidden';
+     }
+  });
+}
+$(window).resize(function () {
+    package_menu();
+  });
+$(document).ready(function () {
+  package_menu();
  	state_center_align();
- 	delete_center_align();
+  delete_center_align();
   login_center_align();
   register_center_align();
   test_center_align();
@@ -50,20 +83,24 @@ $(document).ready(function () {
   test_battery_center_align();
   range_center_align();
 
-//Edit popup
+    //Edit popup
   	$('.edit_state').click(function(){
         state_center_align();
         $('.popup_fade').show();
         $('.state_div, .close_btn').show();
         document.body.style.overflow = 'hidden';
+        //alert($(this).parents('tr').find('.sports_id').text());
+        $('.sports_update_name').val($(this).parents('tr').find('.sports_name').text());
+        $('.sports_update_id').val($(this).parents('tr').find('.sports_id').text());
     });
     $('.delete_state').click(function(){
         delete_center_align();
         $('.popup_fade').show();
         $('.delete_div, .close_btn').show();
         document.body.style.overflow = 'hidden';
+        $('#delete_id').val($(this).parents('tr').find('.sports_id').text());
     });
-    $('.login').click(function(){
+  	$('.login').click(function(){
         login_center_align();
         $('.popup_fade').show();
         $('.login_div, .close_btn').show();
@@ -99,7 +136,7 @@ $(document).ready(function () {
         $('.range_div, .close_btn').show();
         document.body.style.overflow = 'hidden';
     });
-  	$('.cancel_btn').click(function(){
+    $('.cancel_btn').click(function(){
         $('.popup_fade').hide();
         $('.state_div,.delete_div,.login_div,.register_div,.test_div,.district_div,.test_battery_div,.range_div').hide();
         document.body.style.overflow = 'auto';
@@ -114,15 +151,6 @@ $(document).ready(function () {
 	   $(this).parent('li').toggleClass('active');
 	});
 
- 	$('[name=optradio]').change(function(){ 
-  	if($(this).val() == "administrator"){
-  		$(this).attr('checked',checked);
-  		// window.location.href="index.php";
-  	}
-  	else
-  		window.location.href="sports.php";
- 	});
-
 	// Autocomplete results for states list
 	var states_list = [];
 		$('.states_list li').each(function(){
@@ -133,15 +161,84 @@ $(document).ready(function () {
 			source: states_list,
 	 	});
 	});
-	// $('.choose_state').change(function(){ 
-	//   	$.ajax({
-	// 		type: "POST",
-	// 		url: "district.php?loaddistrict=true",
-	// 		// url:"../functions/district_function.php?loaddistrict=true",
-	// 		data: {'state_val': $('.choose_state option:selected').text() },
-	// 		success: function (data) {
-	// 			// alert(data);
-	// 		}
-	// 	});
-	// });
+
+    $('.sports_submit_act').click(function() {
+        var form_data = $('#sports_form').serialize();
+       // alert(form_data);
+        $.ajax({
+           type: "POST",
+           url: "functions/sports_function.php",
+           data: form_data,
+           cache: false,
+           success: function(html) {
+               //alert(html);
+               if(html=='error'){
+                 alert('Already sports name entred');
+               }else{
+                 $('#sports_table tr:last').after(html);
+               }
+
+           }
+       });
+    });
+
+    $('.edit_states').click(function(){
+      var form_data = $('[name=edit_states_form]').serialize();
+        $.ajax({
+           type: "POST",
+           url: "functions/edit_and_delete_function.php?editdata=true",
+           data: form_data,
+           cache: false,
+           success: function(html) {
+               // alert(html);           
+           }
+       });
+    });
+    $('.sports_update_act').click(function() {
+        var form_data = $('#sports_update_form').serialize();
+       alert(form_data);
+        $.ajax({
+           type: "POST",
+           url: "functions/sports_function.php",
+           data: form_data,
+           cache: false,
+           success: function(html) {
+               //alert(html);
+               if(html=='error'){
+                 alert('Already sports name entred');
+               }else{
+                 var sports_split = html.split('-');
+                $('#sports_table').find(".sports_id:contains("+sports_split[1]+")").next('.sports_name').html(sports_split[0]);
+                //alert('Sports name updated successfully');
+                $('.popup_fade').hide();
+                $('.state_div,.delete_div').hide();
+                document.body.style.overflow = 'auto';
+               }
+
+           }
+       });
+    });
+    $('.yes_btn').click(function() {
+        var del_id =$('#delete_id').val();
+        var form_data = {'sports_del':'1','del_id':del_id};
+        $.ajax({
+           type: "POST",
+           url: "functions/sports_function.php",
+           data: form_data,
+           cache: false,
+           success: function(html) {
+               $('#sports_table').find(".sports_id:contains("+html+")").parents('tr').remove();
+               $('.popup_fade').hide();
+               $('.state_div,.delete_div').hide();
+               document.body.style.overflow = 'auto';
+            }
+       });
+    });
+
+    $('.no_btn').click(function(event) {
+        $('.popup_fade').hide();
+        $('.state_div,.delete_div').hide();
+        document.body.style.overflow = 'auto';
+    });
+
 });
