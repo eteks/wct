@@ -88,6 +88,7 @@
                 <span class="del_content_txt">Are you sure want to delete this record?</span>
                 <input type="button" class="btn btn-primary align_right yes_btn" value="Yes">
                 <input type="button" class="btn btn-primary align_right no_btn" value="No">
+                <input type="hidden" name="delete_id" value="" id="delete_id"/>
               </div><!--del_content-->
           </div><!--delete_div-->
       </div><!--container-->

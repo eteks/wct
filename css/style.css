@@ -85,8 +85,8 @@
     .admin > label {
     color: hsl(0, 0%, 5%);
     font-size: 20px;
-    } 
-} 
+    }
+}
 .email_txt,.pwd_txt,.remember_txt {
     color: hsl(0, 0%, 25%);
     font-family: Montserrat;
@@ -166,7 +166,7 @@
 }
 .align_right_icon{
     margin-left: 10px !important;
-    border-radius: 0 !important; 
+    border-radius: 0 !important;
 }
 .submit{
 	background: none repeat scroll 0 0 #006687;
@@ -186,7 +186,7 @@
     font-family: Montserrat;
     margin-right: 10px;
 }
-.container_holder {   
+.container_holder {
     width: 785px;
 }
 .districts{
@@ -290,7 +290,7 @@ border-top: 0 !important;
 }
 .submenu-align {
     height: 63px;
-    
+
     position: absolute;
     z-index: 9999;
 }
@@ -327,7 +327,7 @@ select {
 }
 
 #submenu {
-   
+
     margin-bottom:20px;
 }
 
@@ -338,16 +338,16 @@ select {
     cursor: pointer;
 }
 .popup_fade {
-    background:#000000; 
-   -moz-opacity:0.63;    
-    opacity: 0.63;     
+    background:#000000;
+   -moz-opacity:0.63;
+    opacity: 0.63;
     display: none;
-    width: 100%;    
-    height: 100%;
-    position: absolute;    
-    top: 0;    
+    width: 100%;
+    height: 1000%;
+    position: absolute;
+    top: 0;
     z-index: 1100;
-    overflow: hidden; 
+    overflow: hidden;
 }
 .state_div{
     height: 200px;
@@ -455,3 +455,27 @@ select {
     font-family: Montserrat;
     padding: 2px 0 0 6px;
 }
+/*for pagination add by muthu*/
+.paging-nav {
+	  text-align: center;
+	  padding-top: 2px;
+}
+
+.paging-nav a {
+  background: none repeat scroll 0 0 #fff;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  color: #337ab7;
+  display: inline-block;
+  margin: auto 1px;
+  padding: 6px 12px;
+  text-decoration: none !important;
+}
+
+.paging-nav .selected-page {
+	  font-weight: bold;
+}
+#sports_table tbody{
+  border: 1px solid #000;
+}
+/*end pagination*/
