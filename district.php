@@ -29,7 +29,7 @@
 						<div class="form-group">
 						  <label for="sel1">Select the State</label>
 						  <select class="form-control adjust_width classic choose_state" id="sel1" name="district_state">
-						  <option value="0">Select State</option>
+						  <option value="0"></option>
 						  <?php
 	                        $query = $statesFunction->statesSelect();
 	                        while ($row = mysql_fetch_array($query)) {
@@ -43,45 +43,77 @@
 							<input type="text" class="districts" name="district_name">
 						</div>
 
-						<input type="submit" class="btn btn-primary align_right submit" name="district">		
+						<input type="submit" class="btn btn-primary align_right clear" name="district">		
 					</form>
 				</div>
 				<div class="container">           
 				  <table class="table state_table">
 				    <thead>
-				      <tr>
+				      <tr class="row_color">
 				        <th class="align_center">SLNO</th>
 				        <th class="align_center">District/Taluka</th>
 				        <th class="align_center">Action</th>
 				      </tr>
 				    </thead>
 				    <tbody>
-				      <tr class="align_center">
+				      <tr class="align_center delete_color">
 				        <td>01</td>
 				        <td>Virudhunagar</td>
-				        <td>Edit <span class="align_left1">Delete</span></td>
+				        <td>
+				        	<span class="edit_state">Edit</span>
+		        			<span class="delete_state">Delete</span>
+				        </td>
 				      </tr>
-				      <tr class="align_center">
+				      <tr class="align_center delete_color">
 				        <td>02</td>
 				        <td>Vilupuram</td>
-				       <td>Edit <span class="align_left1">Delete</span></td>
+				       <td>
+				       		<span class="edit_state">Edit</span>
+		        			<span class="delete_state">Delete</span>
+				       </td>
 				      </tr>				   
 				    </tbody>
 				  </table>
 				</div>
 			</div>
 		</div><!-- end  container-->					
-		<div class="container align_center">              
-		  <ul class="pagination">
-		    <li><a href="#">1</a></li>
-		    <li><a href="#">2</a></li>
-		    <li><a href="#">3</a></li>
-		    <li><a href="#">4</a></li>
-		    <li><a href="#">5</a></li>
-		  </ul>
-		</div>	<!-- end  container-->
+		<div class="container align_center">		          
+		  	<ul class="pagination">
+		  		<li><a href="#" class="align_left_icon"><i class="fa fa-angle-double-left"></i></a></li>    	
+			    <li><a href="#">1</a></li>
+			    <li><a href="#">2</a></li>
+			    <li><a href="#">3</a></li>
+			    <li><a href="#">4</a></li>
+			    <li><a href="#">5</a></li>
+			    <li><a href="#" class="align_right_icon"><i class="fa fa-angle-double-right"></i></a></li>
+			</ul>		   
+		</div><!-- end  container-->
 		<div class="district_list">
 			<ul>
 			</ul>
 		</div>
+		<div class="popup_fade cancel_btn"></div><!--popup_fade-->
+		<div class="container">
+            <div class="district_div">
+          		<code class="close_btn cancel_btn"> </code>
+          		<div class="edit_title">
+                	<span class="del_txt">EDIT</span>
+              	</div><!--edit_title-->
+          			<div class="container state-content col-md-12">		
+	          			<form>
+						<div class="form-group">
+						  <label for="sel1">Select the State</label>
+						  <select class="form-control adjust_width classic choose_state" id="sel1" name="district_state">
+						  	<option value="0"></option>
+						  </select>
+						</div>
+						<div class="align_margin">					
+							<label>District/Taluka</label><br>
+							<input type="text" class="districts" name="district_name">
+						</div>
+						<input type="submit" class="btn btn-primary align_right clear" name="district">		
+					</form>
+					</div><!--tate-content-->
+			</div><!--state_div-->
+		</div><!--container-->
 <?php require_once "footer.php" ?>

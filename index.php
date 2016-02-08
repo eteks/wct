@@ -1,18 +1,18 @@
 <?php require_once 'header.php'; 
 	  require_once 'functions/usermanagement_function.php';
-		  $usermanagementFunction = new usermanagementFunction();
-		  if($_POST['login']){
-			$emailid = $_POST['email'];
-			$password = $_POST['password'];
-			$user = $usermanagementFunction->Login($emailid, $password);
-			if ($user) {
-				// Login Success
-			   header("location:sports.php");
-			} else {
-				// Login Failed
-				echo "<script>alert('Emailid / Password Not Match')</script>";
-			}
-		}
+		//   $usermanagementFunction = new usermanagementFunction();
+		//   if($_POST['login']){
+		// 	$emailid = $_POST['email'];
+		// 	$password = $_POST['password'];
+		// 	$user = $usermanagementFunction->Login($emailid, $password);
+		// 	if ($user) {
+		// 		// Login Success
+		// 	   header("location:sports.php");
+		// 	} else {
+		// 		// Login Failed
+		// 		echo "<script>alert('Emailid / Password Not Match')</script>";
+		// 	}
+		// }
 ?>
 
 	<div class="select_user_content">

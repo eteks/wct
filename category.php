@@ -12,7 +12,7 @@
 							<label>Enter the Category Name</label><br>
 							<input type="text" class="sportsname">
 						</div>
-						<button type="button" class="btn btn-primary align_right submit">Submit</button>			
+						<input type="submit" class="btn btn-primary align_right clear" name="category" value="Submit">		
 					</form>
 				</div>
 				<div class="container">           
@@ -28,12 +28,18 @@
 				      <tr class="align_center delete_color">
 				        <td>01</td>
 				        <td>Under 14 Boys</td>
-				        <td>Edit <span class="align_left1">Delete</span></td>
+				        <td>
+				        	<span class="edit_state">Edit</span>
+		        			<span class="delete_state">Delete</span>
+				        </td>
 				      </tr>
 				      <tr class="align_center delete_color">
 				        <td>02</td>
 				        <td>Under 14 Girls</td>
-				       <td>Edit <span class="align_left1">Delete</span></td>
+				       <td>
+				       		<span class="edit_state">Edit</span>
+		        			<span class="delete_state">Delete</span>
+				       </td>
 				      </tr>				   
 				    </tbody>
 				  </table>
@@ -52,4 +58,24 @@
 			</ul>		   
 		</div><!-- end  container-->
 	</div>		
+	<div class="popup_fade cancel_btn"></div><!--popup_fade-->
+		<div class="container">
+            <div class="state_div">
+          		<code class="close_btn cancel_btn"> </code>
+          		<div class="edit_title">
+                	<span class="del_txt">EDIT</span>
+              	</div><!--edit_title-->
+          			<div class="container state-content col-md-12">		
+	          			<form>
+							<div class="align_margin">	
+								<form>
+						<div class="align_margin">					
+							<label>Enter the Category Name</label><br>
+							<input type="text" class="sportsname">
+						</div><!--align_margin-->
+							<input type="submit" class="btn btn-primary align_right clear" name="category" value="Submit">		
+						</form>
+					</div><!--tate-content-->
+			</div><!--state_div-->
+		</div><!--container-->
 <?php require_once "footer.php" ?>

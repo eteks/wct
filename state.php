@@ -27,7 +27,7 @@
 							<label>Enter the State</label><br>
 							<input type="text" class="statesname" name="states_name" required>
 						</div>	
-						<input type="submit" class="btn btn-primary align_right submit" name="states" value="Submit">																						
+						<input type="submit" class="btn btn-primary align_right clear" name="states" value="Submit">																						
 					</form>
 				</div>
 				<div class="container">           
@@ -44,23 +44,15 @@
                         $query = $statesFunction->statesSelect();
                         while ($row = mysql_fetch_array($query)) {
                             ?>
-<<<<<<< HEAD
-                            <tr class="align_center">
-				              <td><?php echo $row['states_id']; ?></td>
-				              <td><?php echo $row['states_name']; ?></td>
-				              <td class="edit_state">Edit</td> 
-				              <td class="delete_state">Delete</td>
-				             </tr>                         
-                     <?php } ?>	   
-=======
                             <tr class="align_center delete_color">
 						        <td><?php echo $row['states_id']; ?></td>
 						        <td><?php echo $row['states_name']; ?></td>
-						        <td class="edit_state">Edit</td> 
-				        		<td class="delete_state">Delete</td>
-					        </tr>                         
+						        <td>
+						        	<span class="edit_state">Edit</span>
+		        					<span class="delete_state">Delete</span>
+						        </td> 
+				        	</tr>                         
                      <?php } ?>		   
->>>>>>> fa55c040f2c18fb6535e6ffebf1128708f91b905
 				    </tbody>
 				  </table>
 				</div>
@@ -89,13 +81,16 @@
 		<div class="container">
             <div class="state_div">
           		<code class="close_btn cancel_btn"> </code>
+          		<div class="edit_title">
+                	<span class="del_txt">EDIT</span>
+              	</div><!--edit_title-->
           			<div class="container state-content col-md-12">		
 	          			<form>
 							<div class="align_margin">	
 								<label>Enter the State</label><br>
 								<input type="text" class="sportsname">
 							</div><!--align_margin-->
-							<button type="button" class="btn btn-primary align_right submit">Submit</button>			
+							<input type="submit" class="btn btn-primary align_right clear" name="states" value="Submit">		
 						</form>
 					</div><!--tate-content-->
 			</div><!--state_div-->

@@ -1,6 +1,6 @@
 <?php
 require_once 'dbconnect.php';
-session_start();
+// session_start();
  	class usermanagementFunction {		  
 		function __construct() {			
 			// connecting to database

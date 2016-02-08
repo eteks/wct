@@ -11,7 +11,7 @@
 							<label>Enter the name of the Sports</label><br>
 							<input type="text" class="sportsname" name="sports_name">
 						</div>
-						<button type="button" class="btn btn-primary align_right submit">Submit</button>			
+						<input type="submit" class="btn btn-primary align_right clear" value="Submit">			
 					</form>
 				</div>
 			</div>
@@ -19,27 +19,36 @@
 		<div class="container">           
 		  <table class="table state_table">
 		    <thead>
-		      <tr>
+		      <tr class="row_color">
 		        <th class="align_center">SLNO</th>
 		        <th class="align_center">Sport Name</th>
 		        <th class="align_center">Action</th>
 		      </tr>
 		    </thead>
 		    <tbody>
-		      <tr class="align_center">
+		      <tr class="align_center delete_color">
 		        <td>01</td>
 		        <td>Hockey</td>
-		        <td>Edit <span class="align_left1">Delete</span></td>
+		        <td> 
+		        	<span class="edit_state">Edit</span>
+		        	<span class="delete_state">Delete</span>
+		        </td>
 		      </tr>
-		      <tr class="align_center">
+		      <tr class="align_center delete_color">
 		        <td>02</td>
 		        <td>Foot Ball</td>
-		       <td>Edit <span class="align_left1">Delete</span></td>
+		       <td>
+		       		<span class="edit_state">Edit</span>
+		        	<span class="delete_state">Delete</span>
+		       </td>
 		      </tr>	
-		      <tr class="align_center">
+		      <tr class="align_center delete_color">
 		        <td>03</td>
 		        <td>Cricket</td>
-		       <td>Edit <span class="align_left1">Delete</span></td>
+		       <td>
+		       		<span class="edit_state">Edit</span>
+		        	<span class="delete_state">Delete</span>
+		       </td>
 		      </tr>				   
 		    </tbody>
 		  </table>
@@ -54,6 +63,24 @@
 			    <li><a href="#">5</a></li>
 			    <li><a href="#" class="align_right_icon"><i class="fa fa-angle-double-right"></i></a></li>
 			</ul>		   
-		</div><!-- end  container-->	
+		</div><!-- end  container-->
+		<div class="popup_fade cancel_btn"></div><!--popup_fade-->
+		<div class="container">
+            <div class="state_div">
+          		<code class="close_btn cancel_btn"> </code>
+          		<div class="edit_title">
+                	<span class="del_txt">EDIT</span>
+              	</div><!--edit_title-->
+          			<div class="container state-content col-md-12">		
+	          			<form>
+							<div class="align_margin">	
+								<label>Enter the name of the Sports</label><br>
+								<input type="text" class="sportsname">
+							</div><!--align_margin-->
+							<input type="submit" class="btn btn-primary align_right clear" value="Submit">			
+						</form>
+					</div><!--tate-content-->
+			</div><!--state_div-->
+		</div><!--container-->	
 <?php require_once "footer.php" ?>
 
