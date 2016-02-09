@@ -129,11 +129,11 @@
                       <div class="checkbox">
                         <label class="remember_txt"><input type="checkbox">I have read and agree to the <mark class="reg_check">Team and Services</mark></label>
                       </div>
-                        <input type="submit" class="btn btn-default login_btn fr" value="Register"  name="login"/> 
-                        
+                        <input type="submit" class="btn btn-default login_btn fr" value="Register"  name="login"/>
+
                   </form>
                 </div><!--login_form-->
               </div><!--login_content-->
           </div><!--register_div-->
       </div><!--container-->
-<?php }?>
+<?php } ?>
