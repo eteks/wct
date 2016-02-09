@@ -198,7 +198,7 @@ $(document).ready(function () {
            data: form_data,
            cache: false,
            success: function(html) {
-              var result_split = html.split('#'); 
+              var result_split = html.split('#');
                if (result_split[0].indexOf("success") > 1){
                 alert(result_split);
                  $('.add_states_error').text(result_split[1]).show();
@@ -209,12 +209,12 @@ $(document).ready(function () {
                     <td>\
                       <span class='edit_state' onclick='editfunction("+result_split[2]+")'>Edit</span>\
                       <span class='delete_state' onclick='deletefunction("+result_split[2]+")'>Delete</span>\
-                    </td></tr> ";      
+                    </td></tr> ";
                  $('.state_table tr:last').after(html);
                }
                else{
                 $('.add_states_error').text(result_split[1]).show();
-               }                     
+               }
            }
        });
     });
@@ -254,10 +254,10 @@ $(document).ready(function () {
            url: "functions/edit_and_delete_function.php?deletedata=true",
            data: form_data,
            cache: false,
-           success: function(html) {  
-           var result_split = html.split('#'); 
+           success: function(html) {
+           var result_split = html.split('#');
            alert(result_split);
-           if (result_split[0].indexOf("success") > 1){ 
+           if (result_split[0].indexOf("success") > 1){
             // alert($('.state_table').find(".t_states_id:contains("+result_split[2]+")").html());
             $('.state_table').find(".t_states_id:contains("+$.trim(result_split[2])+")").parents('tr').remove();
             $('.popup_fade').hide();
