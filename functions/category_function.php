@@ -59,7 +59,7 @@ if(isset($_POST['category_add'])){
     $sport->categoryname = $_POST['category_name'];
     if($sport->categoryinsertfunction()){
       $last_data = $sport->categoryselectlastdatafunction();
-      echo "<tr class='align_center delete_color'><td class='category_id'>".$last_data['category_id']."</td><td class='category_name'>".$last_data['category_name']."</td><td><span class='edit_state'>Edit</span><span class='delete_state'>Delete</span></td></tr>";
+      echo "<tr class='align_center delete_color'><td class='category_id'>".$last_data['categories_id']."</td><td class='category_name'>".$last_data['categories_name']."</td><td><span class='edit_state'>Edit</span><span class='delete_state'>Delete</span></td></tr>";
     }else {
       echo "error";
     }

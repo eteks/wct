@@ -92,6 +92,8 @@ $(document).ready(function () {
         //alert($(this).parents('tr').find('.sports_id').text());
         $('.sports_update_name').val($(this).parents('tr').find('.sports_name').text());
         $('.sports_update_id').val($(this).parents('tr').find('.sports_id').text());
+        $('.category_update_name').val($(this).parents('tr').find('.category_name').text());
+        $('.category_update_id').val($(this).parents('tr').find('.category_id').text());
     });
     $('.delete_state').click(function(){
         delete_center_align();
@@ -99,6 +101,9 @@ $(document).ready(function () {
         $('.delete_div, .close_btn').show();
         document.body.style.overflow = 'hidden';
         $('#delete_id').val($(this).parents('tr').find('.sports_id').text());
+        if(window.location == 'http://localhost/wct/category.php'){
+            $('#delete_id').val($(this).parents('tr').find('.category_id').text());
+        }
     });
   	$('.login').click(function(){
         login_center_align();
@@ -190,13 +195,13 @@ $(document).ready(function () {
            data: form_data,
            cache: false,
            success: function(html) {
-               // alert(html);           
+               // alert(html);
            }
        });
     });
     $('.sports_update_act').click(function() {
         var form_data = $('#sports_update_form').serialize();
-       alert(form_data);
+       //alert(form_data);
         $.ajax({
            type: "POST",
            url: "functions/sports_function.php",
@@ -220,25 +225,87 @@ $(document).ready(function () {
     });
     $('.yes_btn').click(function() {
         var del_id =$('#delete_id').val();
-        var form_data = {'sports_del':'1','del_id':del_id};
-        $.ajax({
-           type: "POST",
-           url: "functions/sports_function.php",
-           data: form_data,
-           cache: false,
-           success: function(html) {
-               $('#sports_table').find(".sports_id:contains("+html+")").parents('tr').remove();
-               $('.popup_fade').hide();
-               $('.state_div,.delete_div').hide();
-               document.body.style.overflow = 'auto';
-            }
-       });
+        if(window.location == 'http://localhost/wct/category.php'){
+            var form_data = {'category_del':'1','del_id':del_id};
+            $.ajax({
+               type: "POST",
+               url: "functions/category_function.php",
+               data: form_data,
+               cache: false,
+               success: function(html) {
+                   $('#category_table').find(".category_id:contains("+html+")").parents('tr').remove();
+                   $('.popup_fade').hide();
+                   $('.state_div,.delete_div').hide();
+                   document.body.style.overflow = 'auto';
+                }
+           });
+        }
+        else{
+            var form_data = {'sports_del':'1','del_id':del_id};
+            $.ajax({
+               type: "POST",
+               url: "functions/sports_function.php",
+               data: form_data,
+               cache: false,
+               success: function(html) {
+                   $('#sports_table').find(".sports_id:contains("+html+")").parents('tr').remove();
+                   $('.popup_fade').hide();
+                   $('.state_div,.delete_div').hide();
+                   document.body.style.overflow = 'auto';
+                }
+           });
+       }
     });
 
     $('.no_btn').click(function(event) {
         $('.popup_fade').hide();
         $('.state_div,.delete_div').hide();
         document.body.style.overflow = 'auto';
+    });
+
+    $('.category_submit_act').click(function() {
+        var form_data = $('#category_form').serialize();
+        //alert(form_data);
+        $.ajax({
+           type: "POST",
+           url: "functions/category_function.php",
+           data: form_data,
+           cache: false,
+           success: function(html) {
+              // alert(html);
+               if(html=='error'){
+                 alert('Already category available');
+               }else{
+                  //alert(html);
+                 $('#category_table tr:last').after(html);
+               }
+           }
+       });
+    });
+
+    $('.category_update_act').click(function() {
+        var form_data = $('#category_update_form').serialize();
+       //alert(form_data);
+        $.ajax({
+           type: "POST",
+           url: "functions/category_function.php",
+           data: form_data,
+           cache: false,
+           success: function(html) {
+               //alert(html);
+               if(html=='error'){
+                 alert('Already sports name entred');
+               }else{
+                 var category_split = html.split('-');
+                $('#category_table').find(".category_id:contains("+category_split[1]+")").next('.category_name').html(category_split[0]);
+                //alert('Sports name updated successfully');
+                $('.popup_fade').hide();
+                $('.state_div,.delete_div').hide();
+                document.body.style.overflow = 'auto';
+               }
+
+           }
+       });
     });
 
 });
