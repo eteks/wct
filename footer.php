@@ -4,7 +4,7 @@
 <script type="text/javascript" src="js/paging.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
-      $('#sports_table').paging({
+      $('#sports_table,.state_table').paging({
         limit: 5,
         rowDisplayStyle: 'block',
         activePage: 0,

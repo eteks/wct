@@ -765,7 +765,10 @@ button, input, optgroup, select, textarea {
 }
 /*end pagination*/
 
-.edit_states_error{
+.edit_states_error,.add_states_error{
     display: none;
     color: red;
+}
+.helper-hidden-accessible{
+    display: none;
 }

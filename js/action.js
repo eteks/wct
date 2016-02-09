@@ -69,6 +69,7 @@ function editfunction(data_id){
      }
   });
 }
+
 $(window).resize(function () {
     package_menu();
   });
@@ -182,7 +183,38 @@ $(document).ready(function () {
        });
     });
 
-    $('.edit_states').click(function(){
+    // start (added by kalai)
+
+    $('.add_states_act').click(function(){
+      var form_data = $('[name=states_form]').serialize();
+      $.ajax({
+           type: "POST",
+           url: "functions/states_function.php?adddata=true",
+           data: form_data,
+           cache: false,
+           success: function(html) {
+              var result_split = html.split('#'); 
+               if (result_split[0].indexOf("success") > 1){
+                alert(result_split);
+                 $('.add_states_error').text(result_split[1]).show();
+                 html ="<tr class='align_center delete_color'>\
+                 <input type='hidden' name='states_id' value="+result_split[2]+">\
+                 <td class='t_states_id'>"+result_split[2]+"</td>\
+                    <td class='t_states_name'>"+result_split[3]+"</td>\
+                    <td>\
+                      <span class='edit_state' onclick='editfunction("+result_split[2]+")'>Edit</span>\
+                      <span class='delete_state' onclick='deletefunction("+result_split[2]+")'>Delete</span>\
+                    </td></tr> ";      
+                 $('.state_table tr:last').after(html);
+               }
+               else{
+                $('.add_states_error').text(result_split[1]).show();
+               }                     
+           }
+       });
+    });
+
+    $('.edit_states_act').click(function(){
       var form_data = $('[name=edit_states_form]').serializeArray();
         $.ajax({
            type: "POST",
@@ -192,6 +224,7 @@ $(document).ready(function () {
            success: function(html) {
                var result_split = html.split('#'); 
                if (result_split[0].indexOf("success") > 1){
+                $('.edit_states_error').hide();
                  $('.state_table').find(".t_states_id:contains("+result_split[2]+")").next('.t_states_name').html(result_split[3]);
                  $('.popup_fade').hide();
                  $('.state_div, .close_btn').hide();
@@ -204,9 +237,38 @@ $(document).ready(function () {
        });
     });
 
+    $('.delete_state').click(function(){
+      $('#delete_id').val($(this).attr("data-value"));
+    });
+
+    $('.yes_btn').click(function() {
+      var delete_id =$('#delete_id').val();
+      var form_data = {'delete_id':delete_id};
+      $.ajax({
+           type: "POST",
+           url: "functions/edit_and_delete_function.php?deletedata=true",
+           data: form_data,
+           cache: false,
+           success: function(html) {  
+           var result_split = html.split('#'); 
+           alert(result_split);
+           if (result_split[0].indexOf("success") > 1){ 
+            // alert($('.state_table').find(".t_states_id:contains("+result_split[2]+")").html());
+            $('.state_table').find(".t_states_id:contains("+$.trim(result_split[2])+")").parents('tr').remove();
+            $('.popup_fade').hide();
+            $('.state_div,.delete_div').hide();
+            document.body.style.overflow = 'auto';
+           }
+           }
+       });
+    });
+
+
+    // end (added by kalai)
+
     $('.sports_update_act').click(function() {
         var form_data = $('#sports_update_form').serialize();
-       alert(form_data);
+        alert(form_data);
         $.ajax({
            type: "POST",
            url: "functions/sports_function.php",
@@ -217,7 +279,7 @@ $(document).ready(function () {
                if(html=='error'){
                  alert('Already sports name entred');
                }else{
-                 var sports_split = html.split('-');
+                var sports_split = html.split('-');
                 $('#sports_table').find(".sports_id:contains("+sports_split[1]+")").next('.sports_name').html(sports_split[0]);
                 //alert('Sports name updated successfully');
                 $('.popup_fade').hide();

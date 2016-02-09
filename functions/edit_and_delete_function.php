@@ -8,9 +8,7 @@
 	    include ("dbconnect.php");	
 	    include ("common.php");
 	}
-	
-
- 	
+		
  	class editdeleteFunction {
 
 	 	public $statesid;
@@ -23,6 +21,12 @@
 		}
 		public function updateData(){		
             $res = mysql_query("update wc_states set states_name='".$this->statesname."' where states_id ='".$this->statesid."'")or die(mysql_error());          
+			if($res){ return true; }
+			else{ return false; }		
+		}
+		public function deleteData(){		
+            // $res = mysql_query("delete from wc_states where states_id ='".$this->statesid."' ")or die(mysql_error());          
+			$res = mysql_query("update wc_states set states_status='0' where states_id ='".$this->statesid."'")or die(mysql_error()); 
 			if($res){ return true; }
 			else{ return false; }		
 		}
@@ -76,6 +80,18 @@
 			}
 			else{
 				echo "failure#No State Present in that Name";
+			}
+		}
+		// To delete stored data
+		if($_GET['deletedata']){
+			$editdeleteFunction = new editdeleteFunction();
+			$editdeleteFunction->statesid = $_POST['delete_id'];
+			$statesdelete = $editdeleteFunction->deleteData();
+			if($statesdelete){
+				echo "success#State Deleted#".$_POST['delete_id'];
+			}
+			else{
+				echo "failure#Record not found";
 			}
 		}
 		
