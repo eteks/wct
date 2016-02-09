@@ -54,7 +54,7 @@ function package_menu() {
 function editfunction(data_id){
     $.ajax({
      type: "POST",
-     url: "functions/edit_and_delete_function.php",
+     url: "functions/edit_and_delete_function.php?chooseedit=true",
      data: {data_id:data_id},
      cache: false,
      success: function(data) {
@@ -188,17 +188,27 @@ $(document).ready(function () {
     });
 
     $('.edit_states').click(function(){
-      var form_data = $('[name=edit_states_form]').serialize();
+      var form_data = $('[name=edit_states_form]').serializeArray();
         $.ajax({
            type: "POST",
            url: "functions/edit_and_delete_function.php?editdata=true",
            data: form_data,
            cache: false,
            success: function(html) {
-               // alert(html);
+               var result_split = html.split('#');
+               if (result_split[0].indexOf("success") > 1){
+                 $('.state_table').find(".t_states_id:contains("+result_split[2]+")").next('.t_states_name').html(result_split[3]);
+                 $('.popup_fade').hide();
+                 $('.state_div, .close_btn').hide();
+                 document.body.style.overflow = 'auto';
+               }
+               else{
+                $('.edit_states_error').text(result_split[1]).show();
+               }
            }
        });
     });
+
     $('.sports_update_act').click(function() {
         var form_data = $('#sports_update_form').serialize();
        //alert(form_data);
