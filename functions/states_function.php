@@ -8,16 +8,16 @@ else {
   include ("dbconnect.php");
   include ("common.php");
 }
- 	class statesFunction {	
+ 	class statesFunction {
  		public $statesid;
 	    public $statesname;
 	    public $statesstatus;
 
-		function __construct() {			
+		function __construct() {
 		}
 		// destructor
 		function __destruct() {
-			
+
 		}
 		public function statesSelect(){
 			$res = mysql_query("select * from wc_states where states_status='1'")or die(mysql_error());
@@ -27,7 +27,7 @@ else {
 			$res = mysql_query("insert into wc_states (states_name,states_status) values('".$this->statesname."','1')")or die(mysql_error());
 			$lastinsertid = mysql_insert_id();
 			if($res){ return $lastinsertid; }
-			else{ return false; }		 
+			else{ return false; }
 		}
 		public function isStatesExist(){
 			$qr = mysql_query("SELECT * FROM wc_states WHERE states_name = '".$this->statesname."'");
@@ -65,7 +65,6 @@ else {
 			else{
 				echo "failure#Please Enter state";
 			}
-			
-		}			
+		}
 	  }
 ?>
