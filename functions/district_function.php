@@ -1,7 +1,13 @@
 <?php
-require_once 'dbconnect.php';
-require_once 'common.php';
- 	class districtFunction {		  
+	
+    include ("../dbconnect.php");
+    include ("../common.php");
+	
+ 	class districtFunction {
+ 		public $statesid;
+ 		public $districtid;
+	    public $districtname;
+	    public $districtstatus;		  
 		function __construct() {				 
 		}
 		// destructor

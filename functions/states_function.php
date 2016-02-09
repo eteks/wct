@@ -40,10 +40,11 @@ else {
 		}
 	}
 	if(isset($_POST)){
-		if($_GET['adddata']){
+		if(isset($_GET['adddata'])){
 			$statesFunction = new statesFunction();
 			$statesFunction->statesname = $_POST['states_name'];	
-			if (in_array($_POST['states_name'], $STATES)) {
+			if ($_POST['states_name']){
+				if (in_array($_POST['states_name'], $STATES)) {
 				$states = $statesFunction->isStatesExist();
 				if(!$states){
 					$statesinsert = $statesFunction->statesInsert();
@@ -56,11 +57,15 @@ else {
 				else {
 					echo "failure#State Already Exist";
 				}
+				}
+				else{
+					echo "failure#No State Present in that Name";
+				}
 			}
 			else{
-				echo "failure#No State Present in that Name";
+				echo "failure#Please Enter state";
 			}
-		}
 			
+		}			
 	  }
 ?>

@@ -268,7 +268,6 @@ $(document).ready(function () {
        });
     });
 
-
     // end (added by kalai)
 
     $('.sports_update_act').click(function() {
