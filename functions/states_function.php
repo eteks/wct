@@ -2,9 +2,6 @@
 require_once 'dbconnect.php';
  	class statesFunction {		  
 		function __construct() {			
-			// connecting to database
-			// $db = new dbConnect();
-			// echo $db;			 
 		}
 		// destructor
 		function __destruct() {

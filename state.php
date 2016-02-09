@@ -46,8 +46,8 @@
                             ?>
                             <tr class="align_center delete_color">
                             <input type="hidden" name="states_id" value="<?php echo $row['states_id']; ?>">
-						        <td><?php echo $row['states_id']; ?></td>
-						        <td><?php echo $row['states_name']; ?></td>
+						        <td class="t_states_id"><?php echo $row['states_id']; ?></td>
+						        <td class="t_states_name"><?php echo $row['states_name']; ?></td>
 						        <td>
 						        	<span class="edit_state" onclick="editfunction(<?php echo $row['states_id'] ?>)">Edit</span>
 						        	<span class="delete_state">Delete</span>
@@ -86,13 +86,14 @@
                 	<span class="del_txt">EDIT</span>
               	</div><!--edit_title-->
           			<div class="container state-content col-md-12">		
-	          			<form name="edit_states_form" method="post">
+	          			<form name="edit_states_form">
 							<div class="align_margin">					
 								<label>Enter the State</label><br>
 								<input type="hidden" class="statesid" name="edit_states_id">
 								<input type="text" class="statesname" name="edit_states_name" required>
+								<span class="edit_states_error"></span>
 							</div>		
-							<input type="submit" class="btn btn-primary align_right clear edit_states" name="edit_states" value="Submit">																						
+							<button type="button" class="btn btn-primary align_right clear edit_states" name="edit_states">Submit</button>														
 						</form>
 					</div><!--tate-content-->
 			</div><!--state_div-->

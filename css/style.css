@@ -764,3 +764,8 @@ button, input, optgroup, select, textarea {
   border: 1px solid #000;
 }
 /*end pagination*/
+
+.edit_states_error{
+    display: none;
+    color: red;
+}
