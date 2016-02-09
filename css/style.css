@@ -857,7 +857,7 @@ button, input, optgroup, select, textarea {
     right: 75px;
     width: 102px !important;
 }
-.edit_states_error,.add_states_error{
+.edit_states_error,.add_states_error,.add_district_error{
     display: none;
     color: red;
     float: right;

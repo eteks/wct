@@ -93,8 +93,7 @@
 			else{
 				echo "failure#Record not found";
 			}
-		}
-		
+		}	
 	}	
 	
 ?>	

@@ -268,6 +268,39 @@ $(document).ready(function () {
        });
     });
 
+    $('.add_district_act').click(function(){
+      var form_data = $('[name=district_form]').serialize();
+      // alert(form_data);
+      $.ajax({
+           type: "POST",
+           url: "functions/district_function.php?adddata=true",
+           data: form_data,
+           cache: false,
+           success: function(html) {
+            alert(html);
+              var result_split = html.split('#'); 
+               if (result_split[0].indexOf("success") > 1){
+                // alert(result_split);
+                 $('.add_district_error').text(result_split[1]).show();
+                 // html ="<tr class='align_center delete_color'>\
+                 // <input type='hidden' name='district_id' value="+result_split[2]+">\
+                 // <td class='t_district_id'>"+result_split[2]+"</td>\
+                 //    <td class='t_states_name'>"+result_split[3]+"</td>\
+                 //    <td class='t_district_name'>"+result_split[3]+"</td>\
+                 //    <td>\
+                 //      <span class='edit_state' onclick='editfunction("+result_split[2]+")'>Edit</span>\
+                 //      <span class='delete_state' onclick='deletefunction("+result_split[2]+")'>Delete</span>\
+                 //    </td></tr> ";      
+                 $('.state_table tr:last').after(html);
+               }
+               else{
+                $('.add_district_error').text(result_split[1]).show();
+               }                     
+           }
+       });
+    });
+
+
     // end (added by kalai)
 
     $('.sports_update_act').click(function() {

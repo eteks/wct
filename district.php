@@ -27,6 +27,7 @@
 						<div class="align_margin">					
 							<label>District/Taluka</label><br>
 							<input type="text" class="districts" name="district_name" required>
+							<span class="add_district_error"></span>
 						</div>
 
 						<button type="button" class="btn btn-primary align_right clear add_district_act" name="district">Submit</button>			
@@ -47,12 +48,13 @@
                         while ($row = mysql_fetch_array($query)) {
                             ?>
                             <tr class="align_center delete_color">
-						        <td><?php echo $row['district_id']; ?></td>
-						        <td><?php echo $row['states_name']; ?></td>
-						        <td><?php echo $row['district_name']; ?></td>
+                            <input type="hidden" name="district_id" value="<?php echo $row['district_id']; ?>">
+						        <td class="t_district_id"><?php echo $row['district_id']; ?></td>
+						        <td class="t_states_name"><?php echo $row['states_name']; ?></td>
+						        <td class="t_district_name"><?php echo $row['district_name']; ?></td>
 						        <td>
-						        	<span class="edit_state">Edit</span>
-						        	<span class="delete_state">Delete</span>
+						        	<span class="edit_state" onclick="editfunction(<?php echo $row['district_id'] ?>)">Edit</span>
+						        	<span class="delete_state" data-value="<?php echo $row['district_id'] ?>">Delete</span>
 						        </td> 				    
 					        </tr>                         
                      <?php } ?>	 
