@@ -1,7 +1,7 @@
 <?php require_once "header.php"; ?>
 <div class="container">
 	<div class="container align_center align_height">
-		<span class="sports">RESULT</span>
+		<span class="sports">ASSIGN SCHEDULE</span>
 	</div><!--end container-->	
 	<div class="container">
 		<div class="col-xs-12 col-md-11">
@@ -10,12 +10,18 @@
 				<form>
 					<div class="form-group">
 						  <label for="sel1">Select Schedule Name</label>
-						  <select class="form-control adjust_width classic" id="sel1" name="test_battery">
+						  <select class="form-control adjust_width classic" id="sel1" name="Schedule">
 						  <option></option>
 						  </select>
 					</div>
 					<div class="form-group">
-				      	<label for="athlete" class="email_txt">Select Athletes</label><br>
+						  <label for="sel1">Select Category Name</label>
+						  <select class="form-control adjust_width classic" id="sel1" name="category">
+						  <option></option>
+						  </select>
+					</div>
+					<div class="form-group">
+				      	<label for="athlete" class="email_txt">Add Athletes</label><br>
 				      	<input type="text" class="form-control name_align fl" id="name" placeholder="Name" name="name" required>
 				      	<input type="text" class="form-control date_assign fl" id="name" placeholder="Date" name="date" required>
 				    </div>
@@ -23,59 +29,61 @@
 				      	<input type="text" class="form-control name_align fl" id="name" placeholder="Mobile no" name="Mobile" required>
 				      	<input type="text" class="form-control date_assign fl" id="name" placeholder="BIB NO" name="bib" required>
 				    </div>
+					<input type="submit" class="btn btn-primary align_right adds_btn" value="Add"><i class="fa fa-plus add_align"></i>
 					<div class="col-md-9 schedule_btn">					
 						<input type="submit" class="btn btn-primary align_right clear" value="Submit">
 						<input type="submit" class="btn btn-primary align_right clear" value="Clear">
-					</div>			
+					</div>				
 				</form>
 			</div>			
 			<div class="container">           
 			  <table class="table state_table">
 			    <thead>
 			      <tr class="row_color">
-			        <th class="align_center">Test</th>
-			        <th class="align_center">Parameter</th>
-			        <th class="align_center">Result</th>
-			        <th class="align_center">Points</th>
+			        <th class="align_center">SLNO</th>
+			        <th class="align_center">Schedule Name</th>
+			        <th class="align_center">Category Name</th>
+			        <th class="align_center">Athletes Name</th>
+			        <th class="align_center">BIB NO</th>
+			        <th class="align_center">Action</th>
 			      </tr>
 			    </thead>
-			    <tbody class="assign_content">
-			      <tr class="align_center delete_color assign_table">
-			        <td>Test1</td>
-			        <td>Parameter1</td>
-			        <td><span class="assign_border">5.15</span></td>
-			        <td><span class="assign_border">3</span></td>
+			    <tbody>
+			      <tr class="align_center delete_color">
+			        <td>01</td>
+			        <td>Suresh</td>
+			        <td></td>
+			        <td></td>
+			        <td></td>
+			        <td>
+			        	<span class="edit_state">Edit</span>
+		        		<span class="delete_state">Delete</span>
+			        </td>
 			      </tr>
-			      <tr class="align_center delete_color assign_table">
-			        <td>Test2</td>
-			        <td>Parameter2</td>
-			        <td><span class="assign_border">5.15</span></td>
-			        <td><span class="assign_border">4</span></td>
+			      <tr class="align_center delete_color">
+			        <td>01</td>
+			        <td>Suresh</td>
+			        <td></td>
+			        <td></td>
+			        <td></td>
+			        <td>
+			        	<span class="edit_state">Edit</span>
+		        		<span class="delete_state">Delete</span>
+			        </td>
 			      </tr>
-			      <tr class="align_center delete_color assign_table">
-			        <td>Test3</td>
-			        <td>Parameter1</td>
-			        <td><span class="assign_border">5.15</span></td>
-			        <td><span class="assign_border">2</span></td>
-			      </tr>	
-			      <tr class="align_center delete_color assign_table">
-			        <td>Test4</td>
-			        <td>Parameter1</td>
-			        <td><span class="assign_border">5.15</span></td>
-			        <td><span class="assign_border">3</span></td>
-			      </tr>
-			      <tr class="align_center delete_color assign_table total_div">
-			      	<td></td>
-			      	<td></td>
-			      	<td>Total</td>
-			      	<td><span class="assign_border">12</span></td>
-			      </tr>					   
+			      <tr class="align_center delete_color">
+			        <td>01</td>
+			        <td>Suresh</td>
+			        <td></td>
+			        <td></td>
+			        <td></td>
+			        <td>
+			        	<span class="edit_state">Edit</span>
+		        		<span class="delete_state">Delete</span>
+			        </td>
+			      </tr>						   
 			    </tbody>
 			  </table>
-			  	<div class="col-md-9 schedule_btn">					
-					<input type="submit" class="btn btn-primary align_right clear" value="Clear">
-					<input type="submit" class="btn btn-primary align_right clear" value="Save">
-				</div>	
 			</div>			
 		</div>
 	</div><!-- end  container-->
@@ -91,4 +99,46 @@
 		</ul>		   
 	</div><!-- end  container-->
 </div><!-- end  container-->
+
+<div class="popup_fade cancel_btn"></div><!--popup_fade-->
+		<div class="container">
+            <div class="range_div">
+          		<code class="close_btn cancel_btn"> </code>
+          		<div class="edit_title">
+                	<span class="del_txt">EDIT</span>
+              	</div><!--edit_title-->
+          			<div class="container state-content col-md-12">		
+	          			<div class="col-xs-12 col-md-12 align_margin">
+				<form>
+					<div class="form-group">
+						  <label for="sel1">Select Schedule Name</label>
+						  <select class="form-control adjust_width classic" id="sel1" name="Schedule">
+						  <option></option>
+						  </select>
+					</div>
+					<div class="form-group">
+						  <label for="sel1">Select Category Name</label>
+						  <select class="form-control adjust_width classic" id="sel1" name="category">
+						  <option></option>
+						  </select>
+					</div>
+					<div class="form-group">
+				      	<label for="athlete" class="email_txt">Add Athletes</label><br>
+				      	<input type="text" class="form-control schedule-name fl" id="name" placeholder="Name" name="name" required>
+				      	<input type="text" class="form-control bib_popup fl" id="name" placeholder="Date" name="date" required>
+				    </div>
+				    <div class="form-group">
+				      	<input type="text" class="form-control schedule-name fl" id="name" placeholder="Mobile no" name="Mobile" required>
+				      	<input type="text" class="form-control bib_popup fl" id="name" placeholder="BIB NO" name="bib" required>
+				    </div>
+					<div class="col-md-9 schedule_btn">					
+						<input type="submit" class="btn btn-primary align_right clear" value="Submit">
+						<input type="submit" class="btn btn-primary align_right clear" value="Clear">
+					</div>				
+				</form>
+			</div>		
+					</div><!--state-content-->
+			</div><!--range_div-->
+		</div><!--container-->
 <?php require_once "footer.php" ?>
+

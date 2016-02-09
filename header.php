@@ -47,7 +47,7 @@
           <a href="#" data-toggle="collapse" data-target="#two">TRANSACTION</a>
         </li>
         <li class="dropdown">
-          <a href="#">REPORTS</a>
+          <a href="reports.php">REPORTS</a>
         </li>
       </ul>
     </div><!--menu_list-->
@@ -60,17 +60,17 @@
                 <li><a href="category.php" id="">CATEGORY</a></li>
                 <li><a href="state.php" id="">STATE</a></li>
                 <li><a href="district.php" id="">DISTRICT</a></li>
-                <li><a href="#" id="">TEST</a></li>
-                <li><a href="#" id="">TEST BATTERY</a></li>
-                <li><a href="#" id="">RANGE</a></li>
+                <li><a href="test.php" id="">TEST</a></li>
+                <li><a href="test_battery.php" id="">TEST BATTERY</a></li>
+                <li><a href="range.php" id="">RANGE</a></li>
             </ul>
            </li>
            <li>
              <ul class="nav nav-justified submenu_list collapse" id="two">
-                <li><a href="#" id="">ADD ATHLETES</a></li>
+                <li><a href="athletes.php" id="">ADD ATHLETES</a></li>
                 <li><a href="create_schedule.php" id="">CREATE SCHEDULE</a></li>
-                <li><a href="#" id="">ASSIGN SCHEDULE</a></li>
-                <li><a href="#" id="">RESULT</a></li>
+                <li><a href="assign_schedule.php" id="">ASSIGN SCHEDULE</a></li>
+                <li><a href="result.php" id="">RESULT</a></li>
               </ul>
             </li>
         </ul>
