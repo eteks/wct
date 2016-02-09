@@ -134,4 +134,80 @@
 		</ul>		   
 	</div><!-- end  container-->
 </div><!-- end  container-->
+<div class="popup_fade cancel_btn"></div><!--popup_fade-->
+		<div class="container">
+            <div class="test_battery_div">
+          		<code class="close_btn cancel_btn"> </code>
+          		<div class="edit_title">
+                	<span class="del_txt">EDIT</span>
+              	</div><!--edit_title-->
+          			<div class="container state-content col-md-12">	
+          			<div class="col-xs-12 col-md-12 align_margin">	
+	          			<form>
+					<div class="form-group">					
+						<label>Athlete Name</label><br>
+						<input type="text" class="adjust_width" name="athlete_name">
+					</div>
+					
+					<div class="form-group">
+					  <label for="date" class="fl">Date Of Birth</label><br>
+					  <select class="form-control classic dob_align fl" id="date">
+					  	<option>Date</option>
+					    <option>Name1</option>
+					    <option>Name2</option>
+					    <option>Name3</option>						   
+					  </select>
+					  <select class="form-control classic dob_align fl" id="month">
+					  	<option>Month</option>
+					    <option>Name1</option>
+					    <option>Name2</option>
+					    <option>Name3</option>						   
+					  </select>
+					  <select class="form-control classic dob_align fl" id="year">
+					  	<option>Years</option>
+					    <option>Name1</option>
+					    <option>Name2</option>
+					    <option>Name3</option>						   
+					  </select>
+					</div>
+					<div class="form-group">
+						  <label for="sel1">Gender</label>
+						  <select class="form-control adjust_width classic" id="sel1" name="gender">
+						  <option></option>
+						  <option>Female</option>
+						  <option>Male</option>
+						  </select>
+					</div>
+					<div class="form-group">
+						  <label for="sel1">State</label>
+						  <select class="form-control adjust_width classic" id="sel1" name="state">
+						  <option></option>
+						  </select>
+					</div>
+					<div class="form-group">
+						  <label for="sel1">District/Taluka</label>
+						  <select class="form-control adjust_width classic" id="sel1" name="taluk">
+						  <option></option>
+						  </select>
+					</div>
+					
+					<div class="align_height align_margin">					
+						<label>Address</label><br>
+						<textarea class="area_width"></textarea>
+					</div>
+					<div class="form-group">
+						  <label for="sel1">Sports</label>
+						  <select class="form-control adjust_width classic" id="sel1" name="sports">
+						  <option></option>
+						  </select>
+					</div>
+					<div class="col-md-9 schedule_btn">					
+						<input type="submit" class="btn btn-primary align_right clear" value="Submit">
+						<input type="submit" class="btn btn-primary align_right clear" value="Clear">
+					</div>			
+				</form>
+	          		</div>
+					</div><!--state-content-->
+			</div><!--test_battery_div-->
+		</div><!--container-->
 <?php require_once "footer.php" ?>

@@ -143,4 +143,86 @@
 		</ul>		   
 	</div><!-- end  container-->
 </div><!-- end  container-->
+
+<div class="popup_fade cancel_btn"></div><!--popup_fade-->
+		<div class="container">
+            <div class="test_battery_div">
+          		<code class="close_btn cancel_btn"> </code>
+          		<div class="edit_title">
+                	<span class="del_txt">EDIT</span>
+              	</div><!--edit_title-->
+          			<div class="container state-content col-md-12">	
+          			<div class="col-xs-12 col-md-12 align_margin">	
+	          			<form>
+	          				<div class="form-group">					
+						<label>Enter the name of the Sports</label><br>
+						<input type="text" class="adjust_width" name="sports_name">
+					</div>
+					<div class="form-group">
+					  <label for="battey_name">Select Test Battery Name</label>
+					  <select class="form-control classic adjust_width" id="battey_name">
+					  	<option></option>
+					    <option>Name1</option>
+					    <option>Name2</option>
+					    <option>Name3</option>						   
+					  </select>
+					</div>
+					
+					<div class="form-group">
+					  <label for="date" class="fl">Select date</label><br>
+					  <select class="form-control classic create-date fl" id="date">
+					  	<option>Date</option>
+					    <option>Name1</option>
+					    <option>Name2</option>
+					    <option>Name3</option>						   
+					  </select>
+					  <select class="form-control classic create-date fl" id="month">
+					  	<option>Month</option>
+					    <option>Name1</option>
+					    <option>Name2</option>
+					    <option>Name3</option>						   
+					  </select>
+					  <select class="form-control classic create-date fl" id="year">
+					  	<option>Years</option>
+					    <option>Name1</option>
+					    <option>Name2</option>
+					    <option>Name3</option>						   
+					  </select>
+					</div>
+					
+					<div class="form-group">
+					  <label for="date" class="fl">Select Time</label><br>
+					  <select class="form-control classic create-time fl" id="hour">
+					  	<option>Hour</option>
+					    <option>Name1</option>
+					    <option>Name2</option>
+					    <option>Name3</option>						   
+					  </select>
+					  <select class="form-control classic create-time fl" id="minute">
+					  	<option>Minute</option>
+					    <option>Name1</option>
+					    <option>Name2</option>
+					    <option>Name3</option>						   
+					  </select>
+					  <select class="form-control classic create-time fl" id="seconds">
+					  	<option>Seconds</option>
+					    <option>Name1</option>
+					    <option>Name2</option>
+					    <option>Name3</option>						   
+					  </select>
+					</div>
+			
+					<div class="align_height align_margin">					
+						<label>Venue</label><br>
+						<textarea class="area_width"></textarea>
+					</div>
+					<div class="col-md-9 schedule_btn">					
+						<input type="submit" class="btn btn-primary align_right clear" value="Submit">
+						<input type="submit" class="btn btn-primary align_right clear" value="Clear">
+					</div>	
+	          			</form>
+	          		</div>
+					</div><!--state-content-->
+			</div><!--test_battery_div-->
+		</div><!--container-->
 <?php require_once "footer.php" ?>

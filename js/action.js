@@ -147,8 +147,8 @@ $(document).ready(function () {
 	});
 
 	$('[data-toggle=collapse]').click(function (e) {
-	   $('[data-toggle=collapse]').parent('li').removeClass('active');
-	   $(this).parent('li').toggleClass('active');
+	   $('[data-toggle=collapse]').siblings('li').removeClass('active');
+	   $(this).siblings('li').toggleClass('active');
 	});
 
 	// Autocomplete results for states list
