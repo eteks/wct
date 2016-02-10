@@ -38,6 +38,11 @@ function range_center_align(){
       var width=$('.range_div').width();
       $('.range_div').css({'margin-top': -height / 2 + "px", 'margin-left': -width / 2 + "px"});
 }
+function parameter_center_align(){
+      var height=$('.paramter_div').height();
+      var width=$('.paramter_div').width();
+      $('.paramter_div').css({'margin-top': -height / 2 + "px", 'margin-left': -width / 2 + "px"});
+}
 
 function package_menu() {
     var wh = window.innerHeight;
@@ -83,6 +88,7 @@ $(document).ready(function () {
   district_center_align();
   test_battery_center_align();
   range_center_align();
+  parameter_center_align();
 
     //Edit popup
   	$('.edit_state').click(function(){
@@ -142,9 +148,15 @@ $(document).ready(function () {
         $('.range_div, .close_btn').show();
         document.body.style.overflow = 'hidden';
     });
+    $('.edit_state').click(function(){
+        parameter_center_align();
+        $('.popup_fade').show();
+        $('.paramter_div, .close_btn').show();
+        document.body.style.overflow = 'hidden';
+    });
     $('.cancel_btn').click(function(){
         $('.popup_fade').hide();
-        $('.state_div,.delete_div,.login_div,.register_div,.test_div,.district_div,.test_battery_div,.range_div').hide();
+        $('.state_div,.delete_div,.login_div,.register_div,.test_div,.district_div,.test_battery_div,.range_div,.paramter_div').hide();
         document.body.style.overflow = 'auto';
     });
 
@@ -523,6 +535,7 @@ $(document).ready(function () {
        });
     });
 
-    
-
+    $('.paramter_menu').click(function(){
+      $(".parameter-list").toggle();
+    });
 });

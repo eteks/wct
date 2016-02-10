@@ -63,6 +63,13 @@
                 <li><a href="test.php" id="">TEST</a></li>
                 <li><a href="test_battery.php" id="">TEST BATTERY</a></li>
                 <li><a href="range.php" id="">RANGE</a></li>
+                <li><a href="#" id="" class="paramter_menu">PARAMETER</a></li>
+                <div class="parameter-list">
+                  <ul>
+                    <li><a href="parameter_type.php">TYPE</a></li>
+                    <li><a href="parameter_unit.php">UNIT</a></li>
+                  </ul>
+                </div><!--parameter-list-->
             </ul>
            </li>
            <li>
@@ -76,6 +83,7 @@
         </ul>
       </nav>
     </div><!--menu_list-->
+    
 
     <div class="popup_fade cancel_btn"></div><!--popup_fade-->
       <div class="container">

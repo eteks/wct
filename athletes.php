@@ -44,12 +44,10 @@
 					    <option value="1993">1993</option>						   
 					  </select>
 					</div>
-
-					<div class="form-group">					
-						<label>Mobile Number</label><br>
-						<input type="text" class="adjust_width" name="athlete_mobile">
-					</div>
-
+					<div class="form-group">     
+      					<label>Mobile Number</label><br>
+      					<input type="text" class="adjust_width" name="athlete_mobile">
+     				</div>
 					<div class="form-group">
 						  <label for="sel1">Gender</label>
 						  <select class="form-control adjust_width classic" id="sel1" name="athlete_gender">
@@ -159,7 +157,7 @@
           		<div class="edit_title">
                 	<span class="del_txt">EDIT</span>
               	</div><!--edit_title-->
-          			<div class="container state-content col-md-12">	
+          			<div class="container state-content athlete-popup-content col-md-12">	
           			<div class="col-xs-12 col-md-12 align_margin">	
 	          			<form>
 					<div class="form-group">					
@@ -169,25 +167,29 @@
 					
 					<div class="form-group">
 					  <label for="date" class="fl">Date Of Birth</label><br>
-					  <select class="form-control classic dob_align fl" id="date">
+					  <select class="form-control classic dob_align1 fl" id="date">
 					  	<option>Date</option>
 					    <option>Name1</option>
 					    <option>Name2</option>
 					    <option>Name3</option>						   
 					  </select>
-					  <select class="form-control classic dob_align fl" id="month">
+					  <select class="form-control classic dob_align2 fl" id="month">
 					  	<option>Month</option>
 					    <option>Name1</option>
 					    <option>Name2</option>
 					    <option>Name3</option>						   
 					  </select>
-					  <select class="form-control classic dob_align fl" id="year">
+					  <select class="form-control classic dob_align3 fl" id="year">
 					  	<option>Years</option>
 					    <option>Name1</option>
 					    <option>Name2</option>
 					    <option>Name3</option>						   
 					  </select>
 					</div>
+					<div class="form-group">     
+      					<label>Mobile Number</label><br>
+      					<input type="text" class="adjust_width" name="athlete_mobile">
+     				</div>
 					<div class="form-group">
 						  <label for="sel1">Gender</label>
 						  <select class="form-control adjust_width classic" id="sel1" name="gender">
@@ -211,15 +213,15 @@
 					
 					<div class="align_height align_margin">					
 						<label>Address</label><br>
-						<textarea class="area_width"></textarea>
+						<textarea class="area_width_athlete"></textarea>
 					</div>
 					<div class="form-group">
 						  <label for="sel1">Sports</label>
 						  <select class="form-control adjust_width classic" id="sel1" name="sports">
-						 	<option></option>
+						  <option></option>
 						  </select>
 					</div>
-					<div class="col-md-9 schedule_btn">					
+					<div class="col-md-10 schedule_btn">					
 						<input type="submit" class="btn btn-primary align_right clear" value="Submit">
 						<input type="submit" class="btn btn-primary align_right clear" value="Clear">
 					</div>			
