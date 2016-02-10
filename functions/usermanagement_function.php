@@ -1,5 +1,5 @@
 <?php
-require_once 'dbconnect.php';
+    require_once 'dbconnect.php';
  	class usermanagementFunction {
 		function __construct() {
 			// connecting to database
@@ -38,4 +38,3 @@ require_once 'dbconnect.php';
 
 	}
 ?>
-

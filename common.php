@@ -1,9 +1,9 @@
-<?php 
-
+<?php
+require_once "dbconnect.php";
 $url = 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
 
 $STATES  = array (
- 'AN' => 'Andaman and Nicobar',	
+ 'AN' => 'Andaman and Nicobar',
  'AP' => 'Andhra Pradesh',
  'AR' => 'Arunachal Pradesh',
  'AS' => 'Assam',
@@ -37,7 +37,7 @@ $STATES  = array (
  'TR' => 'Tripura',
  'UK' => 'Uttarakhand',
  'UP' => 'Uttar Pradesh',
- 'WB' => 'West Bengal', 
+ 'WB' => 'West Bengal',
 );
 
 $DISTRICT = array(
@@ -141,6 +141,16 @@ $DISTRICT = array(
 	'Birbhum', 'Bankura', 'Bardhaman', 'Darjeeling', 'Dakshin Dinajpur', 'Hooghly', 'Howrah', 'Jalpaiguri', 'Cooch Behar', 'Kolkata', 'Malda', 'Midnapore', 'Murshidabad', 'Nadia', 'North 24 Parganas', 'South 24 Parganas', 'Purulia', 'Uttar Dinajpur'
 	)
 );
-
+//dynamically get parameter unit
+if(isset($_GET['param_name'])){
+    $data = $_POST['parameter_name'];
+    $query = mysql_query("select * from wc_parameterunit INNER JOIN wc_parametertype ON wc_parameterunit.parametertype_id = wc_parametertype.parametertype_id where wc_parametertype.parametertype_name = '$data' ")or die(mysql_error());
+    $count = mysql_num_rows($query);
+    if ($count > 0) {
+        echo '<option value="">UNIT</option>';
+    	while($row=mysql_fetch_array($query)){
+    		echo '<option value="'.$row['parameterunit'].'">'.$row['parameterunit'].'</option>';
+    	}
+    }
+}
 ?>
-

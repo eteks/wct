@@ -1,50 +1,69 @@
-<?php require_once "header.php"; ?>
+<?php
+require_once "session.php";
+require_once "header.php";
+require_once "dbconnect.php";
+?>
 <div class="container">
 	<div class="container align_center align_height">
 		<span class="sports">TEST</span>
-	</div><!--end container-->	
+	</div><!--end container-->
 	<div class="container">
 		<div class="col-xs-12 col-md-11">
 			<div class="col-md-4 hidden-xs"></div>
 			<div class="col-xs-12 col-md-7 align_margin">
-				<form>
-					<div class="form-group">					
+				<form id="test_form" action="functions/test_functions.php" method="post">
+					<div class="form-group">
 						<label>Enter Test Name</label><br>
 						<input type="text" class="adjust_width" name="test_name">
 					</div>
-					<div class="form-group">					
-						<label>Enter Parameter Name</label><br>
-						<input type="text" class="adjust_width" name="parameter_name">
+					<div class="parameter_holder">
+						<div class="clone_content " id="param_counter1">
+							<div class="form-group">
+								<label>Enter Parameter Name</label><br>
+								<input type="text" class="adjust_width parameter_name" name="parameter_name1">
+							</div>
+							<div class="form-group">
+								<select class="form-control classic type_align fl parameter_type" id="type" name="type1">
+									<option value="">
+										TYPE
+									</option>
+									<?php
+										$sql = mysql_query('select * from wc_parametertype') or die(mysql_error());
+										$count = mysql_num_rows($sql);
+										if ($count != '0') {
+											while ($row = mysql_fetch_array($sql)) {
+									?>
+									<option value="<?php echo $row['parametertype_name']; ?>">
+										<?php echo $row['parametertype_name']; ?>
+									</option>
+									<?php
+											}
+										}
+									?>
+								</select>
+								<select class="form-control classic type_align fl parameter_unit" id="unit" name="unit1">
+								</select>
+								<select class="form-control classic type_align fl parameter_format" id="format" name="format1">
+									<option>1</option>
+									<option>2</option>
+									<option>3</option>
+									<option>4</option>
+									<option>5</option>
+
+								</select>
+							</div>
+						</div>
 					</div>
-					<div class="form-group">
-					  <select class="form-control classic type_align fl" id="type">
-					  	<option>Type</option>
-					    <option>Name1</option>
-					    <option>Name2</option>
-					    <option>Name3</option>						   
-					  </select>
-					  <select class="form-control classic type_align fl" id="unit">
-					  	<option>Unit</option>
-					    <option>Name1</option>
-					    <option>Name2</option>
-					    <option>Name3</option>						   
-					  </select>
-					  <select class="form-control classic type_align fl" id="format">
-					  	<option>Format</option>
-					    <option>Name1</option>
-					    <option>Name2</option>
-					    <option>Name3</option>						   
-					  </select>
-					</div>
-					<input type="submit" class="btn btn-primary align_right parameter_btn" value="Add Parameter">
+					<input type="button" class="btn btn-primary align_right parameter_btn" value="Add Parameter">
 					<i class="fa fa-plus parameter_add"></i>
-					<div class="col-md-9 schedule_btn">					
-						<input type="submit" class="btn btn-primary align_right clear" value="Submit">
-					</div>			
+					<input type="hidden" name="test_add" value="1">
+					<div class="col-md-9 schedule_btn">
+						<input type="submit" class="btn btn-primary align_right clear test_submit_act" value="Submit">
+					</div>
 				</form>
-			</div>			
-			<div class="container">           
-			  <table class="table state_table">
+			</div>
+			<div class="container">
+			  <table class="table test_table">
 			    <thead>
 			      <tr class="row_color">
 			        <th class="align_center">SLNO</th>
@@ -92,22 +111,11 @@
 			        	<span class="edit_state">Edit</span>
 		        		<span class="delete_state">Delete</span>
 			        </td>
-			      </tr>						   
+			      </tr>
 			    </tbody>
 			  </table>
-			</div>			
+			</div>
 		</div>
-	</div><!-- end  container-->
-	<div class="container align_center">		          
-	  	<ul class="pagination">
-	  		<li><a href="#" class="align_left_icon"><i class="fa fa-angle-double-left"></i></a></li>    	
-		    <li><a href="#">1</a></li>
-		    <li><a href="#">2</a></li>
-		    <li><a href="#">3</a></li>
-		    <li><a href="#">4</a></li>
-		    <li><a href="#">5</a></li>
-		    <li><a href="#" class="align_right_icon"><i class="fa fa-angle-double-right"></i></a></li>
-		</ul>		   
 	</div><!-- end  container-->
 </div><!-- end  container-->
 <div class="popup_fade cancel_btn"></div><!--popup_fade-->
@@ -117,42 +125,44 @@
           		<div class="edit_title">
                 	<span class="del_txt">EDIT</span>
               	</div><!--edit_title-->
-          			<div class="container state-content col-md-12">		
+          			<div class="container state-content col-md-12">
 	          			<div class="col-xs-12 col-md-12 align_margin">
 				<form>
-					<div class="form-group">					
+					<div class="form-group">
 						<label>Enter Test Name</label><br>
 						<input type="text" class="adjust_width" name="test_name">
 					</div>
-					<div class="form-group">					
-						<label>Enter Parameter Name</label><br>
-						<input type="text" class="adjust_width" name="parameter_name">
-					</div>
-					<div class="form-group">
-					  <select class="form-control classic type_align_popup fl" id="type">
-					  	<option>Type</option>
-					    <option>Name1</option>
-					    <option>Name2</option>
-					    <option>Name3</option>						   
-					  </select>
-					  <select class="form-control classic type_align_popup fl" id="unit">
-					  	<option>Unit</option>
-					    <option>Name1</option>
-					    <option>Name2</option>
-					    <option>Name3</option>						   
-					  </select>
-					  <select class="form-control classic type_align_popup fl" id="format">
-					  	<option>Format</option>
-					    <option>Name1</option>
-					    <option>Name2</option>
-					    <option>Name3</option>						   
-					  </select>
-					</div>
-					<div class="col-md-9 schedule_btn">					
+					<div class="parameter_holder">
+						<div class="form-group">
+							<label>Enter Parameter Name</label><br>
+							<input type="text" class="adjust_width" name="parameter_name1" >
+						</div>
+						<div class="form-group">
+							<select class="form-control classic type_align_popup fl" id="type1" name="type1">
+								<option>Type</option>
+								<option>Name1</option>
+								<option>Name2</option>
+								<option>Name3</option>
+							</select>
+							<select class="form-control classic type_align_popup fl" id="unit1" name="unit1">
+								<option>Unit</option>
+								<option>Name1</option>
+								<option>Name2</option>
+								<option>Name3</option>
+							</select>
+							<select class="form-control classic type_align_popup fl" id="format1" name="format1">
+								<option>Format</option>
+								<option>Name1</option>
+								<option>Name2</option>
+								<option>Name3</option>
+							</select>
+						</div>
+					</div><!-- end parameter_holder -->
+					<div class="col-md-9 schedule_btn">
 						<input type="submit" class="btn btn-primary align_right clear" value="Submit">
-					</div>			
+					</div>
 				</form>
-			</div>		
+			</div>
 					</div><!--state-content-->
 			</div><!--test_div-->
 		</div><!--container-->

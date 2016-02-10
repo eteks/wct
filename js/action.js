@@ -181,7 +181,9 @@ $(document).ready(function () {
                if(html=='error'){
                  alert('Already sports name entred');
                }else{
-                 $('#sports_table tr:last').after(html);
+                  location.reload();
+                 //$('#sports_table tr:last').after(html);
+
                }
 
            }
@@ -348,7 +350,8 @@ $(document).ready(function () {
                  alert('Already category available');
                }else{
                   //alert(html);
-                 $('#category_table tr:last').after(html);
+                 //$('#category_table tr:last').after(html);
+                 location.reload();
                }
            }
        });
@@ -379,4 +382,52 @@ $(document).ready(function () {
        });
     });
 
+    // $('.parameter_btn').click(function() {
+    //     var $div = $('div[class^="parameter_name"]:last');
+    //     alert($div.html());
+    // });
+    var current_id = 1;
+    $('.parameter_btn').click(function(){
+        nextElement($('.clone_content:last'));
+    })
+
+    function nextElement(element){
+        var newElement = element.clone();
+        var id = current_id+1;
+        current_id = id;
+        newElement.find('.parameter_name').removeAttr('name').attr('name', 'parameter_name'+id);
+        newElement.find('#type').removeAttr('name').attr('name', 'type'+id);
+        newElement.find('#unit').removeAttr('name').attr('name', 'unit'+id);
+        newElement.find('#unit option').remove();
+        newElement.find('#format').removeAttr('name').attr('name', 'format'+id);
+        newElement.appendTo($(".parameter_holder"));
+    }
+
+    $(document.body).delegate('.parameter_type','change',function() {
+        var param_name = $(this).val();
+        var this_content = $(this).attr('name');
+        if(param_name=='time'){
+             $('select[name="'+this_content+'"]').parent().find('.parameter_format').attr('disabled', 'disabled');
+        }
+        else{
+            $('select[name="'+this_content+'"]').parent().find('.parameter_format').removeAttr('disabled');
+        }
+
+        $.ajax({
+           type: "POST",
+           url: "common.php?param_name='true'",
+           data: {'parameter_name':param_name},
+           cache: false,
+           success: function(html) {
+               //alert($('select[name="'+this_content+'"]').parent().html());
+               $('select[name="'+this_content+'"]').parent().find('.parameter_unit').html(html);
+           }
+       });
+        //$(this).attr('value', $(this).val())
+    });
+
+    // $('.test_submit_act').click(function() {
+    //     var test_form_data = $('#test_form').serialize();
+    //     alert(test_form_data);
+    // });
 });

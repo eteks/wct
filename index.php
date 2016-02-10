@@ -51,4 +51,48 @@
 		</div><!--container-->
 	</div><!--select_user_content-->
 </form>
+<div class="popup_fade cancel_btn"></div><!--popup_fade-->
+<div class="container">
+    <div class="register_div">
+      <code class="close_btn cancel_btn"> </code>
+        <div class="login_title">
+          <span class="login_txt">REGISTER</span>
+        </div><!--login_title-->
+        <div class="login_content">
+          <div class="login_form col-md-12 col-xs-9">
+            <form action="" method="post" name="login" role="form">
+                <div class="form-group">
+                  <label for="email" class="email_txt">Enter Your Full Name</label>
+                  <input type="email" class="form-control" id="name" placeholder="Enter Your Full Name" name="email" required>
+                  <span class="info_reg fr">5,or more characters,letters and Numbers.</span>
+                </div>
+                <div class="form-group">
+                  <label for="email" class="email_txt">Enter Your User Name</label>
+                  <input type="email" class="form-control" id="name" placeholder="Enter Your User Name" name="email" required>
+                  <span class="info_reg fr">5,or more characters,letters and Numbers.</span>
+                </div>
+                <div class="form-group">
+                  <label for="pwd" class="pwd_txt">Enter Your Password</label>
+                  <input type="password" class="form-control" id="pwd" placeholder="Enter Your Password" name="password" required>
+                  <span class="info_reg fr">5,or more characters,letters and Numbers,<br>must contain atleast one number.</span>
+                </div>
+                <div class="form-group">
+                  <label for="pwd" class="pwd_txt">Confirm Password</label>
+                  <input type="password" class="form-control" id="pwd" placeholder="Confirm Password" name="password" required>
+                </div>
+                <div class="form-group">
+                  <label for="email" class="email_txt">Email Address</label>
+                  <input type="email" class="form-control" id="email" placeholder="Email Address" name="email" required>
+                  <span class="info_reg fr">10,or more characters,letters and Numbers.</span>
+                </div>
+                <div class="checkbox">
+                  <label class="remember_txt"><input type="checkbox">I have read and agree to the <mark class="reg_check">Team and Services</mark></label>
+                </div>
+                  <input type="submit" class="btn btn-default login_btn fr" value="Register"  name="login"/>
+
+            </form>
+          </div><!--login_form-->
+        </div><!--login_content-->
+    </div><!--register_div-->
+</div><!--container-->
 <?php require_once 'footer.php';?>
