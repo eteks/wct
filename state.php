@@ -10,7 +10,7 @@
 			<div class="col-md-8">
 				<div class="col-md-6"></div>
 				<div class="col-md-6 align_margin">
-					<form name="states_form" method="post">
+					<form name="states_form">
 						<div class="align_margin">					
 							<label>Enter the State</label><br>
 							<input type="text" class="statesname" name="states_name" required>

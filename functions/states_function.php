@@ -41,7 +41,6 @@ else {
 	}
 	if(isset($_POST)){
 		if(isset($_GET['adddata'])){
-			echo "string",$_POST['states_name'];
 			$statesFunction = new statesFunction();
 			$statesFunction->statesname = $_POST['states_name'];	
 			if ($_POST['states_name']){

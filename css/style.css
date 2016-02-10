@@ -281,14 +281,14 @@ border-top: 0 !important;
 . table > tbody{
 	border:1px solid !important;
 }
-.state_table > tbody td,.district_table > tbody td{
-    border:1px solid;
+.state_table > tbody td,.district_table > tbody td,.athletes_table > tbody td{
+     border:1px solid;
      border-bottom: 0 !important
 }
-.state_table > thead,.district_table > thead{
+.state_table > thead,.district_table > thead,.athletes_table > thead{
     border-bottom: 1px solid;
 }
-.state_table > tbody tr:last-child,.district_table > tbody tr:last-child{
+.state_table > tbody tr:last-child,.district_table > tbody tr:last-child,.athletes_table > tbody tr:last-child{
     border-bottom: 1px solid !important;
 }
 .align-height{

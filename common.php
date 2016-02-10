@@ -142,5 +142,28 @@ $DISTRICT = array(
 	)
 );
 
+$DAY  = array (
+ '1' => '1',	
+ '2' => '2',
+ '3' => '3',
+ '4' => '5',
+ '6' => '6',
+ '7' => '8',	
+ '9' => '9',
+ '10' => '10',
+);
+
+$MONTH  = array (
+ 'january' => 'January',	
+ 'february' => 'February',
+ 'march' => 'March',
+ 'april' => 'April',
+);
+
+$YEAR  = array (
+ '1991' => '1991',	
+ '1992' => '1992',
+);
+
 ?>
 
