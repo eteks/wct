@@ -170,19 +170,19 @@
 					
 					<div class="form-group">
 					  <label for="date" class="fl">Select date</label><br>
-					  <select class="form-control classic create-date fl" id="date">
+					  <select class="form-control classic create-date1 fl" id="date">
 					  	<option>Date</option>
 					    <option>Name1</option>
 					    <option>Name2</option>
 					    <option>Name3</option>						   
 					  </select>
-					  <select class="form-control classic create-date fl" id="month">
+					  <select class="form-control classic create-date2 fl" id="month">
 					  	<option>Month</option>
 					    <option>Name1</option>
 					    <option>Name2</option>
 					    <option>Name3</option>						   
 					  </select>
-					  <select class="form-control classic create-date fl" id="year">
+					  <select class="form-control classic create-date3 fl" id="year">
 					  	<option>Years</option>
 					    <option>Name1</option>
 					    <option>Name2</option>
@@ -192,19 +192,19 @@
 					
 					<div class="form-group">
 					  <label for="date" class="fl">Select Time</label><br>
-					  <select class="form-control classic create-time fl" id="hour">
+					  <select class="form-control classic create-time1 fl" id="hour">
 					  	<option>Hour</option>
 					    <option>Name1</option>
 					    <option>Name2</option>
 					    <option>Name3</option>						   
 					  </select>
-					  <select class="form-control classic create-time fl" id="minute">
+					  <select class="form-control classic create-time2 fl" id="minute">
 					  	<option>Minute</option>
 					    <option>Name1</option>
 					    <option>Name2</option>
 					    <option>Name3</option>						   
 					  </select>
-					  <select class="form-control classic create-time fl" id="seconds">
+					  <select class="form-control classic create-time3 fl" id="seconds">
 					  	<option>Seconds</option>
 					    <option>Name1</option>
 					    <option>Name2</option>
@@ -214,9 +214,9 @@
 			
 					<div class="align_height align_margin">					
 						<label>Venue</label><br>
-						<textarea class="area_width"></textarea>
+						<textarea class="area_width_create"></textarea>
 					</div>
-					<div class="col-md-9 schedule_btn">					
+					<div class="col-md-10 schedule_btn">					
 						<input type="submit" class="btn btn-primary align_right clear" value="Submit">
 						<input type="submit" class="btn btn-primary align_right clear" value="Clear">
 					</div>	

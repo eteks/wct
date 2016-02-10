@@ -22,12 +22,22 @@
 	  			<span>SELECT USER TYPE</span>
 			</div><!--user_txt-->
 			<div class="user_type  col-md-12">
-			    <div class="radio-inline admin admin_align col-md-3">
+			    <!-- <div class="radio-inline admin col-md-3">
 			      <label><input type="radio" name="optradio" value="administrator" checked>ADMINISTRATOR</label>
 			    </div>
 			    <div class="radio-inline admin col-md-3">
 			      <label><input type="radio" name="optradio" value="admin">ADMIN</label>
-			    </div>
+			    </div> -->
+			    <div class="radio admin">
+				  	<input id="radio-1" type="radio" name="optradio" value="administrator" checked />
+				  	<label for="radio-1" class="admin_label">
+				    ADMINISTRATOR
+				  	</label>
+				  	<input id="radio-2" type="radio" name="optradio" value="admin" />
+				  	<label for="radio-2" class="admin_label">
+				   	ADMIN
+				  	</label>
+				</div>
 			</div><!--user_type-->
 		</div><!--container-->
 		<div class="login_form">
