@@ -387,7 +387,7 @@ select {
 .collapsing {
     display:none;
 }
-.edit_state{
+.edit_state,.edit_district{
     cursor: pointer;
 }
 .popup_fade {
@@ -520,13 +520,13 @@ select {
     background-color: #006687 !important;
     color: #fff !important;
 }
-.delete_state{
+.delete_state,.delete_district{
     cursor: pointer;
     float: right;
     position: relative;
     right: 25%;
 }
-.edit_state:hover{
+.edit_state:hover,.edit_district:hover{
     color: #006687 !important;
 }
 .del_title ,.login_title,.edit_title{

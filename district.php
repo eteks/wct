@@ -1,4 +1,5 @@
-<?php require_once "header.php";
+<?php require_once "session.php";
+	  require_once "header.php";
 	  require_once 'functions/states_function.php';
 	  require_once 'functions/district_function.php';
 	  $statesFunction = new statesFunction();	
@@ -53,8 +54,8 @@
 						        <td class="t_states_name"><?php echo $row['states_name']; ?></td>
 						        <td class="t_district_name"><?php echo $row['district_name']; ?></td>
 						        <td>
-						        	<span class="edit_state" onclick="editfunction(<?php echo $row['district_id'] ?>)">Edit</span>
-						        	<span class="delete_state" data-value="<?php echo $row['district_id'] ?>">Delete</span>
+						        	<span class="edit_district">Edit</span>
+						        	<span class="delete_district" data-value="<?php echo $row['district_id'] ?>">Delete</span>
 						        </td> 				    
 					        </tr>                         
                      <?php } ?>	 
@@ -87,15 +88,16 @@
               	</div><!--edit_title-->
           			<div class="container state-content col-md-12">		
 	          			<form>
+	          			<input type="hidden" class="statesid" name="edit_districtstates_id">
 						<div class="form-group">
 						  <label for="sel1">Select the State</label>
-						  <select class="form-control adjust_width classic choose_state" id="sel1" name="district_state">
-						  	<option value="0"></option>
+						  <select class="form-control adjust_width classic choose_state" id="sel1" name="edit_district_state">
+						  	<option value=""></option>
 						  </select>
 						</div>
 						<div class="align_margin">					
 							<label>District/Taluka</label><br>
-							<input type="text" class="districts" name="district_name">
+							<input type="text" class="districts" name="edit_district_name">
 						</div>
 						<input type="submit" class="btn btn-primary align_right clear" name="district">		
 					</form>
