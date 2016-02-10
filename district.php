@@ -1,22 +1,9 @@
-<?php require_once "header.php";
+<?php require_once "session.php";
+	  require_once "header.php";
 	  require_once 'functions/states_function.php';
 	  require_once 'functions/district_function.php';
 	  $statesFunction = new statesFunction();	
 	  $districtFunction = new districtFunction();
-	  if(isset($_POST['district'])){
-	  	$stateid = $_POST['district_state'];
-		$districtname = $_POST['district_name'];
-		// if (in_array($statesname, $STATES)) {
-			$district = $districtFunction->isDistrictExist($districtname);
-			if(!$district){
-				$districtinsert = $districtFunction->districtInsert($stateid,$districtname);
-				if($districtinsert){echo "<script>alert('District Inserted')</script>";}else{
-					echo "<script>alert('District Not Inserted')</script>";}
-			}
-			else {echo "<script>alert('District Already Exist')</script>";}
-		// }
-		// else{echo "<script>alert('No State Present in that Name')</script>";}
-	  }
 ?>		
 		<div class="container align_center align-height">
 			<span class="sports">DISTRICT</span>
@@ -25,11 +12,11 @@
 			<div class="col-md-8">
 				<div class="col-md-4"></div>
 				<div class="col-md-8 col-xs-12 align_left">
-					<form method="post" action="district.php" name="district_form">
+					<form name="district_form">
 						<div class="form-group">
 						  <label for="sel1">Select the State</label>
-						  <select class="form-control adjust_width classic choose_state" id="sel1" name="district_state">
-						  <option value="0"></option>
+						  <select class="form-control adjust_width classic choose_state" id="sel1" name="district_state" required>
+						  <option value=""></option>
 						  <?php
 	                        $query = $statesFunction->statesSelect();
 	                        while ($row = mysql_fetch_array($query)) {
@@ -40,17 +27,18 @@
 						</div>
 						<div class="align_margin">					
 							<label>District/Taluka</label><br>
-							<input type="text" class="districts" name="district_name">
+							<input type="text" class="districts" name="district_name" required>
+							<span class="add_district_error"></span>
 						</div>
 
-						<input type="submit" class="btn btn-primary align_right clear" name="district">		
+						<button type="button" class="btn btn-primary align_right clear add_district_act" name="district">Submit</button>			
 					</form>
 				</div>
 				<div class="container">           
-				  <table class="table state_table">
+				  <table class="table district_table">
 				    <thead>
 				      <tr class="row_color">
-				        <th class="align_center">SLNO</th>
+				        <th class="align_center">SLNO</th>	
 				        <th class="align_center">District/Taluka</th>
 				        <th class="align_center">Action</th>
 				      </tr>
@@ -61,12 +49,13 @@
                         while ($row = mysql_fetch_array($query)) {
                             ?>
                             <tr class="align_center delete_color">
-						        <td><?php echo $row['district_id']; ?></td>
-						        <td><?php echo $row['states_name']; ?></td>
-						        <td><?php echo $row['district_name']; ?></td>
+                            <input type="hidden" name="district_id" value="<?php echo $row['district_id']; ?>">
+						        <td class="t_district_id"><?php echo $row['district_id']; ?></td>
+						        <td class="t_states_name"><?php echo $row['states_name']; ?></td>
+						        <td class="t_district_name"><?php echo $row['district_name']; ?></td>
 						        <td>
-						        	<span class="edit_state">Edit</span>
-						        	<span class="delete_state">Delete</span>
+						        	<span class="edit_district">Edit</span>
+						        	<span class="delete_district" data-value="<?php echo $row['district_id'] ?>">Delete</span>
 						        </td> 				    
 					        </tr>                         
                      <?php } ?>	 
@@ -75,7 +64,7 @@
 				</div>
 			</div>
 		</div><!-- end  container-->					
-		<div class="container align_center">		          
+		<!-- <div class="container align_center">		          
 		  	<ul class="pagination">
 		  		<li><a href="#" class="align_left_icon"><i class="fa fa-angle-double-left"></i></a></li>    	
 			    <li><a href="#">1</a></li>
@@ -85,7 +74,7 @@
 			    <li><a href="#">5</a></li>
 			    <li><a href="#" class="align_right_icon"><i class="fa fa-angle-double-right"></i></a></li>
 			</ul>		   
-		</div><!-- end  container-->
+		</div> --><!-- end  container-->
 		<div class="district_list">
 			<ul>
 			</ul>
@@ -99,15 +88,16 @@
               	</div><!--edit_title-->
           			<div class="container state-content col-md-12">		
 	          			<form>
+	          			<input type="hidden" class="statesid" name="edit_districtstates_id">
 						<div class="form-group">
 						  <label for="sel1">Select the State</label>
-						  <select class="form-control adjust_width classic choose_state" id="sel1" name="district_state">
-						  	<option value="0"></option>
+						  <select class="form-control adjust_width classic choose_state" id="sel1" name="edit_district_state">
+						  	<option value=""></option>
 						  </select>
 						</div>
 						<div class="align_margin">					
 							<label>District/Taluka</label><br>
-							<input type="text" class="districts" name="district_name">
+							<input type="text" class="districts" name="edit_district_name">
 						</div>
 						<input type="submit" class="btn btn-primary align_right clear" name="district">		
 					</form>

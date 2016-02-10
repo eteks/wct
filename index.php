@@ -22,17 +22,21 @@
 	  			<span>SELECT USER TYPE</span>
 			</div><!--user_txt-->
 			<div class="user_type  col-md-12">
-			    <div class="radio-inline admin col-md-3">
-			      <label><input type="radio" name="optradio" value="administrator" checked>ADMINISTRATOR</label>
-			    </div>
-			    <div class="radio-inline admin col-md-3">
-			      <label><input type="radio" name="optradio" value="admin">ADMIN</label>
-			    </div>
-		  	</div><!--user_type-->
+			    <div class="radio admin">
+				  	<input id="radio-1" type="radio" name="optradio" value="administrator" checked />
+				  	<label for="radio-1" class="admin_label">
+				    ADMINISTRATOR
+				  	</label>
+				  	<input id="radio-2" type="radio" name="optradio" value="admin" />
+				  	<label for="radio-2" class="admin_label">
+				   	ADMIN
+				  	</label>
+				</div>
+			</div><!--user_type-->
 		</div><!--container-->
 		<div class="login_form">
 			<div class="container">
-				<div class="user-content col-md-4 col-xs-9">
+				<div class="user-content col-md-5 col-xs-9">
 				    <div class="form-group">
 						<label for="email" class="email_txt">Email Address</label>
 						<input type="email" class="form-control" id="email" placeholder="Enter email" name="email" required>
@@ -44,8 +48,10 @@
 				    <div class="checkbox">
 				        <label class="remember_txt"><input type="checkbox"> Remember me</label>
 				    </div>
-				    <input type="submit" class="btn btn-default login_btn" value="Login"  name="login"/>
-				    <span class="forget_txt">Forget Password?</span>
+				    <div class="form-group admin-login">
+					    <input type="submit" class="btn btn-default login_btn" value="Login"  name="login"/>
+					    <span class="forget_txt">Forget Password?</span>
+				    </div>
 			  	</div><!--user-content-->
 		  	</div><!--login_form-->
 		</div><!--container-->

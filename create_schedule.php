@@ -1,4 +1,5 @@
-<?php require_once "header.php"; ?>
+<?php require_once "session.php";
+	  require_once "header.php"; ?>
 <div class="container">
 	<div class="container align_center align_height">
 		<span class="sports">CREATE SCHEDULE</span>
@@ -7,72 +8,72 @@
 		<div class="col-xs-12 col-md-11">
 			<div class="col-md-4 hidden-xs"></div>
 			<div class="col-xs-12 col-md-7 align_margin">
-				<form>
+				<form name="create_schedule_form">
 					<div class="form-group">					
-						<label>Enter the name of the Sports</label><br>
-						<input type="text" class="adjust_width" name="sports_name">
+						<label>Schedule Name</label><br>
+						<input type="text" class="adjust_width" name="schedule_name">
 					</div>
 					<div class="form-group">
 					  <label for="battey_name">Select Test Battery Name</label>
-					  <select class="form-control classic adjust_width" id="battey_name">
+					  <select class="form-control classic adjust_width" id="battey_name" name="schedule_testbattery">
 					  	<option></option>
-					    <option>Name1</option>
-					    <option>Name2</option>
-					    <option>Name3</option>						   
+					    <option value="1">test1</option>
+					    <option value="2">test2</option>
+					    <option value="3">test3</option>						   
 					  </select>
 					</div>
 					
 					<div class="form-group">
 					  <label for="date" class="fl">Select date</label><br>
-					  <select class="form-control classic adjust_width_tiny fl" id="date">
+					  <select class="form-control classic adjust_width_tiny fl" id="date" name="schedule_day">
 					  	<option>Date</option>
-					    <option>Name1</option>
-					    <option>Name2</option>
-					    <option>Name3</option>						   
+					    <option value="1">1</option>
+					    <option value="2">2</option>
+					    <option value="3">3</option>					   
 					  </select>
-					  <select class="form-control classic adjust_width_tiny fl" id="month">
+					  <select class="form-control classic adjust_width_tiny fl" id="month" name="schedule_month">
 					  	<option>Month</option>
-					    <option>Name1</option>
-					    <option>Name2</option>
-					    <option>Name3</option>						   
+					    <option value="1">January</option>
+					    <option value="2">February</option>
+					    <option value="3">March</option>					   
 					  </select>
-					  <select class="form-control classic adjust_width_tiny fl" id="year">
+					  <select class="form-control classic adjust_width_tiny fl" id="year" name="schedule_year">
 					  	<option>Years</option>
-					    <option>Name1</option>
-					    <option>Name2</option>
-					    <option>Name3</option>						   
+					    <option value="1991">1991</option>
+					    <option value="1992">1992</option>
+					    <option value="1993">1993</option>							   
 					  </select>
 					</div>
 					
 					<div class="form-group">
 					  <label for="date" class="fl">Select Time</label><br>
-					  <select class="form-control classic adjust_tiny fl" id="hour">
+					  <select class="form-control classic adjust_tiny fl" id="hour" name="schedule_hour">
 					  	<option>Hour</option>
-					    <option>Name1</option>
-					    <option>Name2</option>
-					    <option>Name3</option>						   
+					    <option value="1">1</option>
+					    <option value="2">2</option>
+					    <option value="3">3</option>						   
 					  </select>
-					  <select class="form-control classic adjust_tiny fl" id="minute">
+					  <select class="form-control classic adjust_tiny fl" id="minute" name="schedule_minute">
 					  	<option>Minute</option>
-					    <option>Name1</option>
-					    <option>Name2</option>
-					    <option>Name3</option>						   
+					    <option value="1">1</option>
+					    <option value="2">2</option>
+					    <option value="3">2</option>						   
 					  </select>
-					  <select class="form-control classic adjust_tiny fl" id="seconds">
+					  <select class="form-control classic adjust_tiny fl" id="seconds" name="schedule_seconds">
 					  	<option>Seconds</option>
-					    <option>Name1</option>
-					    <option>Name2</option>
-					    <option>Name3</option>						   
+					    <option value="1">1</option>
+					    <option value="2">2</option>
+					    <option value="3">3</option>						   
 					  </select>
 					</div>
 			
 					<div class="align_height align_margin">					
 						<label>Venue</label><br>
-						<textarea class="area_width"></textarea>
+						<textarea class="area_width" name="schedule_venue"></textarea>
 					</div>
 					<div class="col-md-9 schedule_btn">					
-						<input type="submit" class="btn btn-primary align_right clear" value="Submit">
-						<input type="submit" class="btn btn-primary align_right clear" value="Clear">
+						<button type="button" class="btn btn-primary align_right clear add_createschedule_act">Submit</button>
+						<button type="button" class="btn btn-primary align_right clear">Clear</button>	
 					</div>			
 				</form>
 			</div>			
@@ -131,7 +132,7 @@
 			</div>			
 		</div>
 	</div><!-- end  container-->
-	<div class="container align_center">		          
+	<!-- <div class="container align_center">		          
 	  	<ul class="pagination">
 	  		<li><a href="#" class="align_left_icon"><i class="fa fa-angle-double-left"></i></a></li>    	
 		    <li><a href="#">1</a></li>
@@ -141,6 +142,88 @@
 		    <li><a href="#">5</a></li>
 		    <li><a href="#" class="align_right_icon"><i class="fa fa-angle-double-right"></i></a></li>
 		</ul>		   
-	</div><!-- end  container-->
+	</div> --><!-- end  container-->
 </div><!-- end  container-->
+
+<div class="popup_fade cancel_btn"></div><!--popup_fade-->
+		<div class="container">
+            <div class="test_battery_div">
+          		<code class="close_btn cancel_btn"> </code>
+          		<div class="edit_title">
+                	<span class="del_txt">EDIT</span>
+              	</div><!--edit_title-->
+          			<div class="container state-content col-md-12">	
+          			<div class="col-xs-12 col-md-12 align_margin">	
+	          			<form>
+	          				<div class="form-group">					
+						<label>Enter the name of the Sports</label><br>
+						<input type="text" class="adjust_width" name="sports_name">
+					</div>
+					<div class="form-group">
+					  <label for="battey_name">Select Test Battery Name</label>
+					  <select class="form-control classic adjust_width" id="battey_name">
+					  	<option></option>
+					    <option>Name1</option>
+					    <option>Name2</option>
+					    <option>Name3</option>						   
+					  </select>
+					</div>
+					
+					<div class="form-group">
+					  <label for="date" class="fl">Select date</label><br>
+					  <select class="form-control classic create-date1 fl" id="date">
+					  	<option>Date</option>
+					    <option>Name1</option>
+					    <option>Name2</option>
+					    <option>Name3</option>						   
+					  </select>
+					  <select class="form-control classic create-date2 fl" id="month">
+					  	<option>Month</option>
+					    <option>Name1</option>
+					    <option>Name2</option>
+					    <option>Name3</option>						   
+					  </select>
+					  <select class="form-control classic create-date3 fl" id="year">
+					  	<option>Years</option>
+					    <option>Name1</option>
+					    <option>Name2</option>
+					    <option>Name3</option>						   
+					  </select>
+					</div>
+					
+					<div class="form-group">
+					  <label for="date" class="fl">Select Time</label><br>
+					  <select class="form-control classic create-time1 fl" id="hour">
+					  	<option>Hour</option>
+					    <option>Name1</option>
+					    <option>Name2</option>
+					    <option>Name3</option>						   
+					  </select>
+					  <select class="form-control classic create-time2 fl" id="minute">
+					  	<option>Minute</option>
+					    <option>Name1</option>
+					    <option>Name2</option>
+					    <option>Name3</option>						   
+					  </select>
+					  <select class="form-control classic create-time3 fl" id="seconds">
+					  	<option>Seconds</option>
+					    <option>Name1</option>
+					    <option>Name2</option>
+					    <option>Name3</option>						   
+					  </select>
+					</div>
+			
+					<div class="align_height align_margin">					
+						<label>Venue</label><br>
+						<textarea class="area_width_create"></textarea>
+					</div>
+					<div class="col-md-10 schedule_btn">					
+						<input type="submit" class="btn btn-primary align_right clear" value="Submit">
+						<input type="submit" class="btn btn-primary align_right clear" value="Clear">
+					</div>	
+	          			</form>
+	          		</div>
+					</div><!--state-content-->
+			</div><!--test_battery_div-->
+		</div><!--container-->
 <?php require_once "footer.php" ?>

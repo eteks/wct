@@ -45,7 +45,7 @@
 
 	if(isset($_POST)){
 		// For display edit data 
-		if($_GET['chooseedit']){
+		if(isset($_GET['chooseedit'])){
 			$json = array();
 			$editdeleteFunction = new editdeleteFunction();
 			$editdeleteFunction->statesid = $_POST['data_id'];
@@ -60,7 +60,7 @@
 		    echo json_encode($json);
 		}
 		// To store edited data
-		if($_GET['editdata']){
+		if(isset($_GET['editdata'])){
 			$editdeleteFunction = new editdeleteFunction();
 			$editdeleteFunction->statesid = $_POST['edit_states_id'];
 			$editdeleteFunction->statesname = $_POST['edit_states_name'];	
@@ -83,7 +83,7 @@
 			}
 		}
 		// To delete stored data
-		if($_GET['deletedata']){
+		if(isset($_GET['deletedata'])){
 			$editdeleteFunction = new editdeleteFunction();
 			$editdeleteFunction->statesid = $_POST['delete_id'];
 			$statesdelete = $editdeleteFunction->deleteData();
@@ -93,8 +93,7 @@
 			else{
 				echo "failure#Record not found";
 			}
-		}
-		
+		}	
 	}	
 	
 ?>	

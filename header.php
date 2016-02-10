@@ -2,17 +2,16 @@
 <!DOCTYPE html>
 <html>
 <head>
- <title>Velocity</title>
- <meta charset="utf-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1">
- <link rel="stylesheet" type="text/css" href="css/style.css">
- <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
- <link rel="stylesheet" type="text/css" href="css/font-awesome.css">
- <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
- <script type="text/javascript" src="js/jquery-ui.min.js"></script>
- <script type="text/javascript" src="js/bootstrap.js"></script>
- <script type="text/javascript" src="js/action.js"></script>
-
+    <title>Velocity</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.css">
+    <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/action.js"></script>
 </head>
 <body>
   <nav class="navbar navbar-inverse header_bg">
@@ -49,7 +48,7 @@
           <a href="#" data-toggle="collapse" data-target="#two">TRANSACTION</a>
         </li>
         <li class="dropdown">
-          <a href="#">REPORTS</a>
+          <a href="reports.php">REPORTS</a>
         </li>
       </ul>
     </div><!--menu_list-->
@@ -63,16 +62,23 @@
                 <li><a href="state.php" id="">STATE</a></li>
                 <li><a href="district.php" id="">DISTRICT</a></li>
                 <li><a href="test.php" id="">TEST</a></li>
-                <li><a href="#" id="">TEST BATTERY</a></li>
-                <li><a href="#" id="">RANGE</a></li>
+                <li><a href="test_battery.php" id="">TEST BATTERY</a></li>
+                <li><a href="range.php" id="">RANGE</a></li>
+                <li><a href="#" id="" class="paramter_menu">PARAMETER</a></li>
+                <div class="parameter-list">
+                  <ul>
+                    <li><a href="parameter_type.php">TYPE</a></li>
+                    <li><a href="parameter_unit.php">UNIT</a></li>
+                  </ul>
+                </div><!--parameter-list-->
             </ul>
            </li>
            <li>
              <ul class="nav nav-justified submenu_list collapse" id="two">
-                <li><a href="#" id="">ADD ATHLETES</a></li>
+                <li><a href="athletes.php" id="">ADD ATHLETES</a></li>
                 <li><a href="create_schedule.php" id="">CREATE SCHEDULE</a></li>
-                <li><a href="#" id="">ASSIGN SCHEDULE</a></li>
-                <li><a href="#" id="">RESULT</a></li>
+                <li><a href="assign_schedule.php" id="">ASSIGN SCHEDULE</a></li>
+                <li><a href="result.php" id="">RESULT</a></li>
               </ul>
             </li>
         </ul>
