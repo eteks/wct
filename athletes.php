@@ -128,7 +128,7 @@
 					        <td class="t_athlete_dob"><?php echo $row['athlete_dob']; ?></td>
 					        <td class="t_athlete_address"><?php echo $row['athlete_address']; ?></td>
 					        <td>
-					        	<span class="edit_state">Edit</span>
+					        	<span class="edit_state" onclick="editfunction(<?php echo $row['athlete_id'] ?>)">Edit</span>
 				        		<span class="delete_state" data-value="<?php echo $row['athlete_id'] ?>">Delete</span>
 					        </td>
 	      				</tr>		                    
@@ -159,27 +159,28 @@
               	</div><!--edit_title-->
           			<div class="container state-content athlete-popup-content col-md-12">	
           			<div class="col-xs-12 col-md-12 align_margin">	
-	          			<form>
+	          	<form name="edit_athletes_form">
+	          		<input type="hidden" class="statesid" name="edit_athlete_id">
 					<div class="form-group">					
 						<label>Athlete Name</label><br>
-						<input type="text" class="adjust_width" name="athlete_name">
+						<input type="text" class="adjust_width" name="edit_athlete_name">
 					</div>
 					
 					<div class="form-group">
 					  <label for="date" class="fl">Date Of Birth</label><br>
-					  <select class="form-control classic dob_align1 fl" id="date">
+					  <select class="form-control classic dob_align1 fl" id="date" name="edit_athlete_dobday">
 					  	<option>Date</option>
 					    <option>Name1</option>
 					    <option>Name2</option>
 					    <option>Name3</option>						   
 					  </select>
-					  <select class="form-control classic dob_align2 fl" id="month">
+					  <select class="form-control classic dob_align2 fl" id="month" name="edit_athlete_dobmonth">
 					  	<option>Month</option>
 					    <option>Name1</option>
 					    <option>Name2</option>
 					    <option>Name3</option>						   
 					  </select>
-					  <select class="form-control classic dob_align3 fl" id="year">
+					  <select class="form-control classic dob_align3 fl" id="year" name="edit_athlete_dobyear">
 					  	<option>Years</option>
 					    <option>Name1</option>
 					    <option>Name2</option>
@@ -188,11 +189,11 @@
 					</div>
 					<div class="form-group">     
       					<label>Mobile Number</label><br>
-      					<input type="text" class="adjust_width" name="athlete_mobile">
+      					<input type="text" class="adjust_width" name="edit_athlete_mobile">
      				</div>
 					<div class="form-group">
 						  <label for="sel1">Gender</label>
-						  <select class="form-control adjust_width classic" id="sel1" name="gender">
+						  <select class="form-control adjust_width classic" id="sel1" name="edit_athlete_gender">
 						  <option></option>
 						  <option>Female</option>
 						  <option>Male</option>
@@ -200,13 +201,13 @@
 					</div>
 					<div class="form-group">
 						  <label for="sel1">State</label>
-						  <select class="form-control adjust_width classic" id="sel1" name="state">
+						  <select class="form-control adjust_width classic" id="sel1" name="edit_athlete_state">
 						  <option></option>
 						  </select>
 					</div>
 					<div class="form-group">
 						  <label for="sel1">District/Taluka</label>
-						  <select class="form-control adjust_width classic" id="sel1" name="taluk">
+						  <select class="form-control adjust_width classic" id="sel1" name="edit_athlete_district">
 						  <option></option>
 						  </select>
 					</div>
@@ -217,13 +218,13 @@
 					</div>
 					<div class="form-group">
 						  <label for="sel1">Sports</label>
-						  <select class="form-control adjust_width classic" id="sel1" name="sports">
+						  <select class="form-control adjust_width classic" id="sel1" name="edit_athlete_sports">
 						  <option></option>
 						  </select>
 					</div>
 					<div class="col-md-10 schedule_btn">					
-						<input type="submit" class="btn btn-primary align_right clear" value="Submit">
-						<input type="submit" class="btn btn-primary align_right clear" value="Clear">
+						<button type="button" class="btn btn-primary align_right clear edit_athletes_act">Submit</button>
+						<button type="button" class="btn btn-primary align_right clear">Clear</button>
 					</div>			
 				</form>
 	          		</div>

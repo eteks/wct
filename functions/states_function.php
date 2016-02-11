@@ -1,13 +1,8 @@
 <?php
-if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest')
-{
+
   include ("../dbconnect.php");
   include ("../common.php");
-}
-else {
-  include ("dbconnect.php");
-  include ("common.php");
-}
+
  	class statesFunction {
  		public $statesid;
 	    public $statesname;
