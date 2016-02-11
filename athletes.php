@@ -3,10 +3,10 @@
 	  require_once 'functions/states_function.php';
 	  require_once 'functions/district_function.php';
 	  require_once 'functions/athletes_functions.php';
-	  // require_once 'functions/sports_function.php';
+	  require_once 'functions/sports_function.php';
 	  $statesFunction = new statesFunction();
 	  $districtFunction = new districtFunction();
-	  // $sportsfunction = new sportsfunction();
+	  $sportsfunction = new sportsfunction();
 	  $athleteFunction = new athletesFunction();
 ?>
 <div class="container">
@@ -52,8 +52,8 @@
 						  <label for="sel1">Gender</label>
 						  <select class="form-control adjust_width classic" id="sel1" name="athlete_gender">
 						  <option></option>
-						  <option value="female">Female</option>
-						  <option value="male">Male</option>
+						  <option value="Female">Female</option>
+						  <option value="Male">Male</option>
 						  </select>
 					</div>
 					<div class="form-group">
@@ -92,9 +92,12 @@
 					<div class="form-group">
 						  <label for="sel1">Sports</label>
 						  <select class="form-control adjust_width classic" id="sel1" name="athlete_sports">
-
-	                      <option value="cricket">Cricket</option>
-	                      <option value="hockey">Hockey</option>
+						   <?php
+	                        $query = $sportsfunction->sportsSelect();
+	                        while ($row = mysql_fetch_array($query)) {
+	                            ?>
+	                            <option value="<?php echo $row['sports_id']; ?>"><?php echo $row['sports_name']; ?></option>
+	                      <?php } ?>
 						  </select>
 					</div>
 					<div class="col-md-9 schedule_btn">
@@ -152,7 +155,7 @@
 </div><!-- end  container-->
 <div class="popup_fade cancel_btn"></div><!--popup_fade-->
 		<div class="container">
-            <div class="test_battery_div">
+            <div class="athletes_div">
           		<code class="close_btn cancel_btn"> </code>
           		<div class="edit_title">
                 	<span class="del_txt">EDIT</span>
@@ -169,21 +172,22 @@
 					  <label for="date" class="fl">Date Of Birth</label><br>
 					  <select class="form-control classic dob_align1 fl" id="date" name="edit_athlete_dobday">
 					  	<option>Date</option>
-					    <option>Name1</option>
-					    <option>Name2</option>
-					    <option>Name3</option>
+
+					    <option value="1">1</option>
+					    <option value="2">2</option>
+					    <option value="3">3</option>
 					  </select>
 					  <select class="form-control classic dob_align2 fl" id="month" name="edit_athlete_dobmonth">
 					  	<option>Month</option>
-					    <option>Name1</option>
-					    <option>Name2</option>
-					    <option>Name3</option>
+					     <option value="1">January</option>
+					    <option value="2">February</option>
+					    <option value="3">March</option>
 					  </select>
 					  <select class="form-control classic dob_align3 fl" id="year" name="edit_athlete_dobyear">
 					  	<option>Years</option>
-					    <option>Name1</option>
-					    <option>Name2</option>
-					    <option>Name3</option>
+					    <option value="1991">1991</option>
+					    <option value="1992">1992</option>
+					    <option value="1993">1993</option>
 					  </select>
 					</div>
 					<div class="form-group">
@@ -205,7 +209,7 @@
 						  </select>
 					</div>
 					<div class="form-group">
-						  <label for="sel1">District/Taluka</label>
+						  <label for="sel1">District</label>
 						  <select class="form-control adjust_width classic" id="sel1" name="edit_athlete_district">
 						  <option></option>
 						  </select>
@@ -213,12 +217,23 @@
 
 					<div class="align_height align_margin">
 						<label>Address</label><br>
-						<textarea class="area_width_athlete"></textarea>
+						<textarea class="area_width_athlete" name="edit_athlete_address"></textarea>
 					</div>
+
+					<div class="form-group">
+						<label>Taluka</label><br>
+						<input type="text" class="adjust_width" name="edit_athlete_taluka">
+					</div>
+
 					<div class="form-group">
 						  <label for="sel1">Sports</label>
 						  <select class="form-control adjust_width classic" id="sel1" name="edit_athlete_sports">
-						  <option></option>
+						   <?php
+	                        $query = $sportsfunction->sportsSelect();
+	                        while ($row = mysql_fetch_array($query)) {
+	                            ?>
+	                            <option value="<?php echo $row['sports_id']; ?>"><?php echo $row['sports_name']; ?></option>
+	                      <?php } ?>
 						  </select>
 					</div>
 					<div class="col-md-10 schedule_btn">

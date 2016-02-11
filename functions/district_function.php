@@ -52,7 +52,7 @@
 			return $res;
 		}
 		// To select particular data by using id
-		public function selectData(){
+		public function dsitrictselectRecord(){
 			$res = mysql_query("SELECT * FROM wc_district as d INNER JOIN wc_states as s ON s.states_id = d.districtstates_id WHERE d.district_id='".$this->districtid."'")or die(mysql_error());
 			return $res;	
 		}
@@ -92,7 +92,7 @@
 			$json = array();
 			$districtFunction = new districtFunction();
 			$districtFunction->districtid = $_POST['data_id'];
-		    $edit_data = $districtFunction->selectData();
+		    $edit_data = $districtFunction->dsitrictselectRecord();
 		    while ( $result = mysql_fetch_array( $edit_data )){
 		    	$tmp = array(
 	           'district_id' => $result['district_id'],

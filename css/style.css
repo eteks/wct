@@ -278,17 +278,17 @@ border-top: 0 !important;
 .table > thead > tr > th{
 	border-bottom: 1px !important;
 }
-. table > tbody{
+.table > tbody{
 	border:1px solid !important;
 }
-.state_table > tbody td,.district_table > tbody td,.athletes_table > tbody td{
+.table > tbody td{
      border:1px solid;
      border-bottom: 0 !important
 }
-.state_table > thead,.district_table > thead,.athletes_table > thead{
+.table > thead{
     border-bottom: 1px solid;
 }
-.state_table > tbody tr:last-child,.district_table > tbody tr:last-child,.athletes_table > tbody tr:last-child{
+.table > tbody tr:last-child{
     border-bottom: 1px solid !important;
 }
 .align-height{
@@ -462,7 +462,7 @@ select {
     background:#fff;
     display:none;
 }
-.test_battery_div{
+.test_battery_div,.athletes_div,.createschedule_div{
     height: 600px;
     width: 465px;
     top:50%;
