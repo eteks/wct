@@ -473,6 +473,22 @@ $(document).ready(function () {
                  }
              });
        }
+       else if (window.location.href.indexOf("test.php") !== -1){
+            var form_data = {'delete_id':del_id};
+            $.ajax({
+                 type: "POST",
+                 url: "functions/test_functions.php?deletedata=true",
+                 data: form_data,
+                 cache: false,
+                 success: function(html) {
+                  $('.popup_fade').hide();
+                  $('.state_div,.delete_div').hide();
+                  document.body.style.overflow = 'auto';
+                  location.reload();
+
+                 }
+             });
+       }
     });
 
     $('.no_btn').click(function(event) {

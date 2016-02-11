@@ -31,13 +31,22 @@ class testfunction{
           }
     }
     public function testdeletefunction(){
-        $sql = "delete from wc_sports where sports_id ='".$this->sportsid."'";
+        $sql = "delete from wc_test_attribute where test_attribute_id ='".$this->testid."'";
         mysql_query($sql) or die("delete".mysql_error());
         return true;
     }
     public function testselectfunction(){
       $temp_arr = array();
-      $res = mysql_query("SELECT * FROM wc_test_attribute INNER JOIN wc_test ON wc_test_attribute.test_id = wc_test.test_id") or die(mysql_error());
+      $res = mysql_query("SELECT * FROM wc_test_attribute INNER JOIN wc_test ON wc_test_attribute.test_id = wc_test.test_id ") or die(mysql_error());
+      $count=mysql_num_rows($res);
+      while($row = mysql_fetch_array($res)) {
+          $temp_arr[] =$row;
+      }
+      return $temp_arr;
+      }
+    public function testbatteryselectfunction(){
+      $temp_arr = array();
+      $res = mysql_query("SELECT * FROM wc_test_attribute INNER JOIN wc_test ON wc_test_attribute.test_id = wc_test.test_id group by wc_test_attribute.test_id  ") or die(mysql_error());
       $count=mysql_num_rows($res);
       while($row = mysql_fetch_array($res)) {
           $temp_arr[] =$row;
@@ -45,48 +54,49 @@ class testfunction{
       return $temp_arr;
       }
 }
-if(isset($_POST['test_add'])){
-    include ("../dbconnect.php");
-    $counter = (count($_POST)-2)/4;
-    $test = new testfunction();
-    $testname = $_POST['test_name'];
-    $test->testname = $testname ;
-    if($test->testnameinsertfunction()){
-        $row = mysql_fetch_array(mysql_query("select test_id from wc_test where test_name ='$testname'"));
-        for($i=1;$i<=$counter;$i++){
-            $test_id = $row['test_id'];
-            $parameter = $_POST["parameter_name".$i.""];
-            $type = $_POST["type".$i.""];
-            $unit = $_POST["unit".$i.""];
-            $format =  $_POST["format".$i.""];
-            $sql = "insert into wc_test_attribute (test_id,test_parameter_name,test_parameter_type,test_parameter_unit,test_parameter_format,test_attribute_status)values('$test_id','$parameter','$type','$unit','$format','1')";
-            mysql_query($sql) or die(mysql_error());
+    if(isset($_POST['test_add'])){
+        include ("../dbconnect.php");
+        $counter = (count($_POST)-2)/4;
+        $test = new testfunction();
+        $testname = $_POST['test_name'];
+        $test->testname = $testname ;
+        if($test->testnameinsertfunction()){
+            $row = mysql_fetch_array(mysql_query("select test_id from wc_test where test_name ='$testname'"));
+            for($i=1;$i<=$counter;$i++){
+                $test_id = $row['test_id'];
+                $parameter = $_POST["parameter_name".$i.""];
+                $type = $_POST["type".$i.""];
+                $unit = $_POST["unit".$i.""];
+                $format =  $_POST["format".$i.""];
+                $sql = "insert into wc_test_attribute (test_id,test_parameter_name,test_parameter_type,test_parameter_unit,test_parameter_format,test_attribute_status)values('$test_id','$parameter','$type','$unit','$format','1')";
+                mysql_query($sql) or die(mysql_error());
+            }
+            header('Location:../test.php');
+        }else {
+          echo "error";
         }
-        header('Location:../test.php');
-    }else {
-      echo "error";
     }
-}
 
-if(isset($_POST['test_update'])){
-    include ("../dbconnect.php");
-    $sport = new testfunction();
-    $sport->sportsname = $_POST['sports_name'];
-    $sport->sportsid = $_POST['sports_id'];
-    if($sport->sportsupdatefunction()){
-      echo $_POST['sports_name'].'-'.$_POST['sports_id'];
-    }else{
-      echo "error";
+    if(isset($_POST['test_update'])){
+        include ("../dbconnect.php");
+        $sport = new testfunction();
+        $sport->sportsname = $_POST['sports_name'];
+        $sport->sportsid = $_POST['sports_id'];
+        if($sport->sportsupdatefunction()){
+          echo $_POST['sports_name'].'-'.$_POST['sports_id'];
+        }else{
+          echo "error";
+        }
     }
-}
 
-if(isset($_POST['test_del'])){
-    $sport = new testfunction();
-    $sport->sportsid = $_POST['del_id'];
-    if($sport->sportsdeletefunction()){
-      echo $_POST['del_id'];
-    }else{
-      echo "error";
+    if(isset($_GET['deletedata'])){
+        include ("../dbconnect.php");
+        $test = new testfunction();
+        $test->testid = $_POST['delete_id'];
+        if($test->testdeletefunction()){
+          echo $_POST['delete_id'];
+        }else{
+          echo "error";
+        }
     }
-}
  ?>
