@@ -2,7 +2,7 @@
 class dbConnect {
     public $DB_HOST='localhost';
     public $DB_USER='root';
-    public $DB_PASSWORD='root';
+    public $DB_PASSWORD='';
     public $DB_DATABASE='wellocity';
     // public $DB_HOST='mysql509.ixwebhosting.com';
     // public $DB_USER='A978313_welocity';

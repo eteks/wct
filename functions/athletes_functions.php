@@ -31,6 +31,15 @@
 			if($res){ return true; }
 			else{ return false; }		
 		}
+		// To select particular data by using id
+		public function selectData(){
+			$res = mysql_query("SELECT * FROM wc_athlete as at INNER JOIN wc_states as st 
+					INNER JOIN wc_district as dt INNER JOIN wc_sports as sp ON 
+					st.states_id = at.athletestates_id and dt.district_id = at.athletedistrict_id 
+					and sp.sports_id = at.athletesports_id 
+					WHERE at.athlete_id='".$this->athleteid."'")or die(mysql_error());
+			return $res;	
+		}
 
 	}
 	if(isset($_POST)){
@@ -68,6 +77,34 @@
 			else{
 				echo "failure#Record not found";
 			}
+		}	
+
+		// For display edit data 
+		if(isset($_GET['chooseedit'])){
+			$json = array();
+			$athletesFunction = new athletesFunction();
+			$athletesFunction->athleteid = $_POST['data_id'];
+			echo $athletesFunction->athleteid;
+		    $edit_data = $athletesFunction->selectData();
+		    while ( $result = mysql_fetch_array( $edit_data )){
+		    	$tmp = array(
+	           'athlete_id' => $result['athlete_id'],
+	           'athlete_name' => $result['athlete_name'],
+	           'athlete_dob' => $result['athlete_dob'],
+	           'athlete_mobile' => $result['athlete_mobile'],
+	           'athlete_gender' => $result['athlete_gender'],
+	           'athletestates_id' => $result['athletestates_id'],
+	           'athletestates_name' => $result['states_name'],
+	           'athletedistrict_id' => $result['athletedistrict_id'],
+	           'athletedistrict_name' => $result['district_name'],
+	           'athlete_address' => $result['athlete_address'],
+	           'athlete_taluka' => $result['athlete_taluka'],
+	           'athletesports_id' => $result['athletesports_id'],
+	           'athletesports_name' => $result['sports_name'],
+	           );
+	    		array_push( $json, $tmp );
+		    }
+		    echo json_encode($json);
 		}	
 	  }
 ?>

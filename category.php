@@ -40,7 +40,7 @@ $obj = new categoryfunction();
 					        <td class="category_name"><?php echo $eachrecord ['categories_name']; ?></td>
 					         <td>
 					        	<span class="edit_state">Edit</span>
-					        	<span class="delete_state">Delete</span>
+					        	<span class="delete_state" data-value="<?php echo $eachrecord ['categories_id']; ?>">Delete</span>
 					        </td>
 				      	</tr>
 						<?php } ?>
@@ -70,5 +70,5 @@ $obj = new categoryfunction();
 				</div><!--tate-content-->
 			</div><!--state_div-->
 		</div><!--container-->
-		
+
 <?php require_once "footer.php" ?>

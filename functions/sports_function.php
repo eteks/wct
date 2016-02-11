@@ -1,12 +1,14 @@
 <?php
 
-if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest')
-{
-  include ("../dbconnect.php");
-}
-else {
-  include ("dbconnect.php");
-}
+// if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest')
+// {
+//   include ("../dbconnect.php");
+// }
+// else {
+//   include ("dbconnect.php");
+// }
+include ("../dbconnect.php");
+include ("../common.php");
 class sportsfunction{
     public $sportsid;
     public $sportsname;

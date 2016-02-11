@@ -53,11 +53,11 @@
                             <tr class="align_center delete_color">
                             <input type="hidden" name="district_id" value="<?php echo $row['district_id']; ?>">
 						        <td class="t_district_id"><?php echo $row['district_id']; ?></td>
-						        <td class="t_states_name"><?php echo $row['states_name']; ?></td>
+						        <!-- <td class="t_states_name"><?php echo $row['states_name']; ?></td> -->
 						        <td class="t_district_name"><?php echo $row['district_name']; ?></td>
 						        <td>
-						        	<span class="edit_district">Edit</span>
-						        	<span class="delete_district" data-value="<?php echo $row['district_id'] ?>">Delete</span>
+						        	<span class="edit_state" onclick="editfunction(<?php echo $row['district_id'] ?>)">Edit</span>
+						        	<span class="delete_state" data-value="<?php echo $row['district_id'] ?>">Delete</span>
 						        </td> 				    
 					        </tr>                         
                      <?php } ?>	 
@@ -89,19 +89,26 @@
                 	<span class="del_txt">EDIT</span>
               	</div><!--edit_title-->
           			<div class="container state-content col-md-12">		
-	          			<form>
-	          			<input type="hidden" class="statesid" name="edit_districtstates_id">
+	          			<form name="edit_district_form">
+	          			<input type="hidden" class="statesid" name="edit_district_id">
 						<div class="form-group">
 						  <label for="sel1">Select the State</label>
 						  <select class="form-control adjust_width classic choose_state" id="sel1" name="edit_district_state">
 						  	<option value=""></option>
+						  	<?php
+	                        $query = $statesFunction->statesSelect();
+	                        while ($row = mysql_fetch_array($query)) {
+	                            ?>
+	                            <option value="<?php echo $row['states_id']; ?>"><?php echo $row['states_name']; ?></option>	                                            
+	                      <?php } ?>	
 						  </select>
 						</div>
 						<div class="align_margin">					
 							<label>District/Taluka</label><br>
 							<input type="text" class="districts" name="edit_district_name">
+							<span class="edit_district_error"></span>
 						</div>
-						<input type="submit" class="btn btn-primary align_right clear" name="district">		
+						<button type="button" class="btn btn-primary align_right clear edit_district_act" name="district">Submit</button>	
 					</form>
 					</div><!--tate-content-->
 			</div><!--state_div-->

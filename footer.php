@@ -6,7 +6,7 @@
 <script src="js/custom_form_validate.js"></script>   
 <script type="text/javascript">
     $(document).ready(function() {
-      $('#sports_table,.state_table,#category_table,.district_table').paging({
+      $('#sports_table,.state_table,#category_table,.district_table,.test_table').paging({
         limit: 5,
         rowDisplayStyle: 'block',
         activePage: 0,
