@@ -1,7 +1,9 @@
 <?php
 require_once "session.php";
 require_once "header.php";
-require_once "dbconnect.php";
+require_once "functions/test_functions.php";
+$obj = new testfunction();
+
 ?>
 <div class="container">
 	<div class="container align_center align_height">
@@ -33,9 +35,9 @@ require_once "dbconnect.php";
 										if ($count != '0') {
 											while ($row = mysql_fetch_array($sql)) {
 									?>
-									<option value="<?php echo $row['parametertype_name']; ?>">
-										<?php echo $row['parametertype_name']; ?>
-									</option>
+										<option value="<?php echo $row['parametertype_name']; ?>">
+											<?php echo $row['parametertype_name']; ?>
+										</option>
 									<?php
 											}
 										}
@@ -76,42 +78,24 @@ require_once "dbconnect.php";
 			      </tr>
 			    </thead>
 			    <tbody>
+				<?php
+				$data = $obj->testselectfunction();
+				foreach( $data as $eachrecord ) {
+				 ?>
 			      <tr class="align_center delete_color">
-			        <td>01</td>
-			        <td></td>
-			        <td>Long Jump</td>
-			        <td></td>
-			        <td></td>
-			        <td></td>
+			        <td class="test_id"><?php echo $eachrecord ['test_id']; ?></td>
+			        <td><?php echo $eachrecord ['test_name']; ?></td>
+			        <td><?php echo $eachrecord ['test_parameter_name']; ?></td>
+			        <td><?php echo $eachrecord ['test_parameter_type']; ?></td>
+			        <td><?php echo $eachrecord ['test_parameter_unit']; ?></td>
+			        <td><?php echo $eachrecord ['test_parameter_format']; ?></td>
 			        <td>
 			        	<span class="edit_state">Edit</span>
 		        		<span class="delete_state">Delete</span>
 			        </td>
+					<input type="hidden" name="test_attribute_id" id="test_attribute_id" value="<?php echo $eachrecord ['test_attribute_id']; ?>" />
 			      </tr>
-			      <tr class="align_center delete_color">
-			        <td>02</td>
-			        <td></td>
-			        <td>High Jump</td>
-			        <td></td>
-			        <td></td>
-			        <td></td>
-			        <td>
-			        	<span class="edit_state">Edit</span>
-		        		<span class="delete_state">Delete</span>
-			        </td>
-			      </tr>
-			      <tr class="align_center delete_color">
-			        <td>03</td>
-			        <td></td>
-			        <td>Running</td>
-			        <td></td>
-			        <td></td>
-			        <td></td>
-			        <td>
-			        	<span class="edit_state">Edit</span>
-		        		<span class="delete_state">Delete</span>
-			        </td>
-			      </tr>
+			      <?php } ?>
 			    </tbody>
 			  </table>
 			</div>

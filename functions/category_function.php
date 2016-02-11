@@ -4,9 +4,6 @@ if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED
 {
   include ("../dbconnect.php");
 }
-else {
-  include ("dbconnect.php");
-}
 class categoryfunction{
     public $categoryid;
     public $categoryname;
