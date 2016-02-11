@@ -7,37 +7,50 @@
 		<div class="col-xs-12 col-md-11">
 			<div class="col-md-4 hidden-xs"></div>
 			<div class="col-xs-12 col-md-7 align_margin">
-				<form>
+				<form id="test_battery_form">
 					<div class="form-group">					
 						<label>Enter the name of the Test Battery</label><br>
-						<input type="text" class="adjust_width" name="test_battery">
+						<input type="text" class="adjust_width" name="test_battery" data-validation-error-msg="please Enter the name of the Test Battery" data-validation="required">
 					</div>
 					<div class="form-group">
 						  <label for="sel1">Select Sport</label>
-						  <select class="form-control adjust_width classic" id="sel1" name="Sport">
-						  <option></option>
+						  <select class="form-control adjust_width classic" id="sel1" name="Sport" data-validation-error-msg="please Enter the name of the Test Battery" data-validation="required">
+						  <option value=""></option>
+						  <option value="1">testbattery1</option>
 						  </select>
 					</div>
 					<div class="align_height align_margin">					
 						<label>Select Categories</label><br>
 						<div class="area_scroll">
 							<div class="checkbox align_check">
-					      		<label class="remember_txt"><input type="checkbox">Under 14 Boys</label>
+					      		<label class="remember_txt"><input type="checkbox" class="checkbox_act" data-validation="required">Under 14 Boys</label>
 					    	</div>
 					    	<div class="checkbox align_check">
-					      		<label class="remember_txt"><input type="checkbox">Under 14 Girls</label>
+					      		<label class="remember_txt"><input type="checkbox" class="checkbox_act">Under 14 Girls</label>
 					    	</div>
 					    	<div class="checkbox align_check">
-					      		<label class="remember_txt"><input type="checkbox">Under 16 Boys</label>
+					      		<label class="remember_txt"><input type="checkbox" class="checkbox_act" >Under 16 Boys</label>
 					    	</div>
 					    	<div class="checkbox align_check">
-					      		<label class="remember_txt"><input type="checkbox">Under 19 Boys</label>
+					      		<label class="remember_txt"><input type="checkbox" class="checkbox_act">Under 19 Boys</label>
 					    	</div>
 						</div>
 					</div>
 					<div class="align_height align_margin">					
 						<label>Select Test</label><br>
 						<div class="area_scroll">
+							<div class="checkbox align_check">
+					      		<label class="remember_txt"><input type="checkbox" class="checkbox_act1" data-validation="required">Test1</label>
+					    	</div>
+					    	<div class="checkbox align_check">
+					      		<label class="remember_txt"><input type="checkbox" class="checkbox_act1">Test2</label>
+					    	</div>
+					    	<div class="checkbox align_check">
+					      		<label class="remember_txt"><input type="checkbox" class="checkbox_act1">Test3</label>
+					    	</div>
+					    	<div class="checkbox align_check">
+					      		<label class="remember_txt"><input type="checkbox" class="checkbox_act1">Test4</label>
+					    	</div>
 						</div>
 					</div>
 					

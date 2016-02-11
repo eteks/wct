@@ -7,27 +7,27 @@
 		<div class="col-xs-12 col-md-11">
 			<div class="col-md-4 hidden-xs"></div>
 			<div class="col-xs-12 col-md-7 align_margin">
-				<form>
+				<form id="assign_schedule_form">
 					<div class="form-group">
 						  <label for="sel1">Select Schedule Name</label>
-						  <select class="form-control adjust_width classic" id="sel1" name="Schedule">
+						  <select class="form-control adjust_width classic" id="sel1" name="Schedule" data-validation-error-msg="please Enter the name of the Athelete" data-validation="required">
 						  <option></option>
 						  </select>
 					</div>
 					<div class="form-group">
 						  <label for="sel1">Select Category Name</label>
-						  <select class="form-control adjust_width classic" id="sel1" name="category">
+						  <select class="form-control adjust_width classic" id="sel1" name="category" data-validation-error-msg="please Enter the name of the Athelete" data-validation="required">
 						  <option></option>
 						  </select>
 					</div>
 					<div class="form-group">
 				      	<label for="athlete" class="email_txt">Add Athletes</label><br>
-				      	<input type="text" class="form-control name_align fl" id="name" placeholder="Name" name="name" required>
-				      	<input type="text" class="form-control date_assign fl" id="name" placeholder="Date" name="date" required>
+				      	<input type="text" class="form-control name_align fl" id="name" placeholder="Name" name="name" data-validation-error-msg="please Enter the name of the Athelete" data-validation="required">
+				      	<input type="text" class="form-control date_assign fl" id="name" placeholder="Date" name="date" data-validation-error-msg="please Enter the name of the Athelete" data-validation="required">
 				    </div>
 				    <div class="form-group">
-				      	<input type="text" class="form-control name_align fl" id="name" placeholder="Mobile no" name="Mobile" required>
-				      	<input type="text" class="form-control date_assign fl" id="name" placeholder="BIB NO" name="bib" required>
+				      	<input type="text" class="form-control name_align fl" id="name" placeholder="Mobile no" name="Mobile" data-validation-error-msg="please Enter the name of the Athelete" data-validation="required">
+				      	<input type="text" class="form-control date_assign fl" id="name" placeholder="BIB NO" name="bib" data-validation-error-msg="please Enter the name of the Athelete" data-validation="required">
 				    </div>
 					<input type="submit" class="btn btn-primary align_right adds_btn" value="Add"><i class="fa fa-plus add_align"></i>
 					<div class="col-md-9 schedule_btn">					

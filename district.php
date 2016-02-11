@@ -12,10 +12,10 @@
 			<div class="col-md-8">
 				<div class="col-md-4"></div>
 				<div class="col-md-8 col-xs-12 align_left">
-					<form name="district_form">
+					<form name="district_form" id="districts_form">
 						<div class="form-group">
 						  <label for="sel1">Select the State</label>
-						  <select class="form-control adjust_width classic choose_state" id="sel1" name="district_state" required>
+						  <select class="form-control adjust_width classic choose_state" id="sel1" name="district_state" data-validation-error-msg="please Select the name of the State" data-validation="required">
 						  <option value=""></option>
 						  <?php
 	                        $query = $statesFunction->statesSelect();
@@ -24,11 +24,13 @@
 	                            <option value="<?php echo $row['states_id']; ?>"><?php echo $row['states_name']; ?></option>	                                            
 	                      <?php } ?>							   
 						  </select>
+						  <!-- <label class="category_text">Please Select the State</label><br> -->
 						</div>
 						<div class="align_margin">					
 							<label>District/Taluka</label><br>
-							<input type="text" class="districts" name="district_name" required>
+							<input type="text" class="districts" name="district_name" data-validation-error-msg="please Enter the name of the District" data-validation="required">
 							<span class="add_district_error"></span>
+							<label class="category_text">Please Enter the District</label>
 						</div>
 
 						<button type="button" class="btn btn-primary align_right clear add_district_act" name="district">Submit</button>			

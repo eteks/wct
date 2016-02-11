@@ -180,26 +180,27 @@ $(document).ready(function () {
 	 	});
 	});
 
-    $('.sports_submit_act').click(function() {
-        var form_data = $('#sports_form').serialize();
-       // alert(form_data);
-        $.ajax({
-           type: "POST",
-           url: "functions/sports_function.php",
-           data: form_data,
-           cache: false,
-           success: function(html) {
-               //alert(html);
-               if(html=='error'){
-                 alert('Already sports name entred');
-               }else{
-                  location.reload();
-                 //$('#sports_table tr:last').after(html);
+    $('.sports_submit_act').click(function() {  
+          var form_data = $('#sports_form').serialize();
+         // alert(form_data);
+          $.ajax({
+             type: "POST",
+             url: "functions/sports_function.php",
+             data: form_data,
+             cache: false,
+             success: function(html) {
+                 //alert(html);
+                 if(html=='error'){
+                   alert('Already sports name entred');
+                 }else{
+                    location.reload();
+                   //$('#sports_table tr:last').after(html);
 
-               }
+                 }
 
-           }
-       });
+             }
+         });
+  
     });
 
     // start (added by kalai)
@@ -265,35 +266,35 @@ $(document).ready(function () {
 
     // Jquery and ajax functionality for district
     $('.add_district_act').click(function(){
-      var form_data = $('[name=district_form]').serialize();
-      $.ajax({
-           type: "POST",
-           url: "functions/district_function.php?adddata=true",
-           data: form_data,
-           cache: false,
-           success: function(html) {
-            alert(html);
-              var result_split = html.split('#');
-               if (result_split[0].indexOf("success") > 1){
-                // alert(result_split);
-                 $('.add_district_error').text(result_split[1]).show();
-                 html ="<tr class='align_center delete_color'>\
-                 <input type='hidden' name='district_id' value="+result_split[2]+">\
-                 <td class='t_district_id'>"+result_split[2]+"</td>\
-                    <td class='t_states_name'>"+result_split[3]+"</td>\
-                    <td class='t_district_name'>"+result_split[4]+"</td>\
-                    <td>\
-                      <span class='edit_district'>Edit</span>\
-                      <span class='delete_district' data-value="+result_split[2]+">Delete</span>\
-                    </td></tr> ";
-                    alert(html);
-                 $('.district_table tr:last').after(html);
-               }
-               else{
-                $('.add_district_error').text(result_split[1]).show();
-               }
-           }
-       });
+        var form_data = $('[name=district_form]').serialize();
+        $.ajax({
+             type: "POST",
+             url: "functions/district_function.php?adddata=true",
+             data: form_data,
+             cache: false,
+             success: function(html) {
+              alert(html);
+                var result_split = html.split('#');
+                 if (result_split[0].indexOf("success") !== -1){
+                  // alert(result_split);
+                   $('.add_district_error').text(result_split[1]).show();
+                   html ="<tr class='align_center delete_color'>\
+                   <input type='hidden' name='district_id' value="+result_split[2]+">\
+                   <td class='t_district_id'>"+result_split[2]+"</td>\
+                      <td class='t_states_name'>"+result_split[3]+"</td>\
+                      <td class='t_district_name'>"+result_split[4]+"</td>\
+                      <td>\
+                        <span class='edit_district'>Edit</span>\
+                        <span class='delete_district' data-value="+result_split[2]+">Delete</span>\
+                      </td></tr> ";
+                      alert(html);
+                   $('.district_table tr:last').after(html);
+                 }
+                 else{
+                  $('.add_district_error').text(result_split[1]).show();
+                 }
+             }
+         });    
     });
 
     $('.edit_district').click(function() {
@@ -415,26 +416,28 @@ $(document).ready(function () {
         document.body.style.overflow = 'auto';
     });
 
-    $('.category_submit_act').click(function() {
-        var form_data = $('#category_form').serialize();
-        //alert(form_data);
-        $.ajax({
-           type: "POST",
-           url: "functions/category_function.php",
-           data: form_data,
-           cache: false,
-           success: function(html) {
-              // alert(html);
-               if(html=='error'){
-                 alert('Already category available');
-               }else{
-                  //alert(html);
-                 //$('#category_table tr:last').after(html);
-                 location.reload();
-               }
-           }
-       });
-    });
+    
+    $('.category_submit_act').click(function() {          
+              var form_data = $('#category_form').serialize();
+              //alert(form_data);
+              $.ajax({
+                 type: "POST",
+                 url: "functions/category_function.php",
+                 data: form_data,
+                 cache: false,
+                 success: function(html) {
+                    // alert(html);
+                     if(html=='error'){
+                       alert('Already category available');
+                     }else{
+                        //alert(html);
+                       //$('#category_table tr:last').after(html);
+                       location.reload();
+                     }
+                 }
+             });           
+        });
+
 
     $('.category_update_act').click(function() {
         var form_data = $('#category_update_form').serialize();

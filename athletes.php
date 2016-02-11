@@ -17,28 +17,28 @@
 		<div class="col-xs-12 col-md-11">
 			<div class="col-md-4 hidden-xs"></div>
 			<div class="col-xs-12 col-md-7 align_margin">
-				<form name="athletes_form">
+				<form name="athletes_form" id="athlete_form">
 					<div class="form-group">					
 						<label>Athlete Name</label><br>
-						<input type="text" class="adjust_width" name="athlete_name">
+						<input type="text" class="adjust_width" name="athlete_name" data-validation-error-msg="please Enter the name of the Athelete" data-validation="required">
 					</div>
 					
 					<div class="form-group">
 					  <label for="date" class="fl">Date Of Birth</label><br>
-					  <select class="form-control classic dob_align fl" id="date" name="athlete_dobday">
-					  	<option>Date</option>
+					  <select class="form-control classic dob_align fl" id="date" name="athlete_dobday" data-validation-error-msg="please Enter the name of the Test Battery" data-validation="required">
+					  	<option value="">Date</option>
 					    <option value="1">1</option>
 					    <option value="2">2</option>
 					    <option value="3">3</option>						   
 					  </select>
-					  <select class="form-control classic dob_align fl" id="month" name="athlete_dobmonth">
-					  	<option>Month</option>
+					  <select class="form-control classic dob_align fl" id="month" name="athlete_dobmonth" data-validation-error-msg="please Enter the name of the Athelete" data-validation="required">
+					  	<option value="">Month</option>
 					    <option value="1">January</option>
 					    <option value="2">February</option>
 					    <option value="3">March</option>						   
 					  </select>
-					  <select class="form-control classic dob_align fl" id="year" name="athlete_dobyear">
-					  	<option>Years</option>
+					  <select class="form-control classic dob_align fl" id="year" name="athlete_dobyear" data-validation-error-msg="please Enter the name of the Athelete" data-validation="required">
+					  	<option value="">Years</option>
 					    <option value="1991">1991</option>
 					    <option value="1992">1992</option>
 					    <option value="1993">1993</option>						   
@@ -46,19 +46,20 @@
 					</div>
 					<div class="form-group">     
       					<label>Mobile Number</label><br>
-      					<input type="text" class="adjust_width" name="athlete_mobile">
+      					<input type="text" class="adjust_width" name="athlete_mobile" data-validation-error-msg="please Enter the name of the Athelete" data-validation="required">
      				</div>
 					<div class="form-group">
 						  <label for="sel1">Gender</label>
-						  <select class="form-control adjust_width classic" id="sel1" name="athlete_gender">
-						  <option></option>
+						  <select class="form-control adjust_width classic" id="sel1" name="athlete_gender" data-validation-error-msg="please Enter the name of the Athelete" data-validation="required">
+						  <option value=""></option>
 						  <option value="female">Female</option>
 						  <option value="male">Male</option>
 						  </select>
 					</div>
 					<div class="form-group">
-						  <label for="sel1">State</label>
-						  <select class="form-control adjust_width classic" id="sel1" name="athlete_state">
+						  <label for="sel2">State</label>
+						  <select class="form-control adjust_width classic" id="sel2" name="athlete_state" data-validation-error-msg="please Enter the name of the Athelete" data-validation="required">
+						  <option value=""></option>
 						  <?php
 	                        $query = $statesFunction->statesSelect();
 	                        while ($row = mysql_fetch_array($query)) {
@@ -68,8 +69,9 @@
 						  </select>
 					</div>
 					<div class="form-group">
-						  <label for="sel1">District</label>
-						  <select class="form-control adjust_width classic" id="sel1" name="athlete_district">
+						  <label for="sel3">District</label>
+						  <select class="form-control adjust_width classic" id="sel3" name="athlete_district" data-validation-error-msg="please Enter the name of the Athelete" data-validation="required">
+						  <option value=""></option>
 						  <?php
 	                        $query = $districtFunction->districtSelect();
 	                        while ($row = mysql_fetch_array($query)) {
@@ -81,18 +83,18 @@
 					
 					<div class="align_height align_margin">					
 						<label>Address</label><br>
-						<textarea class="area_width" name="athlete_address" required></textarea>
+						<textarea class="area_width" name="athlete_address" data-validation-error-msg="please Enter the name of the Athelete" data-validation="required"></textarea>
 					</div>
 
 					<div class="form-group">					
 						<label>Taluka</label><br>
-						<input type="text" class="adjust_width" name="athlete_taluka">
+						<input type="text" class="adjust_width" name="athlete_taluka" data-validation-error-msg="please Enter the name of the Athelete" data-validation="required">
 					</div>
 
 					<div class="form-group">
-						  <label for="sel1">Sports</label>
-						  <select class="form-control adjust_width classic" id="sel1" name="athlete_sports">
-						                       
+						  <label for="sel4">Sports</label>
+						  <select class="form-control adjust_width classic" id="sel4" name="athlete_sports" data-validation-error-msg="please Enter the name of the Athelete" data-validation="required">
+						   <option value=""></option>                    
 	                      <option value="cricket">Cricket</option>
 	                      <option value="hockey">Hockey</option>
 						  </select>

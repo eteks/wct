@@ -7,10 +7,10 @@
 		<div class="col-xs-12 col-md-11">
 			<div class="col-md-4 hidden-xs"></div>
 			<div class="col-xs-12 col-md-7 align_margin">
-				<form>
+				<form id="parameter_type">
 					<div class="form-group">
 						  <label for="sel1">Select Parameter Type</label>
-						  <select class="form-control adjust_width classic" id="sel1" name="parameter">
+						  <select class="form-control adjust_width classic" id="sel1" name="parameter" data-validation-error-msg="Please Select the Type of the Parameter" data-validation="required">
 						  <option></option>
 						  </select>
 					</div>

@@ -11,13 +11,13 @@ $obj = new sportsfunction();
 	<div class="col-md-8">
 		<div class="col-md-6"></div>
 		<div class="col-md-6">
-			<form  id="sports_form">
+			<form  id="sports_form" role="form">
 				<div class="align_margin">
 					<label>Enter the name of the Sports</label><br>
-					<input type="text" class="sportsname" name="sports_name">
+					<input type="text" class="sportsname" name="sports_name" data-validation="required">				
 					<input type="hidden" name="sports_add" value="1">
 				</div>
-				<button type="button" class="btn btn-primary align_right clear sports_submit_act">Submit</button>
+				<button type="button" id="submmit" class="btn btn-primary align_right clear sports_submit_act">Submit</button>
 			</form>
 		</div>
 	</div>

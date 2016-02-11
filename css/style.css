@@ -1050,4 +1050,16 @@ input[type=radio]:checked + label:before {
 .area_width_athlete {
     width: 105%;
 }
-
+/*added for validation by ramya */
+.category_text{
+    display: none;
+}
+.error{
+    color: red !important;
+    display: block;
+    float: right;
+    font-family: Helvetica;
+    font-size: 12px;
+    font-weight: normal;
+}
+/* end */
