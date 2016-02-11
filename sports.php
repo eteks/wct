@@ -1,7 +1,7 @@
 <?php
 require_once "session.php";
-require_once "header.php";
 require_once "functions/sports_function.php";
+require_once "header.php";
 $obj = new sportsfunction();
 ?>
 <div class="container align_center align_height">
@@ -41,7 +41,7 @@ $obj = new sportsfunction();
 	    <td class="sports_name"><?php echo $eachrecord ['sports_name']; ?></td>
 	    <td>
 	    	<span class="edit_state">Edit</span>
-	    	<span class="delete_state">Delete</span>
+	    	<span class="delete_state" data-value="<?php echo $eachrecord ['sports_id']; ?>">Delete</span>
 	    </td>
 		</tr>
 		<?php } ?>

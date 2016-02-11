@@ -1,19 +1,17 @@
 <?php
-if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest')
-{
-  include ("../dbconnect.php");
-}
-else {
-  include ("../dbconnect.php");
-}
 class testfunction{
     public $testid;
     public $testname;
     public $teststatus;
-    public function testinsertfunction(){
-        $check_query = "select * from wc_sports where sports_name = '".$this->sportsname."' ";
+    public $testparameter;
+    public $testtype;
+    public $testunit;
+    public $testformat;
+
+    public function testnameinsertfunction(){
+        $check_query = "select * from wc_test where test_name = '".$this->testname."' ";
         if(!mysql_num_rows(mysql_query($check_query))){
-          $sql = "insert into wc_sports (sports_name,sports_status) values ('".$this->sportsname."','1') ";
+          $sql = "insert into wc_test (test_name,test_status) values ('".$this->testname."','1') ";
           mysql_query($sql) or die("insert:".mysql_error());
           return true;
         }else{
@@ -21,6 +19,7 @@ class testfunction{
         }
 
     }
+
     public function testupdatefunction(){
         $check_query = "select * from wc_sports where sports_name = '".$this->sportsname."' ";
         if(!mysql_num_rows(mysql_query($check_query))){
@@ -36,15 +35,9 @@ class testfunction{
         mysql_query($sql) or die("delete".mysql_error());
         return true;
     }
-    public function testselectlastdatafunction(){
-        $sql = "select * from wc_sports order by sports_id desc limit 1";
-        $row = mysql_query($sql) or die(mysql_error());
-        $data = mysql_fetch_array($row);
-        return $data;
-    }
     public function testselectfunction(){
       $temp_arr = array();
-      $res = mysql_query("SELECT * FROM wc_sports") or die(mysql_error());
+      $res = mysql_query("SELECT * FROM wc_test_attribute INNER JOIN wc_test ON wc_test_attribute.test_id = wc_test.test_id") or die(mysql_error());
       $count=mysql_num_rows($res);
       while($row = mysql_fetch_array($res)) {
           $temp_arr[] =$row;
@@ -53,18 +46,30 @@ class testfunction{
       }
 }
 if(isset($_POST['test_add'])){
-    print_r($_POST);
-    // $sport = new testfunction();
-    // $sport->sportsname = $_POST['sports_name'];
-    // if($sport->sportsinsertfunction()){
-    //   $last_data = $sport->sportsselectlastdatafunction();
-    //   echo "<tr class='align_center delete_color'><td class='sports_id'>".$last_data['sports_id']."</td><td class='sports_name'>".$last_data['sports_name']."</td><td><span class='edit_state'>Edit</span><span class='delete_state'>Delete</span></td></tr>";
-    // }else {
-    //   echo "error";
-    // }
+    include ("../dbconnect.php");
+    $counter = (count($_POST)-2)/4;
+    $test = new testfunction();
+    $testname = $_POST['test_name'];
+    $test->testname = $testname ;
+    if($test->testnameinsertfunction()){
+        $row = mysql_fetch_array(mysql_query("select test_id from wc_test where test_name ='$testname'"));
+        for($i=1;$i<=$counter;$i++){
+            $test_id = $row['test_id'];
+            $parameter = $_POST["parameter_name".$i.""];
+            $type = $_POST["type".$i.""];
+            $unit = $_POST["unit".$i.""];
+            $format =  $_POST["format".$i.""];
+            $sql = "insert into wc_test_attribute (test_id,test_parameter_name,test_parameter_type,test_parameter_unit,test_parameter_format,test_attribute_status)values('$test_id','$parameter','$type','$unit','$format','1')";
+            mysql_query($sql) or die(mysql_error());
+        }
+        header('Location:../test.php');
+    }else {
+      echo "error";
+    }
 }
 
 if(isset($_POST['test_update'])){
+    include ("../dbconnect.php");
     $sport = new testfunction();
     $sport->sportsname = $_POST['sports_name'];
     $sport->sportsid = $_POST['sports_id'];
@@ -85,4 +90,3 @@ if(isset($_POST['test_del'])){
     }
 }
  ?>
- [test_name] => asdfsdcvb [parameter_name1] => xcvbxcv [type1] => weight [unit1] => KG [format1] => 3 [parameter_name2] => fgbcxcv [type2] => number [unit2] => NUMBER [format2] => 4 [parameter_name3] => sdfgd [type3] => time [unit3] => [test_add] => 1

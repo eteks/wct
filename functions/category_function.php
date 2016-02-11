@@ -1,14 +1,8 @@
 <?php
-
-// if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest')
-// {
-//   include ("../dbconnect.php");
-// }
-// else {
-//   include ("dbconnect.php");
-// }
-include ("../dbconnect.php");
-include ("../common.php");
+if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest')
+{
+  include ("../dbconnect.php");
+}
 class categoryfunction{
     public $categoryid;
     public $categoryname;
