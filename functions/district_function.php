@@ -17,7 +17,7 @@
 		}
 		//To select all record for displaying data in table
 		public function districtSelect(){
-			$res = mysql_query("select d.district_id,s.states_name,d.district_name from wc_states s,wc_district d where d.districtstates_id=s.states_id and d.district_status='1'")or die(mysql_error());
+			$res = mysql_query("select * from wc_states s,wc_district d where d.districtstates_id=s.states_id and d.district_status='1'")or die(mysql_error());
 			return $res;
 		}
 		public function districtInsert(){

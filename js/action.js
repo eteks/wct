@@ -159,6 +159,30 @@ function editfunction(data_id){
            }
         });
     }
+    else if(window.location.href.indexOf("range.php") !== -1){
+          $.ajax({
+           type: "POST",
+           url: "functions/range_function.php?chooseedit=true",
+           data: {data_id:data_id},
+           cache: false,
+           success: function(data) {
+            data =  data.split('#####');
+            var range_obj = JSON.parse(data[0]);
+            var rangeattr_obj = JSON.parse(data[1]);
+            $.each(range_obj, function(i){
+              $('[name=edit_range_testbattery]').append("<option value='"+range_obj[i].rangetestbattery_id+ "'selected>"+range_obj[i].rangetestbattery_name+"</option>");
+              $('[name=edit_range_category]').append("<option value='"+range_obj[i].rangecategory_id+ "'selected>"+range_obj[i].rangecategory_name+"</option>");
+              $('[name=edit_range_test]').append("<option value='"+range_obj[i].rangetest_id+ "'selected>"+range_obj[i].rangetest_name+"</option>");        
+            });
+            $.each(rangeattr_obj, function(i){
+             
+            });
+            // $('.popup_fade').show();
+            // $('.createschedule_div, .close_btn').show();
+            // document.body.style.overflow = 'hidden';
+           }
+        });
+    }
 }
 
 $(window).resize(function () {
@@ -501,7 +525,7 @@ $(document).ready(function () {
                  success: function(html) {
                  var result_split = html.split('#');
                  if (result_split[0].indexOf("success") !== -1){
-                  alert(result_split[2]);
+                  alert(result_split[1]);
                   $('.state_table').find(".t_states_id:contains("+$.trim(result_split[2])+")").parents('tr').remove();
                   $('.popup_fade').hide();
                   $('.state_div,.delete_div').hide();
@@ -519,7 +543,7 @@ $(document).ready(function () {
                  success: function(html) {
                  var result_split = html.split('#');
                  if (result_split[0].indexOf("success") !== -1){
-                  alert(result_split[2]);
+                  alert(result_split[1]);
                   $('.district_table').find(".t_district_id:contains("+$.trim(result_split[2])+")").parents('tr').remove();
                   $('.popup_fade').hide();
                   $('.state_div,.delete_div').hide();
@@ -794,9 +818,59 @@ $(document).ready(function () {
                        }
                    }
                });
-        });
+    });
 
     $('.paramter_menu').click(function(){
       $(".parameter-list").toggle();
+    });
+
+    // Jquery functions for Range Form added by kalai
+    var current_id = 1;
+    $('.add_range_points').click(function(){
+        var id = current_id+1;
+        nextrangeElement($('.clone_content:last'));
+        $('.clone_content:last').attr('id','range_counter'+id)
+    })
+    function nextrangeElement(element){
+        var newElement = element.clone();
+        var id = current_id+1;
+        current_id = id;
+        newElement.find('.range_label').remove();
+        newElement.find('.r_strt').removeAttr('name').attr('name', 'range_start'+id);
+        newElement.find('.r_end').removeAttr('name').attr('name', 'range_end'+id);
+        newElement.find('.r_point').removeAttr('name').attr('name', 'range_points'+id);
+        newElement.find('.r_strt').removeAttr('id').attr('id','strt'+id);
+        newElement.find('.r_end').removeAttr('id').attr('id','end1'+id);
+        newElement.find('.r_point').removeAttr('id').attr('id','point1'+id);
+        newElement.appendTo($(".range_holder"));
+    }
+    //Jquery and Ajax Functionality for CreateSchedule Form added by kalai
+    $('.add_range_act').click(function(){
+      var form_data = $('[name=range_form]').serialize();
+      alert(form_data);
+        $.ajax({
+           type: "POST",
+           url: "functions/range_function.php?adddata=true",
+           data: form_data,
+           cache: false,
+           success: function(html) {
+              var result_split = html.split('#');
+               if (result_split[0].indexOf("success") !==-1){    
+                 alert(result_split[1]);
+                 html ="<tr class='align_center delete_color'>\
+                    <input type='hidden' name='range_id' value="+result_split[2]+">\
+                    <td class='t_range_id'>"+result_split[2]+"</td>\
+                    <td class='t_range_testname'>"+result_split[3]+"</td>\
+                    <td>\
+                      <span class='edit_district' onclick='editfunction("+result_split[2]+")'>Edit</span>\
+                      <span class='delete_district' data-value="+result_split[2]+">Delete</span>\
+                    </td></tr> ";
+                 $('.range_table tr:last').after(html);
+               }
+               else{
+                alert(result_split[1]);
+               }
+           }
+       });
     });
 });

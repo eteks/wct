@@ -8,6 +8,11 @@ class testbatteryfunction{
     public $testbatterystatus;
     public $testbatterycreateddate;
 
+    public function testbatterySelect(){
+      $res = mysql_query("SELECT * FROM wc_testbattery where testbattery_status='1'")or die(mysql_error());
+      return $res;
+    }
+
     public function testbatteryinsertfunction(){
         $check_query = "select * from wc_testbattery where testbattery_name = '".$this->testbatteryname."' ";
         if(!mysql_num_rows(mysql_query($check_query))){
@@ -42,6 +47,7 @@ class testbatteryfunction{
       while($row = mysql_fetch_array($res)) {
           $temp_arr[] =$row;
       }
+      echo $temp_arr;
       return $temp_arr;
       }
 }
