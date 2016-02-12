@@ -26,13 +26,21 @@
 			if($res){ return true; }
 			else{ return false; }	 
 		}
+		public function athleteUpdate(){		
+            $res = mysql_query("update wc_athlete set athlete_name='".$this->athletename."',athlete_dob='".$this->athletedob."',
+            			athlete_mobile='".$this->athletemobile."',athlete_gender='".$this->athletegender."',
+            			athletestates_id='".$this->athletestatesid."',athletedistrict_id='".$this->athletedistrictid."', 
+            			athlete_address='".$this->athleteaddress."' where athlete_id ='".$this->athleteid."'")or die(mysql_error());          
+			if($res){ return true; }
+			else{ return false; }		
+		}
 		public function athleteDelete(){		
 			$res = mysql_query("update wc_athlete set athlete_status='0' where athlete_id ='".$this->athleteid."'")or die(mysql_error()); 
 			if($res){ return true; }
 			else{ return false; }		
 		}
 		// To select particular data by using id
-		public function selectData(){
+		public function athleteselectRecord(){
 			$res = mysql_query("SELECT * FROM wc_athlete as at INNER JOIN wc_states as st 
 					INNER JOIN wc_district as dt INNER JOIN wc_sports as sp ON 
 					st.states_id = at.athletestates_id and dt.district_id = at.athletedistrict_id 
@@ -84,8 +92,8 @@
 			$json = array();
 			$athletesFunction = new athletesFunction();
 			$athletesFunction->athleteid = $_POST['data_id'];
-			echo $athletesFunction->athleteid;
-		    $edit_data = $athletesFunction->selectData();
+			// echo $athletesFunction->athleteid;
+		    $edit_data = $athletesFunction->athleteselectRecord();
 		    while ( $result = mysql_fetch_array( $edit_data )){
 		    	$tmp = array(
 	           'athlete_id' => $result['athlete_id'],
@@ -106,5 +114,29 @@
 		    }
 		    echo json_encode($json);
 		}	
+		// To store edited data
+		if(isset($_GET['editdata'])){
+			$athletesFunction = new athletesFunction();
+			$athletesFunction->athleteid=$_POST['edit_athlete_id'];
+ 			$athletesFunction->athletename=$_POST['edit_athlete_name'];
+ 			$athletesFunction->athletedob=$_POST['edit_athlete_dobyear'].'-'.$_POST['edit_athlete_dobmonth'].'-'.$_POST['edit_athlete_dobday'];
+ 			$athletesFunction->athletemobile=$_POST['edit_athlete_mobile'];
+	    	$athletesFunction->athletegender=$_POST['edit_athlete_gender'];
+	   		$athletesFunction->athletestatesid=$_POST['edit_athlete_state'];
+			$athletesFunction->athletedistrictid=$_POST['edit_athlete_district'];
+	    	$athletesFunction->athleteaddress=$_POST['edit_athlete_address'];
+	    	$athletesFunction->athletesportsid=$_POST['edit_athlete_sports'];
+
+	    	// $edit_data = mysql_fetch_array($athletesFunction->selectData());
+	    	// $athletesFunction->$athletestatesname = $edit_data['states_name'];
+	    	
+			$athletesupdate = $athletesFunction->athleteUpdate();
+			if($athletesupdate){
+				// echo "success#Record Updated";
+				echo "success#Record Updated#".$_POST['edit_athlete_id']."#".$_POST['edit_athlete_name'].'#'.$_POST['edit_athlete_gender']."#".$athletesFunction->athletedob."#".$_POST['edit_athlete_address'];
+			}else{
+				echo "failure#Record Not Updated";
+			}
+		}
 	  }
 ?>

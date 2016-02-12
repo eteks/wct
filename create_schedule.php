@@ -1,5 +1,8 @@
 <?php require_once "session.php";
-	  require_once "header.php"; ?>
+	  require_once "header.php"; 
+	  require_once "functions/create_schedule_function.php";
+	  $createscheduleFunction = new createscheduleFunction();	  
+?>
 <div class="container">
 	<div class="container align_center align_height">
 		<span class="sports">CREATE SCHEDULE</span>
@@ -9,6 +12,7 @@
 			<div class="col-md-4 hidden-xs"></div>
 			<div class="col-xs-12 col-md-7 align_margin">
 				<form name="create_schedule_form" id="createschedule_form">
+				<input type="hidden" class="statesid" name="edit_schedule_id">
 					<div class="form-group">					
 						<label>Schedule Name</label><br>
 						<input type="text" class="adjust_width" name="schedule_name" data-validation-error-msg="Please Enter the name of the Schedule" data-validation="required">
@@ -48,22 +52,22 @@
 					<div class="form-group">
 					  <label for="date" class="fl">Select Time</label><br>
 					  <select class="form-control classic adjust_tiny fl" id="hour" name="schedule_hour" data-validation-error-msg="Please Select the Hour" data-validation="required">
-					  	<option value="">Hour</option>
-					    <option value="1">1</option>
-					    <option value="2">2</option>
-					    <option value="3">3</option>						   
+					    <option value="">Hour</option>
+					    <option value="01">01</option>
+					    <option value="02">02</option>
+					    <option value="03">03</option>						   
 					  </select>
 					  <select class="form-control classic adjust_tiny fl" id="minute" name="schedule_minute" data-validation-error-msg="Please Select the Minute" data-validation="required">
 					  	<option value="">Minute</option>
-					    <option value="1">1</option>
-					    <option value="2">2</option>
-					    <option value="3">2</option>						   
+					    <option value="01">01</option>
+					    <option value="02">02</option>
+					    <option value="03">02</option>						   
 					  </select>
 					  <select class="form-control classic adjust_tiny fl" id="seconds" name="schedule_seconds" data-validation-error-msg="Please Select the Seconds" data-validation="required">
-					  	<option value="">Seconds</option>
-					    <option value="1">1</option>
-					    <option value="2">2</option>
-					    <option value="3">3</option>						   
+				  		<option value="">Seconds</option>
+					    <option value="01">01</option>
+					    <option value="02">02</option>
+					    <option value="03">03</option>						   
 					  </select>
 					</div>
 			
@@ -78,7 +82,7 @@
 				</form>
 			</div>			
 			<div class="container">           
-			  <table class="table state_table">
+			  <table class="table createschedule_table">
 			    <thead>
 			      <tr class="row_color">
 			        <th class="align_center">SLNO</th>
@@ -91,42 +95,25 @@
 			      </tr>
 			    </thead>
 			    <tbody>
-			      <tr class="align_center delete_color">
-			        <td>01</td>
-			        <td>Suresh</td>
-			        <td></td>
-			        <td></td>
-			        <td></td>
-			        <td></td>
-			        <td>
-			        	<span class="edit_state">Edit</span>
-		        		<span class="delete_state">Delete</span>
-			        </td>
-			      </tr>
-			      <tr class="align_center delete_color">
-			        <td>02</td>
-			        <td>Kumar</td>
-			        <td></td>
-			        <td></td>
-			        <td></td>
-			        <td></td>
-			       <td>
-			       		<span class="edit_state">Edit</span>
-		        		<span class="delete_state">Delete</span>
-			       </td>
-			      </tr>
-			      <tr class="align_center delete_color">
-			        <td>03</td>
-			        <td>Praveen</td>
-			        <td></td>
-			        <td></td>
-			        <td></td>
-			        <td></td>
-			       <td>
-			       		<span class="edit_state">Edit</span>
-		        		<span class="delete_state">Delete</span>
-			       </td>
-			      </tr>						   
+			     <?php
+                    $query = $createscheduleFunction->createscheduleSelect();
+                    while ($row = mysql_fetch_array($query)) {
+                        ?>
+                        <tr class="align_center delete_color">
+                        <input type="hidden" name="createschedule_id" value="<?php echo $row['createschedule_id']; ?>">
+					        <td class="t_createschedule_id"><?php echo $row['createschedule_id']; ?></td>
+					        <td class="t_createschedule_name"><?php echo $row['createschedule_name']; ?></td>
+					        <td class="t_testbattery_name"><?php echo $row['testbattery_name']; ?></td>
+					        <td class="t_createschedule_date"><?php echo $row['createschedule_date']; ?></td>
+					        <td class="t_createschedule_time"><?php echo $row['createschedule_time']; ?></td>
+					        <td class="t_createschedule_venue"><?php echo $row['createschedule_venue']; ?></td>
+
+					        <td>
+					        	<span class="edit_state" onclick="editfunction(<?php echo $row['createschedule_id'] ?>)">Edit</span>
+					        	<span class="delete_state" data-value="<?php echo $row['createschedule_id'] ?>">Delete</span>
+					        </td> 				    
+				        </tr>                         
+                     <?php } ?>	 			   
 			    </tbody>
 			  </table>
 			</div>			
@@ -147,81 +134,82 @@
 
 <div class="popup_fade cancel_btn"></div><!--popup_fade-->
 		<div class="container">
-            <div class="test_battery_div">
+            <div class="createschedule_div">
           		<code class="close_btn cancel_btn"> </code>
           		<div class="edit_title">
                 	<span class="del_txt">EDIT</span>
               	</div><!--edit_title-->
           			<div class="container state-content col-md-12">	
           			<div class="col-xs-12 col-md-12 align_margin">	
-	          			<form>
+	          			<form name="edit_createschedule_form">
+	          			<input type="hidden" class="statesid" name="edit_schedule_id">
 	          				<div class="form-group">					
-						<label>Enter the name of the Sports</label><br>
-						<input type="text" class="adjust_width" name="sports_name">
+						<label>Enter the schedule Name</label><br>
+						<input type="text" class="adjust_width" name="edit_schedule_name">
 					</div>
 					<div class="form-group">
 					  <label for="battey_name">Select Test Battery Name</label>
-					  <select class="form-control classic adjust_width" id="battey_name">
+					  <select class="form-control classic adjust_width" id="battey_name" name="edit_schedule_testbattery">
 					  	<option></option>
-					    <option>Name1</option>
-					    <option>Name2</option>
-					    <option>Name3</option>						   
+					    <option value="1">test1</option>
+					    <option value="2">test2</option>
+					    <option value="3">test3</option>						   
 					  </select>
 					</div>
 					
 					<div class="form-group">
 					  <label for="date" class="fl">Select date</label><br>
-					  <select class="form-control classic create-date1 fl" id="date">
+					  <select class="form-control classic create-date1 fl" id="date" name="edit_schedule_day">
 					  	<option>Date</option>
-					    <option>Name1</option>
-					    <option>Name2</option>
-					    <option>Name3</option>						   
+					    <option value="1">1</option>
+					    <option value="2">2</option>
+					    <option value="3">3</option>					   
 					  </select>
-					  <select class="form-control classic create-date2 fl" id="month">
+					  <select class="form-control classic create-date2 fl" id="month" name="edit_schedule_month">
 					  	<option>Month</option>
-					    <option>Name1</option>
-					    <option>Name2</option>
-					    <option>Name3</option>						   
+					    <option value="1">January</option>
+					    <option value="2">February</option>
+					    <option value="3">March</option>						   
 					  </select>
-					  <select class="form-control classic create-date3 fl" id="year">
+					  <select class="form-control classic create-date3 fl" id="year" name="edit_schedule_year">
 					  	<option>Years</option>
-					    <option>Name1</option>
-					    <option>Name2</option>
-					    <option>Name3</option>						   
+					   	<option value="01">01</option>
+					    <option value="02">02</option>
+					    <option value="03">03</option>							   
 					  </select>
 					</div>
 					
 					<div class="form-group">
 					  <label for="date" class="fl">Select Time</label><br>
-					  <select class="form-control classic create-time1 fl" id="hour">
+					  <select class="form-control classic create-time1 fl" id="hour" name="edit_schedule_hour">
 					  	<option>Hour</option>
-					    <option>Name1</option>
-					    <option>Name2</option>
-					    <option>Name3</option>						   
+					    <option value="01">01</option>
+					    <option value="02">02</option>
+					    <option value="03">03</option>						   
 					  </select>
-					  <select class="form-control classic create-time2 fl" id="minute">
+					  <select class="form-control classic create-time2 fl" id="minute" name="edit_schedule_minute">
 					  	<option>Minute</option>
-					    <option>Name1</option>
-					    <option>Name2</option>
-					    <option>Name3</option>						   
+					    <option value="01">01</option>
+					    <option value="02">02</option>
+					    <option value="03">02</option>				   
 					  </select>
-					  <select class="form-control classic create-time3 fl" id="seconds">
+					  <select class="form-control classic create-time3 fl" id="seconds" name="edit_schedule_seconds">
 					  	<option>Seconds</option>
-					    <option>Name1</option>
-					    <option>Name2</option>
-					    <option>Name3</option>						   
+					    <option value="01">01</option>
+					    <option value="02">02</option>
+					    <option value="03">03</option>					   
 					  </select>
 					</div>
 			
 					<div class="align_height align_margin">					
 						<label>Venue</label><br>
-						<textarea class="area_width_create"></textarea>
+						<textarea class="area_width_create" name="edit_schedule_venue"></textarea>
 					</div>
 					<div class="col-md-10 schedule_btn">					
-						<input type="submit" class="btn btn-primary align_right clear" value="Submit">
-						<input type="submit" class="btn btn-primary align_right clear" value="Clear">
+						<button type="button" class="btn btn-primary align_right clear edit_createschedule_act">Submit</button>
+						<button type="button" class="btn btn-primary align_right clear">Clear</button>
 					</div>	
-	          			</form>
+	          	</form>
 	          		</div>
 					</div><!--state-content-->
 			</div><!--test_battery_div-->
