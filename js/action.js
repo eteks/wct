@@ -177,7 +177,7 @@ $(document).ready(function () {
   parameter_center_align();
 
     //Edit popup
-  	$('.edit_state').click(function(){
+  	$(document.body).delegate('.edit_state','click',function() {
         state_center_align();
         $('.popup_fade').show();
         $('.state_div, .close_btn').show();
@@ -273,11 +273,27 @@ $(document).ready(function () {
 		$('.states_list li').each(function(){
 			states_list.push($(this).text());
 	});
-	$('.statesname').focus(function (e) {
+	$('.statesname,.edit_states_name').focus(function (e) {
+    // alert("foucs");
 		$(this).autocomplete({
 			source: states_list,
 	 	});
 	});
+
+  // Autocomplete results for district list
+  $('.choose_state').on('change',function () { 
+    selected_state = $('.choose_state option:selected').text();
+    form_data = {'states_name':selected_state};
+     $.ajax({
+           type: "POST",
+           url: "functions/district_function.php?loaddistrict=true",
+           data: form_data,
+           cache: false,
+           success: function(data) {
+            alert(data);
+           }
+       });
+   }); 
 
     $('.sports_submit_act').click(function() {
         var form_data = $('#sports_form').serialize();
@@ -314,6 +330,7 @@ $(document).ready(function () {
               var result_split = html.split('#');
                if (result_split[0].indexOf("success") !== -1){
                  // $('.add_states_error').text(result_split[1]).show();
+                 $('.add_states_error').hide();
                  alert(result_split[1]);
                  html ="<tr class='align_center delete_color'>\
                  <input type='hidden' name='states_id' value="+result_split[2]+">\
@@ -321,7 +338,7 @@ $(document).ready(function () {
                     <td class='t_states_name'>"+result_split[3]+"</td>\
                     <td>\
                       <span class='edit_state' onclick='editfunction("+result_split[2]+")'>Edit</span>\
-                      <span class='delete_state' onclick='deletefunction("+result_split[2]+")'>Delete</span>\
+                      <span class='delete_state'>Delete</span>\
                     </td></tr> ";
                  $('.state_table tr:last').after(html);
                }
@@ -347,6 +364,7 @@ $(document).ready(function () {
                  $('.popup_fade').hide();
                  $('.state_div, .close_btn').hide();
                  document.body.style.overflow = 'auto';
+                 alert(result_split[1]);
                }
                else{
                 $('.edit_states_error').text(result_split[1]).show();
@@ -354,8 +372,8 @@ $(document).ready(function () {
            }
        });
     });
-
-    $('.delete_state').click(function(){
+    $(document).on('click', ".delete_state", function (e) {
+    // $(".delete_state").on('click', function (e) {
       $('#delete_id').val($(this).attr("data-value"));
       $('.popup_fade').show();
       $('.delete_div, .close_btn').show();

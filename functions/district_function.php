@@ -145,5 +145,18 @@
 				echo "failure#Record not found";
 			}
 		}	
+		// To load district for selected state
+		if(isset($_GET['loaddistrict'])){
+			$search=$_POST['states_name'];
+			$json = array();
+			foreach($DISTRICT as $key => $value) {
+				if($key == $search){
+					array_push($json,$value);
+					// print_r($json);
+				}	    	
+			}
+			// echo json_encode($json);
+			echo $json;
+		} 
 	  }
 ?>
