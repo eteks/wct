@@ -177,7 +177,7 @@ $(document).ready(function () {
   parameter_center_align();
 
     //Edit popup
-  	$('.edit_state').click(function(){
+  	$(document.body).delegate('.edit_state','click',function() {
         state_center_align();
         $('.popup_fade').show();
         $('.state_div, .close_btn').show();
@@ -273,11 +273,27 @@ $(document).ready(function () {
 		$('.states_list li').each(function(){
 			states_list.push($(this).text());
 	});
-	$('.statesname').focus(function (e) {
+	$('.statesname,.edit_states_name').focus(function (e) {
+    // alert("foucs");
 		$(this).autocomplete({
 			source: states_list,
 	 	});
 	});
+
+  // Autocomplete results for district list
+  $('.choose_state').on('change',function () { 
+    selected_state = $('.choose_state option:selected').text();
+    form_data = {'states_name':selected_state};
+     $.ajax({
+           type: "POST",
+           url: "functions/district_function.php?loaddistrict=true",
+           data: form_data,
+           cache: false,
+           success: function(data) {
+            alert(data);
+           }
+       });
+   }); 
 
     $('.sports_submit_act').click(function() {
         var form_data = $('#sports_form').serialize();
@@ -314,6 +330,7 @@ $(document).ready(function () {
               var result_split = html.split('#');
                if (result_split[0].indexOf("success") !== -1){
                  // $('.add_states_error').text(result_split[1]).show();
+                 $('.add_states_error').hide();
                  alert(result_split[1]);
                  html ="<tr class='align_center delete_color'>\
                  <input type='hidden' name='states_id' value="+result_split[2]+">\
@@ -347,6 +364,7 @@ $(document).ready(function () {
                  $('.popup_fade').hide();
                  $('.state_div, .close_btn').hide();
                  document.body.style.overflow = 'auto';
+                 alert(result_split[1]);
                }
                else{
                 $('.edit_states_error').text(result_split[1]).show();
@@ -542,6 +560,22 @@ $(document).ready(function () {
                   $('.createschedule_div,.delete_div').hide();
                   document.body.style.overflow = 'auto';
                  }
+                 }
+             });
+       }
+       else if (window.location.href.indexOf("test.php") !== -1){
+            var form_data = {'delete_id':del_id};
+            $.ajax({
+                 type: "POST",
+                 url: "functions/test_functions.php?deletedata=true",
+                 data: form_data,
+                 cache: false,
+                 success: function(html) {
+                  $('.popup_fade').hide();
+                  $('.state_div,.delete_div').hide();
+                  document.body.style.overflow = 'auto';
+                  location.reload();
+
                  }
              });
        }

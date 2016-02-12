@@ -62,6 +62,9 @@
 				    </tbody>
 				  </table>
 				</div>
+				<div class="district_list">
+					<ul></ul>
+				</div>
 			</div>
 		</div><!-- end  container-->					
 		<!-- <div class="container align_center">		          

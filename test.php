@@ -51,7 +51,6 @@ $obj = new testfunction();
 									<option>3</option>
 									<option>4</option>
 									<option>5</option>
-
 								</select>
 							</div>
 						</div>
@@ -84,6 +83,7 @@ $obj = new testfunction();
 				 ?>
 			      <tr class="align_center delete_color">
 			        <td class="test_id"><?php echo $eachrecord ['test_id']; ?></td>
+					<input type="hidden" value="<?php echo $eachrecord ['test_attribute_id']; ?>" id="test_attribute_id">
 			        <td><?php echo $eachrecord ['test_name']; ?></td>
 			        <td><?php echo $eachrecord ['test_parameter_name']; ?></td>
 			        <td><?php echo $eachrecord ['test_parameter_type']; ?></td>
@@ -91,7 +91,7 @@ $obj = new testfunction();
 			        <td><?php echo $eachrecord ['test_parameter_format']; ?></td>
 			        <td>
 			        	<span class="edit_state">Edit</span>
-		        		<span class="delete_state">Delete</span>
+		        		<span class="delete_state" data-value="<?php echo $eachrecord ['test_attribute_id']; ?>">Delete</span>
 			        </td>
 					<input type="hidden" name="test_attribute_id" id="test_attribute_id" value="<?php echo $eachrecord ['test_attribute_id']; ?>" />
 			      </tr>
