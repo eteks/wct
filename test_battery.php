@@ -71,65 +71,40 @@ $test = new testfunction();
 				</form>
 			</div>
 			<div class="container">
-			  <table class="table state_table">
+			  <table class="table state_table" id="test_battery_table">
 			    <thead>
 			      <tr class="row_color">
 			        <th class="align_center">SLNO</th>
 			        <th class="align_center">Test Battery Name</th>
 			        <th class="align_center">Sports</th>
-			        <th class="align_center">Test</th>
 			        <th class="align_center">Action</th>
 			      </tr>
 			    </thead>
 			    <tbody>
+					<?php
+					$data = $test_battery->testbatteryselectfunction();
+					foreach( $data as $eachrecord ) {
+					 ?>
 			      <tr class="align_center delete_color">
-			        <td>01</td>
-			       	<td>Long Jump</td>
-			        <td></td>
-			        <td></td>
+			        <td class="testbattery_id"><?php echo $eachrecord ['testbattery_id']; ?></td>
+					<input type="hidden" value="<?php echo $eachrecord ['testbattery_id']; ?>" class="testbattery_edit_id">
+			       	<td class="testbattery_name"><?php echo $eachrecord ['testbattery_name']; ?></td>
+			        <td class="sports_name"><?php echo $eachrecord ['sports_name']; ?></td>
 			        <td>
-			        	<span class="edit_state">Edit</span>
-		        		<span class="delete_state">Delete</span>
+			        	<span class="edit_state edit_test_battery " data-value="<?php echo $eachrecord ['testbattery_id']; ?>">Edit</span>
+		        		<span class="delete_state" data-value="<?php echo $eachrecord ['testbattery_id']; ?>">Delete</span>
 			        </td>
 			      </tr>
-			      <tr class="align_center delete_color">
-			        <td>02</td>
-			        <td>High Jump</td>
-			        <td></td>
-			        <td></td>
-			        <td>
-			        	<span class="edit_state">Edit</span>
-		        		<span class="delete_state">Delete</span>
-			        </td>
-			      </tr>
-			      <tr class="align_center delete_color">
-			        <td>03</td>
-			        <td>Running</td>
-			        <td></td>
-			        <td></td>
-			        <td>
-			        	<span class="edit_state">Edit</span>
-		        		<span class="delete_state">Delete</span>
-			        </td>
-			      </tr>
+				  <?php } ?>
 			    </tbody>
 			  </table>
+			  <div class="testingid">
+
+			  </div>
 			</div>
 		</div>
 	</div><!-- end  container-->
-	<div class="container align_center">
-	  	<ul class="pagination">
-	  		<li><a href="#" class="align_left_icon"><i class="fa fa-angle-double-left"></i></a></li>
-		    <li><a href="#">1</a></li>
-		    <li><a href="#">2</a></li>
-		    <li><a href="#">3</a></li>
-		    <li><a href="#">4</a></li>
-		    <li><a href="#">5</a></li>
-		    <li><a href="#" class="align_right_icon"><i class="fa fa-angle-double-right"></i></a></li>
-		</ul>
-	</div><!-- end  container-->
 </div><!-- end  container-->
-
 <div class="popup_fade cancel_btn"></div><!--popup_fade-->
 		<div class="container">
             <div class="test_battery_div">
@@ -139,37 +114,48 @@ $test = new testfunction();
               	</div><!--edit_title-->
           			<div class="container state-content col-md-12">
 	          			<div class="col-xs-12 col-md-12 align_margin">
-				<form>
+				<form  method="post" action="functions/test_battery_functions.php" id="test_battery_update_form">
+					<input type="hidden" name="testbattery_update" value="1" />
 					<div class="form-group">
 						<label>Enter the name of the Test Battery</label><br>
-						<input type="text" class="adjust_width" name="test_battery">
+						<input type="text" class="adjust_width test_battery_name_update" name="test_battery_name" value="">
+						<input type="hidden" class="test_battery_id_update" name="test_battery_id" value="" />
 					</div>
 					<div class="form-group">
 						  <label for="sel1">Select Sport</label>
-						  <select class="form-control adjust_width classic" id="sel1" name="Sport">
-						  <option></option>
+						  <select class="form-control adjust_width classic edit_test_sport" id="sel1" name="Sport">
+							  <?php
+							$data = $sports->sportsselectfunction();
+							foreach( $data as $eachrecord ) {
+							 ?>
+							 <option value="<?php echo $eachrecord ['sports_id']; ?>"><?php echo $eachrecord ['sports_name']; ?></option>
+							 <?php } ?>
 						  </select>
 					</div>
 					<div class="align_height">
 						<label>Select Categories</label><br>
 						<div class="area_scroll_popup">
-							<div class="checkbox align_check">
-					      		<label class="remember_txt"><input type="checkbox">Under 14 Boys</label>
+							<?php
+						  		$cat_data = $category->categoryselectfunction();
+						  		foreach( $cat_data as $eachrecord ) {
+						   ?>
+							<div class="checkbox align_check ">
+					      		<label class="remember_txt"><input class="cate_get" type="checkbox" name='categories[]' value="<?php echo $eachrecord ['categories_id']; ?>"><?php echo $eachrecord ['categories_name']; ?></label>
 					    	</div>
-					    	<div class="checkbox align_check">
-					      		<label class="remember_txt"><input type="checkbox">Under 14 Girls</label>
-					    	</div>
-					    	<div class="checkbox align_check">
-					      		<label class="remember_txt"><input type="checkbox">Under 16 Boys</label>
-					    	</div>
-					    	<div class="checkbox align_check">
-					      		<label class="remember_txt"><input type="checkbox">Under 19 Boys</label>
-					    	</div>
+							<?php } ?>
 						</div>
 					</div>
 					<div class="align_height align_margin">
 						<label>Select Test</label><br>
 						<div class="area_scroll_popup">
+							<?php
+						  $test_data = $test->testbatteryselectfunction();
+						  foreach( $test_data as $eachrecord ) {
+						   ?>
+							<div class="checkbox align_check">
+					      		<label class="remember_txt"><input class="test_get" type="checkbox" name="test[]" value="<?php echo $eachrecord ['test_id']; ?>"><?php echo $eachrecord ['test_name']; ?></label>
+					    	</div>
+							<?php } ?>
 						</div>
 					</div>
 

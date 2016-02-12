@@ -151,7 +151,35 @@ function editfunction(data_id){
               $('[name=edit_schedule_hour]').append("<option value='"+time[0]+ "'selected>"+time[0]+"</option>");
               $('[name=edit_schedule_minute]').append("<option value='"+time[1]+ "'selected>"+time[1]+"</option>");
               $('[name=edit_schedule_seconds]').append("<option value='"+time[2]+ "'selected>"+time[2]+"</option>");
-              $('[name=edit_schedule_venue]').val(obj[i].createschedule_venue);            
+              $('[name=edit_schedule_venue]').val(obj[i].createschedule_venue);
+            });
+            $('.popup_fade').show();
+            $('.createschedule_div, .close_btn').show();
+            document.body.style.overflow = 'hidden';
+           }
+        });
+    }
+    else if(window.location.href.indexOf("test_battery.php") !== -1){
+          $.ajax({
+           type: "POST",
+           url: "functions/test_battery_functions.php?chooseedit=true",
+           data: {data_id:data_id},
+           cache: false,
+           success: function(data) {
+            var obj = JSON.parse(data);
+            $.each(obj, function(i){
+              date = obj[i].createschedule_date.split('-');
+              time = obj[i].createschedule_time.split(':');
+              $('[name=edit_schedule_id]').val(obj[i].createschedule_id);
+              $('[name=edit_schedule_name]').val(obj[i].createschedule_name);
+              $('[name=edit_schedule_testbattery]').append("<option value='"+obj[i].createschedule_testbatteryid+ "'selected>"+obj[i].createschedule_testbatteryname+"</option>");
+              $('[name=edit_schedule_day]').append("<option value='"+date[2]+ "'selected>"+date[2]+"</option>");
+              $('[name=edit_schedule_month]').append("<option value='"+date[1]+ "'selected>"+date[1]+"</option>");
+              $('[name=edit_schedule_year]').append("<option value='"+date[0]+ "'selected>"+date[0]+"</option>");
+              $('[name=edit_schedule_hour]').append("<option value='"+time[0]+ "'selected>"+time[0]+"</option>");
+              $('[name=edit_schedule_minute]').append("<option value='"+time[1]+ "'selected>"+time[1]+"</option>");
+              $('[name=edit_schedule_seconds]').append("<option value='"+time[2]+ "'selected>"+time[2]+"</option>");
+              $('[name=edit_schedule_venue]').val(obj[i].createschedule_venue);
             });
             $('.popup_fade').show();
             $('.createschedule_div, .close_btn').show();
@@ -187,6 +215,54 @@ $(document).ready(function () {
         $('.sports_update_id').val($(this).parents('tr').find('.sports_id').text());
         $('.category_update_name').val($(this).parents('tr').find('.category_name').text());
         $('.category_update_id').val($(this).parents('tr').find('.category_id').text());
+    });
+    $('.edit_test_sport').change(function() {
+        $('option:selected', this).attr('selected',true).siblings().removeAttr('selected');
+    });
+    $('.edit_test_battery').click(function(){
+        var test_battery_id = $(this).attr("data-value");
+        // alert(test_battery_id);
+        $("input[name='testbattery_update']").val(test_battery_id);
+        $.ajax({
+             type: "POST",
+             url: "functions/test_battery_functions.php?gettestbatdata=true",
+             data:{'id':test_battery_id},
+             cache: false,
+             success: function(data) {
+                 var obj = JSON.parse(data);
+                 $('.test_battery_name_update').val(obj.testbattery_name);
+                 $('.test_battery_id_update').val(obj.testbattery_id);
+                 $('.edit_test_sport option[value="'+obj.sports_id+'"]').attr('selected','selected');
+                 //$('.edit_test_sport').append($("<option value='"+obj.sports_id+"' selected='selected'>"+obj.sports_name+"</option>"));
+
+
+            }
+         });
+         $.ajax({
+              type: "POST",
+              url: "functions/test_battery_functions.php?getcatedata=true",
+              data:{'id':test_battery_id},
+              cache: false,
+              success: function(data) {
+                  var obj = JSON.parse(data);
+                  $.each(obj, function(i){
+                      $('input.cate_get:checkbox[value="'+obj[i].testbattery_category_id +'"]').attr('checked', 'checked');
+                  });
+
+             }
+          });
+          $.ajax({
+               type: "POST",
+               url: "functions/test_battery_functions.php?gettestdata=true",
+               data:{'id':test_battery_id},
+               cache: false,
+               success: function(data) {
+                   var obj = JSON.parse(data);
+                   $.each(obj, function(i){
+                       $('input.test_get:checkbox[value="'+obj[i].testbattery_test_id +'"]').attr('checked', 'checked');
+                   });
+              }
+           });
     });
     // $('.delete_state').click(function(){
     //     delete_center_align();
@@ -356,10 +432,10 @@ $(document).ready(function () {
     });
 
     $('.delete_state').click(function(){
-      $('#delete_id').val($(this).attr("data-value"));
-      $('.popup_fade').show();
-      $('.delete_div, .close_btn').show();
-      document.body.style.overflow = 'hidden';
+        $('#delete_id').val($(this).attr("data-value"));
+        $('.popup_fade').show();
+        $('.delete_div, .close_btn').show();
+        document.body.style.overflow = 'hidden';
     });
 
     // Jquery and ajax functionality for district
@@ -430,7 +506,9 @@ $(document).ready(function () {
                if(html=='error'){
                  alert('Already sports name entred');
                }else{
+                alert(html);
                 var sports_split = html.split('-');
+                alert(sports_split);
                 $('#sports_table').find(".sports_id:contains("+sports_split[1]+")").next('.sports_name').html(sports_split[0]);
                 //alert('Sports name updated successfully');
                 $('.popup_fade').hide();
@@ -549,6 +627,24 @@ $(document).ready(function () {
                  data: form_data,
                  cache: false,
                  success: function(html) {
+                  $('.popup_fade').hide();
+                  $('.state_div,.delete_div').hide();
+                  document.body.style.overflow = 'auto';
+                  location.reload();
+
+                 }
+             });
+       }
+       else if (window.location.href.indexOf("test_battery.php") !== -1){
+           //alert('dsfsdfds');
+            var form_data = {'delete_id':del_id};
+            $.ajax({
+                 type: "POST",
+                 url: "functions/test_battery_functions.php?deletedata=true",
+                 data: form_data,
+                 cache: false,
+                 success: function(html) {
+                     //alert(html);
                   $('.popup_fade').hide();
                   $('.state_div,.delete_div').hide();
                   document.body.style.overflow = 'auto';
@@ -727,7 +823,7 @@ $(document).ready(function () {
            cache: false,
            success: function(html) {
               var result_split = html.split('#');
-               if (result_split[0].indexOf("success") !==-1){     
+               if (result_split[0].indexOf("success") !==-1){
                  html ="<tr class='align_center delete_color'>\
                     <input type='hidden' name='createschedule_id' value="+result_split[2]+">\
                     <td class='t_createschedule_id'>"+result_split[2]+"</td>\
