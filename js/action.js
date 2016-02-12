@@ -321,7 +321,7 @@ $(document).ready(function () {
                     <td class='t_states_name'>"+result_split[3]+"</td>\
                     <td>\
                       <span class='edit_state' onclick='editfunction("+result_split[2]+")'>Edit</span>\
-                      <span class='delete_state' onclick='deletefunction("+result_split[2]+")'>Delete</span>\
+                      <span class='delete_state' data-value="+result_split[2]+">Delete</span>\
                     </td></tr> ";
                  $('.state_table tr:last').after(html);
                }
@@ -354,12 +354,12 @@ $(document).ready(function () {
            }
        });
     });
-
-    $('.delete_state').click(function(){
-      $('#delete_id').val($(this).attr("data-value"));
-      $('.popup_fade').show();
-      $('.delete_div, .close_btn').show();
-      document.body.style.overflow = 'hidden';
+    
+    $(document).on('click','.delete_state',function(){
+        $('#delete_id').val($(this).attr("data-value"));
+        $('.popup_fade').show();
+        $('.delete_div, .close_btn').show();
+        document.body.style.overflow = 'hidden';
     });
 
     // Jquery and ajax functionality for district
@@ -371,10 +371,12 @@ $(document).ready(function () {
            data: form_data,
            cache: false,
            success: function(html) {
+            alert(html);
               var result_split = html.split('#');
                if (result_split[0].indexOf("success") !== -1){
                  // $('.add_district_error').text(result_split[1]).show();
                  alert(result_split[1]);
+                  alert(result_split[2]);
                  html ="<tr class='align_center delete_color'>\
                  <input type='hidden' name='district_id' value="+result_split[2]+">\
                  <td class='t_district_id'>"+result_split[2]+"</td>\
@@ -481,6 +483,7 @@ $(document).ready(function () {
                  success: function(html) {
                  var result_split = html.split('#');
                  if (result_split[0].indexOf("success") !== -1){
+                  alert(result_split[2]);
                   $('.state_table').find(".t_states_id:contains("+$.trim(result_split[2])+")").parents('tr').remove();
                   $('.popup_fade').hide();
                   $('.state_div,.delete_div').hide();
@@ -498,6 +501,7 @@ $(document).ready(function () {
                  success: function(html) {
                  var result_split = html.split('#');
                  if (result_split[0].indexOf("success") !== -1){
+                  alert(result_split[2]);
                   $('.district_table').find(".t_district_id:contains("+$.trim(result_split[2])+")").parents('tr').remove();
                   $('.popup_fade').hide();
                   $('.state_div,.delete_div').hide();

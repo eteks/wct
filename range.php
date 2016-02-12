@@ -1,4 +1,5 @@
-<?php require_once "header.php"; ?>
+<?php require_once "session.php";
+	  require_once "header.php"; ?>
 <div class="container">
 	<div class="container align_center align_height">
 		<span class="sports">RANGE</span>
@@ -10,46 +11,47 @@
 				<form>
 					<div class="form-group">
 						  <label for="sel1">Select Test Battery Names</label>
-						  <select class="form-control adjust_width classic" id="sel1" name="test_battery">
+						  <select class="form-control adjust_width classic" id="sel1" name="range_testbattery">
 						  <option></option>
 						  </select>
 					</div>
 					<div class="form-group">
 						  <label for="sel1">Category</label>
-						  <select class="form-control adjust_width classic" id="sel1" name="category">
+						  <select class="form-control adjust_width classic" id="sel1" name="range_category">
 						  <option></option>
 						  </select>
 					</div>
 					<div class="form-group">
 						  <label for="sel1">Test Name</label>
-						  <select class="form-control adjust_width classic" id="sel1" name="test_name">
+						  <select class="form-control adjust_width classic" id="sel1" name="range_test">
 						  <option></option>
 						  </select>
 					</div>
 					<div class="form-group">
 					  <label for="range" class="fl">Ranges</label><br>
-					  <select class="form-control classic range_align fl" id="strt">
+					  <select class="form-control classic range_align fl" id="strt" name="range_start">
 					  	<option>Start</option>
 					    <option>Name1</option>
 					    <option>Name2</option>
 					    <option>Name3</option>						   
 					  </select>
-					  <select class="form-control classic range_align fl" id="end">
+					  <select class="form-control classic range_align fl" id="end" name="range_end">
 					  	<option>End</option>
 					    <option>Name1</option>
 					    <option>Name2</option>
 					    <option>Name3</option>						   
 					  </select>
-					  <select class="form-control classic range_align fl" id="point">
+					  <select class="form-control classic range_align fl" id="point" name="range_points">
 					  	<option>Points</option>
 					    <option>Name1</option>
 					    <option>Name2</option>
 					    <option>Name3</option>						   
 					  </select>
 					</div>
-					<input type="submit" class="btn btn-primary align_right ranges_btn" value="Add Ranges"><i class="fa fa-plus plus_align"></i>
+					<!-- <input type="submit" class="btn btn-primary align_right ranges_btn" value="Add Ranges"><i class="fa fa-plus plus_align"></i> -->
+					<button type="button" class="btn btn-primary align_right ranges_btn">Add Ranges</button><i class="fa fa-plus plus_align"></i>
 					<div class="col-md-9 schedule_btn">					
-						<input type="submit" class="btn btn-primary align_right clear" value="Submit">
+						<button type="button" class="btn btn-primary align_right clear">Submit</button>	
 					</div>			
 				</form>
 			</div>			

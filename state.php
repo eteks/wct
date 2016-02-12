@@ -16,7 +16,7 @@
 							<input type="text" class="statesname" name="states_name" required>
 							<span class="add_states_error"></span>
 						</div>	
-						<button type="button" class="btn btn-primary align_right clear add_states_act" name="states" value="Submit">Submit</button>																							
+						<button type="button" class="btn btn-primary align_right clear add_states_act" name="states">Submit</button>																							
 					</form>
 				</div>
 				<div class="container">           

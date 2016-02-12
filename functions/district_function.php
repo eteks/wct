@@ -22,8 +22,9 @@
 		}
 		public function districtInsert(){
 			$res = mysql_query("insert into wc_district (districtstates_id,district_name,district_status) values('".$this->statesid."','".$this->districtname."','1')")or die(mysql_error());			
-			if($res){ return true; }
-			else{ return false; }	 
+			$lastinsertid = mysql_insert_id();
+			if($res){ return $lastinsertid; }
+			else{ return false; }
 		}
 		public function districtUpdate(){		
             $res = mysql_query("update wc_district set districtstates_id='".$this->statesid."',district_name='".$this->districtname."' where district_id ='".$this->districtid."'")or die(mysql_error());          
