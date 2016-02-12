@@ -230,8 +230,15 @@ $(document).ready(function () {
 	});
 
     $('.sports_submit_act').click(function() {  
+        if($('form[name="sport_form"]').children().find('span').hasClass('form-error')){
+        alert('false');
+        // return false;
+        e.preventDefault();
+        }
+      else{  
           var form_data = $('#sports_form').serialize();
-         // alert(form_data);
+           $('form[name="sport_form"]').submit();
+           // alert(form_data);
           $.ajax({
              type: "POST",
              url: "functions/sports_function.php",
@@ -249,38 +256,48 @@ $(document).ready(function () {
 
              }
          });
+        }
   
     });
 
     // start (added by kalai)
     // Jquery and ajax functionality for states
-    $('.add_states_act').click(function(){
-      var form_data = $('[name=states_form]').serialize();
-      $.ajax({
-           type: "POST",
-           url: "functions/states_function.php?adddata=true",
-           data: form_data,
-           cache: false,
-           success: function(html) {
-              var result_split = html.split('#');
-               if (result_split[0].indexOf("success") !== -1){
-                 // $('.add_states_error').text(result_split[1]).show();
-                 alert(result_split[1]);
-                 html ="<tr class='align_center delete_color'>\
-                 <input type='hidden' name='states_id' value="+result_split[2]+">\
-                 <td class='t_states_id'>"+result_split[2]+"</td>\
-                    <td class='t_states_name'>"+result_split[3]+"</td>\
-                    <td>\
-                      <span class='edit_state' onclick='editfunction("+result_split[2]+")'>Edit</span>\
-                      <span class='delete_state' onclick='deletefunction("+result_split[2]+")'>Delete</span>\
-                    </td></tr> ";
-                 $('.state_table tr:last').after(html);
+    $('.add_states_act').click(function(e){
+      if($('form[name="states_form"]').children().find('span').hasClass('form-error')){
+        alert('false');
+        // return false;
+        e.preventDefault();
+      }
+      else{
+          var form_data = $('[name=states_form]').serialize();
+          alert('true'+form_data);
+          $('form[name="states_form"]').submit();
+          $.ajax({
+               type: "POST",
+               url: "functions/states_function.php?adddata=true",
+               data: form_data,
+               cache: false,
+               success: function(html) {
+                  var result_split = html.split('#');
+                   if (result_split[0].indexOf("success") !== -1){
+                     // $('.add_states_error').text(result_split[1]).show();
+                     alert(result_split[1]);
+                     html ="<tr class='align_center delete_color'>\
+                     <input type='hidden' name='states_id' value="+result_split[2]+">\
+                     <td class='t_states_id'>"+result_split[2]+"</td>\
+                        <td class='t_states_name'>"+result_split[3]+"</td>\
+                        <td>\
+                          <span class='edit_state' onclick='editfunction("+result_split[2]+")'>Edit</span>\
+                          <span class='delete_state' onclick='deletefunction("+result_split[2]+")'>Delete</span>\
+                        </td></tr> ";
+                     $('.state_table tr:last').after(html);
+                   }
+                   else{
+                    $('.add_states_error').text(result_split[1]).show();
+                   }
                }
-               else{
-                $('.add_states_error').text(result_split[1]).show();
-               }
-           }
-       });
+           });
+      }
     });
 
     $('.edit_states_act').click(function(){
@@ -315,6 +332,13 @@ $(document).ready(function () {
 
     // Jquery and ajax functionality for district
     $('.add_district_act').click(function(){
+       if($('form[name="district_form"]').children().find('span').hasClass('form-error')){
+        alert('false');
+        // return false;
+        e.preventDefault();
+      }
+      else{
+           $('form[name="district_form"]').submit();
       var form_data = $('[name=district_form]').serialize();
       $.ajax({
            type: "POST",
@@ -341,6 +365,7 @@ $(document).ready(function () {
                }
            }
        });
+    }
     });
 
     $('.edit_district_act').click(function(){
@@ -483,9 +508,16 @@ $(document).ready(function () {
     });
 
     
-    $('.category_submit_act').click(function() {          
+    $('.category_submit_act').click(function() {
+       if($('form[name="categories_form"]').children().find('span').hasClass('form-error')){
+              alert('false');
+              // return false;
+              e.preventDefault();
+              }
+            else{  
               var form_data = $('#category_form').serialize();
-              //alert(form_data);
+               $('form[name="categories_form"]').submit();
+              alert(form_data);
               $.ajax({
                  type: "POST",
                  url: "functions/category_function.php",
@@ -501,7 +533,8 @@ $(document).ready(function () {
                        location.reload();
                      }
                  }
-             });           
+             });
+             }           
         });
 
 

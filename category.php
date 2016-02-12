@@ -12,10 +12,10 @@ $obj = new categoryfunction();
 			<div class="col-md-8">
 				<div class="col-md-6"></div>
 				<div class="col-md-6 align_margin">
-					<form id="category_form" role="form">
+					<form id="category_form" name="categories_form" role="form">
 						<div class="align_margin">
 							<label>Enter the Category Name</label><br>
-							<input type="text" class="sportsname" name="category_name" data-validation-error-msg="please enter the category name" data-validation="required">							
+							<input type="text" class="sportsname" name="category_name" data-validation-error-msg="Please enter the category name" data-validation="required">							
 							<input type="hidden" name="category_add" value="1">
 						</div>
 						<button type="button" class="btn btn-primary align_right clear category_submit_act">Submit</button>

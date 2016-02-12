@@ -11,11 +11,11 @@
 				<form name="create_schedule_form" id="createschedule_form">
 					<div class="form-group">					
 						<label>Schedule Name</label><br>
-						<input type="text" class="adjust_width" name="schedule_name" data-validation-error-msg="please Enter the name of the Athelete" data-validation="required">
+						<input type="text" class="adjust_width" name="schedule_name" data-validation-error-msg="Please Enter the name of the Schedule" data-validation="required">
 					</div>
 					<div class="form-group">
 					  <label for="battey_name">Select Test Battery Name</label>
-					  <select class="form-control classic adjust_width" id="battey_name" name="schedule_testbattery" data-validation-error-msg="please Enter the name of the Athelete" data-validation="required">
+					  <select class="form-control classic adjust_width" id="battey_name" name="schedule_testbattery" data-validation-error-msg="Please Select the name of the Test Battery Name" data-validation="required">
 					  	<option value="">Test Battery Name</option>
 					    <option value="1">test1</option>
 					    <option value="2">test2</option>
@@ -25,20 +25,20 @@
 					
 					<div class="form-group">
 					  <label for="date" class="fl">Select date</label><br>
-					  <select class="form-control classic adjust_width_tiny fl" id="date" name="schedule_day" data-validation-error-msg="please Enter the name of the Athelete" data-validation="required">
+					  <select class="form-control classic adjust_width_tiny fl" id="date" name="schedule_day" data-validation-error-msg="Please Select the Date" data-validation="required">
 					  	<option value="">Date</option>
 					    <option value="1">1</option>
 					    <option value="2">2</option>
 					    <option value="3">3</option>					   
 					  </select>
-					  <select class="form-control classic adjust_width_tiny fl" id="month" name="schedule_month" data-validation-error-msg="please Enter the name of the Athelete" data-validation="required">
+					  <select class="form-control classic adjust_width_tiny fl" id="month" name="schedule_month" data-validation-error-msg="Please Select the Month" data-validation="required">
 					  	<option value="">Month</option>
 					    <option value="1">January</option>
 					    <option value="2">February</option>
 					    <option value="3">March</option>					   
 					  </select>
-					  <select class="form-control classic adjust_width_tiny fl" id="year" name="schedule_year" data-validation-error-msg="please Enter the name of the Athelete" data-validation="required">
-					  	<option value="">Years</option>
+					  <select class="form-control classic adjust_width_tiny fl" id="year" name="schedule_year" data-validation-error-msg="Please Select the Year" data-validation="required">
+					  	<option value="">Year</option>
 					    <option value="1991">1991</option>
 					    <option value="1992">1992</option>
 					    <option value="1993">1993</option>							   
@@ -47,19 +47,19 @@
 					
 					<div class="form-group">
 					  <label for="date" class="fl">Select Time</label><br>
-					  <select class="form-control classic adjust_tiny fl" id="hour" name="schedule_hour" data-validation-error-msg="please Enter the name of the Athelete" data-validation="required">
+					  <select class="form-control classic adjust_tiny fl" id="hour" name="schedule_hour" data-validation-error-msg="Please Select the Hour" data-validation="required">
 					  	<option value="">Hour</option>
 					    <option value="1">1</option>
 					    <option value="2">2</option>
 					    <option value="3">3</option>						   
 					  </select>
-					  <select class="form-control classic adjust_tiny fl" id="minute" name="schedule_minute" data-validation-error-msg="please Enter the name of the Athelete" data-validation="required">
+					  <select class="form-control classic adjust_tiny fl" id="minute" name="schedule_minute" data-validation-error-msg="Please Select the Minute" data-validation="required">
 					  	<option value="">Minute</option>
 					    <option value="1">1</option>
 					    <option value="2">2</option>
 					    <option value="3">2</option>						   
 					  </select>
-					  <select class="form-control classic adjust_tiny fl" id="seconds" name="schedule_seconds" data-validation-error-msg="please Enter the name of the Athelete" data-validation="required">
+					  <select class="form-control classic adjust_tiny fl" id="seconds" name="schedule_seconds" data-validation-error-msg="Please Select the Seconds" data-validation="required">
 					  	<option value="">Seconds</option>
 					    <option value="1">1</option>
 					    <option value="2">2</option>
@@ -69,7 +69,7 @@
 			
 					<div class="align_height align_margin">					
 						<label>Venue</label><br>
-						<textarea class="area_width" name="schedule_venue" data-validation-error-msg="please Enter the name of the Athelete" data-validation="required"></textarea>
+						<textarea class="area_width" name="schedule_venue" data-validation-error-msg="please Enter the name of the Venue" data-validation="required"></textarea>
 					</div>
 					<div class="col-md-9 schedule_btn">					
 						<button type="button" class="btn btn-primary align_right clear add_createschedule_act">Submit</button>

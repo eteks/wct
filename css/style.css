@@ -862,7 +862,7 @@ button, input, optgroup, select, textarea {
     display: none;
     color: red;
     float: right;
-    font-size: 12px;
+    font-size: 14px;
 }
 .ui-helper-hidden-accessible{
     display: none;
@@ -1059,7 +1059,13 @@ input[type=radio]:checked + label:before {
     display: block;
     float: right;
     font-family: Helvetica;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: normal;
+}
+
+.help-block, .form-error{
+    color: red !important;
+    float: right;
+    font-size: 14px;
 }
 /* end */

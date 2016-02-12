@@ -20,24 +20,24 @@
 				<form name="athletes_form" id="athlete_form">
 					<div class="form-group">					
 						<label>Athlete Name</label><br>
-						<input type="text" class="adjust_width" name="athlete_name" data-validation-error-msg="please Enter the name of the Athelete" data-validation="required">
+						<input type="text" class="adjust_width" name="athlete_name" data-validation-error-msg="Please Enter the name of the Athelete" data-validation="required">
 					</div>
 					
 					<div class="form-group">
 					  <label for="date" class="fl">Date Of Birth</label><br>
-					  <select class="form-control classic dob_align fl" id="date" name="athlete_dobday" data-validation-error-msg="please Enter the name of the Test Battery" data-validation="required">
+					  <select class="form-control classic dob_align fl" id="date" name="athlete_dobday" data-validation-error-msg="Please Select the Date" data-validation="required">
 					  	<option value="">Date</option>
 					    <option value="1">1</option>
 					    <option value="2">2</option>
 					    <option value="3">3</option>						   
 					  </select>
-					  <select class="form-control classic dob_align fl" id="month" name="athlete_dobmonth" data-validation-error-msg="please Enter the name of the Athelete" data-validation="required">
+					  <select class="form-control classic dob_align fl" id="month" name="athlete_dobmonth" data-validation-error-msg="Please Select the Month" data-validation="required">
 					  	<option value="">Month</option>
 					    <option value="1">January</option>
 					    <option value="2">February</option>
 					    <option value="3">March</option>						   
 					  </select>
-					  <select class="form-control classic dob_align fl" id="year" name="athlete_dobyear" data-validation-error-msg="please Enter the name of the Athelete" data-validation="required">
+					  <select class="form-control classic dob_align fl" id="year" name="athlete_dobyear" data-validation-error-msg="Please Select the Year" data-validation="required">
 					  	<option value="">Years</option>
 					    <option value="1991">1991</option>
 					    <option value="1992">1992</option>
@@ -46,11 +46,11 @@
 					</div>
 					<div class="form-group">     
       					<label>Mobile Number</label><br>
-      					<input type="text" class="adjust_width" name="athlete_mobile" data-validation-error-msg="please Enter the name of the Athelete" data-validation="required">
+      					<input type="text" class="adjust_width" name="athlete_mobile" data-validation-error-msg="please Enter the Mobile Number" data-validation="required">
      				</div>
 					<div class="form-group">
 						  <label for="sel1">Gender</label>
-						  <select class="form-control adjust_width classic" id="sel1" name="athlete_gender" data-validation-error-msg="please Enter the name of the Athelete" data-validation="required">
+						  <select class="form-control adjust_width classic" id="sel1" name="athlete_gender" data-validation-error-msg="Please Select the Gender" data-validation="required">
 						  <option value=""></option>
 						  <option value="female">Female</option>
 						  <option value="male">Male</option>
@@ -58,7 +58,7 @@
 					</div>
 					<div class="form-group">
 						  <label for="sel2">State</label>
-						  <select class="form-control adjust_width classic" id="sel2" name="athlete_state" data-validation-error-msg="please Enter the name of the Athelete" data-validation="required">
+						  <select class="form-control adjust_width classic" id="sel2" name="athlete_state" data-validation-error-msg="Please Select the State" data-validation="required">
 						  <option value=""></option>
 						  <?php
 	                        $query = $statesFunction->statesSelect();
@@ -70,7 +70,7 @@
 					</div>
 					<div class="form-group">
 						  <label for="sel3">District</label>
-						  <select class="form-control adjust_width classic" id="sel3" name="athlete_district" data-validation-error-msg="please Enter the name of the Athelete" data-validation="required">
+						  <select class="form-control adjust_width classic" id="sel3" name="athlete_district" data-validation-error-msg="Please Select the District" data-validation="required">
 						  <option value=""></option>
 						  <?php
 	                        $query = $districtFunction->districtSelect();
@@ -83,17 +83,17 @@
 					
 					<div class="align_height align_margin">					
 						<label>Address</label><br>
-						<textarea class="area_width" name="athlete_address" data-validation-error-msg="please Enter the name of the Athelete" data-validation="required"></textarea>
+						<textarea class="area_width" name="athlete_address" data-validation-error-msg="please Enter the Address" data-validation="required"></textarea>
 					</div>
 
 					<div class="form-group">					
 						<label>Taluka</label><br>
-						<input type="text" class="adjust_width" name="athlete_taluka" data-validation-error-msg="please Enter the name of the Athelete" data-validation="required">
+						<input type="text" class="adjust_width" name="athlete_taluka" data-validation-error-msg="please Enter the Taluka" data-validation="required">
 					</div>
 
 					<div class="form-group">
 						  <label for="sel4">Sports</label>
-						  <select class="form-control adjust_width classic" id="sel4" name="athlete_sports" data-validation-error-msg="please Enter the name of the Athelete" data-validation="required">
+						  <select class="form-control adjust_width classic" id="sel4" name="athlete_sports" data-validation-error-msg="please Select the Sports" data-validation="required">
 						   <option value=""></option>                    
 	                      <option value="cricket">Cricket</option>
 	                      <option value="hockey">Hockey</option>

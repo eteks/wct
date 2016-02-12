@@ -23,7 +23,7 @@
 						<label>Select Categories</label><br>
 						<div class="area_scroll">
 							<div class="checkbox align_check">
-					      		<label class="remember_txt"><input type="checkbox" class="checkbox_act" data-validation="required">Under 14 Boys</label>
+					      		<label class="remember_txt"><input type="checkbox" class="checkbox_act" data-validation-error-msg="Please Choose atleast one Category" data-validation="required">Under 14 Boys</label>
 					    	</div>
 					    	<div class="checkbox align_check">
 					      		<label class="remember_txt"><input type="checkbox" class="checkbox_act">Under 14 Girls</label>
@@ -40,7 +40,7 @@
 						<label>Select Test</label><br>
 						<div class="area_scroll">
 							<div class="checkbox align_check">
-					      		<label class="remember_txt"><input type="checkbox" class="checkbox_act1" data-validation="required">Test1</label>
+					      		<label class="remember_txt"><input type="checkbox" class="checkbox_act1" data-validation-error-msg="Please Choose atleast one Test" data-validation="required">Test1</label>
 					    	</div>
 					    	<div class="checkbox align_check">
 					      		<label class="remember_txt"><input type="checkbox" class="checkbox_act1">Test2</label>

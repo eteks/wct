@@ -13,8 +13,8 @@
 					<form name="states_form" id="state_form">
 						<div class="align_margin">					
 							<label>Enter the State</label><br>
-							<input type="text" class="statesname" name="states_name" data-validation-error-msg="please Enter the State" data-validation="required">
-							<span class="add_states_error"></span>
+							<input type="text" class="statesname" name="states_name" data-validation-error-msg="Please Enter the State" data-validation="required">
+							<!-- <span class="add_states_error"></span> -->
 						</div>	
 						<button type="button" class="btn btn-primary align_right clear add_states_act" name="states" value="Submit">Submit</button>																							
 					</form>

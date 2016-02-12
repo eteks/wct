@@ -10,24 +10,24 @@
 				<form id="assign_schedule_form">
 					<div class="form-group">
 						  <label for="sel1">Select Schedule Name</label>
-						  <select class="form-control adjust_width classic" id="sel1" name="Schedule" data-validation-error-msg="please Enter the name of the Athelete" data-validation="required">
+						  <select class="form-control adjust_width classic" id="sel1" name="Schedule" data-validation-error-msg="Please Select Name of the Schedule" data-validation="required">
 						  <option></option>
 						  </select>
 					</div>
 					<div class="form-group">
 						  <label for="sel1">Select Category Name</label>
-						  <select class="form-control adjust_width classic" id="sel1" name="category" data-validation-error-msg="please Enter the name of the Athelete" data-validation="required">
+						  <select class="form-control adjust_width classic" id="sel1" name="category" data-validation-error-msg="Please Select Category of the Schedule" data-validation="required">
 						  <option></option>
 						  </select>
 					</div>
 					<div class="form-group">
 				      	<label for="athlete" class="email_txt">Add Athletes</label><br>
-				      	<input type="text" class="form-control name_align fl" id="name" placeholder="Name" name="name" data-validation-error-msg="please Enter the name of the Athelete" data-validation="required">
-				      	<input type="text" class="form-control date_assign fl" id="name" placeholder="Date" name="date" data-validation-error-msg="please Enter the name of the Athelete" data-validation="required">
+				      	<input type="text" class="form-control name_align fl" id="name" placeholder="Name" name="name" data-validation-error-msg="Please Enter the name of the Athelete" data-validation="required">
+				      	<input type="text" class="form-control date_assign fl" id="name" placeholder="Date" name="date" data-validation-error-msg="Please Enter the Date" data-validation="required">
 				    </div>
 				    <div class="form-group">
-				      	<input type="text" class="form-control name_align fl" id="name" placeholder="Mobile no" name="Mobile" data-validation-error-msg="please Enter the name of the Athelete" data-validation="required">
-				      	<input type="text" class="form-control date_assign fl" id="name" placeholder="BIB NO" name="bib" data-validation-error-msg="please Enter the name of the Athelete" data-validation="required">
+				      	<input type="text" class="form-control name_align fl" id="name" placeholder="Mobile no" name="Mobile" data-validation-error-msg="Please Enter the Mobile Number" data-validation="required">
+				      	<input type="text" class="form-control date_assign fl" id="name" placeholder="BIB NO" name="bib" data-validation-error-msg="Please Enter the BIB NO" data-validation="required">
 				    </div>
 					<input type="submit" class="btn btn-primary align_right adds_btn" value="Add"><i class="fa fa-plus add_align"></i>
 					<div class="col-md-9 schedule_btn">					

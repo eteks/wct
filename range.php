@@ -10,37 +10,37 @@
 				<form id="range_form">
 					<div class="form-group">
 						  <label for="sel1">Select Test Battery Names</label>
-						  <select class="form-control adjust_width classic" id="sel1" name="test_battery" data-validation-error-msg="please Select the Name of Test Battery " data-validation="required">
+						  <select class="form-control adjust_width classic" id="sel1" name="test_battery" data-validation-error-msg="Please Select the Name of Test Battery " data-validation="required">
 						  <option></option>
 						  </select>
 					</div>
 					<div class="form-group">
 						  <label for="sel1">Category</label>
-						  <select class="form-control adjust_width classic" id="sel1" name="category" data-validation-error-msg="please Select the Category of Test Battery" data-validation="required">
+						  <select class="form-control adjust_width classic" id="sel1" name="category" data-validation-error-msg="Please Select the Category of Test Battery" data-validation="required">
 						  <option></option>
 						  </select>
 					</div>
 					<div class="form-group">
 						  <label for="sel1">Test Name</label>
-						  <select class="form-control adjust_width classic" id="sel1" name="test_name" data-validation-error-msg="please Enter the name of the Test" data-validation="required">
+						  <select class="form-control adjust_width classic" id="sel1" name="test_name" data-validation-error-msg="Please Select the name of the Test" data-validation="required">
 						  <option></option>
 						  </select>
 					</div>
 					<div class="form-group">
 					  <label for="range" class="fl">Ranges</label><br>
-					  <select class="form-control classic range_align fl" id="strt" data-validation-error-msg="please Select the start range of Test" data-validation="required">
+					  <select class="form-control classic range_align fl" id="strt" data-validation-error-msg="Please Select the start range of Test" data-validation="required">
 					  	<option value="">Start</option>
 					    <option>Name1</option>
 					    <option>Name2</option>
 					    <option>Name3</option>						   
 					  </select>
-					  <select class="form-control classic range_align fl" id="end" data-validation-error-msg="please Select the End Range  of Test" data-validation="required">
+					  <select class="form-control classic range_align fl" id="end" data-validation-error-msg="Please Select the End Range  of Test" data-validation="required">
 					  	<option value="">End</option>
 					    <option>Name1</option>
 					    <option>Name2</option>
 					    <option>Name3</option>						   
 					  </select>
-					  <select class="form-control classic range_align fl" id="point" data-validation-error-msg="please Enter the Points of the Test" data-validation="required">
+					  <select class="form-control classic range_align fl" id="point" data-validation-error-msg="Please Select the Points of the Test" data-validation="required">
 					  	<option value="">Points</option>
 					    <option>Name1</option>
 					    <option>Name2</option>
