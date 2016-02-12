@@ -19,7 +19,7 @@ $obj = new testfunction();
 						<input type="text" class="adjust_width" name="test_name">
 					</div>
 					<div class="parameter_holder">
-						<div class="clone_content " id="param_counter1">
+						<div class="clone_content" id="param_counter1">
 							<div class="form-group">
 								<label>Enter Parameter Name</label><br>
 								<input type="text" class="adjust_width parameter_name" name="parameter_name1">

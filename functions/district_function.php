@@ -17,13 +17,14 @@
 		}
 		//To select all record for displaying data in table
 		public function districtSelect(){
-			$res = mysql_query("select d.district_id,s.states_name,d.district_name from wc_states s,wc_district d where d.districtstates_id=s.states_id and d.district_status='1'")or die(mysql_error());
+			$res = mysql_query("select * from wc_states s,wc_district d where d.districtstates_id=s.states_id and d.district_status='1'")or die(mysql_error());
 			return $res;
 		}
 		public function districtInsert(){
 			$res = mysql_query("insert into wc_district (districtstates_id,district_name,district_status) values('".$this->statesid."','".$this->districtname."','1')")or die(mysql_error());			
-			if($res){ return true; }
-			else{ return false; }	 
+			$lastinsertid = mysql_insert_id();
+			if($res){ return $lastinsertid; }
+			else{ return false; }
 		}
 		public function districtUpdate(){		
             $res = mysql_query("update wc_district set districtstates_id='".$this->statesid."',district_name='".$this->districtname."' where district_id ='".$this->districtid."'")or die(mysql_error());          
@@ -145,5 +146,18 @@
 				echo "failure#Record not found";
 			}
 		}	
+		// To load district for selected state
+		if(isset($_GET['loaddistrict'])){
+			$search=$_POST['states_name'];
+			$json = array();
+			foreach($DISTRICT as $key => $value) {
+				if($key == $search){
+					array_push($json,$value);
+					// print_r($json);
+				}	    	
+			}
+			// echo json_encode($json);
+			echo $json;
+		} 
 	  }
 ?>

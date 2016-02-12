@@ -187,6 +187,30 @@ function editfunction(data_id){
            }
         });
     }
+    else if(window.location.href.indexOf("range.php") !== -1){
+          $.ajax({
+           type: "POST",
+           url: "functions/range_function.php?chooseedit=true",
+           data: {data_id:data_id},
+           cache: false,
+           success: function(data) {
+            data =  data.split('#####');
+            var range_obj = JSON.parse(data[0]);
+            var rangeattr_obj = JSON.parse(data[1]);
+            $.each(range_obj, function(i){
+              $('[name=edit_range_testbattery]').append("<option value='"+range_obj[i].rangetestbattery_id+ "'selected>"+range_obj[i].rangetestbattery_name+"</option>");
+              $('[name=edit_range_category]').append("<option value='"+range_obj[i].rangecategory_id+ "'selected>"+range_obj[i].rangecategory_name+"</option>");
+              $('[name=edit_range_test]').append("<option value='"+range_obj[i].rangetest_id+ "'selected>"+range_obj[i].rangetest_name+"</option>");
+            });
+            $.each(rangeattr_obj, function(i){
+
+            });
+            // $('.popup_fade').show();
+            // $('.createschedule_div, .close_btn').show();
+            // document.body.style.overflow = 'hidden';
+           }
+        });
+    }
 }
 
 $(window).resize(function () {
@@ -205,7 +229,7 @@ $(document).ready(function () {
   parameter_center_align();
 
     //Edit popup
-  	$('.edit_state').click(function(){
+  	$(document.body).delegate('.edit_state','click',function() {
         state_center_align();
         $('.popup_fade').show();
         $('.state_div, .close_btn').show();
@@ -349,11 +373,27 @@ $(document).ready(function () {
 		$('.states_list li').each(function(){
 			states_list.push($(this).text());
 	});
-	$('.statesname').focus(function (e) {
+	$('.statesname,.edit_states_name').focus(function (e) {
+    // alert("foucs");
 		$(this).autocomplete({
 			source: states_list,
 	 	});
 	});
+
+  // Autocomplete results for district list
+  $('.choose_state').on('change',function () {
+    selected_state = $('.choose_state option:selected').text();
+    form_data = {'states_name':selected_state};
+     $.ajax({
+           type: "POST",
+           url: "functions/district_function.php?loaddistrict=true",
+           data: form_data,
+           cache: false,
+           success: function(data) {
+            alert(data);
+           }
+       });
+   });
 
     $('.sports_submit_act').click(function() {
         var form_data = $('#sports_form').serialize();
@@ -390,6 +430,7 @@ $(document).ready(function () {
               var result_split = html.split('#');
                if (result_split[0].indexOf("success") !== -1){
                  // $('.add_states_error').text(result_split[1]).show();
+                 $('.add_states_error').hide();
                  alert(result_split[1]);
                  html ="<tr class='align_center delete_color'>\
                  <input type='hidden' name='states_id' value="+result_split[2]+">\
@@ -397,7 +438,7 @@ $(document).ready(function () {
                     <td class='t_states_name'>"+result_split[3]+"</td>\
                     <td>\
                       <span class='edit_state' onclick='editfunction("+result_split[2]+")'>Edit</span>\
-                      <span class='delete_state' onclick='deletefunction("+result_split[2]+")'>Delete</span>\
+                      <span class='delete_state' data-value="+result_split[2]+">Delete</span>\
                     </td></tr> ";
                  $('.state_table tr:last').after(html);
                }
@@ -423,6 +464,7 @@ $(document).ready(function () {
                  $('.popup_fade').hide();
                  $('.state_div, .close_btn').hide();
                  document.body.style.overflow = 'auto';
+                 alert(result_split[1]);
                }
                else{
                 $('.edit_states_error').text(result_split[1]).show();
@@ -430,8 +472,8 @@ $(document).ready(function () {
            }
        });
     });
-
-    $('.delete_state').click(function(){
+      
+    $(document).on('click','.delete_state',function(){
         $('#delete_id').val($(this).attr("data-value"));
         $('.popup_fade').show();
         $('.delete_div, .close_btn').show();
@@ -447,10 +489,12 @@ $(document).ready(function () {
            data: form_data,
            cache: false,
            success: function(html) {
+            alert(html);
               var result_split = html.split('#');
                if (result_split[0].indexOf("success") !== -1){
                  // $('.add_district_error').text(result_split[1]).show();
                  alert(result_split[1]);
+                  alert(result_split[2]);
                  html ="<tr class='align_center delete_color'>\
                  <input type='hidden' name='district_id' value="+result_split[2]+">\
                  <td class='t_district_id'>"+result_split[2]+"</td>\
@@ -559,6 +603,7 @@ $(document).ready(function () {
                  success: function(html) {
                  var result_split = html.split('#');
                  if (result_split[0].indexOf("success") !== -1){
+                  alert(result_split[1]);
                   $('.state_table').find(".t_states_id:contains("+$.trim(result_split[2])+")").parents('tr').remove();
                   $('.popup_fade').hide();
                   $('.state_div,.delete_div').hide();
@@ -576,6 +621,7 @@ $(document).ready(function () {
                  success: function(html) {
                  var result_split = html.split('#');
                  if (result_split[0].indexOf("success") !== -1){
+                  alert(result_split[1]);
                   $('.district_table').find(".t_district_id:contains("+$.trim(result_split[2])+")").parents('tr').remove();
                   $('.popup_fade').hide();
                   $('.state_div,.delete_div').hide();
@@ -868,9 +914,59 @@ $(document).ready(function () {
                        }
                    }
                });
-        });
+    });
 
     $('.paramter_menu').click(function(){
       $(".parameter-list").toggle();
+    });
+
+    // Jquery functions for Range Form added by kalai
+    var current_id = 1;
+    $('.add_range_points').click(function(){
+        var id = current_id+1;
+        nextrangeElement($('.clone_content:last'));
+        $('.clone_content:last').attr('id','range_counter'+id)
+    })
+    function nextrangeElement(element){
+        var newElement = element.clone();
+        var id = current_id+1;
+        current_id = id;
+        newElement.find('.range_label').remove();
+        newElement.find('.r_strt').removeAttr('name').attr('name', 'range_start'+id);
+        newElement.find('.r_end').removeAttr('name').attr('name', 'range_end'+id);
+        newElement.find('.r_point').removeAttr('name').attr('name', 'range_points'+id);
+        newElement.find('.r_strt').removeAttr('id').attr('id','strt'+id);
+        newElement.find('.r_end').removeAttr('id').attr('id','end1'+id);
+        newElement.find('.r_point').removeAttr('id').attr('id','point1'+id);
+        newElement.appendTo($(".range_holder"));
+    }
+    //Jquery and Ajax Functionality for CreateSchedule Form added by kalai
+    $('.add_range_act').click(function(){
+      var form_data = $('[name=range_form]').serialize();
+      alert(form_data);
+        $.ajax({
+           type: "POST",
+           url: "functions/range_function.php?adddata=true",
+           data: form_data,
+           cache: false,
+           success: function(html) {
+              var result_split = html.split('#');
+               if (result_split[0].indexOf("success") !==-1){
+                 alert(result_split[1]);
+                 html ="<tr class='align_center delete_color'>\
+                    <input type='hidden' name='range_id' value="+result_split[2]+">\
+                    <td class='t_range_id'>"+result_split[2]+"</td>\
+                    <td class='t_range_testname'>"+result_split[3]+"</td>\
+                    <td>\
+                      <span class='edit_district' onclick='editfunction("+result_split[2]+")'>Edit</span>\
+                      <span class='delete_district' data-value="+result_split[2]+">Delete</span>\
+                    </td></tr> ";
+                 $('.range_table tr:last').after(html);
+               }
+               else{
+                alert(result_split[1]);
+               }
+           }
+       });
     });
 });

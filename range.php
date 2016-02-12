@@ -1,4 +1,14 @@
-<?php require_once "header.php"; ?>
+<?php require_once "session.php";
+	  require_once "header.php"; 
+	  require_once 'functions/range_function.php'; 
+	  require_once "functions/test_battery_functions.php"; 
+	  require_once "functions/category_function.php"; 
+	  require_once "functions/test_functions.php"; 
+	  $rangeFunction = new rangeFunction();
+	  $testbatteryfunction =  new testbatteryfunction();
+	  $categoryfunction = new categoryfunction();
+	  $testfunction = new testfunction();
+?>
 <div class="container">
 	<div class="container align_center align_height">
 		<span class="sports">RANGE</span>
@@ -7,106 +17,82 @@
 		<div class="col-xs-12 col-md-11">
 			<div class="col-md-4 hidden-xs"></div>
 			<div class="col-xs-12 col-md-7 align_margin">
-				<form>
+				<form name="range_form">
 					<div class="form-group">
 						  <label for="sel1">Select Test Battery Names</label>
-						  <select class="form-control adjust_width classic" id="sel1" name="test_battery">
+						  <select class="form-control adjust_width classic" id="sel1" name="range_testbattery">
 						  <option></option>
+						  <?php
+	                        $query = $testbatteryfunction->testbatterySelect();
+	                        while ($row = mysql_fetch_array($query)) {
+	                            ?>
+	                            <option value="<?php echo $row['testbattery_id']; ?>"><?php echo $row['testbattery_name']; ?></option>	                                            
+	                      <?php } ?>
 						  </select>
 					</div>
 					<div class="form-group">
 						  <label for="sel1">Category</label>
-						  <select class="form-control adjust_width classic" id="sel1" name="category">
+						  <select class="form-control adjust_width classic" id="sel1" name="range_category">
 						  <option></option>
+						  <?php
+						  $cat_data = $categoryfunction->categoryselectfunction();
+						  foreach( $cat_data as $eachrecord ) {
+						   ?>
+							<option value="<?php echo $eachrecord['categories_id']; ?>"><?php echo $eachrecord['categories_name']; ?></option>	
+							<?php } ?>
 						  </select>
 					</div>
 					<div class="form-group">
 						  <label for="sel1">Test Name</label>
-						  <select class="form-control adjust_width classic" id="sel1" name="test_name">
+						  <select class="form-control adjust_width classic" id="sel1" name="range_test">
 						  <option></option>
+						   <?php
+	                        $query = $testfunction->testSelect();
+	                        while ($row = mysql_fetch_array($query)) {
+	                            ?>
+	                            <option value="<?php echo $row['test_id']; ?>"><?php echo $row['test_name']; ?></option>	                                            
+	                      <?php } ?>
 						  </select>
 					</div>
-					<div class="form-group">
-					  <label for="range" class="fl">Ranges</label><br>
-					  <select class="form-control classic range_align fl" id="strt">
-					  	<option>Start</option>
-					    <option>Name1</option>
-					    <option>Name2</option>
-					    <option>Name3</option>						   
-					  </select>
-					  <select class="form-control classic range_align fl" id="end">
-					  	<option>End</option>
-					    <option>Name1</option>
-					    <option>Name2</option>
-					    <option>Name3</option>						   
-					  </select>
-					  <select class="form-control classic range_align fl" id="point">
-					  	<option>Points</option>
-					    <option>Name1</option>
-					    <option>Name2</option>
-					    <option>Name3</option>						   
-					  </select>
+					<div class="form-group range_holder">
+						<div class="clone_content" id="range_counter1">
+						  <label for="range" class="fl range_label">Ranges</label><br>
+						  <input type="text" class="form-control classic range_align fl r_strt" id="strt1" name="range_start1" placehoder="Start">				  	
+						  <input type="text" class="form-control classic range_align fl r_end" id="end1" name="range_end1" placehoder="end">						  	
+						  <input type="text" class="form-control classic range_align fl r_point" id="point1" name="range_points1" placehoder="points">				  	
+						</div>
 					</div>
-					<input type="submit" class="btn btn-primary align_right ranges_btn" value="Add Ranges"><i class="fa fa-plus plus_align"></i>
+					<input type="button" class="btn btn-primary align_right ranges_btn add_range_points" value="Add Ranges"><i class="fa fa-plus plus_align"></i>
+					<!-- <button type="button" class="btn btn-primary align_right ranges_btn add_range_points">Add Ranges</button><i class="fa fa-plus plus_align"></i> -->
 					<div class="col-md-9 schedule_btn">					
-						<input type="submit" class="btn btn-primary align_right clear" value="Submit">
+						<button type="button" class="btn btn-primary align_right clear add_range_act">Submit</button>	
 					</div>			
 				</form>
 			</div>			
 			<div class="container">           
-			  <table class="table state_table">
+			  <table class="table range_table">
 			    <thead>
 			      <tr class="row_color">
 			        <th class="align_center">SLNO</th>
 			        <th class="align_center">Test Name</th>
-			        <th class="align_center">Range1</th>
-			        <th class="align_center">Range2</th>
-			        <th class="align_center">Range3</th>
-			        <th class="align_center">Range4</th>
-			        <th class="align_center">Range5</th>
 			        <th class="align_center">Action</th>
 			      </tr>
 			    </thead>
 			    <tbody>
-			      <tr class="align_center delete_color">
-			        <td>01</td>
-			        <td>Long Jump</td>
-			        <td></td>
-			        <td></td>
-			        <td></td>
-			        <td></td>
-			        <td></td>
-			        <td>
-			        	<span class="edit_state">Edit</span>
-		        		<span class="delete_state">Delete</span>
-			        </td>
-			      </tr>
-			      <tr class="align_center delete_color">
-			        <td>02</td>
-			        <td>High Jump</td>
-			        <td></td>
-			        <td></td>
-			        <td></td>
-			        <td></td>
-			        <td></td>
-			        <td>
-			        	<span class="edit_state">Edit</span>
-		        		<span class="delete_state">Delete</span>
-			        </td>
-			      </tr>
-			      <tr class="align_center delete_color">
-			        <td>03</td>
-			        <td>Running</td>
-			        <td></td>
-			        <td></td>
-			        <td></td>
-			        <td></td>
-			        <td></td>
-			        <td>
-			        	<span class="edit_state">Edit</span>
-		        		<span class="delete_state">Delete</span>
-			        </td>
-			      </tr>						   
+			     	<?php
+                    $query = $rangeFunction->rangeSelect();
+                    while ($row = mysql_fetch_array($query)) {
+                        ?>
+                        <tr class="align_center delete_color">
+                        <input type="hidden" name="range_id" value="<?php echo $row['range_id']; ?>">
+					        <td class="t_range_id"><?php echo $row['range_id']; ?></td>
+					        <td class="t_range_testname"><?php echo $row['test_name']; ?></td>
+					        <td>
+					        	<span class="edit_state" onclick="editfunction(<?php echo $row['range_id'] ?>)">Edit</span>
+					        	<span class="delete_state" data-value="<?php echo $row['range_id'] ?>">Delete</span>
+					        </td> 				    
+				        </tr>                         
+                    <?php } ?>	       				   
 			    </tbody>
 			  </table>
 			</div>			
@@ -132,51 +118,37 @@
           		<div class="edit_title">
                 	<span class="del_txt">EDIT</span>
               	</div><!--edit_title-->
-          			<div class="container state-content col-md-12">		
+          			<div class="container state-content range_popup_scroll col-md-12">		
 	          			<div class="col-xs-12 col-md-12 align_margin">
-				<form>
+				<form name="edit_range_form">
 					<div class="form-group">
 						  <label for="sel1">Select Test Battery Names</label>
-						  <select class="form-control adjust_width classic" id="sel1" name="test_battery">
+						  <select class="form-control adjust_width classic" id="sel1" name="edit_range_testbattery">
 						  <option></option>
 						  </select>
 					</div>
 					<div class="form-group">
 						  <label for="sel1">Category</label>
-						  <select class="form-control adjust_width classic" id="sel1" name="category">
+						  <select class="form-control adjust_width classic" id="sel1" name="edit_range_category">
 						  <option></option>
 						  </select>
 					</div>
 					<div class="form-group">
 						  <label for="sel1">Test Name</label>
-						  <select class="form-control adjust_width classic" id="sel1" name="test_name">
+						  <select class="form-control adjust_width classic" id="sel1" name="edit_range_test">
 						  <option></option>
 						  </select>
 					</div>
-					<div class="form-group">
-					  <label for="range" class="fl">Ranges</label><br>
-					  <select class="form-control classic range_align_popup fl" id="strt">
-					  	<option>Start</option>
-					    <option>Name1</option>
-					    <option>Name2</option>
-					    <option>Name3</option>						   
-					  </select>
-					  <select class="form-control classic range_align_popup fl" id="end">
-					  	<option>End</option>
-					    <option>Name1</option>
-					    <option>Name2</option>
-					    <option>Name3</option>						   
-					  </select>
-					  <select class="form-control classic range_align_popup fl" id="point">
-					  	<option>Points</option>
-					    <option>Name1</option>
-					    <option>Name2</option>
-					    <option>Name3</option>						   
-					  </select>
-					</div>
-					
+					<div class="form-group range_holder">
+					   <div class="clone_content" id="range_counter1">
+					  	  <label for="range" class="fl">Ranges</label><br>
+					      <input type="text" class="form-control classic range_align_popup fl r_strt" id="strt1" name="range_start1" placehoder="Start">				  	
+					      <input type="text" class="form-control classic range_align_popup fl r_end" id="end1" name="range_end1" placehoder="end">						  	
+					      <input type="text" class="form-control classic range_align_popup fl r_point" id="point1" name="range_points1" placehoder="points">				  	
+					  </div>
+					</div>				
 					<div class="col-md-9 schedule_btn">					
-						<input type="submit" class="btn btn-primary align_right clear" value="Submit">
+						<input type="submit" class="btn btn-primary align_right clear edit_range_act" value="Submit">
 					</div>			
 				</form>
 			</div>		
