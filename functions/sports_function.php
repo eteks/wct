@@ -81,8 +81,7 @@ if(isset($_POST['sportd_update'])){
     }
 
 }
-if(isset($_GET['deletedata'])){
-
+if(isset($_POST['sports_del'])){
     $sport = new sportsfunction();
     $sport->sportsid = $_POST['del_id'];
     if($sport->sportsdeletefunction()){

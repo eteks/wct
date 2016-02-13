@@ -97,8 +97,8 @@
     .admin > label {
     color: hsl(0, 0%, 5%);
     font-size: 30px;
-    } 
-} 
+    }
+}
 .email_txt,.pwd_txt,.remember_txt {
     color: #414141;
     font-family: Montserrat;
@@ -1053,4 +1053,19 @@ input[type=radio]:checked + label:before {
 .range_popup_scroll {
     height: 360px;
     overflow-y: scroll;
+}
+.custom-combobox {
+  position: relative;
+  display: inline-block;
+}
+.custom-combobox-toggle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin-left: -1px;
+  padding: 0;
+}
+.custom-combobox-input {
+  margin: 0;
+  padding: 5px 10px;
 }

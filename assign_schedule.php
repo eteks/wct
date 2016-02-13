@@ -4,10 +4,13 @@ require_once "functions/category_function.php";
 require_once "functions/create_schedule_function.php";
 require_once "functions/assign_schedule_function.php";
 require_once "header.php";
+require_once "functions/athletes_functions.php";
+
 
 $category = new categoryfunction();
 $createschedule = new createscheduleFunction();
 $assignschedule = new assignschedulefunction();
+$athlete = new athletesFunction();
 ?>
 <div class="container">
 	<div class="container align_center align_height">
@@ -44,13 +47,20 @@ $assignschedule = new assignschedulefunction();
 					<div class="assign_content_holder">
 						<div class="assign_clone_content">
 							<div class="form-group">
-
-						      	<input type="text" class="form-control name_align fl athlete_name" id="name" placeholder="Name" name="athlete_name1" required>
-						      	<input type="text" class="form-control date_assign fl athlete_date" id="name" placeholder="Date" name="athlete_date1" required>
+								<select class="form-control name_align fl athlete_name" placeholder="Name" name="athlete_name1" id="combobox" required>
+									<?php
+										$data = $athlete->athleteSelect();
+										foreach( $data as $eachrecord ) {
+								 	?>
+										<option value="<?php echo $eachrecord ['athlete_id']; ?>"><?php echo $eachrecord ['athlete_name']; ?></option>
+									<?php } ?>
+								</select>
+						      	<!-- <input type="text" class="form-control name_align fl athlete_name" id="name" placeholder="Name" name="athlete_name1" required> -->
+						      	<input type="text" class="form-control date_assign fl athlete_date" id="dob" placeholder="Date" name="athlete_date1" required>
 						    </div>
 						    <div class="form-group">
-						      	<input type="text" class="form-control name_align fl athlete_mobile" id="name" placeholder="Mobile no" name="athlete_mobile1" required>
-						      	<input type="text" class="form-control date_assign fl athlete_bib" id="name" placeholder="BIB NO" name="athlete_bib1" required>
+						      	<input type="text" class="form-control name_align fl athlete_mobile" id="mobile" placeholder="Mobile no" name="athlete_mobile1" required>
+						      	<input type="text" class="form-control date_assign fl athlete_bib" id="bib" placeholder="BIB NO" name="athlete_bib1" required>
 						    </div>
 						</div>
 					</div>
@@ -144,4 +154,24 @@ $assignschedule = new assignschedulefunction();
 					</div><!--state-content-->
 			</div><!--range_div-->
 		</div><!--container-->
+		<script type="text/javascript">
+			$("#combobox").combobox({
+        		select: function (event, ui) {
+            		var ath_id = $(this).val();
+					$.ajax({
+			           type: "POST",
+			           url: "functions/athletes_functions.php?get_ath=true",
+			           data: {'ath_id':ath_id},
+			           cache: false,
+					   dataType:'json',
+			           success: function(html) {
+							//alert(html.athlete_name);
+							//alert($(this).html());
+							$('#combobox').parents('form').find('#dob').val(html.athlete_dob);
+							$('#combobox').parents('form').find('#mobile	').val(html.athlete_mobile);
+			           }
+			       });
+        		}
+    		});
+		</script>
 <?php require_once "footer.php" ?>

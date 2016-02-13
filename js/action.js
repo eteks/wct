@@ -444,7 +444,7 @@ $(document).ready(function () {
            success: function(html) {
                //alert(html);
                if(html=='error'){
-                 alert('Already sports name entred');
+                 alert('Sports already exist');
                }else{
                   location.reload();
                  //$('#sports_table tr:last').after(html);
@@ -611,6 +611,7 @@ $(document).ready(function () {
                data: form_data,
                cache: false,
                success: function(html) {
+                   alert('Category successfully deleted');
                    $('#category_table').find(".category_id:contains("+html+")").parents('tr').remove();
                    $('.popup_fade').hide();
                    $('.state_div,.delete_div').hide();
@@ -625,6 +626,7 @@ $(document).ready(function () {
                data: form_data,
                cache: false,
                success: function(html) {
+                   alert('Sportds successfully deleted');
                    $('#sports_table').find(".sports_id:contains("+html+")").parents('tr').remove();
                    $('.popup_fade').hide();
                    $('.state_div,.delete_div').hide();
@@ -641,7 +643,7 @@ $(document).ready(function () {
                  success: function(html) {
                  var result_split = html.split('#');
                  if (result_split[0].indexOf("success") !== -1){
-                  alert(result_split[1]);
+                  //alert(result_split[1]);
                   $('.state_table').find(".t_states_id:contains("+$.trim(result_split[2])+")").parents('tr').remove();
                   $('.popup_fade').hide();
                   $('.state_div,.delete_div').hide();
@@ -737,24 +739,6 @@ $(document).ready(function () {
                  }
              });
        }
-       else if (window.location.href.indexOf("sports.php") !== -1){
-           //alert('dsfsdfds');
-            var form_data = {'delete_id':del_id};
-            $.ajax({
-                 type: "POST",
-                 url: "functions/sports_functions.php?deletedata=true",
-                 data: form_data,
-                 cache: false,
-                 success: function(html) {
-                     alert(html);
-                  $('.popup_fade').hide();
-                  $('.state_div,.delete_div').hide();
-                  document.body.style.overflow = 'auto';
-                  location.reload();
-
-                 }
-             });
-       }
     });
 
     $('.no_btn').click(function(event) {
@@ -774,7 +758,7 @@ $(document).ready(function () {
            success: function(html) {
               // alert(html);
                if(html=='error'){
-                 alert('Already category available');
+                 alert('Category already exist');
                }else{
                   //alert(html);
                  //$('#category_table tr:last').after(html);
@@ -795,7 +779,7 @@ $(document).ready(function () {
            success: function(html) {
                //alert(html);
                if(html=='error'){
-                 alert('Already sports name entred');
+                 alert('This category is already used');
                }else{
                  var category_split = html.split('-');
                 $('#category_table').find(".category_id:contains("+category_split[1]+")").next('.category_name').html(category_split[0]);

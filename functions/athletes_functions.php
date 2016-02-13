@@ -1,7 +1,11 @@
 <?php
-
+if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest')
+{
     include ("../dbconnect.php");
     include ("../common.php");
+}
+// include ("../dbconnect.php");
+// include ("../common.php");
 
  	class athletesFunction {
  		public $athleteid;
@@ -18,9 +22,15 @@
 	    public $athletesportsname;
 
 		public function athleteSelect(){
+            $temp_arr = array();
 			$res = mysql_query("SELECT * FROM wc_athlete where athlete_status='1'")or die(mysql_error());
-			return $res;
-		}
+            $count=mysql_num_rows($res);
+            while($row = mysql_fetch_array($res)) {
+                $temp_arr[] =$row;
+            }
+            return $temp_arr;
+        }
+
 		public function athleteInsert(){
 			$res = mysql_query("insert into wc_athlete (athlete_name,athlete_dob,athlete_mobile,athlete_gender,athletestates_id,athletedistrict_id,athlete_address,athlete_status)values('".$this->athletename."','".$this->athletedob."','".$this->athletemobile."','".$this->athletegender."','".$this->athletestatesid."','".$this->athletedistrictid."','".$this->athleteaddress."','1')")or die(mysql_error());
 			if($res){ return true; }
@@ -138,5 +148,12 @@
 				echo "failure#Record Not Updated";
 			}
 		}
+        if(isset($_GET['get_ath'])){
+            $athlete_id = $_POST['ath_id'];
+            $sql = mysql_query("SELECT * FROM wc_athlete where athlete_status='1'and athlete_id='$athlete_id'")or die(mysql_error());
+            $res = mysql_fetch_assoc($sql);
+            print(json_encode($res));
+
+        }
 	  }
 ?>
