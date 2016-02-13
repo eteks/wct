@@ -27,7 +27,8 @@ $test = new testfunction();
 					</div>
 					<div class="form-group">
 						  <label for="sel1">Select Sport</label>
-						  <select class="form-control adjust_width classic" id="sel1" name="Sport" data-validation-error-msg="please Enter the name of the Test Battery" data-validation="required">
+						  <select class="form-control adjust_width classic" id="sel1" name="Sport" data-validation-error-msg="Please Select the sport" data-validation="required">
+							  <option value="">Sport</option>
 							  <?php
 					  		$data = $sports->sportsselectfunction();
 					  		foreach( $data as $eachrecord ) {
@@ -146,7 +147,7 @@ $test = new testfunction();
 					<div class="form-group">
 						  <label for="sel1">Select Sport</label>
 						  <select class="form-control adjust_width classic" id="sel1" name="Sport">
-						  <option></option>
+						  <option value=""></option>
 						  </select>
 					</div>
 					<div class="align_height">

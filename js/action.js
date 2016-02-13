@@ -295,15 +295,17 @@ $(document).ready(function () {
        });
    }); 
 
-    $('.sports_submit_act').click(function() {  
-        if($('form[name="sport_form"]').children().find('span').hasClass('form-error')){
-        alert('false');
-        // return false;
-        e.preventDefault();
+    $('#sports_form').submit(function(e) {      
+      e.preventDefault();
+      var res = true;
+      $('input[type="text"]',this).each(function() {
+        if($(this).val().trim() == "") {
+        res = false; 
         }
-      else{  
+      });    
+     if(res){
           var form_data = $('#sports_form').serialize();
-           $('form[name="sport_form"]').submit();
+           // $('form[name="sport_form"]').submit();
            // alert(form_data);
           $.ajax({
            type: "POST",
@@ -326,17 +328,19 @@ $(document).ready(function () {
     });
 
     // start (added by kalai)
-    // Jquery and ajax functionality for states
-    $('.add_states_act').click(function(e){
-      if($('form[name="states_form"]').children().find('span').hasClass('form-error')){
-        alert('false');
-        // return false;
-        e.preventDefault();
-      }
-      else{
-          var form_data = $('[name=states_form]').serialize();
-          alert('true'+form_data);
-          $('form[name="states_form"]').submit();
+    // Jquery and ajax functionality for states   
+
+   $('#state_form').submit(function(e){      
+      e.preventDefault();
+      var res = true;
+      $('input[type="text"]',this).each(function() {
+        if($(this).val().trim() == "") {     
+        res = false; 
+        }
+      });    
+      if(res){         
+          var form_data = $('[name=states_form]').serialize();         
+          // $('form[name="states_form"]').submit();
           $.ajax({
            type: "POST",
            url: "functions/states_function.php?adddata=true",
@@ -361,13 +365,20 @@ $(document).ready(function () {
                else{
                 $('.add_states_error').text(result_split[1]).show();
                    }
-
                }
-           });
-          }
+           })
+        }
     });
 
-    $('.edit_states_act').click(function(){
+    $('#edit_state_form').submit(function(e){
+        e.preventDefault();
+      var res = true;
+      $('input[type="text"]',this).each(function() {
+        if($(this).val().trim() == "") {     
+        res = false; 
+        }
+      });    
+      if(res){   
       var form_data = $('[name=edit_states_form]').serializeArray();
         $.ajax({
            type: "POST",
@@ -389,6 +400,7 @@ $(document).ready(function () {
                }
            }
        });
+      }
     });
     
     $(document).on('click','.delete_state',function(){
@@ -399,46 +411,55 @@ $(document).ready(function () {
     });
 
     // Jquery and ajax functionality for district
-    $('.add_district_act').click(function(){
-       if($('form[name="district_form"]').children().find('span').hasClass('form-error')){
-        alert('false');
-        // return false;
-        e.preventDefault();
+    $('#districts_form').submit(function(e){       
+      e.preventDefault();
+      var res = true;
+      $('input[type="text"]',this).each(function() {
+        if($(this).val().trim() == "") {
+          res = false; 
+        }
+      });    
+      if(res){       
+          var form_data = $('[name=district_form]').serialize();
+          $.ajax({
+               type: "POST",
+               url: "functions/district_function.php?adddata=true",
+               data: form_data,
+               cache: false,
+               success: function(html) {
+                alert(html);
+                  var result_split = html.split('#');
+                   if (result_split[0].indexOf("success") !== -1){
+                     // $('.add_district_error').text(result_split[1]).show();
+                     alert(result_split[1]);
+                      alert(result_split[2]);
+                     html ="<tr class='align_center delete_color'>\
+                     <input type='hidden' name='district_id' value="+result_split[2]+">\
+                     <td class='t_district_id'>"+result_split[2]+"</td>\
+                        <td class='t_district_name'>"+result_split[4]+"</td>\
+                        <td>\
+                          <span class='edit_state'>Edit</span>\
+                          <span class='delete_state' data-value="+result_split[2]+">Delete</span>\
+                        </td></tr> ";
+                     $('.district_table tr:last').after(html);
+                   }
+                   else{
+                    $('.add_district_error').text(result_split[1]).show();
+                   }
+               }
+           });
       }
-      else{
-           $('form[name="district_form"]').submit();
-      var form_data = $('[name=district_form]').serialize();
-      $.ajax({
-           type: "POST",
-           url: "functions/district_function.php?adddata=true",
-           data: form_data,
-           cache: false,
-           success: function(html) {
-            alert(html);
-              var result_split = html.split('#');
-               if (result_split[0].indexOf("success") !== -1){
-                 // $('.add_district_error').text(result_split[1]).show();
-                 alert(result_split[1]);
-                  alert(result_split[2]);
-                 html ="<tr class='align_center delete_color'>\
-                 <input type='hidden' name='district_id' value="+result_split[2]+">\
-                 <td class='t_district_id'>"+result_split[2]+"</td>\
-                    <td class='t_district_name'>"+result_split[4]+"</td>\
-                    <td>\
-                      <span class='edit_state'>Edit</span>\
-                      <span class='delete_state' data-value="+result_split[2]+">Delete</span>\
-                    </td></tr> ";
-                 $('.district_table tr:last').after(html);
-               }
-               else{
-                $('.add_district_error').text(result_split[1]).show();
-               }
-           }
-       });
-    }
     });
 
-    $('.edit_district_act').click(function(){
+    $('#edit_district_form').submit(function(e){
+        e.preventDefault();
+      var res = true;
+      $('input[type="text"], select',this).each(function() {
+        if($(this).val().trim() == "") {
+          res = false; 
+        }
+      });    
+      if(res){  
       var form_data = $('[name=edit_district_form]').serialize();
         $.ajax({
            type: "POST",
@@ -460,11 +481,20 @@ $(document).ready(function () {
                }
            }
        });
+      }
     });
 
     // end (added by kalai)
 
-    $('.sports_update_act').click(function() {
+    $('#sports_update_form').submit(function(e) {  
+      e.preventDefault();
+      var res = true;
+      $('input[type="text"]',this).each(function() {
+        if($(this).val().trim() == "") {
+          res = false; 
+        }
+      });    
+      if(res){  
         var form_data = $('#sports_update_form').serialize();
         $.ajax({
            type: "POST",
@@ -486,6 +516,7 @@ $(document).ready(function () {
 
            }
        });
+      }
     });
     $('.yes_btn').click(function() {
         var del_id =$('#delete_id').val();
@@ -614,37 +645,45 @@ $(document).ready(function () {
     });
 
     
-    $('.category_submit_act').click(function() {
-       if($('form[name="categories_form"]').children().find('span').hasClass('form-error')){
-              alert('false');
-              // return false;
-              e.preventDefault();
-              }
-            else{  
-              var form_data = $('#category_form').serialize();
-               $('form[name="categories_form"]').submit();
-              alert(form_data);
-              $.ajax({
-                 type: "POST",
-                 url: "functions/category_function.php",
-                 data: form_data,
-                 cache: false,
-                 success: function(html) {
-                    // alert(html);
-                     if(html=='error'){
-                       alert('Already category available');
-                     }else{
-                        //alert(html);
-                       //$('#category_table tr:last').after(html);
-                       location.reload();
-                     }
+    $('#category_form').submit(function(e) {
+      e.preventDefault();
+      var res = true;
+      $('input[type="text"]',this).each(function() {
+        if($(this).val().trim() == "") {
+          res = false; 
+        }
+      });    
+      if(res){          
+        var form_data = $('#category_form').serialize(); 
+          $.ajax({
+             type: "POST",
+             url: "functions/category_function.php",
+             data: form_data,
+             cache: false,
+             success: function(html) {
+                // alert(html);
+                 if(html=='error'){
+                   alert('Already category available');
+                 }else{
+                    //alert(html);
+                   //$('#category_table tr:last').after(html);
+                   location.reload();
                  }
-             });
-             }           
-        });
+             }
+         });
+      }           
+    });
 
 
-    $('.category_update_act').click(function() {
+    $('#category_update_form').submit(function(e) {
+      e.preventDefault();
+      var res = true;
+      $('input[type="text"]',this).each(function() {
+        if($(this).val().trim() == "") {
+          res = false; 
+        }
+      });    
+      if(res){   
         var form_data = $('#category_update_form').serialize();
        //alert(form_data);
         $.ajax({
@@ -667,6 +706,7 @@ $(document).ready(function () {
 
            }
        });
+      }
     });
 
     // $('.parameter_btn').click(function() {
@@ -719,39 +759,57 @@ $(document).ready(function () {
     // });
 
     //Jquery and Ajax Functionality for Athletes Form added by kalai
-    $('.add_athletes_act').click(function(){
-      var form_data = $('[name=athletes_form]').serialize();
-        $.ajax({
-           type: "POST",
-           url: "functions/athletes_functions.php?adddata=true",
-           data: form_data,
-           cache: false,
-           success: function(html) {
-            alert(html);
-              var result_split = html.split('#');
-               if (result_split[0].indexOf("success") > 1){
-                 alert(result_split[1]);
-                 html ="<tr class='align_center delete_color'>\
-                    <input type='hidden' name='athlete_id' value="+result_split[2]+">\
-                    <td class='t_athlete_id'>"+result_split[2]+"</td>\
-                    <td class='t_athlete_name'>"+result_split[3]+"</td>\
-                    <td class='t_athlete_gender'>"+result_split[4]+"</td>\
-                    <td class='t_athlete_dob'>"+result_split[5]+"</td>\
-                    <td class='t_athlete_address'>"+result_split[6]+"</td>\
-                    <td>\
-                      <span class='edit_district'>Edit</span>\
-                      <span class='delete_district' data-value="+result_split[2]+">Delete</span>\
-                    </td></tr> ";
-                 $('.athletes_table tr:last').after(html);
-               }
-               else{
-                alert(result_split[1]);
-               }
-           }
-       });
+    $('#athlete_form').submit(function(e){
+     e.preventDefault();
+      var res = true;     
+      $('input[type="text"]',this).each(function() {
+        if($(this).val().trim() == "") {
+          res = false;
+            
+        }
+      });    
+      if(res){         
+        var form_data = $('[name=athletes_form]').serialize();
+          $.ajax({
+             type: "POST",
+             url: "functions/athletes_functions.php?adddata=true",
+             data: form_data,
+             cache: false,
+             success: function(html) {
+              alert(html);
+                var result_split = html.split('#');
+                 if (result_split[0].indexOf("success") > 1){
+                   alert(result_split[1]);
+                   html ="<tr class='align_center delete_color'>\
+                      <input type='hidden' name='athlete_id' value="+result_split[2]+">\
+                      <td class='t_athlete_id'>"+result_split[2]+"</td>\
+                      <td class='t_athlete_name'>"+result_split[3]+"</td>\
+                      <td class='t_athlete_gender'>"+result_split[4]+"</td>\
+                      <td class='t_athlete_dob'>"+result_split[5]+"</td>\
+                      <td class='t_athlete_address'>"+result_split[6]+"</td>\
+                      <td>\
+                        <span class='edit_district'>Edit</span>\
+                        <span class='delete_district' data-value="+result_split[2]+">Delete</span>\
+                      </td></tr> ";
+                   $('.athletes_table tr:last').after(html);
+                 }
+                 else{
+                  alert(result_split[1]);
+                 }
+             }
+         });
+    }
     });
 
-    $('.edit_athletes_act').click(function(){
+    $('#edit_athletes_form').submit(function(e){
+      e.preventDefault();
+      var res = true;      
+      $('input[type="text"],select',this).each(function() {
+        if($(this).val().trim() == "") {
+          res = false;             
+        }
+      });    
+      if(res){   
           var form_data = $('[name=edit_athletes_form]').serialize();
             $.ajax({
                type: "POST",
@@ -773,63 +831,83 @@ $(document).ready(function () {
                    }
                }
            });
+      }
     });
 
     //Jquery and Ajax Functionality for CreateSchedule Form added by kalai
-    $('.add_createschedule_act').click(function(){
-      var form_data = $('[name=create_schedule_form]').serialize();
-        $.ajax({
-           type: "POST",
-           url: "functions/create_schedule_function.php?adddata=true",
-           data: form_data,
-           cache: false,
-           success: function(html) {
-              var result_split = html.split('#');
-               if (result_split[0].indexOf("success") !==-1){     
-                 html ="<tr class='align_center delete_color'>\
-                    <input type='hidden' name='createschedule_id' value="+result_split[2]+">\
-                    <td class='t_createschedule_id'>"+result_split[2]+"</td>\
-                    <td class='t_createschedule_name'>"+result_split[3]+"</td>\
-                    <td class='t_testbattery_name'>"+result_split[4]+"</td>\
-                    <td class='t_createschedule_date'>"+result_split[5]+"</td>\
-                    <td class='t_createschedule_time'>"+result_split[6]+"</td>\
-                    <td class='t_createschedule_venue'>"+result_split[7]+"</td>\
-                    <td>\
-                      <span class='edit_district' onclick='editfunction("+result_split[2]+")'>Edit</span>\
-                      <span class='delete_district' data-value="+result_split[2]+">Delete</span>\
-                    </td></tr> ";
-                 $('.createschedule_table tr:last').after(html);
-               }
-               else{
-                alert(result_split[1]);
-               }
-           }
-       });
+    $('#createschedule_form').submit(function(e){    
+      e.preventDefault();
+      var res = true;      
+      $('input[type="text"]',this).each(function() {
+        if($(this).val().trim() == "") {
+          res = false;             
+        }
+      });    
+      if(res){         
+        var form_data = $('[name=create_schedule_form]').serialize();
+          $.ajax({
+             type: "POST",
+             url: "functions/create_schedule_function.php?adddata=true",
+             data: form_data,
+             cache: false,
+             success: function(html) {
+                var result_split = html.split('#');
+                 if (result_split[0].indexOf("success") !==-1){     
+                   html ="<tr class='align_center delete_color'>\
+                      <input type='hidden' name='createschedule_id' value="+result_split[2]+">\
+                      <td class='t_createschedule_id'>"+result_split[2]+"</td>\
+                      <td class='t_createschedule_name'>"+result_split[3]+"</td>\
+                      <td class='t_testbattery_name'>"+result_split[4]+"</td>\
+                      <td class='t_createschedule_date'>"+result_split[5]+"</td>\
+                      <td class='t_createschedule_time'>"+result_split[6]+"</td>\
+                      <td class='t_createschedule_venue'>"+result_split[7]+"</td>\
+                      <td>\
+                        <span class='edit_district' onclick='editfunction("+result_split[2]+")'>Edit</span>\
+                        <span class='delete_district' data-value="+result_split[2]+">Delete</span>\
+                      </td></tr> ";
+                   $('.createschedule_table tr:last').after(html);
+                 }
+                 else{
+                  alert(result_split[1]);
+                 }
+             }
+         });
+      }
     });
 
-    $('.edit_createschedule_act').click(function(){
-              var form_data = $('[name=edit_createschedule_form]').serialize();
-              alert(form_data);
-                $.ajax({
-                   type: "POST",
-                   url: "functions/create_schedule_function.php?editdata=true",
-                   data: form_data,
-                   cache: false,
-                   success: function(html) {
-                       var result_split = html.split('#');
-                       if (result_split[0].indexOf("success") !== -1){
-                         $('.createschedule_table').find(".t_createschedule_id:contains("+result_split[2]+")").siblings('.t_createschedule_name').html(result_split[3])
-                         .siblings('.t_testbattery_name').html(result_split[4]).siblings('.t_createschedule_date').html(result_split[5]).siblings('.t_createschedule_time')
-                         .html(result_split[6]).siblings('.t_createschedule_venue').html(result_split[7]);
-                         $('.popup_fade').hide();
-                         $('.createschedule_div, .close_btn').hide();
-                         document.body.style.overflow = 'auto';
-                       }
-                       else{
-                        alert(result_split[1]);
-                       }
-                   }
-               });
+    $('#edit_create_schedule_form').submit(function(e){
+        e.preventDefault();
+        var res = true;      
+        $('input[type="text"],textarea,select',this).each(function() {
+          if($(this).val().trim() == "") {
+            res = false;             
+          }
+        });    
+        if(res){        
+            var form_data = $('[name=edit_createschedule_form]').serialize();
+            alert(form_data);
+              $.ajax({
+                 type: "POST",
+                 url: "functions/create_schedule_function.php?editdata=true",
+                 data: form_data,
+                 cache: false,
+                 success: function(html) {
+                     var result_split = html.split('#');
+                     if (result_split[0].indexOf("success") !== -1){
+                       $('.createschedule_table').find(".t_createschedule_id:contains("+result_split[2]+")").siblings('.t_createschedule_name').html(result_split[3])
+                       .siblings('.t_testbattery_name').html(result_split[4]).siblings('.t_createschedule_date').html(result_split[5]).siblings('.t_createschedule_time')
+                       .html(result_split[6]).siblings('.t_createschedule_venue').html(result_split[7]);
+                       $('.popup_fade').hide();
+                       $('.createschedule_div, .close_btn').hide();
+                       document.body.style.overflow = 'auto';
+                     }
+                     else{
+                      alert(result_split[1]);
+                     }
+                 }
+             });
+        }
+
         });
 
     $('.paramter_menu').click(function(){

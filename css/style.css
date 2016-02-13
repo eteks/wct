@@ -1054,18 +1054,22 @@ input[type=radio]:checked + label:before {
 .category_text{
     display: none;
 }
-.error{
+/*.error{
     color: red !important;
     display: block;
     float: right;
     font-family: Helvetica;
     font-size: 14px;
     font-weight: normal;
-}
+}*/
 
 .help-block, .form-error{
     color: red !important;
     float: right;
     font-size: 14px;
+}
+.help-block{   
+    margin-bottom: 0 !important;
+    margin-top: 0 !important;
 }
 /* end */

@@ -14,9 +14,10 @@
 						<div class="align_margin">					
 							<label>Enter the State</label><br>
 							<input type="text" class="statesname" name="states_name" data-validation-error-msg="Please Enter the State" data-validation="required">
-							<!-- <span class="add_states_error"></span> -->
+							<span class="add_states_error"></span>
 						</div>	
-						<button type="button" class="btn btn-primary align_right clear add_states_act" name="states">Submit</button>																							
+						<!-- <button type="button" class="btn btn-primary align_right clear add_states_act" name="states">Submit</button>																							 -->
+						<input type="submit" class="btn btn-primary align_right clear add_states_act" name="states" value="Submit">
 					</form>
 				</div>
 				<div class="container">           
@@ -75,14 +76,16 @@
                 	<span class="del_txt">EDIT</span>
               	</div><!--edit_title-->
           			<div class="container state-content col-md-12">		
-	          			<form name="edit_states_form">
+	          			<form name="edit_states_form" id="edit_state_form">
 							<div class="align_margin">					
 								<label>Enter the State</label><br>
 								<input type="hidden" class="statesid" name="edit_states_id">
-								<input type="text" class="edit_states_name" name="edit_states_name" required>
+								<input type="text" class="edit_states_name" name="edit_states_name" data-validation-error-msg="Please Enter the State" data-validation="required">
 								<span class="edit_states_error"></span>
 							</div>		
-							<button type="button" class="btn btn-primary align_right clear edit_states_act" name="edit_states">Submit</button>														
+							<!-- <button type="button" class="btn btn-primary align_right clear edit_states_act" name="edit_states">Submit</button> -->
+							<input type="submit" class="btn btn-primary align_right clear edit_states_act" value="Submit">
+
 						</form>
 					</div><!--tate-content-->
 			</div><!--state_div-->

@@ -31,12 +31,16 @@
 					    <option value="2">2</option>
 					    <option value="3">3</option>
 					  </select>
-					  <select class="form-control classic dob_align fl" id="month" name="athlete_dobmonth" data-validation-error-msg="Please Select the Month" data-validation="required">
+			<!-- 		</div>
+					<div class="form-group"> -->
+						<select class="form-control classic dob_align fl" id="month" name="athlete_dobmonth" data-validation-error-msg="Please Select the Month" data-validation="required">
 					  	<option value="">Month</option>
 					    <option value="1">January</option>
 					    <option value="2">February</option>
 					    <option value="3">March</option>
 					  </select>
+		        <!-- 	</div>
+		        	<div class="form-group"> -->
 					  <select class="form-control classic dob_align fl" id="year" name="athlete_dobyear" data-validation-error-msg="Please Select the Year" data-validation="required">
 					  	<option value="">Years</option>
 					    <option value="1991">1991</option>
@@ -46,7 +50,7 @@
 					</div>
 					<div class="form-group">
       					<label>Mobile Number</label><br>
-      					<input type="text" class="adjust_width" name="athlete_mobile" data-validation-error-msg="please Enter the Mobile Number" data-validation="required">
+      					<input type="text" class="adjust_width" name="athlete_mobile" data-validation-error-msg="please Enter the Mobile Number" data-validation="number" data-validation="required">
      				</div>
 					<div class="form-group">
 						  <label for="sel1">Gender</label>
@@ -88,7 +92,7 @@
 
 					<div class="form-group">
 						<label>Taluka</label><br>
-						<input type="text" class="adjust_width" name="athlete_taluka" data-validation-error-msg="please Enter the Taluka" data-validation="required">
+						<input type="text" class="adjust_width" name="athlete_taluka" data-validation-error-msg="Please Enter the name of the Taluka" data-validation="required">
 					</div>
 
 					<div class="form-group">
@@ -104,8 +108,9 @@
 						  </select>
 					</div>
 					<div class="col-md-9 schedule_btn">
-						<button type="button" class="btn btn-primary align_right clear add_athletes_act">Submit</button>
-						<button type="button" class="btn btn-primary align_right clear">Clear</button>
+						<!-- <button type="button" class="btn btn-primary align_right clear add_athletes_act">Submit</button> -->
+						<input type="submit" class="btn btn-primary align_right clear add_athletes_act" value="Submit">
+						<input type="submit" class="btn btn-primary align_right clear" value="Clear">
 					</div>
 				</form>
 			</div>
@@ -165,28 +170,28 @@
               	</div><!--edit_title-->
           			<div class="container state-content athlete-popup-content col-md-12">
           			<div class="col-xs-12 col-md-12 align_margin">
-	          	<form name="edit_athletes_form">
+	          	<form name="edit_athletes_form" id="edit_athletes_form">
 	          		<input type="hidden" class="statesid" name="edit_athlete_id">
 					<div class="form-group">
 						<label>Athlete Name</label><br>
-						<input type="text" class="adjust_width" name="edit_athlete_name">
+						<input type="text" class="adjust_width" name="edit_athlete_name" data-validation-error-msg="Please Enter the name of the Athelete" data-validation="required">
 					</div>
 					<div class="form-group">
 					  <label for="date" class="fl">Date Of Birth</label><br>
-					  <select class="form-control classic dob_align1 fl" id="date" name="edit_athlete_dobday">
+					  <select class="form-control classic dob_align1 fl" id="date" name="edit_athlete_dobday" data-validation-error-msg="Please Select the Date" data-validation="required">
 					  	<option>Date</option>
 
 					    <option value="1">1</option>
 					    <option value="2">2</option>
 					    <option value="3">3</option>
 					  </select>
-					  <select class="form-control classic dob_align2 fl" id="month" name="edit_athlete_dobmonth">
+					  <select class="form-control classic dob_align2 fl" id="month" name="edit_athlete_dobmonth" data-validation-error-msg="Please Select the Month" data-validation="required">
 					  	<option>Month</option>
 					     <option value="1">January</option>
 					    <option value="2">February</option>
 					    <option value="3">March</option>
 					  </select>
-					  <select class="form-control classic dob_align3 fl" id="year" name="edit_athlete_dobyear">
+					  <select class="form-control classic dob_align3 fl" id="year" name="edit_athlete_dobyear" data-validation-error-msg="Please Select the Year" data-validation="required">
 					  	<option>Years</option>
 					    <option value="1991">1991</option>
 					    <option value="1992">1992</option>
@@ -195,11 +200,11 @@
 					</div>
 					<div class="form-group">
       					<label>Mobile Number</label><br>
-      					<input type="text" class="adjust_width" name="edit_athlete_mobile">
+      					<input type="text" class="adjust_width" name="edit_athlete_mobile" data-validation-error-msg="please Enter the Mobile Number" data-validation="number" data-validation="required">
      				</div>
 					<div class="form-group">
 						  <label for="sel1">Gender</label>
-						  <select class="form-control adjust_width classic" id="sel1" name="edit_athlete_gender">
+						  <select class="form-control adjust_width classic" id="sel1" name="edit_athlete_gender" data-validation-error-msg="Please Select the Gender" data-validation="required">
 						  <option></option>
 						  <option>Female</option>
 						  <option>Male</option>
@@ -207,30 +212,31 @@
 					</div>
 					<div class="form-group">
 						  <label for="sel1">State</label>
-						  <select class="form-control adjust_width classic" id="sel1" name="edit_athlete_state">
+						  <select class="form-control adjust_width classic" id="sel1" name="edit_athlete_state" data-validation-error-msg="Please Select the State" data-validation="required">
 						  <option></option>
 						  </select>
 					</div>
 					<div class="form-group">
 						  <label for="sel1">District</label>
-						  <select class="form-control adjust_width classic" id="sel1" name="edit_athlete_district">
+						  <select class="form-control adjust_width classic" id="sel1" name="edit_athlete_district" data-validation-error-msg="Please Select the District" data-validation="required">
 						  <option></option>
 						  </select>
 					</div>
 
 					<div class="align_height align_margin">
 						<label>Address</label><br>
-						<textarea class="area_width_athlete" name="edit_athlete_address"></textarea>
+						<textarea class="area_width_athlete" name="edit_athlete_address" data-validation-error-msg="Please Enter the Address" data-validation="required"></textarea>
 					</div>
 
 					<div class="form-group">
 						<label>Taluka</label><br>
-						<input type="text" class="adjust_width" name="edit_athlete_taluka">
+						<input type="text" class="adjust_width" name="edit_athlete_taluka" data-validation-error-msg="Please Enter the Taluka" data-validation="required">
 					</div>
 
 					<div class="form-group">
 						  <label for="sel1">Sports</label>
-						  <select class="form-control adjust_width classic" id="sel1" name="edit_athlete_sports">
+						  <select class="form-control adjust_width classic" id="sel1" name="edit_athlete_sports" data-validation-error-msg="Please Select the Sport" data-validation="required">
+						  <option value=""></option>
 						   <?php
 	                        $query = $sportsfunction->sportsSelect();
 	                        while ($row = mysql_fetch_array($query)) {
@@ -240,8 +246,10 @@
 						  </select>
 					</div>
 					<div class="col-md-10 schedule_btn">
-						<button type="button" class="btn btn-primary align_right clear edit_athletes_act">Submit</button>
-						<button type="button" class="btn btn-primary align_right clear">Clear</button>
+						<!-- <button type="button" class="btn btn-primary align_right clear edit_athletes_act">Submit</button>
+						<button type="button" class="btn btn-primary align_right clear">Clear</button> -->
+						<input type="submit" class="btn btn-primary align_right clear edit_athletes_act" value="Submit">
+						<input type="submit" class="btn btn-primary align_right clear" value="Clear">
 					</div>
 				</form>
 	          		</div>

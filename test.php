@@ -16,16 +16,16 @@ $obj = new testfunction();
 				<form id="test_form" action="functions/test_functions.php" method="post">
 					<div class="form-group">
 						<label>Enter Test Name</label><br>
-						<input type="text" class="adjust_width" name="test_name">
+						<input type="text" class="adjust_width" name="test_name" data-validation-error-msg="Please Enter the Test Name" data-validation="required">
 					</div>
 					<div class="parameter_holder">
 						<div class="clone_content " id="param_counter1">
 							<div class="form-group">
 								<label>Enter Parameter Name</label><br>
-								<input type="text" class="adjust_width parameter_name" name="parameter_name1">
+								<input type="text" class="adjust_width parameter_name" name="parameter_name1" data-validation-error-msg="Please Enter the Parameter Name" data-validation="required">
 							</div>
 							<div class="form-group">
-								<select class="form-control classic type_align fl parameter_type" id="type" name="type1">
+								<select class="form-control classic type_align fl parameter_type" id="type" name="type1" data-validation-error-msg="Please Select the Type of the Parameter" data-validation="required">
 									<option value="">
 										TYPE
 									</option>
@@ -43,9 +43,11 @@ $obj = new testfunction();
 										}
 									?>
 								</select>
-								<select class="form-control classic type_align fl parameter_unit" id="unit" name="unit1">
+								<select class="form-control classic type_align fl parameter_unit" id="unit" name="unit1" data-validation-error-msg="Please Select the Unit of the Parameter" data-validation="required">
+								<option value="">Unit</option>
 								</select>
-								<select class="form-control classic type_align fl parameter_format" id="format" name="format1">
+								<select class="form-control classic type_align fl parameter_format" id="format" name="format1" data-validation-error-msg="Please Select the Format of the Parameter" data-validation="required">
+									<option value="">Format</option>
 									<option>1</option>
 									<option>2</option>
 									<option>3</option>
