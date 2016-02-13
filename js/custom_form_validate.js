@@ -7,7 +7,7 @@ $(document).ready(function() {
 	  return false;
     },
     onElementValidate : function(valid, $el, $form, errorMess) {
-      console.log('Input ' +$el.attr('name')+ ' is ' + ( valid ? 'VALID':'NOT VALID') );
+      // console.log('Input ' +$el.attr('name')+ ' is ' + ( valid ? 'VALID':'NOT VALID') );
     }
 	});
 

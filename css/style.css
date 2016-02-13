@@ -97,8 +97,8 @@
     .admin > label {
     color: hsl(0, 0%, 5%);
     font-size: 30px;
-    } 
-} 
+    }
+}
 .email_txt,.pwd_txt,.remember_txt {
     color: #414141;
     font-family: Montserrat;
@@ -544,7 +544,7 @@ select {
     text-align: center;
     line-height: 3;
 }
-.states_list,.district_list{
+.states_list,.district_list,.edit_states_list{
     display: none;
 }
 .reg_check {
@@ -738,7 +738,7 @@ button, input, optgroup, select, textarea {
     position: relative;
     top: -158px;
     width: 335px;
-    z-index: 1;
+    z-index: 9999;
 }
 .ui-menu-item a:hover {
     text-decoration: none !important;
@@ -1077,5 +1077,20 @@ input[type=radio]:checked + label:before {
 .range_popup_scroll {
     height: 360px;
     overflow-y: scroll;
+}
+.custom-combobox {
+  position: relative;
+  display: inline-block;
+}
+.custom-combobox-toggle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin-left: -1px;
+  padding: 0;
+}
+.custom-combobox-input {
+  margin: 0;
+  padding: 5px 10px;
 }
 

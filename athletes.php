@@ -62,7 +62,7 @@
 					</div>
 					<div class="form-group">
 						  <label for="sel2">State</label>
-						  <select class="form-control adjust_width classic" id="sel2" name="athlete_state" data-validation-error-msg="Please Select the State" data-validation="required">
+						  <select class="form-control adjust_width classic athlete_state_act" id="sel2" name="athlete_state" data-validation-error-msg="Please Select the State" data-validation="required">
 						  <option value=""></option>
 						  <?php
 	                        $query = $statesFunction->statesSelect();
@@ -74,8 +74,8 @@
 					</div>
 					<div class="form-group">
 						  <label for="sel3">District</label>
-						  <select class="form-control adjust_width classic" id="sel3" name="athlete_district" data-validation-error-msg="Please Select the District" data-validation="required">
-						  <option value=""> District</option>
+						  <select class="form-control adjust_width classic athlete_district_act" id="sel3" name="athlete_district" data-validation-error-msg="Please Select the District" data-validation="required">
+						   <option value=""> District</option>
 						  <?php
 	                        $query = $districtFunction->districtSelect();
 	                        while ($row = mysql_fetch_array($query)) {
@@ -98,7 +98,7 @@
 					<div class="form-group">
 						  <label for="sel1">Sports</label>
 						  <select class="form-control adjust_width classic" id="sel1" name="athlete_sports" data-validation-error-msg="please Select the Sports" data-validation="required">
-						   <option value=""></option>                  
+						   <option value="">Sports</option>                  
 						   <?php
 	                        $query = $sportsfunction->sportsSelect();
 	                        while ($row = mysql_fetch_array($query)) {
@@ -212,7 +212,13 @@
 					<div class="form-group">
 						  <label for="sel1">State</label>
 						  <select class="form-control adjust_width classic" id="sel1" name="edit_athlete_state" data-validation-error-msg="Please Select the State" data-validation="required">
-						  <option value=""> State</option>
+						  <option value="">State</option>
+						   <?php
+	                        $query = $statesFunction->statesSelect();
+	                        while ($row = mysql_fetch_array($query)) {
+	                            ?>
+	                            <option value="<?php echo $row['states_id']; ?>"><?php echo $row['states_name']; ?></option>
+	                      <?php } ?>
 						  </select>
 					</div>
 					<div class="form-group">

@@ -89,5 +89,12 @@
 						</form>
 					</div><!--tate-content-->
 			</div><!--state_div-->
+				<div class="edit_states_list">
+					<ul>
+						<?php foreach ($STATES as $key => $value) { ?>
+						    <li><?php echo $value; ?></li>
+						<?php } ?>
+					</ul>
+				</div>
 		</div><!--container-->
 <?php require_once "footer.php" ?>
