@@ -155,6 +155,7 @@ function editfunction(data_id){
               $('[name=edit_schedule_venue]').val(obj[i].createschedule_venue);
             });
             $('.popup_fade').show();
+            createschedule_center_align();
             $('.createschedule_div, .close_btn').show();
             document.body.style.overflow = 'hidden';
            }
@@ -1052,6 +1053,7 @@ $(document).ready(function () {
       });    
       if(res){         
          var form_data = $('[name=create_schedule_form]').serialize();
+         alert(form_data);
         $.ajax({
            type: "POST",
            url: "functions/create_schedule_function.php?adddata=true",
