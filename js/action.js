@@ -236,7 +236,7 @@ function editfunction(data_id){
               });
             }
             $('.popup_fade').show();
-            $('.createschedule_div, .close_btn').show();
+            $('.range_div, .close_btn').show();
             document.body.style.overflow = 'hidden';
            }
         });
@@ -1053,34 +1053,33 @@ $(document).ready(function () {
       });    
       if(res){         
          var form_data = $('[name=create_schedule_form]').serialize();
-         alert(form_data);
-        $.ajax({
-           type: "POST",
-           url: "functions/create_schedule_function.php?adddata=true",
-           data: form_data,
-           cache: false,
-           success: function(html) {
-              var result_split = html.split('#');
-               if (result_split[0].indexOf("success") !==-1){
-                 html ="<tr class='align_center delete_color'>\
-                    <input type='hidden' name='createschedule_id' value="+result_split[2]+">\
-                    <td class='t_createschedule_id'>"+result_split[2]+"</td>\
-                    <td class='t_createschedule_name'>"+result_split[3]+"</td>\
-                    <td class='t_testbattery_name'>"+result_split[4]+"</td>\
-                    <td class='t_createschedule_date'>"+result_split[5]+"</td>\
-                    <td class='t_createschedule_time'>"+result_split[6]+"</td>\
-                    <td class='t_createschedule_venue'>"+result_split[7]+"</td>\
-                    <td>\
-                      <span class='edit_district' onclick='editfunction("+result_split[2]+")'>Edit</span>\
-                      <span class='delete_district' data-value="+result_split[2]+">Delete</span>\
-                    </td></tr> ";
-                 $('.createschedule_table tr:last').after(html);
-               }
-               else{
-                alert(result_split[1]);
-               }
-           }
-       });
+          $.ajax({
+             type: "POST",
+             url: "functions/create_schedule_function.php?adddata=true",
+             data: form_data,
+             cache: false,
+             success: function(html) {
+                var result_split = html.split('#');
+                 if (result_split[0].indexOf("success") !==-1){
+                   html ="<tr class='align_center delete_color'>\
+                      <input type='hidden' name='createschedule_id' value="+result_split[2]+">\
+                      <td class='t_createschedule_id'>"+result_split[2]+"</td>\
+                      <td class='t_createschedule_name'>"+result_split[3]+"</td>\
+                      <td class='t_testbattery_name'>"+result_split[4]+"</td>\
+                      <td class='t_createschedule_date'>"+result_split[5]+"</td>\
+                      <td class='t_createschedule_time'>"+result_split[6]+"</td>\
+                      <td class='t_createschedule_venue'>"+result_split[7]+"</td>\
+                      <td>\
+                        <span class='edit_district' onclick='editfunction("+result_split[2]+")'>Edit</span>\
+                        <span class='delete_district' data-value="+result_split[2]+">Delete</span>\
+                      </td></tr> ";
+                   $('.createschedule_table tr:last').after(html);
+                 }
+                 else{
+                  alert(result_split[1]);
+                 }
+             }
+         });
       }
     });
 
@@ -1195,15 +1194,13 @@ $(document).ready(function () {
         });    
         if(res){        
           var form_data = $('[name=range_form]').serialize();
-          alert(form_data);
-          $.ajax({
+           $.ajax({
              type: "POST",
              url: "functions/range_function.php?adddata=true",
              data: form_data,
              cache: false,
              success: function(html) {
                 var result_split = html.split('#');
-                alert(result_split);
                  if (result_split[0].indexOf("success") !==-1){
                    alert(result_split[1]);
                    html ="<tr class='align_center delete_color'>\
@@ -1220,7 +1217,7 @@ $(document).ready(function () {
                   alert(result_split[1]);
                  }
              }
-         });
+          });
         }
 
       });
@@ -1400,35 +1397,7 @@ $(document).ready(function () {
         newElement.appendTo($(".range_holder"));
     }
     //Jquery and Ajax Functionality for Range Form added by kalai
-    $('.add_range_act').click(function(){
-      var form_data = $('[name=range_form]').serialize();
-      alert(form_data);
-        $.ajax({
-           type: "POST",
-           url: "functions/range_function.php?adddata=true",
-           data: form_data,
-           cache: false,
-           success: function(html) {
-              var result_split = html.split('#');
-              alert(result_split);
-               if (result_split[0].indexOf("success") !==-1){
-                 alert(result_split[1]);
-                 html ="<tr class='align_center delete_color'>\
-                    <input type='hidden' name='range_id' value="+result_split[2]+">\
-                    <td class='t_range_id'>"+result_split[2]+"</td>\
-                    <td class='t_range_testname'>"+result_split[3]+"</td>\
-                    <td>\
-                      <span class='edit_district' onclick='editfunction("+result_split[2]+")'>Edit</span>\
-                      <span class='delete_district' data-value="+result_split[2]+">Delete</span>\
-                    </td></tr> ";
-                 $('.range_table tr:last').after(html);
-               }
-               else{
-                alert(result_split[1]);
-               }
-           }
-       });
-    });
+  
 
     $('.assignschedule_submit').click(function() {
         var form_data = $('#assignschedule_form').serialize();
