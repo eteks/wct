@@ -1,12 +1,5 @@
 <?php
-if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest')
-{
-    include ("../dbconnect.php");
-    include ("../common.php");
-}
-// include ("../dbconnect.php");
-// include ("../common.php");
-
+	include($_SERVER["DOCUMENT_ROOT"] . "/wct/common.php");
  	class athletesFunction {
  		public $athleteid;
  		public $athletename;
