@@ -1,15 +1,12 @@
 <?php
 
-// if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest')
-// {
-//     include ("../dbconnect.php");
-//     include ("../common.php");
-// }
-// else {
-//   include ("dbconnect.php");
-// }
-include ("../dbconnect.php");
-include ("../common.php");
+if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest')
+{
+    //include ("../dbconnect.php");
+    include ("../common.php");
+}
+// include ("../dbconnect.php");
+// include ("../common.php");
 class sportsfunction{
     public $sportsid;
     public $sportsname;
@@ -84,7 +81,8 @@ if(isset($_POST['sportd_update'])){
     }
 
 }
-if(isset($_POST['sports_del'])){
+if(isset($_GET['deletedata'])){
+
     $sport = new sportsfunction();
     $sport->sportsid = $_POST['del_id'];
     if($sport->sportsdeletefunction()){

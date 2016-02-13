@@ -1,52 +1,57 @@
 <?php
-	
-    include ("../dbconnect.php");
-    include ("../common.php");	
-
+    // include ("../dbconnect.php");
+    // include ("../common.php");
  	class createscheduleFunction {
  		public $createscheduleid;
  		public $createschedulename;
 	    public $createschedule_testbatteryid;
-	    public $createschedule_testbatteryname;	
+	    public $createschedule_testbatteryname;
 	    public $createscheduledate;
 	    public $createscheduletime;
-	    public $createschedulevenue;	 
-	
+	    public $createschedulevenue;
+
 		public function createscheduleSelect(){
 			$res = mysql_query("SELECT * from wc_createschedule cs,wc_testbattery tb where cs.createscheduletestbattery_id=tb.testbattery_id and cs.createschedule_status='1'")or die(mysql_error());
 			// $res = mysql_query("SELECT * FROM wc_createschedule where createschedule_status='1'")or die(mysql_error());
 			return $res;
 		}
-		public function createscheduleInsert(){		
+		public function createscheduleInsert(){
 			$res = mysql_query("insert into wc_createschedule (createschedule_name,createscheduletestbattery_id,createschedule_date,createschedule_time,createschedule_venue,createschedule_status)values('".$this->createschedulename."','".$this->createschedule_testbatteryid."','".$this->createscheduledate."','".$this->createscheduletime."','".$this->createschedulevenue."','1')")or die(mysql_error());
 			if($res){ return true; }
-			else{ return false; }	 
+			else{ return false; }
 		}
-		public function createscheduleUpdate(){		
+		public function createscheduleUpdate(){
             $res = mysql_query("update wc_createschedule set createschedule_name='".$this->createschedulename."',createscheduletestbattery_id='".$this->createschedule_testbatteryid."',
             			createschedule_date='".$this->createscheduledate."',createschedule_time='".$this->createscheduletime."',
-            			createschedule_venue='".$this->createschedulevenue."' where createschedule_id ='".$this->createscheduleid."'")or die(mysql_error());          
+            			createschedule_venue='".$this->createschedulevenue."' where createschedule_id ='".$this->createscheduleid."'")or die(mysql_error());
 			if($res){ return true; }
-			else{ return false; }		
+			else{ return false; }
 		}
-		public function createscheduleDelete(){		
-			$res = mysql_query("update wc_createschedule set createschedule_status='0' where createschedule_id ='".$this->createscheduleid."'")or die(mysql_error()); 
+		public function createscheduleDelete(){
+			$res = mysql_query("update wc_createschedule set createschedule_status='0' where createschedule_id ='".$this->createscheduleid."'")or die(mysql_error());
 			if($res){ return true; }
-			else{ return false; }		
+			else{ return false; }
+		}
+        public function createscheduleselectfunction(){
+            $temp_arr = array();
+            $res = mysql_query("SELECT * FROM wc_createschedule") or die(mysql_error());
+            while($row = mysql_fetch_array($res)) {
+                $temp_arr[] =$row;
+            }
+            return $temp_arr;
 		}
 		public function testbatterynameSelect(){
 			$res = mysql_query("SELECT testbattery_name FROM wc_testbattery WHERE testbattery_id='".$this->createschedule_testbatteryid."'")or die(mysql_error());
 			return $res;
 		}
 		// To select particular data by using id
-		public function createscheduleselectRecord(){			
+		public function createscheduleselectRecord(){
 			$res = mysql_query("SELECT * FROM wc_createschedule as cs INNER JOIN wc_testbattery as tb ON tb.testbattery_id=cs.createscheduletestbattery_id
 					WHERE cs.createschedule_id='".$this->createscheduleid."'")or die(mysql_error());
-			return $res;	
+			return $res;
 		}
 	}
 	if(isset($_POST)){
-		
 		//To insert data
 		if(isset($_GET['adddata'])){
 			// echo "post",print_r($_POST);
@@ -55,17 +60,17 @@
 			$createscheduleFunction->createschedule_testbatteryid = $_POST['schedule_testbattery'];
 			$createscheduleFunction->createscheduledate = $_POST['schedule_year'].'-'.$_POST['schedule_month'].'-'.$_POST['schedule_day'];
 			$createscheduleFunction->createscheduletime = $_POST['schedule_hour'].':'.$_POST['schedule_minute'].':'.$_POST['schedule_seconds'];
-			$createscheduleFunction->createschedulevenue = $_POST['schedule_venue'];	
+			$createscheduleFunction->createschedulevenue = $_POST['schedule_venue'];
 			$createscheduleinsert = $createscheduleFunction->createscheduleInsert();
-			$scheduledate = $createscheduleFunction->createscheduledate;	
-			$scheduletime = $createscheduleFunction->createscheduletime;		
+			$scheduledate = $createscheduleFunction->createscheduledate;
+			$scheduletime = $createscheduleFunction->createscheduletime;
 			if($createscheduleinsert){
 				$testbattery = mysql_fetch_array($createscheduleFunction->testbatterynameSelect());
 				echo "success#Schedule Created#".$createscheduleinsert.'#'.$_POST['schedule_name'].'#'.$testbattery.'#'.$scheduledate.'#'.$scheduletime.'#'.$_POST['schedule_venue'];
 			}else{
 				echo "failure#Schedule Not Created";
 			}
-		}	
+		}
 
 		// To delete stored data
 		if(isset($_GET['deletedata'])){
@@ -78,8 +83,8 @@
 			else{
 				echo "failure#Schedule not found";
 			}
-		}	
-		// For display edit data 
+		}
+		// For display edit data
 		if(isset($_GET['chooseedit'])){
 			$json = array();
 			$createscheduleFunction = new createscheduleFunction();
@@ -98,7 +103,7 @@
 	    		array_push( $json, $tmp );
 		    }
 		    echo json_encode($json);
-		}	
+		}
 		// To store edited data
 		if(isset($_GET['editdata'])){
 			$createscheduleFunction = new createscheduleFunction();
