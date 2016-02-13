@@ -34,7 +34,7 @@ $athlete = new athletesFunction();
 					</div>
 					<div class="form-group">
 						  <label for="sel1">Select Category Name</label>
-						  <select class="form-control adjust_width classic" id="sel1" name="category" data-validation-error-msg="Please Select Category of the Schedule" data-validation="required">>
+						  <select class="form-control adjust_width classic" id="sel1" name="category" data-validation-error-msg="Please Select Category of the Schedule" data-validation="required">
 							  <?php
 						 		$data = $category->categoryselectfunction();
 						 		foreach( $data as $eachrecord ) {
@@ -47,7 +47,8 @@ $athlete = new athletesFunction();
 					<div class="assign_content_holder">
 						<div class="assign_clone_content">
 							<div class="form-group">
-								<select class="form-control name_align fl athlete_name" placeholder="Name" name="athlete_name1" id="combobox" required>
+								<select class="form-control name_align fl athlete_name" placeholder="Name" name="athlete_name1" id="combobox" data-validation-error-msg="Please Select Athlete" data-validation="required">
+									<option value="">Athletes</option>
 									<?php
 										$data = $athlete->athleteSelect();
 										foreach( $data as $eachrecord ) {
@@ -56,7 +57,7 @@ $athlete = new athletesFunction();
 									<?php } ?>
 								</select>
 						      	<!-- <input type="text" class="form-control name_align fl athlete_name" id="name" placeholder="Name" name="athlete_name1" required> -->
-						      	<input type="text" class="form-control date_assign fl athlete_date" id="dob" placeholder="Date" name="athlete_date1" data-validation-error-msg="Please Enter the Date" data-validation="required">>
+						      	<input type="text" class="form-control date_assign fl athlete_date" id="dob" placeholder="Date" name="athlete_date1" data-validation-error-msg="Please Enter the Date" data-validation="required">
 						    </div>
 						    <div class="form-group">
 						      	<input type="text" class="form-control name_align fl athlete_mobile" id="mobile" placeholder="Mobile no" name="athlete_mobile1" data-validation-error-msg="Please Enter the Mobile Number" data-validation="required">

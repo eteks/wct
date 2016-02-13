@@ -1305,36 +1305,51 @@ $(document).ready(function () {
 
 //ASSIGN SCHEDULE
 
-    $('#assign_schedule_form').submit(function(e){
-      e.preventDefault();
-      var res = true;      
-      $('input[type="text"],textarea,select',this).each(function() {
-        if($(this).val().trim() == "") {
-          res = false;    
-          alert('assign_schedule_form alse');         
-        }
-      });    
-      if(res){        
-          // var form_data = $('[name=edit_createschedule_form]').serialize();
-          alert('assign_schedule_form true');       
+  $('#assignschedule_form').submit(function(e){
+    e.preventDefault();
+    var res = true;      
+    $('input[type="text"],textarea,select',this).each(function() {
+      if($(this).val().trim() == "") {
+        res = false;        
       }
+    });    
+    if(res){        
+      var form_data = $('#assignschedule_form').serialize();     
+      $.ajax({
+         type: "POST",
+         url: "functions/assign_schedule_function.php?add_assign_schdule=true",
+         data: form_data,
+         cache: false,
+         success: function(html) {
+             alert(html);
+          //    if(html=='error'){
+          //      alert('Already sports name entred');
+          //    }else{
+          //       location.reload();
+          //      //$('#sports_table tr:last').after(html);
+             //
+          //    }
 
-    });
-    $('#edit_assign_schedule_form').submit(function(e){
-      e.preventDefault();
-      var res = true;      
-      $('input[type="text"],textarea,select',this).each(function() {
-        if($(this).val().trim() == "") {
-          res = false;    
-          alert('assign_schedule_form alse');         
-        }
-      });    
-      if(res){        
-          // var form_data = $('[name=edit_createschedule_form]').serialize();
-          alert('assign_schedule_form true');       
+         }
+     });      
+    }
+  });
+
+  $('#edit_assign_schedule_form').submit(function(e){
+    e.preventDefault();
+    var res = true;      
+    $('input[type="text"],textarea,select',this).each(function() {
+      if($(this).val().trim() == "") {
+        res = false;    
+        alert('assign_schedule_form alse');         
       }
+    });    
+    if(res){        
+        // var form_data = $('[name=edit_createschedule_form]').serialize();
+        alert('assign_schedule_form true');       
+    }
 
-    });
+  });
 //result
  $('#result_form').submit(function(e){
       e.preventDefault();
@@ -1394,9 +1409,8 @@ $(document).ready(function () {
         newElement.find('.r_point').removeAttr('id').attr('id','point'+id);
         newElement.appendTo($(".range_holder"));
     } 
-     $('.assignschedule_submit').click(function() {
-        var form_data = $('#assignschedule_form').serialize();
-       // alert(form_data);
+});
+    var form_data = $('#assignschedule_form').serialize();     
         $.ajax({
            type: "POST",
            url: "functions/assign_schedule_function.php?add_assign_schdule=true",
@@ -1414,6 +1428,3 @@ $(document).ready(function () {
 
            }
        });
-    });
-
-});
