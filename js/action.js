@@ -202,12 +202,40 @@ function editfunction(data_id){
               $('[name=edit_range_category]').append("<option value='"+range_obj[i].rangecategory_id+ "'selected>"+range_obj[i].rangecategory_name+"</option>");
               $('[name=edit_range_test]').append("<option value='"+range_obj[i].rangetest_id+ "'selected>"+range_obj[i].rangetest_name+"</option>");
             });
-            $.each(rangeattr_obj, function(i){
+            //Append data to first range part without using for loop
+            data = rangeattr_obj[0];
+            element = $('.edit_clone_content');
+            element.find('[name=edit_rangeattr_id1]').val(data.rangeattribute_id);
+            element.find('[name=edit_range_id1]').val(data.range_id);
+            element.find('[name=edit_range_start1]').val(data.range_start);
+            element.find('[name=edit_range_end1]').val(data.range_end);
+            element.find('[name=edit_range_points1]').val(data.range_point);
 
-            });
-            // $('.popup_fade').show();
-            // $('.createschedule_div, .close_btn').show();
-            // document.body.style.overflow = 'hidden';
+            // $('.edit_range_holder').not('.edit_clone_content:first').remove();
+            // alert($('.edit_range_holder').html());
+
+            //Append data to other range part with using for loop
+            if(rangeattr_obj.length>=2){
+              id = 2;
+              $.each(rangeattr_obj, function(i) {
+                  if (i === 0) return;
+                  else{
+                    newelement = $('.edit_clone_content:last');
+                    var rangeattr_element = element.clone();
+                    rangeattr_element.attr('id','edit_range_counter'+id);
+                    rangeattr_element.find('.edit_rattr_id').attr("name","edit_rangeattr_id"+id).val(rangeattr_obj[i].rangeattribute_id);
+                    rangeattr_element.find('.edit_r_id').attr("name","edit_range_id"+id).val(rangeattr_obj[i].range_id);
+                    rangeattr_element.find('.edit_r_strt').attr("id","strt"+id).attr("name","edit_range_start"+id).val(rangeattr_obj[i].range_start);
+                    rangeattr_element.find('.edit_r_end').attr("id","end"+id).attr("name","edit_range_end"+id).val(rangeattr_obj[i].range_end);
+                    rangeattr_element.find('.edit_r_point').attr("id","point"+id).attr("name","edit_range_points"+id).val(rangeattr_obj[i].range_point);
+                    rangeattr_element.appendTo($(".edit_range_holder"));
+                    id=id+1;
+                  }
+              });
+            }
+            $('.popup_fade').show();
+            $('.createschedule_div, .close_btn').show();
+            document.body.style.overflow = 'hidden';
            }
         });
     }
@@ -374,13 +402,13 @@ $(document).ready(function () {
 			states_list.push($(this).text());
 	});
 	$('.statesname,.edit_states_name').focus(function (e) {
-    // alert("foucs");
 		$(this).autocomplete({
 			source: states_list,
 	 	});
 	});
 
   // Autocomplete results for district list
+  var district_list = [];
   $('.choose_state').on('change',function () {
     selected_state = $('.choose_state option:selected').text();
     form_data = {'states_name':selected_state};
@@ -390,10 +418,20 @@ $(document).ready(function () {
            data: form_data,
            cache: false,
            success: function(data) {
-            alert(data);
+            var obj = JSON.parse(data);
+              $.each(obj, function(i){
+                district_list.push(obj[i]);
+              });
            }
        });
    });
+
+
+  $('.districts').focus(function () {
+      $(this).autocomplete({
+      source: district_list,
+      });
+  });
 
     $('.sports_submit_act').click(function() {
         var form_data = $('#sports_form').serialize();
@@ -936,11 +974,11 @@ $(document).ready(function () {
         newElement.find('.r_end').removeAttr('name').attr('name', 'range_end'+id);
         newElement.find('.r_point').removeAttr('name').attr('name', 'range_points'+id);
         newElement.find('.r_strt').removeAttr('id').attr('id','strt'+id);
-        newElement.find('.r_end').removeAttr('id').attr('id','end1'+id);
-        newElement.find('.r_point').removeAttr('id').attr('id','point1'+id);
+        newElement.find('.r_end').removeAttr('id').attr('id','end'+id);
+        newElement.find('.r_point').removeAttr('id').attr('id','point'+id);
         newElement.appendTo($(".range_holder"));
     }
-    //Jquery and Ajax Functionality for CreateSchedule Form added by kalai
+    //Jquery and Ajax Functionality for Range Form added by kalai
     $('.add_range_act').click(function(){
       var form_data = $('[name=range_form]').serialize();
       alert(form_data);
@@ -951,6 +989,7 @@ $(document).ready(function () {
            cache: false,
            success: function(html) {
               var result_split = html.split('#');
+              alert(result_split);
                if (result_split[0].indexOf("success") !==-1){
                  alert(result_split[1]);
                  html ="<tr class='align_center delete_color'>\

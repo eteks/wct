@@ -139,12 +139,14 @@
 						  <option></option>
 						  </select>
 					</div>
-					<div class="form-group range_holder">
-					   <div class="clone_content" id="range_counter1">
+					<div class="form-group edit_range_holder">
+					   <div class="edit_clone_content" id="edit_range_counter1">
 					  	  <label for="range" class="fl">Ranges</label><br>
-					      <input type="text" class="form-control classic range_align_popup fl r_strt" id="strt1" name="range_start1" placehoder="Start">				  	
-					      <input type="text" class="form-control classic range_align_popup fl r_end" id="end1" name="range_end1" placehoder="end">						  	
-					      <input type="text" class="form-control classic range_align_popup fl r_point" id="point1" name="range_points1" placehoder="points">				  	
+					  	  <input type="hidden" class="edit_rattr_id" name="edit_rangeattr_id1" value="">
+					  	  <input type="hidden" class="edit_r_id" name="edit_range_id1" value="">
+					      <input type="text" class="form-control classic range_align_popup fl edit_r_strt" id="edit_strt1" name="edit_range_start1" placehoder="Start">				  	
+					      <input type="text" class="form-control classic range_align_popup fl edit_r_end" id="edit_end1" name="edit_range_end1" placehoder="end">						  	
+					      <input type="text" class="form-control classic range_align_popup fl edit_r_point" id="edit_point1" name="edit_range_points1" placehoder="points">				  	
 					  </div>
 					</div>				
 					<div class="col-md-9 schedule_btn">					

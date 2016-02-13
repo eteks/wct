@@ -22,7 +22,6 @@
 			return $res;
 		}
 		public function rangeInsert(){
-			echo $this->rangetestbatteryid.'#'.$this->rangecategoryid.'#'.$this->rangetestid;
 			$res = mysql_query("insert into wc_range (rangetestbattery_id,rangecategories_id,rangetest_id,range_status) values('".$this->rangetestbatteryid."','".$this->rangecategoryid."','".$this->rangetestid."','1')")or die(mysql_error());			
 			$lastinsertid = mysql_insert_id();
 			if($res){ return $lastinsertid; }
@@ -63,7 +62,6 @@
 	//To insert data
 	if(isset($_GET['adddata'])){
 		$counter = (count($_POST)-3)/3;
-		echo "counter", $counter;
 		$rangeFunction = new rangeFunction();
 		$rangeFunction->rangetestbatteryid = $_POST['range_testbattery']; 
 		$rangeFunction->rangecategoryid =$_POST['range_category']; 
@@ -79,7 +77,7 @@
                 $rangeFunction->rangepoint = $_POST["range_points".$i.""];
                 $rangeattrinsert = $rangeFunction->rangeattributeInsert();
             }
-            echo "success#Range Inserted#".'#'.$rangeinsert,'#'.$rangeFunction->rangetestname;
+            echo "success#Range Inserted#".$rangeinsert,'#'.$rangeFunction->rangetestname;
 		}
 		else{
 		 	echo "failure#Range Not Inserted";

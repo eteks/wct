@@ -152,12 +152,9 @@
 			$json = array();
 			foreach($DISTRICT as $key => $value) {
 				if($key == $search){
-					array_push($json,$value);
-					// print_r($json);
+					echo json_encode($value);
 				}	    	
 			}
-			// echo json_encode($json);
-			echo $json;
 		} 
 	  }
 ?>
