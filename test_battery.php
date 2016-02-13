@@ -139,14 +139,14 @@ $test = new testfunction();
               	</div><!--edit_title-->
           			<div class="container state-content col-md-12">
 	          			<div class="col-xs-12 col-md-12 align_margin">
-				<form>
+				<form id="edit_test_battery_form">
 					<div class="form-group">
 						<label>Enter the name of the Test Battery</label><br>
-						<input type="text" class="adjust_width" name="test_battery">
+						<input type="text" class="adjust_width" name="test_battery" data-validation-error-msg="please Enter the name of the Test Battery" data-validation="required">
 					</div>
 					<div class="form-group">
 						  <label for="sel1">Select Sport</label>
-						  <select class="form-control adjust_width classic" id="sel1" name="Sport">
+						  <select class="form-control adjust_width classic" id="sel1" name="Sport" data-validation-error-msg="please Select the Sport" data-validation="required">
 						  <option value=""></option>
 						  </select>
 					</div>
@@ -154,7 +154,7 @@ $test = new testfunction();
 						<label>Select Categories</label><br>
 						<div class="area_scroll_popup">
 							<div class="checkbox align_check">
-					      		<label class="remember_txt"><input type="checkbox">Under 14 Boys</label>
+					      		<label class="remember_txt"><input type="checkbox" data-validation-error-msg="Please Choose atleast one Category" data-validation="required">Under 14 Boys</label>
 					    	</div>
 					    	<div class="checkbox align_check">
 					      		<label class="remember_txt"><input type="checkbox">Under 14 Girls</label>

@@ -109,27 +109,27 @@
               	</div><!--edit_title-->
           			<div class="container state-content col-md-12">		
 	          			<div class="col-xs-12 col-md-12 align_margin">
-				<form>
+				<form id="edit_assign_schedule_form">
 					<div class="form-group">
 						  <label for="sel1">Select Schedule Name</label>
-						  <select class="form-control adjust_width classic" id="sel1" name="Schedule">
+						  <select class="form-control adjust_width classic" id="sel1" name="Schedule" data-validation-error-msg="Please Select Name of the Schedule" data-validation="required">
 						  <option></option>
 						  </select>
 					</div>
 					<div class="form-group">
 						  <label for="sel1">Select Category Name</label>
-						  <select class="form-control adjust_width classic" id="sel1" name="category">
+						  <select class="form-control adjust_width classic" id="sel1" name="category" data-validation-error-msg="Please Select Category of the Schedule" data-validation="required">
 						  <option></option>
 						  </select>
 					</div>
 					<div class="form-group">
 				      	<label for="athlete" class="email_txt">Add Athletes</label><br>
-				      	<input type="text" class="form-control schedule-name fl" id="name" placeholder="Name" name="name" required>
-				      	<input type="text" class="form-control bib_popup fl" id="name" placeholder="Date" name="date" required>
+				      	<input type="text" class="form-control schedule-name fl" id="name" placeholder="Name" name="name" data-validation-error-msg="Please Enter the name of the Athelete" data-validation="required">
+				      	<input type="text" class="form-control bib_popup fl" id="name" placeholder="Date" name="date" data-validation-error-msg="Please Enter the Date" data-validation="required">
 				    </div>
 				    <div class="form-group">
-				      	<input type="text" class="form-control schedule-name fl" id="name" placeholder="Mobile no" name="Mobile" required>
-				      	<input type="text" class="form-control bib_popup fl" id="name" placeholder="BIB NO" name="bib" required>
+				      	<input type="text" class="form-control schedule-name fl" id="name" placeholder="Mobile no" name="Mobile" data-validation-error-msg="Please Enter the Mobile number" data-validation="number" data-validation="required">
+				      	<input type="text" class="form-control bib_popup fl" id="name" placeholder="BIB NO" name="bib" data-validation-error-msg="Please Enter the BIBO NO" data-validation="required">
 				    </div>
 					<div class="col-md-9 schedule_btn">					
 						<input type="submit" class="btn btn-primary align_right clear" value="Submit">

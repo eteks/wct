@@ -79,10 +79,10 @@
                 	<span class="del_txt">EDIT</span>
               	</div><!--edit_title-->
           			<div class="container state-content col-md-12">		
-          			<form>
+          			<form id="edit_parameter_type">
 						<div class="form-group">
 							  <label for="sel1">Select Parameter Type</label>
-							  <select class="form-control adjust_width_parameter classic" id="sel1" name="parameter">
+							  <select class="form-control adjust_width_parameter classic" id="sel1" name="parameter" data-validation-error-msg="Please Select the Type of the Parameter" data-validation="required">
 							  <option></option>
 							  </select>
 						</div>

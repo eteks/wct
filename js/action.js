@@ -910,6 +910,240 @@ $(document).ready(function () {
 
         });
 
+
+//test 
+
+    $('#test_form').submit(function(e){
+        e.preventDefault();
+        var res = true;      
+        $('input[type="text"]',this).each(function() {
+          if($(this).val().trim() == "") {
+            res = false;    
+            // alert('test_form false');         
+          }
+        });    
+        if(res){         
+            // alert('test_form true');       
+        }
+
+        });
+
+    $('#edit_test_form').submit(function(e){
+        e.preventDefault();
+        var res = true;      
+        $('input[type="text"]',this).each(function() {
+          if($(this).val().trim() == "") {
+            res = false;    
+            // alert('edit_test_form false');         
+          }
+        });    
+        if(res){        
+            // var form_data = $('[name=edit_createschedule_form]').serialize();
+            // alert('edit_test_form true');       
+        }
+
+        });
+//test battery
+ $('#test_battery_form').submit(function(e){
+        e.preventDefault();
+        var res = true;      
+        $('input[type="text"],textarea,select',this).each(function() {
+          if($(this).val().trim() == "") {
+            res = false;    
+            // alert('edit_test_form false');         
+          }
+        });    
+        if(res){        
+            // var form_data = $('[name=edit_createschedule_form]').serialize();
+            // alert('edit_test_form true');       
+        }
+
+        });
+
+     $('#edit_test_battery_form').submit(function(e){
+        e.preventDefault();
+        var res = true;      
+        $('input[type="text"],textarea,select',this).each(function() {
+          if($(this).val().trim() == "") {
+            res = false;    
+            // alert('edit_test_form false');         
+          }
+        });    
+        if(res){        
+            // var form_data = $('[name=edit_createschedule_form]').serialize();
+            // alert('edit_test_form true');       
+        }
+
+      });
+
+//range     
+
+     $('#range_form').submit(function(e){
+        e.preventDefault();
+        var res = true;      
+        $('input[type="text"],textarea,select',this).each(function() {
+          if($(this).val().trim() == "") {
+            res = false;    
+            // alert('edit_test_form false');         
+          }
+        });    
+        if(res){        
+            // var form_data = $('[name=edit_createschedule_form]').serialize();
+            // alert('edit_test_form true');       
+        }
+
+      });
+
+    $('#edit_range_form ').submit(function(e){
+        e.preventDefault();
+        var res = true;      
+        $('input[type="text"],textarea,select',this).each(function() {
+          if($(this).val().trim() == "") {
+            res = false;    
+            // alert('edit_test_form false');         
+          }
+        });    
+        if(res){        
+            // var form_data = $('[name=edit_createschedule_form]').serialize();
+            // alert('edit_test_form true');       
+        }
+
+      });
+
+//parameter type
+
+    $('#parameter_type ').submit(function(e){
+          e.preventDefault();
+          var res = true;      
+          $('input[type="text"],textarea,select',this).each(function() {
+            if($(this).val().trim() == "") {
+              res = false;    
+              alert('parameter_type false');         
+            }
+          });    
+          if(res){        
+              // var form_data = $('[name=edit_createschedule_form]').serialize();
+              alert('parameter_type true');       
+          }
+
+        });
+    
+    $('#edit_parameter_type ').submit(function(e){
+          e.preventDefault();
+          var res = true;      
+          $('input[type="text"],textarea,select',this).each(function() {
+            if($(this).val().trim() == "") {
+              res = false;    
+              alert('parameter_type false');         
+            }
+          });    
+          if(res){        
+              // var form_data = $('[name=edit_createschedule_form]').serialize();
+              alert('parameter_type true');       
+          }
+
+        });
+
+//parameter unit
+    $('#parameter_unit').submit(function(e){
+              e.preventDefault();
+              var res = true;      
+              $('input[type="text"],textarea,select',this).each(function() {
+                if($(this).val().trim() == "") {
+                  res = false;    
+                  alert('parameter_unit false');         
+                }
+              });    
+              if(res){        
+                  // var form_data = $('[name=edit_createschedule_form]').serialize();
+                  alert('parameter_unit true');       
+              }
+
+            });
+        
+    $('#edit_parameter_unit').submit(function(e){
+          e.preventDefault();
+          var res = true;      
+          $('input[type="text"],textarea,select',this).each(function() {
+            if($(this).val().trim() == "") {
+              res = false;    
+              alert('edit_parameter_unitfalse');         
+            }
+          });    
+          if(res){        
+              // var form_data = $('[name=edit_createschedule_form]').serialize();
+              alert('edit_parameter_unittrue');       
+          }
+
+        });
+
+//ASSIGN SCHEDULE
+
+    $('#assign_schedule_form').submit(function(e){
+      e.preventDefault();
+      var res = true;      
+      $('input[type="text"],textarea,select',this).each(function() {
+        if($(this).val().trim() == "") {
+          res = false;    
+          alert('assign_schedule_form alse');         
+        }
+      });    
+      if(res){        
+          // var form_data = $('[name=edit_createschedule_form]').serialize();
+          alert('assign_schedule_form true');       
+      }
+
+    });
+    $('#edit_assign_schedule_form').submit(function(e){
+      e.preventDefault();
+      var res = true;      
+      $('input[type="text"],textarea,select',this).each(function() {
+        if($(this).val().trim() == "") {
+          res = false;    
+          alert('assign_schedule_form alse');         
+        }
+      });    
+      if(res){        
+          // var form_data = $('[name=edit_createschedule_form]').serialize();
+          alert('assign_schedule_form true');       
+      }
+
+    });
+//result
+ $('#result_form').submit(function(e){
+      e.preventDefault();
+      var res = true;      
+      $('input[type="text"],textarea,select',this).each(function() {
+        if($(this).val().trim() == "") {
+          res = false;    
+          alert('result_form alse');         
+        }
+      });    
+      if(res){        
+          // var form_data = $('[name=edit_createschedule_form]').serialize();
+          alert('result_form true');       
+      }
+
+    });
+
+ //report
+ $('#report_form').submit(function(e){
+      e.preventDefault();
+      var res = true;      
+      // $('input[type="checkbox"]',this).each(function() {
+        if($(this).val().trim() == "") {
+          res = false;    
+          alert('report_form alse');         
+        }
+      // });    
+      if(res){        
+          // var form_data = $('[name=edit_createschedule_form]').serialize();
+          alert('report_form true'+res);       
+      }
+
+    });
+
+
     $('.paramter_menu').click(function(){
       $(".parameter-list").toggle();
     });

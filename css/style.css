@@ -1065,8 +1065,8 @@ input[type=radio]:checked + label:before {
 
 .help-block, .form-error{
     color: red !important;
-    float: right;
-    font-size: 14px;
+  /*  float: right;*/
+    font-size: 11px;
 }
 .help-block{   
     margin-bottom: 0 !important;
