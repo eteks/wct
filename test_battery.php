@@ -1,6 +1,5 @@
 <?php
 require_once "session.php";
-
 require_once "functions/sports_function.php";
 require_once "functions/category_function.php";
 require_once "functions/test_functions.php";

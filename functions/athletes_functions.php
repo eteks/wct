@@ -1,8 +1,12 @@
 <?php
-	
+if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest')
+{
     include ("../dbconnect.php");
     include ("../common.php");
-	
+}
+// include ("../dbconnect.php");
+// include ("../common.php");
+
  	class athletesFunction {
  		public $athleteid;
  		public $athletename;
@@ -10,15 +14,16 @@
  		public $athletemobile;
 	    public $athletegender;
 	    public $athletestatesid;
-	    public $athletestatesname;	
+	    public $athletestatesname;
 	    public $athletedistrictid;
 	    public $athletedistrictname;
 	    public $athleteaddress;	
 	    public $athlete_taluka;	
 	    public $athletesportsid;	
-	    public $athletesportsname;		  
-	
+	    public $athletesportsname;	
+
 		public function athleteSelect(){
+            $temp_arr = array();
 			$res = mysql_query("SELECT * FROM wc_athlete where athlete_status='1'")or die(mysql_error());
 			return $res;
 		}
@@ -28,32 +33,32 @@
 			if($res){ return $lastinsertid; }
 			else{ return false; } 
 		}
-		public function athleteUpdate(){		
+		public function athleteUpdate(){
             $res = mysql_query("update wc_athlete set athlete_name='".$this->athletename."',athlete_dob='".$this->athletedob."',
             			athlete_mobile='".$this->athletemobile."',athlete_gender='".$this->athletegender."',
-            			athletestates_id='".$this->athletestatesid."',athletedistrict_id='".$this->athletedistrictid."', 
-            			athlete_address='".$this->athleteaddress."' where athlete_id ='".$this->athleteid."'")or die(mysql_error());          
+            			athletestates_id='".$this->athletestatesid."',athletedistrict_id='".$this->athletedistrictid."',
+            			athlete_address='".$this->athleteaddress."' where athlete_id ='".$this->athleteid."'")or die(mysql_error());
 			if($res){ return true; }
-			else{ return false; }		
+			else{ return false; }
 		}
-		public function athleteDelete(){		
-			$res = mysql_query("update wc_athlete set athlete_status='0' where athlete_id ='".$this->athleteid."'")or die(mysql_error()); 
+		public function athleteDelete(){
+			$res = mysql_query("update wc_athlete set athlete_status='0' where athlete_id ='".$this->athleteid."'")or die(mysql_error());
 			if($res){ return true; }
-			else{ return false; }		
+			else{ return false; }
 		}
 		// To select particular data by using id
 		public function athleteselectRecord(){
-			$res = mysql_query("SELECT * FROM wc_athlete as at INNER JOIN wc_states as st 
-					INNER JOIN wc_district as dt INNER JOIN wc_sports as sp ON 
-					st.states_id = at.athletestates_id and dt.district_id = at.athletedistrict_id 
-					and sp.sports_id = at.athletesports_id 
+			$res = mysql_query("SELECT * FROM wc_athlete as at INNER JOIN wc_states as st
+					INNER JOIN wc_district as dt INNER JOIN wc_sports as sp ON
+					st.states_id = at.athletestates_id and dt.district_id = at.athletedistrict_id
+					and sp.sports_id = at.athletesports_id
 					WHERE at.athlete_id='".$this->athleteid."'")or die(mysql_error());
-			return $res;	
+			return $res;
 		}
 
 	}
 	if(isset($_POST)){
-		
+
 		//To insert data
 		if(isset($_GET['adddata'])){
 			$athletesFunction = new athletesFunction();
@@ -74,7 +79,7 @@
 			}else{
 				echo "failure#Athletes Not Inserted";
 			}
-		}	
+		}
 
 		// To delete stored data
 		if(isset($_GET['deletedata'])){
@@ -87,9 +92,9 @@
 			else{
 				echo "failure#Record not found";
 			}
-		}	
+		}
 
-		// For display edit data 
+		// For display edit data
 		if(isset($_GET['chooseedit'])){
 			$json = array();
 			$athletesFunction = new athletesFunction();
@@ -115,7 +120,7 @@
 	    		array_push( $json, $tmp );
 		    }
 		    echo json_encode($json);
-		}	
+		}
 		// To store edited data
 		if(isset($_GET['editdata'])){
 			$athletesFunction = new athletesFunction();
@@ -131,7 +136,7 @@
 
 	    	// $edit_data = mysql_fetch_array($athletesFunction->selectData());
 	    	// $athletesFunction->$athletestatesname = $edit_data['states_name'];
-	    	
+
 			$athletesupdate = $athletesFunction->athleteUpdate();
 			if($athletesupdate){
 				// echo "success#Record Updated";
@@ -140,5 +145,12 @@
 				echo "failure#Record Not Updated";
 			}
 		}
+        if(isset($_GET['get_ath'])){
+            $athlete_id = $_POST['ath_id'];
+            $sql = mysql_query("SELECT * FROM wc_athlete where athlete_status='1'and athlete_id='$athlete_id'")or die(mysql_error());
+            $res = mysql_fetch_assoc($sql);
+            print(json_encode($res));
+
+        }
 	  }
 ?>

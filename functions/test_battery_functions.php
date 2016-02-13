@@ -46,7 +46,7 @@ class testbatteryfunction{
       while($row = mysql_fetch_array($res)) {
           $temp_arr[] =$row;
       }
-      echo $temp_arr;
+      //echo $temp_arr;
       return $temp_arr;
       }
 }

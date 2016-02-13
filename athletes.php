@@ -71,6 +71,12 @@
 					<div class="form-group">
 						  <label for="sel1">District</label>
 						  <select class="form-control adjust_width classic athlete_district_act" id="sel1" name="athlete_district">
+						  <?php
+	                        $query = $districtFunction->districtSelect();
+	                        while ($row = mysql_fetch_array($query)) {
+	                            ?>
+	                            <option value="<?php echo $row['district_id']; ?>"><?php echo $row['district_name']; ?></option>
+	                      <?php } ?>
 						  </select>
 					</div>
 
