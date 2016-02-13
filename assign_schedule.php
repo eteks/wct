@@ -46,8 +46,9 @@ $athlete = new athletesFunction();
 					<label for="athlete" class="email_txt">Add Athletes</label><br>
 					<div class="assign_content_holder">
 						<div class="assign_clone_content">
-							<div class="form-group col-md-10">
-								<select class="form-control name_align fl athlete_name" placeholder="Name" name="athlete_name1" id="combobox" required>
+							<div class="form-group">
+								<select class="form-control name_align fl athlete_name" placeholder="Name" name="athlete_name1" id="combobox" data-validation-error-msg="Please Select Athlete" data-validation="required">
+									<option value="">Athletes</option>
 									<?php
 										$data = $athlete->athleteSelect();
 										foreach( $data as $eachrecord ) {
