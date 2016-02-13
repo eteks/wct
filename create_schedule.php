@@ -160,7 +160,7 @@
 					<div class="form-group">
 					  <label for="battey_name">Select Test Battery Name</label>
 					  <select class="form-control classic adjust_width" id="battey_name" name="edit_schedule_testbattery" data-validation-error-msg="Please Select the name of the Test Battery Name" data-validation="required">
-					  	<option></option>
+					  	<option value=""> Test Battery Name</option>
 					    <option value="1">test1</option>
 					    <option value="2">test2</option>
 					    <option value="3">test3</option>						   
@@ -170,19 +170,19 @@
 					<div class="form-group">
 					  <label for="date" class="fl">Select date</label><br>
 					  <select class="form-control classic create-date1 fl" id="date" name="edit_schedule_day" data-validation-error-msg="Please Select the Date" data-validation="required">
-					  	<option>Date</option>
+					  	<option value="">Date</option>
 					    <option value="1">1</option>
 					    <option value="2">2</option>
 					    <option value="3">3</option>					   
 					  </select>
 					  <select class="form-control classic create-date2 fl" id="month" name="edit_schedule_month" data-validation-error-msg="Please Select the Month" data-validation="required">
-					  	<option>Month</option>
+					  	<option value="">Month</option>
 					    <option value="1">January</option>
 					    <option value="2">February</option>
 					    <option value="3">March</option>						   
 					  </select>
 					  <select class="form-control classic create-date3 fl" id="year" name="edit_schedule_year" data-validation-error-msg="Please Select the Year" data-validation="required">
-					  	<option>Years</option>
+					  	<option value="">Years</option>
 					   	<option value="01">01</option>
 					    <option value="02">02</option>
 					    <option value="03">03</option>							   
@@ -192,19 +192,19 @@
 					<div class="form-group">
 					  <label for="date" class="fl">Select Time</label><br>
 					  <select class="form-control classic create-time1 fl" id="hour" name="edit_schedule_hour" data-validation-error-msg="Please Select the Hour" data-validation="required">
-					  	<option>Hour</option>
+					  	<option value="">Hour</option>
 					    <option value="01">01</option>
 					    <option value="02">02</option>
 					    <option value="03">03</option>						   
 					  </select>
 					  <select class="form-control classic create-time2 fl" id="minute" name="edit_schedule_minute" data-validation-error-msg="Please Select the Minute" data-validation="required">
-					  	<option>Minute</option>
+					  	<option value="">Minute</option>
 					    <option value="01">01</option>
 					    <option value="02">02</option>
 					    <option value="03">02</option>				   
 					  </select>
 					  <select class="form-control classic create-time3 fl" id="seconds" name="edit_schedule_seconds" data-validation-error-msg="Please Select the Seconds" data-validation="required">
-					  	<option>Seconds</option>
+					  	<option value="">Seconds</option>
 					    <option value="01">01</option>
 					    <option value="02">02</option>
 					    <option value="03">03</option>					   

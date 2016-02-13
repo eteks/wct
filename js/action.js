@@ -1146,7 +1146,7 @@ $(document).ready(function () {
         });    
         if(res){        
           var form_data = $('[name=range_form]').serialize();
-          alert(form_data);
+          // alert(form_data);
           $.ajax({
              type: "POST",
              url: "functions/range_function.php?adddata=true",
@@ -1200,12 +1200,12 @@ $(document).ready(function () {
           $('input[type="text"],textarea,select',this).each(function() {
             if($(this).val().trim() == "") {
               res = false;    
-              alert('parameter_type false');         
+              // alert('parameter_type false');         
             }
           });    
           if(res){        
               // var form_data = $('[name=edit_createschedule_form]').serialize();
-              alert('parameter_type true');       
+              // alert('parameter_type true');       
           }
 
         });
@@ -1349,9 +1349,5 @@ $(document).ready(function () {
         newElement.find('.r_end').removeAttr('id').attr('id','end'+id);
         newElement.find('.r_point').removeAttr('id').attr('id','point'+id);
         newElement.appendTo($(".range_holder"));
-    }
-    //Jquery and Ajax Functionality for Range Form added by kalai
-    // $('.add_range_act').click(function(){
-    
-    // });
+    } 
 });
