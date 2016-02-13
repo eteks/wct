@@ -1410,21 +1410,4 @@ $(document).ready(function () {
         newElement.appendTo($(".range_holder"));
     } 
 });
-    var form_data = $('#assignschedule_form').serialize();     
-        $.ajax({
-           type: "POST",
-           url: "functions/assign_schedule_function.php?add_assign_schdule=true",
-           data: form_data,
-           cache: false,
-           success: function(html) {
-               alert(html);
-            //    if(html=='error'){
-            //      alert('Already sports name entred');
-            //    }else{
-            //       location.reload();
-            //      //$('#sports_table tr:last').after(html);
-               //
-            //    }
-
-           }
-       });
+  
