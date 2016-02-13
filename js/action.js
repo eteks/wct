@@ -151,8 +151,88 @@ function editfunction(data_id){
               $('[name=edit_schedule_hour]').append("<option value='"+time[0]+ "'selected>"+time[0]+"</option>");
               $('[name=edit_schedule_minute]').append("<option value='"+time[1]+ "'selected>"+time[1]+"</option>");
               $('[name=edit_schedule_seconds]').append("<option value='"+time[2]+ "'selected>"+time[2]+"</option>");
-              $('[name=edit_schedule_venue]').val(obj[i].createschedule_venue);            
+              $('[name=edit_schedule_venue]').val(obj[i].createschedule_venue);
             });
+            $('.popup_fade').show();
+            $('.createschedule_div, .close_btn').show();
+            document.body.style.overflow = 'hidden';
+           }
+        });
+    }
+    else if(window.location.href.indexOf("test_battery.php") !== -1){
+          $.ajax({
+           type: "POST",
+           url: "functions/test_battery_functions.php?chooseedit=true",
+           data: {data_id:data_id},
+           cache: false,
+           success: function(data) {
+            var obj = JSON.parse(data);
+            $.each(obj, function(i){
+              date = obj[i].createschedule_date.split('-');
+              time = obj[i].createschedule_time.split(':');
+              $('[name=edit_schedule_id]').val(obj[i].createschedule_id);
+              $('[name=edit_schedule_name]').val(obj[i].createschedule_name);
+              $('[name=edit_schedule_testbattery]').append("<option value='"+obj[i].createschedule_testbatteryid+ "'selected>"+obj[i].createschedule_testbatteryname+"</option>");
+              $('[name=edit_schedule_day]').append("<option value='"+date[2]+ "'selected>"+date[2]+"</option>");
+              $('[name=edit_schedule_month]').append("<option value='"+date[1]+ "'selected>"+date[1]+"</option>");
+              $('[name=edit_schedule_year]').append("<option value='"+date[0]+ "'selected>"+date[0]+"</option>");
+              $('[name=edit_schedule_hour]').append("<option value='"+time[0]+ "'selected>"+time[0]+"</option>");
+              $('[name=edit_schedule_minute]').append("<option value='"+time[1]+ "'selected>"+time[1]+"</option>");
+              $('[name=edit_schedule_seconds]').append("<option value='"+time[2]+ "'selected>"+time[2]+"</option>");
+              $('[name=edit_schedule_venue]').val(obj[i].createschedule_venue);
+            });
+            $('.popup_fade').show();
+            $('.createschedule_div, .close_btn').show();
+            document.body.style.overflow = 'hidden';
+           }
+        });
+    }
+    else if(window.location.href.indexOf("range.php") !== -1){
+          $.ajax({
+           type: "POST",
+           url: "functions/range_function.php?chooseedit=true",
+           data: {data_id:data_id},
+           cache: false,
+           success: function(data) {
+            data =  data.split('#####');
+            var range_obj = JSON.parse(data[0]);
+            var rangeattr_obj = JSON.parse(data[1]);
+            $.each(range_obj, function(i){
+              $('[name=edit_range_testbattery]').append("<option value='"+range_obj[i].rangetestbattery_id+ "'selected>"+range_obj[i].rangetestbattery_name+"</option>");
+              $('[name=edit_range_category]').append("<option value='"+range_obj[i].rangecategory_id+ "'selected>"+range_obj[i].rangecategory_name+"</option>");
+              $('[name=edit_range_test]').append("<option value='"+range_obj[i].rangetest_id+ "'selected>"+range_obj[i].rangetest_name+"</option>");
+            });
+            //Append data to first range part without using for loop
+            data = rangeattr_obj[0];
+            element = $('.edit_clone_content');
+            element.find('[name=edit_rangeattr_id1]').val(data.rangeattribute_id);
+            element.find('[name=edit_range_id1]').val(data.range_id);
+            element.find('[name=edit_range_start1]').val(data.range_start);
+            element.find('[name=edit_range_end1]').val(data.range_end);
+            element.find('[name=edit_range_points1]').val(data.range_point);
+
+            // $('.edit_range_holder').not('.edit_clone_content:first').remove();
+            // alert($('.edit_range_holder').html());
+
+            //Append data to other range part with using for loop
+            if(rangeattr_obj.length>=2){
+              id = 2;
+              $.each(rangeattr_obj, function(i) {
+                  if (i === 0) return;
+                  else{
+                    newelement = $('.edit_clone_content:last');
+                    var rangeattr_element = element.clone();
+                    rangeattr_element.attr('id','edit_range_counter'+id);
+                    rangeattr_element.find('.edit_rattr_id').attr("name","edit_rangeattr_id"+id).val(rangeattr_obj[i].rangeattribute_id);
+                    rangeattr_element.find('.edit_r_id').attr("name","edit_range_id"+id).val(rangeattr_obj[i].range_id);
+                    rangeattr_element.find('.edit_r_strt').attr("id","strt"+id).attr("name","edit_range_start"+id).val(rangeattr_obj[i].range_start);
+                    rangeattr_element.find('.edit_r_end').attr("id","end"+id).attr("name","edit_range_end"+id).val(rangeattr_obj[i].range_end);
+                    rangeattr_element.find('.edit_r_point').attr("id","point"+id).attr("name","edit_range_points"+id).val(rangeattr_obj[i].range_point);
+                    rangeattr_element.appendTo($(".edit_range_holder"));
+                    id=id+1;
+                  }
+              });
+            }
             $('.popup_fade').show();
             $('.createschedule_div, .close_btn').show();
             document.body.style.overflow = 'hidden';
@@ -187,6 +267,54 @@ $(document).ready(function () {
         $('.sports_update_id').val($(this).parents('tr').find('.sports_id').text());
         $('.category_update_name').val($(this).parents('tr').find('.category_name').text());
         $('.category_update_id').val($(this).parents('tr').find('.category_id').text());
+    });
+    $('.edit_test_sport').change(function() {
+        $('option:selected', this).attr('selected',true).siblings().removeAttr('selected');
+    });
+    $('.edit_test_battery').click(function(){
+        var test_battery_id = $(this).attr("data-value");
+        // alert(test_battery_id);
+        $("input[name='testbattery_update']").val(test_battery_id);
+        $.ajax({
+             type: "POST",
+             url: "functions/test_battery_functions.php?gettestbatdata=true",
+             data:{'id':test_battery_id},
+             cache: false,
+             success: function(data) {
+                 var obj = JSON.parse(data);
+                 $('.test_battery_name_update').val(obj.testbattery_name);
+                 $('.test_battery_id_update').val(obj.testbattery_id);
+                 $('.edit_test_sport option[value="'+obj.sports_id+'"]').attr('selected','selected');
+                 //$('.edit_test_sport').append($("<option value='"+obj.sports_id+"' selected='selected'>"+obj.sports_name+"</option>"));
+
+
+            }
+         });
+         $.ajax({
+              type: "POST",
+              url: "functions/test_battery_functions.php?getcatedata=true",
+              data:{'id':test_battery_id},
+              cache: false,
+              success: function(data) {
+                  var obj = JSON.parse(data);
+                  $.each(obj, function(i){
+                      $('input.cate_get:checkbox[value="'+obj[i].testbattery_category_id +'"]').attr('checked', 'checked');
+                  });
+
+             }
+          });
+          $.ajax({
+               type: "POST",
+               url: "functions/test_battery_functions.php?gettestdata=true",
+               data:{'id':test_battery_id},
+               cache: false,
+               success: function(data) {
+                   var obj = JSON.parse(data);
+                   $.each(obj, function(i){
+                       $('input.test_get:checkbox[value="'+obj[i].testbattery_test_id +'"]').attr('checked', 'checked');
+                   });
+              }
+           });
     });
     // $('.delete_state').click(function(){
     //     delete_center_align();
@@ -274,14 +402,14 @@ $(document).ready(function () {
 			states_list.push($(this).text());
 	});
 	$('.statesname,.edit_states_name').focus(function (e) {
-    // alert("foucs");
 		$(this).autocomplete({
 			source: states_list,
 	 	});
 	});
 
   // Autocomplete results for district list
-  $('.choose_state').on('change',function () { 
+  var district_list = [];
+  $('.choose_state').on('change',function () {
     selected_state = $('.choose_state option:selected').text();
     form_data = {'states_name':selected_state};
      $.ajax({
@@ -290,10 +418,20 @@ $(document).ready(function () {
            data: form_data,
            cache: false,
            success: function(data) {
-            alert(data);
+            var obj = JSON.parse(data);
+              $.each(obj, function(i){
+                district_list.push(obj[i]);
+              });
            }
        });
-   }); 
+   });
+
+
+  $('.districts').focus(function () {
+      $(this).autocomplete({
+      source: district_list,
+      });
+  });
 
     $('#sports_form').submit(function(e) {      
       e.preventDefault();
@@ -402,7 +540,7 @@ $(document).ready(function () {
        });
       }
     });
-    
+      
     $(document).on('click','.delete_state',function(){
         $('#delete_id').val($(this).attr("data-value"));
         $('.popup_fade').show();
@@ -506,7 +644,9 @@ $(document).ready(function () {
                if(html=='error'){
                  alert('Already sports name entred');
                }else{
+                alert(html);
                 var sports_split = html.split('-');
+                alert(sports_split);
                 $('#sports_table').find(".sports_id:contains("+sports_split[1]+")").next('.sports_name').html(sports_split[0]);
                 //alert('Sports name updated successfully');
                 $('.popup_fade').hide();
@@ -558,7 +698,7 @@ $(document).ready(function () {
                  success: function(html) {
                  var result_split = html.split('#');
                  if (result_split[0].indexOf("success") !== -1){
-                  alert(result_split[2]);
+                  alert(result_split[1]);
                   $('.state_table').find(".t_states_id:contains("+$.trim(result_split[2])+")").parents('tr').remove();
                   $('.popup_fade').hide();
                   $('.state_div,.delete_div').hide();
@@ -576,7 +716,7 @@ $(document).ready(function () {
                  success: function(html) {
                  var result_split = html.split('#');
                  if (result_split[0].indexOf("success") !== -1){
-                  alert(result_split[2]);
+                  alert(result_split[1]);
                   $('.district_table').find(".t_district_id:contains("+$.trim(result_split[2])+")").parents('tr').remove();
                   $('.popup_fade').hide();
                   $('.state_div,.delete_div').hide();
@@ -628,6 +768,24 @@ $(document).ready(function () {
                  data: form_data,
                  cache: false,
                  success: function(html) {
+                  $('.popup_fade').hide();
+                  $('.state_div,.delete_div').hide();
+                  document.body.style.overflow = 'auto';
+                  location.reload();
+
+                 }
+             });
+       }
+       else if (window.location.href.indexOf("test_battery.php") !== -1){
+           //alert('dsfsdfds');
+            var form_data = {'delete_id':del_id};
+            $.ajax({
+                 type: "POST",
+                 url: "functions/test_battery_functions.php?deletedata=true",
+                 data: form_data,
+                 cache: false,
+                 success: function(html) {
+                     //alert(html);
                   $('.popup_fade').hide();
                   $('.state_div,.delete_div').hide();
                   document.body.style.overflow = 'auto';
@@ -844,34 +1002,34 @@ $(document).ready(function () {
         }
       });    
       if(res){         
-        var form_data = $('[name=create_schedule_form]').serialize();
-          $.ajax({
-             type: "POST",
-             url: "functions/create_schedule_function.php?adddata=true",
-             data: form_data,
-             cache: false,
-             success: function(html) {
-                var result_split = html.split('#');
-                 if (result_split[0].indexOf("success") !==-1){     
-                   html ="<tr class='align_center delete_color'>\
-                      <input type='hidden' name='createschedule_id' value="+result_split[2]+">\
-                      <td class='t_createschedule_id'>"+result_split[2]+"</td>\
-                      <td class='t_createschedule_name'>"+result_split[3]+"</td>\
-                      <td class='t_testbattery_name'>"+result_split[4]+"</td>\
-                      <td class='t_createschedule_date'>"+result_split[5]+"</td>\
-                      <td class='t_createschedule_time'>"+result_split[6]+"</td>\
-                      <td class='t_createschedule_venue'>"+result_split[7]+"</td>\
-                      <td>\
-                        <span class='edit_district' onclick='editfunction("+result_split[2]+")'>Edit</span>\
-                        <span class='delete_district' data-value="+result_split[2]+">Delete</span>\
-                      </td></tr> ";
-                   $('.createschedule_table tr:last').after(html);
-                 }
-                 else{
-                  alert(result_split[1]);
-                 }
-             }
-         });
+         var form_data = $('[name=create_schedule_form]').serialize();
+        $.ajax({
+           type: "POST",
+           url: "functions/create_schedule_function.php?adddata=true",
+           data: form_data,
+           cache: false,
+           success: function(html) {
+              var result_split = html.split('#');
+               if (result_split[0].indexOf("success") !==-1){
+                 html ="<tr class='align_center delete_color'>\
+                    <input type='hidden' name='createschedule_id' value="+result_split[2]+">\
+                    <td class='t_createschedule_id'>"+result_split[2]+"</td>\
+                    <td class='t_createschedule_name'>"+result_split[3]+"</td>\
+                    <td class='t_testbattery_name'>"+result_split[4]+"</td>\
+                    <td class='t_createschedule_date'>"+result_split[5]+"</td>\
+                    <td class='t_createschedule_time'>"+result_split[6]+"</td>\
+                    <td class='t_createschedule_venue'>"+result_split[7]+"</td>\
+                    <td>\
+                      <span class='edit_district' onclick='editfunction("+result_split[2]+")'>Edit</span>\
+                      <span class='delete_district' data-value="+result_split[2]+">Delete</span>\
+                    </td></tr> ";
+                 $('.createschedule_table tr:last').after(html);
+               }
+               else{
+                alert(result_split[1]);
+               }
+           }
+       });
       }
     });
 
@@ -885,31 +1043,30 @@ $(document).ready(function () {
         });    
         if(res){        
             var form_data = $('[name=edit_createschedule_form]').serialize();
-            alert(form_data);
-              $.ajax({
-                 type: "POST",
-                 url: "functions/create_schedule_function.php?editdata=true",
-                 data: form_data,
-                 cache: false,
-                 success: function(html) {
-                     var result_split = html.split('#');
-                     if (result_split[0].indexOf("success") !== -1){
-                       $('.createschedule_table').find(".t_createschedule_id:contains("+result_split[2]+")").siblings('.t_createschedule_name').html(result_split[3])
-                       .siblings('.t_testbattery_name').html(result_split[4]).siblings('.t_createschedule_date').html(result_split[5]).siblings('.t_createschedule_time')
-                       .html(result_split[6]).siblings('.t_createschedule_venue').html(result_split[7]);
-                       $('.popup_fade').hide();
-                       $('.createschedule_div, .close_btn').hide();
-                       document.body.style.overflow = 'auto';
-                     }
-                     else{
-                      alert(result_split[1]);
-                     }
-                 }
-             });
+              alert(form_data);
+                $.ajax({
+                   type: "POST",
+                   url: "functions/create_schedule_function.php?editdata=true",
+                   data: form_data,
+                   cache: false,
+                   success: function(html) {
+                       var result_split = html.split('#');
+                       if (result_split[0].indexOf("success") !== -1){
+                         $('.createschedule_table').find(".t_createschedule_id:contains("+result_split[2]+")").siblings('.t_createschedule_name').html(result_split[3])
+                         .siblings('.t_testbattery_name').html(result_split[4]).siblings('.t_createschedule_date').html(result_split[5]).siblings('.t_createschedule_time')
+                         .html(result_split[6]).siblings('.t_createschedule_venue').html(result_split[7]);
+                         $('.popup_fade').hide();
+                         $('.createschedule_div, .close_btn').hide();
+                         document.body.style.overflow = 'auto';
+                       }
+                       else{
+                        alert(result_split[1]);
+                       }
+                   }
+               });
         }
 
         });
-
 
 //test 
 
@@ -960,7 +1117,7 @@ $(document).ready(function () {
 
         });
 
-     $('#edit_test_battery_form').submit(function(e){
+     $('#test_battery_update_form').submit(function(e){
         e.preventDefault();
         var res = true;      
         $('input[type="text"],textarea,select',this).each(function() {
@@ -978,7 +1135,7 @@ $(document).ready(function () {
 
 //range     
 
-     $('#range_form').submit(function(e){
+     $('#range_form_id').submit(function(e){
         e.preventDefault();
         var res = true;      
         $('input[type="text"],textarea,select',this).each(function() {
@@ -988,13 +1145,38 @@ $(document).ready(function () {
           }
         });    
         if(res){        
-            // var form_data = $('[name=edit_createschedule_form]').serialize();
-            // alert('edit_test_form true');       
+          var form_data = $('[name=range_form]').serialize();
+          alert(form_data);
+          $.ajax({
+             type: "POST",
+             url: "functions/range_function.php?adddata=true",
+             data: form_data,
+             cache: false,
+             success: function(html) {
+                var result_split = html.split('#');
+                alert(result_split);
+                 if (result_split[0].indexOf("success") !==-1){
+                   alert(result_split[1]);
+                   html ="<tr class='align_center delete_color'>\
+                      <input type='hidden' name='range_id' value="+result_split[2]+">\
+                      <td class='t_range_id'>"+result_split[2]+"</td>\
+                      <td class='t_range_testname'>"+result_split[3]+"</td>\
+                      <td>\
+                        <span class='edit_district' onclick='editfunction("+result_split[2]+")'>Edit</span>\
+                        <span class='delete_district' data-value="+result_split[2]+">Delete</span>\
+                      </td></tr> ";
+                   $('.range_table tr:last').after(html);
+                 }
+                 else{
+                  alert(result_split[1]);
+                 }
+             }
+         });
         }
 
       });
 
-    $('#edit_range_form ').submit(function(e){
+    $('#edit_range_form_id ').submit(function(e){
         e.preventDefault();
         var res = true;      
         $('input[type="text"],textarea,select',this).each(function() {
@@ -1147,4 +1329,29 @@ $(document).ready(function () {
     $('.paramter_menu').click(function(){
       $(".parameter-list").toggle();
     });
+
+    // Jquery functions for Range Form added by kalai
+    var current_id = 1;
+    $('.add_range_points').click(function(){
+        var id = current_id+1;
+        nextrangeElement($('.clone_content:last'));
+        $('.clone_content:last').attr('id','range_counter'+id)
+    })
+    function nextrangeElement(element){
+        var newElement = element.clone();
+        var id = current_id+1;
+        current_id = id;
+        newElement.find('.range_label').remove();
+        newElement.find('.r_strt').removeAttr('name').attr('name', 'range_start'+id);
+        newElement.find('.r_end').removeAttr('name').attr('name', 'range_end'+id);
+        newElement.find('.r_point').removeAttr('name').attr('name', 'range_points'+id);
+        newElement.find('.r_strt').removeAttr('id').attr('id','strt'+id);
+        newElement.find('.r_end').removeAttr('id').attr('id','end'+id);
+        newElement.find('.r_point').removeAttr('id').attr('id','point'+id);
+        newElement.appendTo($(".range_holder"));
+    }
+    //Jquery and Ajax Functionality for Range Form added by kalai
+    // $('.add_range_act').click(function(){
+    
+    // });
 });

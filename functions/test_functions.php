@@ -8,6 +8,11 @@ class testfunction{
     public $testunit;
     public $testformat;
 
+    public function testSelect(){
+      $res = mysql_query("SELECT * FROM wc_test where test_status='1'")or die(mysql_error());
+      return $res;
+    }
+
     public function testnameinsertfunction(){
         $check_query = "select * from wc_test where test_name = '".$this->testname."' ";
         if(!mysql_num_rows(mysql_query($check_query))){

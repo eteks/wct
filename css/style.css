@@ -1073,3 +1073,9 @@ input[type=radio]:checked + label:before {
     margin-top: 0 !important;
 }
 /* end */
+
+.range_popup_scroll {
+    height: 360px;
+    overflow-y: scroll;
+}
+
