@@ -862,7 +862,7 @@ button, input, optgroup, select, textarea {
     display: none;
     color: red;
     float: right;
-    font-size: 12px;
+    font-size: 14px;
 }
 .ui-helper-hidden-accessible{
     display: none;
@@ -1050,6 +1050,30 @@ input[type=radio]:checked + label:before {
 .area_width_athlete {
     width: 105%;
 }
+/*added for validation by ramya */
+.category_text{
+    display: none;
+}
+/*.error{
+    color: red !important;
+    display: block;
+    float: right;
+    font-family: Helvetica;
+    font-size: 14px;
+    font-weight: normal;
+}*/
+
+.help-block, .form-error{
+    color: red !important;
+  /*  float: right;*/
+    font-size: 11px;
+}
+.help-block{   
+    margin-bottom: 0 !important;
+    margin-top: 0 !important;
+}
+/* end */
+
 .range_popup_scroll {
     height: 360px;
     overflow-y: scroll;
@@ -1069,3 +1093,4 @@ input[type=radio]:checked + label:before {
   margin: 0;
   padding: 5px 10px;
 }
+

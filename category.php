@@ -12,13 +12,14 @@ $obj = new categoryfunction();
 			<div class="col-md-8">
 				<div class="col-md-6"></div>
 				<div class="col-md-6 align_margin">
-					<form id="category_form">
+					<form id="category_form" name="categories_form" role="form">
 						<div class="align_margin">
 							<label>Enter the Category Name</label><br>
-							<input type="text" class="sportsname" name="category_name">
+							<input type="text" class="sportsname" name="category_name" data-validation-error-msg="Please enter the category name" data-validation="required">							
 							<input type="hidden" name="category_add" value="1">
 						</div>
-						<button type="button" class="btn btn-primary align_right clear category_submit_act">Submit</button>
+						<!-- <button type="button" class="btn btn-primary align_right clear category_submit_act">Submit</button> -->
+						<input type="submit" class="btn btn-primary align_right clear category_submit_act" value="Submit">
 					</form>
 				</div>
 				<div class="container">
@@ -61,11 +62,12 @@ $obj = new categoryfunction();
 					<form name="category_update" id="category_update_form">
 						<div class="align_margin">
 							<label>Enter the Category Name</label><br>
-							<input type="text" class="sportsname category_update_name" name="category_name">
+							<input type="text" class="sportsname category_update_name" name="category_name" data-validation-error-msg="Please enter the category name" data-validation="required">
 							<input type="hidden" class="category_update_id" name="category_id">
 							<input type="hidden" name="category_update" value="1">
 						</div><!--align_margin-->
-						<button type="button" class="btn btn-primary align_right clear category_update_act">Submit</button>
+						<!-- <button type="button" class="btn btn-primary align_right clear category_update_act">Submit</button> -->
+						<input type="submit" class="btn btn-primary align_right clear category_update_act" value="Submit">
 					</form>
 				</div><!--tate-content-->
 			</div><!--state_div-->

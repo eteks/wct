@@ -17,10 +17,11 @@
 		<div class="col-xs-12 col-md-11">
 			<div class="col-md-4 hidden-xs"></div>
 			<div class="col-xs-12 col-md-7 align_margin">
-				<form name="range_form">
+				<form name="range_form" id="range_form_id">
 					<div class="form-group">
 						  <label for="sel1">Select Test Battery Names</label>
-						  <select class="form-control adjust_width classic" id="sel1" name="range_testbattery">
+						  <option value=""></option>
+						  <select class="form-control adjust_width classic" id="sel1" name="range_testbattery" data-validation-error-msg="Please Select the Name of Test Battery " data-validation="required">
 						  <option></option>
 						  <?php
 	                        $query = $testbatteryfunction->testbatterySelect();
@@ -32,8 +33,8 @@
 					</div>
 					<div class="form-group">
 						  <label for="sel1">Category</label>
-						  <select class="form-control adjust_width classic" id="sel1" name="range_category">
-						  <option></option>
+						  <select class="form-control adjust_width classic" id="sel1" name="range_category" data-validation-error-msg="Please Select the Category of Test Battery" data-validation="required">
+						    <option value=""></option>
 						  <?php
 						  $cat_data = $categoryfunction->categoryselectfunction();
 						  foreach( $cat_data as $eachrecord ) {
@@ -44,8 +45,8 @@
 					</div>
 					<div class="form-group">
 						  <label for="sel1">Test Name</label>
-						  <select class="form-control adjust_width classic" id="sel1" name="range_test">
-						  <option></option>
+						  <select class="form-control adjust_width classic" id="sel1" name="range_test" data-validation-error-msg="Please Select the name of the Test" data-validation="required">
+						  <option value=""></option>
 						   <?php
 	                        $query = $testfunction->testSelect();
 	                        while ($row = mysql_fetch_array($query)) {
@@ -57,15 +58,15 @@
 					<div class="form-group range_holder">
 						<div class="clone_content" id="range_counter1">
 						  <label for="range" class="fl range_label">Ranges</label><br>
-						  <input type="text" class="form-control classic range_align fl r_strt" id="strt1" name="range_start1" placehoder="Start">				  	
-						  <input type="text" class="form-control classic range_align fl r_end" id="end1" name="range_end1" placehoder="end">						  	
-						  <input type="text" class="form-control classic range_align fl r_point" id="point1" name="range_points1" placehoder="points">				  	
+						  <input type="text" class="form-control classic range_align fl r_strt" id="strt1" name="range_start1" placehoder="Start" data-validation-error-msg="Please Enter the start range of Test" data-validation="required">				  	
+						  <input type="text" class="form-control classic range_align fl r_end" id="end1" name="range_end1" placehoder="end" data-validation-error-msg="Please Enter the End range of Test" data-validation="required">						  	
+						  <input type="text" class="form-control classic range_align fl r_point" id="point1" name="range_points1" placehoder="points" data-validation-error-msg="Please Enter the Point" data-validation="required">				  	
 						</div>
 					</div>
 					<input type="button" class="btn btn-primary align_right ranges_btn add_range_points" value="Add Ranges"><i class="fa fa-plus plus_align"></i>
 					<!-- <button type="button" class="btn btn-primary align_right ranges_btn add_range_points">Add Ranges</button><i class="fa fa-plus plus_align"></i> -->
 					<div class="col-md-9 schedule_btn">					
-						<button type="button" class="btn btn-primary align_right clear add_range_act">Submit</button>	
+						<input type="submit" class="btn btn-primary align_right clear add_range_act" value="Submit">	
 					</div>			
 				</form>
 			</div>			
@@ -120,23 +121,23 @@
               	</div><!--edit_title-->
           			<div class="container state-content range_popup_scroll col-md-12">		
 	          			<div class="col-xs-12 col-md-12 align_margin">
-				<form name="edit_range_form">
+				<form name="edit_range_form" id="edit_range_form_id">
 					<div class="form-group">
-						  <label for="sel1">Select Test Battery Names</label>
-						  <select class="form-control adjust_width classic" id="sel1" name="edit_range_testbattery">
-						  <option></option>
-						  </select>
+					    <label for="sel1">Select Test Battery Names</label>
+					  	<select class="form-control adjust_width classic" id="sel1" name="edit_range_testbattery" data-validation-error-msg="Please Select the Name of Test Battery " data-validation="required">
+						  <option value=""></option>
+				  		</select>
 					</div>
 					<div class="form-group">
 						  <label for="sel1">Category</label>
-						  <select class="form-control adjust_width classic" id="sel1" name="edit_range_category">
-						  <option></option>
+						  <select class="form-control adjust_width classic" id="sel1" name="edit_range_category" data-validation-error-msg="Please Select the Category of Test Battery " data-validation="required">
+						  <option value=""></option>
 						  </select>
 					</div>
 					<div class="form-group">
 						  <label for="sel1">Test Name</label>
-						  <select class="form-control adjust_width classic" id="sel1" name="edit_range_test">
-						  <option></option>
+						  <select class="form-control adjust_width classic" id="sel1" name="edit_range_test" data-validation-error-msg="Please Select the Test Name" data-validation="required">
+						  <option value=""></option>
 						  </select>
 					</div>
 					<div class="form-group edit_range_holder">
@@ -144,9 +145,9 @@
 					  	  <label for="range" class="fl">Ranges</label><br>
 					  	  <input type="hidden" class="edit_rattr_id" name="edit_rangeattr_id1" value="">
 					  	  <input type="hidden" class="edit_r_id" name="edit_range_id1" value="">
-					      <input type="text" class="form-control classic range_align_popup fl edit_r_strt" id="edit_strt1" name="edit_range_start1" placehoder="Start">				  	
-					      <input type="text" class="form-control classic range_align_popup fl edit_r_end" id="edit_end1" name="edit_range_end1" placehoder="end">						  	
-					      <input type="text" class="form-control classic range_align_popup fl edit_r_point" id="edit_point1" name="edit_range_points1" placehoder="points">				  	
+					      <input type="text" class="form-control classic range_align_popup fl edit_r_strt" id="edit_strt1" name="edit_range_start1" placehoder="Start" data-validation-error-msg="Please Select the Start Range" data-validation="required">				  	
+					      <input type="text" class="form-control classic range_align_popup fl edit_r_end" id="edit_end1" name="edit_range_end1" placehoder="end" data-validation-error-msg="Please Select the End Range" data-validation="required">						  	
+					      <input type="text" class="form-control classic range_align_popup fl edit_r_point" id="edit_point1" name="edit_range_points1" placehoder="points" data-validation-error-msg="Please Select the Point" data-validation="required">				  	
 					  </div>
 					</div>				
 					<div class="col-md-9 schedule_btn">					

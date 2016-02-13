@@ -16,16 +16,16 @@ $obj = new testfunction();
 				<form id="test_form" action="functions/test_functions.php" method="post">
 					<div class="form-group">
 						<label>Enter Test Name</label><br>
-						<input type="text" class="adjust_width" name="test_name">
+						<input type="text" class="adjust_width" name="test_name" data-validation-error-msg="Please Enter the Test Name" data-validation="required">
 					</div>
 					<div class="parameter_holder">
 						<div class="clone_content" id="param_counter1">
 							<div class="form-group">
 								<label>Enter Parameter Name</label><br>
-								<input type="text" class="adjust_width parameter_name" name="parameter_name1">
+								<input type="text" class="adjust_width parameter_name" name="parameter_name1" data-validation-error-msg="Please Enter the Parameter Name" data-validation="required">
 							</div>
 							<div class="form-group">
-								<select class="form-control classic type_align fl parameter_type" id="type" name="type1">
+								<select class="form-control classic type_align fl parameter_type" id="type" name="type1" data-validation-error-msg="Please Select the Type of the Parameter" data-validation="required">
 									<option value="">
 										TYPE
 									</option>
@@ -43,9 +43,11 @@ $obj = new testfunction();
 										}
 									?>
 								</select>
-								<select class="form-control classic type_align fl parameter_unit" id="unit" name="unit1">
+								<select class="form-control classic type_align fl parameter_unit" id="unit" name="unit1" data-validation-error-msg="Please Select the Unit of the Parameter" data-validation="required">
+								<option value="">Unit</option>
 								</select>
-								<select class="form-control classic type_align fl parameter_format" id="format" name="format1">
+								<select class="form-control classic type_align fl parameter_format" id="format" name="format1" data-validation-error-msg="Please Select the Format of the Parameter" data-validation="required">
+									<option value="">Format</option>
 									<option>1</option>
 									<option>2</option>
 									<option>3</option>
@@ -111,30 +113,30 @@ $obj = new testfunction();
               	</div><!--edit_title-->
           			<div class="container state-content col-md-12">
 	          			<div class="col-xs-12 col-md-12 align_margin">
-				<form>
+				<form id="edit_test_form">
 					<div class="form-group">
 						<label>Enter Test Name</label><br>
-						<input type="text" class="adjust_width" name="test_name">
+						<input type="text" class="adjust_width" name="test_name" data-validation-error-msg="Please Enter the Test Name" data-validation="required">
 					</div>
 					<div class="parameter_holder">
 						<div class="form-group">
 							<label>Enter Parameter Name</label><br>
-							<input type="text" class="adjust_width" name="parameter_name1" >
+							<input type="text" class="adjust_width" name="parameter_name1" data-validation-error-msg="Please Enter the Parameter Name" data-validation="required">
 						</div>
 						<div class="form-group">
-							<select class="form-control classic type_align_popup fl" id="type1" name="type1">
+							<select class="form-control classic type_align_popup fl" id="type1" name="type1" data-validation-error-msg="Please Select the Type" data-validation="required">
 								<option>Type</option>
 								<option>Name1</option>
 								<option>Name2</option>
 								<option>Name3</option>
-							</select>
-							<select class="form-control classic type_align_popup fl" id="unit1" name="unit1">
+							</select> 
+							<select class="form-control classic type_align_popup fl" id="unit1" name="unit1" data-validation-error-msg="Please Select the Unit" data-validation="required">
 								<option>Unit</option>
 								<option>Name1</option>
 								<option>Name2</option>
 								<option>Name3</option>
 							</select>
-							<select class="form-control classic type_align_popup fl" id="format1" name="format1">
+							<select class="form-control classic type_align_popup fl" id="format1" name="format1" data-validation-error-msg="Please Select the Format" data-validation="required">
 								<option>Format</option>
 								<option>Name1</option>
 								<option>Name2</option>
