@@ -544,7 +544,7 @@ select {
     text-align: center;
     line-height: 3;
 }
-.states_list,.district_list{
+.states_list,.district_list,.edit_states_list{
     display: none;
 }
 .reg_check {
@@ -738,7 +738,7 @@ button, input, optgroup, select, textarea {
     position: relative;
     top: -158px;
     width: 335px;
-    z-index: 1;
+    z-index: 9999;
 }
 .ui-menu-item a:hover {
     text-decoration: none !important;

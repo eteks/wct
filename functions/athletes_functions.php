@@ -14,6 +14,7 @@
 	    public $athletedistrictid;
 	    public $athletedistrictname;
 	    public $athleteaddress;	
+	    public $athlete_taluka;	
 	    public $athletesportsid;	
 	    public $athletesportsname;		  
 	
@@ -22,9 +23,10 @@
 			return $res;
 		}
 		public function athleteInsert(){		
-			$res = mysql_query("insert into wc_athlete (athlete_name,athlete_dob,athlete_mobile,athlete_gender,athletestates_id,athletedistrict_id,athlete_address,athlete_status)values('".$this->athletename."','".$this->athletedob."','".$this->athletemobile."','".$this->athletegender."','".$this->athletestatesid."','".$this->athletedistrictid."','".$this->athleteaddress."','1')")or die(mysql_error());
-			if($res){ return true; }
-			else{ return false; }	 
+			$res = mysql_query("insert into wc_athlete (athlete_name,athlete_dob,athlete_mobile,athlete_gender,athletestates_id,athletedistrict_id,athlete_address,athlete_taluka,athletesports_id,athlete_status)values('".$this->athletename."','".$this->athletedob."','".$this->athletemobile."','".$this->athletegender."','".$this->athletestatesid."','".$this->athletedistrictid."','".$this->athleteaddress."','".$this->athletetaluka."','".$this->athletesportsid."','1')")or die(mysql_error());
+			$lastinsertid = mysql_insert_id();
+			if($res){ return $lastinsertid; }
+			else{ return false; } 
 		}
 		public function athleteUpdate(){		
             $res = mysql_query("update wc_athlete set athlete_name='".$this->athletename."',athlete_dob='".$this->athletedob."',
@@ -54,7 +56,6 @@
 		
 		//To insert data
 		if(isset($_GET['adddata'])){
-			echo "post",print_r($_POST);
 			$athletesFunction = new athletesFunction();
 			$athletesFunction->athletename = $_POST['athlete_name'];
 			$athletesFunction->athletedob = $_POST['athlete_dobyear'].'-'.$_POST['athlete_dobmonth'].'-'.$_POST['athlete_dobday'];
@@ -65,6 +66,7 @@
 			$athletesFunction->athletegender = $_POST['athlete_gender'];
 			$athletesFunction->athleteaddress = $_POST['athlete_address'];
 			$athletesFunction->athletesportsid = $_POST['athlete_sports'];	
+			$athletesFunction->athletetaluka = $_POST['athlete_taluka'];					
 			$athleteinsert = $athletesFunction->athleteInsert();
 			$atheletedob = $athletesFunction->athletedob;
 			if($athleteinsert){

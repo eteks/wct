@@ -19,8 +19,9 @@
 		}
 		public function createscheduleInsert(){		
 			$res = mysql_query("insert into wc_createschedule (createschedule_name,createscheduletestbattery_id,createschedule_date,createschedule_time,createschedule_venue,createschedule_status)values('".$this->createschedulename."','".$this->createschedule_testbatteryid."','".$this->createscheduledate."','".$this->createscheduletime."','".$this->createschedulevenue."','1')")or die(mysql_error());
-			if($res){ return true; }
-			else{ return false; }	 
+			$lastinsertid = mysql_insert_id();
+			if($res){ return $lastinsertid; }
+			else{ return false; } 	 
 		}
 		public function createscheduleUpdate(){		
             $res = mysql_query("update wc_createschedule set createschedule_name='".$this->createschedulename."',createscheduletestbattery_id='".$this->createschedule_testbatteryid."',

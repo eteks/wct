@@ -24,9 +24,13 @@
 			if($res){ return true; }
 			else{ return false; }		
 		}
-		public function deleteData(){		
-            // $res = mysql_query("delete from wc_states where states_id ='".$this->statesid."' ")or die(mysql_error());          
-			$res = mysql_query("update wc_states set states_status='0' where states_id ='".$this->statesid."'")or die(mysql_error()); 
+		public function deleteData(){	
+			// $res_district = mysql_query("SELECT district_id FROM wc_district WHERE districtstates_id = '".$this->statesid."'")or die(mysql_error());
+			// while ( $result = mysql_fetch_array( $res_district )){
+		 //    	$res_update = mysql_query("update wc_athlete set athlete_status = '0' where athletedistrict_id='".$result."'")or die(mysql_error());
+		 //    }
+			// $res_update = mysql_query("update wc_athlete set athlete_status = '0' where athletedistrict_id='".$res_district."'")or die(mysql_error());	       
+            $res = mysql_query("delete from wc_states where states_id ='".$this->statesid."' ")or die(mysql_error());          		
 			if($res){ return true; }
 			else{ return false; }		
 		}

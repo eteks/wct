@@ -32,8 +32,8 @@
 			else{ return false; }		
 		}
 		public function districtDelete(){		
-            // $res = mysql_query("delete from wc_states where states_id ='".$this->statesid."' ")or die(mysql_error());          
-			$res = mysql_query("update wc_district set district_status='0' where district_id ='".$this->districtid."'")or die(mysql_error()); 
+            $res = mysql_query("delete from wc_district where district_id ='".$this->districtid."' ")or die(mysql_error());          
+			// $res = mysql_query("update wc_district set district_status='0' where district_id ='".$this->districtid."'")or die(mysql_error()); 
 			if($res){ return true; }
 			else{ return false; }		
 		}
@@ -41,10 +41,8 @@
 				$qr = mysql_query("SELECT * FROM wc_district WHERE district_name = '".$this->districtname."'");
 				$row = mysql_num_rows($qr);
 				if($row > 0){
-					echo "row",$row;
 					return true;
 				} else {
-					echo "row",$row;
 					return false;
 				}			
 		}
@@ -55,6 +53,11 @@
 		// To select particular data by using id
 		public function dsitrictselectRecord(){
 			$res = mysql_query("SELECT * FROM wc_district as d INNER JOIN wc_states as s ON s.states_id = d.districtstates_id WHERE d.district_id='".$this->districtid."'")or die(mysql_error());
+			return $res;	
+		}
+		// To select set of record by matching state id
+		public function dsitrictstateselectRecord(){
+			$res = mysql_query("SELECT * FROM wc_district WHERE districtstates_id='".$this->statesid."'")or die(mysql_error());
 			return $res;	
 		}
 	}
@@ -155,6 +158,22 @@
 					echo json_encode($value);
 				}	    	
 			}
+		} 
+		// To load district for selected state
+		if(isset($_GET['loaddistrictfromdb'])){
+			$json =array();
+			$districtFunction = new districtFunction();
+			$districtFunction->statesname =$_POST['states_name'];
+			$districtFunction->statesid =$_POST['states_id'];
+			$select_data = $districtFunction->dsitrictstateselectRecord();
+			while ( $result = mysql_fetch_array( $select_data )){
+		    	$tmp = array(
+	           'district_id' => $result['district_id'],
+	           'district_name' => $result['district_name'],
+	           );
+	    		array_push( $json, $tmp );
+		    }
+		    echo json_encode($json);
 		} 
 	  }
 ?>

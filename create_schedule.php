@@ -31,9 +31,9 @@
 					  <label for="date" class="fl">Select date</label><br>
 					  <select class="form-control classic adjust_width_tiny fl" id="date" name="schedule_day">
 					  	<option>Date</option>
-					    <option value="1">1</option>
-					    <option value="2">2</option>
-					    <option value="3">3</option>					   
+					    <option value="01">1</option>
+					    <option value="02">2</option>
+					    <option value="03">3</option>					   
 					  </select>
 					  <select class="form-control classic adjust_width_tiny fl" id="month" name="schedule_month">
 					  	<option>Month</option>
@@ -173,9 +173,9 @@
 					  </select>
 					  <select class="form-control classic create-date3 fl" id="year" name="edit_schedule_year">
 					  	<option>Years</option>
-					   	<option value="01">01</option>
-					    <option value="02">02</option>
-					    <option value="03">03</option>							   
+					    <option value="1991">1991</option>
+					    <option value="1992">1992</option>
+					    <option value="1993">1993</option>							   
 					  </select>
 					</div>
 					

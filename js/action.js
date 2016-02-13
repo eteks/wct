@@ -94,7 +94,7 @@ function editfunction(data_id){
             var obj = JSON.parse(data);
             $.each(obj, function(i){
               $('[name=edit_district_id]').val(obj[i].district_id);
-              $('[name=edit_district_state]').append("<option value='"+obj[i].states_id+ "'selected>"+obj[i].states_name+"</option>");
+              $('[name=edit_district_state]').find("option:contains("+obj[i].states_name+")").attr("selected","selected");
               $('[name=edit_district_name]').val(obj[i].district_name);
             });
             $('.popup_fade').show();
@@ -118,15 +118,16 @@ function editfunction(data_id){
               $('[name=edit_athlete_dobmonth]').append("<option value='"+dob[1]+ "'selected>"+dob[1]+"</option>");
               $('[name=edit_athlete_dobyear]').append("<option value='"+dob[0]+ "'selected>"+dob[0]+"</option>");
               $('[name=edit_athlete_mobile]').val(obj[i].athlete_mobile);
-              $('[name=edit_athlete_gender]').append("<option value='"+obj[i].athlete_gender+ "'selected>"+obj[i].athlete_gender+"</option>");
-              $('[name=edit_athlete_state]').append("<option value='"+obj[i].athletestates_id+ "'selected>"+obj[i].athletestates_name+"</option>");
-              $('[name=edit_athlete_district]').append("<option value='"+obj[i].athletedistrict_id+ "'selected>"+obj[i].athletedistrict_name+"</option>");
+              $('[name=edit_athlete_gender]').find("option:contains("+obj[i].athlete_gender+")").attr("selected","selected");
+              $('[name=edit_athlete_state]').find("option:contains("+obj[i].athletestates_name+")").attr("selected","selected");
+              $('[name=edit_athlete_district]').html("<option></option><option value='"+obj[i].athletedistrict_id+ "'selected>"+obj[i].athletedistrict_name+"</option>");
               $('[name=edit_athlete_address]').val(obj[i].athlete_address);
               $('[name=edit_athlete_taluka]').val(obj[i].athlete_taluka);
-              $('[name=edit_athlete_sports]').append("<option value='"+obj[i].athletesports_id+ "'selected>"+obj[i].athletesports_name+"</option>");
+              $('[name=edit_athlete_sports]').find("option:contains("+obj[i].athletesports_name+")").attr("selected","selected");
             });
             $('.popup_fade').show();
-            $('.district_div, .close_btn').show();
+            athletes_center_align();
+            $('.athletes_div, .close_btn').show();
             document.body.style.overflow = 'hidden';
            }
         });
@@ -148,9 +149,9 @@ function editfunction(data_id){
               $('[name=edit_schedule_day]').append("<option value='"+date[2]+ "'selected>"+date[2]+"</option>");
               $('[name=edit_schedule_month]').append("<option value='"+date[1]+ "'selected>"+date[1]+"</option>");
               $('[name=edit_schedule_year]').append("<option value='"+date[0]+ "'selected>"+date[0]+"</option>");
-              $('[name=edit_schedule_hour]').append("<option value='"+time[0]+ "'selected>"+time[0]+"</option>");
-              $('[name=edit_schedule_minute]').append("<option value='"+time[1]+ "'selected>"+time[1]+"</option>");
-              $('[name=edit_schedule_seconds]').append("<option value='"+time[2]+ "'selected>"+time[2]+"</option>");
+              $('[name=edit_schedule_hour]').find("option:contains("+time[0]+")").attr("selected","selected");
+              $('[name=edit_schedule_minute]').find("option:contains("+time[1]+")").attr("selected","selected");
+              $('[name=edit_schedule_seconds]').find("option:contains("+time[2]+")").attr("selected","selected");
               $('[name=edit_schedule_venue]').val(obj[i].createschedule_venue);
             });
             $('.popup_fade').show();
@@ -396,22 +397,34 @@ $(document).ready(function () {
 	   $(this).siblings('li').toggleClass('active');
 	});
 
-	// Autocomplete results for states list
+	// Autocomplete results for states list while add
 	var states_list = [];
-		$('.states_list li').each(function(){
-			states_list.push($(this).text());
-	});
+	$('.states_list li').each(function(){
+		states_list.push($(this).text());
+  });
 	$('.statesname,.edit_states_name').focus(function (e) {
 		$(this).autocomplete({
 			source: states_list,
 	 	});
 	});
 
+  // Autocomplete results for states list while edit
+  var edit_states_list = [];
+  $('.edit_states_list li').each(function(){
+    edit_states_list.push($(this).text());
+  });
+  $('.edit_states_name').focus(function (e) {
+    $(this).autocomplete({
+      source: edit_states_list,
+    });
+  });
+
   // Autocomplete results for district list
   var district_list = [];
   $('.choose_state').on('change',function () {
     selected_state = $('.choose_state option:selected').text();
     form_data = {'states_name':selected_state};
+    district_list.length = 0;
      $.ajax({
            type: "POST",
            url: "functions/district_function.php?loaddistrict=true",
@@ -422,6 +435,26 @@ $(document).ready(function () {
               $.each(obj, function(i){
                 district_list.push(obj[i]);
               });
+           }
+       });
+   });
+
+  $(".athlete_state_act").on('change',function () {
+    selected_state = $('.athlete_state_act option:selected').text();
+    selected_state_id = $('.athlete_state_act option:selected').val();
+    form_data = {'states_name':selected_state,'states_id':selected_state_id};
+     $.ajax({
+           type: "POST",
+           url: "functions/district_function.php?loaddistrictfromdb=true",
+           data: form_data,
+           cache: false,
+           success: function(data) {
+            var obj = JSON.parse(data);
+            var options = '<option></option>';
+              $.each(obj, function(i){
+                options += '<option value="'+obj[i].district_id+'">'+obj[i].district_name+'</option>';              
+              });
+              $('.athlete_district_act').html(options);
            }
        });
    });
@@ -527,18 +560,17 @@ $(document).ready(function () {
            data: form_data,
            cache: false,
            success: function(html) {
-            alert(html);
               var result_split = html.split('#');
                if (result_split[0].indexOf("success") !== -1){
                  // $('.add_district_error').text(result_split[1]).show();
+                 $('.add_district_error').hide();
                  alert(result_split[1]);
-                  alert(result_split[2]);
                  html ="<tr class='align_center delete_color'>\
                  <input type='hidden' name='district_id' value="+result_split[2]+">\
                  <td class='t_district_id'>"+result_split[2]+"</td>\
                     <td class='t_district_name'>"+result_split[4]+"</td>\
                     <td>\
-                      <span class='edit_state'>Edit</span>\
+                      <span class='edit_state' onclick='editfunction("+result_split[2]+")'>Edit</span>\
                       <span class='delete_state' data-value="+result_split[2]+">Delete</span>\
                     </td></tr> ";
                  $('.district_table tr:last').after(html);
@@ -843,15 +875,15 @@ $(document).ready(function () {
     //Jquery and Ajax Functionality for Athletes Form added by kalai
     $('.add_athletes_act').click(function(){
       var form_data = $('[name=athletes_form]').serialize();
+      // alert(form_data);
         $.ajax({
            type: "POST",
            url: "functions/athletes_functions.php?adddata=true",
            data: form_data,
            cache: false,
            success: function(html) {
-            alert(html);
               var result_split = html.split('#');
-               if (result_split[0].indexOf("success") > 1){
+               if (result_split[0].indexOf("success") !== -1){
                  alert(result_split[1]);
                  html ="<tr class='align_center delete_color'>\
                     <input type='hidden' name='athlete_id' value="+result_split[2]+">\
@@ -861,8 +893,8 @@ $(document).ready(function () {
                     <td class='t_athlete_dob'>"+result_split[5]+"</td>\
                     <td class='t_athlete_address'>"+result_split[6]+"</td>\
                     <td>\
-                      <span class='edit_district'>Edit</span>\
-                      <span class='delete_district' data-value="+result_split[2]+">Delete</span>\
+                      <span class='edit_state' onclick='editfunction("+result_split[2]+")'>Edit</span>\
+                      <span class='delete_state' data-value="+result_split[2]+">Delete</span>\
                     </td></tr> ";
                  $('.athletes_table tr:last').after(html);
                }
@@ -931,7 +963,6 @@ $(document).ready(function () {
 
     $('.edit_createschedule_act').click(function(){
               var form_data = $('[name=edit_createschedule_form]').serialize();
-              alert(form_data);
                 $.ajax({
                    type: "POST",
                    url: "functions/create_schedule_function.php?editdata=true",

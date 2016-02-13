@@ -58,7 +58,8 @@
 					</div>
 					<div class="form-group">
 						  <label for="sel1">State</label>
-						  <select class="form-control adjust_width classic" id="sel1" name="athlete_state">
+						  <select class="form-control adjust_width classic athlete_state_act" id="sel1" name="athlete_state">
+						  <option></option>
 						  <?php
 	                        $query = $statesFunction->statesSelect();
 	                        while ($row = mysql_fetch_array($query)) {
@@ -69,13 +70,7 @@
 					</div>
 					<div class="form-group">
 						  <label for="sel1">District</label>
-						  <select class="form-control adjust_width classic" id="sel1" name="athlete_district">
-						  <?php
-	                        $query = $districtFunction->districtSelect();
-	                        while ($row = mysql_fetch_array($query)) {
-	                            ?>
-	                            <option value="<?php echo $row['district_id']; ?>"><?php echo $row['district_name']; ?></option>
-	                      <?php } ?>
+						  <select class="form-control adjust_width classic athlete_district_act" id="sel1" name="athlete_district">
 						  </select>
 					</div>
 
@@ -92,6 +87,7 @@
 					<div class="form-group">
 						  <label for="sel1">Sports</label>
 						  <select class="form-control adjust_width classic" id="sel1" name="athlete_sports">
+						   <option></option>
 						   <?php
 	                        $query = $sportsfunction->sportsSelect();
 	                        while ($row = mysql_fetch_array($query)) {
@@ -206,6 +202,12 @@
 						  <label for="sel1">State</label>
 						  <select class="form-control adjust_width classic" id="sel1" name="edit_athlete_state">
 						  <option></option>
+						   <?php
+	                        $query = $statesFunction->statesSelect();
+	                        while ($row = mysql_fetch_array($query)) {
+	                            ?>
+	                            <option value="<?php echo $row['states_id']; ?>"><?php echo $row['states_name']; ?></option>
+	                      <?php } ?>
 						  </select>
 					</div>
 					<div class="form-group">
