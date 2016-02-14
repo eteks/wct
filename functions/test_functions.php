@@ -3,6 +3,7 @@ class testfunction{
     public $testid;
     public $testname;
     public $teststatus;
+    public $testattrid;
     public $testparameter;
     public $testtype;
     public $testunit;
@@ -81,17 +82,25 @@ class testfunction{
           echo "error";
         }
     }
-
-    if(isset($_POST['test_update'])){
+    if(isset($_POST['parameter_update'])){
         include ("../dbconnect.php");
-        $sport = new testfunction();
-        $sport->sportsname = $_POST['sports_name'];
-        $sport->sportsid = $_POST['sports_id'];
-        if($sport->sportsupdatefunction()){
-          echo $_POST['sports_name'].'-'.$_POST['sports_id'];
-        }else{
-          echo "error";
-        }
+        $parameter_id = $_POST['parameter_update'];
+        $testid =$_POST['test_update_id'];
+        $parameter_name = $_POST['parameter_name1'];
+        $paramtype = $_POST['type1'];
+        $paramunit = $_POST['unit1'];
+        $paramformat = $_POST['format1'];
+        mysql_query("update wc_test_attribute set test_parameter_name ='$parameter_name',test_parameter_type ='$paramtype',test_parameter_unit='$paramunit',test_parameter_format ='$paramformat' where test_attribute_id = $parameter_id ")or die(mysql_error());
+        header('Location:../test.php');
+
+    }
+    if(isset($_GET['gettestdata'])){
+        include ("../dbconnect.php");
+        $testattrid = $_POST['id'];
+        $sql = mysql_query("SELECT * FROM wc_test_attribute INNER JOIN wc_test ON wc_test_attribute.test_id = wc_test.test_id where test_attribute_id='$testattrid'")or die(mysql_error());
+        $res = mysql_fetch_assoc($sql);
+        print(json_encode($res));
+
     }
 
     if(isset($_GET['deletedata'])){

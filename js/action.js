@@ -168,18 +168,18 @@ function editfunction(data_id){
            success: function(data) {
             var obj = JSON.parse(data);
             $.each(obj, function(i){
-              date = obj[i].createschedule_date.split('-');
-              time = obj[i].createschedule_time.split(':');
-              $('[name=edit_schedule_id]').val(obj[i].createschedule_id);
-              $('[name=edit_schedule_name]').val(obj[i].createschedule_name);
-              $('[name=edit_schedule_testbattery]').append("<option value='"+obj[i].createschedule_testbatteryid+ "'selected>"+obj[i].createschedule_testbatteryname+"</option>");
-              $('[name=edit_schedule_day]').append("<option value='"+date[2]+ "'selected>"+date[2]+"</option>");
-              $('[name=edit_schedule_month]').append("<option value='"+date[1]+ "'selected>"+date[1]+"</option>");
-              $('[name=edit_schedule_year]').append("<option value='"+date[0]+ "'selected>"+date[0]+"</option>");
-              $('[name=edit_schedule_hour]').append("<option value='"+time[0]+ "'selected>"+time[0]+"</option>");
-              $('[name=edit_schedule_minute]').append("<option value='"+time[1]+ "'selected>"+time[1]+"</option>");
-              $('[name=edit_schedule_seconds]').append("<option value='"+time[2]+ "'selected>"+time[2]+"</option>");
-              $('[name=edit_schedule_venue]').val(obj[i].createschedule_venue);
+                date = obj[i].createschedule_date.split('-');
+                time = obj[i].createschedule_time.split(':');
+                $('[name=edit_schedule_id]').val(obj[i].createschedule_id);
+                $('[name=edit_schedule_name]').val(obj[i].createschedule_name);
+                $('[name=edit_schedule_testbattery]').append("<option value='"+obj[i].createschedule_testbatteryid+ "'selected>"+obj[i].createschedule_testbatteryname+"</option>");
+                $('[name=edit_schedule_day]').append("<option value='"+date[2]+ "'selected>"+date[2]+"</option>");
+                $('[name=edit_schedule_month]').append("<option value='"+date[1]+ "'selected>"+date[1]+"</option>");
+                $('[name=edit_schedule_year]').append("<option value='"+date[0]+ "'selected>"+date[0]+"</option>");
+                $('[name=edit_schedule_hour]').append("<option value='"+time[0]+ "'selected>"+time[0]+"</option>");
+                $('[name=edit_schedule_minute]').append("<option value='"+time[1]+ "'selected>"+time[1]+"</option>");
+                $('[name=edit_schedule_seconds]').append("<option value='"+time[2]+ "'selected>"+time[2]+"</option>");
+                $('[name=edit_schedule_venue]').val(obj[i].createschedule_venue);
             });
             $('.popup_fade').show();
             $('.createschedule_div, .close_btn').show();
@@ -200,7 +200,7 @@ function editfunction(data_id){
               $('[name=edit_range_id').val(range_obj[i].range_id);
               $('[name=edit_range_testbattery]').find("option:contains("+range_obj[i].rangetestbattery_name+")").attr("selected","selected");
               $('[name=edit_range_category]').find("option:contains("+range_obj[i].rangecategory_name+")").attr("selected","selected");
-              $('[name=edit_range_test]').find("option:contains("+range_obj[i].rangetest_name+")").attr("selected","selected");             
+              $('[name=edit_range_test]').find("option:contains("+range_obj[i].rangetest_name+")").attr("selected","selected");
             });
             //Append data to first range part without using for loop
             data = rangeattr_obj[0];
@@ -270,6 +270,26 @@ $(document).ready(function () {
     });
     $('.edit_test_sport').change(function() {
         $('option:selected', this).attr('selected',true).siblings().removeAttr('selected');
+    });
+    $('.edit_test').click(function(){
+        var test_id = $(this).attr("data-value");
+        //alert(test_id);
+        $.ajax({
+             type: "POST",
+             url: "functions/test_functions.php?gettestdata=true",
+             data:{'id':test_id},
+             cache: false,
+             dataType:'json',
+             success: function(data) {
+                 $('.test_name_update').val(data.test_name);
+                 $('.test_parameter_name_update').val(data.test_parameter_name);
+                 $('.parameter_type_update option[value="'+data.test_parameter_type+'"]').attr('selected','selected');
+                 $('.parameter_unit_update').append('<option value="'+data.test_parameter_unit+'">'+data.test_parameter_unit+'</option>');
+                 $('.parameter_format_update option[value="'+data.test_parameter_format+'"]').attr('selected','selected');
+                 $('.parameter_update').val(test_id);
+                 $('.test_update_id').val(data.test_id);
+            }
+         });
     });
     $('.edit_test_battery').click(function(){
         var test_battery_id = $(this).attr("data-value");
@@ -451,7 +471,7 @@ $(document).ready(function () {
             var obj = JSON.parse(data);
             var options = '<option></option>';
               $.each(obj, function(i){
-                options += '<option value="'+obj[i].district_id+'">'+obj[i].district_name+'</option>';              
+                options += '<option value="'+obj[i].district_id+'">'+obj[i].district_name+'</option>';
               });
               $('.athlete_district_act').html(options);
            }
@@ -465,14 +485,14 @@ $(document).ready(function () {
       });
   });
 
-    $('#sports_form').submit(function(e) {      
+    $('#sports_form').submit(function(e) {
       e.preventDefault();
       var res = true;
       $('input[type="text"]',this).each(function() {
         if($(this).val().trim() == "") {
-        res = false; 
+        res = false;
         }
-      });    
+      });
      if(res){
           var form_data = $('#sports_form').serialize();
            // $('form[name="sport_form"]').submit();
@@ -494,22 +514,22 @@ $(document).ready(function () {
              }
          });
         }
-  
+
     });
 
     // start (added by kalai)
-    // Jquery and ajax functionality for states   
+    // Jquery and ajax functionality for states
 
-   $('#state_form').submit(function(e){      
+   $('#state_form').submit(function(e){
       e.preventDefault();
       var res = true;
       $('input[type="text"]',this).each(function() {
-        if($(this).val().trim() == "") {     
-        res = false; 
+        if($(this).val().trim() == "") {
+        res = false;
         }
-      });    
-      if(res){         
-          var form_data = $('[name=states_form]').serialize();         
+      });
+      if(res){
+          var form_data = $('[name=states_form]').serialize();
           // $('form[name="states_form"]').submit();
           $.ajax({
            type: "POST",
@@ -544,11 +564,11 @@ $(document).ready(function () {
         e.preventDefault();
       var res = true;
       $('input[type="text"]',this).each(function() {
-        if($(this).val().trim() == "") {     
-        res = false; 
+        if($(this).val().trim() == "") {
+        res = false;
         }
-      });    
-      if(res){   
+      });
+      if(res){
       var form_data = $('[name=edit_states_form]').serializeArray();
         $.ajax({
            type: "POST",
@@ -581,15 +601,15 @@ $(document).ready(function () {
     });
 
     // Jquery and ajax functionality for district
-    $('#districts_form').submit(function(e){       
+    $('#districts_form').submit(function(e){
         e.preventDefault();
         var res = true;
         $('input[type="text"]',this).each(function() {
           if($(this).val().trim() == "") {
-            res = false; 
+            res = false;
           }
-        });    
-        if(res){       
+        });
+        if(res){
           var form_data = $('[name=district_form]').serialize();
           $.ajax({
                type: "POST",
@@ -625,10 +645,10 @@ $(document).ready(function () {
       var res = true;
       $('input[type="text"], select',this).each(function() {
         if($(this).val().trim() == "") {
-          res = false; 
+          res = false;
         }
-      });    
-      if(res){  
+      });
+      if(res){
       var form_data = $('[name=edit_district_form]').serialize();
         $.ajax({
            type: "POST",
@@ -655,15 +675,15 @@ $(document).ready(function () {
 
     // end (added by kalai)
 
-    $('#sports_update_form').submit(function(e) {  
+    $('#sports_update_form').submit(function(e) {
       e.preventDefault();
       var res = true;
       $('input[type="text"]',this).each(function() {
         if($(this).val().trim() == "") {
-          res = false; 
+          res = false;
         }
-      });    
-      if(res){  
+      });
+      if(res){
         var form_data = $('#sports_update_form').serialize();
         $.ajax({
            type: "POST",
@@ -673,13 +693,13 @@ $(document).ready(function () {
            success: function(html) {
                //alert(html);
                if(html=='error'){
-                 alert('Already sports name entred');
+                 alert('Already sports name exists');
                }else{
-                alert(html);
+                //alert(html);
                 var sports_split = html.split('-');
-                alert(sports_split);
+                //alert(sports_split);
                 $('#sports_table').find(".sports_id:contains("+sports_split[1]+")").next('.sports_name').html(sports_split[0]);
-                //alert('Sports name updated successfully');
+                alert('Sports name updated successfully');
                 $('.popup_fade').hide();
                 $('.state_div,.delete_div').hide();
                 document.body.style.overflow = 'auto';
@@ -714,7 +734,7 @@ $(document).ready(function () {
                data: form_data,
                cache: false,
                success: function(html) {
-                   alert('Sportds successfully deleted');
+                   alert('Sports successfully deleted');
                    $('#sports_table').find(".sports_id:contains("+html+")").parents('tr').remove();
                    $('.popup_fade').hide();
                    $('.state_div,.delete_div').hide();
@@ -843,6 +863,24 @@ $(document).ready(function () {
                  }
              });
        }
+       else if (window.location.href.indexOf("assign_schedule.php") !== -1){
+           //alert('dsfsdfds');
+            var form_data = {'delete_id':del_id};
+            $.ajax({
+                 type: "POST",
+                 url: "functions/assign_schedule_function.php?deletedata=true",
+                 data: form_data,
+                 cache: false,
+                 success: function(html) {
+                  //alert(html);
+                  $('.popup_fade').hide();
+                  $('.state_div,.delete_div').hide();
+                  document.body.style.overflow = 'auto';
+                  location.reload();
+
+                 }
+             });
+       }
     });
 
     $('.no_btn').click(function(event) {
@@ -856,10 +894,10 @@ $(document).ready(function () {
       var res = true;
       $('input[type="text"]',this).each(function() {
         if($(this).val().trim() == "") {
-          res = false; 
+          res = false;
         }
-      });    
-      if(res){          
+      });
+      if(res){
         var form_data = $('#category_form').serialize();
         //alert(form_data);
         $.ajax({
@@ -878,7 +916,7 @@ $(document).ready(function () {
                }
            }
        });
-      }           
+      }
     });
 
     $('#category_update_form').submit(function(e) {
@@ -886,10 +924,10 @@ $(document).ready(function () {
       var res = true;
       $('input[type="text"]',this).each(function() {
         if($(this).val().trim() == "") {
-          res = false; 
+          res = false;
         }
-      });    
-      if(res){   
+      });
+      if(res){
         var form_data = $('#category_update_form').serialize();
        //alert(form_data);
         $.ajax({
@@ -921,6 +959,7 @@ $(document).ready(function () {
     // });
     var current_id = 1;
     $('.parameter_btn').click(function(){
+        //alert('test')
         nextElement($('.clone_content:last'));
     })
 
@@ -938,18 +977,40 @@ $(document).ready(function () {
 
     var test_id = 1;
     $('.add_athelete').click(function(){
-        nextElement($('.assign_clone_content:last'));
+        nextElement1($('.assign_clone_content:last'));
     })
 
-    function nextElement(element){
+    function nextElement1(element){
         var newElement = element.clone();
         var id = test_id+1;
         test_id = id;
         newElement.find('.athlete_name').removeAttr('name').attr('name', 'athlete_name'+id);
-        newElement.find('.athlete_date').removeAttr('name').attr('name', 'athlete_date'+id);
-        newElement.find('.athlete_mobile').removeAttr('name').attr('name', 'athlete_mobile'+id);
         newElement.find('.athlete_bib').removeAttr('name').attr('name', 'athlete_bib'+id);
+        newElement.find('.dob').val('');
+        newElement.find('.mobile').val('');
+        newElement.find('#combobox').combobox({
+            select: function (event, ui) {
+                var ath_id = $(this).val();
+                $.ajax({
+                   type: "POST",
+                   url: "functions/athletes_functions.php?get_ath=true",
+                   data: {'ath_id':ath_id},
+                   cache: false,
+                   dataType:'json',
+                   success: function(html) {
+
+                        newElement.find('.dob').val(html.athlete_dob).attr('disabled', 'disabled');
+                        //alert(newElement.html());
+                        newElement.find('.mobile').val(html.athlete_mobile).attr('disabled', 'disabled');
+                        newElement.find('.athlete_bib').val('');
+
+                   }
+               });
+            }
+        });
+        newElement.find('.custom-combobox:nth-child(3)').remove();
         newElement.appendTo($(".assign_content_holder"));
+
     }
 
 
@@ -984,14 +1045,14 @@ $(document).ready(function () {
     //Jquery and Ajax Functionality for Athletes Form added by kalai
     $('#athlete_form').submit(function(e){
      e.preventDefault();
-      var res = true;     
+      var res = true;
       $('input[type="text"]',this).each(function() {
         if($(this).val().trim() == "") {
           res = false;
-            
+
         }
-      });    
-      if(res){         
+      });
+      if(res){
           var form_data = $('[name=athletes_form]').serialize();
           $.ajax({
              type: "POST",
@@ -1025,13 +1086,13 @@ $(document).ready(function () {
 
     $('#edit_athletes_form').submit(function(e){
       e.preventDefault();
-      var res = true;      
+      var res = true;
       $('input[type="text"],select',this).each(function() {
         if($(this).val().trim() == "") {
-          res = false;             
+          res = false;
         }
-      });    
-      if(res){   
+      });
+      if(res){
           var form_data = $('[name=edit_athletes_form]').serialize();
             $.ajax({
                type: "POST",
@@ -1057,15 +1118,15 @@ $(document).ready(function () {
     });
 
     //Jquery and Ajax Functionality for CreateSchedule Form added by kalai
-    $('#createschedule_form').submit(function(e){    
+    $('#createschedule_form').submit(function(e){
       e.preventDefault();
-      var res = true;      
+      var res = true;
       $('input[type="text"]',this).each(function() {
         if($(this).val().trim() == "") {
-          res = false;             
+          res = false;
         }
-      });    
-      if(res){         
+      });
+      if(res){
          var form_data = $('[name=create_schedule_form]').serialize();
           $.ajax({
              type: "POST",
@@ -1099,13 +1160,13 @@ $(document).ready(function () {
 
     $('#edit_create_schedule_form').submit(function(e){
         e.preventDefault();
-        var res = true;      
+        var res = true;
         $('input[type="text"],textarea,select',this).each(function() {
           if($(this).val().trim() == "") {
-            res = false;             
+            res = false;
           }
-        });    
-        if(res){        
+        });
+        if(res){
             var form_data = $('[name=edit_createschedule_form]').serialize();
                 $.ajax({
                    type: "POST",
@@ -1130,82 +1191,78 @@ $(document).ready(function () {
         }
         });
 
-//test 
+//test
 
     $('#test_form').submit(function(e){
         e.preventDefault();
-        var res = true;      
+        var res = true;
         $('input[type="text"]',this).each(function() {
           if($(this).val().trim() == "") {
-            res = false;    
-            // alert('test_form false');         
+            res = false;
+            // alert('test_form false');
           }
-        });    
-        if(res){         
-            // alert('test_form true');       
+        });
+        if(res){
+            // alert('test_form true');
         }
 
         });
 
-    $('#edit_test_form').submit(function(e){
+    $('#test_updation_form').submit(function(e){
+        alert('dsfdsfds');
         e.preventDefault();
-        var res = true;      
+        var res = true;
         $('input[type="text"]',this).each(function() {
           if($(this).val().trim() == "") {
-            res = false;    
-            // alert('edit_test_form false');         
+            res = false;
+            // alert('test_updation_form false');
           }
-        });    
-        if(res){        
-            // var form_data = $('[name=edit_createschedule_form]').serialize();
-            // alert('edit_test_form true');       
-        }
-
+        });
         });
 //test battery
  $('#test_battery_form').submit(function(e){
         e.preventDefault();
-        var res = true;      
+        var res = true;
         $('input[type="text"],textarea,select',this).each(function() {
           if($(this).val().trim() == "") {
-            res = false;    
-            // alert('edit_test_form false');         
+            res = false;
+            // alert('test_updation_form false');
           }
-        });    
-        if(res){        
+        });
+        if(res){
             // var form_data = $('[name=edit_createschedule_form]').serialize();
-            // alert('edit_test_form true');       
+            // alert('test_updation_form true');
         }
 
         });
 
      $('#test_battery_update_form').submit(function(e){
         e.preventDefault();
-        var res = true;      
+        var res = true;
         $('input[type="text"],textarea,select',this).each(function() {
           if($(this).val().trim() == "") {
-            res = false;    
-            // alert('edit_test_form false');         
+            res = false;
+            // alert('test_updation_form false');
           }
-        });    
-        if(res){        
+        });
+        if(res){
             // var form_data = $('[name=edit_createschedule_form]').serialize();
-            // alert('edit_test_form true');       
+            // alert('test_updation_form true');
         }
 
       });
 
-//range     
+//range
 //Jquery and Ajax Functionality for Range Form added by kalai
      $('#range_form_id').submit(function(e){
         e.preventDefault();
-        var res = true;      
+        var res = true;
         $('input[type="text"],textarea,select',this).each(function() {
           if($(this).val().trim() == "") {
-            res = false;    
+            res = false;
           }
-        });    
-        if(res){        
+        });
+        if(res){
           var form_data = $('[name=range_form]').serialize();
            $.ajax({
              type: "POST",
@@ -1236,15 +1293,15 @@ $(document).ready(function () {
 
     $('#edit_range_form_id ').submit(function(e){
         e.preventDefault();
-        var res = true;      
+        var res = true;
         $('input[type="text"],textarea,select',this).each(function() {
           if($(this).val().trim() == "") {
-            res = false;    
-            // alert('edit_test_form false');         
+            res = false;
+            // alert('test_updation_form false');
           }
-        });    
-        if(res){        
-            var form_data = $('[name=edit_range_form]').serialize();      
+        });
+        if(res){
+            var form_data = $('[name=edit_range_form]').serialize();
             $.ajax({
                    type: "POST",
                    url: "functions/range_function.php?editdata=true",
@@ -1272,32 +1329,32 @@ $(document).ready(function () {
 
     $('#parameter_type ').submit(function(e){
           e.preventDefault();
-          var res = true;      
+          var res = true;
           $('input[type="text"],textarea,select',this).each(function() {
             if($(this).val().trim() == "") {
-              res = false;    
-              // alert('parameter_type false');         
+              res = false;
+              // alert('parameter_type false');
             }
-          });    
-          if(res){        
+          });
+          if(res){
               // var form_data = $('[name=edit_createschedule_form]').serialize();
-              // alert('parameter_type true');       
+              // alert('parameter_type true');
           }
 
         });
-    
+
     $('#edit_parameter_type ').submit(function(e){
           e.preventDefault();
-          var res = true;      
+          var res = true;
           $('input[type="text"],textarea,select',this).each(function() {
             if($(this).val().trim() == "") {
-              res = false;    
-              alert('parameter_type false');         
+              res = false;
+              alert('parameter_type false');
             }
-          });    
-          if(res){        
+          });
+          if(res){
               // var form_data = $('[name=edit_createschedule_form]').serialize();
-              alert('parameter_type true');       
+              alert('parameter_type true');
           }
 
         });
@@ -1305,32 +1362,32 @@ $(document).ready(function () {
 //parameter unit
     $('#parameter_unit').submit(function(e){
               e.preventDefault();
-              var res = true;      
+              var res = true;
               $('input[type="text"],textarea,select',this).each(function() {
                 if($(this).val().trim() == "") {
-                  res = false;    
-                  alert('parameter_unit false');         
+                  res = false;
+                  alert('parameter_unit false');
                 }
-              });    
-              if(res){        
+              });
+              if(res){
                   // var form_data = $('[name=edit_createschedule_form]').serialize();
-                  alert('parameter_unit true');       
+                  alert('parameter_unit true');
               }
 
             });
-        
+
     $('#edit_parameter_unit').submit(function(e){
           e.preventDefault();
-          var res = true;      
+          var res = true;
           $('input[type="text"],textarea,select',this).each(function() {
             if($(this).val().trim() == "") {
-              res = false;    
-              alert('edit_parameter_unitfalse');         
+              res = false;
+              alert('edit_parameter_unitfalse');
             }
-          });    
-          if(res){        
+          });
+          if(res){
               // var form_data = $('[name=edit_createschedule_form]').serialize();
-              alert('edit_parameter_unittrue');       
+              alert('edit_parameter_unittrue');
           }
 
         });
@@ -1339,62 +1396,58 @@ $(document).ready(function () {
 
   $('#assignschedule_form').submit(function(e){
     e.preventDefault();
-    var res = true;      
+    var res = true;
     $('input[type="text"],textarea,select',this).each(function() {
       if($(this).val().trim() == "") {
-        res = false;        
+        res = false;
       }
-    });    
-    if(res){        
-      var form_data = $('#assignschedule_form').serialize();     
-      $.ajax({
-         type: "POST",
-         url: "functions/assign_schedule_function.php?add_assign_schdule=true",
-         data: form_data,
-         cache: false,
-         success: function(html) {
-             alert(html);
-          //    if(html=='error'){
-          //      alert('Already sports name entred');
-          //    }else{
-          //       location.reload();
-          //      //$('#sports_table tr:last').after(html);
-             //
-          //    }
-
-         }
-     });      
+    });
+    if(res){
+        var form_data = $('#assignschedule_form').serialize();
+       // alert(form_data);
+        $.ajax({
+           type: "POST",
+           url: "functions/assign_schedule_function.php?add_assign_schdule=true",
+           data: form_data,
+           cache: false,
+           success: function(html) {
+               if(html=='success'){
+                   alert('Schedule successfully assigned');
+                   //location.reload();
+               }
+           }
+       });
     }
   });
 
   $('#edit_assign_schedule_form').submit(function(e){
     e.preventDefault();
-    var res = true;      
+    var res = true;
     $('input[type="text"],textarea,select',this).each(function() {
       if($(this).val().trim() == "") {
-        res = false;    
-        alert('assign_schedule_form alse');         
+        res = false;
+        alert('assign_schedule_form alse');
       }
-    });    
-    if(res){        
+    });
+    if(res){
         // var form_data = $('[name=edit_createschedule_form]').serialize();
-        alert('assign_schedule_form true');       
+        alert('assign_schedule_form true');
     }
 
   });
 //result
  $('#result_form').submit(function(e){
       e.preventDefault();
-      var res = true;      
+      var res = true;
       $('input[type="text"],textarea,select',this).each(function() {
         if($(this).val().trim() == "") {
-          res = false;    
-          alert('result_form alse');         
+          res = false;
+          alert('result_form alse');
         }
-      });    
-      if(res){        
+      });
+      if(res){
           // var form_data = $('[name=edit_createschedule_form]').serialize();
-          alert('result_form true');       
+          alert('result_form true');
       }
 
     });
@@ -1402,16 +1455,16 @@ $(document).ready(function () {
  //report
  $('#report_form').submit(function(e){
       e.preventDefault();
-      var res = true;      
+      var res = true;
       // $('input[type="checkbox"]',this).each(function() {
         if($(this).val().trim() == "") {
-          res = false;    
-          alert('report_form alse');         
+          res = false;
+          alert('report_form alse');
         }
-      // });    
-      if(res){        
+      // });
+      if(res){
           // var form_data = $('[name=edit_createschedule_form]').serialize();
-          alert('report_form true'+res);       
+          alert('report_form true'+res);
       }
 
     });
@@ -1440,7 +1493,7 @@ $(document).ready(function () {
         newElement.find('.r_end').removeAttr('id').attr('id','end'+id);
         newElement.find('.r_point').removeAttr('id').attr('id','point'+id);
         newElement.appendTo($(".range_holder"));
-    } 
+    }
 
     //Calculate Range points by range start and end
     $(document).on('focus','.r_point',function(){
@@ -1461,5 +1514,17 @@ $(document).ready(function () {
         }
     });
 
+    $('.edit_assign_schedule').click(function() {
+        var assign_schedule_id = $(this).attr('data-value');
+        $.ajax({
+           type: "POST",
+           url: "functions/assign_schedule_function.php?edit_get_data=true",
+           data: {'shdl_id':assign_schedule_id},
+           cache: false,
+           dataType:'json',
+           success: function(html) {
+
+           }
+       });
+    });
 });
-  
