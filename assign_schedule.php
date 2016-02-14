@@ -154,7 +154,7 @@ $athlete = new athletesFunction();
 					</div><!--state-content-->
 			</div><!--range_div-->
 		</div><!--container-->
-		<script type="text/javascript">
+		<script type="text/javascript">	     	
 			$("#combobox").combobox({
         		select: function (event, ui) {
             		var ath_id = $(this).val();
