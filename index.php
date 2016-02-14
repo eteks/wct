@@ -65,7 +65,7 @@
           <span class="login_txt">REGISTER</span>
         </div><!--login_title-->
         <div class="login_content">
-          <div class="login_form col-md-12 col-xs-9">
+          <div class="col-md-12 col-xs-9">
             <form action="" method="post" name="login" role="form">
                 <div class="form-group">
                   <label for="email" class="email_txt">Enter Your Full Name</label>

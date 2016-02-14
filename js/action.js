@@ -57,12 +57,12 @@ function parameter_center_align(){
 function package_menu() {
     var wh = window.innerHeight;
     var smh = wh - 43;
-    if (wh < 200) {
+    if (wh < 150) {
         $('.footer').css({'top': smh + "px"});
-        $('body').css({'height': wh + "px", 'max-height': "200px"});
+        $('body').css({'height': wh + "px", 'max-height': "150px"});
     } else {
-        $('.footer').css('top', '100%');
-        $('body').css('height', "200px", 'max-height', "200px");
+        $('.footer').css('top', '50%');
+        $('body').css('height', "150px", 'max-height', "150px");
     }
 }
 
@@ -1527,4 +1527,5 @@ $(document).ready(function () {
            }
        });
     });
+
 });
