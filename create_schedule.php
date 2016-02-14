@@ -26,8 +26,9 @@
 					  </select>
 					</div>			
 					<div class="form-group">
-					  <label for="date" class="fl">Select date</label><br>
-					  <select class="form-control classic adjust_width_tiny fl" id="date" name="schedule_day" data-validation-error-msg="Please Select the Date" data-validation="required">
+					  <label for="date">Select date</label><br>
+					  <input class="dateselector-basic" type="text">
+					  <!-- <select class="form-control classic adjust_width_tiny fl" id="date" name="schedule_day" data-validation-error-msg="Please Select the Date" data-validation="required">
 					  	<option value="">Date</option>
 					    <option value="01">1</option>
 					    <option value="02">2</option>
@@ -44,7 +45,7 @@
 					    <option value="1991">1991</option>
 					    <option value="1992">1992</option>
 					    <option value="1993">1993</option>							   
-					  </select>
+					  </select> -->
 					</div>				
 					<div class="form-group">
 					  <label for="date" class="fl">Select Time</label><br>
@@ -152,8 +153,9 @@
 					</div>
 					
 					<div class="form-group">
-					  <label for="date" class="fl">Select date</label><br>
-					  <select class="form-control classic create-date1 fl" id="date" name="edit_schedule_day" data-validation-error-msg="Please Select the Date" data-validation="required">
+					  <label for="date">Select date</label><br>
+					  <input class="dateselector-basic" type="text">
+					  <!-- <select class="form-control classic create-date1 fl" id="date" name="edit_schedule_day" data-validation-error-msg="Please Select the Date" data-validation="required">
 					  	<option value="">Date</option>
 					    <option value="1">1</option>
 					    <option value="2">2</option>
@@ -170,7 +172,7 @@
 					    <option value="1991">1991</option>
 					    <option value="1992">1992</option>
 					    <option value="1993">1993</option>							   
-					  </select>
+					  </select> -->
 					</div>
 					
 					<div class="form-group">
@@ -210,4 +212,12 @@
 					</div><!--state-content-->
 			</div><!--test_battery_div-->
 		</div><!--container-->
+		<script>
+$('.dateselector-basic').dateSelector({
+    onDateChange: function() {
+        // Your code here...
+        alert('date changed!');
+    }
+});
+</script>
 <?php require_once "footer.php" ?>
