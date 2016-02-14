@@ -31,13 +31,17 @@
 			else{ return false; }
 		}
 		public function rangeUpdate(){		
-            $res = mysql_query("update wc_district set districtstates_id='".$this->statesid."',district_name='".$this->districtname."' where district_id ='".$this->districtid."'")or die(mysql_error());          
+            $res = mysql_query("update wc_range set rangetestbattery_id='".$this->rangetestbatteryid."',rangetest_id='".$this->rangetestid."',rangecategories_id='".$this->rangecategoryid."' where range_id ='".$this->rangeid."'")or die(mysql_error());          
+			if($res){ return true; }
+			else{ return false; }		
+		}
+		public function rangeattributeUpdate(){		
+            $res = mysql_query("update wc_range_attribute set range_start='".$this->rangestart."',range_end='".$this->rangeend."',range_point='".$this->rangepoint."' where range_attribute_id ='".$this->rangeattributeid."' and range_id ='".$this->rangeid."'")or die(mysql_error());          
 			if($res){ return true; }
 			else{ return false; }		
 		}
 		public function rangeDelete(){		
-            // $res = mysql_query("delete from wc_states where states_id ='".$this->statesid."' ")or die(mysql_error());          
-			$res = mysql_query("update wc_district set district_status='0' where district_id ='".$this->districtid."'")or die(mysql_error()); 
+            $res = mysql_query("delete from wc_range where range_id ='".$this->rangeid."' ")or die(mysql_error());          			
 			if($res){ return true; }
 			else{ return false; }		
 		}
@@ -112,4 +116,42 @@
 	    }
 	    echo json_encode($range_json).'#####'.json_encode($rangeattr_json);
 	}	
+	//To store edited data
+	if(isset($_GET['editdata'])){
+		$counter = (count($_POST)-3)/3;
+		$rangeFunction = new rangeFunction();
+		$rangeFunction->rangeid = $_POST['edit_range_id'];
+		$rangeFunction->rangetestbatteryid = $_POST['edit_range_testbattery']; 
+		$rangeFunction->rangecategoryid =$_POST['edit_range_category']; 
+		$rangeFunction->rangetestid=$_POST['edit_range_test']; 
+
+		$testname = mysql_fetch_array( $rangeFunction->testnameSelect());
+		$rangeFunction->rangetestname = $testname['test_name'];
+
+		$rangeupdate = $rangeFunction->rangeUpdate();
+		if($rangeupdate){
+			for($i=1;$i<=$counter;$i++){
+                $rangeFunction->rangeattributeid = $_POST["edit_rangeattr_id".$i.""];
+                $rangeFunction->rangestart = $_POST["edit_range_start".$i.""];
+                $rangeFunction->rangeend = $_POST["edit_range_end".$i.""];
+                $rangeFunction->rangepoint = $_POST["edit_range_points".$i.""];
+                $rangeattrupdate = $rangeFunction->rangeattributeUpdate();
+            }
+			echo "success#Record Updated#".$_POST['edit_range_id']."#".$rangeFunction->rangetestname;
+		}else{
+			echo "failure#Range Not Updated";
+		}
+	}
+	// To delete stored data
+	if(isset($_GET['deletedata'])){
+		$rangeFunction = new rangeFunction();
+		$rangeFunction->rangeid = $_POST['delete_id'];
+		$rangedelete = $rangeFunction->rangedelete();
+		if($rangedelete){
+			echo "success#Range Deleted#".$_POST['delete_id'];
+		}
+		else{
+			echo "failure#Range not Deleted";
+		}
+	}
 ?>

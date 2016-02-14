@@ -99,7 +99,7 @@
 			</div>			
 		</div>
 	</div><!-- end  container-->
-	<div class="container align_center">		          
+	<!-- <div class="container align_center">		          
 	  	<ul class="pagination">
 	  		<li><a href="#" class="align_left_icon"><i class="fa fa-angle-double-left"></i></a></li>    	
 		    <li><a href="#">1</a></li>
@@ -109,7 +109,7 @@
 		    <li><a href="#">5</a></li>
 		    <li><a href="#" class="align_right_icon"><i class="fa fa-angle-double-right"></i></a></li>
 		</ul>		   
-	</div><!-- end  container-->
+	</div> --><!-- end  container-->
 </div><!-- end  container-->
 
 <div class="popup_fade cancel_btn"></div><!--popup_fade-->
@@ -122,22 +122,41 @@
           			<div class="container state-content range_popup_scroll col-md-12">		
 	          			<div class="col-xs-12 col-md-12 align_margin">
 				<form name="edit_range_form" id="edit_range_form_id">
+				<input type="hidden" name="edit_range_id">
 					<div class="form-group">
 					    <label for="sel1">Select Test Battery Names</label>
 					  	<select class="form-control adjust_width classic" id="sel1" name="edit_range_testbattery" data-validation-error-msg="Please Select the Name of Test Battery " data-validation="required">
 						  <option value=""></option>
+						  <?php
+	                        $query = $testbatteryfunction->testbatterySelect();
+	                        while ($row = mysql_fetch_array($query)) {
+	                            ?>
+	                            <option value="<?php echo $row['testbattery_id']; ?>"><?php echo $row['testbattery_name']; ?></option>	                                            
+	                      <?php } ?>
 				  		</select>
 					</div>
 					<div class="form-group">
 						  <label for="sel1">Category</label>
 						  <select class="form-control adjust_width classic" id="sel1" name="edit_range_category" data-validation-error-msg="Please Select the Category of Test Battery " data-validation="required">
 						  <option value=""></option>
+						  <?php
+						  $cat_data = $categoryfunction->categoryselectfunction();
+						  foreach( $cat_data as $eachrecord ) {
+						   ?>
+							<option value="<?php echo $eachrecord['categories_id']; ?>"><?php echo $eachrecord['categories_name']; ?></option>	
+							<?php } ?>
 						  </select>
 					</div>
 					<div class="form-group">
 						  <label for="sel1">Test Name</label>
 						  <select class="form-control adjust_width classic" id="sel1" name="edit_range_test" data-validation-error-msg="Please Select the Test Name" data-validation="required">
 						  <option value=""></option>
+						  <?php
+	                        $query = $testfunction->testSelect();
+	                        while ($row = mysql_fetch_array($query)) {
+	                            ?>
+	                            <option value="<?php echo $row['test_id']; ?>"><?php echo $row['test_name']; ?></option>	                                            
+	                      <?php } ?>
 						  </select>
 					</div>
 					<div class="form-group edit_range_holder">

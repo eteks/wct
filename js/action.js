@@ -131,8 +131,7 @@ function editfunction(data_id){
             document.body.style.overflow = 'hidden';
            }
         });
-    }
-    else if(window.location.href.indexOf("create_schedule.php") !== -1){
+    } else if(window.location.href.indexOf("create_schedule.php") !== -1){
           $.ajax({
            type: "POST",
            url: "functions/create_schedule_function.php?chooseedit=true",
@@ -160,8 +159,7 @@ function editfunction(data_id){
             document.body.style.overflow = 'hidden';
            }
         });
-    }
-    else if(window.location.href.indexOf("test_battery.php") !== -1){
+    } else if(window.location.href.indexOf("test_battery.php") !== -1){
           $.ajax({
            type: "POST",
            url: "functions/test_battery_functions.php?chooseedit=true",
@@ -188,8 +186,7 @@ function editfunction(data_id){
             document.body.style.overflow = 'hidden';
            }
         });
-    }
-    else if(window.location.href.indexOf("range.php") !== -1){
+    } else if(window.location.href.indexOf("range.php") !== -1){
           $.ajax({
            type: "POST",
            url: "functions/range_function.php?chooseedit=true",
@@ -200,21 +197,22 @@ function editfunction(data_id){
             var range_obj = JSON.parse(data[0]);
             var rangeattr_obj = JSON.parse(data[1]);
             $.each(range_obj, function(i){
-              $('[name=edit_range_testbattery]').append("<option value='"+range_obj[i].rangetestbattery_id+ "'selected>"+range_obj[i].rangetestbattery_name+"</option>");
-              $('[name=edit_range_category]').append("<option value='"+range_obj[i].rangecategory_id+ "'selected>"+range_obj[i].rangecategory_name+"</option>");
-              $('[name=edit_range_test]').append("<option value='"+range_obj[i].rangetest_id+ "'selected>"+range_obj[i].rangetest_name+"</option>");
+              $('[name=edit_range_id').val(range_obj[i].range_id);
+              $('[name=edit_range_testbattery]').find("option:contains("+range_obj[i].rangetestbattery_name+")").attr("selected","selected");
+              $('[name=edit_range_category]').find("option:contains("+range_obj[i].rangecategory_name+")").attr("selected","selected");
+              $('[name=edit_range_test]').find("option:contains("+range_obj[i].rangetest_name+")").attr("selected","selected");             
             });
             //Append data to first range part without using for loop
             data = rangeattr_obj[0];
-            element = $('.edit_clone_content');
+            element = $('.edit_clone_content:first');
             element.find('[name=edit_rangeattr_id1]').val(data.rangeattribute_id);
             element.find('[name=edit_range_id1]').val(data.range_id);
             element.find('[name=edit_range_start1]').val(data.range_start);
             element.find('[name=edit_range_end1]').val(data.range_end);
             element.find('[name=edit_range_points1]').val(data.range_point);
 
-            // $('.edit_range_holder').not('.edit_clone_content:first').remove();
-            // alert($('.edit_range_holder').html());
+            // Remove all clone element except first one (this is used when user again and again click edit button)
+            $('.edit_clone_content:not(:first-child)').remove();
 
             //Append data to other range part with using for loop
             if(rangeattr_obj.length>=2){
@@ -733,7 +731,7 @@ $(document).ready(function () {
                  success: function(html) {
                  var result_split = html.split('#');
                  if (result_split[0].indexOf("success") !== -1){
-                  //alert(result_split[1]);
+                  alert(result_split[1]);
                   $('.state_table').find(".t_states_id:contains("+$.trim(result_split[2])+")").parents('tr').remove();
                   $('.popup_fade').hide();
                   $('.state_div,.delete_div').hide();
@@ -769,6 +767,7 @@ $(document).ready(function () {
                  success: function(html) {
                  var result_split = html.split('#');
                  if (result_split[0].indexOf("success") !== -1){
+                  alert(result_split[1]);
                   $('.athletes_table').find(".t_athlete_id:contains("+$.trim(result_split[2])+")").parents('tr').remove();
                   $('.popup_fade').hide();
                   $('.state_div,.delete_div').hide();
@@ -784,7 +783,6 @@ $(document).ready(function () {
                  data: form_data,
                  cache: false,
                  success: function(html) {
-                 alert(html);
                  var result_split = html.split('#');
                  if (result_split[0].indexOf("success") !== -1){
                   $('.createschedule_table').find(".t_createschedule_id:contains("+$.trim(result_split[2])+")").parents('tr').remove();
@@ -794,8 +792,7 @@ $(document).ready(function () {
                  }
                  }
              });
-       }
-       else if (window.location.href.indexOf("test.php") !== -1){
+       } else if (window.location.href.indexOf("test.php") !== -1){
             var form_data = {'delete_id':del_id};
             $.ajax({
                  type: "POST",
@@ -810,8 +807,7 @@ $(document).ready(function () {
 
                  }
              });
-       }
-       else if (window.location.href.indexOf("test_battery.php") !== -1){
+       } else if (window.location.href.indexOf("test_battery.php") !== -1){
            //alert('dsfsdfds');
             var form_data = {'delete_id':del_id};
             $.ajax({
@@ -826,6 +822,24 @@ $(document).ready(function () {
                   document.body.style.overflow = 'auto';
                   location.reload();
 
+                 }
+             });
+       } else if (window.location.href.indexOf("range.php") !== -1){
+            var form_data = {'delete_id':del_id};
+            $.ajax({
+                 type: "POST",
+                 url: "functions/range_function.php?deletedata=true",
+                 data: form_data,
+                 cache: false,
+                 success: function(html) {
+                  var result_split = html.split('#');
+                  if (result_split[0].indexOf("success") !== -1){
+                    alert(result_split[1]);
+                    $('.range_table').find(".t_range_id:contains("+$.trim(result_split[2])+")").parents('tr').remove();
+                    $('.popup_fade').hide();
+                    $('.delete_div').hide();
+                    document.body.style.overflow = 'auto';
+                  }
                  }
              });
        }
@@ -1207,8 +1221,8 @@ $(document).ready(function () {
                       <td class='t_range_id'>"+result_split[2]+"</td>\
                       <td class='t_range_testname'>"+result_split[3]+"</td>\
                       <td>\
-                        <span class='edit_district' onclick='editfunction("+result_split[2]+")'>Edit</span>\
-                        <span class='delete_district' data-value="+result_split[2]+">Delete</span>\
+                        <span class='edit_state' onclick='editfunction("+result_split[2]+")'>Edit</span>\
+                        <span class='delete_state' data-value="+result_split[2]+">Delete</span>\
                       </td></tr> ";
                    $('.range_table tr:last').after(html);
                  }
@@ -1230,8 +1244,26 @@ $(document).ready(function () {
           }
         });    
         if(res){        
-            // var form_data = $('[name=edit_createschedule_form]').serialize();
-            // alert('edit_test_form true');       
+            var form_data = $('[name=edit_range_form]').serialize();      
+            $.ajax({
+                   type: "POST",
+                   url: "functions/range_function.php?editdata=true",
+                   data: form_data,
+                   cache: false,
+                   success: function(html) {
+                       var result_split = html.split('#');
+                       if (result_split[0].indexOf("success") !== -1){
+                        alert(result_split[1]);
+                         $('.range_table').find(".t_range_id:contains("+result_split[2]+")").siblings('.t_range_testname').html(result_split[3]);
+                         $('.popup_fade').hide();
+                         $('.range_div, .close_btn').hide();
+                         document.body.style.overflow = 'auto';
+                       }
+                       else{
+                        alert(result_split[1]);
+                       }
+                   }
+               });
         }
 
       });
@@ -1401,13 +1433,24 @@ $(document).ready(function () {
         var id = current_id+1;
         current_id = id;
         newElement.find('.range_label').remove();
-        newElement.find('.r_strt').removeAttr('name').attr('name', 'range_start'+id);
-        newElement.find('.r_end').removeAttr('name').attr('name', 'range_end'+id);
-        newElement.find('.r_point').removeAttr('name').attr('name', 'range_points'+id);
+        newElement.find('.r_strt').removeAttr('name').attr('name', 'range_start'+id).val('');
+        newElement.find('.r_end').removeAttr('name').attr('name', 'range_end'+id).val('');
+        newElement.find('.r_point').removeAttr('name').attr('name', 'range_points'+id).val('');
         newElement.find('.r_strt').removeAttr('id').attr('id','strt'+id);
         newElement.find('.r_end').removeAttr('id').attr('id','end'+id);
         newElement.find('.r_point').removeAttr('id').attr('id','point'+id);
         newElement.appendTo($(".range_holder"));
     } 
+
+    //Calculate Range points by range start and end
+    $(document).on('focus','.r_point',function(){
+        range_start = $(this).siblings('.r_strt').val();
+        range_end = $(this).siblings('.r_end').val();
+        if (range_start >=0 && range_end <=1){
+          $(this).val('1').prop("readonly", true);
+        } else if (range_start >1 && range_end <=5){
+          $(this).val('2').prop("readonly", true);
+        }
+    });
 });
   
