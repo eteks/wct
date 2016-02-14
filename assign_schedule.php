@@ -12,6 +12,11 @@ $createschedule = new createscheduleFunction();
 $assignschedule = new assignschedulefunction();
 $athlete = new athletesFunction();
 ?>
+<?php
+if(isset($_GET['update_success'])){
+	echo '<script>alert("Assign schedule update successfully");location.reload();</script>';
+}
+?>
 <div class="container">
 	<div class="container align_center align_height">
 		<span class="sports">ASSIGN SCHEDULE</span>
@@ -94,7 +99,7 @@ $athlete = new athletesFunction();
 			        <td><?php echo $eachrecord ['assignschedule_id']; ?></td>
 			        <td><?php echo $eachrecord ['createschedule_name']; ?></td>
 			        <td>
-			        	<span class="edit_state edit_assign_schedule" data-value="<?php echo $eachrecord ['assignschedule_id']; ?>">Edit</span>
+			        	<span class="edit_state edit_assign_schedule" data-value="<?php echo $eachrecord ['createschedule_id']; ?>">Edit</span>
 		        		<span class="delete_state" data-value="<?php echo $eachrecord ['assignschedule_id']; ?>">Delete</span>
 			        </td>
 			      </tr>
@@ -115,31 +120,58 @@ $athlete = new athletesFunction();
               	</div><!--edit_title-->
           			<div class="container state-content col-md-12">
 	          			<div class="col-xs-12 col-md-12 align_margin">
-				<form id="edit_assign_schedule_form">
+				<form id="edit_assign_schedule_form" action="functions/assign_schedule_function.php" method="post">
 					<div class="form-group">
 						  <label for="sel1">Select Schedule Name</label>
-						  <select class="form-control adjust_width classic" id="sel1" name="Schedule" data-validation-error-msg="Please Select Name of the Schedule" data-validation="required">
-						  <option></option>
-						  </select>
+						  <!-- <select class="form-control adjust_width classic schedule_update" id="sel1" name="Schedule" data-validation-error-msg="Please Select Name of the Schedule" data-validation="required" disabled>
+							  <?php
+								// $data = $createschedule->createscheduleselectfunction();
+								 //foreach( $data as $eachrecord ) {
+								  ?>
+								  <option value="<?php echo $eachrecord ['createschedule_id']; ?>"><?php echo $eachrecord ['createschedule_name']; ?></option>
+							   <?php //} ?>
+						  </select> -->
+						  <input type="text" class="form-control adjust_width classic schedule_update" name="Schedule" data-validation-error-msg="Please Select Name of the Schedule" data-validation="required" disabled />
 					</div>
 					<div class="form-group">
 						  <label for="sel1">Select Category Name</label>
-						  <select class="form-control adjust_width classic" id="sel1" name="category" data-validation-error-msg="Please Select Category of the Schedule" data-validation="required">
-						  <option></option>
+						  <select class="form-control adjust_width classic category_update" id="sel1" name="category" data-validation-error-msg="Please Select Category of the Schedule" data-validation="required">
+							  <?php
+   							 $data = $category->categoryselectfunction();
+   							 foreach( $data as $eachrecord ) {
+   						   ?>
+   							 <option value="<?php echo $eachrecord ['categories_id']; ?>"><?php echo $eachrecord ['categories_name']; ?></option>
+   						   <?php } ?>
 						  </select>
 					</div>
-					<div class="form-group">
-				      	<label for="athlete" class="email_txt">Add Athletes</label><br>
-				      	<input type="text" class="form-control schedule-name fl" id="name" placeholder="Name" name="name" data-validation-error-msg="Please Enter the name of the Athelete" data-validation="required">
-				      	<input type="text" class="form-control bib_popup fl" id="name" placeholder="Date" name="date" data-validation-error-msg="Please Enter the Date" data-validation="required">
-				    </div>
-				    <div class="form-group">
-				      	<input type="text" class="form-control schedule-name fl" id="name" placeholder="Mobile no" name="Mobile" data-validation-error-msg="Please Enter the Mobile number" data-validation="number" data-validation="required">
-				      	<input type="text" class="form-control bib_popup fl" id="name" placeholder="BIB NO" name="bib" data-validation-error-msg="Please Enter the BIBO NO" data-validation="required">
-				    </div>
+					<label for="athlete" class="email_txt">Add Athletes</label><br>
+					<div class="clone_schedule_update_content">
+						<div class="clone_schedule_update">
+							<div class="form-group">
+								<select class="form-control name_align fl athlete_name athlete_name_update athlete_name1" id="combobox1" placeholder="Name" name="athlete_name1" id="combobox" data-validation-error-msg="Please Select Athlete" data-validation="required">
+									<option value="">Athletes</option>
+									<?php
+										$data = $athlete->athleteSelect();
+										foreach( $data as $eachrecord ) {
+									?>
+										<option value="<?php echo $eachrecord ['athlete_id']; ?>"><?php echo $eachrecord ['athlete_name']; ?></option>
+									<?php } ?>
+								</select>
+						      	<!-- <input type="text" class="form-control schedule-name fl" id="name" placeholder="Name" name="name" data-validation-error-msg="Please Enter the name of the Athelete" data-validation="required"> -->
+						      	<input type="text" class="form-control bib_popup fl dob_update dob" id="name" placeholder="Date" disabled>
+						    </div>
+						    <div class="form-group">
+						      	<input type="text" class="form-control schedule-name fl mobile_update mobile" id="name" placeholder="Mobile no" disabled>
+						      	<input type="text" class="form-control bib_popup athlete_bib fl bib_update" id="name" placeholder="BIB NO" name="athlete_bib1" data-validation-error-msg="Please Enter the BIBO NO" data-validation="required">
+								<input type="hidden" class="assing_schedule_update_id" name="assing_schedule_update_id1" value="" />
+						    </div>
+						</div>
+					</div>
+					<input type="hidden" name="assing_schedule_update" value="1" />
+
 					<div class="col-md-9 schedule_btn">
 						<input type="submit" class="btn btn-primary align_right clear" value="Submit">
-						<input type="submit" class="btn btn-primary align_right clear" value="Clear">
+						<input type="button" class="btn btn-primary align_right clear" value="Clear">
 					</div>
 				</form>
 			</div>
@@ -164,12 +196,24 @@ $athlete = new athletesFunction();
 			       });
         		}
     		});
+			$("#combobox1").combobox({
+        		select: function (event, ui) {
+            		var ath_id = $(this).val();
+					$.ajax({
+			           type: "POST",
+			           url: "functions/athletes_functions.php?get_ath=true",
+			           data: {'ath_id':ath_id},
+			           cache: false,
+					   dataType:'json',
+			           success: function(html) {
 
+							$('.clone_schedule_update_content .clone_schedule_update:first').find('.dob').val(html.athlete_dob);
+							$('.clone_schedule_update_content .clone_schedule_update:first').find('.mobile').val(html.athlete_mobile);
+			           }
+			       });
+        		}
+    		});
 		});
-		function enable_autocomplete(InputField) {
-		    $(InputField).autocomplete({
-		        source: availableTags
-		    });
-}
+
 		</script>
 <?php require_once "footer.php" ?>
