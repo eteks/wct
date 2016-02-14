@@ -212,7 +212,7 @@
     border-radius: 0 !important;
     font-weight: bold;
     font-family: Montserrat;
-    margin-right: 10px;
+    margin-right: 0px;
 }
 .clear:hover{
     background: none repeat scroll 0 0 #fff !important;
@@ -544,7 +544,7 @@ select {
     text-align: center;
     line-height: 3;
 }
-.states_list,.district_list{
+.states_list,.district_list,.edit_states_list{
     display: none;
 }
 .reg_check {
@@ -738,7 +738,7 @@ button, input, optgroup, select, textarea {
     position: relative;
     top: -158px;
     width: 335px;
-    z-index: 1;
+    z-index: 9999;
 }
 .ui-menu-item a:hover {
     text-decoration: none !important;
@@ -862,7 +862,7 @@ button, input, optgroup, select, textarea {
     display: none;
     color: red;
     float: right;
-    font-size: 12px;
+    font-size: 14px;
 }
 .ui-helper-hidden-accessible{
     display: none;
@@ -1050,6 +1050,30 @@ input[type=radio]:checked + label:before {
 .area_width_athlete {
     width: 105%;
 }
+/*added for validation by ramya */
+.category_text{
+    display: none;
+}
+/*.error{
+    color: red !important;
+    display: block;
+    float: right;
+    font-family: Helvetica;
+    font-size: 14px;
+    font-weight: normal;
+}*/
+
+.help-block, .form-error{
+    color: red !important;
+  /*  float: right;*/
+    font-size: 11px;
+}
+.help-block{   
+    margin-bottom: 0 !important;
+    margin-top: 0 !important;
+}
+/* end */
+
 .range_popup_scroll {
     height: 360px;
     overflow-y: scroll;
@@ -1068,4 +1092,9 @@ input[type=radio]:checked + label:before {
 .custom-combobox-input {
   margin: 0;
   padding: 5px 10px;
+}
+.athlete_date {
+    margin: 0;
+    position: relative;
+    float: right;
 }

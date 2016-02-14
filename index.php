@@ -15,7 +15,7 @@
 		}
 	}
 ?>
-<form role="form" action="" method="post" name="login_form">
+<form role="form" action="" method="post" name="login_form" id="login_form_id">
 	<div class="select_user_content">
 		<div class="container">
 			<div class="user_txt">
@@ -39,11 +39,11 @@
 				<div class="user-content col-md-5 col-xs-9">
 				    <div class="form-group">
 						<label for="email" class="email_txt">Email Address</label>
-						<input type="email" class="form-control" id="email" placeholder="Enter email" name="email" required>
+						<input type="email" class="form-control" id="email" placeholder="Enter email" name="email" data-validation-error-msg="Please Enter your Email Address" data-validation="required" data-validation="email">
 				    </div>
 				    <div class="form-group">
 						<label for="pwd" class="pwd_txt">Password</label>
-						<input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password" required>
+						<input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password" data-validation-error-msg="Please Enter your Password" data-validation="required" data-validation="valid">
 				    </div>
 				    <div class="checkbox">
 				        <label class="remember_txt"><input type="checkbox"> Remember me</label>

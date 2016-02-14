@@ -1,9 +1,4 @@
 <?php
-
-  // include ("../dbconnect.php");
-  // include ("../common.php");
-  include($_SERVER["DOCUMENT_ROOT"] . "/wct/common.php");
-
  	class statesFunction {
  		public $statesid;
 	    public $statesname;
@@ -39,7 +34,7 @@
 		if(isset($_GET['adddata'])){
 			$statesFunction = new statesFunction();
 			$statesFunction->statesname = $_POST['states_name'];
-			if ($_POST['states_name']){
+			// if ($_POST['states_name']){
 				if (in_array($_POST['states_name'], $STATES)) {
 				$states = $statesFunction->isStatesExist();
 				if(!$states){
@@ -57,10 +52,10 @@
 				else{
 					echo "failure#No State Present in that Name";
 				}
-			}
-			else{
-				echo "failure#Please Enter state";
-			}
+			// }
+			// else{
+			// 	echo "failure#Please Enter state";
+			// }
 		}
 	  }
 ?>

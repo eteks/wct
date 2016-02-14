@@ -8,10 +8,12 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="css/font-awesome.css">
-    <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>   
     <script type="text/javascript" src="js/jquery-ui.min.js"></script>
     <script type="text/javascript" src="js/combobox.js"></script>
     <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="form-validator/jquery.form-validator.min.js"></script>
+    <script src="js/custom_form_validate.js"></script>
     <script type="text/javascript" src="js/action.js"></script>
 </head>
 <body>

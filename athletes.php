@@ -17,28 +17,32 @@
 		<div class="col-xs-12 col-md-11">
 			<div class="col-md-4 hidden-xs"></div>
 			<div class="col-xs-12 col-md-7 align_margin">
-				<form name="athletes_form">
+				<form name="athletes_form" id="athlete_form">
 					<div class="form-group">
 						<label>Athlete Name</label><br>
-						<input type="text" class="adjust_width" name="athlete_name">
+						<input type="text" class="adjust_width" name="athlete_name" data-validation-error-msg="Please Enter the name of the Athelete" data-validation="required">
 					</div>
 
 					<div class="form-group">
 					  <label for="date" class="fl">Date Of Birth</label><br>
-					  <select class="form-control classic dob_align fl" id="date" name="athlete_dobday">
-					  	<option>Date</option>
+					  <select class="form-control classic dob_align fl" id="date" name="athlete_dobday" data-validation-error-msg="Please Select the Date" data-validation="required">
+					  	<option value="">Date</option>
 					    <option value="1">1</option>
 					    <option value="2">2</option>
 					    <option value="3">3</option>
 					  </select>
-					  <select class="form-control classic dob_align fl" id="month" name="athlete_dobmonth">
-					  	<option>Month</option>
+			<!-- 		</div>
+					<div class="form-group"> -->
+						<select class="form-control classic dob_align fl" id="month" name="athlete_dobmonth" data-validation-error-msg="Please Select the Month" data-validation="required">
+					  	<option value="">Month</option>
 					    <option value="1">January</option>
 					    <option value="2">February</option>
 					    <option value="3">March</option>
 					  </select>
-					  <select class="form-control classic dob_align fl" id="year" name="athlete_dobyear">
-					  	<option>Years</option>
+		        <!-- 	</div>
+		        	<div class="form-group"> -->
+					  <select class="form-control classic dob_align fl" id="year" name="athlete_dobyear" data-validation-error-msg="Please Select the Year" data-validation="required">
+					  	<option value="">Years</option>
 					    <option value="1991">1991</option>
 					    <option value="1992">1992</option>
 					    <option value="1993">1993</option>
@@ -46,19 +50,20 @@
 					</div>
 					<div class="form-group">
       					<label>Mobile Number</label><br>
-      					<input type="text" class="adjust_width" name="athlete_mobile">
+      					<input type="text" class="adjust_width" name="athlete_mobile" data-validation-error-msg="please Enter the Mobile Number" data-validation="number" data-validation="required">
      				</div>
 					<div class="form-group">
 						  <label for="sel1">Gender</label>
-						  <select class="form-control adjust_width classic" id="sel1" name="athlete_gender">
-						  <option></option>
+						  <select class="form-control adjust_width classic" id="sel1" name="athlete_gender" data-validation-error-msg="Please Select the Gender" data-validation="required">
+						  <option value=""> Gender</option>
 						  <option value="Female">Female</option>
 						  <option value="Male">Male</option>
 						  </select>
 					</div>
 					<div class="form-group">
-						  <label for="sel1">State</label>
-						  <select class="form-control adjust_width classic" id="sel1" name="athlete_state">
+						  <label for="sel2">State</label>
+						  <select class="form-control adjust_width classic athlete_state_act" id="sel2" name="athlete_state" data-validation-error-msg="Please Select the State" data-validation="required">
+						  <option value=""></option>
 						  <?php
 	                        $query = $statesFunction->statesSelect();
 	                        while ($row = mysql_fetch_array($query)) {
@@ -68,11 +73,9 @@
 						  </select>
 					</div>
 					<div class="form-group">
-						  <label for="sel1">District</label>
-						  <select class="form-control adjust_width classic" id="sel1" name="athlete_district">
-							  <option value="1">
-								  test
-							  </option>
+						  <label for="sel3">District</label>
+						  <select class="form-control adjust_width classic athlete_district_act" id="sel3" name="athlete_district" data-validation-error-msg="Please Select the District" data-validation="required">
+						   <option value=""> District</option>
 						  <?php
 	                        $query = $districtFunction->districtSelect();
 	                        while ($row = mysql_fetch_array($query)) {
@@ -84,17 +87,18 @@
 
 					<div class="align_height align_margin">
 						<label>Address</label><br>
-						<textarea class="area_width" name="athlete_address" required></textarea>
+						<textarea class="area_width" name="athlete_address" data-validation-error-msg="please Enter the Address" data-validation="required"></textarea>
 					</div>
 
 					<div class="form-group">
 						<label>Taluka</label><br>
-						<input type="text" class="adjust_width" name="athlete_taluka">
+						<input type="text" class="adjust_width" name="athlete_taluka" data-validation-error-msg="Please Enter the name of the Taluka" data-validation="required">
 					</div>
 
 					<div class="form-group">
 						  <label for="sel1">Sports</label>
-						  <select class="form-control adjust_width classic" id="sel1" name="athlete_sports">
+						  <select class="form-control adjust_width classic" id="sel1" name="athlete_sports" data-validation-error-msg="please Select the Sports" data-validation="required">
+						   <option value="">Sports</option>                  
 						   <?php
 	                        $query = $sportsfunction->sportsSelect();
 	                        while ($row = mysql_fetch_array($query)) {
@@ -104,8 +108,9 @@
 						  </select>
 					</div>
 					<div class="col-md-9 schedule_btn">
-						<button type="button" class="btn btn-primary align_right clear add_athletes_act">Submit</button>
-						<button type="button" class="btn btn-primary align_right clear">Clear</button>
+						<!-- <button type="button" class="btn btn-primary align_right clear add_athletes_act">Submit</button> -->
+						<input type="submit" class="btn btn-primary align_right clear add_athletes_act" value="Submit">
+						<input type="submit" class="btn btn-primary align_right clear" value="Clear">
 					</div>
 				</form>
 			</div>
@@ -165,29 +170,28 @@
               	</div><!--edit_title-->
           			<div class="container state-content athlete-popup-content col-md-12">
           			<div class="col-xs-12 col-md-12 align_margin">
-	          	<form name="edit_athletes_form">
+	          	<form name="edit_athletes_form" id="edit_athletes_form">
 	          		<input type="hidden" class="statesid" name="edit_athlete_id">
 					<div class="form-group">
 						<label>Athlete Name</label><br>
-						<input type="text" class="adjust_width" name="edit_athlete_name">
+						<input type="text" class="adjust_width" name="edit_athlete_name" data-validation-error-msg="Please Enter the name of the Athelete" data-validation="required">
 					</div>
 					<div class="form-group">
 					  <label for="date" class="fl">Date Of Birth</label><br>
-					  <select class="form-control classic dob_align1 fl" id="date" name="edit_athlete_dobday">
-					  	<option>Date</option>
-
+					  <select class="form-control classic dob_align1 fl" id="date1" name="edit_athlete_dobday" data-validation-error-msg="Please Select the Date" data-validation="required">
+					  	<option value="">Date</option>
 					    <option value="1">1</option>
 					    <option value="2">2</option>
 					    <option value="3">3</option>
 					  </select>
-					  <select class="form-control classic dob_align2 fl" id="month" name="edit_athlete_dobmonth">
-					  	<option>Month</option>
+					  <select class="form-control classic dob_align2 fl" id="month" name="edit_athlete_dobmonth" data-validation-error-msg="Please Select the Month" data-validation="required">
+					  	<option value="" value="">Month</option>
 					     <option value="1">January</option>
 					    <option value="2">February</option>
 					    <option value="3">March</option>
 					  </select>
-					  <select class="form-control classic dob_align3 fl" id="year" name="edit_athlete_dobyear">
-					  	<option>Years</option>
+					  <select class="form-control classic dob_align3 fl" id="year" name="edit_athlete_dobyear" data-validation-error-msg="Please Select the Year" data-validation="required">
+					  	<option value="">Years</option>
 					    <option value="1991">1991</option>
 					    <option value="1992">1992</option>
 					    <option value="1993">1993</option>
@@ -195,42 +199,49 @@
 					</div>
 					<div class="form-group">
       					<label>Mobile Number</label><br>
-      					<input type="text" class="adjust_width" name="edit_athlete_mobile">
+      					<input type="text" class="adjust_width" name="edit_athlete_mobile" data-validation-error-msg="please Enter the Mobile Number" data-validation="number" data-validation="required">
      				</div>
 					<div class="form-group">
 						  <label for="sel1">Gender</label>
-						  <select class="form-control adjust_width classic" id="sel1" name="edit_athlete_gender">
-						  <option></option>
-						  <option>Female</option>
-						  <option>Male</option>
+						  <select class="form-control adjust_width classic" id="sel1" name="edit_athlete_gender" data-validation-error-msg="Please Select the Gender" data-validation="required">
+						  <option value=""></option>
+						  <option value="">Female</option>
+						  <option value="">Male</option>
 						  </select>
 					</div>
 					<div class="form-group">
 						  <label for="sel1">State</label>
-						  <select class="form-control adjust_width classic" id="sel1" name="edit_athlete_state">
-						  <option></option>
+						  <select class="form-control adjust_width classic" id="sel1" name="edit_athlete_state" data-validation-error-msg="Please Select the State" data-validation="required">
+						  <option value="">State</option>
+						   <?php
+	                        $query = $statesFunction->statesSelect();
+	                        while ($row = mysql_fetch_array($query)) {
+	                            ?>
+	                            <option value="<?php echo $row['states_id']; ?>"><?php echo $row['states_name']; ?></option>
+	                      <?php } ?>
 						  </select>
 					</div>
 					<div class="form-group">
 						  <label for="sel1">District</label>
-						  <select class="form-control adjust_width classic" id="sel1" name="edit_athlete_district">
-						  <option></option>
+						  <select class="form-control adjust_width classic" id="sel1" name="edit_athlete_district" data-validation-error-msg="Please Select the District" data-validation="required">
+						  <option value=""> District</option>
 						  </select>
 					</div>
 
 					<div class="align_height align_margin">
 						<label>Address</label><br>
-						<textarea class="area_width_athlete" name="edit_athlete_address"></textarea>
+						<textarea class="area_width_athlete" name="edit_athlete_address" data-validation-error-msg="Please Enter the Address" data-validation="required"></textarea>
 					</div>
 
 					<div class="form-group">
 						<label>Taluka</label><br>
-						<input type="text" class="adjust_width" name="edit_athlete_taluka">
+						<input type="text" class="adjust_width" name="edit_athlete_taluka" data-validation-error-msg="Please Enter the Taluka" data-validation="required">
 					</div>
 
 					<div class="form-group">
 						  <label for="sel1">Sports</label>
-						  <select class="form-control adjust_width classic" id="sel1" name="edit_athlete_sports">
+						  <select class="form-control adjust_width classic" id="sel1" name="edit_athlete_sports" data-validation-error-msg="Please Select the Sport" data-validation="required">
+						  <option value=""> Sports</option>
 						   <?php
 	                        $query = $sportsfunction->sportsSelect();
 	                        while ($row = mysql_fetch_array($query)) {
@@ -240,8 +251,10 @@
 						  </select>
 					</div>
 					<div class="col-md-10 schedule_btn">
-						<button type="button" class="btn btn-primary align_right clear edit_athletes_act">Submit</button>
-						<button type="button" class="btn btn-primary align_right clear">Clear</button>
+						<!-- <button type="button" class="btn btn-primary align_right clear edit_athletes_act">Submit</button>
+						<button type="button" class="btn btn-primary align_right clear">Clear</button> -->
+						<input type="submit" class="btn btn-primary align_right clear edit_athletes_act" value="Submit">
+						<input type="submit" class="btn btn-primary align_right clear" value="Clear">
 					</div>
 				</form>
 	          		</div>

@@ -27,19 +27,19 @@ if(isset($_GET['update_success'])){
 				<form method="post" action="functions/test_battery_functions.php" id="test_battery_form">
 					<div class="form-group">
 						<label>Enter the name of the Test Battery</label><br>
-						<input type="text" class="adjust_width" name="test_battery_name">
+						<input type="text" class="adjust_width" name="test_battery_name" data-validation-error-msg="please Enter the name of the Test Battery" data-validation="required">
 					</div>
 					<div class="form-group">
 						  <label for="sel1">Select Sport</label>
-						  <select class="form-control adjust_width classic" id="sel1" name="Sport">
+						  <select class="form-control adjust_width classic" id="sel1" name="Sport" data-validation-error-msg="Please Select the sport" data-validation="required">
+							  <option value="">Sport</option>
 							  <?php
 					  		$data = $sports->sportsselectfunction();
 					  		foreach( $data as $eachrecord ) {
 					  		 ?>
 							 <option value="<?php echo $eachrecord ['sports_id']; ?>"><?php echo $eachrecord ['sports_name']; ?></option>
 							 <?php } ?>
-
-						  </select>
+							</select>
 					</div>
 					<div class="align_height align_margin">
 						<label>Select Categories</label><br>
@@ -49,7 +49,7 @@ if(isset($_GET['update_success'])){
 						  foreach( $cat_data as $eachrecord ) {
 						   ?>
 							<div class="checkbox align_check">
-					      		<label class="remember_txt"><input type="checkbox" name='categories[]' value="<?php echo $eachrecord ['categories_id']; ?>"><?php echo $eachrecord ['categories_name']; ?></label>
+					      		<label class="remember_txt"><input type="checkbox" name='categories[]' data-validation-error-msg="Please Choose atleast one Category" data-validation="required" value="<?php echo $eachrecord ['categories_id']; ?>"><?php echo $eachrecord ['categories_name']; ?></label>
 					    	</div>
 							<?php } ?>
 						</div>
@@ -62,7 +62,7 @@ if(isset($_GET['update_success'])){
 						  foreach( $test_data as $eachrecord ) {
 						   ?>
 							<div class="checkbox align_check">
-					      		<label class="remember_txt"><input type="checkbox" name="test[]" value="<?php echo $eachrecord ['test_id']; ?>"><?php echo $eachrecord ['test_name']; ?></label>
+					      		<label class="remember_txt"><input type="checkbox" name="test[]" data-validation-error-msg="Please Choose atleast one Test" data-validation="required" value="<?php echo $eachrecord ['test_id']; ?>"><?php echo $eachrecord ['test_name']; ?></label>
 					    	</div>
 							<?php } ?>
 						</div>
@@ -118,16 +118,18 @@ if(isset($_GET['update_success'])){
               	</div><!--edit_title-->
           			<div class="container state-content col-md-12">
 	          			<div class="col-xs-12 col-md-12 align_margin">
+
 				<form  method="post" action="functions/test_battery_functions.php" id="test_battery_update_form">
 					<input type="hidden" name="testbattery_update" value="1" />
 					<div class="form-group">
 						<label>Enter the name of the Test Battery</label><br>
-						<input type="text" class="adjust_width test_battery_name_update" name="test_battery_name" value="">
+						<input type="text" class="adjust_width test_battery_name_update" name="test_battery_name" value="" data-validation-error-msg="please Enter the name of the Test Battery" data-validation="required">
 						<input type="hidden" class="test_battery_id_update" name="test_battery_id" value="" />
 					</div>
 					<div class="form-group">
 						  <label for="sel1">Select Sport</label>
-						  <select class="form-control adjust_width classic edit_test_sport" id="sel1" name="Sport">
+						  <select class="form-control adjust_width classic edit_test_sport" id="sel1" name="Sport" data-validation-error-msg="please Select the Sport" data-validation="required">
+						  <option value=""></option>
 							  <?php
 							$data = $sports->sportsselectfunction();
 							foreach( $data as $eachrecord ) {
@@ -144,7 +146,7 @@ if(isset($_GET['update_success'])){
 						  		foreach( $cat_data as $eachrecord ) {
 						   ?>
 							<div class="checkbox align_check ">
-					      		<label class="remember_txt"><input class="cate_get" type="checkbox" name='categories[]' value="<?php echo $eachrecord ['categories_id']; ?>"><?php echo $eachrecord ['categories_name']; ?></label>
+					      		<label class="remember_txt"><input class="cate_get" type="checkbox" name='categories[]' data-validation-error-msg="Please Choose atleast one Category" data-validation="required" value="<?php echo $eachrecord ['categories_id']; ?>"><?php echo $eachrecord ['categories_name']; ?></label>
 					    	</div>
 							<?php } ?>
 						</div>
