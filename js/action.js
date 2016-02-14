@@ -57,12 +57,12 @@ function parameter_center_align(){
 function package_menu() {
     var wh = window.innerHeight;
     var smh = wh - 43;
-    if (wh < 200) {
+    if (wh < 150) {
         $('.footer').css({'top': smh + "px"});
-        $('body').css({'height': wh + "px", 'max-height': "200px"});
+        $('body').css({'height': wh + "px", 'max-height': "150px"});
     } else {
-        $('.footer').css('top', '100%');
-        $('body').css('height', "200px", 'max-height', "200px");
+        $('.footer').css('top', '50%');
+        $('body').css('height', "150px", 'max-height', "150px");
     }
 }
 
@@ -1499,12 +1499,21 @@ $(document).ready(function () {
     $(document).on('focus','.r_point',function(){
         range_start = $(this).siblings('.r_strt').val();
         range_end = $(this).siblings('.r_end').val();
-        if (range_start >=0 && range_end <=1){
+        if (range_start >=0 && range_end <=5.9999){
           $(this).val('1').prop("readonly", true);
-        } else if (range_start >1 && range_end <=5){
+        } else if (range_start >=6 && range_end <=10.9999){
           $(this).val('2').prop("readonly", true);
+        } else if (range_start >=11 && range_end <=15.9999){
+          $(this).val('3').prop("readonly", true);
+        }
+        else if (range_start >=16 && range_end >=16){
+          $(this).val('4').prop("readonly", true);
+        }
+        else{
+          $(this).val('0').prop("readonly", true);
         }
     });
+
     $('.edit_assign_schedule').click(function() {
         var assign_schedule_id = $(this).attr('data-value');
         //alert(assign_schedule_id);
@@ -1562,4 +1571,5 @@ $(document).ready(function () {
            }
        });
     });
+
 });

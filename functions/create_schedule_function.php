@@ -28,7 +28,7 @@
 			else{ return false; }
 		}
 		public function createscheduleDelete(){
-			$res = mysql_query("update wc_createschedule set createschedule_status='0' where createschedule_id ='".$this->createscheduleid."'")or die(mysql_error());
+			$res = mysql_query("delete from wc_createschedule where createschedule_id ='".$this->createscheduleid."'")or die(mysql_error());
 			if($res){ return true; }
 			else{ return false; }
 		}
