@@ -212,7 +212,7 @@
     border-radius: 0 !important;
     font-weight: bold;
     font-family: Montserrat;
-    margin-right: 10px;
+    margin-right: 0px;
 }
 .clear:hover{
     background: none repeat scroll 0 0 #fff !important;
@@ -1105,4 +1105,8 @@ input[type=radio]:checked + label:before {
   margin: 0;
   padding: 5px 10px;
 }
-
+.athlete_date {
+    margin: 0;
+    position: relative;
+    float: right;
+}
