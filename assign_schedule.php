@@ -48,6 +48,9 @@ $athlete = new athletesFunction();
 						<div class="assign_clone_content">
 							<div class="form-group">
 								<select class="form-control name_align fl athlete_name" placeholder="Name" name="athlete_name1" id="combobox" required>
+									<option>
+
+									</option>
 									<?php
 										$data = $athlete->athleteSelect();
 										foreach( $data as $eachrecord ) {
@@ -56,10 +59,10 @@ $athlete = new athletesFunction();
 									<?php } ?>
 								</select>
 						      	<!-- <input type="text" class="form-control name_align fl athlete_name" id="name" placeholder="Name" name="athlete_name1" required> -->
-						      	<input type="text" class="form-control date_assign fl athlete_date" id="dob" placeholder="Date" name="athlete_date1" required>
+						      	<input type="text" class="form-control date_assign fl athlete_date dob" id="dob" placeholder="Date" required>
 						    </div>
 						    <div class="form-group">
-						      	<input type="text" class="form-control name_align fl athlete_mobile" id="mobile" placeholder="Mobile no" name="athlete_mobile1" required>
+						      	<input type="text" class="form-control name_align fl athlete_mobile mobile" id="mobile" placeholder="Mobile no" required>
 						      	<input type="text" class="form-control date_assign fl athlete_bib" id="bib" placeholder="BIB NO" name="athlete_bib1" required>
 						    </div>
 						</div>
@@ -85,32 +88,23 @@ $athlete = new athletesFunction();
 			      </tr>
 			    </thead>
 			    <tbody>
+					<?php
+					$data = $assignschedule->assignscheduleSelect();
+					foreach( $data as $eachrecord ) {
+					 ?>
 			      <tr class="align_center delete_color">
-			        <td>01</td>
-			        <td>Suresh</td>
-					<td>
-
-					</td>
+			        <td><?php echo $eachrecord ['assignschedule_id']; ?></td>
+			        <td><?php echo $eachrecord ['createschedule_name']; ?></td>
 			        <td>
 			        	<span class="edit_state">Edit</span>
-		        		<span class="delete_state">Delete</span>
+		        		<span class="delete_state" data-value="<?php echo $eachrecord ['assignschedule_id']; ?>">Delete</span>
 			        </td>
 			      </tr>
+				   <?php } ?>
 			    </tbody>
 			  </table>
 			</div>
 		</div>
-	</div><!-- end  container-->
-	<div class="container align_center">
-	  	<ul class="pagination">
-	  		<li><a href="#" class="align_left_icon"><i class="fa fa-angle-double-left"></i></a></li>
-		    <li><a href="#">1</a></li>
-		    <li><a href="#">2</a></li>
-		    <li><a href="#">3</a></li>
-		    <li><a href="#">4</a></li>
-		    <li><a href="#">5</a></li>
-		    <li><a href="#" class="align_right_icon"><i class="fa fa-angle-double-right"></i></a></li>
-		</ul>
 	</div><!-- end  container-->
 </div><!-- end  container-->
 
@@ -155,6 +149,7 @@ $athlete = new athletesFunction();
 			</div><!--range_div-->
 		</div><!--container-->
 		<script type="text/javascript">
+		$(document).ready(function() {
 			$("#combobox").combobox({
         		select: function (event, ui) {
             		var ath_id = $(this).val();
@@ -165,13 +160,18 @@ $athlete = new athletesFunction();
 			           cache: false,
 					   dataType:'json',
 			           success: function(html) {
-							//alert(html.athlete_name);
-							//alert($(this).html());
-							$('#combobox').parents('form').find('#dob').val(html.athlete_dob);
-							$('#combobox').parents('form').find('#mobile	').val(html.athlete_mobile);
+							$('#combobox').parents('form').find('.dob').val(html.athlete_dob);
+							$('#combobox').parents('form').find('.mobile').val(html.athlete_mobile);
 			           }
 			       });
         		}
     		});
+
+		});
+		function enable_autocomplete(InputField) {
+		    $(InputField).autocomplete({
+		        source: availableTags
+		    });
+}
 		</script>
 <?php require_once "footer.php" ?>

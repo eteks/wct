@@ -140,18 +140,18 @@ function editfunction(data_id){
            success: function(data) {
             var obj = JSON.parse(data);
             $.each(obj, function(i){
-              date = obj[i].createschedule_date.split('-');
-              time = obj[i].createschedule_time.split(':');
-              $('[name=edit_schedule_id]').val(obj[i].createschedule_id);
-              $('[name=edit_schedule_name]').val(obj[i].createschedule_name);
-              $('[name=edit_schedule_testbattery]').append("<option value='"+obj[i].createschedule_testbatteryid+ "'selected>"+obj[i].createschedule_testbatteryname+"</option>");
-              $('[name=edit_schedule_day]').append("<option value='"+date[2]+ "'selected>"+date[2]+"</option>");
-              $('[name=edit_schedule_month]').append("<option value='"+date[1]+ "'selected>"+date[1]+"</option>");
-              $('[name=edit_schedule_year]').append("<option value='"+date[0]+ "'selected>"+date[0]+"</option>");
-              $('[name=edit_schedule_hour]').append("<option value='"+time[0]+ "'selected>"+time[0]+"</option>");
-              $('[name=edit_schedule_minute]').append("<option value='"+time[1]+ "'selected>"+time[1]+"</option>");
-              $('[name=edit_schedule_seconds]').append("<option value='"+time[2]+ "'selected>"+time[2]+"</option>");
-              $('[name=edit_schedule_venue]').val(obj[i].createschedule_venue);
+                date = obj[i].createschedule_date.split('-');
+                time = obj[i].createschedule_time.split(':');
+                $('[name=edit_schedule_id]').val(obj[i].createschedule_id);
+                $('[name=edit_schedule_name]').val(obj[i].createschedule_name);
+                $('[name=edit_schedule_testbattery]').append("<option value='"+obj[i].createschedule_testbatteryid+ "'selected>"+obj[i].createschedule_testbatteryname+"</option>");
+                $('[name=edit_schedule_day]').append("<option value='"+date[2]+ "'selected>"+date[2]+"</option>");
+                $('[name=edit_schedule_month]').append("<option value='"+date[1]+ "'selected>"+date[1]+"</option>");
+                $('[name=edit_schedule_year]').append("<option value='"+date[0]+ "'selected>"+date[0]+"</option>");
+                $('[name=edit_schedule_hour]').append("<option value='"+time[0]+ "'selected>"+time[0]+"</option>");
+                $('[name=edit_schedule_minute]').append("<option value='"+time[1]+ "'selected>"+time[1]+"</option>");
+                $('[name=edit_schedule_seconds]').append("<option value='"+time[2]+ "'selected>"+time[2]+"</option>");
+                $('[name=edit_schedule_venue]').val(obj[i].createschedule_venue);
             });
             $('.popup_fade').show();
             $('.createschedule_div, .close_btn').show();
@@ -168,18 +168,18 @@ function editfunction(data_id){
            success: function(data) {
             var obj = JSON.parse(data);
             $.each(obj, function(i){
-              date = obj[i].createschedule_date.split('-');
-              time = obj[i].createschedule_time.split(':');
-              $('[name=edit_schedule_id]').val(obj[i].createschedule_id);
-              $('[name=edit_schedule_name]').val(obj[i].createschedule_name);
-              $('[name=edit_schedule_testbattery]').append("<option value='"+obj[i].createschedule_testbatteryid+ "'selected>"+obj[i].createschedule_testbatteryname+"</option>");
-              $('[name=edit_schedule_day]').append("<option value='"+date[2]+ "'selected>"+date[2]+"</option>");
-              $('[name=edit_schedule_month]').append("<option value='"+date[1]+ "'selected>"+date[1]+"</option>");
-              $('[name=edit_schedule_year]').append("<option value='"+date[0]+ "'selected>"+date[0]+"</option>");
-              $('[name=edit_schedule_hour]').append("<option value='"+time[0]+ "'selected>"+time[0]+"</option>");
-              $('[name=edit_schedule_minute]').append("<option value='"+time[1]+ "'selected>"+time[1]+"</option>");
-              $('[name=edit_schedule_seconds]').append("<option value='"+time[2]+ "'selected>"+time[2]+"</option>");
-              $('[name=edit_schedule_venue]').val(obj[i].createschedule_venue);
+                date = obj[i].createschedule_date.split('-');
+                time = obj[i].createschedule_time.split(':');
+                $('[name=edit_schedule_id]').val(obj[i].createschedule_id);
+                $('[name=edit_schedule_name]').val(obj[i].createschedule_name);
+                $('[name=edit_schedule_testbattery]').append("<option value='"+obj[i].createschedule_testbatteryid+ "'selected>"+obj[i].createschedule_testbatteryname+"</option>");
+                $('[name=edit_schedule_day]').append("<option value='"+date[2]+ "'selected>"+date[2]+"</option>");
+                $('[name=edit_schedule_month]').append("<option value='"+date[1]+ "'selected>"+date[1]+"</option>");
+                $('[name=edit_schedule_year]').append("<option value='"+date[0]+ "'selected>"+date[0]+"</option>");
+                $('[name=edit_schedule_hour]').append("<option value='"+time[0]+ "'selected>"+time[0]+"</option>");
+                $('[name=edit_schedule_minute]').append("<option value='"+time[1]+ "'selected>"+time[1]+"</option>");
+                $('[name=edit_schedule_seconds]').append("<option value='"+time[2]+ "'selected>"+time[2]+"</option>");
+                $('[name=edit_schedule_venue]').val(obj[i].createschedule_venue);
             });
             $('.popup_fade').show();
             $('.createschedule_div, .close_btn').show();
@@ -270,6 +270,26 @@ $(document).ready(function () {
     });
     $('.edit_test_sport').change(function() {
         $('option:selected', this).attr('selected',true).siblings().removeAttr('selected');
+    });
+    $('.edit_test').click(function(){
+        var test_id = $(this).attr("data-value");
+        //alert(test_id);
+        $.ajax({
+             type: "POST",
+             url: "functions/test_functions.php?gettestdata=true",
+             data:{'id':test_id},
+             cache: false,
+             dataType:'json',
+             success: function(data) {
+                 $('.test_name_update').val(data.test_name);
+                 $('.test_parameter_name_update').val(data.test_parameter_name);
+                 $('.parameter_type_update option[value="'+data.test_parameter_type+'"]').attr('selected','selected');
+                 $('.parameter_unit_update').append('<option value="'+data.test_parameter_unit+'">'+data.test_parameter_unit+'</option>');
+                 $('.parameter_format_update option[value="'+data.test_parameter_format+'"]').attr('selected','selected');
+                 $('.parameter_update').val(test_id);
+                 $('.test_update_id').val(data.test_id);
+            }
+         });
     });
     $('.edit_test_battery').click(function(){
         var test_battery_id = $(this).attr("data-value");
@@ -586,13 +606,13 @@ $(document).ready(function () {
            success: function(html) {
                //alert(html);
                if(html=='error'){
-                 alert('Already sports name entred');
+                 alert('Already sports name exists');
                }else{
-                alert(html);
+                //alert(html);
                 var sports_split = html.split('-');
-                alert(sports_split);
+                //alert(sports_split);
                 $('#sports_table').find(".sports_id:contains("+sports_split[1]+")").next('.sports_name').html(sports_split[0]);
-                //alert('Sports name updated successfully');
+                alert('Sports name updated successfully');
                 $('.popup_fade').hide();
                 $('.state_div,.delete_div').hide();
                 document.body.style.overflow = 'auto';
@@ -626,7 +646,7 @@ $(document).ready(function () {
                data: form_data,
                cache: false,
                success: function(html) {
-                   alert('Sportds successfully deleted');
+                   alert('Sports successfully deleted');
                    $('#sports_table').find(".sports_id:contains("+html+")").parents('tr').remove();
                    $('.popup_fade').hide();
                    $('.state_div,.delete_div').hide();
@@ -739,6 +759,24 @@ $(document).ready(function () {
                  }
              });
        }
+       else if (window.location.href.indexOf("assign_schedule.php") !== -1){
+           //alert('dsfsdfds');
+            var form_data = {'delete_id':del_id};
+            $.ajax({
+                 type: "POST",
+                 url: "functions/assign_schedule_function.php?deletedata=true",
+                 data: form_data,
+                 cache: false,
+                 success: function(html) {
+                  //alert(html);
+                  $('.popup_fade').hide();
+                  $('.state_div,.delete_div').hide();
+                  document.body.style.overflow = 'auto';
+                  location.reload();
+
+                 }
+             });
+       }
     });
 
     $('.no_btn').click(function(event) {
@@ -799,6 +837,7 @@ $(document).ready(function () {
     // });
     var current_id = 1;
     $('.parameter_btn').click(function(){
+        //alert('test')
         nextElement($('.clone_content:last'));
     })
 
@@ -816,18 +855,37 @@ $(document).ready(function () {
 
     var test_id = 1;
     $('.add_athelete').click(function(){
-        nextElement($('.assign_clone_content:last'));
+        nextElement1($('.assign_clone_content:last'));
     })
 
-    function nextElement(element){
+    function nextElement1(element){
         var newElement = element.clone();
         var id = test_id+1;
         test_id = id;
         newElement.find('.athlete_name').removeAttr('name').attr('name', 'athlete_name'+id);
-        newElement.find('.athlete_date').removeAttr('name').attr('name', 'athlete_date'+id);
-        newElement.find('.athlete_mobile').removeAttr('name').attr('name', 'athlete_mobile'+id);
         newElement.find('.athlete_bib').removeAttr('name').attr('name', 'athlete_bib'+id);
+        newElement.find('#combobox').combobox({
+            select: function (event, ui) {
+                var ath_id = $(this).val();
+                $.ajax({
+                   type: "POST",
+                   url: "functions/athletes_functions.php?get_ath=true",
+                   data: {'ath_id':ath_id},
+                   cache: false,
+                   dataType:'json',
+                   success: function(html) {
+
+                        newElement.find('.dob').val(html.athlete_dob);
+                        //alert(newElement.html());
+                        newElement.find('.mobile').val(html.athlete_mobile);
+
+                   }
+               });
+            }
+        });
+        newElement.find('.custom-combobox:nth-child(3)').remove();
         newElement.appendTo($(".assign_content_holder"));
+
     }
 
 
@@ -1037,15 +1095,10 @@ $(document).ready(function () {
            data: form_data,
            cache: false,
            success: function(html) {
-               alert(html);
-            //    if(html=='error'){
-            //      alert('Already sports name entred');
-            //    }else{
-            //       location.reload();
-            //      //$('#sports_table tr:last').after(html);
-               //
-            //    }
-
+               if(html=='success'){
+                   alert('Schedule successfully assigned');
+                   location.reload();
+               }
            }
        });
     });

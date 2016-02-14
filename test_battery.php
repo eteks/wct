@@ -11,6 +11,11 @@ $sports = new sportsfunction();
 $category = new categoryfunction();
 $test = new testfunction();
 ?>
+<?php
+if(isset($_GET['update_success'])){
+	echo "<script>alert('Test Battery update successfully')</script>";
+}
+ ?>
 <div class="container">
 	<div class="container align_center align_height">
 		<span class="sports">TEST BATTERY</span>

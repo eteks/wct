@@ -2,6 +2,7 @@
 
   // include ("../dbconnect.php");
   // include ("../common.php");
+  include($_SERVER["DOCUMENT_ROOT"] . "/wct/common.php");
 
  	class statesFunction {
  		public $statesid;
