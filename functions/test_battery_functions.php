@@ -99,7 +99,7 @@ if(isset($_POST['testbattery_update'])){
                 mysql_query("insert into wc_testbattery_test_attribute (testbattery_id,testbattery_test_id,testbattery_test_attribute_status)values('$test_battery','$test_id','1')");
             }
         }
-        header('Location:../test_battery.php');
+        header('Location:../test_battery.php?update_success=true');
     }else{
       echo "error";
     }

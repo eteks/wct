@@ -47,12 +47,11 @@ $obj = new testfunction();
 								<option value="">Unit</option>
 								</select>
 								<select class="form-control classic type_align fl parameter_format" id="format" name="format1" data-validation-error-msg="Please Select the Format of the Parameter" data-validation="required">
-									<option value="">Format</option>
-									<option>1</option>
-									<option>2</option>
-									<option>3</option>
-									<option>4</option>
-									<option>5</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
 								</select>
 							</div>
 						</div>
@@ -72,7 +71,7 @@ $obj = new testfunction();
 			        <th class="align_center">SLNO</th>
 			        <th class="align_center">Test Name</th>
 			        <th class="align_center">Parameter Name</th>
-			        <th class="align_center">Test</th>
+			        <th class="align_center">Type</th>
 			        <th class="align_center">Unit</th>
 			        <th class="align_center">Format</th>
 			        <th class="align_center">Action</th>
@@ -92,7 +91,7 @@ $obj = new testfunction();
 			        <td><?php echo $eachrecord ['test_parameter_unit']; ?></td>
 			        <td><?php echo $eachrecord ['test_parameter_format']; ?></td>
 			        <td>
-			        	<span class="edit_state">Edit</span>
+			        	<span class="edit_state edit_test" data-value="<?php echo $eachrecord ['test_attribute_id']; ?>">Edit</span>
 		        		<span class="delete_state" data-value="<?php echo $eachrecord ['test_attribute_id']; ?>">Delete</span>
 			        </td>
 					<input type="hidden" name="test_attribute_id" id="test_attribute_id" value="<?php echo $eachrecord ['test_attribute_id']; ?>" />
@@ -113,37 +112,46 @@ $obj = new testfunction();
               	</div><!--edit_title-->
           			<div class="container state-content col-md-12">
 	          			<div class="col-xs-12 col-md-12 align_margin">
-				<form id="edit_test_form">
+				<form id="test_updation_form" action="functions/test_functions.php" method="post">
 					<div class="form-group">
 						<label>Enter Test Name</label><br>
-						<input type="text" class="adjust_width" name="test_name" data-validation-error-msg="Please Enter the Test Name" data-validation="required">
+						<input type="text" class="adjust_width test_name_update" name="test_name" data-validation-error-msg="Please Enter the Test Name" data-validation="required" disabled>
 					</div>
 					<div class="parameter_holder">
 						<div class="form-group">
 							<label>Enter Parameter Name</label><br>
-							<input type="text" class="adjust_width" name="parameter_name1" data-validation-error-msg="Please Enter the Parameter Name" data-validation="required">
+							<input type="text" class="adjust_width test_parameter_name_update" name="parameter_name1" data-validation-error-msg="Please Enter the Parameter Name" data-validation="required" >
 						</div>
 						<div class="form-group">
-							<select class="form-control classic type_align_popup fl" id="type1" name="type1" data-validation-error-msg="Please Select the Type" data-validation="required">
+							<select class="form-control classic type_align_popup fl parameter_type parameter_type_update" id="type1" name="type1" data-validation-error-msg="Please Select the Type" data-validation="required">
 								<option>Type</option>
-								<option>Name1</option>
-								<option>Name2</option>
-								<option>Name3</option>
-							</select> 
-							<select class="form-control classic type_align_popup fl" id="unit1" name="unit1" data-validation-error-msg="Please Select the Unit" data-validation="required">
-								<option>Unit</option>
-								<option>Name1</option>
-								<option>Name2</option>
-								<option>Name3</option>
+								<?php
+									$sql = mysql_query('select * from wc_parametertype') or die(mysql_error());
+									$count = mysql_num_rows($sql);
+									if ($count != '0') {
+										while ($row = mysql_fetch_array($sql)) {
+								?>
+									<option value="<?php echo $row['parametertype_name']; ?>">
+										<?php echo $row['parametertype_name']; ?>
+									</option>
+								<?php
+										}
+									}
+								?>
 							</select>
-							<select class="form-control classic type_align_popup fl" id="format1" name="format1" data-validation-error-msg="Please Select the Format" data-validation="required">
-								<option>Format</option>
-								<option>Name1</option>
-								<option>Name2</option>
-								<option>Name3</option>
+							<select class="form-control classic type_align_popup fl parameter_unit parameter_unit_update" id="unit1" name="unit1" data-validation-error-msg="Please Select the Unit" data-validation="required">
+							</select>
+							<select class="form-control classic type_align_popup fl parameter_format_update" id="format1" name="format1" data-validation-error-msg="Please Select the Format" data-validation="required">
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
 							</select>
 						</div>
 					</div><!-- end parameter_holder -->
+					<input class="parameter_update" type="hidden" name="parameter_update" value="" />
+					<input class="test_update_id" type="hidden" name="test_update_id" value="" />
 					<div class="col-md-9 schedule_btn">
 						<input type="submit" class="btn btn-primary align_right clear" value="Submit">
 					</div>

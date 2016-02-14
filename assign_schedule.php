@@ -47,7 +47,8 @@ $athlete = new athletesFunction();
 					<div class="assign_content_holder">
 						<div class="assign_clone_content">
 							<div class="form-group">
-								<select class="form-control name_align fl athlete_name" placeholder="Name" name="athlete_name1" id="combobox" data-validation-error-msg="Please Select Athlete" data-validation="required">
+
+								<select class="form-control name_align fl athlete_name athlete_name1" placeholder="Name" name="athlete_name1" id="combobox" data-validation-error-msg="Please Select Athlete" data-validation="required">
 									<option value="">Athletes</option>
 									<?php
 										$data = $athlete->athleteSelect();
@@ -57,18 +58,18 @@ $athlete = new athletesFunction();
 									<?php } ?>
 								</select>
 						      	<!-- <input type="text" class="form-control name_align fl athlete_name" id="name" placeholder="Name" name="athlete_name1" required> -->
-						      	<input type="text" class="form-control date_assign fl athlete_date" id="dob" placeholder="Date" name="athlete_date1" data-validation-error-msg="Please Enter the Date" data-validation="required">
+						      	<input type="text" class="form-control date_assign fl athlete_date dob" id="dob" placeholder="Date" name="athlete_date1" data-validation-error-msg="Please Enter the Date" data-validation="required">
 						    </div>
 						    <div class="form-group col-md-11">
-						      	<input type="text" class="form-control name_align fl athlete_mobile" id="mobile" placeholder="Mobile no" name="athlete_mobile1" data-validation-error-msg="Please Enter the Mobile Number" data-validation="required">
+						      	<input type="text" class="form-control name_align fl athlete_mobile mobile" id="mobile" placeholder="Mobile no" name="athlete_mobile1" data-validation-error-msg="Please Enter the Mobile Number" data-validation="required">
 						      	<input type="text" class="form-control date_assign fl athlete_bib" id="bib" placeholder="BIB NO" name="athlete_bib1" data-validation-error-msg="Please Enter the BIB NO" data-validation="required">
 						    </div>
 						</div>
 					</div>
-					<input type="submit" class="btn btn-primary align_right adds_btn add_athelete" value="Add"><i class="fa fa-plus add_align"></i>
+					<input type="button" class="btn btn-primary align_right adds_btn add_athelete" value="Add"><i class="fa fa-plus add_align"></i>
 					<div class="col-md-9 schedule_btn">
 						<input type="submit" class="btn btn-primary align_right clear assignschedule_submit" value="Submit">
-						<input type="submit" class="btn btn-primary align_right clear" value="Clear">
+						<input type="button" class="btn btn-primary align_right clear" value="Clear">
 					</div>
 				</form>
 			</div>
@@ -85,32 +86,23 @@ $athlete = new athletesFunction();
 			      </tr>
 			    </thead>
 			    <tbody>
+					<?php
+					$data = $assignschedule->assignscheduleSelect();
+					foreach( $data as $eachrecord ) {
+					 ?>
 			      <tr class="align_center delete_color">
-			        <td>01</td>
-			        <td>Suresh</td>
-					<td>
-
-					</td>
+			        <td><?php echo $eachrecord ['assignschedule_id']; ?></td>
+			        <td><?php echo $eachrecord ['createschedule_name']; ?></td>
 			        <td>
-			        	<span class="edit_state">Edit</span>
-		        		<span class="delete_state">Delete</span>
+			        	<span class="edit_state edit_assign_schedule" data-value="<?php echo $eachrecord ['assignschedule_id']; ?>">Edit</span>
+		        		<span class="delete_state" data-value="<?php echo $eachrecord ['assignschedule_id']; ?>">Delete</span>
 			        </td>
 			      </tr>
+				   <?php } ?>
 			    </tbody>
 			  </table>
 			</div>
 		</div>
-	</div><!-- end  container-->
-	<div class="container align_center">
-	  	<ul class="pagination">
-	  		<li><a href="#" class="align_left_icon"><i class="fa fa-angle-double-left"></i></a></li>
-		    <li><a href="#">1</a></li>
-		    <li><a href="#">2</a></li>
-		    <li><a href="#">3</a></li>
-		    <li><a href="#">4</a></li>
-		    <li><a href="#">5</a></li>
-		    <li><a href="#" class="align_right_icon"><i class="fa fa-angle-double-right"></i></a></li>
-		</ul>
 	</div><!-- end  container-->
 </div><!-- end  container-->
 
@@ -154,7 +146,8 @@ $athlete = new athletesFunction();
 					</div><!--state-content-->
 			</div><!--range_div-->
 		</div><!--container-->
-		<script type="text/javascript">	     	
+		<script type="text/javascript">
+		$(document).ready(function() {
 			$("#combobox").combobox({
         		select: function (event, ui) {
             		var ath_id = $(this).val();
@@ -165,13 +158,18 @@ $athlete = new athletesFunction();
 			           cache: false,
 					   dataType:'json',
 			           success: function(html) {
-							//alert(html.athlete_name);
-							//alert($(this).html());
-							$('#combobox').parents('form').find('#dob').val(html.athlete_dob);
-							$('#combobox').parents('form').find('#mobile	').val(html.athlete_mobile);
+							$('.assign_content_holder .assign_clone_content:first').find('.dob').val(html.athlete_dob).attr('disabled', 'disabled');
+							$('.assign_content_holder .assign_clone_content:first').find('.mobile').val(html.athlete_mobile).attr('disabled', 'disabled');
 			           }
 			       });
         		}
     		});
+
+		});
+		function enable_autocomplete(InputField) {
+		    $(InputField).autocomplete({
+		        source: availableTags
+		    });
+}
 		</script>
 <?php require_once "footer.php" ?>
