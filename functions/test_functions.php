@@ -83,9 +83,15 @@ class testfunction{
         }
     }
     if(isset($_POST['parameter_update'])){
+        include ("../dbconnect.php");
         $parameter_id = $_POST['parameter_update'];
         $testid =$_POST['test_update_id'];
-        //$parameter_name = $_POST[''];
+        $parameter_name = $_POST['parameter_name1'];
+        $paramtype = $_POST['type1'];
+        $paramunit = $_POST['unit1'];
+        $paramformat = $_POST['format1'];
+        mysql_query("update wc_test_attribute set test_parameter_name ='$parameter_name',test_parameter_type ='$paramtype',test_parameter_unit='$paramunit',test_parameter_format ='$paramformat' where test_attribute_id = $parameter_id ")or die(mysql_error());
+        header('Location:../test.php');
 
     }
     if(isset($_GET['gettestdata'])){

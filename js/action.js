@@ -986,6 +986,8 @@ $(document).ready(function () {
         test_id = id;
         newElement.find('.athlete_name').removeAttr('name').attr('name', 'athlete_name'+id);
         newElement.find('.athlete_bib').removeAttr('name').attr('name', 'athlete_bib'+id);
+        newElement.find('.dob').val('');
+        newElement.find('.mobile').val('');
         newElement.find('#combobox').combobox({
             select: function (event, ui) {
                 var ath_id = $(this).val();
@@ -997,9 +999,10 @@ $(document).ready(function () {
                    dataType:'json',
                    success: function(html) {
 
-                        newElement.find('.dob').val(html.athlete_dob);
+                        newElement.find('.dob').val(html.athlete_dob).attr('disabled', 'disabled');
                         //alert(newElement.html());
-                        newElement.find('.mobile').val(html.athlete_mobile);
+                        newElement.find('.mobile').val(html.athlete_mobile).attr('disabled', 'disabled');
+                        newElement.find('.athlete_bib').val('');
 
                    }
                });
@@ -1206,6 +1209,7 @@ $(document).ready(function () {
         });
 
     $('#test_updation_form').submit(function(e){
+        alert('dsfdsfds');
         e.preventDefault();
         var res = true;
         $('input[type="text"]',this).each(function() {
@@ -1214,11 +1218,6 @@ $(document).ready(function () {
             // alert('test_updation_form false');
           }
         });
-        if(res){
-            // var form_data = $('[name=edit_createschedule_form]').serialize();
-            // alert('test_updation_form true');
-        }
-
         });
 //test battery
  $('#test_battery_form').submit(function(e){
@@ -1404,24 +1403,20 @@ $(document).ready(function () {
       }
     });
     if(res){
-      var form_data = $('#assignschedule_form').serialize();
-      $.ajax({
-         type: "POST",
-         url: "functions/assign_schedule_function.php?add_assign_schdule=true",
-         data: form_data,
-         cache: false,
-         success: function(html) {
-             alert(html);
-          //    if(html=='error'){
-          //      alert('Already sports name entred');
-          //    }else{
-          //       location.reload();
-          //      //$('#sports_table tr:last').after(html);
-             //
-          //    }
-
-         }
-     });
+        var form_data = $('#assignschedule_form').serialize();
+       // alert(form_data);
+        $.ajax({
+           type: "POST",
+           url: "functions/assign_schedule_function.php?add_assign_schdule=true",
+           data: form_data,
+           cache: false,
+           success: function(html) {
+               if(html=='success'){
+                   alert('Schedule successfully assigned');
+                   //location.reload();
+               }
+           }
+       });
     }
   });
 
@@ -1500,21 +1495,6 @@ $(document).ready(function () {
         newElement.appendTo($(".range_holder"));
     }
 
-    $('.assignschedule_submit').click(function() {
-        var form_data = $('#assignschedule_form').serialize();
-       // alert(form_data);
-        $.ajax({
-           type: "POST",
-           url: "functions/assign_schedule_function.php?add_assign_schdule=true",
-           data: form_data,
-           cache: false,
-           success: function(html) {
-               if(html=='success'){
-                   alert('Schedule successfully assigned');
-                   location.reload();
-               }
-           }
-       });
     //Calculate Range points by range start and end
     $(document).on('focus','.r_point',function(){
         range_start = $(this).siblings('.r_strt').val();
@@ -1524,5 +1504,18 @@ $(document).ready(function () {
         } else if (range_start >1 && range_end <=5){
           $(this).val('2').prop("readonly", true);
         }
+    });
+    $('.edit_assign_schedule').click(function() {
+        var assign_schedule_id = $(this).attr('data-value');
+        $.ajax({
+           type: "POST",
+           url: "functions/assign_schedule_function.php?edit_get_data=true",
+           data: {'shdl_id':assign_schedule_id},
+           cache: false,
+           dataType:'json',
+           success: function(html) {
+
+           }
+       });
     });
 });

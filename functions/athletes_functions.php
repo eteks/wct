@@ -10,21 +10,24 @@
 	    public $athletestatesname;
 	    public $athletedistrictid;
 	    public $athletedistrictname;
-	    public $athleteaddress;	
-	    public $athlete_taluka;	
-	    public $athletesportsid;	
-	    public $athletesportsname;	
+	    public $athleteaddress;
+	    public $athlete_taluka;
+	    public $athletesportsid;
+	    public $athletesportsname;
 
 		public function athleteSelect(){
             $temp_arr = array();
 			$res = mysql_query("SELECT * FROM wc_athlete where athlete_status='1'")or die(mysql_error());
-			return $res;
+			while($row = mysql_fetch_array($res)) {
+				$temp_arr[] =$row;
+			}
+			return $temp_arr;
 		}
-		public function athleteInsert(){		
+		public function athleteInsert(){
 			$res = mysql_query("insert into wc_athlete (athlete_name,athlete_dob,athlete_mobile,athlete_gender,athletestates_id,athletedistrict_id,athlete_address,athlete_taluka,athletesports_id,athlete_status)values('".$this->athletename."','".$this->athletedob."','".$this->athletemobile."','".$this->athletegender."','".$this->athletestatesid."','".$this->athletedistrictid."','".$this->athleteaddress."','".$this->athletetaluka."','".$this->athletesportsid."','1')")or die(mysql_error());
 			$lastinsertid = mysql_insert_id();
 			if($res){ return $lastinsertid; }
-			else{ return false; } 
+			else{ return false; }
 		}
 		public function athleteUpdate(){
             $res = mysql_query("update wc_athlete set athlete_name='".$this->athletename."',athlete_dob='".$this->athletedob."',
@@ -63,8 +66,8 @@
 			$athletesFunction->athletedistrictid = $_POST['athlete_district'];
 			$athletesFunction->athletegender = $_POST['athlete_gender'];
 			$athletesFunction->athleteaddress = $_POST['athlete_address'];
-			$athletesFunction->athletesportsid = $_POST['athlete_sports'];	
-			$athletesFunction->athletetaluka = $_POST['athlete_taluka'];					
+			$athletesFunction->athletesportsid = $_POST['athlete_sports'];
+			$athletesFunction->athletetaluka = $_POST['athlete_taluka'];
 			$athleteinsert = $athletesFunction->athleteInsert();
 			$atheletedob = $athletesFunction->athletedob;
 			if($athleteinsert){

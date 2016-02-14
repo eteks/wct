@@ -36,6 +36,10 @@ class assignscheduleFunction {
         }
         echo 'success';
     }
+    // if(isset($_GET['edit_get_data'])){
+    //     include ("../dbconnect.php");
+    //     $sql="select * frm"
+    // }
     if(isset($_GET['deletedata'])){
         include ("../dbconnect.php");
         $assign = new assignscheduleFunction();

@@ -115,7 +115,7 @@ $obj = new testfunction();
 				<form id="test_updation_form" action="functions/test_functions.php" method="post">
 					<div class="form-group">
 						<label>Enter Test Name</label><br>
-						<input type="text" class="adjust_width test_name_update" name="test_name" data-validation-error-msg="Please Enter the Test Name" data-validation="required">
+						<input type="text" class="adjust_width test_name_update" name="test_name" data-validation-error-msg="Please Enter the Test Name" data-validation="required" disabled>
 					</div>
 					<div class="parameter_holder">
 						<div class="form-group">
