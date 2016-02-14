@@ -212,7 +212,7 @@
     border-radius: 0 !important;
     font-weight: bold;
     font-family: Montserrat;
-    margin-right: 0px;
+    margin-right: 10px;
 }
 .clear:hover{
     background: none repeat scroll 0 0 #fff !important;
@@ -578,27 +578,25 @@ select {
 .range_align{
     border-radius: 0 !important;
     box-shadow: none !important;
-    height: 34px;
-    margin: 8px 0 10px 32px;
-    position: relative;
-    right: 85px;
-    width: 115px !important;
-    font-family: Montserrat;
     color: #c6c6c6 !important;
+    font-family: Montserrat;
+    height: 34px;
+    position: relative;
+    right: 45px;
+    width: 130px !important;
 }
 .ranges_btn{
-    background-color: #FFF !important;
-    color: #006687 !important;
-    height: 35px;
-    width: 135px;
-    border-radius: 0px !important;
-    font-weight: bold;
-    font-family: Montserrat;
-    margin-right: 5px;
-    position: relative;
+    background-color: #fff !important;
+    border-radius: 0 !important;
     bottom: 45px;
+    color: #006687 !important;
     cursor: pointer !important;
-    padding: 2px 0px 2px 32px !important;
+    float: right;
+    font-family: Montserrat;
+    font-weight: bold;
+    height: 35px;
+    padding: 2px 0 2px 32px !important;
+    width: 135px;
 }
 .parameter_btn{
     background-color: #FFF !important;
@@ -641,7 +639,7 @@ select {
     margin: 12px 0 10px 32px;
     position: relative;
     right: 30px;
-    width: 230px !important;
+    width: 192px !important;
     color: #c6c6c6 !important;
     font-family: Montserrat;
 }
@@ -652,7 +650,7 @@ select {
     margin: 12px 0 10px 32px;
     position: relative;
     right: 35px;
-    width: 150px !important;
+    width: 172px !important;
     color: #c6c6c6 !important;
     font-family: Montserrat;
 }
@@ -674,13 +672,14 @@ select {
     top: 20px;
 }
 .plus_align {
-    position: relative;
-    right: 71px;
-    top: -7px;
+    background: rgb(0, 102, 135) none repeat scroll 0 0;
     color: rgb(255, 255, 255);
-    background: none repeat scroll 0% 0% rgb(0, 102, 135);
-    padding: 12px 10px 7px 12px;
     cursor: pointer;
+    float: right;
+    left: 34px;
+    padding: 12px 10px 7px 12px;
+    position: relative;
+    top: 1px;
 }
 .parameter_add {
     position: relative;
@@ -716,15 +715,15 @@ button, input, optgroup, select, textarea {
     height: 120px;
 }
 .range_align_popup{
-    border-radius: 0px !important;
+    border-radius: 0 !important;
     box-shadow: none !important;
-    height: 34px;
-    margin: 9px -2px 10px 10px;
-    position: relative;
-    right: 60px;
-    width: 120px !important;
+    color: #c6c6c6 !important;
     font-family: Montserrat;
-    color: #C6C6C6 !important;
+    height: 34px;
+    margin: 5px 0 0 10px;
+    position: relative;
+    right: 20px;
+    width: 130px !important;
 }
 .footer {
     padding: 0 !important;
@@ -1109,4 +1108,20 @@ input[type=radio]:checked + label:before {
     margin: 0;
     position: relative;
     float: right;
+}
+.add-ranges-button {
+    bottom: 65px;
+    left: 10px;
+    position: relative;
+}
+.range_label {
+    position: relative;
+    right: 12px;
+}
+.ranges_popup{
+     padding: 0 !important;
+}
+.assign_content_holder{
+    position: relative;
+    right: 45px;
 }

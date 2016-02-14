@@ -55,15 +55,33 @@
 	                      <?php } ?>
 						  </select>
 					</div>
-					<div class="form-group range_holder">
+					<!-- <div class="form-group range_holder">
 						<div class="clone_content" id="range_counter1">
 						  <label for="range" class="fl range_label">Ranges</label><br>
 						  <input type="text" class="form-control classic range_align fl r_strt" id="strt1" name="range_start1" placehoder="Start" data-validation-error-msg="Please Enter the start range of Test" data-validation="required">				  	
 						  <input type="text" class="form-control classic range_align fl r_end" id="end1" name="range_end1" placehoder="end" data-validation-error-msg="Please Enter the End range of Test" data-validation="required">						  	
 						  <input type="text" class="form-control classic range_align fl r_point" id="point1" name="range_points1" placehoder="points" data-validation-error-msg="Please Enter the Point" data-validation="required">				  	
 						</div>
+					</div> -->
+					<div class="form-group range_holder col-md-12">
+						<div class="clone_content" id="range_counter1">
+						  <label for="range" class="range_label">Ranges</label><br>
+						  	<div class="form-group col-md-10">
+								  <div class="col-md-4">
+								  	<input type="text" class="form-control classic range_align  r_strt" id="strt1" name="range_start1" placehoder="Start" data-validation-error-msg="Please Enter the start range of Test" data-validation="required">				  	
+								  </div>
+								  <div class="col-md-4">
+								  	<input type="text" class="form-control classic range_align  r_end" id="end1" name="range_end1" placehoder="end" data-validation-error-msg="Please Enter the End range of Test" data-validation="required">						  	
+								  </div>
+								  <div class="col-md-4">
+								  	<input type="text" class="form-control classic range_align  r_point" id="point1" name="range_points1" placehoder="points" data-validation-error-msg="Please Enter the Point" data-validation="required">				  	
+								  </div>
+							</div>
+						</div>
 					</div>
-					<input type="button" class="btn btn-primary align_right ranges_btn add_range_points" value="Add Ranges"><i class="fa fa-plus plus_align"></i>
+					<div class="form-group add-ranges-button">
+						<input type="button" class="btn btn-primary ranges_btn add_range_points" value="Add Ranges"><i class="fa fa-plus plus_align"></i>
+					</div>
 					<!-- <button type="button" class="btn btn-primary align_right ranges_btn add_range_points">Add Ranges</button><i class="fa fa-plus plus_align"></i> -->
 					<div class="col-md-9 schedule_btn">					
 						<input type="submit" class="btn btn-primary align_right clear add_range_act" value="Submit">	
@@ -164,9 +182,17 @@
 					  	  <label for="range" class="fl">Ranges</label><br>
 					  	  <input type="hidden" class="edit_rattr_id" name="edit_rangeattr_id1" value="">
 					  	  <input type="hidden" class="edit_r_id" name="edit_range_id1" value="">
-					      <input type="text" class="form-control classic range_align_popup fl edit_r_strt" id="edit_strt1" name="edit_range_start1" placehoder="Start" data-validation-error-msg="Please Select the Start Range" data-validation="required">				  	
-					      <input type="text" class="form-control classic range_align_popup fl edit_r_end" id="edit_end1" name="edit_range_end1" placehoder="end" data-validation-error-msg="Please Select the End Range" data-validation="required">						  	
-					      <input type="text" class="form-control classic range_align_popup fl edit_r_point" id="edit_point1" name="edit_range_points1" placehoder="points" data-validation-error-msg="Please Select the Point" data-validation="required">				  	
+					      	<div class="form-group col-md-12 ranges_popup">
+						      	<div class="col-md-4">
+						      		<input type="text" class="form-control classic range_align_popup edit_r_strt" id="edit_strt1" name="edit_range_start1" placehoder="Start" data-validation-error-msg="Please Select the Start Range" data-validation="required">				  	
+						       	</div>
+						       	<div class="col-md-4">
+						      		<input type="text" class="form-control classic range_align_popup edit_r_end" id="edit_end1" name="edit_range_end1" placehoder="end" data-validation-error-msg="Please Select the End Range" data-validation="required">						  	
+						       	</div>
+						       	<div class="col-md-4">
+						      		<input type="text" class="form-control classic range_align_popup edit_r_point" id="edit_point1" name="edit_range_points1" placehoder="points" data-validation-error-msg="Please Select the Point" data-validation="required">				  	
+					  			</div>
+					  		</div>
 					  </div>
 					</div>				
 					<div class="col-md-9 schedule_btn">					
