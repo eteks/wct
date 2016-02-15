@@ -1,9 +1,9 @@
 <?php
 	include($_SERVER["DOCUMENT_ROOT"] . "/wct/common.php");
- 	class resultFunction {
- 		public $resultid;
- 		public $createscheduleid;
- 		
+	class resultFunction {
+		public $resultid;
+		public $createscheduleid;
+
 		public function resultathleteRecord(){
 			$res = mysql_query("SELECT * FROM wc_assignschedule as ash INNER JOIN wc_athlete as at ON at.athlete_id = ash.assignathlete_id WHERE ash.assigncreateschedule_id='".$this->createscheduleid."'")or die(mysql_error());
 			return $res;
@@ -20,6 +20,6 @@
 	    		array_push( $json, $result );
 		    }
 		    echo json_encode($json);
-		}	
+		}
 	}
 ?>

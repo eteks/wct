@@ -18,7 +18,7 @@ $obj = new testfunction();
 						<label>Enter Test Name</label><br>
 						<input type="text" class="adjust_width" name="test_name" data-validation-error-msg="Please Enter the Test Name" data-validation="required">
 					</div>
-					<div class="parameter_holder">
+					<div class="parameter_holder1">
 						<div class="clone_content" id="param_counter1">
 							<div class="form-group">
 								<label>Enter Parameter Name</label><br>
