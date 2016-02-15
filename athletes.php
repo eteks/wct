@@ -167,7 +167,7 @@
           		<div class="edit_title">
                 	<span class="del_txt">EDIT</span>
               	</div><!--edit_title-->
-          			<div class="container state-content athlete-popup-content col-md-12">
+          			<div class="container state-content col-md-12">
           			<div class="col-xs-12 col-md-12 align_margin">
 	          	<form name="edit_athletes_form" id="edit_athletes_form">
 	          		<input type="hidden" class="statesid" name="edit_athlete_id">

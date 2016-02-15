@@ -195,7 +195,7 @@
 					  		</div>
 					  </div>
 					</div>				
-					<div class="col-md-9 schedule_btn">					
+					<div class="col-md-12 schedule_btn">					
 						<input type="submit" class="btn btn-primary align_right clear edit_range_act" value="Submit">
 					</div>			
 				</form>
