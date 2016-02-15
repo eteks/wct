@@ -66,7 +66,7 @@
 			$scheduletime = $createscheduleFunction->createscheduletime;
 			if($createscheduleinsert){
 				$testbattery = mysql_fetch_array($createscheduleFunction->testbatterynameSelect());
-				echo "success#Schedule Created#".$createscheduleinsert.'#'.$_POST['schedule_name'].'#'.$testbattery.'#'.$scheduledate.'#'.$scheduletime.'#'.$_POST['schedule_venue'];
+				echo "success#Schedule Created#".$createscheduleinsert.'#'.$_POST['schedule_name'].'#'.$testbattery['testbattery_name'].'#'.$scheduledate.'#'.$scheduletime.'#'.$_POST['schedule_venue'];
 			}else{
 				echo "failure#Schedule Not Created";
 			}

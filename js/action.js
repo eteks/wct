@@ -1121,13 +1121,16 @@ $(document).ready(function () {
     $('#createschedule_form').submit(function(e){
       e.preventDefault();
       var res = true;
-      $('input[type="text"]',this).each(function() {
+      $('input[type="text"],select',this).each(function() {
         if($(this).val().trim() == "") {
           res = false;
+          // alert('false  comes');
         }
       });
       if(res){
+         // alert('comes');
          var form_data = $('[name=create_schedule_form]').serialize();
+         // alert('comes'+form_data);
           $.ajax({
              type: "POST",
              url: "functions/create_schedule_function.php?adddata=true",
@@ -1176,6 +1179,7 @@ $(document).ready(function () {
                    success: function(html) {
                        var result_split = html.split('#');
                        if (result_split[0].indexOf("success") !== -1){
+                        alert(result_split[1]);
                          $('.createschedule_table').find(".t_createschedule_id:contains("+result_split[2]+")").siblings('.t_createschedule_name').html(result_split[3])
                          .siblings('.t_testbattery_name').html(result_split[4]).siblings('.t_createschedule_date').html(result_split[5]).siblings('.t_createschedule_time')
                          .html(result_split[6]).siblings('.t_createschedule_venue').html(result_split[7]);

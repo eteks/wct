@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 14, 2016 at 02:12 PM
+-- Generation Time: Feb 15, 2016 at 11:32 AM
 -- Server version: 5.5.47-0ubuntu0.14.04.1
 -- PHP Version: 5.5.9-1ubuntu4.14
 
@@ -260,7 +260,7 @@ CREATE TABLE IF NOT EXISTS `wc_range_attribute` (
   `range_id` int(10) NOT NULL,
   `range_start` int(10) NOT NULL,
   `range_end` int(10) NOT NULL,
-  `range_point` decimal(10,10) NOT NULL,
+  `range_point` int(11) NOT NULL,
   `range_attribute_status` tinyint(1) NOT NULL,
   `range_attribute_createddate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`range_attribute_id`),
@@ -272,8 +272,8 @@ CREATE TABLE IF NOT EXISTS `wc_range_attribute` (
 --
 
 INSERT INTO `wc_range_attribute` (`range_attribute_id`, `range_id`, `range_start`, `range_end`, `range_point`, `range_attribute_status`, `range_attribute_createddate`) VALUES
-(1, 1, 0, 5, 0.9999999999, 1, '2016-02-14 06:08:50'),
-(2, 1, 5, 10, 0.9999999999, 1, '2016-02-14 06:08:50');
+(1, 1, 0, 5, 1, 1, '2016-02-14 06:08:50'),
+(2, 1, 5, 10, 1, 1, '2016-02-14 06:08:50');
 
 -- --------------------------------------------------------
 
@@ -574,7 +574,7 @@ ALTER TABLE `wc_range`
 -- Constraints for table `wc_range_attribute`
 --
 ALTER TABLE `wc_range_attribute`
-  ADD CONSTRAINT `wc_range_attribute_ibfk_1` FOREIGN KEY (`range_id`) REFERENCES `wc_range` (`range_id`);
+  ADD CONSTRAINT `wc_range_attribute_ibfk_1` FOREIGN KEY (`range_id`) REFERENCES `wc_range` (`range_id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `wc_result`
