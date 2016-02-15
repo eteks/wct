@@ -63,10 +63,10 @@ if(isset($_GET['update_success'])){
 									<?php } ?>
 								</select>
 						      	<!-- <input type="text" class="form-control name_align fl athlete_name" id="name" placeholder="Name" name="athlete_name1" required> -->
-						      	<input type="text" class="form-control date_assign fl athlete_date dob" id="dob" placeholder="Date" name="athlete_date1" data-validation-error-msg="Please Enter the Date" data-validation="required">
+						      	<input type="text" class="form-control date_assign fl athlete_date dob" id="dob" placeholder="Date" name="athlete_date1"  data-validation="date" data-validation-format="dd/mm/yyyy">
 						    </div>
 						    <div class="form-group col-md-11">
-						      	<input type="text" class="form-control name_align fl athlete_mobile mobile" id="mobile" placeholder="Mobile no" name="athlete_mobile1" data-validation-error-msg="Please Enter the Mobile Number" data-validation="required">
+						      	<input type="text" class="form-control name_align fl athlete_mobile mobile" id="mobile" placeholder="Mobile no" name="athlete_mobile1" data-validation="number"  data-validation="length" data-validation-length="min11">
 						      	<input type="text" class="form-control date_assign fl athlete_bib" id="bib" placeholder="BIB NO" name="athlete_bib1" data-validation-error-msg="Please Enter the BIB NO" data-validation="required">
 						    </div>
 						</div>
