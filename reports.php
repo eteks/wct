@@ -8,7 +8,7 @@
 			<div class="col-md-4 hidden-xs"></div>
 			<div class="col-xs-12 col-md-7 align_margin">
 				<form id="report_form">
-					<div class="align_height align_margin">					
+					<div class="align_margin">					
 						<label>Select Schedule</label><br>
 						<div class="area_scroll">
 							<div class="checkbox align_check">
@@ -27,11 +27,11 @@
 					</div>
 					<div class="col-md-9 schedule_btn">					
 						<input type="submit" class="btn btn-primary align_right clear" value="Submit">
-						<input type="submit" class="btn btn-primary align_right clear" value="Clear">
+						<input type="submit" class="btn btn-primary align_right test-submit clear" value="Clear">
 					</div>			
 				</form>
 			</div>			
-			<div class="container">           
+			<div class="container table-position">           
 			  <table class="table state_table">
 			    <thead style="border: 1px solid;">
 			      <tr class="row_color">

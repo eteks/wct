@@ -20,11 +20,11 @@
 					</div>
 					
 					<div class="col-md-9 schedule_btn">					
-						<input type="submit" class="btn btn-primary align_right clear" value="Submit">
+						<input type="submit" class="btn btn-primary align_right clear parameter-submit" value="Submit">
 					</div>			
 				</form>
 			</div>			
-			<div class="container">           
+			<div class="container table-position">           
 			  <table class="table state_table">
 			    <thead>
 			      <tr class="row_color">

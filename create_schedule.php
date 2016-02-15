@@ -74,11 +74,11 @@
 					</div>
 					<div class="col-md-9 schedule_btn">	
 						<input type="submit" class="btn btn-primary align_right clear add_createschedule_act" value="Submit">
-						<input type="submit" class="btn btn-primary align_right clear" value="Clear">				
+						<input type="submit" class="btn btn-primary align_right test-submit clear" value="Clear">				
 					</div>			
 				</form>
 			</div>			
-			<div class="container">           
+			<div class="container table-position">           
 			  <table class="table createschedule_table">
 			    <thead>
 			      <tr class="row_color">
@@ -205,7 +205,7 @@
 						<!-- <button type="button" class="btn btn-primary align_right clear edit_createschedule_act">Submit</button>
 						<button type="button" class="btn btn-primary align_right clear">Clear</button> -->
 						<input type="submit" class="btn btn-primary align_right clear edit_createschedule_act" value="Submit">
-						<input type="submit" class="btn btn-primary align_right clear" value="Clear">
+						<input type="submit" class="btn btn-primary align_right test-submit clear" value="Clear">
 					</div>	
 	          	</form>
 	          		</div>

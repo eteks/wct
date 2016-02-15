@@ -37,7 +37,7 @@
 						<input type="submit" class="btn btn-primary align_right clear add_district_act" name="district" value="Submit">
 					</form>
 				</div>
-				<div class="container">           
+				<div class="container  table-position">           
 				  <table class="table district_table">
 				    <thead>
 				      <tr class="row_color">

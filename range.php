@@ -88,7 +88,7 @@
 					</div>			
 				</form>
 			</div>			
-			<div class="container">           
+			<div class="container table-position">           
 			  <table class="table range_table">
 			    <thead>
 			      <tr class="row_color">

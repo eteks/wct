@@ -47,14 +47,14 @@
     <div class="container-fluid menu_list">
       <ul class="nav nav-justified navbar-default nav_holder">
         <?php if($_SESSION['usertype']=='administrator') { ?>
-        <li class="dropdown">
-          <a href="#" data-toggle="collapse" data-target="#one">MASTER</a>
+        <li class="dropdown master-holder">
+          <a href="#" data-target="#one">MASTER</a>
         </li>
         <?php } ?>
-        <li class="dropdown">
-          <a href="#" data-toggle="collapse" data-target="#two">TRANSACTION</a>
+        <li class="dropdown transaction-holder">
+          <a href="#" data-target="#two">TRANSACTION</a>
         </li>
-        <li class="dropdown">
+        <li class="dropdown report-holder">
           <a href="reports.php">REPORTS</a>
         </li>
       </ul>
@@ -63,7 +63,7 @@
       <nav id="submenu">
         <ul class="nav nav-justified submenu-align">
           <li>
-            <ul class="nav nav-justified submenu_list collapse" id="one">
+            <ul class="nav nav-justified submenu_list master-list" id="one">
                 <li><a href="sports.php" id="">SPORTS</a></li>
                 <li><a href="category.php" id="">CATEGORY</a></li>
                 <li><a href="state.php" id="">STATE</a></li>
@@ -73,7 +73,7 @@
                 <li><a href="range.php" id="">RANGE</a></li>
                 <li><a href="#" id="" class="paramter_menu">PARAMETER</a></li>
                 <div class="parameter-list">
-                  <ul>
+                  <ul class="parameter-menu">
                     <li><a href="parameter_type.php">TYPE</a></li>
                     <li><a href="parameter_unit.php">UNIT</a></li>
                   </ul>
@@ -81,7 +81,7 @@
             </ul>
            </li>
            <li>
-             <ul class="nav nav-justified submenu_list collapse" id="two">
+             <ul class="nav nav-justified submenu_list transaction-list" id="two">
                 <li><a href="athletes.php" id="">ADD ATHLETES</a></li>
                 <li><a href="create_schedule.php" id="">CREATE SCHEDULE</a></li>
                 <li><a href="assign_schedule.php" id="">ASSIGN SCHEDULE</a></li>

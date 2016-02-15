@@ -256,6 +256,7 @@ $(document).ready(function () {
   range_center_align();
   parameter_center_align();
 
+  
     //Edit popup
   	$(document.body).delegate('.edit_state','click',function() {
         state_center_align();
@@ -407,14 +408,38 @@ $(document).ready(function () {
         document.body.style.overflow = 'auto';
     });
 
-	$('.collapse').on('shown.bs.collapse', function (e) {
-	    $('.collapse').not(this).removeClass('in');
-	});
+	// $('.collapse').on('shown.bs.collapse', function (e) {
+	//     $('.collapse').not(this).removeClass('in');
+	// });
 
-	$('[data-toggle=collapse]').click(function (e) {
-	   $('[data-toggle=collapse]').siblings('li').removeClass('active');
-	   $(this).siblings('li').toggleClass('active');
-	});
+	// $('[data-toggle=collapse]').click(function (e) {
+	//    $('[data-toggle=collapse]').siblings('li').removeClass('active');
+	//    $(this).siblings('li').toggleClass('active');
+	// });
+
+  $(".submenu_list li").hide();
+    $('.master-holder').hover(function(){
+      $(".master-list li").show();
+      $(".transaction-list li").hide();
+    });
+    $('.transaction-holder').hover(function(){
+      $(".transaction-list li").show();
+      $(".master-list li").hide();
+    });
+    $('.report-holder').hover(function(){
+      $(".master-list li").hide();
+      $(".transaction-list li").hide();
+    });
+    $('.master-list').mouseleave(function(){
+     $(".master-list li").fadeOut(1000);
+    });
+    $('.transaction-list').mouseleave(function(){
+     $(".transaction-list li").fadeOut(1000);
+    });
+
+    $('master-list li a').click(function(){
+      $(this).addClass('clr');
+    });
 
 	// Autocomplete results for states list while add
 	var states_list = [];
@@ -972,7 +997,7 @@ $(document).ready(function () {
         newElement.find('#unit').removeAttr('name').attr('name', 'unit'+id);
         newElement.find('#unit option').remove();
         newElement.find('#format').removeAttr('name').attr('name', 'format'+id);
-        newElement.appendTo($(".parameter_holder"));
+        newElement.appendTo($(".parameter_holder1"));
     }
 
     var test_id = 1;
@@ -1470,8 +1495,11 @@ $(document).ready(function () {
     });
 
 
-    $('.paramter_menu').click(function(){
-      $(".parameter-list").toggle();
+    $('.paramter_menu').hover(function(){
+      $(".parameter-list").show();
+    });
+     $('.parameter-list').mouseleave(function(){
+      $(".parameter-list").fadeOut(1000);
     });
 
     // Jquery functions for Range Form added by kalai
@@ -1571,5 +1599,5 @@ $(document).ready(function () {
            }
        });
     });
-
+    
 });
