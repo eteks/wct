@@ -1127,6 +1127,7 @@ $(document).ready(function () {
         }
       });
       if(res){
+        alert(res);
          var form_data = $('[name=create_schedule_form]').serialize();
           $.ajax({
              type: "POST",
@@ -1442,12 +1443,32 @@ $(document).ready(function () {
       $('input[type="text"],textarea,select',this).each(function() {
         if($(this).val().trim() == "") {
           res = false;
-          alert('result_form alse');
         }
       });
       if(res){
-          // var form_data = $('[name=edit_createschedule_form]').serialize();
-          alert('result_form true');
+          var form_data = $('[name=result_form]').serialize();
+          alert(form_data);
+          $.ajax({
+               type: "POST",
+               url: "functions/result_function.php?loadtestparam=true",
+               data: form_data,
+               cache: false,
+               success: function(html) {
+                var obj = JSON.parse(html);
+                  $.each(obj, function(i){
+                    html = "<tr class='align_center delete_color assign_table'>\
+                                <input type='hidden' name='result_athleteid' class='result_athleteid' value="+obj[i].athlete_id+">\
+                                <input type='hidden' name='result_parametertype' class='result_athleteid' value="+obj[i].parameter_type+">\
+                                <input type='hidden' name='result_parameterunit' class='result_athleteid' value="+obj[i].parameter_unit+">\
+                                <input type='hidden' name='result_parameterformat' class='result_athleteid' value="+obj[i].parameter_format+">\
+                                <td class='result_test_name'>"+obj[i].test_name+"</td>\
+                                <td class='result_parmeter_name'>"+obj[i].parameter_name+"</td>\
+                                <td><input type='text' class='assign_border'></td>\
+                                <td><span class='assign_border'></span></td></tr>";
+                    $('.result_table tr:last').before(html);
+                  });
+              }
+          });
       }
 
     });
@@ -1571,5 +1592,51 @@ $(document).ready(function () {
            }
        });
     });
+
+     //Jquery and Ajax functionality for Result form
+    var athletes_list = [];  
+    var athlete_json = [];
+    $('.resultcreateschedule_act').on('change',function () {
+        selected_createschedule = $('.resultcreateschedule_act option:selected').val();
+        form_data = {'createschedule_id':selected_createschedule};
+        // alert(JSON.stringify(form_data));
+        athletes_list.length = 0;
+        athlete_json.length =0;
+         $.ajax({
+               type: "POST",
+               url: "functions/result_function.php?loadathletes=true",
+               data: form_data,
+               cache: false,
+               success: function(data) {
+                var obj = JSON.parse(data);
+                  $.each(obj, function(i){
+                    athletes_list.push(obj[i].athlete_name);
+                    athlete_json.push({'athlete_id':obj[i].athlete_id,'athlete_name':obj[i].athlete_name,'athlete_dob':obj[i].athlete_dob,'athlete_mobile':obj[i].athlete_mobile,'athlete_bibno':obj[i].assignbib_number})
+                  });
+                  alert(JSON.stringify(athlete_json));          
+               }
+        });
+    });
+
+    $('.result_athletename').focus(function (e) {
+      // alert(athlete_json);
+      $(this).autocomplete({
+        source: athletes_list,
+      });
+    });
+
+     $('.result_athletename').blur(function (e) {
+      // alert(JSON.stringify(athlete_json)); 
+      select_name = $('.result_athletename').val();
+      var obj = athlete_json;
+      $.each(obj, function(i){
+        if(obj[i].athlete_name == select_name){
+          $('.result_athleteid').val(obj[i].athlete_id);
+          $('.result_athletedate').val(obj[i].athlete_dob);
+          $('.result_athletemobile').val(obj[i].athlete_mobile);
+          $('.result_athletebib').val(obj[i].athlete_bibno);
+        }
+      });
+     });
 
 });
