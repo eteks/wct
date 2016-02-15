@@ -1420,21 +1420,21 @@ $(document).ready(function () {
     }
   });
 
-  $('#edit_assign_schedule_form').submit(function(e){
-    e.preventDefault();
-    var res = true;
-    $('input[type="text"],textarea,select',this).each(function() {
-      if($(this).val().trim() == "") {
-        res = false;
-        alert('assign_schedule_form alse');
-      }
-    });
-    if(res){
-        // var form_data = $('[name=edit_createschedule_form]').serialize();
-        alert('assign_schedule_form true');
-    }
-
-  });
+  // $('#edit_assign_schedule_form').submit(function(e){
+  //   e.preventDefault();
+  //   var res = true;
+  //   $('input[type="text"],textarea,select',this).each(function() {
+  //     if($(this).val().trim() == "") {
+  //       res = false;
+  //       alert('assign_schedule_form alse');
+  //     }
+  //   });
+  //   if(res){
+  //       // var form_data = $('[name=edit_createschedule_form]').serialize();
+  //       alert('assign_schedule_form true');
+  //   }
+  //
+  // });
 //result
  $('#result_form').submit(function(e){
       e.preventDefault();
@@ -1516,13 +1516,57 @@ $(document).ready(function () {
 
     $('.edit_assign_schedule').click(function() {
         var assign_schedule_id = $(this).attr('data-value');
+        //alert(assign_schedule_id);
         $.ajax({
            type: "POST",
            url: "functions/assign_schedule_function.php?edit_get_data=true",
            data: {'shdl_id':assign_schedule_id},
            cache: false,
            dataType:'json',
-           success: function(html) {
+           success: function(data) {
+               $('.schedule_update').val(data[0].createschedule_name);
+               $('.category_update option[value="'+data[0].assigncategory_id+'"]').attr('selected','selected');
+               $('.clone_schedule_update:first .athlete_name1 option[value="'+data[0].assignathlete_id+'"]').attr('selected','selected');
+               $('.clone_schedule_update:first .dob_update').val(data[0].athlete_dob);
+               $('.clone_schedule_update:first .mobile_update').val(data[0].athlete_mobile);
+               $('.clone_schedule_update:first .athlete_bib').val(data[0].assignbib_number);
+               $('.clone_schedule_update:first .assing_schedule_update_id').val(data[0].assignschedule_id);
+               var cnt = 0;
+               $.each(data, function(i){
+                   if(cnt!=i){
+                       //alert(data[i].athlete_name);
+                       var newElement = $('.clone_schedule_update:first').clone();
+                       var id = i+1;
+                       test_id = id;
+                       newElement.find('.athlete_name option[value="'+data[i].assignathlete_id+'"]').attr('selected','selected');
+                       newElement.find('.athlete_name').removeAttr('name').attr('name', 'athlete_name'+id);
+                       newElement.find('.assing_schedule_update_id').removeAttr('name').attr('name', 'assing_schedule_update_id'+id).val(data[i].assignschedule_id);
+                       newElement.find('.athlete_bib').removeAttr('name').attr('name', 'athlete_bib'+id).val(data[i].assignbib_number);
+                       newElement.find('.dob_update').val(data[i].athlete_dob);
+                       newElement.find('.mobile_update').val(data[i].athlete_mobile);
+                       newElement.find('#combobox1').combobox({
+                           select: function (event, ui) {
+                               var ath_id = $(this).val();
+                               $.ajax({
+                                  type: "POST",
+                                  url: "functions/athletes_functions.php?get_ath=true",
+                                  data: {'ath_id':ath_id},
+                                  cache: false,
+                                  dataType:'json',
+                                  success: function(html) {
+                                       newElement.find('.dob').val(html.athlete_dob);
+                                       //alert(newElement.html());
+                                       newElement.find('.mobile').val(html.athlete_mobile);
+                                       newElement.find('.athlete_bib').val('');
+                                  }
+                              });
+                           }
+                       });
+                       newElement.find('.custom-combobox:nth-child(3)').remove();
+                       newElement.appendTo($(".clone_schedule_update_content"));
+                   }
+                   //cnt++;
+               });
 
            }
        });
