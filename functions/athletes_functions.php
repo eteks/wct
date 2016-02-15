@@ -16,12 +16,8 @@
 	    public $athletesportsname;
 
 		public function athleteSelect(){
-            $temp_arr = array();
-			$res = mysql_query("SELECT * FROM wc_athlete where athlete_status='1'")or die(mysql_error());
-			while($row = mysql_fetch_array($res)) {
-				$temp_arr[] =$row;
-			}
-			return $temp_arr;
+            $res = mysql_query("select * from wc_athlete where athlete_status='1'")or die(mysql_error());
+			return $res;
 		}
 		public function athleteInsert(){
 			$res = mysql_query("insert into wc_athlete (athlete_name,athlete_dob,athlete_mobile,athlete_gender,athletestates_id,athletedistrict_id,athlete_address,athlete_taluka,athletesports_id,athlete_status)values('".$this->athletename."','".$this->athletedob."','".$this->athletemobile."','".$this->athletegender."','".$this->athletestatesid."','".$this->athletedistrictid."','".$this->athleteaddress."','".$this->athletetaluka."','".$this->athletesportsid."','1')")or die(mysql_error());
