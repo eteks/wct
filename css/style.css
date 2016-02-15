@@ -1048,10 +1048,10 @@ input[type=radio]:checked + label:before {
     right: -7px;
     width: 120px !important;
 }
-/*.athlete-popup-content {
+.athlete-popup-content {
     height: 500px;
     overflow-y: scroll;
-}*/
+}
 .area_width_athlete {
     width: 105%;
 }
@@ -1145,7 +1145,7 @@ input[type=radio]:checked + label:before {
     float: right;
     left: 10px;
     position: relative;
-}9
+}
 .assign-scroll {
     height: 360px;
     overflow-y: scroll;

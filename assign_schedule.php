@@ -83,7 +83,7 @@ if(isset($_GET['update_success'])){
 					</div>
 					<div class="col-md-9 schedule_btn">
 						<input type="submit" class="btn btn-primary align_right clear assignschedule_submit" value="Submit">
-						<input type="button" class="btn btn-primary align_right clear" value="Clear">
+						<input type="button" class="btn btn-primary align_right test-submit clear" value="Clear">
 					</div>
 				</form>
 			</div>
@@ -156,7 +156,6 @@ if(isset($_GET['update_success'])){
 					<label for="athlete" class="email_txt">Add Athletes</label><br>
 					<div class="clone_schedule_update_content col-md-12">
 						<div class="clone_schedule_update">
-<<<<<<< HEAD
 							<div class="form-group col-md-12">
 								<div class="col-md-6 combo--align--popup">
 									<select class="form-control name_align fl athlete_name athlete_name_update athlete_name1" id="combobox1" placeholder="Name" name="athlete_name1" id="combobox" data-validation-error-msg="Please Select Athlete" data-validation="required">
@@ -173,20 +172,6 @@ if(isset($_GET['update_success'])){
 						      		<!-- <input type="text" class="form-control schedule-name fl" id="name" placeholder="Name" name="name" data-validation-error-msg="Please Enter the name of the Athelete" data-validation="required"> -->
 						      		<input type="text" class="form-control bib_popup fl dob_update dob" id="name" placeholder="Date" disabled>
 						    	</div>
-=======
-							<div class="form-group">
-								<select class="form-control name_align fl athlete_name athlete_name_update athlete_name1" id="combobox1" placeholder="Name" name="athlete_name1" id="combobox" data-validation-error-msg="Please Select Athlete" data-validation="required">
-									<option value="">Athletes</option>
-									<?php
-										$data = $athlete->athleteSelect1();
-										foreach( $data as $eachrecord ) {
-									?>
-										<option value="<?php echo $eachrecord ['athlete_id']; ?>"><?php echo $eachrecord ['athlete_name']; ?></option>
-									<?php } ?>
-								</select>
-						      	<!-- <input type="text" class="form-control schedule-name fl" id="name" placeholder="Name" name="name" data-validation-error-msg="Please Enter the name of the Athelete" data-validation="required"> -->
-						      	<input type="text" class="form-control bib_popup fl dob_update dob" id="name" placeholder="Date" disabled>
->>>>>>> 7874bda9f33eeef17d8ff48810847f3e7aeb4c6e
 						    </div>
 						    <div class="form-group col-md-12">
 						    	<div class="col-md-6">
@@ -203,7 +188,7 @@ if(isset($_GET['update_success'])){
 
 					<div class="col-md-9 schedule_btn">
 						<input type="submit" class="btn btn-primary align_right clear" value="Submit">
-						<input type="button" class="btn btn-primary align_right clear" value="Clear">
+						<input type="button" class="btn btn-primary align_right test-submit clear" value="Clear">
 					</div>
 				</form>
 			</div>
