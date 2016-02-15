@@ -11,20 +11,18 @@
 		<div class="col-xs-12 col-md-11">
 			<div class="col-md-4 hidden-xs"></div>
 			<div class="col-xs-12 col-md-7 align_margin">
-				<form id="parameter_type">
+				<form id="parameter_type_form" name="parameter_type_form">
 					<div class="form-group">
 						  <label for="sel1">Select Parameter Type</label>
-						  <select class="form-control adjust_width classic" id="sel1" name="parameter" data-validation-error-msg="Please Select the Type of the Parameter" data-validation="required">
-						  <option></option>
-						  </select>
+						  <input type="text" class="form-control adjust_width classic" id="sel1" name="parameter_type" data-validation-error-msg="Please Select the Type of the Parameter" data-validation="required">
 					</div>
 					<div class="col-md-9 schedule_btn">
-						<input type="submit" class="btn btn-primary align_right clear" value="Submit">
+						<input type="submit" class="btn btn-primary align_right clear add_parameter_act" value="Submit">
 					</div>
 				</form>
 			</div>
 			<div class="container">
-			  <table class="table state_table">
+			  <table class="table state_table parameter_type_table">
 			    <thead>
 			      <tr class="row_color">
 			        <th class="align_center">SLNO</th>
@@ -33,45 +31,24 @@
 			      </tr>
 			    </thead>
 			    <tbody>
+					<?php
+					   $query = $parametertypeFunction->parametertypeSelect();
+					   while ($row = mysql_fetch_array($query)) {
+					?>
 			      <tr class="align_center delete_color">
-			        <td>01</td>
-			        <td></td>
+					  <input type="hidden" name="states_id" value="<?php echo $row['parametertype_id']; ?>">
+			        <td class="t_pararmeter_id"><?php echo $row['parametertype_id']; ?></td>
+			        <td class="t_pararmeter_name"><?php echo $row['parametertype_name']; ?></td>
 			        <td>
-			        	<span class="edit_state">Edit</span>
-		        		<span class="delete_state">Delete</span>
+			        	<span class="edit_state" onclick="editfunction(<?php echo $row['parametertype_id'] ?>)">Edit</span>
+		        		<span class="delete_state" data-value="<?php echo $row['parametertype_id'] ?>">Delete</span>
 			        </td>
 			      </tr>
-			      <tr class="align_center delete_color">
-			        <td>02</td>
-			        <td></td>
-			        <td>
-			        	<span class="edit_state">Edit</span>
-		        		<span class="delete_state">Delete</span>
-			        </td>
-			      </tr>
-			      <tr class="align_center delete_color">
-			        <td>03</td>
-			        <td></td>
-			        <td>
-			        	<span class="edit_state">Edit</span>
-		        		<span class="delete_state">Delete</span>
-			        </td>
-			      </tr>
+				   <?php } ?>
 			    </tbody>
 			  </table>
 			</div>
 		</div>
-	</div><!-- end  container-->
-	<div class="container align_center">
-	  	<ul class="pagination">
-	  		<li><a href="#" class="align_left_icon"><i class="fa fa-angle-double-left"></i></a></li>
-		    <li><a href="#">1</a></li>
-		    <li><a href="#">2</a></li>
-		    <li><a href="#">3</a></li>
-		    <li><a href="#">4</a></li>
-		    <li><a href="#">5</a></li>
-		    <li><a href="#" class="align_right_icon"><i class="fa fa-angle-double-right"></i></a></li>
-		</ul>
 	</div><!-- end  container-->
 </div><!-- end  container-->
 
@@ -83,12 +60,12 @@
                 	<span class="del_txt">EDIT</span>
               	</div><!--edit_title-->
           			<div class="container state-content col-md-12">
-          			<form id="edit_parameter_type">
+          			<form id="edit_parameter_type" name="parameter_edit">
 						<div class="form-group">
-							  <label for="sel1">Select Parameter Type</label>
-							  <select class="form-control adjust_width_parameter classic" id="sel1" name="parameter" data-validation-error-msg="Please Select the Type of the Parameter" data-validation="required">
-							  <option></option>
-							  </select>
+							  <label for="sel1">Enter Parameter Type</label>
+							  <input type="hidden" name="edit_parameter_id" />
+							  <input type="text" class="form-control adjust_width_parameter classic" id="sel1" name="edit_parameter_type" data-validation-error-msg="Please Select the Type of the Parameter" data-validation="required">
+
 						</div>
 						<div class="col-md-9 schedule_btn">
 							<input type="submit" class="btn btn-primary align_right clear" value="Submit">
