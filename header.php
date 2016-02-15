@@ -33,7 +33,7 @@
         </div><!--navbar-header-->
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
-                <?php echo $_SESSION['login']; if(!isset($_SESSION['login'])) { ?>
+                <?php if(!isset($_SESSION['login'])) { ?>
                 <li class="register"><a href="#">REGISTER</a></li>
                 <!-- <li><a href="#">LOGIN</a></li> -->
                 <?php }else{ ?>
