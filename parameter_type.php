@@ -90,11 +90,7 @@
 							  <option></option>
 							  </select>
 						</div>
-<<<<<<< HEAD
 						<div class="col-md-12 schedule_btn">					
-=======
-						<div class="col-md-9 schedule_btn">
->>>>>>> 7874bda9f33eeef17d8ff48810847f3e7aeb4c6e
 							<input type="submit" class="btn btn-primary align_right clear" value="Submit">
 						</div>
 					</form>

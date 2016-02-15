@@ -1475,7 +1475,7 @@ $(document).ready(function () {
       });
       if(res){
           var form_data = $('[name=result_form]').serialize();
-          alert(form_data);
+          $('.result_createscheduleid').val($('.resultcreateschedule_act option:selected').val());
           $.ajax({
                type: "POST",
                url: "functions/result_function.php?loadtestparam=true",
@@ -1486,13 +1486,13 @@ $(document).ready(function () {
                   $.each(obj, function(i){
                     html = "<tr class='align_center delete_color assign_table'>\
                                 <input type='hidden' name='result_athleteid' class='result_athleteid' value="+obj[i].athlete_id+">\
-                                <input type='hidden' name='result_parametertype' class='result_athleteid' value="+obj[i].parameter_type+">\
-                                <input type='hidden' name='result_parameterunit' class='result_athleteid' value="+obj[i].parameter_unit+">\
-                                <input type='hidden' name='result_parameterformat' class='result_athleteid' value="+obj[i].parameter_format+">\
+                                <input type='hidden' name='result_parametertype' class='result_parametertype' value="+obj[i].parameter_type+">\
+                                <input type='hidden' name='result_parameterunit' class='result_parameterunit' value="+obj[i].parameter_unit+">\
+                                <input type='hidden' name='result_parameterformat' class='result_parameterformat' value="+obj[i].parameter_format+">\
                                 <td class='result_test_name'>"+obj[i].test_name+"</td>\
-                                <td class='result_parmeter_name'>"+obj[i].parameter_name+"</td>\
-                                <td><input type='text' class='assign_border'></td>\
-                                <td><span class='assign_border'></span></td></tr>";
+                                <td class='result_parameter_name'>"+obj[i].parameter_name+"</td>\
+                                <td><input type='text' class='assign_border enter_result'></td>\
+                                <td><span class='assign_border enter_points'></span></td></tr>";
                     $('.result_table tr:last').before(html);
                   });
               }
@@ -1547,24 +1547,26 @@ $(document).ready(function () {
         newElement.appendTo($(".range_holder"));
     }
 
-    //Calculate Range points by range start and end
-    $(document).on('focus','.r_point',function(){
-        range_start = $(this).siblings('.r_strt').val();
-        range_end = $(this).siblings('.r_end').val();
-        if (range_start >=0 && range_end <=5.9999){
-          $(this).val('1').prop("readonly", true);
-        } else if (range_start >=6 && range_end <=10.9999){
-          $(this).val('2').prop("readonly", true);
-        } else if (range_start >=11 && range_end <=15.9999){
-          $(this).val('3').prop("readonly", true);
-        }
-        else if (range_start >=16 && range_end >=16){
-          $(this).val('4').prop("readonly", true);
-        }
-        else{
-          $(this).val('0').prop("readonly", true);
-        }
-    });
+    // Calculate Range points by range start and end
+    // $(document).on('focus','.r_point',function(){
+    //     range_start = $(this).siblings('.r_strt').val();
+    //     range_end = $(this).siblings('.r_end').val();
+    //     if (range_start >=0 && range_end <=5.9999){
+    //       $(this).val('1').prop("readonly", true);
+    //     } else if (range_start >=6 && range_end <=10.9999){
+    //       $(this).val('2').prop("readonly", true);
+    //     } else if (range_start >=11 && range_end <=15.9999){
+    //       $(this).val('3').prop("readonly", true);
+    //     }
+    //     else if (range_start >=16 && range_end >=16){
+    //       $(this).val('4').prop("readonly", true);
+    //     }
+    //     else{
+    //       $(this).val('0').prop("readonly", true);
+    //     }
+    // });
+
+    
 
     $('.edit_assign_schedule').click(function() {
         var assign_schedule_id = $(this).attr('data-value');
@@ -1639,12 +1641,13 @@ $(document).ready(function () {
                data: form_data,
                cache: false,
                success: function(data) {
+                // alert(data);
                 var obj = JSON.parse(data);
                   $.each(obj, function(i){
                     athletes_list.push(obj[i].athlete_name);
                     athlete_json.push({'athlete_id':obj[i].athlete_id,'athlete_name':obj[i].athlete_name,'athlete_dob':obj[i].athlete_dob,'athlete_mobile':obj[i].athlete_mobile,'athlete_bibno':obj[i].assignbib_number})
                   });
-                  alert(JSON.stringify(athlete_json));          
+                  // alert(JSON.stringify(athlete_json));          
                }
         });
     });
@@ -1662,11 +1665,55 @@ $(document).ready(function () {
       var obj = athlete_json;
       $.each(obj, function(i){
         if(obj[i].athlete_name == select_name){
-          $('.result_athleteid').val(obj[i].athlete_id);
-          $('.result_athletedate').val(obj[i].athlete_dob);
-          $('.result_athletemobile').val(obj[i].athlete_mobile);
-          $('.result_athletebib').val(obj[i].athlete_bibno);
+          $('.result_athleteid').val(obj[i].athlete_id).prop("readonly", true);
+          $('.result_athletedate').val(obj[i].athlete_dob).prop("readonly", true);
+          $('.result_athletemobile').val(obj[i].athlete_mobile).prop("readonly", true);
+          $('.result_athletebib').val(obj[i].athlete_bibno).prop("readonly", true);
         }
       });
+     });
+
+     $(document).on('blur','.enter_result',function(){
+        value = $(this).val();
+        if( value == ''){
+          $(this).parents('tr').find('.enter_points').text('0');
+        } else if (value >=0 && value <=5.9999){
+             $(this).parents('tr').find('.enter_points').text('1');
+        } else if (value >=6 && value <=10.9999){
+           $(this).parents('tr').find('.enter_points').text('2');
+        } else if (value >=11 && value <=15.9999){
+           $(this).parents('tr').find('.enter_points').text('3');
+        } else if (value >=16){
+           $(this).parents('tr').find('.enter_points').text('4');
+        } 
+        var val=0;
+        $(".enter_points").each(function() {
+          val += Number($(this).text());
+          $('.total_result').text(val);
+        });
+     });
+
+     $('.result_submit_act').click(function(){
+          var result_data = [];
+          createschedule_id = $('.result_createscheduleid').val();
+          athlete_id = $('.result_athleteid').val();
+          $(".result_table tr:not(:last-child)").each(function(i) {
+              test_name = $(this).find('.result_test_name').text();
+              parameter_name = $(this).find('.result_parameter_name').text();
+              enter_result = $(this).find('.enter_result').val();
+              enter_points = $(this).find('.enter_points').text();
+              result_data.push({'createschedule_id':createschedule_id,'athlete_id':athlete_id,'test_name':test_name,
+                                'parameter_name':parameter_name,'enter_result':enter_result,'enter_points':enter_points});
+          });
+          $.ajax({
+             type: "POST",
+             url: "functions/result_function.php?storeresult=true",
+             data: JSON.stringify(result_data),
+             dataType: 'json',
+             cache: false,
+             success: function(data) {
+              alert(data);
+             }
+          });
      });
 });
