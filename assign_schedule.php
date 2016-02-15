@@ -56,7 +56,7 @@ if(isset($_GET['update_success'])){
 									<select class="form-control name_align  athlete_name athlete_name1" placeholder="Name" name="athlete_name1" id="combobox" data-validation-error-msg="Please Select Athlete" data-validation="required">
 										<option value="">Athletes</option>
 										<?php
-											$data = $athlete->athleteSelect();
+											$data = $athlete->athleteSelect1();
 											foreach( $data as $eachrecord ) {
 									 	?>
 											<option value="<?php echo $eachrecord ['athlete_id']; ?>"><?php echo $eachrecord ['athlete_name']; ?></option>
@@ -65,16 +65,16 @@ if(isset($_GET['update_success'])){
 								</div>
 						      	<!-- <input type="text" class="form-control name_align fl athlete_name" id="name" placeholder="Name" name="athlete_name1" required> -->
 						      	<div class="col-md-6">
-						      		<input type="text" class="form-control date_assign dob" id="dob" placeholder="Date" name="athlete_date1" data-validation-error-msg="Please Enter the Date" data-validation="required">
+						      		<input type="text" class="form-control date_assign dob" id="dob" placeholder="Date" name="athlete_date1" data-validation-error-msg="Please Enter the Date" data-validation="date" data-validation-format="dd/mm/yyyy">
 						   		</div>
 						    </div>
 						    <div class="form-group col-md-12">
 						    	<div class="col-md-6">
-						      		<input type="text" class="form-control name_align athlete_mobile mobile" id="mobile" placeholder="Mobile no" name="athlete_mobile1" data-validation-error-msg="Please Enter the Mobile Number" data-validation="required">
+						      		<input type="text" class="form-control name_align athlete_mobile mobile" id="mobile" placeholder="Mobile no" name="athlete_mobile1" data-validation="number"  data-validation="length" data-validation-length="min11">
 						      	</div>
 						      	<div class="col-md-6">
 						      		<input type="text" class="form-control date_assign athlete_bib" id="bib" placeholder="BIB NO" name="athlete_bib1" data-validation-error-msg="Please Enter the BIB NO" data-validation="required">
-						    	</div>
+								</div>
 						    </div>
 						</div>
 					</div>
@@ -156,6 +156,7 @@ if(isset($_GET['update_success'])){
 					<label for="athlete" class="email_txt">Add Athletes</label><br>
 					<div class="clone_schedule_update_content col-md-12">
 						<div class="clone_schedule_update">
+<<<<<<< HEAD
 							<div class="form-group col-md-12">
 								<div class="col-md-6 combo--align--popup">
 									<select class="form-control name_align fl athlete_name athlete_name_update athlete_name1" id="combobox1" placeholder="Name" name="athlete_name1" id="combobox" data-validation-error-msg="Please Select Athlete" data-validation="required">
@@ -172,6 +173,20 @@ if(isset($_GET['update_success'])){
 						      		<!-- <input type="text" class="form-control schedule-name fl" id="name" placeholder="Name" name="name" data-validation-error-msg="Please Enter the name of the Athelete" data-validation="required"> -->
 						      		<input type="text" class="form-control bib_popup fl dob_update dob" id="name" placeholder="Date" disabled>
 						    	</div>
+=======
+							<div class="form-group">
+								<select class="form-control name_align fl athlete_name athlete_name_update athlete_name1" id="combobox1" placeholder="Name" name="athlete_name1" id="combobox" data-validation-error-msg="Please Select Athlete" data-validation="required">
+									<option value="">Athletes</option>
+									<?php
+										$data = $athlete->athleteSelect1();
+										foreach( $data as $eachrecord ) {
+									?>
+										<option value="<?php echo $eachrecord ['athlete_id']; ?>"><?php echo $eachrecord ['athlete_name']; ?></option>
+									<?php } ?>
+								</select>
+						      	<!-- <input type="text" class="form-control schedule-name fl" id="name" placeholder="Name" name="name" data-validation-error-msg="Please Enter the name of the Athelete" data-validation="required"> -->
+						      	<input type="text" class="form-control bib_popup fl dob_update dob" id="name" placeholder="Date" disabled>
+>>>>>>> 7874bda9f33eeef17d8ff48810847f3e7aeb4c6e
 						    </div>
 						    <div class="form-group col-md-12">
 						    	<div class="col-md-6">

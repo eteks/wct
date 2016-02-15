@@ -2,7 +2,7 @@
 <div class="container">
 	<div class="container align_center align_height">
 		<span class="sports">REPORTS</span>
-	</div><!--end container-->	
+	</div><!--end container-->
 	<div class="container">
 		<div class="col-xs-12 col-md-11">
 			<div class="col-md-4 hidden-xs"></div>
@@ -25,30 +25,27 @@
 					    	</div>
 						</div>
 					</div>
-					<div class="col-md-9 schedule_btn">					
+					<div class="col-md-9 schedule_btn">
 						<input type="submit" class="btn btn-primary align_right clear" value="Submit">
 						<input type="submit" class="btn btn-primary align_right test-submit clear" value="Clear">
-					</div>			
+					</div>
 				</form>
-			</div>			
-			<div class="container table-position">           
+			</div>
+			<div class="container table-position" id="dvData">
 			  <table class="table state_table">
-			    <thead style="border: 1px solid;">
-			      <tr class="row_color">
-			        <th class="align_center report_head">Athletes Names</th>
-			        <th class="align_center report_head">D.O.B</th>
-			        <th class="align_center report_head">Age</th>
-			        <th class="align_center report_head">30 M</th>
-			        <th class="align_center report_head">Result</th>
-			        <th class="align_center report_head">S.B Jump</th>
-			        <th class="align_center report_head">Result</th>
-			        <th class="align_center report_head">Medicine</th>
-			        <th class="align_center report_head">Result</th>
-			        <th class="align_center report_head">Shuttle</th>
-			        <th class="align_center report_head">Result</th>
+			      <tr class="row_color" style="border: 1px solid;">
+			        <td class="align_center report_head">Athletes Names</td>
+			        <td class="align_center report_head">D.O.B</td>
+			        <td class="align_center report_head">Age</td>
+			        <td class="align_center report_head">30 M</td>
+			        <td class="align_center report_head">Result</td>
+			        <td class="align_center report_head">S.B Jump</td>
+			        <td class="align_center report_head">Result</td>
+			        <td class="align_center report_head">Medicine</td>
+			        <td class="align_center report_head">Result</td>
+			        <td class="align_center report_head">Shuttle</td>
+			        <td class="align_center report_head">Result</td>
 			      </tr>
-			    </thead>
-			    <tbody>
 			      <tr class="align_center delete_color">
 			        <td>Suresh</td>
 			        <td>DD/MM/YY</td>
@@ -87,22 +84,66 @@
 			        <td>3</td>
 			        <td>18.14</td>
 			        <td>3</td>
-			      </tr>						   
-			    </tbody>
+			      </tr>
+
 			  </table>
-			</div>			
+			</div>
 		</div>
 	</div><!-- end  container-->
-	<div class="container align_center">		          
-	  	<ul class="pagination">
-	  		<li><a href="#" class="align_left_icon"><i class="fa fa-angle-double-left"></i></a></li>    	
-		    <li><a href="#">1</a></li>
-		    <li><a href="#">2</a></li>
-		    <li><a href="#">3</a></li>
-		    <li><a href="#">4</a></li>
-		    <li><a href="#">5</a></li>
-		    <li><a href="#" class="align_right_icon"><i class="fa fa-angle-double-right"></i></a></li>
-		</ul>		   
-	</div><!-- end  container-->
+	<a href="#" class="export">Export Table data into Excel</a>
 </div><!-- end  container-->
+<script type="text/javascript">
+$(document).ready(function () {
+
+    function exportTableToCSV($table, filename) {
+
+        var $rows = $table.find('tr:has(td)'),
+
+            // Temporary delimiter characters unlikely to be typed by keyboard
+            // This is to avoid accidentally splitting the actual contents
+            tmpColDelim = String.fromCharCode(11), // vertical tab character
+            tmpRowDelim = String.fromCharCode(0), // null character
+
+            // actual delimiter characters for CSV format
+            colDelim = '","',
+            rowDelim = '"\r\n"',
+
+            // Grab text from table into CSV formatted string
+            csv = '"' + $rows.map(function (i, row) {
+                var $row = $(row),
+                    $cols = $row.find('td');
+
+                return $cols.map(function (j, col) {
+                    var $col = $(col),
+                        text = $col.text();
+
+                    return text.replace(/"/g, '""'); // escape double quotes
+
+                }).get().join(tmpColDelim);
+
+            }).get().join(tmpRowDelim)
+                .split(tmpRowDelim).join(rowDelim)
+                .split(tmpColDelim).join(colDelim) + '"',
+
+            // Data URI
+            csvData = 'data:application/csv;charset=utf-8,' + encodeURIComponent(csv);
+
+        $(this)
+            .attr({
+            'download': filename,
+                'href': csvData,
+                'target': '_blank'
+        });
+    }
+
+    // This must be a hyperlink
+    $(".export").on('click', function (event) {
+        // CSV
+        exportTableToCSV.apply(this, [$('#dvData>table'), 'export.csv']);
+
+        // IF CSV, don't do event.preventDefault() or return false
+        // We actually need this to be a typical hyperlink
+    });
+});
+</script>
 <?php require_once "footer.php" ?>

@@ -24,35 +24,32 @@
 					</div>
 
 					<div class="form-group">
-					  <label for="date">Date Of Birth</label><br>
-					  <input class="dateselector-basic" type="text">
-					 <!--  <select class="form-control classic dob_align fl" id="date" name="athlete_dobday" data-validation-error-msg="Please Select the Date" data-validation="required">
+					  <label for="date" class="fl">Date Of Birth</label><br>
+					  <!-- <input class="dateselector-basic" type="text"> -->
+					 <select class="form-control classic dob_align fl" id="date" name="athlete_dobday" data-validation-error-msg="Please Select the Date" data-validation="required">
 					  	<option value="">Date</option>
 					    <option value="1">1</option>
 					    <option value="2">2</option>
 					    <option value="3">3</option>
 					  </select>
- -->
-			<!-- 		</div>
-					<div class="form-group"> -->
-						<!-- <select class="form-control classic dob_align fl" id="month" name="athlete_dobmonth" data-validation-error-msg="Please Select the Month" data-validation="required">
+
+						<select class="form-control classic dob_align fl" id="month" name="athlete_dobmonth" data-validation-error-msg="Please Select the Month" data-validation="required">
 					  	<option value="">Month</option>
 					    <option value="1">January</option>
 					    <option value="2">February</option>
 					    <option value="3">March</option>
-					  </select> -->
-		        <!-- 	</div>
-		        	<div class="form-group"> -->
-					<!--   <select class="form-control classic dob_align fl" id="year" name="athlete_dobyear" data-validation-error-msg="Please Select the Year" data-validation="required">
+					  </select>
+		    
+					  <select class="form-control classic dob_align fl" id="year" name="athlete_dobyear" data-validation-error-msg="Please Select the Year" data-validation="required">
 					  	<option value="">Years</option>
 					    <option value="1991">1991</option>
 					    <option value="1992">1992</option>
 					    <option value="1993">1993</option>
-					  </select> -->
+					  </select>
 					</div>
 					<div class="form-group">
       					<label>Mobile Number</label><br>
-      					<input type="text" class="adjust_width" name="athlete_mobile" data-validation-error-msg="please Enter the Mobile Number" data-validation="number" data-validation="required">
+      					<input type="text" class="adjust_width" name="athlete_mobile" data-validation-error-msg="please Enter the Mobile Number" data-validation="number" data-validation="length" data-validation-length="min11">
      				</div>
 					<div class="form-group">
 						  <label for="sel1">Gender</label>
@@ -179,9 +176,9 @@
 						<input type="text" class="adjust_width" name="edit_athlete_name" data-validation-error-msg="Please Enter the name of the Athelete" data-validation="required">
 					</div>
 					<div class="form-group">
-					  <label for="date">Date Of Birth</label><br>
-					  <input class="dateselector-basic" type="text">
-					  <!-- <select class="form-control classic dob_align1 fl" id="date1" name="edit_athlete_dobday" data-validation-error-msg="Please Select the Date" data-validation="required">
+					  <label for="date" class="fl">Date Of Birth</label><br>
+					  <!-- <input class="dateselector-basic" type="text"> -->
+					  <select class="form-control classic dob_align1 fl" id="date1" name="edit_athlete_dobday" data-validation-error-msg="Please Select the Date" data-validation="required">
 					  	<option value="">Date</option>
 					    <option value="1">1</option>
 					    <option value="2">2</option>
@@ -198,7 +195,7 @@
 					    <option value="1991">1991</option>
 					    <option value="1992">1992</option>
 					    <option value="1993">1993</option>
-					  </select> -->
+					  </select>
 					</div>
 					<div class="form-group">
       					<label>Mobile Number</label><br>
@@ -208,8 +205,8 @@
 						  <label for="sel1">Gender</label>
 						  <select class="form-control adjust_width classic" id="sel1" name="edit_athlete_gender" data-validation-error-msg="Please Select the Gender" data-validation="required">
 						  <option value=""></option>
-						  <option value="">Female</option>
-						  <option value="">Male</option>
+						  <option value="Female">Female</option>
+						  <option value="Male">Male</option>
 						  </select>
 					</div>
 					<div class="form-group">
@@ -265,12 +262,12 @@
 			</div><!--test_battery_div-->
 		</div><!--container-->
 <script>
-$('.dateselector-basic').dateSelector({
-    onDateChange: function() {
-        // Your code here...
-        // alert('date changed!');
-    }
-});
+// $('.dateselector-basic').dateSelector({
+//     onDateChange: function() {
+//         // Your code here...
+//         // alert('date changed!');
+//     }
+// });
 </script>
 
 <?php require_once "footer.php" ?>

@@ -661,6 +661,7 @@ select {
     color: #414141;
     padding: 6px 15px;
     line-height: 2;
+    width:70px;
 }
 .assign_table td {
     border: medium none !important;
@@ -1165,4 +1166,7 @@ input[type=radio]:checked + label:before {
 .table-position {
     position: relative;
     top: 50px;
+}
+.table-hidden{
+    display: none;
 }

@@ -6,16 +6,16 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="css/style.css">
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">   
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="css/dateselector.css">
-    <link rel="stylesheet" type="text/css" href="css/font-awesome.css">    
-    <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>   
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.css">
+    <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
     <script type="text/javascript" src="js/jquery-ui.min.js"></script>
     <script type="text/javascript" src="js/combobox.js"></script>
-    <script type="text/javascript" src="js/bootstrap.js"></script>    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/js/foundation.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/js/foundation.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
-    <script type="text/javascript" src="js/jquery.dateselector.min.js"></script>
+    <script type="text/javascript" src="js/jquery.dateselector.min.js"></script>-->
     <script type="text/javascript" src="form-validator/jquery.form-validator.min.js"></script>
     <script src="js/custom_form_validate.js"></script>
     <script type="text/javascript" src="js/action.js"></script>
@@ -29,11 +29,11 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="logo_img" href="#"></a>
+            <a class="logo_img" href="index.php"></a>
         </div><!--navbar-header-->
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
-                <?php if(!isset($_SESSION['login'])) { ?>
+                <?php echo $_SESSION['login']; if(!isset($_SESSION['login'])) { ?>
                 <li class="register"><a href="#">REGISTER</a></li>
                 <!-- <li><a href="#">LOGIN</a></li> -->
                 <?php }else{ ?>

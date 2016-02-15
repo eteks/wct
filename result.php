@@ -14,7 +14,7 @@
 				<form id="result_form" name="result_form">
 					<div class="form-group">
 						  <label for="sel1">Select Schedule Name</label>
-						  <select class="form-control adjust_width classic resultcreateschedule_act" id="sel1" name="test_battery" data-validation-error-msg="Please Select Name of the Schedule" data-validation="required">
+						  <select class="form-control adjust_width classic resultcreateschedule_act" id="sel1" name="result_createschedule" data-validation-error-msg="Please Select Name of the Schedule" data-validation="required">
 						  <option></option>
 						  <?php
 	                        $query = $createscheduleFunction->createscheduleSelect();
@@ -24,6 +24,7 @@
 	                      <?php } ?>
 						  </select>
 					</div>
+					<input type="hidden" name="result_athleteid" class="result_athleteid">
 					<div class="form-group">
 				      	<label for="athlete" class="email_txt">Select Athletes</label><br>
 				      	<input type="text" class="form-control name_align fl result_athletename" id="result_athletename" placeholder="Name" name="result_athletename" data-validation-error-msg="Please Enter the name of the Athelete" data-validation="required">
@@ -39,8 +40,9 @@
 					</div>			
 				</form>
 			</div>			
+
 			<div class="container table-position">           
-			  <table class="table state_table">
+			  <table class="table result_table">
 			    <thead>
 			      <tr class="row_color">
 			        <th class="align_center">Test</th>
@@ -50,46 +52,31 @@
 			      </tr>
 			    </thead>
 			    <tbody class="assign_content">
-			      <tr class="align_center delete_color assign_table">
-			        <td>Test1</td>
-			        <td>Parameter1</td>
-			        <td><span class="assign_border">5.15</span></td>
-			        <td><span class="assign_border">3</span></td>
-			      </tr>
-			      <tr class="align_center delete_color assign_table">
-			        <td>Test2</td>
-			        <td>Parameter2</td>
-			        <td><span class="assign_border">5.15</span></td>
-			        <td><span class="assign_border">4</span></td>
-			      </tr>
-			      <tr class="align_center delete_color assign_table">
-			        <td>Test3</td>
-			        <td>Parameter1</td>
-			        <td><span class="assign_border">5.15</span></td>
-			        <td><span class="assign_border">2</span></td>
-			      </tr>	
-			      <tr class="align_center delete_color assign_table">
-			        <td>Test4</td>
-			        <td>Parameter1</td>
-			        <td><span class="assign_border">5.15</span></td>
-			        <td><span class="assign_border">3</span></td>
-			      </tr>
 			      <tr class="align_center delete_color assign_table total_div">
 			      	<td></td>
 			      	<td></td>
 			      	<td>Total</td>
-			      	<td><span class="assign_border">12</span></td>
+			      	<td><span class="assign_border"></span></td>
 			      </tr>					   
-			    </tbody>
+				</tbody>
 			  </table>
 			  	<div class="col-md-11 btn_div">					
 					<input type="submit" class="btn btn-primary align_right clear" value="Save">
 					<input type="submit" class="btn btn-primary align_right test-submit clear" value="Clear">
 				</div>	
-			</div>			
+			</div>	
+<!-- 			<div class="table-hidden">
+				<tr class="align_center delete_color assign_table">
+			        <input type="hidden" name="result_athleteid" class="result_athleteid">
+			        <td class="result_test_name"></td>
+			        <td class="result_parmeter_name"></td>
+			        <td><input type="text" class="assign_border"></td>
+			        <td><span class="assign_border"></span></td>
+				</tr>
+			</div>	 -->	
 		</div>
 	</div><!-- end  container-->
-	<div class="container align_center">		          
+	<!-- <div class="container align_center">		          
 	  	<ul class="pagination">
 	  		<li><a href="#" class="align_left_icon"><i class="fa fa-angle-double-left"></i></a></li>    	
 		    <li><a href="#">1</a></li>
@@ -99,6 +86,6 @@
 		    <li><a href="#">5</a></li>
 		    <li><a href="#" class="align_right_icon"><i class="fa fa-angle-double-right"></i></a></li>
 		</ul>		   
-	</div><!-- end  container-->
+	</div> --><!-- end  container-->
 </div><!-- end  container-->
 <?php require_once "footer.php" ?>
