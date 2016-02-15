@@ -102,7 +102,25 @@ function editfunction(data_id){
             document.body.style.overflow = 'hidden';
            }
         });
-    } else if(window.location.href.indexOf("athletes.php") !== -1){
+    }else if(window.location.href.indexOf("parameter_type.php") !== -1){
+        $.ajax({
+         type: "POST",
+         url: "functions/parameter_typefunction.php?chooseedit=true",
+         data: {data_id:data_id},
+         cache: false,
+         success: function(data) {
+          var obj = JSON.parse(data);
+          $.each(obj, function(i){
+            $('[name=edit_parameter_id]').val(obj[i].parametertype_id);
+            $('[name=edit_parameter_type]').val(obj[i].parametertype_name);
+          });
+          $('.popup_fade').show();
+          $('.state_div, .close_btn').show();
+          document.body.style.overflow = 'hidden';
+         }
+      });
+    }
+     else if(window.location.href.indexOf("athletes.php") !== -1){
           $.ajax({
            type: "POST",
            url: "functions/athletes_functions.php?chooseedit=true",
@@ -256,7 +274,7 @@ $(document).ready(function () {
   range_center_align();
   parameter_center_align();
 
-  
+
     //Edit popup
   	$(document.body).delegate('.edit_state','click',function() {
         state_center_align();
@@ -269,7 +287,7 @@ $(document).ready(function () {
         $('.category_update_name').val($(this).parents('tr').find('.category_name').text());
         $('.category_update_id').val($(this).parents('tr').find('.category_id').text());
     });
-    $('.edit_test_sport').change(function() {
+    $('.edit_test_sport,.edit_param_type').change(function() {
         $('option:selected', this).attr('selected',true).siblings().removeAttr('selected');
     });
     $('.edit_test').click(function(){
@@ -584,6 +602,43 @@ $(document).ready(function () {
            })
         }
     });
+    $('#parameter_type_form').submit(function(e){
+       e.preventDefault();
+       var res = true;
+       $('input[type="text"]',this).each(function() {
+         if($(this).val().trim() == "") {
+         res = false;
+         }
+       });
+       if(res){
+           var form_data = $('[name=parameter_type_form]').serialize();
+           // $('form[name="states_form"]').submit();
+           $.ajax({
+            type: "POST",
+            url: "functions/parameter_typefunction.php?adddata=true",
+            data: form_data,
+            cache: false,
+            success: function(html) {
+               var result_split = html.split('#');
+                if (result_split[0].indexOf("success") !== -1){
+                  // $('.add_states_error').text(result_split[1]).show();
+                  $('.add_states_error').hide();
+                  //alert(result_split[1]);
+                  html ="<tr class='align_center delete_color'>\
+                  <input type='hidden' name='parameter_id' value="+result_split[2]+">\
+                  <td class='t_pararmeter_id'>"+result_split[2]+"</td>\
+                     <td class='t_pararmeter_name'>"+result_split[3]+"</td>\
+                     <td>\
+                       <span class='edit_state' onclick='editfunction("+result_split[2]+")'>Edit</span>\
+                       <span class='delete_state' data-value="+result_split[2]+">Delete</span>\
+                     </td></tr> ";
+                  $('.parameter_type_table tr:last').after(html);
+                }
+                location.reload();
+                }
+            })
+         }
+     });
 
     $('#edit_state_form').submit(function(e){
         e.preventDefault();
@@ -764,6 +819,7 @@ $(document).ready(function () {
                    $('.popup_fade').hide();
                    $('.state_div,.delete_div').hide();
                    document.body.style.overflow = 'auto';
+                   location.reload();
                 }
            });
        } else if (window.location.href.indexOf("state.php") !== -1){
@@ -898,6 +954,44 @@ $(document).ready(function () {
                  cache: false,
                  success: function(html) {
                   //alert(html);
+                  $('.popup_fade').hide();
+                  $('.state_div,.delete_div').hide();
+                  document.body.style.overflow = 'auto';
+                  location.reload();
+
+                 }
+             });
+       }
+       else if (window.location.href.indexOf("parameter_type.php") !== -1){
+           //alert('dsfsdfds');
+            var form_data = {'delete_id':del_id};
+            $.ajax({
+                 type: "POST",
+                 url: "functions/parameter_typefunction.php?deletedata=true",
+                 data: form_data,
+                 cache: false,
+                 success: function(html) {
+                     //alert(html);
+                  alert('Parameter deleted Successfully! ');
+                  $('.popup_fade').hide();
+                  $('.state_div,.delete_div').hide();
+                  document.body.style.overflow = 'auto';
+                  location.reload();
+
+                 }
+             });
+       }
+       else if (window.location.href.indexOf("parameter_unit.php") !== -1){
+           //alert('dsfsdfds');
+            var form_data = {'delete_id':del_id};
+            $.ajax({
+                 type: "POST",
+                 url: "functions/parameter_unitfunction.php?deletedata=true",
+                 data: form_data,
+                 cache: false,
+                 success: function(html) {
+                     //alert(html);
+                  alert('Parameter unit deleted Successfully! ');
                   $('.popup_fade').hide();
                   $('.state_div,.delete_div').hide();
                   document.body.style.overflow = 'auto';
@@ -1238,7 +1332,7 @@ $(document).ready(function () {
         });
 
     $('#test_updation_form').submit(function(e){
-        alert('dsfdsfds');
+        //alert('dsfdsfds');
         e.preventDefault();
         var res = true;
         $('input[type="text"]',this).each(function() {
@@ -1382,8 +1476,20 @@ $(document).ready(function () {
             }
           });
           if(res){
-              // var form_data = $('[name=edit_createschedule_form]').serialize();
-              alert('parameter_type true');
+              var form_data = $('[name=parameter_edit]').serialize();
+              //alert(form_data);
+              $.ajax({
+                    type: "POST",
+                    url: "functions/parameter_typefunction.php?editdata=true",
+                    data: form_data,
+                    cache: false,
+                    success: function(html) {
+                        if(html == 'success'){
+                            alert('Parameter update successfully!');
+                            location.reload();
+                        }
+                    }
+                 });
           }
 
         });
@@ -1399,8 +1505,20 @@ $(document).ready(function () {
                 }
               });
               if(res){
-                  // var form_data = $('[name=edit_createschedule_form]').serialize();
-                  alert('parameter_unit true');
+                  var form_data = $('[name=parameter_unit_add]').serialize();
+                  alert(form_data);
+                  $.ajax({
+                        type: "POST",
+                        url: "functions/parameter_unitfunction.php?adddata=true",
+                        data: form_data,
+                        cache: false,
+                        success: function(html) {
+                            if(html == 'success'){
+                                alert('Parameterunit add successfully!');
+                                location.reload();
+                            }
+                        }
+                     });
               }
 
             });
@@ -1415,8 +1533,20 @@ $(document).ready(function () {
             }
           });
           if(res){
-              // var form_data = $('[name=edit_createschedule_form]').serialize();
-              alert('edit_parameter_unittrue');
+              var form_data = $('[name=edit_parameter_unit_form]').serialize();
+              //alert(form_data);
+              $.ajax({
+                   type: "POST",
+                   url: "functions/parameter_unitfunction.php?updateunitdata=true",
+                   data:form_data,
+                   cache: false,
+                   success: function(data) {
+                      if(data=='success'){
+                          alert('Parameter updated successfully');
+                          location.reload();
+                      }
+                  }
+               });
           }
 
         });
@@ -1442,7 +1572,7 @@ $(document).ready(function () {
            success: function(html) {
                if(html=='success'){
                    alert('Schedule successfully assigned');
-                   //location.reload();
+                   location.reload();
                }
            }
        });
@@ -1625,7 +1755,6 @@ $(document).ready(function () {
            }
        });
     });
-
     //Jquery and Ajax functionality for Result form
     var athletes_list = [];  
     var athlete_json = [];
@@ -1648,7 +1777,7 @@ $(document).ready(function () {
                     athlete_json.push({'athlete_id':obj[i].athlete_id,'athlete_name':obj[i].athlete_name,'athlete_dob':obj[i].athlete_dob,'athlete_mobile':obj[i].athlete_mobile,'athlete_bibno':obj[i].assignbib_number})
                   });
                   // alert(JSON.stringify(athlete_json));          
-               }
+              }
         });
     });
 
@@ -1660,7 +1789,7 @@ $(document).ready(function () {
     });
 
      $('.result_athletename').blur(function (e) {
-      // alert(JSON.stringify(athlete_json)); 
+      // alert(JSON.stringify(athlete_json));
       select_name = $('.result_athletename').val();
       var obj = athlete_json;
       $.each(obj, function(i){
@@ -1713,6 +1842,23 @@ $(document).ready(function () {
              cache: false,
              success: function(data) {
               alert(data);
+              }
+          });
+     });
+      
+     $('.edit_parameter_unit').click(function(event) {
+         var parameterunit_id = $(this).attr('data-value');
+         $.ajax({
+              type: "POST",
+              url: "functions/parameter_unitfunction.php?getunitdata=true",
+              data:{'id':parameterunit_id},
+              cache: false,
+              dataType:'json',
+              success: function(data) {
+                  //alert(JSON.stringify(data));
+                  $('.edit_param_type option[value="'+data.parametertype_id+'"]').attr('selected','selected');
+                  $('.edit_param_unit').val(data.parameterunit);
+                  $('.edit_param_unit_id').val(data.parameterunit_id);
              }
           });
      });

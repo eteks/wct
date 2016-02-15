@@ -6,8 +6,8 @@ class dbConnect {
     public $DB_DATABASE='wellocity';
     // public $DB_HOST='103.15.74.116';
     // public $DB_USER='atomicka_Etecusr';
-    // public $DB_PASSWORD='atomicka_Etecdb';
-    // public $DB_DATABASE='Atm^eTc!akd#';
+    // public $DB_DATABASE='atomicka_Etecdb';
+    // public $DB_PASSWORD='Atm^eTc!akd#';
     function __construct() {
         $conn = mysql_connect($this->DB_HOST, $this->DB_USER, $this->DB_PASSWORD);
         mysql_select_db($this->DB_DATABASE, $conn);
