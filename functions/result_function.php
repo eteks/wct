@@ -4,6 +4,10 @@
  		public $resultid;
  		public $createscheduleid;
  		public $athleteid;
+ 		public $resulttest_name;
+ 		public $resultparameter_name;
+ 		public $result;
+ 		public $points;
 		public function resultathleteRecord(){
 			$res = mysql_query("SELECT * FROM wc_assignschedule as ash INNER JOIN wc_athlete as at ON at.athlete_id = ash.assignathlete_id WHERE ash.assigncreateschedule_id='".$this->createscheduleid."'")or die(mysql_error());
 			return $res;
@@ -15,7 +19,15 @@
 				 wc_testbattery_test_attribute as tbta ON tbta.testbattery_id=tb.testbattery_id
 				 INNER JOIN wc_test as t ON t.test_id = tbta.testbattery_test_id INNER JOIN
 				 wc_test_attribute as ta ON ta.test_id = t.test_id WHERE cs.createschedule_id='".$this->createscheduleid."'")or die(mysql_error());
+
 			return $res;
+		}
+		public function resultInsert(){
+			$res = mysql_query("insert into wc_result (resultcreateschedule_id,resultathlete_id,resulttest_name,resultparameter_name,result,points,result_status)
+				values('".$this->createscheduleid."','".$this->athleteid."','".$this->resulttest_name."','".$this->resultparameter_name."','".$this->result."','".$this->points."','1')")or die(mysql_error());
+			$lastinsertid = mysql_insert_id();
+			if($res){ return $lastinsertid; }
+			else{ return false; }
 		}
 	}
 	if(isset($_POST)){
@@ -45,10 +57,25 @@
 	           'parameter_type' => $result['test_parameter_type'],
 	           'parameter_unit' => $result['test_parameter_unit'],
 	           'parameter_format' => $result['test_parameter_format'],
-	           );
-	    		array_push( $json, $tmp );
+	            );
+    			array_push( $json, $tmp );
 		    }
 		    echo json_encode($json);
 		}	
+		if(isset($_GET['storeresult'])){
+			$strRequest = file_get_contents('php://input');
+			$Request = json_decode($strRequest);
+			$resultFunction = new resultFunction();
+			foreach($Request as $value){
+				$resultFunction->createscheduleid = $value->createschedule_id;
+				$resultFunction->athleteid = $value->athlete_id; 
+				$resultFunction->resulttest_name = $value->test_name; 
+				$resultFunction->resultparameter_name = $value->parameter_name; 
+				$resultFunction->result = $value->enter_result; 
+				$resultFunction->points = $value->enter_points;  
+				$resultinsert = $resultFunction->resultInsert();
+			}
+			echo "<script>Result Created</script>";
+		}
 	}
 ?>

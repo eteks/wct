@@ -23,8 +23,7 @@
 	                            <option value="<?php echo $row['createschedule_id']; ?>"><?php echo $row['createschedule_name']; ?></option>
 	                      <?php } ?>
 						  </select>
-					</div>
-					<input type="hidden" name="result_athleteid" class="result_athleteid">
+					</div>				
 					<div class="form-group">
 				      	<label for="athlete" class="email_txt">Select Athletes</label><br>
 				      	<input type="text" class="form-control name_align fl result_athletename" id="result_athletename" placeholder="Name" name="result_athletename" data-validation-error-msg="Please Enter the name of the Athelete" data-validation="required">
@@ -36,8 +35,10 @@
 				    </div>
 					<div class="col-md-9 schedule_btn">					
 						<input type="submit" class="btn btn-primary align_right clear" value="Submit">
-						<input type="submit" class="btn btn-primary align_right test-submit clear" value="Clear">
+						<input type="reset" class="btn btn-primary align_right test-submit clear" value="Clear">
 					</div>			
+				<input type="hidden" name="result_createscheduleid" class="result_createscheduleid">
+				<input type="hidden" name="result_athleteid" class="result_athleteid">
 				</form>
 			</div>			
 
@@ -56,13 +57,13 @@
 			      	<td></td>
 			      	<td></td>
 			      	<td>Total</td>
-			      	<td><span class="assign_border"></span></td>
+			      	<td><span class="assign_border total_result"></span></td>
 			      </tr>					   
 				</tbody>
 			  </table>
 			  	<div class="col-md-11 btn_div">					
-					<input type="submit" class="btn btn-primary align_right clear" value="Save">
-					<input type="submit" class="btn btn-primary align_right test-submit clear" value="Clear">
+					<input type="submit" class="btn btn-primary align_right clear result_submit_act" value="Save">
+					<input type="reset" class="btn btn-primary align_right test-submit clear" value="Clear">
 				</div>	
 			</div>	
 <!-- 			<div class="table-hidden">
