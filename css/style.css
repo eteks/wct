@@ -212,7 +212,7 @@
     border-radius: 0 !important;
     font-weight: bold;
     font-family: Montserrat;
-    margin-right: 10px;
+    margin-right: 0px;
 }
 .clear:hover{
     background: none repeat scroll 0 0 #fff !important;
@@ -251,7 +251,7 @@
     right: 110px;
     width: 115px !important;
     font-family: Montserrat;
-    color: #c6c6c6 !important;
+    color: #424242  !important;
 }
 .adjust_tiny{
     border-radius: 0 !important;
@@ -262,7 +262,7 @@
     right: 110px;
     width: 115px !important;
     font-family: Montserrat;
-    color: #c6c6c6 !important;
+    color: #424242  !important;
 }
 .align_margin_right{
 	margin-right: 48px;
@@ -389,6 +389,8 @@ select {
 }
 .edit_state,.edit_district{
     cursor: pointer;
+    position: relative;
+    right: 20px;
 }
 .popup_fade {
     background:#000000;
@@ -525,7 +527,7 @@ select {
     cursor: pointer;
     float: right;
     position: relative;
-    right: 25%;
+    right: 20%;
 }
 .edit_state:hover,.edit_district:hover{
     color: #006687 !important;
@@ -573,12 +575,12 @@ select {
     right: 120px;
     width: 115px !important;
     font-family: Montserrat;
-    color: #c6c6c6 !important;
+    color: #424242  !important;
 }
 .range_align{
     border-radius: 0 !important;
     box-shadow: none !important;
-    color: #c6c6c6 !important;
+    color: #424242  !important;
     font-family: Montserrat;
     height: 34px;
     position: relative;
@@ -621,7 +623,7 @@ select {
     right: 34px;
     width: 115px !important;
     font-family: Montserrat;
-    color: #c6c6c6 !important;
+    color: #424242  !important;
 }
 .area_scroll{
     border: 1px solid #a0a0a0;
@@ -640,7 +642,7 @@ select {
     position: relative;
     right: 30px;
     width: 192px !important;
-    color: #c6c6c6 !important;
+    color: #424242  !important;
     font-family: Montserrat;
 }
 .date_assign{
@@ -650,8 +652,8 @@ select {
     margin: 12px 0 10px 32px;
     position: relative;
     right: 35px;
-    width: 172px !important;
-    color: #c6c6c6 !important;
+    width: 185px !important;
+    color: #424242  !important;
     font-family: Montserrat;
 }
 .assign_border {
@@ -667,6 +669,9 @@ select {
 .total_div {
     position: relative !important;
     top: 50px !important;
+}
+.total_div:hover{
+    background: transparent !important;
 }
 .assign_table{
     position: relative;
@@ -704,10 +709,10 @@ button, input, optgroup, select, textarea {
     height: 34px;
     margin: 12px 0 10px 30px;
     position: relative;
-    right: 27px;
-    width: 115px !important;
+    right: 45px;
+    width: 135px !important;
     font-family: Montserrat;
-    color: #c6c6c6 !important;
+    color: #424242  !important;
 }
 .area_scroll_popup{
     border: 1px solid #A0A0A0;
@@ -718,7 +723,7 @@ button, input, optgroup, select, textarea {
 .range_align_popup{
     border-radius: 0 !important;
     box-shadow: none !important;
-    color: #c6c6c6 !important;
+    color: #424242  !important;
     font-family: Montserrat;
     height: 34px;
     margin: 5px 0 0 10px;
@@ -778,27 +783,26 @@ button, input, optgroup, select, textarea {
     border: 1px solid;
 }
 .adds_btn{
-    background-color: #fff !important;
+    background-color: rgb(255, 255, 255) !important;
     border-radius: 0 !important;
     bottom: 45px;
-    color: #006687 !important;
+    color: rgb(0, 102, 135) !important;
     cursor: pointer !important;
     font-family: Montserrat;
     font-weight: bold;
     height: 35px;
     margin-right: 30px;
     padding: 2px 0 2px 32px !important;
-    position: relative;
     width: 100px;
 }
 .add_align{
    background: rgb(0, 102, 135) none repeat scroll 0 0;
     color: rgb(255, 255, 255);
     cursor: pointer;
+    left: 34px;
     padding: 12px 10px 7px 12px;
     position: relative;
-    right: 12px;
-    top: 53px;
+    top: 1px;
 }
 .btn_div {
     margin: 45px 5px 0;
@@ -818,18 +822,18 @@ button, input, optgroup, select, textarea {
 .schedule-name{
     border-radius: 0 !important;
     box-shadow: none !important;
-    color: #c6c6c6 !important;
+    color: #424242  !important;
     font-family: Montserrat;
     height: 34px;
     margin: 12px 0 10px 16px;
     position: relative;
     right: 15px;
-    width: 240px !important;
+    width: 172px !important;
 }
 .bib_popup{
     border-radius: 0 !important;
     box-shadow: none !important;
-    color: #c6c6c6 !important;
+    color: #424242  !important;
     font-family: Montserrat;
     height: 34px;
     margin: 12px 0 10px 28px;
@@ -840,7 +844,7 @@ button, input, optgroup, select, textarea {
 .create-date {
     border-radius: 0 !important;
     box-shadow: none !important;
-    color: #c6c6c6 !important;
+    color: #424242  !important;
     font-family: Montserrat;
     height: 34px;
     margin: 12px 0 10px 5px;
@@ -851,7 +855,7 @@ button, input, optgroup, select, textarea {
 .create-time {
     border-radius: 0 !important;
     box-shadow: none !important;
-    color: #c6c6c6 !important;
+    color: #424242  !important;
     font-family: Montserrat;
     height: 34px;
     margin: 30px 0 10px 3px;
@@ -946,68 +950,68 @@ input[type=radio]:checked + label:before {
 .create-date1 {
     border-radius: 0 !important;
     box-shadow: none !important;
-    color: #c6c6c6 !important;
+    color: #424242 !important;
     font-family: Montserrat;
     height: 34px;
-    margin: 12px 0 10px 7px;
+    margin: 12px 0 10px -10px;
     position: relative;
-    right: 77px;
-    width: 120px !important;
+    right: 100px;
+    width: 132px !important;
 }
 .create-date2 {
     border-radius: 0 !important;
     box-shadow: none !important;
-    color: #c6c6c6 !important;
+    color: #424242 !important;
     font-family: Montserrat;
     height: 34px;
-    margin: 12px 0 10px 5px;
+    margin: 12px 0 10px -3px;
     position: relative;
     right: 60px;
-    width: 120px !important;
+    width: 132px !important;
 }
 .create-date3 {
-    border-radius: 0 !important;
+     border-radius: 0 !important;
     box-shadow: none !important;
-    color: #c6c6c6 !important;
+    color: #424242 !important;
     font-family: Montserrat;
     height: 34px;
-    margin: 12px 0 10px -48px;
+    margin: 12px 0 10px -12px;
     position: relative;
-    right: -8px;
-    width: 120px !important;
+    right: 6px;
+    width: 132px !important;
 }
 .create-time1{
     border-radius: 0 !important;
     box-shadow: none !important;
-    color: #c6c6c6 !important;
+    color: #424242  !important;
     font-family: Montserrat;
     height: 34px;
-    margin: 30px 0 10px -4px;
+    margin: 15px 0 10px -10px;
     position: relative;
-    right: 75px;
-    width: 120px !important;
+    right: 100px;
+    width: 132px !important;
 }
 .create-time2{
     border-radius: 0 !important;
     box-shadow: none !important;
-    color: #c6c6c6 !important;
+    color: #424242  !important;
     font-family: Montserrat;
     height: 34px;
-    margin: 30px 0 10px;
+    margin: 15px 0 10px;
     position: relative;
-    right: 48px;
-    width: 120px !important;
+    right: 65px;
+    width: 132px !important;
 }
 .create-time3{
     border-radius: 0 !important;
     box-shadow: none !important;
-    color: #c6c6c6 !important;
+    color: #424242  !important;
     font-family: Montserrat;
     height: 34px;
-    margin: 30px 0 10px -42px;
+    margin: 15px 0 10px -36px;
     position: relative;
     right: -15px;
-    width: 120px !important;
+    width: 132px !important;
 }
 .area_width_create{
     width: 102%;
@@ -1015,7 +1019,7 @@ input[type=radio]:checked + label:before {
 .dob_align1{
     border-radius: 0 !important;
     box-shadow: none !important;
-    color: #c6c6c6 !important;
+    color: #424242  !important;
     font-family: Montserrat;
     height: 34px;
     margin: 13px 0 10px 25px;
@@ -1026,7 +1030,7 @@ input[type=radio]:checked + label:before {
 .dob_align2{
     border-radius: 0 !important;
     box-shadow: none !important;
-    color: #c6c6c6 !important;
+    color: #424242  !important;
     font-family: Montserrat;
     height: 34px;
     margin: 12px 0 10px 20px;
@@ -1036,7 +1040,7 @@ input[type=radio]:checked + label:before {
 }.dob_align3{
     border-radius: 0 !important;
     box-shadow: none !important;
-    color: #c6c6c6 !important;
+    color: #424242  !important;
     font-family: Montserrat;
     height: 34px;
     margin: 13px 0 10px -117px;
@@ -1119,13 +1123,50 @@ input[type=radio]:checked + label:before {
     position: relative;
     right: 12px;
 }
-.ranges_popup{
+.ranges_popup,.test_percentage{
      padding: 0 !important;
 }
 .assign_content_holder{
     position: relative;
     right: 45px;
 }
+.combo--align span input {
+    position: relative !important;
+    top: 12px;
+    width: 190px;
+}
+.combo--align--popup span input {
+    position: relative !important;
+    top: 12px;
+    width: 174px;
+}
+.assign-add-button {
+    bottom: 60px;
+    float: right;
+    left: 10px;
+    position: relative;
+}
+.assign-scroll {
+    height: 360px;
+    overflow-y: scroll;
+}
+.test-scroll {
+    height: 257px;
+    overflow-y: scroll;
+}
+.clr{
+    color: #009acc !important;
+}
+.add_district_act{
+    margin-right: 45px !important;
+}
+.parameter-submit,.test-submit{
+    margin-right: 10px !important;
+}   
+/*.table-position {
+    position: relative;
+    top: 50px;
+}*/
 .table-hidden{
     display: none;
 }

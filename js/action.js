@@ -274,6 +274,7 @@ $(document).ready(function () {
   range_center_align();
   parameter_center_align();
 
+
     //Edit popup
   	$(document.body).delegate('.edit_state','click',function() {
         state_center_align();
@@ -425,14 +426,38 @@ $(document).ready(function () {
         document.body.style.overflow = 'auto';
     });
 
-	$('.collapse').on('shown.bs.collapse', function (e) {
-	    $('.collapse').not(this).removeClass('in');
-	});
+	// $('.collapse').on('shown.bs.collapse', function (e) {
+	//     $('.collapse').not(this).removeClass('in');
+	// });
 
-	$('[data-toggle=collapse]').click(function (e) {
-	   $('[data-toggle=collapse]').siblings('li').removeClass('active');
-	   $(this).siblings('li').toggleClass('active');
-	});
+	// $('[data-toggle=collapse]').click(function (e) {
+	//    $('[data-toggle=collapse]').siblings('li').removeClass('active');
+	//    $(this).siblings('li').toggleClass('active');
+	// });
+
+  $(".submenu_list li").hide();
+    $('.master-holder').hover(function(){
+      $(".master-list li").show();
+      $(".transaction-list li").hide();
+    });
+    $('.transaction-holder').hover(function(){
+      $(".transaction-list li").show();
+      $(".master-list li").hide();
+    });
+    $('.report-holder').hover(function(){
+      $(".master-list li").hide();
+      $(".transaction-list li").hide();
+    });
+    $('.master-list').mouseleave(function(){
+     $(".master-list li").fadeOut(1000);
+    });
+    $('.transaction-list').mouseleave(function(){
+     $(".transaction-list li").fadeOut(1000);
+    });
+
+    $('master-list li a').click(function(){
+      $(this).addClass('clr');
+    });
 
 	// Autocomplete results for states list while add
 	var states_list = [];
@@ -1218,7 +1243,7 @@ $(document).ready(function () {
       $('input[type="text"],select',this).each(function() {
         if($(this).val().trim() == "") {
           res = false;
-          // alert('false  comes');
+          alert('false  comes');
         }
       });
       if(res){
@@ -1232,6 +1257,7 @@ $(document).ready(function () {
              success: function(html) {
                 var result_split = html.split('#');
                  if (result_split[0].indexOf("success") !==-1){
+                  alert(result_split[1]);
                    html ="<tr class='align_center delete_color'>\
                       <input type='hidden' name='createschedule_id' value="+result_split[2]+">\
                       <td class='t_createschedule_id'>"+result_split[2]+"</td>\
@@ -1623,8 +1649,11 @@ $(document).ready(function () {
     });
 
 
-    $('.paramter_menu').click(function(){
-      $(".parameter-list").toggle();
+    $('.paramter_menu').hover(function(){
+      $(".parameter-list").show();
+    });
+     $('.parameter-list').mouseleave(function(){
+      $(".parameter-list").fadeOut(1000);
     });
 
     // Jquery functions for Range Form added by kalai
@@ -1724,9 +1753,8 @@ $(document).ready(function () {
            }
        });
     });
-
-     //Jquery and Ajax functionality for Result form
-    var athletes_list = [];
+    //Jquery and Ajax functionality for Result form
+    var athletes_list = [];  
     var athlete_json = [];
     $('.resultcreateschedule_act').on('change',function () {
         selected_createschedule = $('.resultcreateschedule_act option:selected').val();

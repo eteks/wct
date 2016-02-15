@@ -54,7 +54,7 @@
 	if(isset($_POST)){
 		//To insert data
 		if(isset($_GET['adddata'])){
-			// echo "post",print_r($_POST);
+			echo "post",print_r($_POST);
 			$createscheduleFunction = new createscheduleFunction();
 			$createscheduleFunction->createschedulename = $_POST['schedule_name'];
 			$createscheduleFunction->createschedule_testbatteryid = $_POST['schedule_testbattery'];

@@ -109,11 +109,11 @@
 					<div class="col-md-9 schedule_btn">
 						<!-- <button type="button" class="btn btn-primary align_right clear add_athletes_act">Submit</button> -->
 						<input type="submit" class="btn btn-primary align_right clear add_athletes_act" value="Submit">
-						<input type="submit" class="btn btn-primary align_right clear" value="Clear">
+						<input type="submit" class="btn btn-primary align_right test-submit clear" value="Clear">
 					</div>
 				</form>
 			</div>
-			<div class="container">
+			<div class="container table-position">
 			  <table class="table athletes_table">
 			    <thead>
 			      <tr class="row_color">
@@ -167,7 +167,7 @@
           		<div class="edit_title">
                 	<span class="del_txt">EDIT</span>
               	</div><!--edit_title-->
-          			<div class="container state-content athlete-popup-content col-md-12">
+          			<div class="container state-content col-md-12">
           			<div class="col-xs-12 col-md-12 align_margin">
 	          	<form name="edit_athletes_form" id="edit_athletes_form">
 	          		<input type="hidden" class="statesid" name="edit_athlete_id">
@@ -254,7 +254,7 @@
 						<!-- <button type="button" class="btn btn-primary align_right clear edit_athletes_act">Submit</button>
 						<button type="button" class="btn btn-primary align_right clear">Clear</button> -->
 						<input type="submit" class="btn btn-primary align_right clear edit_athletes_act" value="Submit">
-						<input type="submit" class="btn btn-primary align_right clear" value="Clear">
+						<input type="submit" class="btn btn-primary align_right test-submit clear" value="Clear">
 					</div>
 				</form>
 	          		</div>

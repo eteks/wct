@@ -1,6 +1,6 @@
 <?php require_once "session.php";
 	  require_once 'header.php';
-	  require_once 'functions/parameter_typefunction.php';
+	  require_once 'functions/parameter_type_function.php';
 	  $parametertypeFunction = new parametertypeFunction();
 ?>
 <div class="container">
@@ -17,11 +17,11 @@
 						  <input type="text" class="form-control adjust_width classic" id="sel1" name="parameter_type" data-validation-error-msg="Please Select the Type of the Parameter" data-validation="required">
 					</div>
 					<div class="col-md-9 schedule_btn">
-						<input type="submit" class="btn btn-primary align_right clear add_parameter_act" value="Submit">
+						<input type="submit" class="btn btn-primary align_right parameter-submit clear add_parameter_act" value="Submit">
 					</div>
 				</form>
 			</div>
-			<div class="container">
+			<div class="container table-position">
 			  <table class="table state_table parameter_type_table">
 			    <thead>
 			      <tr class="row_color">
@@ -67,8 +67,8 @@
 							  <input type="text" class="form-control adjust_width_parameter classic" id="sel1" name="edit_parameter_type" data-validation-error-msg="Please Select the Type of the Parameter" data-validation="required">
 
 						</div>
-						<div class="col-md-9 schedule_btn">
-							<input type="submit" class="btn btn-primary align_right clear" value="Submit">
+						<div class="col-md-12 schedule_btn">
+								<input type="submit" class="btn btn-primary align_right clear" value="Submit">
 						</div>
 					</form>
 					</div><!--tate-content-->

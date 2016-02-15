@@ -49,36 +49,45 @@ if(isset($_GET['update_success'])){
 						  </select>
 					</div>
 					<label for="athlete" class="email_txt">Add Athletes</label><br>
-					<div class="assign_content_holder">
+					<div class="assign_content_holder col-md-11">
 						<div class="assign_clone_content">
-							<div class="form-group">
-
-								<select class="form-control name_align fl athlete_name athlete_name1" placeholder="Name" name="athlete_name1" id="combobox" data-validation-error-msg="Please Select Athlete" data-validation="required">
-									<option value="">Athletes</option>
-									<?php
-										$data = $athlete->athleteSelect1();
-										foreach( $data as $eachrecord ) {
-								 	?>
-										<option value="<?php echo $eachrecord ['athlete_id']; ?>"><?php echo $eachrecord ['athlete_name']; ?></option>
-									<?php } ?>
-								</select>
+							<div class="form-group col-md-12">
+								<div class="col-md-6 combo--align">
+									<select class="form-control name_align  athlete_name athlete_name1" placeholder="Name" name="athlete_name1" id="combobox" data-validation-error-msg="Please Select Athlete" data-validation="required">
+										<option value="">Athletes</option>
+										<?php
+											$data = $athlete->athleteSelect1();
+											foreach( $data as $eachrecord ) {
+									 	?>
+											<option value="<?php echo $eachrecord ['athlete_id']; ?>"><?php echo $eachrecord ['athlete_name']; ?></option>
+										<?php } ?>
+									</select>
+								</div>
 						      	<!-- <input type="text" class="form-control name_align fl athlete_name" id="name" placeholder="Name" name="athlete_name1" required> -->
-						      	<input type="text" class="form-control date_assign fl athlete_date dob" id="dob" placeholder="Date" name="athlete_date1"  data-validation="date" data-validation-format="dd/mm/yyyy">
+						      	<div class="col-md-6">
+						      		<input type="text" class="form-control date_assign dob" id="dob" placeholder="Date" name="athlete_date1" data-validation-error-msg="Please Enter the Date" data-validation="date" data-validation-format="dd/mm/yyyy">
+						   		</div>
 						    </div>
-						    <div class="form-group col-md-11">
-						      	<input type="text" class="form-control name_align fl athlete_mobile mobile" id="mobile" placeholder="Mobile no" name="athlete_mobile1" data-validation="number"  data-validation="length" data-validation-length="min11">
-						      	<input type="text" class="form-control date_assign fl athlete_bib" id="bib" placeholder="BIB NO" name="athlete_bib1" data-validation-error-msg="Please Enter the BIB NO" data-validation="required">
+						    <div class="form-group col-md-12">
+						    	<div class="col-md-6">
+						      		<input type="text" class="form-control name_align athlete_mobile mobile" id="mobile" placeholder="Mobile no" name="athlete_mobile1" data-validation="number"  data-validation="length" data-validation-length="min11">
+						      	</div>
+						      	<div class="col-md-6">
+						      		<input type="text" class="form-control date_assign athlete_bib" id="bib" placeholder="BIB NO" name="athlete_bib1" data-validation-error-msg="Please Enter the BIB NO" data-validation="required">
+								</div>
 						    </div>
 						</div>
 					</div>
-					<input type="button" class="btn btn-primary align_right adds_btn add_athelete" value="Add"><i class="fa fa-plus add_align"></i>
+					<div class="form-group assign-add-button">
+						<input type="submit" class="btn btn-primary align_right adds_btn add_athelete" value="Add"><i class="fa fa-plus add_align"></i>
+					</div>
 					<div class="col-md-9 schedule_btn">
 						<input type="submit" class="btn btn-primary align_right clear assignschedule_submit" value="Submit">
-						<input type="button" class="btn btn-primary align_right clear" value="Clear">
+						<input type="button" class="btn btn-primary align_right test-submit clear" value="Clear">
 					</div>
 				</form>
 			</div>
-			<div class="container">
+			<div class="container table-position">
 			  <table class="table state_table">
 			    <thead>
 			      <tr class="row_color">
@@ -118,7 +127,7 @@ if(isset($_GET['update_success'])){
           		<div class="edit_title">
                 	<span class="del_txt">EDIT</span>
               	</div><!--edit_title-->
-          			<div class="container state-content col-md-12">
+          			<div class="container state-content col-md-12 assign-scroll">
 	          			<div class="col-xs-12 col-md-12 align_margin">
 				<form id="edit_assign_schedule_form" action="functions/assign_schedule_function.php" method="post">
 					<div class="form-group">
@@ -145,24 +154,32 @@ if(isset($_GET['update_success'])){
 						  </select>
 					</div>
 					<label for="athlete" class="email_txt">Add Athletes</label><br>
-					<div class="clone_schedule_update_content">
+					<div class="clone_schedule_update_content col-md-12">
 						<div class="clone_schedule_update">
-							<div class="form-group">
-								<select class="form-control name_align fl athlete_name athlete_name_update athlete_name1" id="combobox1" placeholder="Name" name="athlete_name1" id="combobox" data-validation-error-msg="Please Select Athlete" data-validation="required">
-									<option value="">Athletes</option>
-									<?php
-										$data = $athlete->athleteSelect1();
-										foreach( $data as $eachrecord ) {
-									?>
-										<option value="<?php echo $eachrecord ['athlete_id']; ?>"><?php echo $eachrecord ['athlete_name']; ?></option>
-									<?php } ?>
-								</select>
-						      	<!-- <input type="text" class="form-control schedule-name fl" id="name" placeholder="Name" name="name" data-validation-error-msg="Please Enter the name of the Athelete" data-validation="required"> -->
-						      	<input type="text" class="form-control bib_popup fl dob_update dob" id="name" placeholder="Date" disabled>
+							<div class="form-group col-md-12">
+								<div class="col-md-6 combo--align--popup">
+									<select class="form-control name_align fl athlete_name athlete_name_update athlete_name1" id="combobox1" placeholder="Name" name="athlete_name1" id="combobox" data-validation-error-msg="Please Select Athlete" data-validation="required">
+										<option value="">Athletes</option>
+										<?php
+											$data = $athlete->athleteSelect();
+											foreach( $data as $eachrecord ) {
+										?>
+											<option value="<?php echo $eachrecord ['athlete_id']; ?>"><?php echo $eachrecord ['athlete_name']; ?></option>
+										<?php } ?>
+									</select>
+								</div>
+								<div class="col-md-6">
+						      		<!-- <input type="text" class="form-control schedule-name fl" id="name" placeholder="Name" name="name" data-validation-error-msg="Please Enter the name of the Athelete" data-validation="required"> -->
+						      		<input type="text" class="form-control bib_popup fl dob_update dob" id="name" placeholder="Date" disabled>
+						    	</div>
 						    </div>
-						    <div class="form-group">
-						      	<input type="text" class="form-control schedule-name fl mobile_update mobile" id="name" placeholder="Mobile no" disabled>
-						      	<input type="text" class="form-control bib_popup athlete_bib fl bib_update" id="name" placeholder="BIB NO" name="athlete_bib1" data-validation-error-msg="Please Enter the BIBO NO" data-validation="required">
+						    <div class="form-group col-md-12">
+						    	<div class="col-md-6">
+						      		<input type="text" class="form-control schedule-name fl mobile_update mobile" id="name" placeholder="Mobile no" disabled>
+						      	</div>
+						      	<div class="col-md-6">
+						      		<input type="text" class="form-control bib_popup athlete_bib fl bib_update" id="name" placeholder="BIB NO" name="athlete_bib1" data-validation-error-msg="Please Enter the BIBO NO" data-validation="required">
+								</div>
 								<input type="hidden" class="assing_schedule_update_id" name="assing_schedule_update_id1" value="" />
 						    </div>
 						</div>
@@ -171,7 +188,7 @@ if(isset($_GET['update_success'])){
 
 					<div class="col-md-9 schedule_btn">
 						<input type="submit" class="btn btn-primary align_right clear" value="Submit">
-						<input type="button" class="btn btn-primary align_right clear" value="Clear">
+						<input type="button" class="btn btn-primary align_right test-submit clear" value="Clear">
 					</div>
 				</form>
 			</div>
