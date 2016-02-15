@@ -1,6 +1,6 @@
 <?php require_once "session.php";
 	  require_once 'header.php';
-	  require_once 'functions/parameter_type_function.php';
+	  require_once 'functions/parameter_typefunction.php';
 	  $parametertypeFunction = new parametertypeFunction();
 ?>
 <div class="container">

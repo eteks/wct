@@ -77,7 +77,7 @@ class testfunction{
                 $sql = "insert into wc_test_attribute (test_id,test_parameter_name,test_parameter_type,test_parameter_unit,test_parameter_format,test_attribute_status)values('$test_id','$parameter','$type','$unit','$format','1')";
                 mysql_query($sql) or die(mysql_error());
             }
-            header('Location:../test.php');
+            header('Location:../test.php?insert=true');
         }else {
           echo "error";
         }
@@ -91,7 +91,7 @@ class testfunction{
         $paramunit = $_POST['unit1'];
         $paramformat = $_POST['format1'];
         mysql_query("update wc_test_attribute set test_parameter_name ='$parameter_name',test_parameter_type ='$paramtype',test_parameter_unit='$paramunit',test_parameter_format ='$paramformat' where test_attribute_id = $parameter_id ")or die(mysql_error());
-        header('Location:../test.php');
+        header('Location:../test.php?update=true');
 
     }
     if(isset($_GET['gettestdata'])){

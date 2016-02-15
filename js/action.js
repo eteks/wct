@@ -550,7 +550,9 @@ $(document).ready(function () {
                if(html=='error'){
                  alert('Sports already exist');
                }else{
-                  location.reload();
+
+                   alert('Sports inserted successfully!');
+                   location.reload();
                  //$('#sports_table tr:last').after(html);
                  }
 
@@ -1029,7 +1031,7 @@ $(document).ready(function () {
                if(html=='error'){
                  alert('Category already exist');
                }else{
-                  //alert(html);
+                 alert('Category inserted successfully!');
                  //$('#category_table tr:last').after(html);
                  location.reload();
                }
@@ -1086,7 +1088,7 @@ $(document).ready(function () {
         var newElement = element.clone();
         var id = current_id+1;
         current_id = id;
-        newElement.find('.parameter_name').removeAttr('name').attr('name', 'parameter_name'+id);
+        newElement.find('.parameter_name').removeAttr('name').attr('name', 'parameter_name'+id).val('');
         newElement.find('#type').removeAttr('name').attr('name', 'type'+id);
         newElement.find('#unit').removeAttr('name').attr('name', 'unit'+id);
         newElement.find('#unit option').remove();
@@ -1316,32 +1318,32 @@ $(document).ready(function () {
 
 //test
 
-    $('#test_form').submit(function(e){
-        e.preventDefault();
-        var res = true;
-        $('input[type="text"]',this).each(function() {
-          if($(this).val().trim() == "") {
-            res = false;
-            // alert('test_form false');
-          }
-        });
-        if(res){
-            // alert('test_form true');
-        }
+    // $('#test_form').submit(function(e){
+    //     e.preventDefault();
+    //     var res = true;
+    //     $('input[type="text"]',this).each(function() {
+    //       if($(this).val().trim() == "") {
+    //         res = false;
+    //         // alert('test_form false');
+    //       }
+    //     });
+    //     if(res){
+    //         // alert('test_form true');
+    //     }
+    //
+    //     });
 
-        });
-
-    $('#test_updation_form').submit(function(e){
-        //alert('dsfdsfds');
-        e.preventDefault();
-        var res = true;
-        $('input[type="text"]',this).each(function() {
-          if($(this).val().trim() == "") {
-            res = false;
-            // alert('test_updation_form false');
-          }
-        });
-        });
+    // $('#test_updation_form').submit(function(e){
+    //     //alert('dsfdsfds');
+    //     e.preventDefault();
+    //     var res = true;
+    //     $('input[type="text"]',this).each(function() {
+    //       if($(this).val().trim() == "") {
+    //         res = false;
+    //         // alert('test_updation_form false');
+    //       }
+    //     });
+    //     });
 //test battery
  $('#test_battery_form').submit(function(e){
         e.preventDefault();
@@ -1359,21 +1361,21 @@ $(document).ready(function () {
 
         });
 
-     $('#test_battery_update_form').submit(function(e){
-        e.preventDefault();
-        var res = true;
-        $('input[type="text"],textarea,select',this).each(function() {
-          if($(this).val().trim() == "") {
-            res = false;
-            // alert('test_updation_form false');
-          }
-        });
-        if(res){
-            // var form_data = $('[name=edit_createschedule_form]').serialize();
-            // alert('test_updation_form true');
-        }
-
-      });
+    //  $('#test_battery_update_form').submit(function(e){
+    //     e.preventDefault();
+    //     var res = true;
+    //     $('input[type="text"],textarea,select',this).each(function() {
+    //       if($(this).val().trim() == "") {
+    //         res = false;
+    //         // alert('test_updation_form false');
+    //       }
+    //     });
+    //     if(res){
+    //         // var form_data = $('[name=edit_createschedule_form]').serialize();
+    //         // alert('test_updation_form true');
+    //     }
+     //
+    //   });
 
 //range
 //Jquery and Ajax Functionality for Range Form added by kalai
@@ -1506,7 +1508,7 @@ $(document).ready(function () {
               });
               if(res){
                   var form_data = $('[name=parameter_unit_add]').serialize();
-                  alert(form_data);
+                  //alert(form_data);
                   $.ajax({
                         type: "POST",
                         url: "functions/parameter_unitfunction.php?adddata=true",
@@ -1754,7 +1756,7 @@ $(document).ready(function () {
        });
     });
     //Jquery and Ajax functionality for Result form
-    var athletes_list = [];  
+    var athletes_list = [];
     var athlete_json = [];
     $('.resultcreateschedule_act').on('change',function () {
         selected_createschedule = $('.resultcreateschedule_act option:selected').val();

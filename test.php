@@ -5,6 +5,14 @@ require_once "functions/test_functions.php";
 $obj = new testfunction();
 
 ?>
+<?php
+if(isset($_GET['insert'])){
+	echo "<script>alert('Test inserted successfully!')</script>";
+}
+if(isset($_GET['update'])){
+	echo "<script>alert('Test updated successfully!')</script>";
+}
+?>
 <div class="container">
 	<div class="container align_center align_height">
 		<span class="sports">TEST</span>
