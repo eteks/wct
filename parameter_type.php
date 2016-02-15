@@ -1,8 +1,12 @@
-<?php require_once "header.php"; ?>
+<?php require_once "session.php";
+	  require_once 'header.php';
+	  require_once 'functions/parameter_typefunction.php';
+	  $parametertypeFunction = new parametertypeFunction();
+?>
 <div class="container">
 	<div class="container align_center align_height">
 		<span class="sports">PARAMETER TYPE</span>
-	</div><!--end container-->	
+	</div><!--end container-->
 	<div class="container">
 		<div class="col-xs-12 col-md-11">
 			<div class="col-md-4 hidden-xs"></div>
@@ -14,12 +18,12 @@
 						  <option></option>
 						  </select>
 					</div>
-					<div class="col-md-9 schedule_btn">					
+					<div class="col-md-9 schedule_btn">
 						<input type="submit" class="btn btn-primary align_right clear" value="Submit">
-					</div>			
+					</div>
 				</form>
-			</div>			
-			<div class="container">           
+			</div>
+			<div class="container">
 			  <table class="table state_table">
 			    <thead>
 			      <tr class="row_color">
@@ -52,22 +56,22 @@
 			        	<span class="edit_state">Edit</span>
 		        		<span class="delete_state">Delete</span>
 			        </td>
-			      </tr>						   
+			      </tr>
 			    </tbody>
 			  </table>
-			</div>			
+			</div>
 		</div>
 	</div><!-- end  container-->
-	<div class="container align_center">		          
+	<div class="container align_center">
 	  	<ul class="pagination">
-	  		<li><a href="#" class="align_left_icon"><i class="fa fa-angle-double-left"></i></a></li>    	
+	  		<li><a href="#" class="align_left_icon"><i class="fa fa-angle-double-left"></i></a></li>
 		    <li><a href="#">1</a></li>
 		    <li><a href="#">2</a></li>
 		    <li><a href="#">3</a></li>
 		    <li><a href="#">4</a></li>
 		    <li><a href="#">5</a></li>
 		    <li><a href="#" class="align_right_icon"><i class="fa fa-angle-double-right"></i></a></li>
-		</ul>		   
+		</ul>
 	</div><!-- end  container-->
 </div><!-- end  container-->
 
@@ -78,7 +82,7 @@
           		<div class="edit_title">
                 	<span class="del_txt">EDIT</span>
               	</div><!--edit_title-->
-          			<div class="container state-content col-md-12">		
+          			<div class="container state-content col-md-12">
           			<form id="edit_parameter_type">
 						<div class="form-group">
 							  <label for="sel1">Select Parameter Type</label>
@@ -86,12 +90,11 @@
 							  <option></option>
 							  </select>
 						</div>
-						<div class="col-md-9 schedule_btn">					
+						<div class="col-md-9 schedule_btn">
 							<input type="submit" class="btn btn-primary align_right clear" value="Submit">
-						</div>			
+						</div>
 					</form>
 					</div><!--tate-content-->
 			</div><!--state_div-->
 		</div><!--container-->
 <?php require_once "footer.php" ?>
-

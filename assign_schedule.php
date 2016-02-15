@@ -56,7 +56,7 @@ if(isset($_GET['update_success'])){
 								<select class="form-control name_align fl athlete_name athlete_name1" placeholder="Name" name="athlete_name1" id="combobox" data-validation-error-msg="Please Select Athlete" data-validation="required">
 									<option value="">Athletes</option>
 									<?php
-										$data = $athlete->athleteSelect();
+										$data = $athlete->athleteSelect1();
 										foreach( $data as $eachrecord ) {
 								 	?>
 										<option value="<?php echo $eachrecord ['athlete_id']; ?>"><?php echo $eachrecord ['athlete_name']; ?></option>
@@ -151,7 +151,7 @@ if(isset($_GET['update_success'])){
 								<select class="form-control name_align fl athlete_name athlete_name_update athlete_name1" id="combobox1" placeholder="Name" name="athlete_name1" id="combobox" data-validation-error-msg="Please Select Athlete" data-validation="required">
 									<option value="">Athletes</option>
 									<?php
-										$data = $athlete->athleteSelect();
+										$data = $athlete->athleteSelect1();
 										foreach( $data as $eachrecord ) {
 									?>
 										<option value="<?php echo $eachrecord ['athlete_id']; ?>"><?php echo $eachrecord ['athlete_name']; ?></option>

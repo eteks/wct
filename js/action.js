@@ -972,7 +972,7 @@ $(document).ready(function () {
         newElement.find('#unit').removeAttr('name').attr('name', 'unit'+id);
         newElement.find('#unit option').remove();
         newElement.find('#format').removeAttr('name').attr('name', 'format'+id);
-        newElement.appendTo($(".parameter_holder"));
+        newElement.appendTo($(".parameter_holder1"));
     }
 
     var test_id = 1;
