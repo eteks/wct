@@ -1124,7 +1124,7 @@ $(document).ready(function () {
       $('input[type="text"],select',this).each(function() {
         if($(this).val().trim() == "") {
           res = false;
-          // alert('false  comes');
+          alert('false  comes');
         }
       });
       if(res){
@@ -1138,6 +1138,7 @@ $(document).ready(function () {
              success: function(html) {
                 var result_split = html.split('#');
                  if (result_split[0].indexOf("success") !==-1){
+                  alert(result_split[1]);
                    html ="<tr class='align_center delete_color'>\
                       <input type='hidden' name='createschedule_id' value="+result_split[2]+">\
                       <td class='t_createschedule_id'>"+result_split[2]+"</td>\

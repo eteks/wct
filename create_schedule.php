@@ -1,7 +1,9 @@
 <?php require_once "session.php";
 	  require_once "header.php"; 
 	  require_once "functions/create_schedule_function.php";
+	  require_once 'functions/test_battery_functions.php';
 	  $createscheduleFunction = new createscheduleFunction();	  
+	  $testbattery = new testbatteryfunction();  
 ?>
 <div class="container">
 	<div class="container align_center align_height">
@@ -20,9 +22,12 @@
 					  <label for="battey_name">Select Test Battery Name</label>
 					  <select class="form-control classic adjust_width" id="battey_name" name="schedule_testbattery" data-validation-error-msg="Please Select the name of the Test Battery Name" data-validation="required">
 					  	<option value="">Test Battery Name</option>
-					    <option value="1">test1</option>
-					    <option value="2">test2</option>
-					    <option value="3">test3</option>						   
+					    <?php
+	                        $query = $testbattery->testbatterySelect();
+	                        while ($row = mysql_fetch_array($query)) {
+	                            ?>
+	                            <option value="<?php echo $row['testbattery_id']; ?>"><?php echo $row['testbattery_name']; ?></option>	                                            
+	                      <?php } ?>						   
 					  </select>
 					</div>			
 					<div class="form-group">
@@ -269,9 +274,12 @@
 					  <label for="battey_name">Select Test Battery Name</label>
 					  <select class="form-control classic adjust_width" id="battey_name" name="edit_schedule_testbattery" data-validation-error-msg="Please Select the name of the Test Battery Name" data-validation="required">
 					  	<option value=""> Test Battery Name</option>
-					    <option value="1">test1</option>
-					    <option value="2">test2</option>
-					    <option value="3">test3</option>						   
+					   <?php
+	                        $query = $testbattery->testbatterySelect();
+	                        while ($row = mysql_fetch_array($query)) {
+	                            ?>
+	                            <option value="<?php echo $row['testbattery_id']; ?>"><?php echo $row['testbattery_name']; ?></option>	                                            
+	                      <?php } ?>							   
 					  </select>
 					</div>
 					
