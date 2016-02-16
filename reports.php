@@ -10,18 +10,18 @@
 				<form id="report_form">
 					<div class="align_margin">					
 						<label>Select Schedule</label><br>
-						<div class="area_scroll">
+						<div class="area_scroll" data-validation-error-msg="Please Choose atleast one Schedule" data-validation="required">
 							<div class="checkbox align_check">
-					      		<label class="remember_txt"><input type="checkbox" value="" data-validation-error-msg="Please Choose atleast one Schedule" data-validation="required">Schedule1</label>
+					      		<label class="remember_txt"><input type="checkbox" value="">Schedule1</label>
 					    	</div>
 					    	<div class="checkbox align_check">
-					      		<label class="remember_txt"><input type="checkbox">Schedule2</label>
+					      		<label class="remember_txt"><input type="checkbox" value="">Schedule2</label>
 					    	</div>
 					    	<div class="checkbox align_check">
-					      		<label class="remember_txt"><input type="checkbox">Schedule3</label>
+					      		<label class="remember_txt"><input type="checkbox" value="">Schedule3</label>
 					    	</div>
 					    	<div class="checkbox align_check">
-					      		<label class="remember_txt"><input type="checkbox">Schedule4</label>
+					      		<label class="remember_txt"><input type="checkbox" value="">Schedule4</label>
 					    	</div>
 						</div>
 					</div>
