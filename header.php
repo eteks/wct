@@ -13,6 +13,7 @@
     <script type="text/javascript" src="js/jquery-ui.min.js"></script>
     <script type="text/javascript" src="js/combobox.js"></script>
     <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script src="js/jquery.date-dropdowns.js"></script>
     <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/js/foundation.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
     <script type="text/javascript" src="js/jquery.dateselector.min.js"></script>-->

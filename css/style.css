@@ -1077,7 +1077,18 @@ input[type=radio]:checked + label:before {
     margin-bottom: 0 !important;
     margin-top: 0 !important;
 }
-.dateselector-default select {
+.day, .month, .year {
+    background-color: white;
+    border: 1px solid #ccc;
+    color: #000;
+    height: 34px;
+    margin-right: 35px;
+    padding: 6px 12px;
+    position: relative;
+    right: 72px;
+    width: 110px;
+}
+/*.dateselector-default select {
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 0 !important;
@@ -1087,7 +1098,24 @@ input[type=radio]:checked + label:before {
     margin: 30px 0 10px 12px !important;
     padding: 6px 10px;
     width: 110px !important;
+}*/
+.date_pick {
+    width: 33%;
+    min-width: 400px;
+    padding: 15px;
+    display: inline-block;
+    box-sizing: border-box;
+    text-align: center;
 }
+
+.date_pick select, .popup_date_pick select {
+    padding: 10px;
+    background: #ffffff;
+    border: 1px solid #CCCCCC;
+    border-radius: 3px;
+    margin: 0 3px;
+}
+
 /* end */
 
 .range_popup_scroll {

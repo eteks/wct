@@ -163,9 +163,9 @@ function editfunction(data_id){
               $('[name=edit_schedule_id]').val(obj[i].createschedule_id);
               $('[name=edit_schedule_name]').val(obj[i].createschedule_name);
               $('[name=edit_schedule_testbattery]').append("<option value='"+obj[i].createschedule_testbatteryid+ "'selected>"+obj[i].createschedule_testbatteryname+"</option>");
-              $('[name=edit_schedule_day]').append("<option value='"+date[2]+ "'selected>"+date[2]+"</option>");
-              $('[name=edit_schedule_month]').append("<option value='"+date[1]+ "'selected>"+date[1]+"</option>");
-              $('[name=edit_schedule_year]').append("<option value='"+date[0]+ "'selected>"+date[0]+"</option>");
+              // $('[name=edit_schedule_day]').append("<option value='"+date[2]+ "'selected>"+date[2]+"</option>");
+              // $('[name=edit_schedule_month]').append("<option value='"+date[1]+ "'selected>"+date[1]+"</option>");
+              // $('[name=edit_schedule_year]').append("<option value='"+date[0]+ "'selected>"+date[0]+"</option>");
               $('[name=edit_schedule_hour]').find("option:contains("+time[0]+")").attr("selected","selected");
               $('[name=edit_schedule_minute]').find("option:contains("+time[1]+")").attr("selected","selected");
               $('[name=edit_schedule_seconds]').find("option:contains("+time[2]+")").attr("selected","selected");
@@ -274,8 +274,13 @@ $(document).ready(function () {
   range_center_align();
   parameter_center_align();
 
-
-    //Edit popup
+  $("#mobile,#result_athletemobile,#bib,#result_athletebib").keypress(function (e) {       
+     if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+      // alert('errr'+$('#result_athletemobile').val());
+               return false;
+    }
+   });
+   //Edit popup
   	$(document.body).delegate('.edit_state','click',function() {
         state_center_align();
         $('.popup_fade').show();
@@ -484,21 +489,21 @@ $(document).ready(function () {
   // Autocomplete results for district list
   var district_list = [];
   $('.choose_state').on('change',function () {
-    selected_state = $('.choose_state option:selected').text();
-    form_data = {'states_name':selected_state};
-    district_list.length = 0;
-     $.ajax({
-           type: "POST",
-           url: "functions/district_function.php?loaddistrict=true",
-           data: form_data,
-           cache: false,
-           success: function(data) {
-            var obj = JSON.parse(data);
-              $.each(obj, function(i){
-                district_list.push(obj[i]);
-              });
-           }
-       });
+      selected_state = $('.choose_state option:selected').text();
+      form_data = {'states_name':selected_state};
+      district_list.length = 0;
+       $.ajax({
+             type: "POST",
+             url: "functions/district_function.php?loaddistrict=true",
+             data: form_data,
+             cache: false,
+             success: function(data) {
+              var obj = JSON.parse(data);
+                $.each(obj, function(i){
+                  district_list.push(obj[i]);
+                });
+             }
+         });
    });
 
   $(".athlete_state_act").on('change',function () {
@@ -516,7 +521,7 @@ $(document).ready(function () {
               $.each(obj, function(i){
                 options += '<option value="'+obj[i].district_id+'">'+obj[i].district_name+'</option>';
               });
-              $('.athlete_district_act').html(options);
+              $('.athlete_district_act').html(options);              
            }
        });
    });
@@ -596,6 +601,7 @@ $(document).ready(function () {
                       <span class='delete_state' data-value="+result_split[2]+">Delete</span>\
                     </td></tr> ";
                  $('.state_table tr:last').after(html);
+                 document.states_form.reset();
                }
                else{
                 $('.add_states_error').text(result_split[1]).show();
@@ -635,6 +641,7 @@ $(document).ready(function () {
                        <span class='delete_state' data-value="+result_split[2]+">Delete</span>\
                      </td></tr> ";
                   $('.parameter_type_table tr:last').after(html);
+                  document.parameter_type_form.reset();
                 }
                 location.reload();
                 }
@@ -665,7 +672,7 @@ $(document).ready(function () {
                  $('.popup_fade').hide();
                  $('.state_div, .close_btn').hide();
                  document.body.style.overflow = 'auto';
-                 alert(result_split[1]);
+                 alert(result_split[1]);                 
                }
                else{
                 $('.edit_states_error').text(result_split[1]).show();
@@ -713,6 +720,7 @@ $(document).ready(function () {
                             <span class='delete_state' data-value="+result_split[2]+">Delete</span>\
                           </td></tr> ";
                        $('.district_table tr:last').after(html);
+                        document.district_form.reset();
                      }
                      else{
                       $('.add_district_error').text(result_split[1]).show();
@@ -1196,6 +1204,7 @@ $(document).ready(function () {
                         <span class='delete_state' data-value="+result_split[2]+">Delete</span>\
                       </td></tr> ";
                    $('.athletes_table tr:last').after(html);
+                   document.athletes_form.reset();
                  }
                  else{
                   alert(result_split[1]);
@@ -1250,7 +1259,7 @@ $(document).ready(function () {
       });
       if(res){
          var form_data = $('[name=create_schedule_form]').serialize();
-         // alert('comes'+form_data);
+         alert('comes'+form_data);
           $.ajax({
              type: "POST",
              url: "functions/create_schedule_function.php?adddata=true",
@@ -1273,6 +1282,7 @@ $(document).ready(function () {
                         <span class='delete_district' data-value="+result_split[2]+">Delete</span>\
                       </td></tr> ";
                    $('.createschedule_table tr:last').after(html);
+                    document.create_schedule_form.reset();
                  }
                  else{
                   alert(result_split[1]);
@@ -1407,6 +1417,7 @@ $(document).ready(function () {
                         <span class='delete_state' data-value="+result_split[2]+">Delete</span>\
                       </td></tr> ";
                    $('.range_table tr:last').after(html);
+                   document.range_form.reset();
                  }
                  else{
                   alert(result_split[1]);
@@ -1614,6 +1625,7 @@ $(document).ready(function () {
                data: form_data,
                cache: false,
                success: function(html) {
+                $('.result_table tbody tr:not(:last)').remove();
                 var obj = JSON.parse(html);
                   $.each(obj, function(i){
                     html = "<tr class='align_center delete_color assign_table'>\
@@ -1626,6 +1638,7 @@ $(document).ready(function () {
                                 <td><input type='text' class='assign_border enter_result'></td>\
                                 <td><span class='assign_border enter_points'></span></td></tr>";
                     $('.result_table tr:last').before(html);
+                    document.result_form.reset();
                   });
               }
           });
@@ -1679,7 +1692,7 @@ $(document).ready(function () {
         newElement.appendTo($(".range_holder"));
     }
 
-    // Calculate Range points by range start and end
+    //Calculate Range points by range start and end
     // $(document).on('focus','.r_point',function(){
     //     range_start = $(this).siblings('.r_strt').val();
     //     range_end = $(this).siblings('.r_end').val();
@@ -1757,6 +1770,7 @@ $(document).ready(function () {
            }
        });
     });
+
     //Jquery and Ajax functionality for Result form
     var athletes_list = [];
     var athlete_json = [];

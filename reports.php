@@ -16,6 +16,7 @@ $createschedule = new createscheduleFunction();
 				<form id="report_form" name="report_form" action="reports.php" method="post">
 					<div class="align_margin">
 						<label>Select Schedule</label><br>
+<<<<<<< HEAD
 						<div class="area_scroll">
 							<?php
 							   $data = $createschedule->createscheduleselectfunction();
@@ -23,13 +24,27 @@ $createschedule = new createscheduleFunction();
 								?>
 							<div class="checkbox align_check">
 					      		<label class="remember_txt"><input type="checkbox" value="<?php echo $eachrecord ['createschedule_id']; ?>" name="schedul_ids[]"><?php echo $eachrecord ['createschedule_name']; ?></label>
+=======
+						<div class="area_scroll" data-validation-error-msg="Please Choose atleast one Schedule" data-validation="required">
+							<div class="checkbox align_check">
+					      		<label class="remember_txt"><input type="checkbox" value="">Schedule1</label>
+					    	</div>
+					    	<div class="checkbox align_check">
+					      		<label class="remember_txt"><input type="checkbox" value="">Schedule2</label>
+					    	</div>
+					    	<div class="checkbox align_check">
+					      		<label class="remember_txt"><input type="checkbox" value="">Schedule3</label>
+					    	</div>
+					    	<div class="checkbox align_check">
+					      		<label class="remember_txt"><input type="checkbox" value="">Schedule4</label>
+>>>>>>> be31438e6ced55e7d48d2c03022527c7cd77c520
 					    	</div>
 							<?php } ?>
 						</div>
 					</div>
 					<div class="col-md-9 schedule_btn">
 						<input type="submit" class="btn btn-primary align_right clear" value="Submit">
-						<input type="submit" class="btn btn-primary align_right test-submit clear" value="Clear">
+						<input type="reset" class="btn btn-primary align_right test-submit clear" value="Clear">
 					</div>
 				</form>
 			</div>

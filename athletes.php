@@ -25,8 +25,8 @@
 
 					<div class="form-group">
 					  <label for="date" class="fl">Date Of Birth</label><br>
-					  <!-- <input class="dateselector-basic" type="text"> -->
-					 <select class="form-control classic dob_align fl" id="date" name="athlete_dobday" data-validation-error-msg="Please Select the Date" data-validation="required">
+					  <input class="athlete_date_pick" type="text">
+					 <!-- <select class="form-control classic dob_align fl" id="date" name="athlete_dobday" data-validation-error-msg="Please Select the Date" data-validation="required">
 					  	<option value="">Date</option>
 					    <option value="1">1</option>
 					    <option value="2">2</option>
@@ -45,11 +45,11 @@
 					    <option value="1991">1991</option>
 					    <option value="1992">1992</option>
 					    <option value="1993">1993</option>
-					  </select>
+					  </select> -->
 					</div>
 					<div class="form-group">
       					<label>Mobile Number</label><br>
-      					<input type="text" class="adjust_width" name="athlete_mobile" data-validation-error-msg="please Enter the Mobile Number" data-validation="number" data-validation="length" data-validation-length="min11">
+      					<input type="text" id="athletes_mobile1" class="adjust_width" name="athlete_mobile" data-validation-error-msg="Please Enter the value that must contain 10 numbers" data-validation="length" data-validation-length="10-11">
      				</div>
 					<div class="form-group">
 						  <label for="sel1">Gender</label>
@@ -109,7 +109,7 @@
 					<div class="col-md-9 schedule_btn">
 						<!-- <button type="button" class="btn btn-primary align_right clear add_athletes_act">Submit</button> -->
 						<input type="submit" class="btn btn-primary align_right clear add_athletes_act" value="Submit">
-						<input type="submit" class="btn btn-primary align_right test-submit clear" value="Clear">
+						<input type="reset" class="btn btn-primary align_right test-submit clear" value="Clear">
 					</div>
 				</form>
 			</div>
@@ -177,8 +177,8 @@
 					</div>
 					<div class="form-group">
 					  <label for="date" class="fl">Date Of Birth</label><br>
-					  <!-- <input class="dateselector-basic" type="text"> -->
-					  <select class="form-control classic dob_align1 fl" id="date1" name="edit_athlete_dobday" data-validation-error-msg="Please Select the Date" data-validation="required">
+					  <input class="popup_athlete_datepick" type="text">
+					 <!--  <select class="form-control classic dob_align1 fl" id="date1" name="edit_athlete_dobday" data-validation-error-msg="Please Select the Date" data-validation="required">
 					  	<option value="">Date</option>
 					    <option value="1">1</option>
 					    <option value="2">2</option>
@@ -195,11 +195,11 @@
 					    <option value="1991">1991</option>
 					    <option value="1992">1992</option>
 					    <option value="1993">1993</option>
-					  </select>
+					  </select> -->
 					</div>
 					<div class="form-group">
       					<label>Mobile Number</label><br>
-      					<input type="text" class="adjust_width" name="edit_athlete_mobile" data-validation-error-msg="please Enter the Mobile Number" data-validation="number" data-validation="required">
+      					<input id="ahtlete_mobile" type="text" class="adjust_width" name="edit_athlete_mobile" data-validation-error-msg="Please Enter the value that must contain 10 numbers" data-validation="length" data-validation-length="10-11">
      				</div>
 					<div class="form-group">
 						  <label for="sel1">Gender</label>
@@ -254,20 +254,11 @@
 						<!-- <button type="button" class="btn btn-primary align_right clear edit_athletes_act">Submit</button>
 						<button type="button" class="btn btn-primary align_right clear">Clear</button> -->
 						<input type="submit" class="btn btn-primary align_right clear edit_athletes_act" value="Submit">
-						<input type="submit" class="btn btn-primary align_right test-submit clear" value="Clear">
+						<input type="reset" class="btn btn-primary align_right test-submit clear" value="Clear">
 					</div>
 				</form>
 	          		</div>
 					</div><!--state-content-->
 			</div><!--test_battery_div-->
 		</div><!--container-->
-<script>
-// $('.dateselector-basic').dateSelector({
-//     onDateChange: function() {
-//         // Your code here...
-//         // alert('date changed!');
-//     }
-// });
-</script>
-
 <?php require_once "footer.php" ?>
