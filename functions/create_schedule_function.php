@@ -58,7 +58,7 @@
 			$createscheduleFunction = new createscheduleFunction();
 			$createscheduleFunction->createschedulename = $_POST['schedule_name'];
 			$createscheduleFunction->createschedule_testbatteryid = $_POST['schedule_testbattery'];
-			$createscheduleFunction->createscheduledate = $_POST['schedule_year'].'-'.$_POST['schedule_month'].'-'.$_POST['schedule_day'];
+			$createscheduleFunction->createscheduledate = $_POST['dateyear'].'-'.$_POST['datemonth'].'-'.$_POST['dateday'];
 			$createscheduleFunction->createscheduletime = $_POST['schedule_hour'].':'.$_POST['schedule_minute'].':'.$_POST['schedule_seconds'];
 			$createscheduleFunction->createschedulevenue = $_POST['schedule_venue'];
 			$createscheduleinsert = $createscheduleFunction->createscheduleInsert();

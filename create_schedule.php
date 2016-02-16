@@ -33,24 +33,6 @@
 					<div class="form-group">
 					  <label for="date" class="fl">Select date</label><br>
 				    	<input class="date_pick" type="text">					  
-					  <!-- <select class="form-control classic adjust_width_tiny fl" id="date" name="schedule_day" data-validation-error-msg="Please Select the Date" data-validation="required">
-					  	<option value="">Date</option>
-					    <option value="01">1</option>
-					    <option value="02">2</option>
-					    <option value="03">3</option>					   
-					  </select>
-					  <select class="form-control classic adjust_width_tiny fl" id="month" name="schedule_month" data-validation-error-msg="Please Select the Month" data-validation="required">
-					  	<option value="">Month</option>
-					    <option value="1">January</option>
-					    <option value="2">February</option>
-					    <option value="3">March</option>					   
-					  </select>
-					  <select class="form-control classic adjust_width_tiny fl" id="year" name="schedule_year" data-validation-error-msg="Please Select the Year" data-validation="required">
-					  	<option value="">Year</option>
-					    <option value="1991">1991</option>
-					    <option value="1992">1992</option>
-					    <option value="1993">1993</option>							   
-					  </select> -->
 					</div>				
 					<div class="form-group">
 					  <label for="date" class="fl">Select Time</label><br>
@@ -472,13 +454,4 @@
 					</div><!--state-content-->
 			</div><!--test_battery_div-->
 		</div><!--container-->
-		<script>
-// $('.dateselector-basic').dateSelector({
-//     onDateChange: function() {
-//     }
-// });
-$(".date_pick,.popup_date_pick").dateDropdowns({
-    minAge: 18
-    });
-</script>
 <?php require_once "footer.php" ?>

@@ -261,24 +261,4 @@
 					</div><!--state-content-->
 			</div><!--test_battery_div-->
 		</div><!--container-->
-<script>
-$(document).ready(function(){
-	 $("#athletes_mobile1").keypress(function (e) {       
-     if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
-      // alert('errr'+$('#mobile').val());
-               return false;
-    }
-   });
-});
-$(".athlete_date_pick,.popup_athlete_datepick").dateDropdowns({
-    minAge: 18
-    });
-// $('.dateselector-basic').dateSelector({
-//     onDateChange: function() {
-//         // Your code here...
-//         // alert('date changed!');
-//     }
-// });
-</script>
-
 <?php require_once "footer.php" ?>

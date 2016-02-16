@@ -50,7 +50,7 @@
          * Initialise the plugin
          */
         init: function () {
-            this.checkForDuplicateElement();
+            // this.checkForDuplicateElement();
             this.setInternalVariables();
             this.setupMarkup();
             this.buildDropdowns();
@@ -65,14 +65,14 @@
         /**
          * Check whether an element exists with the same name attribute. If so, throw an error
          */
-        checkForDuplicateElement: function() {
-            if ($("input[name=\"" + this.config.submitFieldName + "\"]").length) {
-                $.error("Duplicate element found");
-                return false;
-            }
+        // checkForDuplicateElement: function() {
+        //     if ($("input[name=\"" + this.config.submitFieldName + "\"]").length) {
+        //         $.error("Duplicate element found");
+        //         return false;
+        //     }
 
-            return true;
-        },
+        //     return true;
+        // },
 
         /**
          * Set the plugin"s internal variables
@@ -301,7 +301,8 @@
 
             return $("<select></select>", {
                 class: classString,
-                name: this.config.submitFieldName + "_[" + type + "]",
+                // name: this.config.submitFieldName + "_[" + type + "]",
+                name: this.config.submitFieldName  + type,
                 required: this.config.required
             });
         },

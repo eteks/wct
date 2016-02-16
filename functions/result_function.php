@@ -19,7 +19,6 @@
 				 wc_testbattery_test_attribute as tbta ON tbta.testbattery_id=tb.testbattery_id
 				 INNER JOIN wc_test as t ON t.test_id = tbta.testbattery_test_id INNER JOIN
 				 wc_test_attribute as ta ON ta.test_id = t.test_id WHERE cs.createschedule_id='".$this->createscheduleid."'")or die(mysql_error());
-
 			return $res;
 		}
 		public function resultInsert(){
