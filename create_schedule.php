@@ -32,8 +32,8 @@
 					</div>			
 					<div class="form-group">
 					  <label for="date" class="fl">Select date</label><br>
-					  <!-- <input class="dateselector-basic" type="text" data-validation-error-msg="Please Select the Date" data-validation="required"> -->
-					  <select class="form-control classic adjust_width_tiny fl" id="date" name="schedule_day" data-validation-error-msg="Please Select the Date" data-validation="required">
+				    	<input class="date_pick" type="text">					  
+					  <!-- <select class="form-control classic adjust_width_tiny fl" id="date" name="schedule_day" data-validation-error-msg="Please Select the Date" data-validation="required">
 					  	<option value="">Date</option>
 					    <option value="01">1</option>
 					    <option value="02">2</option>
@@ -50,7 +50,7 @@
 					    <option value="1991">1991</option>
 					    <option value="1992">1992</option>
 					    <option value="1993">1993</option>							   
-					  </select>
+					  </select> -->
 					</div>				
 					<div class="form-group">
 					  <label for="date" class="fl">Select Time</label><br>
@@ -202,7 +202,7 @@
 					</div>
 					<div class="col-md-9 schedule_btn">	
 						<input type="submit" class="btn btn-primary align_right clear add_createschedule_act" value="Submit">
-						<input type="submit" class="btn btn-primary align_right test-submit clear" value="Clear">				
+						<input type="reset" class="btn btn-primary align_right test-submit clear" value="Clear">				
 					</div>			
 				</form>
 			</div>			
@@ -285,31 +285,25 @@
 					
 					<div class="form-group col-md-12">
 					  <label for="date" class="fl">Select date</label><br>
-					  <!-- <input class="dateselector-basic" type="text"> -->
-					  	<div class="col-md-3">
-							<select class="form-control classic create-date1" id="date" name="edit_schedule_day" data-validation-error-msg="Please Select the Date" data-validation="required">
-								<option value="">Date</option>
-								<option value="1">1</option>
-								<option value="2">2</option>
-								<option value="3">3</option>					   
-							</select>
-						</div>
-						<div class="col-md-3">
-							<select class="form-control classic create-date2" id="month" name="edit_schedule_month" data-validation-error-msg="Please Select the Month" data-validation="required">
-							  	<option value="">Month</option>
-							    <option value="1">January</option>
-							    <option value="2">February</option>
-							    <option value="3">March</option>						   
-							</select>
-						</div>
-						<div class="col-md-3">
-						  	<select class="form-control classic create-date3" id="year" name="edit_schedule_year" data-validation-error-msg="Please Select the Year" data-validation="required">
-							  	<option value="">Years</option>
-							    <option value="1991">1991</option>
-							    <option value="1992">1992</option>
-							    <option value="1993">1993</option>							   
-						  	</select>
-					  	</div>
+					  <input class="popup_date_pick" type="text">
+					 <!--  <select class="form-control classic create-date1 fl" id="date" name="edit_schedule_day" data-validation-error-msg="Please Select the Date" data-validation="required">
+					  	<option value="">Date</option>
+					    <option value="1">1</option>
+					    <option value="2">2</option>
+					    <option value="3">3</option>					   
+					  </select>
+					  <select class="form-control classic create-date2 fl" id="month" name="edit_schedule_month" data-validation-error-msg="Please Select the Month" data-validation="required">
+					  	<option value="">Month</option>
+					    <option value="1">January</option>
+					    <option value="2">February</option>
+					    <option value="3">March</option>						   
+					  </select>
+					  <select class="form-control classic create-date3 fl" id="year" name="edit_schedule_year" data-validation-error-msg="Please Select the Year" data-validation="required">
+					  	<option value="">Years</option>
+					    <option value="1991">1991</option>
+					    <option value="1992">1992</option>
+					    <option value="1993">1993</option>							   
+					  </select> -->
 					</div>
 					
 					<div class="form-group col-md-12">
@@ -471,7 +465,7 @@
 						<!-- <button type="button" class="btn btn-primary align_right clear edit_createschedule_act">Submit</button>
 						<button type="button" class="btn btn-primary align_right clear">Clear</button> -->
 						<input type="submit" class="btn btn-primary align_right clear edit_createschedule_act" value="Submit">
-						<input type="submit" class="btn btn-primary align_right test-submit clear" value="Clear">
+						<input type="reset" class="btn btn-primary align_right test-submit clear" value="Clear">
 					</div>	
 	          	</form>
 	          		</div>
@@ -483,5 +477,8 @@
 //     onDateChange: function() {
 //     }
 // });
+$(".date_pick,.popup_date_pick").dateDropdowns({
+    minAge: 18
+    });
 </script>
 <?php require_once "footer.php" ?>

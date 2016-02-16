@@ -67,13 +67,8 @@
 							  <input type="text" class="form-control adjust_width_parameter classic" id="sel1" name="edit_parameter_type" data-validation-error-msg="Please Select the Type of the Parameter" data-validation="required">
 
 						</div>
-<<<<<<< HEAD
-						<div class="col-md-12 schedule_btn">					
-							<input type="submit" class="btn btn-primary align_right clear" value="Submit">
-=======
 						<div class="col-md-12 schedule_btn">
 								<input type="submit" class="btn btn-primary align_right clear" value="Submit">
->>>>>>> f2e295daa761f861ae38be44f427e2113efec4f6
 						</div>
 					</form>
 					</div><!--tate-content-->

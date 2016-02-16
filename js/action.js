@@ -274,8 +274,13 @@ $(document).ready(function () {
   range_center_align();
   parameter_center_align();
 
-
-    //Edit popup
+  $("#mobile,#result_athletemobile,#bib,#result_athletebib").keypress(function (e) {       
+     if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+      // alert('errr'+$('#result_athletemobile').val());
+               return false;
+    }
+   });
+   //Edit popup
   	$(document.body).delegate('.edit_state','click',function() {
         state_center_align();
         $('.popup_fade').show();
@@ -516,7 +521,7 @@ $(document).ready(function () {
               $.each(obj, function(i){
                 options += '<option value="'+obj[i].district_id+'">'+obj[i].district_name+'</option>';
               });
-              $('.athlete_district_act').html(options);
+              $('.athlete_district_act').html(options);              
            }
        });
    });
@@ -634,6 +639,7 @@ $(document).ready(function () {
                        <span class='delete_state' data-value="+result_split[2]+">Delete</span>\
                      </td></tr> ";
                   $('.parameter_type_table tr:last').after(html);
+                  document.parameter_type_form.reset();
                 }
                 location.reload();
                 }
@@ -664,7 +670,7 @@ $(document).ready(function () {
                  $('.popup_fade').hide();
                  $('.state_div, .close_btn').hide();
                  document.body.style.overflow = 'auto';
-                 alert(result_split[1]);
+                 alert(result_split[1]);                 
                }
                else{
                 $('.edit_states_error').text(result_split[1]).show();
@@ -712,6 +718,7 @@ $(document).ready(function () {
                             <span class='delete_state' data-value="+result_split[2]+">Delete</span>\
                           </td></tr> ";
                        $('.district_table tr:last').after(html);
+                        document.district_form.reset();
                      }
                      else{
                       $('.add_district_error').text(result_split[1]).show();
@@ -1195,6 +1202,7 @@ $(document).ready(function () {
                         <span class='delete_state' data-value="+result_split[2]+">Delete</span>\
                       </td></tr> ";
                    $('.athletes_table tr:last').after(html);
+                   document.athletes_form.reset();
                  }
                  else{
                   alert(result_split[1]);
@@ -1272,6 +1280,7 @@ $(document).ready(function () {
                         <span class='delete_district' data-value="+result_split[2]+">Delete</span>\
                       </td></tr> ";
                    $('.createschedule_table tr:last').after(html);
+                    document.create_schedule_form.reset();
                  }
                  else{
                   alert(result_split[1]);
@@ -1406,6 +1415,7 @@ $(document).ready(function () {
                         <span class='delete_state' data-value="+result_split[2]+">Delete</span>\
                       </td></tr> ";
                    $('.range_table tr:last').after(html);
+                   document.range_form.reset();
                  }
                  else{
                   alert(result_split[1]);
@@ -1626,6 +1636,7 @@ $(document).ready(function () {
                                 <td><input type='text' class='assign_border enter_result'></td>\
                                 <td><span class='assign_border enter_points'></span></td></tr>";
                     $('.result_table tr:last').before(html);
+                    document.result_form.reset();
                   });
               }
           });

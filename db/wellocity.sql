@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 15, 2016 at 11:32 AM
+-- Generation Time: Feb 15, 2016 at 04:58 PM
 -- Server version: 5.5.47-0ubuntu0.14.04.1
 -- PHP Version: 5.5.9-1ubuntu4.14
 
@@ -40,6 +40,18 @@ CREATE TABLE IF NOT EXISTS `wc_assignschedule` (
   KEY `assigncategory_id` (`assigncategory_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
 
+--
+-- Dumping data for table `wc_assignschedule`
+--
+
+INSERT INTO `wc_assignschedule` (`assignschedule_id`, `assigncreateschedule_id`, `assigncategory_id`, `assignathlete_id`, `assignbib_number`, `assignschedule_status`, `assignschedule_createddate`) VALUES
+(1, 1, 1, 1, '0001', 1, '2016-02-15 08:16:33'),
+(2, 2, 2, 2, '0002', 1, '2016-02-15 08:16:33'),
+(3, 3, 3, 3, '0003', 1, '2016-02-15 08:17:14'),
+(4, 4, 4, 4, '0004', 1, '2016-02-15 08:17:14'),
+(5, 5, 1, 5, '0005', 1, '2016-02-15 08:18:08'),
+(6, 6, 2, 6, '0006', 1, '2016-02-15 08:18:08');
+
 -- --------------------------------------------------------
 
 --
@@ -63,7 +75,19 @@ CREATE TABLE IF NOT EXISTS `wc_athlete` (
   KEY `athletestates_id` (`athletestates_id`),
   KEY `athletedistrict_id` (`athletedistrict_id`),
   KEY `athletesports_id` (`athletesports_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+
+--
+-- Dumping data for table `wc_athlete`
+--
+
+INSERT INTO `wc_athlete` (`athlete_id`, `athlete_name`, `athlete_dob`, `athlete_mobile`, `athlete_gender`, `athletestates_id`, `athletedistrict_id`, `athlete_address`, `athlete_taluka`, `athletesports_id`, `athlete_status`, `athlete_createddate`) VALUES
+(1, 'Ram', '1993-04-19', 2147483647, 'Male', 1, 4, '45,KK nagar,\r\nCuddalore.', 'Cuddalore', 1, 1, '2016-02-15 08:07:09'),
+(2, 'Suresh', '1986-02-25', 2147483647, 'Male', 1, 1, '123,VVV Nagar\r\nVirudhunagar', 'Aruppukottai', 2, 1, '2016-02-15 08:07:09'),
+(3, 'Kumar', '1990-02-11', 2147483647, 'Male', 1, 2, '23, Ashok Nagar,\r\nVillupuram.\r\n', 'Villupuram', 3, 1, '2016-02-15 08:11:12'),
+(4, 'Praveen', '1989-02-26', 2147483647, 'Male', 1, 5, '45, RR Nagar,\r\nTrichy', 'Srirangam', 2, 1, '2016-02-15 08:11:12'),
+(5, 'Surya', '1990-02-25', 2147483647, 'Male', 3, 7, '67, Lakshmi Nagar.\r\nKaraikal.', 'Karaikal', 1, 1, '2016-02-15 08:14:47'),
+(6, 'Karthi', '1992-06-04', 2147483647, 'Male', 1, 2, '56, Valavanoor,\r\nVillupuram', 'Villupuram', 2, 1, '2016-02-15 08:14:47');
 
 -- --------------------------------------------------------
 
@@ -85,20 +109,10 @@ CREATE TABLE IF NOT EXISTS `wc_categories` (
 --
 
 INSERT INTO `wc_categories` (`categories_id`, `categories_name`, `categories_status`, `categories_createddate`) VALUES
-(1, 'sdgfsdgvgdfsgs', 1, '2016-02-09 04:31:02'),
-(2, 'asdfxzvzxc23424', 1, '2016-02-09 04:32:05'),
-(3, 'dfghdfgh', 1, '2016-02-09 04:32:32'),
-(12, 'sdfgdsfg', 1, '2016-02-09 04:40:12'),
-(14, 'dsfgdsfgdsfgsdgdfg', 1, '2016-02-09 04:43:54'),
-(15, 'sdsdgsdfg', 1, '2016-02-09 04:46:43'),
-(16, 'add', 1, '2016-02-09 04:47:03'),
-(17, 'asdfdasf', 1, '2016-02-09 04:48:06'),
-(18, 'sdfgdsg', 1, '2016-02-09 04:48:34'),
-(19, 'dfghdfghdfgh', 1, '2016-02-09 04:48:45'),
-(20, 'xcbxcvbxcvb xdfbxcbx ', 1, '2016-02-09 04:49:59'),
-(21, 'zzxcvxz', 1, '2016-02-09 04:50:53'),
-(22, 'dsgdf dfgdfgdfg', 1, '2016-02-09 04:51:36'),
-(23, 'test', 1, '2016-02-09 07:14:04');
+(1, 'Under 14 Boys', 1, '2016-02-15 07:43:08'),
+(2, 'Under 14 Girls', 1, '2016-02-15 07:43:08'),
+(3, 'Under 16 Boys', 1, '2016-02-15 07:43:46'),
+(4, 'Under 19 Boys', 1, '2016-02-15 07:43:46');
 
 -- --------------------------------------------------------
 
@@ -117,14 +131,19 @@ CREATE TABLE IF NOT EXISTS `wc_createschedule` (
   `createschedule_createddate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`createschedule_id`),
   KEY `createscheduletestbattery_id` (`createscheduletestbattery_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
 -- Dumping data for table `wc_createschedule`
 --
 
 INSERT INTO `wc_createschedule` (`createschedule_id`, `createschedule_name`, `createscheduletestbattery_id`, `createschedule_date`, `createschedule_time`, `createschedule_venue`, `createschedule_status`, `createschedule_createddate`) VALUES
-(1, 'test1', 11, '2016-02-24', '08:20:00', 'aSfaesqtgdasgf', 1, '2016-02-12 18:33:57');
+(1, 'Schedule1', 1, '2016-02-16', '00:00:00', '34, Anna Nagar,\r\nChennai', 1, '2016-02-15 07:56:34'),
+(2, 'Schedule2', 2, '2016-02-18', '00:00:00', '45, KK Nagar,\r\nChennai.', 1, '2016-02-15 07:58:55'),
+(3, 'Schedule3', 3, '2016-02-19', '00:00:00', '56, Lawspet,\r\nPuducherry.', 1, '2016-02-15 07:58:55'),
+(4, 'Schedule4', 2, '2016-02-17', '00:00:00', '89, Jeeva Nagar,\r\nPuducherry.\r\n', 1, '2016-02-15 08:02:04'),
+(5, 'Schedule5', 1, '2016-02-26', '00:00:00', '12, CK Nagar.\r\nMadurai\r\n ', 1, '2016-02-15 08:02:04'),
+(6, 'Schedule6', 3, '2016-02-24', '00:00:00', '34, Tagore Nagar,\r\nPuducherry.\r\n', 1, '2016-02-15 08:03:30');
 
 -- --------------------------------------------------------
 
@@ -140,14 +159,20 @@ CREATE TABLE IF NOT EXISTS `wc_district` (
   `district_createddate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`district_id`),
   KEY `districtstates_id` (`districtstates_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `wc_district`
 --
 
 INSERT INTO `wc_district` (`district_id`, `districtstates_id`, `district_name`, `district_status`, `district_createddate`) VALUES
-(2, 1, 'Karaikal', 1, '2016-02-14 08:39:36');
+(1, 1, 'Virudhunagar', 1, '2016-02-15 07:36:46'),
+(2, 1, 'Villupuram', 1, '2016-02-15 07:36:46'),
+(3, 1, 'Madurai', 1, '2016-02-15 07:37:24'),
+(4, 1, 'Cuddalore', 1, '2016-02-15 07:37:24'),
+(5, 1, 'Trichy', 1, '2016-02-15 07:38:14'),
+(6, 1, 'Coimbatore', 1, '2016-02-15 07:38:14'),
+(7, 3, 'Karaikal', 1, '2016-02-15 07:39:59');
 
 -- --------------------------------------------------------
 
@@ -240,14 +265,19 @@ CREATE TABLE IF NOT EXISTS `wc_range` (
   KEY `rangetestbattery_id` (`rangetestbattery_id`),
   KEY `rangecategories_id` (`rangecategories_id`),
   KEY `rangetest_id` (`rangetest_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COMMENT='This table is used to store the ranges with their points for' AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COMMENT='This table is used to store the ranges with their points for' AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `wc_range`
 --
 
 INSERT INTO `wc_range` (`range_id`, `rangetestbattery_id`, `rangecategories_id`, `rangetest_id`, `range_status`, `range_createddate`) VALUES
-(1, 4, 1, 26, 1, '2016-02-14 06:08:50');
+(1, 1, 1, 1, 1, '2016-02-15 09:36:58'),
+(2, 2, 2, 2, 1, '2016-02-15 09:36:58'),
+(3, 3, 3, 3, 1, '2016-02-15 09:37:49'),
+(4, 1, 4, 4, 1, '2016-02-15 09:37:49'),
+(5, 2, 2, 2, 1, '2016-02-15 09:38:25'),
+(6, 3, 3, 3, 1, '2016-02-15 09:38:25');
 
 -- --------------------------------------------------------
 
@@ -265,15 +295,19 @@ CREATE TABLE IF NOT EXISTS `wc_range_attribute` (
   `range_attribute_createddate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`range_attribute_id`),
   KEY `range_id` (`range_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `wc_range_attribute`
 --
 
 INSERT INTO `wc_range_attribute` (`range_attribute_id`, `range_id`, `range_start`, `range_end`, `range_point`, `range_attribute_status`, `range_attribute_createddate`) VALUES
-(1, 1, 0, 5, 1, 1, '2016-02-14 06:08:50'),
-(2, 1, 5, 10, 1, 1, '2016-02-14 06:08:50');
+(1, 1, 0, 5, 1, 1, '2016-02-15 09:40:35'),
+(2, 2, 6, 10, 2, 1, '2016-02-15 09:40:35'),
+(3, 3, 11, 15, 3, 1, '2016-02-15 09:41:33'),
+(4, 4, 0, 3, 1, 1, '2016-02-15 09:41:33'),
+(5, 5, 3, 6, 2, 1, '2016-02-15 09:42:28'),
+(6, 6, 6, 9, 3, 1, '2016-02-15 09:42:28');
 
 -- --------------------------------------------------------
 
@@ -294,7 +328,19 @@ CREATE TABLE IF NOT EXISTS `wc_result` (
   PRIMARY KEY (`result_id`),
   KEY `resultcreateschedule_id` (`resultcreateschedule_id`),
   KEY `resultathlete_id` (`resultathlete_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+
+--
+-- Dumping data for table `wc_result`
+--
+
+INSERT INTO `wc_result` (`result_id`, `resultcreateschedule_id`, `resultathlete_id`, `resulttest_name`, `resultparameter_name`, `result`, `points`, `result_status`, `result_createddate`) VALUES
+(1, 1, 1, 'Test1', 'time', 3, 3, 1, '2016-02-15 09:48:13'),
+(2, 2, 2, 'Test2', 'others', 4, 4, 1, '2016-02-15 09:48:13'),
+(3, 3, 3, 'Test3', 'others', 5, 5, 1, '2016-02-15 09:48:59'),
+(4, 4, 4, 'Test4', 'others', 4, 4, 1, '2016-02-15 09:48:59'),
+(5, 5, 5, 'Test1', 'speed', 5, 5, 1, '2016-02-15 09:50:09'),
+(6, 6, 6, 'Test2', 'others', 4, 4, 1, '2016-02-15 09:50:09');
 
 -- --------------------------------------------------------
 
@@ -315,25 +361,9 @@ CREATE TABLE IF NOT EXISTS `wc_sports` (
 --
 
 INSERT INTO `wc_sports` (`sports_id`, `sports_name`, `sports_status`, `sports_createddate`) VALUES
-(12, 'test1gd', 1, '2016-02-06 12:16:51'),
-(16, 'sdfgdsgf', 1, '2016-02-08 05:19:20'),
-(17, 'sdfgd3434', 1, '2016-02-08 05:19:27'),
-(18, 'sdfgdsgfddgd', 1, '2016-02-08 05:19:31'),
-(21, 'sdfgds', 1, '2016-02-08 05:19:48'),
-(22, 'sdfgds dfg', 1, '2016-02-08 05:19:53'),
-(23, 'test', 1, '2016-02-08 05:37:29'),
-(24, 'test', 1, '2016-02-08 05:39:03'),
-(25, 'test11', 1, '2016-02-08 05:40:04'),
-(26, 'test1323w', 1, '2016-02-08 05:42:00'),
-(27, 'sdfcvbxcvb', 1, '2016-02-09 07:15:13'),
-(28, 'sdfgdsfgsdfgdsgfdsf', 1, '2016-02-09 11:38:55'),
-(29, 'sdfgdsfgsd', 1, '2016-02-09 11:39:00'),
-(30, 'sdfgdfgdsf dfgdfgd', 1, '2016-02-09 11:39:32'),
-(31, 'dsfgdsfgcvbxb dfgdfg ', 1, '2016-02-09 11:39:40'),
-(32, 'dsfgdsfg', 1, '2016-02-09 11:40:38'),
-(33, 'sdfgdsfg', 1, '2016-02-09 11:40:47'),
-(34, 'sdfgdsfgsdfgsdfgs', 1, '2016-02-09 11:40:56'),
-(35, 'sdfds', 1, '2016-02-10 05:16:45');
+(1, 'Hockey', 1, '2016-02-15 07:44:53'),
+(2, 'Cricket', 1, '2016-02-15 07:44:53'),
+(3, 'Foot Ball', 1, '2016-02-15 07:45:27');
 
 -- --------------------------------------------------------
 
@@ -354,11 +384,9 @@ CREATE TABLE IF NOT EXISTS `wc_states` (
 --
 
 INSERT INTO `wc_states` (`states_id`, `states_name`, `states_status`, `states_createddate`) VALUES
-(1, 'Puducherry', 1, '2016-02-06 13:10:06'),
-(2, 'Arunachal Pradesh', 1, '2016-02-06 13:10:41'),
-(3, 'Bihar', 1, '2016-02-06 13:10:53'),
-(4, 'Kerala', 1, '2016-02-13 13:27:08'),
-(5, 'Andhra Pradesh', 1, '2016-02-14 08:42:05');
+(1, 'Tamilnadu', 1, '2016-02-15 07:35:45'),
+(2, 'Kerala', 1, '2016-02-15 07:35:45'),
+(3, 'Puducherry', 1, '2016-02-15 07:38:50');
 
 -- --------------------------------------------------------
 
@@ -379,11 +407,10 @@ CREATE TABLE IF NOT EXISTS `wc_test` (
 --
 
 INSERT INTO `wc_test` (`test_id`, `test_name`, `test_status`, `test_createddate`) VALUES
-(25, 'test2', 1, '2016-02-11 07:52:37'),
-(26, 'cvfhxg', 1, '2016-02-11 10:17:35'),
-(27, '', 1, '2016-02-11 12:23:20'),
-(28, 'gsdfgsdgf', 1, '2016-02-11 12:30:01'),
-(29, 'vgfhdfghd', 1, '2016-02-12 12:09:59');
+(1, 'Test1', 1, '2016-02-15 07:50:08'),
+(2, 'Test2', 2, '2016-02-15 07:50:08'),
+(3, 'Test3', 1, '2016-02-15 07:51:01'),
+(4, 'Test4', 1, '2016-02-15 07:51:01');
 
 -- --------------------------------------------------------
 
@@ -406,11 +433,9 @@ CREATE TABLE IF NOT EXISTS `wc_testbattery` (
 --
 
 INSERT INTO `wc_testbattery` (`testbattery_id`, `testbattery_name`, `testbatterysports_id`, `testbattery_status`, `testbattery_createddate`) VALUES
-(2, 'sdfasfasdfasdf', 23, 1, '2016-02-11 13:41:55'),
-(4, 'dfsgdsfgdsfg', 12, 1, '2016-02-11 13:54:49'),
-(6, 'sdfgbcvbxcvb', 21, 1, '2016-02-11 13:58:15'),
-(11, 'sample', 29, 1, '2016-02-12 17:05:21'),
-(12, 'sdd', 12, 1, '2016-02-12 17:07:30');
+(1, 'Petter', 1, 1, '2016-02-15 07:52:40'),
+(2, 'Hendri', 2, 1, '2016-02-15 07:52:40'),
+(3, 'Olga', 3, 1, '2016-02-15 07:52:56');
 
 -- --------------------------------------------------------
 
@@ -434,17 +459,8 @@ CREATE TABLE IF NOT EXISTS `wc_testbattery_category_attribute` (
 --
 
 INSERT INTO `wc_testbattery_category_attribute` (`testbattery_category_attribute_id`, `testbattery_id`, `testbattery_category_id`, `testbattery_category_status`, `testbattery_category_createddate`) VALUES
-(9, 4, 1, 1, '2016-02-11 13:54:49'),
-(10, 4, 2, 1, '2016-02-11 13:54:49'),
-(13, 6, 3, 1, '2016-02-11 13:58:15'),
-(54, 12, 2, 1, '2016-02-12 18:12:41'),
-(57, 11, 1, 1, '2016-02-13 05:08:44'),
-(58, 11, 2, 1, '2016-02-13 05:08:45'),
-(59, 2, 16, 1, '2016-02-13 12:08:18'),
-(60, 2, 17, 1, '2016-02-13 12:08:19'),
-(61, 2, 20, 1, '2016-02-13 12:08:19'),
-(62, 2, 21, 1, '2016-02-13 12:08:19'),
-(63, 2, 22, 1, '2016-02-13 12:08:19');
+(1, 1, 1, 1, '2016-02-15 07:54:00'),
+(2, 2, 2, 1, '2016-02-15 07:54:00');
 
 -- --------------------------------------------------------
 
@@ -468,8 +484,12 @@ CREATE TABLE IF NOT EXISTS `wc_testbattery_test_attribute` (
 --
 
 INSERT INTO `wc_testbattery_test_attribute` (`testbattery_test_attribute_id`, `testbattery_id`, `testbattery_test_id`, `testbattery_test_attribute_status`, `testbattery_test_attribute_createddate`) VALUES
-(28, 12, 28, 1, '2016-02-12 18:12:41'),
-(30, 11, 26, 1, '2016-02-13 05:08:45');
+(1, 1, 1, 1, '2016-02-15 09:58:49'),
+(2, 2, 2, 1, '2016-02-15 09:58:49'),
+(3, 3, 3, 1, '2016-02-15 09:59:14'),
+(4, 1, 1, 1, '2016-02-15 09:59:14'),
+(5, 2, 3, 1, '2016-02-15 09:59:39'),
+(6, 3, 4, 1, '2016-02-15 09:59:39');
 
 -- --------------------------------------------------------
 
@@ -495,11 +515,12 @@ CREATE TABLE IF NOT EXISTS `wc_test_attribute` (
 --
 
 INSERT INTO `wc_test_attribute` (`test_attribute_id`, `test_id`, `test_parameter_name`, `test_parameter_type`, `test_parameter_unit`, `test_parameter_format`, `test_attribute_status`, `test_attribute_createddate`) VALUES
-(10, 26, 'dfsgdsfg', 'percentage', 'Percentage', '3', 1, '2016-02-11 10:17:35'),
-(11, 26, 'dfsgdsfgsdfg', 'number', 'NUMBER', '4', 1, '2016-02-11 10:17:35'),
-(13, 28, 'sdfgdsfgds123123123', 'weight', 'KG', '2', 1, '2016-02-11 12:30:01'),
-(14, 28, 'sdfgdsfgdssdfs', 'percentage', 'Percentage', '3', 1, '2016-02-11 12:30:01'),
-(15, 29, 'dfghdfgh', 'percentage', 'Percentage', '3', 1, '2016-02-12 12:10:00');
+(1, 1, 'High jump', 'speed', 'MT/S', '', 1, '2016-02-15 09:53:22'),
+(2, 2, 'long jump', 'speed', 'MT/S', '', 1, '2016-02-15 09:54:37'),
+(3, 3, 'Running', 'Time', 'KM/S', '', 1, '2016-02-15 09:54:37'),
+(4, 4, 'Long jump', 'Speed', 'MT/S', '', 1, '2016-02-15 09:56:24'),
+(5, 1, 'Foot ball', 'others', 'others', '', 1, '2016-02-15 09:56:24'),
+(6, 2, 'Running', 'Distance', 'KM', '', 1, '2016-02-15 09:57:18');
 
 -- --------------------------------------------------------
 
@@ -560,34 +581,34 @@ ALTER TABLE `wc_district`
 -- Constraints for table `wc_parameterunit`
 --
 ALTER TABLE `wc_parameterunit`
-  ADD CONSTRAINT `wc_parameterunit_ibfk_1` FOREIGN KEY (`parametertype_id`) REFERENCES `wc_parametertype` (`parametertype_id`);
+  ADD CONSTRAINT `wc_parameterunit_ibfk_1` FOREIGN KEY (`parametertype_id`) REFERENCES `wc_parametertype` (`parametertype_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `wc_range`
 --
 ALTER TABLE `wc_range`
-  ADD CONSTRAINT `wc_range_ibfk_1` FOREIGN KEY (`rangetestbattery_id`) REFERENCES `wc_testbattery` (`testbattery_id`),
-  ADD CONSTRAINT `wc_range_ibfk_2` FOREIGN KEY (`rangecategories_id`) REFERENCES `wc_categories` (`categories_id`),
-  ADD CONSTRAINT `wc_range_ibfk_3` FOREIGN KEY (`rangetest_id`) REFERENCES `wc_test` (`test_id`);
+  ADD CONSTRAINT `wc_range_ibfk_3` FOREIGN KEY (`rangetest_id`) REFERENCES `wc_test` (`test_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `wc_range_ibfk_1` FOREIGN KEY (`rangetestbattery_id`) REFERENCES `wc_testbattery` (`testbattery_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `wc_range_ibfk_2` FOREIGN KEY (`rangecategories_id`) REFERENCES `wc_categories` (`categories_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `wc_range_attribute`
 --
 ALTER TABLE `wc_range_attribute`
-  ADD CONSTRAINT `wc_range_attribute_ibfk_1` FOREIGN KEY (`range_id`) REFERENCES `wc_range` (`range_id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `wc_range_attribute_ibfk_1` FOREIGN KEY (`range_id`) REFERENCES `wc_range` (`range_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `wc_result`
 --
 ALTER TABLE `wc_result`
-  ADD CONSTRAINT `wc_result_ibfk_1` FOREIGN KEY (`resultcreateschedule_id`) REFERENCES `wc_createschedule` (`createschedule_id`),
-  ADD CONSTRAINT `wc_result_ibfk_2` FOREIGN KEY (`resultathlete_id`) REFERENCES `wc_athlete` (`athlete_id`);
+  ADD CONSTRAINT `wc_result_ibfk_2` FOREIGN KEY (`resultathlete_id`) REFERENCES `wc_athlete` (`athlete_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `wc_result_ibfk_1` FOREIGN KEY (`resultcreateschedule_id`) REFERENCES `wc_createschedule` (`createschedule_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `wc_testbattery`
 --
 ALTER TABLE `wc_testbattery`
-  ADD CONSTRAINT `wc_testbattery_ibfk_1` FOREIGN KEY (`testbatterysports_id`) REFERENCES `wc_sports` (`sports_id`);
+  ADD CONSTRAINT `wc_testbattery_ibfk_1` FOREIGN KEY (`testbatterysports_id`) REFERENCES `wc_sports` (`sports_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `wc_testbattery_category_attribute`
