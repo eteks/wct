@@ -133,14 +133,6 @@ if(isset($_GET['update_success'])){
 				<form id="edit_assign_schedule_form" action="functions/assign_schedule_function.php" method="post">
 					<div class="form-group">
 						  <label for="sel1">Select Schedule Name</label>
-						  <!-- <select class="form-control adjust_width classic schedule_update" id="sel1" name="Schedule" data-validation-error-msg="Please Select Name of the Schedule" data-validation="required" disabled>
-							  <?php
-								// $data = $createschedule->createscheduleselectfunction();
-								 //foreach( $data as $eachrecord ) {
-								  ?>
-								  <option value="<?php echo $eachrecord ['createschedule_id']; ?>"><?php echo $eachrecord ['createschedule_name']; ?></option>
-							   <?php //} ?>
-						  </select> -->
 						  <input type="text" class="form-control adjust_width classic schedule_update" name="Schedule" data-validation-error-msg="Please Select Name of the Schedule" data-validation="required" disabled />
 					</div>
 					<div class="form-group">
@@ -163,7 +155,7 @@ if(isset($_GET['update_success'])){
 									<select class="form-control name_align fl athlete_name athlete_name_update athlete_name1" id="combobox1" placeholder="Name" name="athlete_name1" id="combobox" data-validation-error-msg="Please Select Athlete" data-validation="required">
 										<option value="">Athletes</option>
 										<?php
-											$data = $athlete->athleteSelect();
+											$data = $athlete->athleteSelect1();
 											foreach( $data as $eachrecord ) {
 										?>
 											<option value="<?php echo $eachrecord ['athlete_id']; ?>"><?php echo $eachrecord ['athlete_name']; ?></option>
