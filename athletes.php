@@ -49,7 +49,7 @@
 					</div>
 					<div class="form-group">
       					<label>Mobile Number</label><br>
-      					<input type="text" id="athletes_mobile1" class="adjust_width" name="athlete_mobile" data-validation-error-msg="Please Enter the value that must contain 10 numbers" data-validation="length" ata-validation-length="10-11">
+      					<input type="text" id="athletes_mobile1" class="adjust_width" name="athlete_mobile" data-validation-error-msg="Please Enter the value that must contain 10 numbers" data-validation="length" data-validation-length="10-11">
      				</div>
 					<div class="form-group">
 						  <label for="sel1">Gender</label>
@@ -199,7 +199,7 @@
 					</div>
 					<div class="form-group">
       					<label>Mobile Number</label><br>
-      					<input id="ahtlete_mobile" type="text" class="adjust_width" name="edit_athlete_mobile" data-validation-error-msg="Please Enter the value that must contain 10 numbers" data-validation="length" ata-validation-length="10-11">
+      					<input id="ahtlete_mobile" type="text" class="adjust_width" name="edit_athlete_mobile" data-validation-error-msg="Please Enter the value that must contain 10 numbers" data-validation="length" data-validation-length="10-11">
      				</div>
 					<div class="form-group">
 						  <label for="sel1">Gender</label>
@@ -261,24 +261,4 @@
 					</div><!--state-content-->
 			</div><!--test_battery_div-->
 		</div><!--container-->
-<script>
-$(document).ready(function(){
-	 $("#athletes_mobile1").keypress(function (e) {       
-     if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
-      // alert('errr'+$('#mobile').val());
-               return false;
-    }
-   });
-});
-$(".athlete_date_pick,.popup_athlete_datepick").dateDropdowns({
-    minAge: 18
-    });
-// $('.dateselector-basic').dateSelector({
-//     onDateChange: function() {
-//         // Your code here...
-//         // alert('date changed!');
-//     }
-// });
-</script>
-
 <?php require_once "footer.php" ?>

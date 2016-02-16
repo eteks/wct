@@ -163,9 +163,9 @@ function editfunction(data_id){
               $('[name=edit_schedule_id]').val(obj[i].createschedule_id);
               $('[name=edit_schedule_name]').val(obj[i].createschedule_name);
               $('[name=edit_schedule_testbattery]').append("<option value='"+obj[i].createschedule_testbatteryid+ "'selected>"+obj[i].createschedule_testbatteryname+"</option>");
-              $('[name=edit_schedule_day]').append("<option value='"+date[2]+ "'selected>"+date[2]+"</option>");
-              $('[name=edit_schedule_month]').append("<option value='"+date[1]+ "'selected>"+date[1]+"</option>");
-              $('[name=edit_schedule_year]').append("<option value='"+date[0]+ "'selected>"+date[0]+"</option>");
+              // $('[name=edit_schedule_day]').append("<option value='"+date[2]+ "'selected>"+date[2]+"</option>");
+              // $('[name=edit_schedule_month]').append("<option value='"+date[1]+ "'selected>"+date[1]+"</option>");
+              // $('[name=edit_schedule_year]').append("<option value='"+date[0]+ "'selected>"+date[0]+"</option>");
               $('[name=edit_schedule_hour]').find("option:contains("+time[0]+")").attr("selected","selected");
               $('[name=edit_schedule_minute]').find("option:contains("+time[1]+")").attr("selected","selected");
               $('[name=edit_schedule_seconds]').find("option:contains("+time[2]+")").attr("selected","selected");
@@ -1257,7 +1257,7 @@ $(document).ready(function () {
       });
       if(res){
          var form_data = $('[name=create_schedule_form]').serialize();
-         // alert('comes'+form_data);
+         alert('comes'+form_data);
           $.ajax({
              type: "POST",
              url: "functions/create_schedule_function.php?adddata=true",
