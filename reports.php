@@ -22,12 +22,12 @@ $createschedule = new createscheduleFunction();
 							   foreach( $data as $eachrecord ) {
 								?>
 							<div class="checkbox align_check">
-					      		<label class="remember_txt"><input type="checkbox" value="<?php echo $eachrecord ['createschedule_id']; ?>" name="schedul_ids[]"><?php echo $eachrecord ['createschedule_name']; ?></label>
+					      		<label class="remember_txt"><input type="checkbox"  data-validation="checkbox_group" data-validation-qty="1-3" value="<?php echo $eachrecord ['createschedule_id']; ?>" name="schedul_ids[]"><?php echo $eachrecord ['createschedule_name']; ?></label>
 					    	</div>
 							<?php } ?>
 						</div>
 					</div>
-					<div class="col-md-9 schedule_btn">
+					<div class="col-md-9">
 						<input type="submit" class="btn btn-primary align_right clear" value="Submit">
 						<input type="reset" class="btn btn-primary align_right test-submit clear" value="Clear">
 					</div>

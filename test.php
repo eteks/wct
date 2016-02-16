@@ -33,40 +33,48 @@ if(isset($_GET['update'])){
 								<input type="text" class="adjust_width parameter_name" name="parameter_name1" data-validation-error-msg="Please Enter the Parameter Name" data-validation="required">
 							</div>
 							<div class="form-group">
-								<select class="form-control classic type_align fl parameter_type" id="type" name="type1" data-validation-error-msg="Please Select the Type of the Parameter" data-validation="required">
-									<option value="">
-										Type
-									</option>
-									<?php
-										$sql = mysql_query('select * from wc_parametertype') or die(mysql_error());
-										$count = mysql_num_rows($sql);
-										if ($count != '0') {
-											while ($row = mysql_fetch_array($sql)) {
-									?>
-										<option value="<?php echo $row['parametertype_name']; ?>">
-											<?php echo $row['parametertype_name']; ?>
+								<div class="form-group col-md-3">
+									<select class="form-control classic type_align fl parameter_type" id="type" name="type1" data-validation-error-msg="Please Select the Type of the Parameter" data-validation="required">
+										<option value="">
+											Type
 										</option>
-									<?php
+										<?php
+											$sql = mysql_query('select * from wc_parametertype') or die(mysql_error());
+											$count = mysql_num_rows($sql);
+											if ($count != '0') {
+												while ($row = mysql_fetch_array($sql)) {
+										?>
+											<option value="<?php echo $row['parametertype_name']; ?>">
+												<?php echo $row['parametertype_name']; ?>
+											</option>
+										<?php
+												}
 											}
-										}
-									?>
-								</select>
-								<select class="form-control classic type_align fl parameter_unit" id="unit" name="unit1" data-validation-error-msg="Please Select the Unit of the Parameter" data-validation="required">
-								<option value="">Unit</option>
-								</select>
-								<select class="form-control classic type_align fl parameter_format" id="format" name="format1" data-validation-error-msg="Please Select the Format of the Parameter" data-validation="required">
-									<option value="">Format</option>
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-									<option value="4">4</option>
-									<option value="5">5</option>
-								</select>
+										?>
+									</select>
+								</div>
+								<div class="form-group col-md-3">
+									<select class="form-control classic type_align fl parameter_unit" id="unit" name="unit1" data-validation-error-msg="Please Select the Unit of the Parameter" data-validation="required">
+									<option value="">Unit</option>
+									</select>
+								</div>
+								<div class="form-group col-md-3">
+									<select class="form-control classic type_align fl parameter_format" id="format" name="format1" data-validation-error-msg="Please Select the Format of the Parameter" data-validation="required">
+										<option value="">Format</option>
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4">4</option>
+										<option value="5">5</option>
+									</select>
+								</div>
 							</div>
 						</div>
 					</div>
-					<input type="button" class="btn btn-primary align_right parameter_btn" value="Add Parameter">
-					<i class="fa fa-plus parameter_add"></i>
+					<div class="form-group parameter__align">
+						<input type="button" class="btn btn-primary align_right parameter_btn" value="Add Parameter">
+						<i class="fa fa-plus parameter_add"></i>
+					</div>
 					<input type="hidden" name="test_add" value="1">
 					<div class="col-md-9 schedule_btn">
 						<input type="submit" class="btn btn-primary align_right clear test_submit_act" value="Submit">

@@ -290,7 +290,6 @@ $(document).ready(function () {
 
   $("#mobile,#result_athletemobile,#bib,#result_athletebib").keypress(function (e) {
      if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
-      // alert('errr'+$('#result_athletemobile').val());
                return false;
     }
    });
@@ -1676,7 +1675,6 @@ $(document).ready(function () {
  //      }
  //
  //    });
-
 
     $('.paramter_menu').hover(function(){
       $(".parameter-list").show();

@@ -53,7 +53,7 @@ if(isset($_GET['update_success'])){
 					<div class="assign_content_holder col-md-11">
 						<div class="assign_clone_content">
 							<div class="form-group col-md-12">
-								<div class="col-md-6 combo--align">
+								<div class="col-md-6 form-group combo--align">
 									<select class="form-control name_align  athlete_name athlete_name1" placeholder="Name" name="athlete_name1" id="combobox" data-validation-error-msg="Please Select Athlete" data-validation="required">
 										<option value="">Athletes</option>
 										<?php
@@ -65,15 +65,15 @@ if(isset($_GET['update_success'])){
 									</select>
 								</div>
 						      	<!-- <input type="text" class="form-control name_align fl athlete_name" id="name" placeholder="Name" name="athlete_name1" required> -->
-						      	<div class="col-md-6">
-						      		<input type="text" class="form-control date_assign dob" id="dob" placeholder="Date" name="athlete_date1" data-validation-error-msg="Please Enter the Date" data-validation="date" data-validation-format="dd/mm/yyyy">
+						      	<div class="form-group col-md-6">
+						      		<input type="text" class="form-control date_assign dob" id="dob" placeholder="Date" name="athlete_date1" disabled>
 						   		</div>
 						    </div>
 						    <div class="form-group col-md-12">
-						    	<div class="col-md-6">
-						      		<input type="text" class="form-control name_align athlete_mobile mobile" id="mobile" placeholder="Mobile no" name="athlete_mobile1" data-validation-error-msg="Please Enter the value that must contain 10 numbers" data-validation="length" data-validation-length="10-11">
+						    	<div class="form-group col-md-6">
+						      		<input type="text" class="form-control name_align athlete_mobile mobile" id="mobile" placeholder="Mobile no" name="athlete_mobile1" disabled>
 						      	</div>
-						      	<div class="col-md-6">
+						      	<div class="form-group col-md-6">
 						      		<input type="text" class="form-control date_assign athlete_bib" id="bib" placeholder="BIB NO" name="athlete_bib1" data-validation-error-msg="Please Enter the BIB NO" data-validation="number">
 								</div>
 						    </div>
@@ -180,7 +180,7 @@ if(isset($_GET['update_success'])){
 					</div>
 					<input type="hidden" name="assing_schedule_update" value="1" />
 
-					<div class="col-md-9 schedule_btn">
+					<div class="col-md-10 schedule_btn">
 						<input type="submit" class="btn btn-primary align_right clear" value="Submit">
 						<input type="reset" class="btn btn-primary align_right test-submit clear" value="Clear">
 					</div>

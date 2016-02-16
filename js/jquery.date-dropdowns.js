@@ -11,15 +11,15 @@
             submitFormat: "yyyy-mm-dd",
             minAge: 0,
             maxAge: 120,
-            minYear: null,
-            maxYear: null,
+            minYear: 1970,
+            maxYear: new Date().getFullYear(),
             submitFieldName: "date",
             wrapperClass: "date-dropdowns",
             dropdownClass: null,
             daySuffixes: true,
             monthSuffixes: true,
             monthFormat: "long",
-            required: false
+            required: true
         };
 
     // The actual plugin constructor

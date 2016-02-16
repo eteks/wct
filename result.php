@@ -26,14 +26,22 @@
 					</div>
 					<div class="form-group">
 				      	<label for="athlete" class="email_txt">Select Athletes</label><br>
-				      	<input type="text" class="form-control name_align fl result_athletename" id="result_athletename" placeholder="Name" name="result_athletename" data-validation-error-msg="Please Enter the name of the Athelete" data-validation="required">
-				      	<input type="text" class="form-control date_assign fl result_athletedate" id="result_athletedate" placeholder="Date" name="result_athletedate"  data-validation="date" data-validation-format="dd/mm/yyyy">
+				      	<div class="form-group col-md-5">
+				      		<input type="text" class="form-control name_align fl result_athletename" id="result_athletename" placeholder="Name" name="result_athletename" data-validation-error-msg="Please Enter the name of the Athelete" data-validation="required">
+				      	</div>
+				      	<div class="form-group col-md-5">
+				      		<input type="text" class="form-control date_assign fl result_athletedate" id="result_athletedate" placeholder="Date" name="result_athletedate"  data-validation="date" data-validation-format="dd/mm/yyyy">
+			      		</div>
 				    </div>
 				    <div class="form-group">
-				      	<input type="text" class="form-control name_align fl result_athletemobile" id="result_athletemobile" placeholder="Mobile no" name="result_athletemobile" data-validation-error-msg="Please Enter the value that must contain 10 numbers" data-validation="length" data-validation-length="10-11">
-				      	<input type="text" class="form-control date_assign fl result_athletebib" id="result_athletebib" placeholder="BIB NO" name="result_athletebib" data-validation-error-msg="Please Enter the BIB NO" data-validation="required">
+				    	<div class="form-group col-md-5">
+				      		<input type="text" class="form-control name_align fl result_athletemobile" id="result_athletemobile" placeholder="Mobile no" name="result_athletemobile" data-validation-error-msg="Please Enter the value that must contain 10 numbers" data-validation="length" data-validation-length="10">
+				      	</div>
+				      	<div class="form-group col-md-5">
+				      		<input type="text" class="form-control date_assign fl result_athletebib" id="result_athletebib" placeholder="BIB NO" name="result_athletebib" data-validation-error-msg="Please Enter the BIB NO" data-validation="required">
+				    	</div>
 				    </div>
-					<div class="col-md-9 schedule_btn">
+					<div class="col-md-9">					
 						<input type="submit" class="btn btn-primary align_right clear" value="Submit">
 						<input type="reset" class="btn btn-primary align_right test-submit clear" value="Clear">
 					</div>
