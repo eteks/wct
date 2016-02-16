@@ -7,10 +7,10 @@
 		<div class="col-xs-12 col-md-11">
 			<div class="col-md-4 hidden-xs"></div>
 			<div class="col-xs-12 col-md-7 align_margin">
-				<form id="report_form">
+				<form id="report_form" name="reports">
 					<div class="align_margin">					
 						<label>Select Schedule</label><br>
-						<div class="area_scroll" data-validation-error-msg="Please Choose atleast one Schedule" data-validation="required">
+						<div class="area_scroll" data-validation="checkbox_group" data-validation-qty="1-3">
 							<div class="checkbox align_check">
 					      		<label class="remember_txt"><input type="checkbox" value="">Schedule1</label>
 					    	</div>

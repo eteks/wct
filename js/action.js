@@ -276,7 +276,6 @@ $(document).ready(function () {
 
   $("#mobile,#result_athletemobile,#bib,#result_athletebib").keypress(function (e) {       
      if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
-      // alert('errr'+$('#result_athletemobile').val());
                return false;
     }
    });
@@ -1647,12 +1646,12 @@ $(document).ready(function () {
  $('#report_form').submit(function(e){
       e.preventDefault();
       var res = true;
-      // $('input[type="checkbox"]',this).each(function() {
-        if($(this).val().trim() == "") {
+      $('form[name="reports"]').child().find('checkbox').each(function(){        
+      if ($(this).prop('checked')==true){ 
           res = false;
           alert('report_form alse');
         }
-      // });
+      });
       if(res){
           // var form_data = $('[name=edit_createschedule_form]').serialize();
           alert('report_form true'+res);
