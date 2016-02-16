@@ -28,7 +28,7 @@ if(isset($_GET['update'])){
 					</div>
 					<div class="parameter_holder1">
 						<div class="clone_content" id="param_counter1">
-							<div class="form-group">
+							<div class="form-group col-md-12 schedule_btn">
 								<label>Enter Parameter Name</label><br>
 								<input type="text" class="adjust_width parameter_name" name="parameter_name1" data-validation-error-msg="Please Enter the Parameter Name" data-validation="required">
 							</div>

@@ -636,7 +636,7 @@ select {
     border-radius: 0 !important;
     box-shadow: none !important;
     height: 34px;
-    margin: 12px 0 10px 20px;
+    margin: 12px 0 0px 20px;
     position: relative;
     right: 30px;
     width: 192px !important;
@@ -647,7 +647,7 @@ select {
     border-radius: 0 !important;
     box-shadow: none !important;
     height: 34px;
-    margin: 12px 0 10px 12px;
+    margin: 12px 0 0px 12px;
     position: relative;
     right: 35px;
     width: 185px !important;
@@ -1071,7 +1071,7 @@ input[type=radio]:checked + label:before {
   /*  float: right;*/
     font-size: 11px;
 }
-.help-block{   
+.help-block{
     margin-bottom: 0 !important;
     margin-top: 0 !important;
 }
@@ -1178,7 +1178,7 @@ input[type=radio]:checked + label:before {
 }
 .parameter-submit,.test-submit{
     margin-right: 10px !important;
-}   
+}
 /*.table-position {
     position: relative;
     top: 50px;
