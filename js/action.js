@@ -279,6 +279,7 @@ $(document).ready(function () {
                return false;
     }
    });
+  
    //Edit popup
   	$(document.body).delegate('.edit_state','click',function() {
         state_center_align();
@@ -1251,12 +1252,12 @@ $(document).ready(function () {
       $('input[type="text"],select',this).each(function() {
         if($(this).val().trim() == "") {
           res = false;
-          alert('false  comes');
+          // alert('false  comes');
         }
       });
       if(res){
          var form_data = $('[name=create_schedule_form]').serialize();
-         alert('comes'+form_data);
+         // alert('comes'+form_data);
           $.ajax({
              type: "POST",
              url: "functions/create_schedule_function.php?adddata=true",
