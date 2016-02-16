@@ -484,21 +484,21 @@ $(document).ready(function () {
   // Autocomplete results for district list
   var district_list = [];
   $('.choose_state').on('change',function () {
-    selected_state = $('.choose_state option:selected').text();
-    form_data = {'states_name':selected_state};
-    district_list.length = 0;
-     $.ajax({
-           type: "POST",
-           url: "functions/district_function.php?loaddistrict=true",
-           data: form_data,
-           cache: false,
-           success: function(data) {
-            var obj = JSON.parse(data);
-              $.each(obj, function(i){
-                district_list.push(obj[i]);
-              });
-           }
-       });
+      selected_state = $('.choose_state option:selected').text();
+      form_data = {'states_name':selected_state};
+      district_list.length = 0;
+       $.ajax({
+             type: "POST",
+             url: "functions/district_function.php?loaddistrict=true",
+             data: form_data,
+             cache: false,
+             success: function(data) {
+              var obj = JSON.parse(data);
+                $.each(obj, function(i){
+                  district_list.push(obj[i]);
+                });
+             }
+         });
    });
 
   $(".athlete_state_act").on('change',function () {
@@ -594,6 +594,7 @@ $(document).ready(function () {
                       <span class='delete_state' data-value="+result_split[2]+">Delete</span>\
                     </td></tr> ";
                  $('.state_table tr:last').after(html);
+                 document.states_form.reset();
                }
                else{
                 $('.add_states_error').text(result_split[1]).show();
@@ -1612,6 +1613,7 @@ $(document).ready(function () {
                data: form_data,
                cache: false,
                success: function(html) {
+                $('.result_table tbody tr:not(:last)').remove();
                 var obj = JSON.parse(html);
                   $.each(obj, function(i){
                     html = "<tr class='align_center delete_color assign_table'>\
@@ -1677,7 +1679,7 @@ $(document).ready(function () {
         newElement.appendTo($(".range_holder"));
     }
 
-    // Calculate Range points by range start and end
+    //Calculate Range points by range start and end
     // $(document).on('focus','.r_point',function(){
     //     range_start = $(this).siblings('.r_strt').val();
     //     range_end = $(this).siblings('.r_end').val();
@@ -1755,6 +1757,7 @@ $(document).ready(function () {
            }
        });
     });
+
     //Jquery and Ajax functionality for Result form
     var athletes_list = [];  
     var athlete_json = [];
