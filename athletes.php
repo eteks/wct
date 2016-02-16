@@ -49,7 +49,7 @@
 					</div>
 					<div class="form-group">
       					<label>Mobile Number</label><br>
-      					<input type="text" id="athletes_mobile1" class="adjust_width" name="athlete_mobile" data-validation-error-msg="Please Enter the value that must contain 10 numbers" data-validation="length" data-validation-length="max10">
+      					<input type="text" id="athletes_mobile1" class="adjust_width" name="athlete_mobile" data-validation-error-msg="Please Enter the value that must contain 10 numbers" data-validation="length" ata-validation-length="10-11">
      				</div>
 					<div class="form-group">
 						  <label for="sel1">Gender</label>
@@ -109,11 +109,11 @@
 					<div class="col-md-9 schedule_btn">
 						<!-- <button type="button" class="btn btn-primary align_right clear add_athletes_act">Submit</button> -->
 						<input type="submit" class="btn btn-primary align_right clear add_athletes_act" value="Submit">
-						<input onclick="document.getElementById('athlete_form').reset();return false" type="submit" class="btn btn-primary align_right clear" value="Clear">
+						<input type="reset" class="btn btn-primary align_right test-submit clear" value="Clear">
 					</div>
 				</form>
 			</div>
-			<div class="container">
+			<div class="container table-position">
 			  <table class="table athletes_table">
 			    <thead>
 			      <tr class="row_color">
@@ -167,7 +167,7 @@
           		<div class="edit_title">
                 	<span class="del_txt">EDIT</span>
               	</div><!--edit_title-->
-          			<div class="container state-content athlete-popup-content col-md-12">
+          			<div class="container state-content col-md-12">
           			<div class="col-xs-12 col-md-12 align_margin">
 	          	<form name="edit_athletes_form" id="edit_athletes_form">
 	          		<input type="hidden" class="statesid" name="edit_athlete_id">
@@ -199,7 +199,7 @@
 					</div>
 					<div class="form-group">
       					<label>Mobile Number</label><br>
-      					<input id="ahtlete_mobile" type="text" class="adjust_width" name="edit_athlete_mobile" data-validation-error-msg="Please Enter the value that must contain 10 numbers" data-validation="length" data-validation-length="max10">
+      					<input id="ahtlete_mobile" type="text" class="adjust_width" name="edit_athlete_mobile" data-validation-error-msg="Please Enter the value that must contain 10 numbers" data-validation="length" ata-validation-length="10-11">
      				</div>
 					<div class="form-group">
 						  <label for="sel1">Gender</label>
@@ -254,7 +254,7 @@
 						<!-- <button type="button" class="btn btn-primary align_right clear edit_athletes_act">Submit</button>
 						<button type="button" class="btn btn-primary align_right clear">Clear</button> -->
 						<input type="submit" class="btn btn-primary align_right clear edit_athletes_act" value="Submit">
-						<input onclick="document.getElementById('edit_athletes_form').reset();return false" type="submit" class="btn btn-primary align_right clear" value="Clear">
+						<input type="reset" class="btn btn-primary align_right test-submit clear" value="Clear">
 					</div>
 				</form>
 	          		</div>

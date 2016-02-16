@@ -50,7 +50,7 @@
 				    </div>
 				    <div class="form-group admin-login">
 					    <input type="submit" class="btn btn-default login_btn" value="Login"  name="login"/>
-					    <span class="forget_txt">Forget Password?</span>
+					   <!--  <span class="forget_txt">Forget Password?</span> -->
 				    </div>
 			  	</div><!--user-content-->
 		  	</div><!--login_form-->

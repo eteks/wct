@@ -41,7 +41,7 @@ if(isset($_GET['update_success'])){
 							 <?php } ?>
 							</select>
 					</div>
-					<div class="align_height align_margin">
+					<div class="align_margin">
 						<label>Select Categories</label><br>
 						<div class="area_scroll">
 							<?php
@@ -54,7 +54,7 @@ if(isset($_GET['update_success'])){
 							<?php } ?>
 						</div>
 					</div>
-					<div class="align_height align_margin">
+					<div class="align_margin">
 						<label>Select Test</label><br>
 						<div class="area_scroll">
 							<?php
@@ -74,7 +74,7 @@ if(isset($_GET['update_success'])){
 					</div>
 				</form>
 			</div>
-			<div class="container">
+			<div class="container table-position">
 			  <table class="table state_table" id="test_battery_table">
 			    <thead>
 			      <tr class="row_color">
@@ -138,7 +138,7 @@ if(isset($_GET['update_success'])){
 							 <?php } ?>
 						  </select>
 					</div>
-					<div class="align_height">
+					<div class="form-group">
 						<label>Select Categories</label><br>
 						<div class="area_scroll_popup">
 							<?php
@@ -151,7 +151,7 @@ if(isset($_GET['update_success'])){
 							<?php } ?>
 						</div>
 					</div>
-					<div class="align_height align_margin">
+					<div class="align_margin">
 						<label>Select Test</label><br>
 						<div class="area_scroll_popup">
 							<?php
@@ -165,7 +165,7 @@ if(isset($_GET['update_success'])){
 						</div>
 					</div>
 
-					<div class="col-md-11 schedule_btn">
+					<div class="col-md-12 schedule_btn">
 						<input type="submit" class="btn btn-primary align_right clear" value="Submit">
 					</div>
 				</form>

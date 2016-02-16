@@ -18,7 +18,7 @@ $obj = new testfunction();
 						<label>Enter Test Name</label><br>
 						<input type="text" class="adjust_width" name="test_name" data-validation-error-msg="Please Enter the Test Name" data-validation="required">
 					</div>
-					<div class="parameter_holder">
+					<div class="parameter_holder1">
 						<div class="clone_content" id="param_counter1">
 							<div class="form-group">
 								<label>Enter Parameter Name</label><br>
@@ -65,7 +65,7 @@ $obj = new testfunction();
 					</div>
 				</form>
 			</div>
-			<div class="container">
+			<div class="container table-position">
 			  <table class="table test_table">
 			    <thead>
 			      <tr class="row_color">
@@ -111,7 +111,7 @@ $obj = new testfunction();
           		<div class="edit_title">
                 	<span class="del_txt">EDIT</span>
               	</div><!--edit_title-->
-          			<div class="container state-content col-md-12">
+          			<div class="container state-content test-scroll col-md-12">
 	          			<div class="col-xs-12 col-md-12 align_margin">
 				<form id="test_updation_form" action="functions/test_functions.php" method="post">
 					<div class="form-group">
@@ -123,32 +123,38 @@ $obj = new testfunction();
 							<label>Enter Parameter Name</label><br>
 							<input type="text" class="adjust_width test_parameter_name_update" name="parameter_name1" data-validation-error-msg="Please Enter the Parameter Name" data-validation="required" >
 						</div>
-						<div class="form-group">
-							<select class="form-control classic type_align_popup fl parameter_type parameter_type_update" id="type1" name="type1" data-validation-error-msg="Please Select the Type" data-validation="required">
-								<option>Type</option>
-								<?php
-									$sql = mysql_query('select * from wc_parametertype') or die(mysql_error());
-									$count = mysql_num_rows($sql);
-									if ($count != '0') {
-										while ($row = mysql_fetch_array($sql)) {
-								?>
-									<option value="<?php echo $row['parametertype_name']; ?>">
-										<?php echo $row['parametertype_name']; ?>
-									</option>
-								<?php
+						<div class="form-group col-md-12 test_percentage">
+							<div class="col-md-4">
+								<select class="form-control classic type_align_popup fl parameter_type parameter_type_update" id="type1" name="type1" data-validation-error-msg="Please Select the Type" data-validation="required">
+									<option>Type</option>
+									<?php
+										$sql = mysql_query('select * from wc_parametertype') or die(mysql_error());
+										$count = mysql_num_rows($sql);
+										if ($count != '0') {
+											while ($row = mysql_fetch_array($sql)) {
+									?>
+										<option value="<?php echo $row['parametertype_name']; ?>">
+											<?php echo $row['parametertype_name']; ?>
+										</option>
+									<?php
+											}
 										}
-									}
-								?>
-							</select>
-							<select class="form-control classic type_align_popup fl parameter_unit parameter_unit_update" id="unit1" name="unit1" data-validation-error-msg="Please Select the Unit" data-validation="required">
-							</select>
-							<select class="form-control classic type_align_popup fl parameter_format_update" id="format1" name="format1" data-validation-error-msg="Please Select the Format" data-validation="required">
-								<option value="1">1</option>
-								<option value="2">2</option>
-								<option value="3">3</option>
-								<option value="4">4</option>
-								<option value="5">5</option>
-							</select>
+									?>
+								</select>
+							</div>
+							<div class="col-md-4">
+								<select class="form-control classic type_align_popup fl parameter_unit parameter_unit_update" id="unit1" name="unit1" data-validation-error-msg="Please Select the Unit" data-validation="required">
+								</select>
+							</div>
+							<div class="col-md-4">
+								<select class="form-control classic type_align_popup fl parameter_format_update" id="format1" name="format1" data-validation-error-msg="Please Select the Format" data-validation="required">
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+								</select>
+							</div>
 						</div>
 					</div><!-- end parameter_holder -->
 					<input class="parameter_update" type="hidden" name="parameter_update" value="" />

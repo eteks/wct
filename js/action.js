@@ -102,7 +102,25 @@ function editfunction(data_id){
             document.body.style.overflow = 'hidden';
            }
         });
-    } else if(window.location.href.indexOf("athletes.php") !== -1){
+    }else if(window.location.href.indexOf("parameter_type.php") !== -1){
+        $.ajax({
+         type: "POST",
+         url: "functions/parameter_typefunction.php?chooseedit=true",
+         data: {data_id:data_id},
+         cache: false,
+         success: function(data) {
+          var obj = JSON.parse(data);
+          $.each(obj, function(i){
+            $('[name=edit_parameter_id]').val(obj[i].parametertype_id);
+            $('[name=edit_parameter_type]').val(obj[i].parametertype_name);
+          });
+          $('.popup_fade').show();
+          $('.state_div, .close_btn').show();
+          document.body.style.overflow = 'hidden';
+         }
+      });
+    }
+     else if(window.location.href.indexOf("athletes.php") !== -1){
           $.ajax({
            type: "POST",
            url: "functions/athletes_functions.php?chooseedit=true",
@@ -262,8 +280,7 @@ $(document).ready(function () {
                return false;
     }
    });
-
-    //Edit popup
+   //Edit popup
   	$(document.body).delegate('.edit_state','click',function() {
         state_center_align();
         $('.popup_fade').show();
@@ -275,7 +292,7 @@ $(document).ready(function () {
         $('.category_update_name').val($(this).parents('tr').find('.category_name').text());
         $('.category_update_id').val($(this).parents('tr').find('.category_id').text());
     });
-    $('.edit_test_sport').change(function() {
+    $('.edit_test_sport,.edit_param_type').change(function() {
         $('option:selected', this).attr('selected',true).siblings().removeAttr('selected');
     });
     $('.edit_test').click(function(){
@@ -414,14 +431,38 @@ $(document).ready(function () {
         document.body.style.overflow = 'auto';
     });
 
-	$('.collapse').on('shown.bs.collapse', function (e) {
-	    $('.collapse').not(this).removeClass('in');
-	});
+	// $('.collapse').on('shown.bs.collapse', function (e) {
+	//     $('.collapse').not(this).removeClass('in');
+	// });
 
-	$('[data-toggle=collapse]').click(function (e) {
-	   $('[data-toggle=collapse]').siblings('li').removeClass('active');
-	   $(this).siblings('li').toggleClass('active');
-	});
+	// $('[data-toggle=collapse]').click(function (e) {
+	//    $('[data-toggle=collapse]').siblings('li').removeClass('active');
+	//    $(this).siblings('li').toggleClass('active');
+	// });
+
+  $(".submenu_list li").hide();
+    $('.master-holder').hover(function(){
+      $(".master-list li").show();
+      $(".transaction-list li").hide();
+    });
+    $('.transaction-holder').hover(function(){
+      $(".transaction-list li").show();
+      $(".master-list li").hide();
+    });
+    $('.report-holder').hover(function(){
+      $(".master-list li").hide();
+      $(".transaction-list li").hide();
+    });
+    $('.master-list').mouseleave(function(){
+     $(".master-list li").fadeOut(1000);
+    });
+    $('.transaction-list').mouseleave(function(){
+     $(".transaction-list li").fadeOut(1000);
+    });
+
+    $('master-list li a').click(function(){
+      $(this).addClass('clr');
+    });
 
 	// Autocomplete results for states list while add
 	var states_list = [];
@@ -480,7 +521,7 @@ $(document).ready(function () {
               $.each(obj, function(i){
                 options += '<option value="'+obj[i].district_id+'">'+obj[i].district_name+'</option>';
               });
-              $('.athlete_district_act').html(options);
+              $('.athlete_district_act').html(options);              
            }
        });
    });
@@ -558,6 +599,7 @@ $(document).ready(function () {
                       <span class='delete_state' data-value="+result_split[2]+">Delete</span>\
                     </td></tr> ";
                  $('.state_table tr:last').after(html);
+                 document.states_form.reset();     
                }
                else{
                 $('.add_states_error').text(result_split[1]).show();
@@ -566,6 +608,44 @@ $(document).ready(function () {
            })
         }
     });
+    $('#parameter_type_form').submit(function(e){
+       e.preventDefault();
+       var res = true;
+       $('input[type="text"]',this).each(function() {
+         if($(this).val().trim() == "") {
+         res = false;
+         }
+       });
+       if(res){
+           var form_data = $('[name=parameter_type_form]').serialize();
+           // $('form[name="states_form"]').submit();
+           $.ajax({
+            type: "POST",
+            url: "functions/parameter_typefunction.php?adddata=true",
+            data: form_data,
+            cache: false,
+            success: function(html) {
+               var result_split = html.split('#');
+                if (result_split[0].indexOf("success") !== -1){
+                  // $('.add_states_error').text(result_split[1]).show();
+                  $('.add_states_error').hide();
+                  //alert(result_split[1]);
+                  html ="<tr class='align_center delete_color'>\
+                  <input type='hidden' name='parameter_id' value="+result_split[2]+">\
+                  <td class='t_pararmeter_id'>"+result_split[2]+"</td>\
+                     <td class='t_pararmeter_name'>"+result_split[3]+"</td>\
+                     <td>\
+                       <span class='edit_state' onclick='editfunction("+result_split[2]+")'>Edit</span>\
+                       <span class='delete_state' data-value="+result_split[2]+">Delete</span>\
+                     </td></tr> ";
+                  $('.parameter_type_table tr:last').after(html);
+                  document.parameter_type_form.reset();
+                }
+                location.reload();
+                }
+            })
+         }
+     });
 
     $('#edit_state_form').submit(function(e){
         e.preventDefault();
@@ -590,7 +670,7 @@ $(document).ready(function () {
                  $('.popup_fade').hide();
                  $('.state_div, .close_btn').hide();
                  document.body.style.overflow = 'auto';
-                 alert(result_split[1]);
+                 alert(result_split[1]);                 
                }
                else{
                 $('.edit_states_error').text(result_split[1]).show();
@@ -638,6 +718,7 @@ $(document).ready(function () {
                             <span class='delete_state' data-value="+result_split[2]+">Delete</span>\
                           </td></tr> ";
                        $('.district_table tr:last').after(html);
+                        document.district_form.reset();
                      }
                      else{
                       $('.add_district_error').text(result_split[1]).show();
@@ -746,6 +827,7 @@ $(document).ready(function () {
                    $('.popup_fade').hide();
                    $('.state_div,.delete_div').hide();
                    document.body.style.overflow = 'auto';
+                   location.reload();
                 }
            });
        } else if (window.location.href.indexOf("state.php") !== -1){
@@ -888,6 +970,44 @@ $(document).ready(function () {
                  }
              });
        }
+       else if (window.location.href.indexOf("parameter_type.php") !== -1){
+           //alert('dsfsdfds');
+            var form_data = {'delete_id':del_id};
+            $.ajax({
+                 type: "POST",
+                 url: "functions/parameter_typefunction.php?deletedata=true",
+                 data: form_data,
+                 cache: false,
+                 success: function(html) {
+                     //alert(html);
+                  alert('Parameter deleted Successfully! ');
+                  $('.popup_fade').hide();
+                  $('.state_div,.delete_div').hide();
+                  document.body.style.overflow = 'auto';
+                  location.reload();
+
+                 }
+             });
+       }
+       else if (window.location.href.indexOf("parameter_unit.php") !== -1){
+           //alert('dsfsdfds');
+            var form_data = {'delete_id':del_id};
+            $.ajax({
+                 type: "POST",
+                 url: "functions/parameter_unitfunction.php?deletedata=true",
+                 data: form_data,
+                 cache: false,
+                 success: function(html) {
+                     //alert(html);
+                  alert('Parameter unit deleted Successfully! ');
+                  $('.popup_fade').hide();
+                  $('.state_div,.delete_div').hide();
+                  document.body.style.overflow = 'auto';
+                  location.reload();
+
+                 }
+             });
+       }
     });
 
     $('.no_btn').click(function(event) {
@@ -979,7 +1099,7 @@ $(document).ready(function () {
         newElement.find('#unit').removeAttr('name').attr('name', 'unit'+id);
         newElement.find('#unit option').remove();
         newElement.find('#format').removeAttr('name').attr('name', 'format'+id);
-        newElement.appendTo($(".parameter_holder"));
+        newElement.appendTo($(".parameter_holder1"));
     }
 
     var test_id = 1;
@@ -1082,6 +1202,7 @@ $(document).ready(function () {
                         <span class='delete_state' data-value="+result_split[2]+">Delete</span>\
                       </td></tr> ";
                    $('.athletes_table tr:last').after(html);
+                   document.athletes_form.reset();
                  }
                  else{
                   alert(result_split[1]);
@@ -1131,11 +1252,10 @@ $(document).ready(function () {
       $('input[type="text"],select',this).each(function() {
         if($(this).val().trim() == "") {
           res = false;
-          // alert('false  comes');
+          alert('false  comes');
         }
       });
       if(res){
-         // alert('comes');
          var form_data = $('[name=create_schedule_form]').serialize();
          // alert('comes'+form_data);
           $.ajax({
@@ -1146,6 +1266,7 @@ $(document).ready(function () {
              success: function(html) {
                 var result_split = html.split('#');
                  if (result_split[0].indexOf("success") !==-1){
+                  alert(result_split[1]);
                    html ="<tr class='align_center delete_color'>\
                       <input type='hidden' name='createschedule_id' value="+result_split[2]+">\
                       <td class='t_createschedule_id'>"+result_split[2]+"</td>\
@@ -1159,6 +1280,7 @@ $(document).ready(function () {
                         <span class='delete_district' data-value="+result_split[2]+">Delete</span>\
                       </td></tr> ";
                    $('.createschedule_table tr:last').after(html);
+                    document.create_schedule_form.reset();
                  }
                  else{
                   alert(result_split[1]);
@@ -1220,7 +1342,7 @@ $(document).ready(function () {
         });
 
     $('#test_updation_form').submit(function(e){
-        alert('dsfdsfds');
+        //alert('dsfdsfds');
         e.preventDefault();
         var res = true;
         $('input[type="text"]',this).each(function() {
@@ -1293,6 +1415,7 @@ $(document).ready(function () {
                         <span class='delete_state' data-value="+result_split[2]+">Delete</span>\
                       </td></tr> ";
                    $('.range_table tr:last').after(html);
+                   document.range_form.reset();
                  }
                  else{
                   alert(result_split[1]);
@@ -1364,8 +1487,20 @@ $(document).ready(function () {
             }
           });
           if(res){
-              // var form_data = $('[name=edit_createschedule_form]').serialize();
-              alert('parameter_type true');
+              var form_data = $('[name=parameter_edit]').serialize();
+              //alert(form_data);
+              $.ajax({
+                    type: "POST",
+                    url: "functions/parameter_typefunction.php?editdata=true",
+                    data: form_data,
+                    cache: false,
+                    success: function(html) {
+                        if(html == 'success'){
+                            alert('Parameter update successfully!');
+                            location.reload();
+                        }
+                    }
+                 });
           }
 
         });
@@ -1381,8 +1516,20 @@ $(document).ready(function () {
                 }
               });
               if(res){
-                  // var form_data = $('[name=edit_createschedule_form]').serialize();
-                  alert('parameter_unit true');
+                  var form_data = $('[name=parameter_unit_add]').serialize();
+                  alert(form_data);
+                  $.ajax({
+                        type: "POST",
+                        url: "functions/parameter_unitfunction.php?adddata=true",
+                        data: form_data,
+                        cache: false,
+                        success: function(html) {
+                            if(html == 'success'){
+                                alert('Parameterunit add successfully!');
+                                location.reload();
+                            }
+                        }
+                     });
               }
 
             });
@@ -1397,8 +1544,20 @@ $(document).ready(function () {
             }
           });
           if(res){
-              // var form_data = $('[name=edit_createschedule_form]').serialize();
-              alert('edit_parameter_unittrue');
+              var form_data = $('[name=edit_parameter_unit_form]').serialize();
+              //alert(form_data);
+              $.ajax({
+                   type: "POST",
+                   url: "functions/parameter_unitfunction.php?updateunitdata=true",
+                   data:form_data,
+                   cache: false,
+                   success: function(data) {
+                      if(data=='success'){
+                          alert('Parameter updated successfully');
+                          location.reload();
+                      }
+                  }
+               });
           }
 
         });
@@ -1424,7 +1583,7 @@ $(document).ready(function () {
            success: function(html) {
                if(html=='success'){
                    alert('Schedule successfully assigned');
-                   //location.reload();
+                   location.reload();
                }
            }
        });
@@ -1453,12 +1612,33 @@ $(document).ready(function () {
       $('input[type="text"],textarea,select',this).each(function() {
         if($(this).val().trim() == "") {
           res = false;
-          alert('result_form alse');
         }
       });
       if(res){
-          // var form_data = $('[name=edit_createschedule_form]').serialize();
-          alert('result_form true');
+          var form_data = $('[name=result_form]').serialize();
+          $('.result_createscheduleid').val($('.resultcreateschedule_act option:selected').val());
+          $.ajax({
+               type: "POST",
+               url: "functions/result_function.php?loadtestparam=true",
+               data: form_data,
+               cache: false,
+               success: function(html) {
+                var obj = JSON.parse(html);
+                  $.each(obj, function(i){
+                    html = "<tr class='align_center delete_color assign_table'>\
+                                <input type='hidden' name='result_athleteid' class='result_athleteid' value="+obj[i].athlete_id+">\
+                                <input type='hidden' name='result_parametertype' class='result_parametertype' value="+obj[i].parameter_type+">\
+                                <input type='hidden' name='result_parameterunit' class='result_parameterunit' value="+obj[i].parameter_unit+">\
+                                <input type='hidden' name='result_parameterformat' class='result_parameterformat' value="+obj[i].parameter_format+">\
+                                <td class='result_test_name'>"+obj[i].test_name+"</td>\
+                                <td class='result_parameter_name'>"+obj[i].parameter_name+"</td>\
+                                <td><input type='text' class='assign_border enter_result'></td>\
+                                <td><span class='assign_border enter_points'></span></td></tr>";
+                    $('.result_table tr:last').before(html);
+                    document.result_form.reset();
+                  });
+              }
+          });
       }
 
     });
@@ -1481,8 +1661,11 @@ $(document).ready(function () {
     });
 
 
-    $('.paramter_menu').click(function(){
-      $(".parameter-list").toggle();
+    $('.paramter_menu').hover(function(){
+      $(".parameter-list").show();
+    });
+     $('.parameter-list').mouseleave(function(){
+      $(".parameter-list").fadeOut(1000);
     });
 
     // Jquery functions for Range Form added by kalai
@@ -1506,24 +1689,26 @@ $(document).ready(function () {
         newElement.appendTo($(".range_holder"));
     }
 
-    //Calculate Range points by range start and end
-    $(document).on('focus','.r_point',function(){
-        range_start = $(this).siblings('.r_strt').val();
-        range_end = $(this).siblings('.r_end').val();
-        if (range_start >=0 && range_end <=5.9999){
-          $(this).val('1').prop("readonly", true);
-        } else if (range_start >=6 && range_end <=10.9999){
-          $(this).val('2').prop("readonly", true);
-        } else if (range_start >=11 && range_end <=15.9999){
-          $(this).val('3').prop("readonly", true);
-        }
-        else if (range_start >=16 && range_end >=16){
-          $(this).val('4').prop("readonly", true);
-        }
-        else{
-          $(this).val('0').prop("readonly", true);
-        }
-    });
+    // Calculate Range points by range start and end
+    // $(document).on('focus','.r_point',function(){
+    //     range_start = $(this).siblings('.r_strt').val();
+    //     range_end = $(this).siblings('.r_end').val();
+    //     if (range_start >=0 && range_end <=5.9999){
+    //       $(this).val('1').prop("readonly", true);
+    //     } else if (range_start >=6 && range_end <=10.9999){
+    //       $(this).val('2').prop("readonly", true);
+    //     } else if (range_start >=11 && range_end <=15.9999){
+    //       $(this).val('3').prop("readonly", true);
+    //     }
+    //     else if (range_start >=16 && range_end >=16){
+    //       $(this).val('4').prop("readonly", true);
+    //     }
+    //     else{
+    //       $(this).val('0').prop("readonly", true);
+    //     }
+    // });
+
+    
 
     $('.edit_assign_schedule').click(function() {
         var assign_schedule_id = $(this).attr('data-value');
@@ -1582,4 +1767,111 @@ $(document).ready(function () {
            }
        });
     });
+    //Jquery and Ajax functionality for Result form
+    var athletes_list = [];  
+    var athlete_json = [];
+    $('.resultcreateschedule_act').on('change',function () {
+        selected_createschedule = $('.resultcreateschedule_act option:selected').val();
+        form_data = {'createschedule_id':selected_createschedule};
+        // alert(JSON.stringify(form_data));
+        athletes_list.length = 0;
+        athlete_json.length =0;
+         $.ajax({
+               type: "POST",
+               url: "functions/result_function.php?loadathletes=true",
+               data: form_data,
+               cache: false,
+               success: function(data) {
+                // alert(data);
+                var obj = JSON.parse(data);
+                  $.each(obj, function(i){
+                    athletes_list.push(obj[i].athlete_name);
+                    athlete_json.push({'athlete_id':obj[i].athlete_id,'athlete_name':obj[i].athlete_name,'athlete_dob':obj[i].athlete_dob,'athlete_mobile':obj[i].athlete_mobile,'athlete_bibno':obj[i].assignbib_number})
+                  });
+                  // alert(JSON.stringify(athlete_json));          
+              }
+        });
+    });
+
+    $('.result_athletename').focus(function (e) {
+      // alert(athlete_json);
+      $(this).autocomplete({
+        source: athletes_list,
+      });
+    });
+
+     $('.result_athletename').blur(function (e) {
+      // alert(JSON.stringify(athlete_json));
+      select_name = $('.result_athletename').val();
+      var obj = athlete_json;
+      $.each(obj, function(i){
+        if(obj[i].athlete_name == select_name){
+          $('.result_athleteid').val(obj[i].athlete_id).prop("readonly", true);
+          $('.result_athletedate').val(obj[i].athlete_dob).prop("readonly", true);
+          $('.result_athletemobile').val(obj[i].athlete_mobile).prop("readonly", true);
+          $('.result_athletebib').val(obj[i].athlete_bibno).prop("readonly", true);
+        }
+      });
+     });
+
+     $(document).on('blur','.enter_result',function(){
+        value = $(this).val();
+        if( value == ''){
+          $(this).parents('tr').find('.enter_points').text('0');
+        } else if (value >=0 && value <=5.9999){
+             $(this).parents('tr').find('.enter_points').text('1');
+        } else if (value >=6 && value <=10.9999){
+           $(this).parents('tr').find('.enter_points').text('2');
+        } else if (value >=11 && value <=15.9999){
+           $(this).parents('tr').find('.enter_points').text('3');
+        } else if (value >=16){
+           $(this).parents('tr').find('.enter_points').text('4');
+        } 
+        var val=0;
+        $(".enter_points").each(function() {
+          val += Number($(this).text());
+          $('.total_result').text(val);
+        });
+     });
+
+     $('.result_submit_act').click(function(){
+          var result_data = [];
+          createschedule_id = $('.result_createscheduleid').val();
+          athlete_id = $('.result_athleteid').val();
+          $(".result_table tr:not(:last-child)").each(function(i) {
+              test_name = $(this).find('.result_test_name').text();
+              parameter_name = $(this).find('.result_parameter_name').text();
+              enter_result = $(this).find('.enter_result').val();
+              enter_points = $(this).find('.enter_points').text();
+              result_data.push({'createschedule_id':createschedule_id,'athlete_id':athlete_id,'test_name':test_name,
+                                'parameter_name':parameter_name,'enter_result':enter_result,'enter_points':enter_points});
+          });
+          $.ajax({
+             type: "POST",
+             url: "functions/result_function.php?storeresult=true",
+             data: JSON.stringify(result_data),
+             dataType: 'json',
+             cache: false,
+             success: function(data) {
+              alert(data);
+              }
+          });
+     });
+      
+     $('.edit_parameter_unit').click(function(event) {
+         var parameterunit_id = $(this).attr('data-value');
+         $.ajax({
+              type: "POST",
+              url: "functions/parameter_unitfunction.php?getunitdata=true",
+              data:{'id':parameterunit_id},
+              cache: false,
+              dataType:'json',
+              success: function(data) {
+                  //alert(JSON.stringify(data));
+                  $('.edit_param_type option[value="'+data.parametertype_id+'"]').attr('selected','selected');
+                  $('.edit_param_unit').val(data.parameterunit);
+                  $('.edit_param_unit_id').val(data.parameterunit_id);
+             }
+          });
+     });
 });

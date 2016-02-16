@@ -22,7 +22,7 @@ $obj = new categoryfunction();
 						<input type="submit" class="btn btn-primary align_right clear category_submit_act" value="Submit">
 					</form>
 				</div>
-				<div class="container">
+				<div class="container table-position">
 				  <table class="table state_table" id="category_table">
 				    <thead>
 				      <tr class="row_color">
