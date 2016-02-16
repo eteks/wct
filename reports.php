@@ -25,7 +25,7 @@
 					    	</div>
 						</div>
 					</div>
-					<div class="col-md-9 schedule_btn">
+					<div class="col-md-9">
 						<input type="submit" class="btn btn-primary align_right clear" value="Submit">
 						<input type="reset" class="btn btn-primary align_right test-submit clear" value="Clear">
 					</div>
