@@ -1634,21 +1634,21 @@ $(document).ready(function () {
     });
 
  //report
- $('#report_form').submit(function(e){
-      e.preventDefault();
-      var res = true;
-      // $('input[type="checkbox"]',this).each(function() {
-        if($(this).val().trim() == "") {
-          res = false;
-          alert('report_form alse');
-        }
-      // });
-      if(res){
-          // var form_data = $('[name=edit_createschedule_form]').serialize();
-          alert('report_form true'+res);
-      }
-
-    });
+ // $('#report_form').submit(function(e){
+ //      e.preventDefault();
+ //      var res = true;
+ //       $('input[type="checkbox"]',this).each(function() {
+ //        if($(this).val().trim() == "") {
+ //          res = false;
+ //          alert('report_form alse');
+ //        }
+ //       });
+ //      if(res){
+ //          var form_data = $('[name=report_form]').serialize();
+ //          alert(form_data);
+ //      }
+ //
+ //    });
 
 
     $('.paramter_menu').hover(function(){
@@ -1698,7 +1698,7 @@ $(document).ready(function () {
     //     }
     // });
 
-    
+
 
     $('.edit_assign_schedule').click(function() {
         var assign_schedule_id = $(this).attr('data-value');
@@ -1778,7 +1778,7 @@ $(document).ready(function () {
                     athletes_list.push(obj[i].athlete_name);
                     athlete_json.push({'athlete_id':obj[i].athlete_id,'athlete_name':obj[i].athlete_name,'athlete_dob':obj[i].athlete_dob,'athlete_mobile':obj[i].athlete_mobile,'athlete_bibno':obj[i].assignbib_number})
                   });
-                  // alert(JSON.stringify(athlete_json));          
+                  // alert(JSON.stringify(athlete_json));
               }
         });
     });
@@ -1816,7 +1816,7 @@ $(document).ready(function () {
            $(this).parents('tr').find('.enter_points').text('3');
         } else if (value >=16){
            $(this).parents('tr').find('.enter_points').text('4');
-        } 
+        }
         var val=0;
         $(".enter_points").each(function() {
           val += Number($(this).text());
@@ -1847,7 +1847,7 @@ $(document).ready(function () {
               }
           });
      });
-      
+
      $('.edit_parameter_unit').click(function(event) {
          var parameterunit_id = $(this).attr('data-value');
          $.ajax({
