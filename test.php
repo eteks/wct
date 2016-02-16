@@ -27,7 +27,7 @@ $obj = new testfunction();
 							<div class="form-group">
 								<select class="form-control classic type_align fl parameter_type" id="type" name="type1" data-validation-error-msg="Please Select the Type of the Parameter" data-validation="required">
 									<option value="">
-										TYPE
+										Type
 									</option>
 									<?php
 										$sql = mysql_query('select * from wc_parametertype') or die(mysql_error());
@@ -47,6 +47,7 @@ $obj = new testfunction();
 								<option value="">Unit</option>
 								</select>
 								<select class="form-control classic type_align fl parameter_format" id="format" name="format1" data-validation-error-msg="Please Select the Format of the Parameter" data-validation="required">
+									<option value="">Format</option>
 									<option value="1">1</option>
 									<option value="2">2</option>
 									<option value="3">3</option>

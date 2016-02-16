@@ -29,7 +29,7 @@ if(isset($_GET['update_success'])){
 					<div class="form-group">
 						  <label for="sel1">Select Schedule Name</label>
 						  <select class="form-control adjust_width classic" id="sel1" name="Schedule" data-validation-error-msg="Please Select Name of the Schedule" data-validation="required">
-							  <?php
+							 <?php
 		   						 $data = $createschedule->createscheduleselectfunction();
 		   						 foreach( $data as $eachrecord ) {
 		   						  ?>
@@ -40,6 +40,7 @@ if(isset($_GET['update_success'])){
 					<div class="form-group">
 						  <label for="sel1">Select Category Name</label>
 						  <select class="form-control adjust_width classic" id="sel1" name="category" data-validation-error-msg="Please Select Category of the Schedule" data-validation="required">
+							<option value="">Category Name</option>
 							  <?php
 						 		$data = $category->categoryselectfunction();
 						 		foreach( $data as $eachrecord ) {
@@ -66,15 +67,15 @@ if(isset($_GET['update_success'])){
 						      	<input type="text" class="form-control date_assign fl athlete_date dob" id="dob" placeholder="Date" name="athlete_date1"  data-validation="date" data-validation-format="dd/mm/yyyy">
 						    </div>
 						    <div class="form-group col-md-11">
-						      	<input type="text" class="form-control name_align fl athlete_mobile mobile" id="mobile" placeholder="Mobile no" name="athlete_mobile1" data-validation="number"  data-validation="length" data-validation-length="min11">
-						      	<input type="text" class="form-control date_assign fl athlete_bib" id="bib" placeholder="BIB NO" name="athlete_bib1" data-validation-error-msg="Please Enter the BIB NO" data-validation="required">
+						      	<input type="text" class="form-control name_align fl athlete_mobile mobile" id="mobile" placeholder="Mobile no" name="athlete_mobile1" data-validation-error-msg="Please Enter the value that must contain 10 numbers" data-validation="length" data-validation-length="max10">
+						      	<input type="text" class="form-control date_assign fl athlete_bib" id="bib" placeholder="BIB NO" name="athlete_bib1" data-validation-error-msg="Please Enter the BIB NO" data-validation="number">
 						    </div>
 						</div>
 					</div>
 					<input type="button" class="btn btn-primary align_right adds_btn add_athelete" value="Add"><i class="fa fa-plus add_align"></i>
 					<div class="col-md-9 schedule_btn">
 						<input type="submit" class="btn btn-primary align_right clear assignschedule_submit" value="Submit">
-						<input type="button" class="btn btn-primary align_right clear" value="Clear">
+						<input onclick="document.getElementById('assignschedule_form').reset();return false" type="submit" class="btn btn-primary align_right clear" value="Clear">
 					</div>
 				</form>
 			</div>
@@ -136,7 +137,8 @@ if(isset($_GET['update_success'])){
 					<div class="form-group">
 						  <label for="sel1">Select Category Name</label>
 						  <select class="form-control adjust_width classic category_update" id="sel1" name="category" data-validation-error-msg="Please Select Category of the Schedule" data-validation="required">
-							  <?php
+							<option value="">Category Name</option>
+							<?php
    							 $data = $category->categoryselectfunction();
    							 foreach( $data as $eachrecord ) {
    						   ?>
@@ -162,7 +164,7 @@ if(isset($_GET['update_success'])){
 						    </div>
 						    <div class="form-group">
 						      	<input type="text" class="form-control schedule-name fl mobile_update mobile" id="name" placeholder="Mobile no" disabled>
-						      	<input type="text" class="form-control bib_popup athlete_bib fl bib_update" id="name" placeholder="BIB NO" name="athlete_bib1" data-validation-error-msg="Please Enter the BIBO NO" data-validation="required">
+						      	<input type="text" class="form-control bib_popup athlete_bib fl bib_update" id="name" placeholder="BIB NO" name="athlete_bib1" data-validation-error-msg="Please Enter the BIBO NO" data-validation="number">
 								<input type="hidden" class="assing_schedule_update_id" name="assing_schedule_update_id1" value="" />
 						    </div>
 						</div>
@@ -171,7 +173,7 @@ if(isset($_GET['update_success'])){
 
 					<div class="col-md-9 schedule_btn">
 						<input type="submit" class="btn btn-primary align_right clear" value="Submit">
-						<input type="button" class="btn btn-primary align_right clear" value="Clear">
+						<input onclick="document.getElementById('edit_assign_schedule_form').reset();return false" type="submit" class="btn btn-primary align_right clear" value="Clear">
 					</div>
 				</form>
 			</div>

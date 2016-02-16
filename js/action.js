@@ -256,6 +256,13 @@ $(document).ready(function () {
   range_center_align();
   parameter_center_align();
 
+  $("#mobile,#result_athletemobile,#bib,#result_athletebib").keypress(function (e) {       
+     if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+      // alert('errr'+$('#result_athletemobile').val());
+               return false;
+    }
+   });
+
     //Edit popup
   	$(document.body).delegate('.edit_state','click',function() {
         state_center_align();

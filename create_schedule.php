@@ -27,8 +27,8 @@
 					</div>			
 					<div class="form-group">
 					  <label for="date" class="fl">Select date</label><br>
-					  <!-- <input class="dateselector-basic" type="text" data-validation-error-msg="Please Select the Date" data-validation="required"> -->
-					  <select class="form-control classic adjust_width_tiny fl" id="date" name="schedule_day" data-validation-error-msg="Please Select the Date" data-validation="required">
+				    	<input class="date_pick" type="text">					  
+					  <!-- <select class="form-control classic adjust_width_tiny fl" id="date" name="schedule_day" data-validation-error-msg="Please Select the Date" data-validation="required">
 					  	<option value="">Date</option>
 					    <option value="01">1</option>
 					    <option value="02">2</option>
@@ -45,7 +45,7 @@
 					    <option value="1991">1991</option>
 					    <option value="1992">1992</option>
 					    <option value="1993">1993</option>							   
-					  </select>
+					  </select> -->
 					</div>				
 					<div class="form-group">
 					  <label for="date" class="fl">Select Time</label><br>
@@ -197,7 +197,7 @@
 					</div>
 					<div class="col-md-9 schedule_btn">	
 						<input type="submit" class="btn btn-primary align_right clear add_createschedule_act" value="Submit">
-						<input type="submit" class="btn btn-primary align_right clear" value="Clear">				
+						<input onclick="document.getElementById('createschedule_form').reset();return false" type="submit" class="btn btn-primary align_right clear" value="Clear">				
 					</div>			
 				</form>
 			</div>			
@@ -277,8 +277,8 @@
 					
 					<div class="form-group">
 					  <label for="date" class="fl">Select date</label><br>
-					  <!-- <input class="dateselector-basic" type="text"> -->
-					  <select class="form-control classic create-date1 fl" id="date" name="edit_schedule_day" data-validation-error-msg="Please Select the Date" data-validation="required">
+					  <input class="popup_date_pick" type="text">
+					 <!--  <select class="form-control classic create-date1 fl" id="date" name="edit_schedule_day" data-validation-error-msg="Please Select the Date" data-validation="required">
 					  	<option value="">Date</option>
 					    <option value="1">1</option>
 					    <option value="2">2</option>
@@ -295,7 +295,7 @@
 					    <option value="1991">1991</option>
 					    <option value="1992">1992</option>
 					    <option value="1993">1993</option>							   
-					  </select>
+					  </select> -->
 					</div>
 					
 					<div class="form-group">
@@ -451,7 +451,7 @@
 						<!-- <button type="button" class="btn btn-primary align_right clear edit_createschedule_act">Submit</button>
 						<button type="button" class="btn btn-primary align_right clear">Clear</button> -->
 						<input type="submit" class="btn btn-primary align_right clear edit_createschedule_act" value="Submit">
-						<input type="submit" class="btn btn-primary align_right clear" value="Clear">
+						<input onclick="document.getElementById('edit_create_schedule_form').reset();return false" type="submit" class="btn btn-primary align_right clear" value="Clear">
 					</div>	
 	          	</form>
 	          		</div>
@@ -463,5 +463,8 @@
 //     onDateChange: function() {
 //     }
 // });
+$(".date_pick,.popup_date_pick").dateDropdowns({
+    minAge: 18
+    });
 </script>
 <?php require_once "footer.php" ?>
