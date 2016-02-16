@@ -273,8 +273,22 @@ $(document).ready(function () {
   test_battery_center_align();
   range_center_align();
   parameter_center_align();
+  $('#radio-2').click(function() {
+      $.ajax({
+           type: "POST",
+           url: "functions/usermanagement_function.php",
+           data:{'id':'1'},
+           cache: false,
+           success: function(data) {
 
-  $("#mobile,#result_athletemobile,#bib,#result_athletebib").keypress(function (e) {       
+                window.location = 'athletes.php';
+
+
+          }
+       });
+  });
+
+  $("#mobile,#result_athletemobile,#bib,#result_athletebib").keypress(function (e) {
      if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
       // alert('errr'+$('#result_athletemobile').val());
                return false;
@@ -521,7 +535,7 @@ $(document).ready(function () {
               $.each(obj, function(i){
                 options += '<option value="'+obj[i].district_id+'">'+obj[i].district_name+'</option>';
               });
-              $('.athlete_district_act').html(options);              
+              $('.athlete_district_act').html(options);
            }
        });
    });
@@ -672,7 +686,7 @@ $(document).ready(function () {
                  $('.popup_fade').hide();
                  $('.state_div, .close_btn').hide();
                  document.body.style.overflow = 'auto';
-                 alert(result_split[1]);                 
+                 alert(result_split[1]);
                }
                else{
                 $('.edit_states_error').text(result_split[1]).show();
