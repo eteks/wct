@@ -32,7 +32,7 @@
 					</div>			
 					<div class="form-group">
 					  <label for="date" class="fl">Select date</label><br>
-				    	<input class="date_pick" type="text" required>					  
+				    	<input class="date_pick" type="text">					  
 					</div>				
 					<div class="form-group col-md-12">
 					  <label for="date" class="fl">Select Time</label><br>
