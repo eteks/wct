@@ -1,4 +1,10 @@
-<?php require_once "header.php"; ?>
+<?php
+require_once "session.php";
+require_once "header.php";
+require_once "functions/create_schedule_function.php";
+$createschedule = new createscheduleFunction();
+?>
+
 <div class="container">
 	<div class="container align_center align_height">
 		<span class="sports">REPORTS</span>
@@ -7,90 +13,86 @@
 		<div class="col-xs-12 col-md-11">
 			<div class="col-md-4 hidden-xs"></div>
 			<div class="col-xs-12 col-md-7 align_margin">
-				<form id="report_form" name="reports">
-					<div class="align_margin">					
+				<form id="report_form" name="report_form" action="reports.php" method="post">
+					<div class="align_margin">
 						<label>Select Schedule</label><br>
-						<div class="area_scroll" data-validation="checkbox_group" data-validation-qty="1-3">
+						<div class="area_scroll">
+							<?php
+							   $data = $createschedule->createscheduleselectfunction();
+							   foreach( $data as $eachrecord ) {
+								?>
 							<div class="checkbox align_check">
-					      		<label class="remember_txt"><input type="checkbox" value="">Schedule1</label>
+					      		<label class="remember_txt"><input type="checkbox"  data-validation="checkbox_group" data-validation-qty="1-3" value="<?php echo $eachrecord ['createschedule_id']; ?>" name="schedul_ids[]"><?php echo $eachrecord ['createschedule_name']; ?></label>
 					    	</div>
-					    	<div class="checkbox align_check">
-					      		<label class="remember_txt"><input type="checkbox" value="">Schedule2</label>
-					    	</div>
-					    	<div class="checkbox align_check">
-					      		<label class="remember_txt"><input type="checkbox" value="">Schedule3</label>
-					    	</div>
-					    	<div class="checkbox align_check">
-					      		<label class="remember_txt"><input type="checkbox" value="">Schedule4</label>
-					    	</div>
+							<?php } ?>
 						</div>
 					</div>
-					<div class="col-md-9 schedule_btn">
+					<div class="col-md-9">
 						<input type="submit" class="btn btn-primary align_right clear" value="Submit">
 						<input type="reset" class="btn btn-primary align_right test-submit clear" value="Clear">
 					</div>
 				</form>
 			</div>
 			<div class="container table-position" id="dvData">
-			  <table class="table state_table">
+			  <table class="table">
+
 			      <tr class="row_color" style="border: 1px solid;">
 			        <td class="align_center report_head">Athletes Names</td>
 			        <td class="align_center report_head">D.O.B</td>
-			        <td class="align_center report_head">Age</td>
-			        <td class="align_center report_head">30 M</td>
-			        <td class="align_center report_head">Result</td>
-			        <td class="align_center report_head">S.B Jump</td>
-			        <td class="align_center report_head">Result</td>
-			        <td class="align_center report_head">Medicine</td>
-			        <td class="align_center report_head">Result</td>
-			        <td class="align_center report_head">Shuttle</td>
-			        <td class="align_center report_head">Result</td>
+			        <!-- <td class="align_center report_head">Age</td> -->
+					<?php
+					// if(isset($_POST)){
+					// 	//print_r($_POST);
+					// 	$test = '';
+					// 	if(!empty($_POST['schedul_ids'])) {
+					// 	     foreach($_POST['schedul_ids'] as $check) {
+					// 			 $test .= $check.',';
+					// 		 }
+					// 	}
+					// 	$query = mysql_query("select distinct resultparameter_name from wc_result where resultcreateschedule_id IN ('$test')");
+					// 	while($res = mysql_fetch_array($query)){
+							?>
+							<!-- <td class="align_center report_head"><?php //echo $res['resultparameter_name']; ?></td> -->
+							<td class="align_center report_head">Parameter</td>
+							<td class="align_center report_head">Result</td>
+					        <td class="align_center report_head">Point</td>
+						<?php //}
+					//
+					//
+					// }
+					?>
+
+
 			      </tr>
-			      <tr class="align_center delete_color">
-			        <td>Suresh</td>
-			        <td>DD/MM/YY</td>
-			        <td>14</td>
-			        <td>5.15</td>
-			        <td>3</td>
-			        <td>200</td>
-			        <td>3</td>
-			        <td>2.9</td>
-			        <td>3</td>
-			        <td>18.14</td>
-			        <td>3</td>
-			      </tr>
-			      <tr class="align_center delete_color">
-			        <td>Suresh</td>
-			        <td>DD/MM/YY</td>
-			        <td>14</td>
-			        <td>5.15</td>
-			        <td>3</td>
-			        <td>200</td>
-			        <td>3</td>
-			        <td>2.9</td>
-			        <td>3</td>
-			        <td>18.14</td>
-			        <td>3</td>
-			      </tr>
-			      <tr class="align_center delete_color">
-			        <td>Suresh</td>
-			        <td>DD/MM/YY</td>
-			        <td>14</td>
-			        <td>5.15</td>
-			        <td>3</td>
-			        <td>200</td>
-			        <td>3</td>
-			        <td>2.9</td>
-			        <td>3</td>
-			        <td>18.14</td>
-			        <td>3</td>
-			      </tr>
+
+					<?php
+					if(isset($_POST)){
+					if(!empty($_POST['schedul_ids'])) {
+					    foreach($_POST['schedul_ids'] as $check) {
+							$query = mysql_query("select * from wc_result inner join wc_athlete on  wc_athlete.athlete_id = wc_result.resultathlete_id where wc_result.resultcreateschedule_id ='$check' order by wc_athlete.athlete_name asc");
+							while($res = mysql_fetch_array($query)){
+								?>
+							  <tr class="align_center delete_color">
+								<td><?php echo $res['athlete_name']; ?></td>
+								<td><?php echo $res['athlete_dob']; ?></td>
+								<td><?php echo $res['resultparameter_name']; ?></td>
+								<td><?php echo $res['result']; ?></td>
+								<td><?php echo $res['points']; ?></td>
+							  </tr>
+							  <?php
+							}
+					    }
+					}}
+					?>
 
 			  </table>
 			</div>
 		</div>
 	</div><!-- end  container-->
-	<a href="#" class="export">Export Table data into Excel</a>
+	<div class="text-center">
+		<a href="#" class="export btn btn-primary">Export Table data into Excel</a>
+
+	</div>
 </div><!-- end  container-->
 <script type="text/javascript">
 $(document).ready(function () {
