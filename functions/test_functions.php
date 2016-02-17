@@ -14,15 +14,20 @@ class testfunction{
       return $res;
     }
 
+    public function testattributeSelect(){
+      $res = mysql_query("SELECT * FROM wc_test_attribute where test_attribute_status='1'")or die(mysql_error());
+      return $res;
+    }
+
     public function testnameinsertfunction(){
-        $check_query = "select * from wc_test where test_name = '".$this->testname."' ";
-        if(!mysql_num_rows(mysql_query($check_query))){
+        // $check_query = "select * from wc_test where test_name = '".$this->testname."' ";
+        // if(!mysql_num_rows(mysql_query($check_query))){
           $sql = "insert into wc_test (test_name,test_status) values ('".$this->testname."','1') ";
           mysql_query($sql) or die("insert:".mysql_error());
           return true;
-        }else{
-          return false;
-        }
+        // }else{
+        //   return false;
+        // }
 
     }
 

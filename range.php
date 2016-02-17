@@ -55,6 +55,12 @@
 	                      <?php } ?>
 						  </select>
 					</div>
+					<div class="form-group">
+						  <label for="sel1">Parameter Name</label>
+						  <select class="form-control adjust_width classic" id="sel1" name="range_parameter" data-validation-error-msg="Please Select the name of the Parameter" data-validation="required">
+						  <option value=""></option>
+						  </select>
+					</div>
 					<!-- <div class="form-group range_holder">
 						<div class="clone_content" id="range_counter1">
 						  <label for="range" class="fl range_label">Ranges</label><br>
@@ -177,9 +183,21 @@
 	                      <?php } ?>
 						  </select>
 					</div>
+					<div class="form-group">
+						  <label for="sel1">Parameter Name</label>
+						  <select class="form-control adjust_width classic" id="sel1" name="edit_range_parameter" data-validation-error-msg="Please Select the name of the Parameter" data-validation="required">
+						  <option value=""></option>
+						  <?php
+	                        $query = $testfunction->testattributeSelect();
+	                        while ($row = mysql_fetch_array($query)) {
+	                            ?>
+	                            <option value="<?php echo $row['test_attribute_id']; ?>"><?php echo $row['test_parameter_name']; ?></option>	                                            
+	                      <?php } ?>
+						  </select>
+					</div>
 					<div class="form-group edit_range_holder">
 					   <div class="edit_clone_content" id="edit_range_counter1">
-					  	  <label for="range" class="fl">Ranges</label><br>
+					  	  <label for="range" class="fl edit_range_label">Ranges</label><br>
 					  	  <input type="hidden" class="edit_rattr_id" name="edit_rangeattr_id1" value="">
 					  	  <input type="hidden" class="edit_r_id" name="edit_range_id1" value="">
 					      	<div class="form-group col-md-12 ranges_popup">

