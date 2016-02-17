@@ -219,6 +219,7 @@ function editfunction(data_id){
               $('[name=edit_range_testbattery]').find("option:contains("+range_obj[i].rangetestbattery_name+")").attr("selected","selected");
               $('[name=edit_range_category]').find("option:contains("+range_obj[i].rangecategory_name+")").attr("selected","selected");
               $('[name=edit_range_test]').find("option:contains("+range_obj[i].rangetest_name+")").attr("selected","selected");
+              $('[name=edit_range_parameter]').find("option:contains("+range_obj[i].rangeparameter_name+")").attr("selected","selected");
             });
             //Append data to first range part without using for loop
             data = rangeattr_obj[0];
@@ -238,8 +239,9 @@ function editfunction(data_id){
               $.each(rangeattr_obj, function(i) {
                   if (i === 0) return;
                   else{
-                    newelement = $('.edit_clone_content:last');
-                    var rangeattr_element = element.clone();
+                    rangeattr_element = $('.edit_clone_content:last').clone();
+                    // var rangeattr_element = newelement.clone();
+                    rangeattr_element.find('.edit_range_label').remove();
                     rangeattr_element.attr('id','edit_range_counter'+id);
                     rangeattr_element.find('.edit_rattr_id').attr("name","edit_rangeattr_id"+id).val(rangeattr_obj[i].rangeattribute_id);
                     rangeattr_element.find('.edit_r_id').attr("name","edit_range_id"+id).val(rangeattr_obj[i].range_id);
@@ -1636,6 +1638,7 @@ $(document).ready(function () {
                data: form_data,
                cache: false,
                success: function(html) {
+                console.log(html);
                 $('.result_table tbody tr:not(:last)').remove();
                 var obj = JSON.parse(html);
                   $.each(obj, function(i){
@@ -1649,7 +1652,7 @@ $(document).ready(function () {
                                 <td><input type='text' class='assign_border enter_result'></td>\
                                 <td><span class='assign_border enter_points'></span></td></tr>";
                     $('.result_table tr:last').before(html);
-                    document.result_form.reset();
+                    // document.result_form.reset();
                   });
               }
           });
@@ -1797,12 +1800,18 @@ $(document).ready(function () {
                cache: false,
                success: function(data) {
                 // alert(data);
-                var obj = JSON.parse(data);
+                var result_split = data.split('#');
+               if (result_split[0].indexOf("success") !== -1){
+                var obj = JSON.parse(result_split[1]);
                   $.each(obj, function(i){
                     athletes_list.push(obj[i].athlete_name);
                     athlete_json.push({'athlete_id':obj[i].athlete_id,'athlete_name':obj[i].athlete_name,'athlete_dob':obj[i].athlete_dob,'athlete_mobile':obj[i].athlete_mobile,'athlete_bibno':obj[i].assignbib_number})
                   });
-                  // alert(JSON.stringify(athlete_json));
+                  // alert(JSON.stringify(athlete_json)); 
+                }
+                else{
+                  alert(result_split[1]);
+                }         
               }
         });
     });
@@ -1829,6 +1838,15 @@ $(document).ready(function () {
      });
 
      $(document).on('blur','.enter_result',function(){
+        //check result limitation
+        paramter_type = $(this).parents('tr').find('.result_parametertype').val();
+        paramter_unit = $(this).parents('tr').find('.result_parameterunit').val();
+        parameter_format = $(this).parents('tr').find('.result_parameterformat').val();
+        alert(paramter_type);
+        alert(paramter_unit);
+        alert(parameter_format);
+
+        //Points calculation
         value = $(this).val();
         if( value == ''){
           $(this).parents('tr').find('.enter_points').text('0');
@@ -1888,4 +1906,25 @@ $(document).ready(function () {
              }
           });
      });
+
+    // Load parameter in range form based on selected test
+    $('[name=range_test]').on('change',function () {
+      selected_test = $('[name=range_test] option:selected').val();
+      form_data = {'test_id':selected_test};
+       $.ajax({
+           type: "POST",
+           url: "functions/range_function.php?loadparameter=true",
+           data: form_data,
+           cache: false,
+           success: function(data) {
+            var obj = JSON.parse(data);
+            var options = '<option></option>';
+              $.each(obj, function(i){
+                options += '<option value="'+obj[i].testattribute_id+'">'+obj[i].testparameter_name+'</option>';
+              });
+              $('[name=range_parameter]').html(options);  
+           }
+       });
+    });
+
 });
