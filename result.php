@@ -1,7 +1,7 @@
 <?php require_once "session.php";
 	  require_once "header.php";
 	  require_once 'functions/create_schedule_function.php';
-     $createscheduleFunction = new createscheduleFunction();
+      $createscheduleFunction = new createscheduleFunction();
 ?>
 <div class="container">
 	<div class="container align_center align_height">
@@ -30,7 +30,8 @@
 				      		<input type="text" class="form-control name_align fl result_athletename" id="result_athletename" placeholder="Name" name="result_athletename" data-validation-error-msg="Please Enter the name of the Athelete" data-validation="required">
 				      	</div>
 				      	<div class="form-group col-md-5">
-				      		<input type="text" class="form-control date_assign fl result_athletedate" id="result_athletedate" placeholder="Date" name="result_athletedate"  data-validation="date" data-validation-format="dd/mm/yyyy">
+				      		<!-- <input type="text" class="form-control date_assign fl result_athletedate" id="result_athletedate" placeholder="Date" name="result_athletedate"  data-validation="date" data-validation-format="dd/mm/yyyy"> -->
+				      		<input type="text" class="form-control date_assign fl result_athletedate" id="result_athletedate" placeholder="Date" name="result_athletedate">
 			      		</div>
 				    </div>
 				    <div class="form-group">
@@ -57,11 +58,13 @@
 			        <th class="align_center">Test</th>
 			        <th class="align_center">Parameter</th>
 			        <th class="align_center">Result</th>
+			        <th class="align_center"></th>
 			        <th class="align_center">Points</th>
 			      </tr>
 			    </thead>
 			    <tbody class="assign_content">
 			      <tr class="align_center delete_color assign_table total_div">
+			      	<td></td>
 			      	<td></td>
 			      	<td></td>
 			      	<td>Total</td>

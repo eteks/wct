@@ -23,27 +23,14 @@
 		}
 
 		public function resultSelect(){
-			// $res = mysql_query("SELECT test_name, test_parameter_name,test_parameter_type,test_parameter_unit,test_parameter_format FROM wc_createschedule as cs INNER JOIN wc_testbattery tb
-			// 	 ON tb.testbattery_id = cs.createscheduletestbattery_id INNER JOIN
-			// 	 wc_testbattery_test_attribute as tbta ON tbta.testbattery_id=tb.testbattery_id
-			// 	 INNER JOIN wc_test as t ON t.test_id = tbta.testbattery_test_id INNER JOIN
-			// 	 wc_test_attribute as ta ON ta.test_id = t.test_id WHERE cs.createschedule_id='".$this->createscheduleid."'")or die(mysql_error());
-			
-			// $res = mysql_query("SELECT * FROM wc_createschedule as cs INNER JOIN wc_testbattery tb
-			// 	 ON tb.testbattery_id = cs.createscheduletestbattery_id INNER JOIN
-			// 	 wc_testbattery_test_attribute as tbta ON tbta.testbattery_id=tb.testbattery_id
-			// 	 INNER JOIN wc_test as t ON t.test_id = tbta.testbattery_test_id INNER JOIN
-			// 	 wc_test_attribute as ta ON ta.test_id = t.test_id INNER JOIN wc_range as r 
-			// 	 ON r.rangetest_id = ta.test_id INNER JOIN wc_range_attribute as ra ON ra.range_id = r.range_id
-			// 	 WHERE cs.createschedule_id='".$this->createscheduleid."'")or die(mysql_error());
-
 			$res = mysql_query("SELECT * FROM wc_createschedule as cs INNER JOIN wc_testbattery tb
 				 ON tb.testbattery_id = cs.createscheduletestbattery_id INNER JOIN
 				 wc_testbattery_test_attribute as tbta ON tbta.testbattery_id=tb.testbattery_id
 				 INNER JOIN wc_test as t ON t.test_id = tbta.testbattery_test_id INNER JOIN
-				 wc_test_attribute as ta ON ta.test_id = t.test_id INNER JOIN wc_range as r 
-				 ON r.rangetestattribute_id = ta.test_attribute_id WHERE cs.createschedule_id='".$this->createscheduleid."'")or die(mysql_error());
+				 wc_test_attribute as ta ON ta.test_id = t.test_id INNER JOIN wc_range as r ON 
+				 r.rangetestattribute_id = ta.test_attribute_id WHERE cs.createschedule_id='".$this->createscheduleid."'")or die(mysql_error());
 			return $res;
+
 		}
 		public function resultInsert(){
 			$res = mysql_query("insert into wc_result (resultcreateschedule_id,resultathlete_id,resulttest_name,resultparameter_name,result,points,result_status)
@@ -78,30 +65,16 @@
 			$resultFunction->createscheduleid = $_POST['result_createschedule'];
 			$resultFunction->athleteid = $_POST['result_athleteid'];
 			$select_testparam = $resultFunction->resultSelect();
-			// while ( $result = mysql_fetch_array( $select_testparam )){
-			// 	$tmp = array(
-			//    'athlete_id' => $_POST['result_athleteid'],
-	  //          'test_name' => $result['test_name'],
-	  //          'parameter_name' => $result['test_parameter_name'],
-	  //          'parameter_type' => $result['test_parameter_type'],
-	  //          'parameter_unit' => $result['test_parameter_unit'],
-	  //          'parameter_format' => $result['test_parameter_format'],
-	  //          'rangeattribute_id' => $result['range_attribute_id'],
-	  //           );
-   //  			array_push( $json, $tmp );
-		 //    }
-		 //    echo json_encode($json);
-
 			while ( $result = mysql_fetch_array( $select_testparam )){
 				$range_id = $result['range_id'];
 				$select_rangeattribute = mysql_query("SELECT * FROM wc_range_attribute WHERE range_id='$range_id'") or die(mysql_error());
 				$rangejson = array();
-				while ( $result = mysql_fetch_array( $select_rangeattribute )){
+				while ( $result_range = mysql_fetch_array( $select_rangeattribute )){
 					$tmp = array(
-						'rangeattribute_id' => $result['range_attribute_id'],
-						'range_start' => $result['range_start'],
-						'range_end' => $result['range_end'],
-						'range_point' => $result['range_point'],
+						'rangeattribute_id' => $result_range['range_attribute_id'],
+						'range_start' => $result_range['range_start'],
+						'range_end' => $result_range['range_end'],
+						'range_point' => $result_range['range_point'],
 					);
 					array_push( $rangejson, $tmp );
 				}
@@ -118,7 +91,6 @@
     			array_push( $json, $tmp );
 		    }
 		    echo json_encode($json);
-
 		}	
 		if(isset($_GET['storeresult'])){
 			$strRequest = file_get_contents('php://input');
