@@ -1639,45 +1639,31 @@ $(document).ready(function () {
                url: "functions/result_function.php?loadtestparam=true",
                data: form_data,
                cache: false,
+               dataType:'json',
                success: function(html) {
                 console.log(html);
                 $('.result_table tbody tr:not(:last)').remove();
-                var obj = JSON.parse(html);
+                // var obj = JSON.parse(html);
+                obj=html;
                   $.each(obj, function(i){
+                    ranges = JSON.stringify(obj[i].ranges);
                     html = "<tr class='align_center delete_color assign_table'>\
                                 <input type='hidden' name='result_athleteid' class='result_athleteid' value="+obj[i].athlete_id+">\
                                 <input type='hidden' name='result_parametertype' class='result_parametertype' value="+obj[i].parameter_type+">\
                                 <input type='hidden' name='result_parameterunit' class='result_parameterunit' value="+obj[i].parameter_unit+">\
                                 <input type='hidden' name='result_parameterformat' class='result_parameterformat' value="+obj[i].parameter_format+">\
+                                <input type='hidden' name='result_ranges' class='result_ranges' value="+ranges+">\
                                 <td class='result_test_name'>"+obj[i].test_name+"</td>\
                                 <td class='result_parameter_name'>"+obj[i].parameter_name+"</td>\
-                                <td><input type='text' class='assign_border enter_result'></td>\
+                                <td><input type='text' class='assign_border enter_result' name='enter_result'></td>\
+                                <td><span class='result_error' name='result_error'>Enter the result in " +obj[i].parameter_unit+ " with "+obj[i].parameter_format+" formats</span></td>\
                                 <td><span class='assign_border enter_points'></span></td></tr>";
-                    $('.result_table tr:last').before(html);
-                    // document.result_form.reset();
+                    $('.result_table tr:last').before(html);               
                   });
               }
           });
       }
-
     });
-
- //report
- // $('#report_form').submit(function(e){
- //      e.preventDefault();
- //      var res = true;
- //       $('input[type="checkbox"]',this).each(function() {
- //        if($(this).val().trim() == "") {
- //          res = false;
- //          alert('report_form alse');
- //        }
- //       });
- //      if(res){
- //          var form_data = $('[name=report_form]').serialize();
- //          alert(form_data);
- //      }
- //
- //    });
 
     $('.paramter_menu').hover(function(){
       $(".parameter-list").show();
@@ -1725,8 +1711,6 @@ $(document).ready(function () {
     //       $(this).val('0').prop("readonly", true);
     //     }
     // });
-
-
 
     $('.edit_assign_schedule').click(function() {
         var assign_schedule_id = $(this).attr('data-value');
@@ -1839,28 +1823,39 @@ $(document).ready(function () {
       });
      });
 
-     $(document).on('blur','.enter_result',function(){
-        //check result limitation
+     $(document).on('blur','.enter_result',function(e){
+        //Checking entered Result
+        value=$(this).val();
+        if(value.indexOf(".")==-1){
+          decimals = 0;
+        }
+        else{
+          decimals = value.toString().split(".")[1].length;
+        }
+        ranges = $(this).parents('tr').find('.result_ranges').val();
         paramter_type = $(this).parents('tr').find('.result_parametertype').val();
         paramter_unit = $(this).parents('tr').find('.result_parameterunit').val();
         parameter_format = $(this).parents('tr').find('.result_parameterformat').val();
-        alert(paramter_type);
-        alert(paramter_unit);
-        alert(parameter_format);
+        ranges = JSON.parse(ranges);
 
-        //Points calculation
-        value = $(this).val();
-        if( value == ''){
-          $(this).parents('tr').find('.enter_points').text('0');
-        } else if (value >=0 && value <=5.9999){
-             $(this).parents('tr').find('.enter_points').text('1');
-        } else if (value >=6 && value <=10.9999){
-           $(this).parents('tr').find('.enter_points').text('2');
-        } else if (value >=11 && value <=15.9999){
-           $(this).parents('tr').find('.enter_points').text('3');
-        } else if (value >=16){
-           $(this).parents('tr').find('.enter_points').text('4');
-        }
+        for (var i = 0; i < ranges.length; i++) { 
+          if ((value>=ranges[i].range_start) && (value<=ranges[i].range_end))
+            $(this).parents('tr').find('.enter_points').text(ranges[i].range_point);
+        }     
+        //old
+        // for (var i = 0; i < ranges.length; i++) { 
+        //   if(decimals<=parameter_format){
+        //     if ((value>=ranges[i].range_start) && (value<=ranges[i].range_end)){
+        //       $(this).parents('tr').find('.enter_points').text(ranges[i].range_point);
+        //       break;
+        //     } 
+        //   }
+        //   else{
+        //     alert("check the decimal points");
+        //   }
+        // }   
+
+        //Points total result
         var val=0;
         $(".enter_points").each(function() {
           val += Number($(this).text());
