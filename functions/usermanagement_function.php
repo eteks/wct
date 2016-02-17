@@ -37,10 +37,4 @@
 		}
 
 	}
-    if(isset($_POST)){
-        session_start();
-        $_SESSION['login'] = true;
-        $_SESSION['userid'] = '100';
-        $_SESSION['usertype'] = 'admin';
-    }
 ?>

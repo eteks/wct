@@ -276,14 +276,11 @@ $(document).ready(function () {
   $('#radio-2').click(function() {
       $.ajax({
            type: "POST",
-           url: "functions/usermanagement_function.php",
+           url: "functions/athletes_functions.php?admin_login=true",
            data:{'id':'1'},
            cache: false,
            success: function(data) {
-
                 window.location = 'athletes.php';
-
-
           }
        });
   });
@@ -1111,8 +1108,9 @@ $(document).ready(function () {
         current_id = id;
         newElement.find('.parameter_name').removeAttr('name').attr('name', 'parameter_name'+id).val('');
         newElement.find('#type').removeAttr('name').attr('name', 'type'+id);
-        newElement.find('#unit').removeAttr('name').attr('name', 'unit'+id);
+        newElement.find('#unit').removeAttr('name').attr('name', 'unit'+id).removeClass('error').removeAttr('style');
         newElement.find('#unit option').remove();
+        newElement.find('#unit').next('span').remove();
         newElement.find('#format').removeAttr('name').attr('name', 'format'+id);
         newElement.appendTo($(".parameter_holder1"));
     }
@@ -1127,7 +1125,7 @@ $(document).ready(function () {
         var id = test_id+1;
         test_id = id;
         newElement.find('.athlete_name').removeAttr('name').attr('name', 'athlete_name'+id);
-        newElement.find('.athlete_bib').removeAttr('name').attr('name', 'athlete_bib'+id);
+        newElement.find('.athlete_bib').removeAttr('name').attr('name', 'athlete_bib'+id).val('');
         newElement.find('.dob').val('');
         newElement.find('.mobile').val('');
         newElement.find('#combobox').combobox({
@@ -1172,8 +1170,8 @@ $(document).ready(function () {
            data: {'parameter_name':param_name},
            cache: false,
            success: function(html) {
-               //alert($('select[name="'+this_content+'"]').parent().html());
-               $('select[name="'+this_content+'"]').parent().find('.parameter_unit').html(html);
+               //alert($('select[name="'+this_content+'"]').parents('.parameter_type_parent').find('.parameter_unit').html());
+               $('select[name="'+this_content+'"]').parents('.parameter_type_parent').find('.parameter_unit').html(html);
            }
        });
         //$(this).attr('value', $(this).val())

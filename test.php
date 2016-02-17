@@ -32,7 +32,7 @@ if(isset($_GET['update'])){
 								<label>Enter Parameter Name</label><br>
 								<input type="text" class="adjust_width parameter_name" name="parameter_name1" data-validation-error-msg="Please Enter the Parameter Name" data-validation="required">
 							</div>
-							<div class="form-group">
+							<div class="form-group parameter_type_parent">
 								<div class="form-group col-md-3">
 									<select class="form-control classic type_align fl parameter_type" id="type" name="type1" data-validation-error-msg="Please Select the Type of the Parameter" data-validation="required">
 										<option value="">
