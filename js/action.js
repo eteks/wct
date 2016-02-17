@@ -132,9 +132,9 @@ function editfunction(data_id){
               dob = obj[i].athlete_dob.split('-');
               $('[name=edit_athlete_id]').val(obj[i].athlete_id);
               $('[name=edit_athlete_name]').val(obj[i].athlete_name);
-              $('[name=edit_athlete_dobday]').append("<option value='"+dob[2]+ "'selected>"+dob[2]+"</option>");
-              $('[name=edit_athlete_dobmonth]').append("<option value='"+dob[1]+ "'selected>"+dob[1]+"</option>");
-              $('[name=edit_athlete_dobyear]').append("<option value='"+dob[0]+ "'selected>"+dob[0]+"</option>");
+              $('[name=dateday]').append("<option value='"+dob[2]+ "'selected>"+dob[2]+"</option>");
+              $('[name=datemonth]').append("<option value='"+dob[1]+ "'selected>"+dob[1]+"</option>");
+              $('[name=dateyear]').append("<option value='"+dob[0]+ "'selected>"+dob[0]+"</option>");
               $('[name=edit_athlete_mobile]').val(obj[i].athlete_mobile);
               $('[name=edit_athlete_gender]').find("option:contains("+obj[i].athlete_gender+")").attr("selected","selected");
               $('[name=edit_athlete_state]').find("option:contains("+obj[i].athletestates_name+")").attr("selected","selected");
@@ -146,7 +146,7 @@ function editfunction(data_id){
             $('.popup_fade').show();
             athletes_center_align();
             $('.athletes_div, .close_btn').show();
-            document.body.style.overflow = 'hidden';
+            document.body.style.overflow = 'hidden';            
            }
         });
     } else if(window.location.href.indexOf("create_schedule.php") !== -1){
@@ -163,9 +163,9 @@ function editfunction(data_id){
               $('[name=edit_schedule_id]').val(obj[i].createschedule_id);
               $('[name=edit_schedule_name]').val(obj[i].createschedule_name);
               $('[name=edit_schedule_testbattery]').append("<option value='"+obj[i].createschedule_testbatteryid+ "'selected>"+obj[i].createschedule_testbatteryname+"</option>");
-              // $('[name=edit_schedule_day]').append("<option value='"+date[2]+ "'selected>"+date[2]+"</option>");
-              // $('[name=edit_schedule_month]').append("<option value='"+date[1]+ "'selected>"+date[1]+"</option>");
-              // $('[name=edit_schedule_year]').append("<option value='"+date[0]+ "'selected>"+date[0]+"</option>");
+              $('[name=dateday]').append("<option value='"+date[2]+ "'selected>"+date[2]+"</option>");
+              $('[name=datemonth]').append("<option value='"+date[1]+ "'selected>"+date[1]+"</option>");
+              $('[name=dateyear]').append("<option value='"+date[0]+ "'selected>"+date[0]+"</option>");
               $('[name=edit_schedule_hour]').find("option:contains("+time[0]+")").attr("selected","selected");
               $('[name=edit_schedule_minute]').find("option:contains("+time[1]+")").attr("selected","selected");
               $('[name=edit_schedule_seconds]').find("option:contains("+time[2]+")").attr("selected","selected");
@@ -292,6 +292,7 @@ $(document).ready(function () {
                return false;
     }
    });
+  
    //Edit popup
   	$(document.body).delegate('.edit_state','click',function() {
         state_center_align();
@@ -437,10 +438,12 @@ $(document).ready(function () {
         $('.paramter_div, .close_btn').show();
         document.body.style.overflow = 'hidden';
     });
-    $('.cancel_btn').click(function(){
+    $('.cancel_btn').on('click',function(){
         $('.popup_fade').hide();
         $('.state_div,.delete_div,.login_div,.register_div,.test_div,.district_div,.test_battery_div,.range_div,.paramter_div,.athletes_div,.createschedule_div').hide();
         document.body.style.overflow = 'auto';
+         location.reload();  
+       
     });
 
 	// $('.collapse').on('shown.bs.collapse', function (e) {
@@ -1217,7 +1220,8 @@ $(document).ready(function () {
                         <span class='delete_state' data-value="+result_split[2]+">Delete</span>\
                       </td></tr> ";
                    $('.athletes_table tr:last').after(html);
-                   document.athletes_form.reset();
+                    document.body.style.overflow = 'auto';
+                   location.reload();     
                  }
                  else{
                   alert(result_split[1]);
@@ -1251,6 +1255,7 @@ $(document).ready(function () {
                      $('.popup_fade').hide();
                      $('.athletes_div, .close_btn').hide();
                      document.body.style.overflow = 'auto';
+                    location.reload();      
                    }
                    else{
                     alert(result_split[1]);
@@ -1267,12 +1272,11 @@ $(document).ready(function () {
       $('input[type="text"],select',this).each(function() {
         if($(this).val().trim() == "") {
           res = false;
-          alert('false  comes');
+          // alert('false  comes');
         }
       });
       if(res){
          var form_data = $('[name=create_schedule_form]').serialize();
-         //alert('comes'+form_data);
           $.ajax({
              type: "POST",
              url: "functions/create_schedule_function.php?adddata=true",
@@ -1294,8 +1298,9 @@ $(document).ready(function () {
                         <span class='edit_district' onclick='editfunction("+result_split[2]+")'>Edit</span>\
                         <span class='delete_district' data-value="+result_split[2]+">Delete</span>\
                       </td></tr> ";
-                   $('.createschedule_table tr:last').after(html);
-                    document.create_schedule_form.reset();
+                   $('.createschedule_table tr:last').after(html); 
+                    document.body.style.overflow = 'auto';                    
+                   location.reload();   
                  }
                  else{
                   alert(result_split[1]);
@@ -1330,6 +1335,7 @@ $(document).ready(function () {
                          $('.popup_fade').hide();
                          $('.createschedule_div, .close_btn').hide();
                          document.body.style.overflow = 'auto';
+                         location.reload();  
                        }
                        else{
                         alert(result_split[1]);

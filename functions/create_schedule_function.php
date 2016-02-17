@@ -110,7 +110,7 @@
 			$createscheduleFunction->createscheduleid=$_POST['edit_schedule_id'];
  			$createscheduleFunction->createschedulename=$_POST['edit_schedule_name'];
  			$createscheduleFunction->createschedule_testbatteryid=$_POST['edit_schedule_testbattery'];
- 			$createscheduleFunction->createscheduledate=$_POST['edit_schedule_year'].'-'.$_POST['edit_schedule_month'].'-'.$_POST['edit_schedule_day'];
+ 			$createscheduleFunction->createscheduledate=$_POST['dateyear'].'-'.$_POST['datemonth'].'-'.$_POST['dateday'];
  			$createscheduleFunction->createscheduletime=$_POST['edit_schedule_hour'].':'.$_POST['edit_schedule_minute'].':'.$_POST['edit_schedule_seconds'];
 	    	$createscheduleFunction->createschedulevenue=$_POST['edit_schedule_venue'];
 			$createscheduleupdate = $createscheduleFunction->createscheduleUpdate();
