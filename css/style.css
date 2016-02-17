@@ -1190,6 +1190,7 @@ input[type=radio]:checked + label:before {
     bottom: 60px;
     float: right;
     position: relative;
+    left:20px;
 }
 .align-time {
     margin-right: 4px;
