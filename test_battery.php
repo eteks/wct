@@ -90,10 +90,11 @@ if(isset($_GET['insert_success'])){
 			    <tbody>
 					<?php
 					$data = $test_battery->testbatteryselectfunction();
+					$i=1;
 					foreach( $data as $eachrecord ) {
 					 ?>
 			      <tr class="align_center delete_color">
-			        <td class="testbattery_id"><?php echo $eachrecord ['testbattery_id']; ?></td>
+			        <td class="testbattery_id"><?php echo $i; ?></td>
 					<input type="hidden" value="<?php echo $eachrecord ['testbattery_id']; ?>" class="testbattery_edit_id">
 			       	<td class="testbattery_name"><?php echo $eachrecord ['testbattery_name']; ?></td>
 			        <td class="sports_name"><?php echo $eachrecord ['sports_name']; ?></td>
@@ -102,7 +103,7 @@ if(isset($_GET['insert_success'])){
 		        		<span class="delete_state" data-value="<?php echo $eachrecord ['testbattery_id']; ?>">Delete</span>
 			        </td>
 			      </tr>
-				  <?php } ?>
+				  <?php $i++; } ?>
 			    </tbody>
 			  </table>
 			  <div class="testingid">
