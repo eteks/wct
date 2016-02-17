@@ -49,7 +49,7 @@
 					</div>
 					<div class="form-group">
       					<label>Mobile Number</label><br>
-      					<input type="text" id="athletes_mobile1" class="adjust_width" name="athlete_mobile" data-validation-error-msg="Please Enter the value that must contain 10 numbers" data-validation="length" data-validation-length="10-11">
+      					<input type="text" id="athletes_mobile1" class="adjust_width" name="athlete_mobile" data-validation-error-msg="Please Enter the value that must contain 10 numbers" data-validation="length" data-validation-length="10">
      				</div>
 					<div class="form-group">
 						  <label for="sel1">Gender</label>
@@ -175,7 +175,7 @@
 						<label>Athlete Name</label><br>
 						<input type="text" class="adjust_width" name="edit_athlete_name" data-validation-error-msg="Please Enter the name of the Athelete" data-validation="required">
 					</div>
-					<div class="form-group">
+					<div class="form-group align-day">
 					  <label for="date" class="fl">Date Of Birth</label><br>
 					  <input class="popup_athlete_datepick" type="text">
 					 <!--  <select class="form-control classic dob_align1 fl" id="date1" name="edit_athlete_dobday" data-validation-error-msg="Please Select the Date" data-validation="required">
@@ -199,7 +199,7 @@
 					</div>
 					<div class="form-group">
       					<label>Mobile Number</label><br>
-      					<input id="ahtlete_mobile" type="text" class="adjust_width" name="edit_athlete_mobile" data-validation-error-msg="Please Enter the value that must contain 10 numbers" data-validation="length" data-validation-length="10-11">
+      					<input id="ahtlete_mobile" type="text" class="adjust_width" name="edit_athlete_mobile" data-validation-error-msg="Please Enter the value that must contain 10 numbers" data-validation="length" data-validation-length="10">
      				</div>
 					<div class="form-group">
 						  <label for="sel1">Gender</label>
