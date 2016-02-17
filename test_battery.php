@@ -12,11 +12,12 @@ $category = new categoryfunction();
 $test = new testfunction();
 ?>
 <?php
+$url = $_SERVER['PHP_SELF'];
 if(isset($_GET['update_success'])){
-	echo "<script>alert('Test Battery update successfully')</script>";
+	echo "<script>alert('Test Battery update successfully');var url ='".$url."'; window.location = url ;</script>";
 }
 if(isset($_GET['insert_success'])){
-	echo "<script>alert('Test Battery inserted successfully')</script>";
+	echo "<script>alert('Test Battery inserted successfully');var url ='".$url."'; window.location = url ;</script>";
 }
  ?>
 <div class="container">

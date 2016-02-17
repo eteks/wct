@@ -1540,7 +1540,7 @@ $(document).ready(function () {
                         cache: false,
                         success: function(html) {
                             if(html == 'success'){
-                                alert('Parameterunit add successfully!');
+                                alert('Parameterunit added successfully!');
                                 location.reload();
                             }
                         }
