@@ -1272,7 +1272,7 @@ $(document).ready(function () {
       });
       if(res){
          var form_data = $('[name=create_schedule_form]').serialize();
-         alert('comes'+form_data);
+         //alert('comes'+form_data);
           $.ajax({
              type: "POST",
              url: "functions/create_schedule_function.php?adddata=true",
@@ -1368,21 +1368,21 @@ $(document).ready(function () {
     //     });
     //     });
 //test battery
- $('#test_battery_form').submit(function(e){
-        e.preventDefault();
-        var res = true;
-        $('input[type="text"],textarea,select',this).each(function() {
-          if($(this).val().trim() == "") {
-            res = false;
-            // alert('test_updation_form false');
-          }
-        });
-        if(res){
-            // var form_data = $('[name=edit_createschedule_form]').serialize();
-            // alert('test_updation_form true');
-        }
-
-        });
+ // $('#test_battery_form').submit(function(e){
+ //        e.preventDefault();
+ //        var res = true;
+ //        $('input[type="text"],textarea,select',this).each(function() {
+ //          if($(this).val().trim() == "") {
+ //            res = false;
+ //            // alert('test_updation_form false');
+ //          }
+ //        });
+ //        if(res){
+ //            // var form_data = $('[name=edit_createschedule_form]').serialize();
+ //            // alert('test_updation_form true');
+ //        }
+ //
+ //        });
 
     //  $('#test_battery_update_form').submit(function(e){
     //     e.preventDefault();
@@ -1807,11 +1807,11 @@ $(document).ready(function () {
                     athletes_list.push(obj[i].athlete_name);
                     athlete_json.push({'athlete_id':obj[i].athlete_id,'athlete_name':obj[i].athlete_name,'athlete_dob':obj[i].athlete_dob,'athlete_mobile':obj[i].athlete_mobile,'athlete_bibno':obj[i].assignbib_number})
                   });
-                  // alert(JSON.stringify(athlete_json)); 
+                  // alert(JSON.stringify(athlete_json));
                 }
                 else{
                   alert(result_split[1]);
-                }         
+                }
               }
         });
     });
@@ -1922,7 +1922,7 @@ $(document).ready(function () {
               $.each(obj, function(i){
                 options += '<option value="'+obj[i].testattribute_id+'">'+obj[i].testparameter_name+'</option>';
               });
-              $('[name=range_parameter]').html(options);  
+              $('[name=range_parameter]').html(options);
            }
        });
     });

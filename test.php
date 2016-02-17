@@ -97,10 +97,11 @@ if(isset($_GET['update'])){
 			    <tbody>
 				<?php
 				$data = $obj->testselectfunction();
+				$i=1;
 				foreach( $data as $eachrecord ) {
 				 ?>
 			      <tr class="align_center delete_color">
-			        <td class="test_id"><?php echo $eachrecord ['test_id']; ?></td>
+			        <td class="test_id"><?php echo $i; ?></td>
 					<input type="hidden" value="<?php echo $eachrecord ['test_attribute_id']; ?>" id="test_attribute_id">
 			        <td><?php echo $eachrecord ['test_name']; ?></td>
 			        <td><?php echo $eachrecord ['test_parameter_name']; ?></td>
@@ -113,7 +114,7 @@ if(isset($_GET['update'])){
 			        </td>
 					<input type="hidden" name="test_attribute_id" id="test_attribute_id" value="<?php echo $eachrecord ['test_attribute_id']; ?>" />
 			      </tr>
-			      <?php } ?>
+			      <?php $i++;} ?>
 			    </tbody>
 			  </table>
 			</div>

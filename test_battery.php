@@ -15,6 +15,9 @@ $test = new testfunction();
 if(isset($_GET['update_success'])){
 	echo "<script>alert('Test Battery update successfully')</script>";
 }
+if(isset($_GET['insert_success'])){
+	echo "<script>alert('Test Battery inserted successfully')</script>";
+}
  ?>
 <div class="container">
 	<div class="container align_center align_height">
