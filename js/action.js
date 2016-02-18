@@ -146,7 +146,7 @@ function editfunction(data_id){
             $('.popup_fade').show();
             athletes_center_align();
             $('.athletes_div, .close_btn').show();
-            document.body.style.overflow = 'hidden';            
+            document.body.style.overflow = 'hidden';
            }
         });
     } else if(window.location.href.indexOf("create_schedule.php") !== -1){
@@ -292,7 +292,7 @@ $(document).ready(function () {
                return false;
     }
    });
-  
+
    //Edit popup
   	$(document.body).delegate('.edit_state','click',function() {
         state_center_align();
@@ -442,8 +442,8 @@ $(document).ready(function () {
         $('.popup_fade').hide();
         $('.state_div,.delete_div,.login_div,.register_div,.test_div,.district_div,.test_battery_div,.range_div,.paramter_div,.athletes_div,.createschedule_div').hide();
         document.body.style.overflow = 'auto';
-         location.reload();  
-       
+         location.reload();
+
     });
 
 	// $('.collapse').on('shown.bs.collapse', function (e) {
@@ -556,7 +556,7 @@ $(document).ready(function () {
                 data =  data.split('#####');
                 var category_obj = JSON.parse(data[0]);
                 var test_obj = JSON.parse(data[1]);
-                
+
                 var cat_options = '<option></option>';
                 $.each(category_obj, function(i){
                   cat_options += '<option value="'+category_obj[i].categories_id+'">'+category_obj[i].categories_name+'</option>';
@@ -839,6 +839,7 @@ $(document).ready(function () {
                 $('.popup_fade').hide();
                 $('.state_div,.delete_div').hide();
                 document.body.style.overflow = 'auto';
+                location.reload();
                }
 
            }
@@ -1252,7 +1253,7 @@ $(document).ready(function () {
                       </td></tr> ";
                    $('.athletes_table tr:last').after(html);
                     document.body.style.overflow = 'auto';
-                   location.reload();     
+                   location.reload();
                  }
                  else{
                   alert(result_split[1]);
@@ -1286,7 +1287,7 @@ $(document).ready(function () {
                      $('.popup_fade').hide();
                      $('.athletes_div, .close_btn').hide();
                      document.body.style.overflow = 'auto';
-                    location.reload();      
+                    location.reload();
                    }
                    else{
                     alert(result_split[1]);
@@ -1329,9 +1330,9 @@ $(document).ready(function () {
                         <span class='edit_district' onclick='editfunction("+result_split[2]+")'>Edit</span>\
                         <span class='delete_district' data-value="+result_split[2]+">Delete</span>\
                       </td></tr> ";
-                   $('.createschedule_table tr:last').after(html); 
-                    document.body.style.overflow = 'auto';                    
-                   location.reload();   
+                   $('.createschedule_table tr:last').after(html);
+                    document.body.style.overflow = 'auto';
+                   location.reload();
                  }
                  else{
                   alert(result_split[1]);
@@ -1366,7 +1367,7 @@ $(document).ready(function () {
                          $('.popup_fade').hide();
                          $('.createschedule_div, .close_btn').hide();
                          document.body.style.overflow = 'auto';
-                         location.reload();  
+                         location.reload();
                        }
                        else{
                         alert(result_split[1]);
@@ -1693,7 +1694,7 @@ $(document).ready(function () {
                                 <td><input type='text' class='assign_border enter_result' name='enter_result'></td>\
                                 <td><span class='result_error' name='result_error'>Enter the result in " +obj[i].parameter_unit+ " with "+obj[i].parameter_format+" formats</span></td>\
                                 <td><span class='assign_border enter_points'></span></td></tr>";
-                    $('.result_table tr:last').before(html);               
+                    $('.result_table tr:last').before(html);
                   });
               }
           });
@@ -1887,34 +1888,34 @@ $(document).ready(function () {
         ranges = JSON.parse(ranges);
 
         // status = 0;
-        for (var i = 0; i < ranges.length; i++) { 
+        for (var i = 0; i < ranges.length; i++) {
           if ((value>=ranges[i].range_start) && (value<=ranges[i].range_end)){
             status = 1;
             if(decimals <= parameter_format){
-               $(this).parents('tr').find('.enter_points').text(ranges[i].range_point); 
-               break; 
+               $(this).parents('tr').find('.enter_points').text(ranges[i].range_point);
+               break;
             }
             else{
                alert("check decimal points");
-               totalvlaue = $('.total_result').text(); 
-               pointvalue = $(this).parents('tr').find('.enter_points').text(); 
+               totalvlaue = $('.total_result').text();
+               pointvalue = $(this).parents('tr').find('.enter_points').text();
                result = totalvlaue - pointvalue;
                $('.total_result').text(result);
-               $(this).parents('tr').find('.enter_points').text('');    
+               $(this).parents('tr').find('.enter_points').text('');
             }
             break;
           }
           else{
             status = 0;
-          }        
-        }  
+          }
+        }
         if(status==0){
-          alert("Entered value is not in range"); 
-          totalvlaue = $('.total_result').text(); 
-          pointvalue = $(this).parents('tr').find('.enter_points').text(); 
+          alert("Entered value is not in range");
+          totalvlaue = $('.total_result').text();
+          pointvalue = $(this).parents('tr').find('.enter_points').text();
           result = totalvlaue - pointvalue;
           $('.total_result').text(result);
-          $(this).parents('tr').find('.enter_points').text('');   
+          $(this).parents('tr').find('.enter_points').text('');
         }
         //Points total result
         var val=0;
@@ -1922,7 +1923,7 @@ $(document).ready(function () {
           val += Number($(this).text());
           $('.total_result').text(val);
         });
-        }       
+        }
      });
 
      $('.result_submit_act').click(function(){
