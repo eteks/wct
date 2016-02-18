@@ -542,6 +542,37 @@ $(document).ready(function () {
    });
 
 
+    // load test and category on change Testbattery in range form
+    $("[name=range_testbattery]").on('change',function () {
+      // alert("change")
+      selected_testbattery_id = $('[name=range_testbattery] option:selected').val();
+      form_data = {'testbattery_id':selected_testbattery_id};
+       $.ajax({
+             type: "POST",
+             url: "functions/range_function.php?loaddatafromdb=true",
+             data: form_data,
+             cache: false,
+             success: function(data) {
+                data =  data.split('#####');
+                var category_obj = JSON.parse(data[0]);
+                var test_obj = JSON.parse(data[1]);
+                
+                var cat_options = '<option></option>';
+                $.each(category_obj, function(i){
+                  cat_options += '<option value="'+category_obj[i].categories_id+'">'+category_obj[i].categories_name+'</option>';
+                });
+                $('[name=range_category]').html(cat_options);
+
+                var test_options = '<option></option>';
+                $.each(test_obj, function(i){
+                  test_options += '<option value="'+test_obj[i].test_id+'">'+test_obj[i].test_name+'</option>';
+                });
+                $('[name=range_test]').html(test_options);
+             }
+         });
+   });
+
+
   $('.districts').focus(function () {
       $(this).autocomplete({
       source: district_list,
@@ -1827,10 +1858,23 @@ $(document).ready(function () {
       });
      });
 
+    $(document).on('keypress','.enter_result',function(e){
+      var theEvent = e || window.event;
+          var key = theEvent.keyCode || theEvent.which;
+          key = String.fromCharCode(key);
+          if (key.length == 0) return;
+          var regex = /^[0-9.\b]+$/;
+          if (!regex.test(key)) {
+              theEvent.returnValue = false;
+              if (theEvent.preventDefault) theEvent.preventDefault();
+          }
+     });
+
      $(document).on('blur','.enter_result',function(e){
         //Checking entered Result
         value=$(this).val();
-        if(value.indexOf(".")==-1){
+        if(value!=''){
+          if(value.indexOf(".")==-1){
           decimals = 0;
         }
         else{
@@ -1842,29 +1886,43 @@ $(document).ready(function () {
         parameter_format = $(this).parents('tr').find('.result_parameterformat').val();
         ranges = JSON.parse(ranges);
 
+        // status = 0;
         for (var i = 0; i < ranges.length; i++) { 
-          if ((value>=ranges[i].range_start) && (value<=ranges[i].range_end))
-            $(this).parents('tr').find('.enter_points').text(ranges[i].range_point);
-        }     
-        //old
-        // for (var i = 0; i < ranges.length; i++) { 
-        //   if(decimals<=parameter_format){
-        //     if ((value>=ranges[i].range_start) && (value<=ranges[i].range_end)){
-        //       $(this).parents('tr').find('.enter_points').text(ranges[i].range_point);
-        //       break;
-        //     } 
-        //   }
-        //   else{
-        //     alert("check the decimal points");
-        //   }
-        // }   
-
+          if ((value>=ranges[i].range_start) && (value<=ranges[i].range_end)){
+            status = 1;
+            if(decimals <= parameter_format){
+               $(this).parents('tr').find('.enter_points').text(ranges[i].range_point); 
+               break; 
+            }
+            else{
+               alert("check decimal points");
+               totalvlaue = $('.total_result').text(); 
+               pointvalue = $(this).parents('tr').find('.enter_points').text(); 
+               result = totalvlaue - pointvalue;
+               $('.total_result').text(result);
+               $(this).parents('tr').find('.enter_points').text('');    
+            }
+            break;
+          }
+          else{
+            status = 0;
+          }        
+        }  
+        if(status==0){
+          alert("Entered value is not in range"); 
+          totalvlaue = $('.total_result').text(); 
+          pointvalue = $(this).parents('tr').find('.enter_points').text(); 
+          result = totalvlaue - pointvalue;
+          $('.total_result').text(result);
+          $(this).parents('tr').find('.enter_points').text('');   
+        }
         //Points total result
         var val=0;
         $(".enter_points").each(function() {
           val += Number($(this).text());
           $('.total_result').text(val);
         });
+        }       
      });
 
      $('.result_submit_act').click(function(){
