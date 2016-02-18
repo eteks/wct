@@ -22,17 +22,18 @@ $createschedule = new createscheduleFunction();
 							   foreach( $data as $eachrecord ) {
 								?>
 							<div class="checkbox align_check">
-					      		<label class="remember_txt"><input type="checkbox"  data-validation="checkbox_group" data-validation-qty="1-3" value="<?php echo $eachrecord ['createschedule_id']; ?>" name="schedul_ids[]"><?php echo $eachrecord ['createschedule_name']; ?></label>
+					      		<label class="remember_txt"><input type="checkbox"  data-validation="checkbox_group" data-validation-qty="min1" value="<?php echo $eachrecord ['createschedule_id']; ?>" name="schedul_ids[]"><?php echo $eachrecord ['createschedule_name']; ?></label>
 					    	</div>
 							<?php } ?>
 						</div>
 					</div>
 					<div class="col-md-9">
-						<input type="submit" class="btn btn-primary align_right clear" value="Submit">
+						<input type="submit" class="btn btn-primary align_right clear" name="submit" value="Submit">
 						<input type="reset" class="btn btn-primary align_right test-submit clear" value="Clear">
 					</div>
 				</form>
 			</div>
+			<?php if(isset($_POST['submit'])){ ?>
 			<div class="container table-position" id="dvData">
 			  <table class="table">
 
@@ -66,7 +67,7 @@ $createschedule = new createscheduleFunction();
 			      </tr>
 
 					<?php
-					if(isset($_POST)){
+					if(isset($_POST['submit'])){
 					if(!empty($_POST['schedul_ids'])) {
 					    foreach($_POST['schedul_ids'] as $check) {
 							$query = mysql_query("select * from wc_result inner join wc_athlete on  wc_athlete.athlete_id = wc_result.resultathlete_id where wc_result.resultcreateschedule_id ='$check' order by wc_athlete.athlete_name asc");
@@ -89,10 +90,11 @@ $createschedule = new createscheduleFunction();
 			</div>
 		</div>
 	</div><!-- end  container-->
+
 	<div class="text-center">
 		<a href="#" class="export btn btn-primary">Export Table data into Excel</a>
-
 	</div>
+	<?php } ?>
 </div><!-- end  container-->
 <script type="text/javascript">
 $(document).ready(function () {

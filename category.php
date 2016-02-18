@@ -15,7 +15,7 @@ $obj = new categoryfunction();
 					<form id="category_form" name="categories_form" role="form">
 						<div class="align_margin">
 							<label>Enter the Category Name</label><br>
-							<input type="text" class="sportsname" name="category_name" data-validation-error-msg="Please enter the category name" data-validation="required">							
+							<input type="text" class="sportsname" name="category_name" data-validation-error-msg="Please enter the category name" data-validation="required">
 							<input type="hidden" name="category_add" value="1">
 						</div>
 						<!-- <button type="button" class="btn btn-primary align_right clear category_submit_act">Submit</button> -->
@@ -34,17 +34,19 @@ $obj = new categoryfunction();
 				    <tbody>
 						<?php
 							$data = $obj->categoryselectfunction();
+							$i=1;
 							foreach( $data as $eachrecord ) {
 						 ?>
 				    	<tr class="align_center delete_color">
-					        <td class="category_id"><?php echo $eachrecord ['categories_id']; ?></td>
+					        <td><?php echo $i; ?></td>
+							<input class="category_id" value="<?php echo $eachrecord ['categories_id']; ?>" type="hidden">
 					        <td class="category_name"><?php echo $eachrecord ['categories_name']; ?></td>
 					         <td>
 					        	<span class="edit_state">Edit</span>
 					        	<span class="delete_state" data-value="<?php echo $eachrecord ['categories_id']; ?>">Delete</span>
 					        </td>
 				      	</tr>
-						<?php } ?>
+						<?php $i++; } ?>
 				    </tbody>
 				  </table>
 				</div>

@@ -13,8 +13,9 @@ $assignschedule = new assignschedulefunction();
 $athlete = new athletesFunction();
 ?>
 <?php
+$url = $_SERVER['PHP_SELF'];
 if(isset($_GET['update_success'])){
-	echo '<script>alert("Assign schedule update successfully");location.reload();</script>';
+	echo "<script>alert('Assign schedule update successfully');var url ='".$url."'; window.location = url ;</script>";
 }
 ?>
 <div class="container">
@@ -103,17 +104,19 @@ if(isset($_GET['update_success'])){
 			    <tbody>
 					<?php
 					$data = $assignschedule->assignscheduleSelect();
+					$i=1;
 					foreach( $data as $eachrecord ) {
 					 ?>
 			      <tr class="align_center delete_color">
-			        <td><?php echo $eachrecord ['assignschedule_id']; ?></td>
+			      	<input value="<?php echo $eachrecord ['assignschedule_id']; ?>" type="hidden">
+			        <td><?php echo $i; ?></td>
 			        <td><?php echo $eachrecord ['createschedule_name']; ?></td>
 			        <td>
 			        	<span class="edit_state edit_assign_schedule" data-value="<?php echo $eachrecord ['createschedule_id']; ?>">Edit</span>
 		        		<span class="delete_state" data-value="<?php echo $eachrecord ['assignschedule_id']; ?>">Delete</span>
 			        </td>
 			      </tr>
-				   <?php } ?>
+				   <?php $i++;} ?>
 			    </tbody>
 			  </table>
 			</div>

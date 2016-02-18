@@ -210,11 +210,12 @@
 			    <tbody>
 			     <?php
                     $query = $createscheduleFunction->createscheduleSelect();
+                    $i=1;
                     while ($row = mysql_fetch_array($query)) {
                         ?>
                         <tr class="align_center delete_color">
-                        <input type="hidden" name="createschedule_id" value="<?php echo $row['createschedule_id']; ?>">
-					        <td class="t_createschedule_id"><?php echo $row['createschedule_id']; ?></td>
+                        <input type="hidden" class="t_createschedule_id" name="createschedule_id" value="<?php echo $row['createschedule_id']; ?>">
+					        <td class="t_createschedule_s_id"><?php echo $i; ?></td>
 					        <td class="t_createschedule_name"><?php echo $row['createschedule_name']; ?></td>
 					        <td class="t_testbattery_name"><?php echo $row['testbattery_name']; ?></td>
 					        <td class="t_createschedule_date"><?php echo $row['createschedule_date']; ?></td>
@@ -225,7 +226,7 @@
 					        	<span class="delete_state" data-value="<?php echo $row['createschedule_id'] ?>">Delete</span>
 					        </td> 				    
 			        </tr>                         
-                 <?php } ?>	 			   
+                 <?php $i++;} ?>	 			   
 		    </tbody>
 		  </table>
 		</div>			

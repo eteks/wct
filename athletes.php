@@ -128,11 +128,12 @@
 			    <tbody>
 			    <?php
 	                $query = $athleteFunction->athleteSelect();
+	                $i=1;
                     while ($row = mysql_fetch_array($query)) {
                         ?>
                         <tr class="align_center delete_color">
-                        	<input type='hidden' name='athlete_id' value="<?php echo $row['athlete_id']; ?>">
-					        <td class="t_athlete_id"><?php echo $row['athlete_id']; ?></td>
+                        	<input type='hidden' class="t_athlete_id" name='athlete_id' value="<?php echo $row['athlete_id']; ?>">
+					        <td class="t_athlete_s_id"><?php echo $i; ?></td>
 					        <td class="t_athlete_name"><?php echo $row['athlete_name']; ?></td>
 					        <td class="t_athlete_gender"><?php echo $row['athlete_gender']; ?></td>
 					        <td class="t_athlete_dob"><?php echo $row['athlete_dob']; ?></td>
@@ -142,7 +143,7 @@
 				        		<span class="delete_state" data-value="<?php echo $row['athlete_id'] ?>">Delete</span>
 					        </td>
 	      				</tr>
-                  <?php } ?>
+                  <?php $i++;} ?>
 			    </tbody>
 			  </table>
 			</div>

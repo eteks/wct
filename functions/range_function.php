@@ -17,7 +17,7 @@
 
 		//To select all record for displaying data in table
 		public function rangeSelect(){
-			$res = mysql_query("select * from wc_range r,wc_test t where r.rangetest_id=t.test_id and r.range_status='1'")or die(mysql_error());
+			$res = mysql_query("select * from wc_range r,wc_test t where r.rangetest_id=t.test_id and r.range_status='1' ORDER BY range_id DESC")or die(mysql_error());
 			return $res;
 		}
 		public function rangeInsert(){
@@ -57,6 +57,7 @@
 			$res = mysql_query("SELECT * FROM wc_range_attribute WHERE range_id = '".$this->rangeid."'")or die(mysql_error());
 			return $res;	
 		}
+		//Fetch Test name by selected test id
 		public function testnameSelect(){
 			$res = mysql_query("SELECT test_name FROM wc_test WHERE test_id='".$this->rangetestid."'")or die(mysql_error());
 			return $res;
@@ -65,6 +66,19 @@
 			$res = mysql_query("SELECT * FROM wc_test_attribute WHERE test_id='".$this->rangetestid."'")or die(mysql_error());
 			return $res;
 		}
+		//Fetch Category by selected testbattery id
+		public function categoryselect(){
+			$res = mysql_query("SELECT categories_id, categories_name FROM wc_categories as c INNER JOIN wc_testbattery_category_attribute as tbca ON 
+				c.categories_id = tbca.testbattery_category_id WHERE tbca.testbattery_id='".$this->rangetestbatteryid."'")or die(mysql_error());
+			return $res;
+		}
+		//Fetch Test by selected testbattery id
+		public function testselect(){
+			$res = mysql_query("SELECT test_id, test_name FROM wc_test as t INNER JOIN wc_testbattery_test_attribute as tbta ON 
+				t.test_id = tbta.testbattery_test_id WHERE tbta.testbattery_id='".$this->rangetestbatteryid."'")or die(mysql_error());
+			return $res;
+		}
+		
 	}
 	//To insert data
 	if(isset($_GET['adddata'])){
@@ -179,4 +193,29 @@
 	    }
 	    echo json_encode($json);
 	}
+	// To load district for selected state
+	if(isset($_GET['loaddatafromdb'])){
+		$rangeFunction = new rangeFunction();
+		$rangeFunction->rangetestbatteryid =$_POST['testbattery_id'];
+		$selectcategory_data = $rangeFunction->categoryselect();
+		$category_json =array();
+		while ( $result = mysql_fetch_array( $selectcategory_data )){
+	    	$tmp = array(
+           'categories_id' => $result['categories_id'],
+           'categories_name' => $result['categories_name'],
+           );
+    		array_push( $category_json, $tmp );
+	    }
+	    $selecttest_data = $rangeFunction->testselect();
+	    $test_json =array();
+		while ( $result = mysql_fetch_array( $selecttest_data )){
+	    	$tmp = array(
+           'test_id' => $result['test_id'],
+           'test_name' => $result['test_name'],
+           );
+    		array_push( $test_json, $tmp );
+	    }
+
+	    echo json_encode($category_json).'#####'.json_encode($test_json);
+	} 
 ?>

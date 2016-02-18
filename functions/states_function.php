@@ -12,7 +12,7 @@
 
 		}
 		public function statesSelect(){
-			$res = mysql_query("select * from wc_states where states_status='1'")or die(mysql_error());
+			$res = mysql_query("select * from wc_states where states_status='1' ORDER BY states_id DESC")or die(mysql_error());
 			return $res;
 		}
 		public function statesInsert(){
@@ -36,7 +36,7 @@
 			$statesFunction = new statesFunction();
 			$statesFunction->statesname = $_POST['states_name'];
 			// if ($_POST['states_name']){
-				if (in_array($_POST['states_name'], $STATES)) {
+				// if (in_array($_POST['states_name'], $STATES)) {
 				$states = $statesFunction->isStatesExist();
 				if(!$states){
 					$statesinsert = $statesFunction->statesInsert();
@@ -49,10 +49,10 @@
 				else {
 					echo "failure#State Already Exist";
 				}
-				}
-				else{
-					echo "failure#No State Present in that Name";
-				}
+				// }
+				// else{
+				// 	echo "failure#No State Present in that Name";
+				// }
 			// }
 			// else{
 			// 	echo "failure#Please Enter state";
