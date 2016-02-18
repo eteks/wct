@@ -2028,6 +2028,11 @@ $(document).ready(function () {
         $('.clone_content:last').remove();
       }
     });
+    $('.assign_remove').click(function(){
+      if($('.assign_clone_content').length !=1){
+        $('.assign_clone_content:last').remove();
+      }
+    });
 
 
     $('[name=states_name],[name=district_name],[name=edit_states_name],[name=edit_district_name]').focus(function(){
