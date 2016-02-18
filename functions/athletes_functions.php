@@ -16,7 +16,7 @@
 	    public $athletesportsname;
 
 		public function athleteSelect(){
-			$res = mysql_query("SELECT * FROM wc_athlete where athlete_status='1'")or die(mysql_error());
+			$res = mysql_query("SELECT * FROM wc_athlete where athlete_status='1' ORDER BY athlete_id DESC")or die(mysql_error());
 			return $res;
 		}
 
