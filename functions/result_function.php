@@ -71,7 +71,7 @@
 				$rangejson = array();
 				while ( $result_range = mysql_fetch_array( $select_rangeattribute )){
 					$tmp = array(
-						'rangeattribute_id' => $result_range['range_attribute_id'],
+						// 'rangeattribute_id' => $result_range['range_attribute_id'],
 						'range_start' => $result_range['range_start'],
 						'range_end' => $result_range['range_end'],
 						'range_point' => $result_range['range_point'],
