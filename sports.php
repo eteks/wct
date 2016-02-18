@@ -35,17 +35,19 @@ $obj = new sportsfunction();
 	<tbody>
 		<?php
 		$data = $obj->sportsselectfunction();
+		$i = 1;
 		foreach( $data as $eachrecord ) {
 		 ?>
 	  <tr class="align_center delete_color">
-	    <td class="sports_id"><?php echo $eachrecord ['sports_id']; ?></td>
+	    <td class="sports_id"><?php echo $i?></td>
+		<input class="sports_id" value="<?php echo $eachrecord ['sports_id']; ?>" type="hidden"/>
 	    <td class="sports_name"><?php echo $eachrecord ['sports_name']; ?></td>
 	    <td>
 	    	<span class="edit_state">Edit</span>
 	    	<span class="delete_state" data-value="<?php echo $eachrecord ['sports_id']; ?>">Delete</span>
 	    </td>
 		</tr>
-		<?php } ?>
+		<?php $i++; } ?>
 	</tbody>
 	</table>
 </div>
