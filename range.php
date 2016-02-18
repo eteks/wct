@@ -85,8 +85,17 @@
 							</div>
 						</div>
 					</div>
-					<div class="form-group add-ranges-button">
-						<input type="button" class="btn btn-primary ranges_btn add_range_points" value="Add Ranges"><i class="fa fa-plus plus_align"></i>
+					<div class="form-group add-ranges-button col-md-3">
+						<!-- <input type="button" class="btn btn-primary ranges_btn add_range_points" value="Add Ranges"> -->
+						<!-- <i class="fa fa-plus plus_align add_range_points"></i> -->
+						<i class="fa fa-plus plus_align add_range_points">
+							<div class="tooltip_parameter">Add Parameter</div>
+							<div class="tip_triangle"></div>
+						</i>
+						<i class="fa fa-minus range_remove">
+							<div class="tooltip_remove">Remove Parameter</div>
+							<div class="tip_triangle"></div>
+						</i>
 					</div>
 					<!-- <button type="button" class="btn btn-primary align_right ranges_btn add_range_points">Add Ranges</button><i class="fa fa-plus plus_align"></i> -->
 					<div class="col-md-9 schedule_btn">					

@@ -287,7 +287,7 @@ $(document).ready(function () {
        });
   });
 
-  $("#mobile,#result_athletemobile,#bib,#result_athletebib,#strt1,#end1,#point1").keypress(function (e) {
+  $(document).on('keypress','#mobile,#result_athletemobile,#bib,#result_athletebib,.r_strt,.r_end,.r_point',function(e){
      if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
                return false;
     }
@@ -456,15 +456,15 @@ $(document).ready(function () {
 	// });
 
   $(".submenu_list li").hide();
-    $('.master-holder').hover(function(){
+    $('.master-holder').click(function(){
       $(".master-list li").show();
       $(".transaction-list li").hide();
     });
-    $('.transaction-holder').hover(function(){
+    $('.transaction-holder').click(function(){
       $(".transaction-list li").show();
       $(".master-list li").hide();
     });
-    $('.report-holder').hover(function(){
+    $('.report-holder').click(function(){
       $(".master-list li").hide();
       $(".transaction-list li").hide();
     });
@@ -1715,7 +1715,24 @@ $(document).ready(function () {
       }
     });
 
-    $('.paramter_menu').hover(function(){
+ //report
+ // $('#report_form').submit(function(e){
+ //      e.preventDefault();
+ //      var res = true;
+ //       $('input[type="checkbox"]',this).each(function() {
+ //        if($(this).val().trim() == "") {
+ //          res = false;
+ //          alert('report_form alse');
+ //        }
+ //       });
+ //      if(res){
+ //          var form_data = $('[name=report_form]').serialize();
+ //          alert(form_data);
+ //      }
+ //
+ //    });
+
+    $('.paramter_menu').click(function(){
       $(".parameter-list").show();
     });
      $('.parameter-list').mouseleave(function(){
@@ -2001,6 +2018,18 @@ $(document).ready(function () {
        });
     });
 
+    $('.parameter_remove').click(function(){
+      if($('.clone_content').length !=1){
+        $('.clone_content:last').remove();
+      }
+    });
+    $('.range_remove').click(function(){
+      if($('.clone_content').length !=1){
+        $('.clone_content:last').remove();
+      }
+    });
+
+
     $('[name=states_name],[name=district_name],[name=edit_states_name],[name=edit_district_name]').focus(function(){
       if($('.add_states_error').text()!='')
         $('.add_states_error').hide();
@@ -2011,4 +2040,5 @@ $(document).ready(function () {
       if($('.edit_district_error').text()!='')
         $('.edit_district_error').hide();
     })
+
 });

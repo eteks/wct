@@ -69,16 +69,16 @@
                 <li><a href="category.php" id="">CATEGORY</a></li>
                 <li><a href="state.php" id="">STATE</a></li>
                 <li><a href="district.php" id="">DISTRICT</a></li>
-                <li><a href="test.php" id="">TEST</a></li>
-                <li><a href="test_battery.php" id="">TEST BATTERY</a></li>
-                <li><a href="range.php" id="">RANGE</a></li>
-                <li><a href="#" id="" class="paramter_menu">PARAMETER</a></li>
+                <li><a href="#" id="" class="paramter_menu">PARAMETER</a>
                 <div class="parameter-list">
                   <ul class="parameter-menu">
                     <li><a href="parameter_type.php">TYPE</a></li>
                     <li><a href="parameter_unit.php">UNIT</a></li>
                   </ul>
-                </div><!--parameter-list-->
+                </div><!--parameter-list--></li>
+                <li><a href="test.php" id="">TEST</a></li>
+                <li><a href="test_battery.php" id="">TEST BATTERY</a></li>
+                <li><a href="range.php" id="">RANGE</a></li>
             </ul>
            </li>
            <li>
