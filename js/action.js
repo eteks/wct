@@ -930,7 +930,7 @@ $(document).ready(function () {
                  var result_split = html.split('#');
                  if (result_split[0].indexOf("success") !== -1){
                   alert(result_split[1]);
-                  $('.athletes_table').find(".t_athlete_id:contains("+$.trim(result_split[2])+")").parents('tr').remove();
+                  $('.athletes_table').find("input[value="+result_split[2]+"]").parents('tr').remove();
                   $('.popup_fade').hide();
                   $('.state_div,.delete_div').hide();
                   document.body.style.overflow = 'auto';
@@ -947,11 +947,12 @@ $(document).ready(function () {
                  success: function(html) {
                  var result_split = html.split('#');
                  if (result_split[0].indexOf("success") !== -1){
-                  $('.createschedule_table').find(".t_createschedule_id:contains("+$.trim(result_split[2])+")").parents('tr').remove();
+                  $('.createschedule_table').find("input[value="+result_split[2]+"]").parents('tr').remove();
                   $('.popup_fade').hide();
                   $('.createschedule_div,.delete_div').hide();
                   document.body.style.overflow = 'auto';
                  }
+                 location.reload();
                  }
              });
        } else if (window.location.href.indexOf("test.php") !== -1){
@@ -966,7 +967,6 @@ $(document).ready(function () {
                   $('.state_div,.delete_div').hide();
                   document.body.style.overflow = 'auto';
                   location.reload();
-
                  }
              });
        } else if (window.location.href.indexOf("test_battery.php") !== -1){
@@ -1255,13 +1255,12 @@ $(document).ready(function () {
                         <span class='edit_state' onclick='editfunction("+result_split[2]+")'>Edit</span>\
                         <span class='delete_state' data-value="+result_split[2]+">Delete</span>\
                       </td></tr> ";
-                   $('.athletes_table tr:last').after(html);
-                    document.body.style.overflow = 'auto';
-                   location.reload();
+                   $('.athletes_table tr:last').after(html);     
                  }
                  else{
                   alert(result_split[1]);
                  }
+                 location.reload(); 
              }
          });
      }
@@ -1286,7 +1285,7 @@ $(document).ready(function () {
                    var result_split = html.split('#');
                    if (result_split[0].indexOf("success") !== -1){
                      alert(result_split[1]);
-                     $('.athletes_table').find(".t_athlete_id:contains("+result_split[2]+")").siblings('.t_athlete_name').html(result_split[3])
+                     $('.athletes_table').find("input[value="+result_split[2]+"]").siblings('.t_athlete_name').html(result_split[3])
                      .siblings('.t_athlete_gender').html(result_split[4]).siblings('.t_athlete_dob').html(result_split[5]).siblings('.t_athlete_address').html(result_split[6]);
                      $('.popup_fade').hide();
                      $('.athletes_div, .close_btn').hide();
@@ -1365,7 +1364,7 @@ $(document).ready(function () {
                        var result_split = html.split('#');
                        if (result_split[0].indexOf("success") !== -1){
                         alert(result_split[1]);
-                         $('.createschedule_table').find(".t_createschedule_id:contains("+result_split[2]+")").siblings('.t_createschedule_name').html(result_split[3])
+                         $('.createschedule_table').find("input[value="+result_split[2]+"]").siblings('.t_createschedule_name').html(result_split[3])
                          .siblings('.t_testbattery_name').html(result_split[4]).siblings('.t_createschedule_date').html(result_split[5]).siblings('.t_createschedule_time')
                          .html(result_split[6]).siblings('.t_createschedule_venue').html(result_split[7]);
                          $('.popup_fade').hide();
@@ -1726,7 +1725,7 @@ $(document).ready(function () {
         var id = current_id+1;
         current_id = id;
         newElement.find('.range_label').remove();
-        newElement.find('.r_strt').removeAttr('name').attr('name', 'range_start'+id).val('');
+        newElement.find('.r_strt').removeAttr('name').attr('name', 'range_start'+id).val($('#end'+(id-1)).val());
         newElement.find('.r_end').removeAttr('name').attr('name', 'range_end'+id).val('');
         newElement.find('.r_point').removeAttr('name').attr('name', 'range_points'+id).val('');
         newElement.find('.r_strt').removeAttr('id').attr('id','strt'+id);
@@ -1993,4 +1992,14 @@ $(document).ready(function () {
        });
     });
 
+    $('[name=states_name],[name=district_name],[name=edit_states_name],[name=edit_district_name]').focus(function(){
+      if($('.add_states_error').text()!='')
+        $('.add_states_error').hide();
+      if($('.add_district_error').text()!='')
+        $('.add_district_error').hide();
+      if($('.edit_states_error').text()!='')
+        $('.edit_states_error').hide();
+      if($('.edit_district_error').text()!='')
+        $('.edit_district_error').hide();
+    })
 });

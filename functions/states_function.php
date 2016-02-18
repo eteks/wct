@@ -36,7 +36,7 @@
 			$statesFunction = new statesFunction();
 			$statesFunction->statesname = $_POST['states_name'];
 			// if ($_POST['states_name']){
-				if (in_array($_POST['states_name'], $STATES)) {
+				// if (in_array($_POST['states_name'], $STATES)) {
 				$states = $statesFunction->isStatesExist();
 				if(!$states){
 					$statesinsert = $statesFunction->statesInsert();
@@ -49,10 +49,10 @@
 				else {
 					echo "failure#State Already Exist";
 				}
-				}
-				else{
-					echo "failure#No State Present in that Name";
-				}
+				// }
+				// else{
+				// 	echo "failure#No State Present in that Name";
+				// }
 			// }
 			// else{
 			// 	echo "failure#Please Enter state";
