@@ -646,7 +646,7 @@ $(document).ready(function () {
                       <span class='edit_state' onclick='editfunction("+result_split[2]+")'>Edit</span>\
                       <span class='delete_state' data-value="+result_split[2]+">Delete</span>\
                     </td></tr> ";
-                 $('.state_table tr:last').after(html);
+                 //$('.state_table tr:last').after(html);
                  document.states_form.reset();
                  location.reload();
                }
@@ -767,7 +767,7 @@ $(document).ready(function () {
                             <span class='edit_state' onclick='editfunction("+result_split[2]+")'>Edit</span>\
                             <span class='delete_state' data-value="+result_split[2]+">Delete</span>\
                           </td></tr> ";
-                       $('.district_table tr:last').after(html);
+                       //$('.district_table tr:last').after(html);
                        document.district_form.reset();
                        location.reload();
 
@@ -831,13 +831,13 @@ $(document).ready(function () {
            data: form_data,
            cache: false,
            success: function(html) {
-               alert(html);
+               //alert(html);
                if(html=='error'){
                  alert('Already sports name exists');
                }else{
                 //alert(html);
                 var sports_split = html.split('-');
-                alert(sports_split[1]);
+                //alert(sports_split[1]);
                 $('#sports_table').find("input[value="+sports_split[1]+"]").siblings('.sports_name').html(sports_split[0]);
                 alert('Sports name updated successfully');
                 $('.popup_fade').hide();
@@ -1122,7 +1122,7 @@ $(document).ready(function () {
            data: form_data,
            cache: false,
            success: function(html) {
-               alert(html);
+               //alert(html);
                if(html=='error'){
                  alert('This category is already used');
                }else{
@@ -1264,12 +1264,12 @@ $(document).ready(function () {
                         <span class='edit_state' onclick='editfunction("+result_split[2]+")'>Edit</span>\
                         <span class='delete_state' data-value="+result_split[2]+">Delete</span>\
                       </td></tr> ";
-                   $('.athletes_table tr:last').after(html);     
+                   $('.athletes_table tr:last').after(html);
                  }
                  else{
                   alert(result_split[1]);
                  }
-                 location.reload(); 
+                 location.reload();
              }
          });
      }
