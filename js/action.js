@@ -287,7 +287,7 @@ $(document).ready(function () {
        });
   });
 
-  $("#mobile,#result_athletemobile,#bib,#result_athletebib,#strt1,#end1,#point1").keypress(function (e) {
+  $(document).on('keypress','#mobile,#result_athletemobile,#bib,#result_athletebib,.r_strt,.r_end,.r_point',function(e){
      if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
                return false;
     }
