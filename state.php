@@ -32,18 +32,19 @@
 				    <tbody>
 				     <?php
                         $query = $statesFunction->statesSelect();
+                        $i=1;
                         while ($row = mysql_fetch_array($query)) {
                             ?>
                             <tr class="align_center delete_color">
-                            <input type="hidden" name="states_id" value="<?php echo $row['states_id']; ?>">
-						        <td class="t_states_id"><?php echo $row['states_id']; ?></td>
+                            <input type="hidden" name="states_id" class="t_states_id" value="<?php echo $row['states_id']; ?>">
+						        <td class="t_s_id"><?php echo  $i;?></td>
 						        <td class="t_states_name"><?php echo $row['states_name']; ?></td>
 						        <td>
 						        	<span class="edit_state" onclick="editfunction(<?php echo $row['states_id'] ?>)">Edit</span>
 						        	<span class="delete_state" data-value="<?php echo $row['states_id'] ?>">Delete</span>
 						        </td>
 					        </tr>
-                     <?php } ?>
+                     <?php $i++;  } ?>
 				    </tbody>
 				  </table>
 				</div>

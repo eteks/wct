@@ -12,7 +12,7 @@
 
 		}
 		public function statesSelect(){
-			$res = mysql_query("select * from wc_states where states_status='1'")or die(mysql_error());
+			$res = mysql_query("select * from wc_states where states_status='1' ORDER BY states_id DESC")or die(mysql_error());
 			return $res;
 		}
 		public function statesInsert(){

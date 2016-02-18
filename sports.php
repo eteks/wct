@@ -39,7 +39,7 @@ $obj = new sportsfunction();
 		foreach( $data as $eachrecord ) {
 		 ?>
 	  <tr class="align_center delete_color">
-	    <td class="sports_id"><?php echo $i?></td>
+	    <td><?php echo $i; ?></td>
 		<input class="sports_id" value="<?php echo $eachrecord ['sports_id']; ?>" type="hidden"/>
 	    <td class="sports_name"><?php echo $eachrecord ['sports_name']; ?></td>
 	    <td>

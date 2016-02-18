@@ -48,7 +48,7 @@ class testfunction{
     }
     public function testselectfunction(){
       $temp_arr = array();
-      $res = mysql_query("SELECT * FROM wc_test_attribute INNER JOIN wc_test ON wc_test_attribute.test_id = wc_test.test_id ") or die(mysql_error());
+      $res = mysql_query("SELECT * FROM wc_test_attribute INNER JOIN wc_test ON wc_test_attribute.test_id = wc_test.test_id ORDER BY test_attribute_id DESC") or die(mysql_error());
       $count=mysql_num_rows($res);
       while($row = mysql_fetch_array($res)) {
           $temp_arr[] =$row;

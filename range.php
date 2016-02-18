@@ -106,18 +106,19 @@
 			    <tbody>
 			     	<?php
                     $query = $rangeFunction->rangeSelect();
+                    $i=1;
                     while ($row = mysql_fetch_array($query)) {
                         ?>
                         <tr class="align_center delete_color">
-                        <input type="hidden" name="range_id" value="<?php echo $row['range_id']; ?>">
-					        <td class="t_range_id"><?php echo $row['range_id']; ?></td>
+                        <input type="hidden" name="range_id" class="t_range_id" value="<?php echo $row['range_id']; ?>">
+					        <td class="t_range_s_id"><?php echo $i; ?></td>
 					        <td class="t_range_testname"><?php echo $row['test_name']; ?></td>
 					        <td>
 					        	<span class="edit_state" onclick="editfunction(<?php echo $row['range_id'] ?>)">Edit</span>
 					        	<span class="delete_state" data-value="<?php echo $row['range_id'] ?>">Delete</span>
 					        </td> 				    
 				        </tr>                         
-                    <?php } ?>	       				   
+                    <?php $i++; } ?>	       				   
 			    </tbody>
 			  </table>
 			</div>			

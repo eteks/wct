@@ -49,11 +49,12 @@
 				    <tbody>  
 				      <?php
                         $query = $districtFunction->districtSelect();
+                        $i=1;
                         while ($row = mysql_fetch_array($query)) {
                             ?>
                             <tr class="align_center delete_color">
                             <input type="hidden" name="district_id" value="<?php echo $row['district_id']; ?>">
-						        <td class="t_district_id"><?php echo $row['district_id']; ?></td>
+						        <td class="t_district_id"><?php echo $i; ?></td>
 						        <!-- <td class="t_states_name"><?php echo $row['states_name']; ?></td> -->
 						        <td class="t_district_name"><?php echo $row['district_name']; ?></td>
 						        <td>
@@ -61,7 +62,7 @@
 						        	<span class="delete_state" data-value="<?php echo $row['district_id'] ?>">Delete</span>
 						        </td> 				    
 					        </tr>                         
-                     <?php } ?>	 
+                     <?php $i++; } ?>	 
 				    </tbody>
 				  </table>
 				</div>
