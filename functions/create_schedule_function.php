@@ -10,7 +10,7 @@
 	    public $createschedulevenue;
 
 		public function createscheduleSelect(){
-			$res = mysql_query("SELECT * from wc_createschedule cs,wc_testbattery tb where cs.createscheduletestbattery_id=tb.testbattery_id and cs.createschedule_status='1'")or die(mysql_error());
+			$res = mysql_query("SELECT * from wc_createschedule cs,wc_testbattery tb where cs.createscheduletestbattery_id=tb.testbattery_id and cs.createschedule_status='1' ORDER BY cs.createschedule_id DESC")or die(mysql_error());
 			// $res = mysql_query("SELECT * FROM wc_createschedule where createschedule_status='1'")or die(mysql_error());
 			return $res;
 		}
@@ -54,7 +54,6 @@
 	if(isset($_POST)){
 		//To insert data
 		if(isset($_GET['adddata'])){
-			echo "post",print_r($_POST);
 			$createscheduleFunction = new createscheduleFunction();
 			$createscheduleFunction->createschedulename = $_POST['schedule_name'];
 			$createscheduleFunction->createschedule_testbatteryid = $_POST['schedule_testbattery'];

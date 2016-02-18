@@ -66,10 +66,10 @@
 			$districtFunction->statesid = $_POST['district_state'];
 			$districtFunction->districtname = $_POST['district_name'];
 			//Multidimensional array looping for district
-			foreach ($DISTRICT as $element) {
-		        if (in_array($_POST['district_name'], $element)){$addstatus = true;}
-	        }
-			if ($addstatus) {
+			// foreach ($DISTRICT as $element) {
+		 //        if (in_array($_POST['district_name'], $element)){$addstatus = true;}
+	  //       }
+			// if ($addstatus) {
 				$district = $districtFunction->isdistrictExist();
 				if(!$district){
 					$districtinsert = $districtFunction->districtInsert();
@@ -83,10 +83,10 @@
 				else {
 					echo "failure#District Already Exist";
 				}
-			}
-			else{
-				echo "failure#No District Present in that Name";
-			}
+				// }
+				// else{
+				// 	echo "failure#No District Present in that Name";
+				// }
 		}
 		// For display edit data
 		if(isset($_GET['chooseedit'])){
