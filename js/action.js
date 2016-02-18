@@ -456,15 +456,15 @@ $(document).ready(function () {
 	// });
 
   $(".submenu_list li").hide();
-    $('.master-holder').hover(function(){
+    $('.master-holder').click(function(){
       $(".master-list li").show();
       $(".transaction-list li").hide();
     });
-    $('.transaction-holder').hover(function(){
+    $('.transaction-holder').click(function(){
       $(".transaction-list li").show();
       $(".master-list li").hide();
     });
-    $('.report-holder').hover(function(){
+    $('.report-holder').click(function(){
       $(".master-list li").hide();
       $(".transaction-list li").hide();
     });
@@ -1683,7 +1683,7 @@ $(document).ready(function () {
  //
  //    });
 
-    $('.paramter_menu').hover(function(){
+    $('.paramter_menu').click(function(){
       $(".parameter-list").show();
     });
      $('.parameter-list').mouseleave(function(){
@@ -1931,6 +1931,17 @@ $(document).ready(function () {
               $('[name=range_parameter]').html(options);
            }
        });
+    });
+
+    $('.parameter_remove').click(function(){
+      if($('.clone_content').length !=1){
+        $('.clone_content:last').remove();
+      }
+    });
+    $('.range_remove').click(function(){
+      if($('.clone_content').length !=1){
+        $('.clone_content:last').remove();
+      }
     });
 
 });

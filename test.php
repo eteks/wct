@@ -71,9 +71,16 @@ if(isset($_GET['update'])){
 							</div>
 						</div>
 					</div>
-					<div class="form-group parameter__align">
-						<input type="button" class="btn btn-primary align_right parameter_btn" value="Add Parameter">
-						<i class="fa fa-plus parameter_add"></i>
+					<div class="form-group parameter__align col-md-3">
+						<!-- <input type="button" class="btn btn-primary align_right parameter_btn"> -->
+						<i class="fa fa-plus parameter_btn parameter_add">
+							<div class="tooltip_parameter">Add Parameter</div>
+							<div class="tip_triangle"></div>
+						</i>
+						<i class="fa fa-minus parameter_remove">
+							<div class="tooltip_remove">Remove Parameter</div>
+							<div class="tip_triangle"></div>
+						</i>
 					</div>
 					<input type="hidden" name="test_add" value="1">
 					<div class="col-md-9 schedule_btn">
