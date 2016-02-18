@@ -17,7 +17,7 @@
 
 		//To select all record for displaying data in table
 		public function rangeSelect(){
-			$res = mysql_query("select * from wc_range r,wc_test t where r.rangetest_id=t.test_id and r.range_status='1'")or die(mysql_error());
+			$res = mysql_query("select * from wc_range r,wc_test t where r.rangetest_id=t.test_id and r.range_status='1' ORDER BY range_id DESC")or die(mysql_error());
 			return $res;
 		}
 		public function rangeInsert(){

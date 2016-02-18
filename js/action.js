@@ -287,7 +287,7 @@ $(document).ready(function () {
        });
   });
 
-  $("#mobile,#result_athletemobile,#bib,#result_athletebib").keypress(function (e) {
+  $("#mobile,#result_athletemobile,#bib,#result_athletebib,#strt1,#end1,#point1").keypress(function (e) {
      if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
                return false;
     }
@@ -648,6 +648,7 @@ $(document).ready(function () {
                     </td></tr> ";
                  $('.state_table tr:last').after(html);
                  document.states_form.reset();
+                 location.reload();
                }
                else{
                 $('.add_states_error').text(result_split[1]).show();
@@ -688,6 +689,7 @@ $(document).ready(function () {
                      </td></tr> ";
                   $('.parameter_type_table tr:last').after(html);
                   document.parameter_type_form.reset();
+
                 }
                 location.reload();
                 }
@@ -714,7 +716,7 @@ $(document).ready(function () {
                var result_split = html.split('#');
                if (result_split[0].indexOf("success") !== -1){
                  $('.edit_states_error').hide();
-                 $('.state_table').find(".t_states_id:contains("+result_split[2]+")").next('.t_states_name').html(result_split[3]);
+                 $('.state_table').find("input[value="+result_split[2]+"]").siblings('.t_states_name').html(result_split[3]);
                  $('.popup_fade').hide();
                  $('.state_div, .close_btn').hide();
                  document.body.style.overflow = 'auto';
@@ -766,7 +768,9 @@ $(document).ready(function () {
                             <span class='delete_state' data-value="+result_split[2]+">Delete</span>\
                           </td></tr> ";
                        $('.district_table tr:last').after(html);
-                        document.district_form.reset();
+                       document.district_form.reset();
+                       location.reload();
+
                      }
                      else{
                       $('.add_district_error').text(result_split[1]).show();
@@ -827,14 +831,14 @@ $(document).ready(function () {
            data: form_data,
            cache: false,
            success: function(html) {
-               //alert(html);
+               alert(html);
                if(html=='error'){
                  alert('Already sports name exists');
                }else{
                 //alert(html);
                 var sports_split = html.split('-');
-                //alert(sports_split);
-                $('#sports_table').find(".sports_id:contains("+sports_split[1]+")").next('.sports_name').html(sports_split[0]);
+                alert(sports_split[1]);
+                $('#sports_table').find("input[value="+sports_split[1]+"]").siblings('.sports_name').html(sports_split[0]);
                 alert('Sports name updated successfully');
                 $('.popup_fade').hide();
                 $('.state_div,.delete_div').hide();
@@ -891,7 +895,7 @@ $(document).ready(function () {
                  var result_split = html.split('#');
                  if (result_split[0].indexOf("success") !== -1){
                   alert(result_split[1]);
-                  $('.state_table').find(".t_states_id:contains("+$.trim(result_split[2])+")").parents('tr').remove();
+                  $('.state_table').find("input[value="+result_split[2]+"]").parents('tr').remove();
                   $('.popup_fade').hide();
                   $('.state_div,.delete_div').hide();
                   document.body.style.overflow = 'auto';
@@ -1477,6 +1481,7 @@ $(document).ready(function () {
                       </td></tr> ";
                    $('.range_table tr:last').after(html);
                    document.range_form.reset();
+                   location.reload();
                  }
                  else{
                   alert(result_split[1]);
@@ -1510,6 +1515,7 @@ $(document).ready(function () {
                          $('.popup_fade').hide();
                          $('.range_div, .close_btn').hide();
                          document.body.style.overflow = 'auto';
+                        location.reload();
                        }
                        else{
                         alert(result_split[1]);

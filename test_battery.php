@@ -151,7 +151,7 @@ if(isset($_GET['insert_success'])){
 						  		foreach( $cat_data as $eachrecord ) {
 						   ?>
 							<div class="checkbox align_check ">
-					      		<label class="remember_txt"><input class="cate_get" type="checkbox" name='categories[]' data-validation-error-msg="Please Choose atleast one Category" data-validation="required" value="<?php echo $eachrecord ['categories_id']; ?>"><?php echo $eachrecord ['categories_name']; ?></label>
+					      		<label class="remember_txt"><input class="cate_get" type="checkbox" name='categories[]' data-validation="checkbox_group" data-validation-qty="min1" value="<?php echo $eachrecord ['categories_id']; ?>"><?php echo $eachrecord ['categories_name']; ?></label>
 					    	</div>
 							<?php } ?>
 						</div>
@@ -164,7 +164,7 @@ if(isset($_GET['insert_success'])){
 						  foreach( $test_data as $eachrecord ) {
 						   ?>
 							<div class="checkbox align_check">
-					      		<label class="remember_txt"><input class="test_get" type="checkbox" name="test[]" value="<?php echo $eachrecord ['test_id']; ?>"><?php echo $eachrecord ['test_name']; ?></label>
+					      		<label class="remember_txt"><input class="test_get" type="checkbox" name="test[]" data-validation="checkbox_group" data-validation-qty="min1" value="<?php echo $eachrecord ['test_id']; ?>"><?php echo $eachrecord ['test_name']; ?></label>
 					    	</div>
 							<?php } ?>
 						</div>

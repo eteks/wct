@@ -41,7 +41,7 @@ class testbatteryfunction{
     public function testbatteryselectfunction(){
       $temp_arr = array();
       $res = mysql_query("SELECT * FROM wc_testbattery
-          INNER JOIN wc_sports ON wc_testbattery.testbatterysports_id = wc_sports.sports_id") or die(mysql_error());
+          INNER JOIN wc_sports ON wc_testbattery.testbatterysports_id = wc_sports.sports_id ORDER BY testbattery_id DESC") or die(mysql_error());
       $count=mysql_num_rows($res);
       while($row = mysql_fetch_array($res)) {
           $temp_arr[] =$row;
