@@ -301,9 +301,9 @@ $(document).ready(function () {
         document.body.style.overflow = 'hidden';
         //alert($(this).parents('tr').find('.sports_id').text());
         $('.sports_update_name').val($(this).parents('tr').find('.sports_name').text());
-        $('.sports_update_id').val($(this).parents('tr').find('.sports_id').text());
+        $('.sports_update_id').val($(this).parents('tr').find('.sports_id').val());
         $('.category_update_name').val($(this).parents('tr').find('.category_name').text());
-        $('.category_update_id').val($(this).parents('tr').find('.category_id').text());
+        $('.category_update_id').val($(this).parents('tr').find('.category_id').val());
     });
     $('.edit_test_sport,.edit_param_type').change(function() {
         $('option:selected', this).attr('selected',true).siblings().removeAttr('selected');
@@ -861,6 +861,7 @@ $(document).ready(function () {
                    $('.popup_fade').hide();
                    $('.state_div,.delete_div').hide();
                    document.body.style.overflow = 'auto';
+                   location.reload();
                 }
            });
         } else if (window.location.href.indexOf("sports.php") !== -1){
@@ -894,6 +895,7 @@ $(document).ready(function () {
                   $('.popup_fade').hide();
                   $('.state_div,.delete_div').hide();
                   document.body.style.overflow = 'auto';
+                  location.reload();
                  }
                  }
              });
@@ -912,6 +914,7 @@ $(document).ready(function () {
                   $('.popup_fade').hide();
                   $('.state_div,.delete_div').hide();
                   document.body.style.overflow = 'auto';
+                  location.reload();
                  }
                  }
              });
@@ -930,6 +933,7 @@ $(document).ready(function () {
                   $('.popup_fade').hide();
                   $('.state_div,.delete_div').hide();
                   document.body.style.overflow = 'auto';
+                  location.reload();
                  }
                  }
              });
@@ -947,6 +951,7 @@ $(document).ready(function () {
                   $('.popup_fade').hide();
                   $('.createschedule_div,.delete_div').hide();
                   document.body.style.overflow = 'auto';
+                  location.reload();
                  }
                  }
              });
@@ -997,6 +1002,7 @@ $(document).ready(function () {
                     $('.popup_fade').hide();
                     $('.delete_div').hide();
                     document.body.style.overflow = 'auto';
+                    location.reload();
                   }
                  }
              });
@@ -1112,12 +1118,12 @@ $(document).ready(function () {
            data: form_data,
            cache: false,
            success: function(html) {
-               //alert(html);
+               alert(html);
                if(html=='error'){
                  alert('This category is already used');
                }else{
                  var category_split = html.split('-');
-                $('#category_table').find(".category_id:contains("+category_split[1]+")").next('.category_name').html(category_split[0]);
+                $('#category_table').find("input[value="+category_split[1]+"]").next('.category_name').html(category_split[0]);
                 //alert('Sports name updated successfully');
                 $('.popup_fade').hide();
                 $('.state_div,.delete_div').hide();
@@ -1207,8 +1213,11 @@ $(document).ready(function () {
            data: {'parameter_name':param_name},
            cache: false,
            success: function(html) {
-               //alert($('select[name="'+this_content+'"]').parents('.parameter_type_parent').find('.parameter_unit').html());
-               $('select[name="'+this_content+'"]').parents('.parameter_type_parent').find('.parameter_unit').html(html);
+               if(html !=''){
+                   $('select[name="'+this_content+'"]').parents('.parameter_type_parent').find('.parameter_unit').html(html);
+               }else{
+                    $('select[name="'+this_content+'"]').parents('.parameter_type_parent').find('.parameter_unit').html("<option value=''>UNIT</option>");
+               }
            }
        });
         //$(this).attr('value', $(this).val())

@@ -13,8 +13,9 @@ $assignschedule = new assignschedulefunction();
 $athlete = new athletesFunction();
 ?>
 <?php
+$url = $_SERVER['PHP_SELF'];
 if(isset($_GET['update_success'])){
-	echo '<script>alert("Assign schedule update successfully");location.reload();</script>';
+	echo "<script>alert('Assign schedule update successfully');var url ='".$url."'; window.location = url ;</script>";
 }
 ?>
 <div class="container">

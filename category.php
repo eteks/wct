@@ -38,7 +38,7 @@ $obj = new categoryfunction();
 							foreach( $data as $eachrecord ) {
 						 ?>
 				    	<tr class="align_center delete_color">
-					        <td class="category_id"><?php echo $i; ?></td>
+					        <td><?php echo $i; ?></td>
 							<input class="category_id" value="<?php echo $eachrecord ['categories_id']; ?>" type="hidden">
 					        <td class="category_name"><?php echo $eachrecord ['categories_name']; ?></td>
 					         <td>
