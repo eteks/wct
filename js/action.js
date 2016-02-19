@@ -217,9 +217,9 @@ function editfunction(data_id){
             $.each(range_obj, function(i){
               $('[name=edit_range_id').val(range_obj[i].range_id);
               $('[name=edit_range_testbattery]').find("option:contains("+range_obj[i].rangetestbattery_name+")").attr("selected","selected");
-              $('[name=edit_range_category]').find("option:contains("+range_obj[i].rangecategory_name+")").attr("selected","selected");
-              $('[name=edit_range_test]').find("option:contains("+range_obj[i].rangetest_name+")").attr("selected","selected");
-              $('[name=edit_range_parameter]').find("option:contains("+range_obj[i].rangeparameter_name+")").attr("selected","selected");
+              $('[name=edit_range_category]').html('<option value="'+range_obj[i].rangecategory_id+'" selected>'+range_obj[i].rangecategory_name+'</option>');
+              $('[name=edit_range_test]').html('<option value="'+range_obj[i].rangetest_id+'" selected>'+range_obj[i].rangetest_name+'</option>');
+              $('[name=edit_range_parameter]').html('<option value="'+range_obj[i].rangetestattribute_id+'" selected>'+range_obj[i].rangeparameter_name+'</option>');
             });
             //Append data to first range part without using for loop
             data = rangeattr_obj[0];
@@ -543,9 +543,9 @@ $(document).ready(function () {
 
 
     // load test and category on change Testbattery in range form
-    $("[name=range_testbattery]").on('change',function () {
+    $("[name=range_testbattery],[name=edit_range_testbattery]").on('change',function () {
       // alert("change")
-      selected_testbattery_id = $('[name=range_testbattery] option:selected').val();
+      selected_testbattery_id = $('option:selected',this).val();
       form_data = {'testbattery_id':selected_testbattery_id};
        $.ajax({
              type: "POST",
@@ -561,17 +561,18 @@ $(document).ready(function () {
                 $.each(category_obj, function(i){
                   cat_options += '<option value="'+category_obj[i].categories_id+'">'+category_obj[i].categories_name+'</option>';
                 });
-                $('[name=range_category]').html(cat_options);
+                $('.range_category').html(cat_options);
 
                 var test_options = '<option></option>';
                 $.each(test_obj, function(i){
                   test_options += '<option value="'+test_obj[i].test_id+'">'+test_obj[i].test_name+'</option>';
                 });
-                $('[name=range_test]').html(test_options);
+                $('.range_test').html(test_options);
+                $('.range_parameter').html('');
+
              }
          });
    });
-
 
   $('.districts').focus(function () {
       $(this).autocomplete({
@@ -646,7 +647,7 @@ $(document).ready(function () {
                       <span class='edit_state' onclick='editfunction("+result_split[2]+")'>Edit</span>\
                       <span class='delete_state' data-value="+result_split[2]+">Delete</span>\
                     </td></tr> ";
-                 $('.state_table tr:last').after(html);
+                 // $('.state_table tr:last').after(html);
                  document.states_form.reset();
                  location.reload();
                }
@@ -767,7 +768,7 @@ $(document).ready(function () {
                             <span class='edit_state' onclick='editfunction("+result_split[2]+")'>Edit</span>\
                             <span class='delete_state' data-value="+result_split[2]+">Delete</span>\
                           </td></tr> ";
-                       $('.district_table tr:last').after(html);
+                       // $('.district_table tr:last').after(html);
                        document.district_form.reset();
                        location.reload();
 
@@ -1264,7 +1265,7 @@ $(document).ready(function () {
                         <span class='edit_state' onclick='editfunction("+result_split[2]+")'>Edit</span>\
                         <span class='delete_state' data-value="+result_split[2]+">Delete</span>\
                       </td></tr> ";
-                   $('.athletes_table tr:last').after(html);     
+                   // $('.athletes_table tr:last').after(html);     
                  }
                  else{
                   alert(result_split[1]);
@@ -1342,7 +1343,7 @@ $(document).ready(function () {
                         <span class='edit_district' onclick='editfunction("+result_split[2]+")'>Edit</span>\
                         <span class='delete_district' data-value="+result_split[2]+">Delete</span>\
                       </td></tr> ";
-                   $('.createschedule_table tr:last').after(html);
+                   // $('.createschedule_table tr:last').after(html);
                     document.body.style.overflow = 'auto';
                    location.reload();
                  }
@@ -1479,7 +1480,7 @@ $(document).ready(function () {
                         <span class='edit_state' onclick='editfunction("+result_split[2]+")'>Edit</span>\
                         <span class='delete_state' data-value="+result_split[2]+">Delete</span>\
                       </td></tr> ";
-                   $('.range_table tr:last').after(html);
+                   // $('.range_table tr:last').after(html);
                    document.range_form.reset();
                    location.reload();
                  }
@@ -1999,8 +2000,8 @@ $(document).ready(function () {
      });
 
     // Load parameter in range form based on selected test
-    $('[name=range_test]').on('change',function () {
-      selected_test = $('[name=range_test] option:selected').val();
+    $('[name=range_test],[name=edit_range_test]').on('change',function () {
+      selected_test = $("option:selected", this).val();
       form_data = {'test_id':selected_test};
        $.ajax({
            type: "POST",
@@ -2013,7 +2014,7 @@ $(document).ready(function () {
               $.each(obj, function(i){
                 options += '<option value="'+obj[i].testattribute_id+'">'+obj[i].testparameter_name+'</option>';
               });
-              $('[name=range_parameter]').html(options);
+              $('.range_parameter').html(options);
            }
        });
     });

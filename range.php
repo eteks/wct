@@ -57,7 +57,7 @@
 					</div>
 					<div class="form-group">
 						  <label for="sel1">Parameter Name</label>
-						  <select class="form-control adjust_width classic" id="sel1" name="range_parameter" data-validation-error-msg="Please Select the name of the Parameter" data-validation="required">
+						  <select class="form-control adjust_width classic range_parameter" id="sel1" name="range_parameter" data-validation-error-msg="Please Select the name of the Parameter" data-validation="required">
 						  <option value=""></option>
 						  </select>
 					</div>
@@ -109,6 +109,7 @@
 			      <tr class="row_color">
 			        <th class="align_center">SLNO</th>
 			        <th class="align_center">Test Name</th>
+			        <th class="align_center">Parameter Name</th>
 			        <th class="align_center">Action</th>
 			      </tr>
 			    </thead>
@@ -122,6 +123,7 @@
                         <input type="hidden" name="range_id" class="t_range_id" value="<?php echo $row['range_id']; ?>">
 					        <td class="t_range_s_id"><?php echo $i; ?></td>
 					        <td class="t_range_testname"><?php echo $row['test_name']; ?></td>
+					        <td class="t_range_paramtername"><?php echo $row['test_parameter_name']; ?></td>
 					        <td>
 					        	<span class="edit_state" onclick="editfunction(<?php echo $row['range_id'] ?>)">Edit</span>
 					        	<span class="delete_state" data-value="<?php echo $row['range_id'] ?>">Delete</span>
@@ -171,38 +173,38 @@
 					</div>
 					<div class="form-group">
 						  <label for="sel1">Category</label>
-						  <select class="form-control adjust_width classic" id="sel1" name="edit_range_category" data-validation-error-msg="Please Select the Category of Test Battery " data-validation="required">
+						  <select class="form-control adjust_width classic range_category" id="sel1" name="edit_range_category" data-validation-error-msg="Please Select the Category of Test Battery " data-validation="required">
 						  <option value=""></option>
-						  <?php
+						  <!-- <?php
 						  $cat_data = $categoryfunction->categoryselectfunction();
 						  foreach( $cat_data as $eachrecord ) {
 						   ?>
 							<option value="<?php echo $eachrecord['categories_id']; ?>"><?php echo $eachrecord['categories_name']; ?></option>	
-							<?php } ?>
+							<?php } ?> -->
 						  </select>
 					</div>
 					<div class="form-group">
 						  <label for="sel1">Test Name</label>
-						  <select class="form-control adjust_width classic" id="sel1" name="edit_range_test" data-validation-error-msg="Please Select the Test Name" data-validation="required">
+						  <select class="form-control adjust_width classic range_test" id="sel1" name="edit_range_test" data-validation-error-msg="Please Select the Test Name" data-validation="required">
 						  <option value=""></option>
-						  <?php
+						 <!--  <?php
 	                        $query = $testfunction->testSelect();
 	                        while ($row = mysql_fetch_array($query)) {
 	                            ?>
 	                            <option value="<?php echo $row['test_id']; ?>"><?php echo $row['test_name']; ?></option>	                                            
-	                      <?php } ?>
+	                      <?php } ?> -->
 						  </select>
 					</div>
 					<div class="form-group">
 						  <label for="sel1">Parameter Name</label>
-						  <select class="form-control adjust_width classic" id="sel1" name="edit_range_parameter" data-validation-error-msg="Please Select the name of the Parameter" data-validation="required">
+						  <select class="form-control adjust_width classic range_parameter" id="sel1" name="edit_range_parameter" data-validation-error-msg="Please Select the name of the Parameter" data-validation="required">
 						  <option value=""></option>
-						  <?php
+						  <!-- <?php
 	                        $query = $testfunction->testattributeSelect();
 	                        while ($row = mysql_fetch_array($query)) {
 	                            ?>
 	                            <option value="<?php echo $row['test_attribute_id']; ?>"><?php echo $row['test_parameter_name']; ?></option>	                                            
-	                      <?php } ?>
+	                      <?php } ?> -->
 						  </select>
 					</div>
 					<div class="form-group edit_range_holder">
