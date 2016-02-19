@@ -17,7 +17,7 @@
 
 		//To select all record for displaying data in table
 		public function rangeSelect(){
-			$res = mysql_query("select * from wc_range r,wc_test t where r.rangetest_id=t.test_id and r.range_status='1' ORDER BY range_id DESC")or die(mysql_error());
+			$res = mysql_query("select * from wc_range as r INNER JOIN wc_test as t ON r.rangetest_id=t.test_id INNER JOIN wc_test_attribute as ta ON ta.test_attribute_id = r.rangetestattribute_id where r.range_status='1' ORDER BY r.range_id DESC")or die(mysql_error());
 			return $res;
 		}
 		public function rangeInsert(){
@@ -78,6 +78,15 @@
 				t.test_id = tbta.testbattery_test_id WHERE tbta.testbattery_id='".$this->rangetestbatteryid."'")or die(mysql_error());
 			return $res;
 		}
+		public function isParameterExist(){
+			$qr = mysql_query("SELECT * FROM wc_range WHERE rangetestattribute_id = '".$this->rangetestattributeid."'");
+			$row = mysql_num_rows($qr);
+			if($row > 0){
+				return true;
+			} else {
+				return false;
+			}
+		}
 		
 	}
 	//To insert data
@@ -90,20 +99,26 @@
 		$rangeFunction->rangetestattributeid=$_POST['range_parameter']; 
 		$testname = mysql_fetch_array( $rangeFunction->testnameSelect());
 		$rangeFunction->rangetestname = $testname['test_name'];
-		$rangeinsert = $rangeFunction->rangeInsert();
-		if($rangeinsert){
-			for($i=1;$i<=$counter;$i++){
-                $rangeFunction->rangeid = $rangeinsert;
-                $rangeFunction->rangestart = $_POST["range_start".$i.""];
-                $rangeFunction->rangeend = $_POST["range_end".$i.""];
-                $rangeFunction->rangepoint = $_POST["range_points".$i.""];
-                $rangeattrinsert = $rangeFunction->rangeattributeInsert();
-            }
-            echo "success#Range Inserted#".$rangeinsert.'#'.$rangeFunction->rangetestname;
+		$paramters = $rangeFunction->isParameterExist();
+		if(!$paramters){
+			$rangeinsert = $rangeFunction->rangeInsert();
+			if($rangeinsert){
+				for($i=1;$i<=$counter;$i++){
+	                $rangeFunction->rangeid = $rangeinsert;
+	                $rangeFunction->rangestart = $_POST["range_start".$i.""];
+	                $rangeFunction->rangeend = $_POST["range_end".$i.""];
+	                $rangeFunction->rangepoint = $_POST["range_points".$i.""];
+	                $rangeattrinsert = $rangeFunction->rangeattributeInsert();
+	            }
+	            echo "success#Range Inserted#".$rangeinsert.'#'.$rangeFunction->rangetestname;
+			}
+			else{
+			 	echo "failure#Range Not Inserted";
+			} 
 		}
 		else{
-		 	echo "failure#Range Not Inserted";
-		} 
+			echo "failure#Already Assigned Range for this parameter";
+		}
 	}	
 	// For display edit data 
 	if(isset($_GET['chooseedit'])){
@@ -151,20 +166,25 @@
 
 		$testname = mysql_fetch_array( $rangeFunction->testnameSelect());
 		$rangeFunction->rangetestname = $testname['test_name'];
-
-		$rangeupdate = $rangeFunction->rangeUpdate();
-		if($rangeupdate){
-			for($i=1;$i<=$counter;$i++){
-                $rangeFunction->rangeattributeid = $_POST["edit_rangeattr_id".$i.""];
-                $rangeFunction->rangestart = $_POST["edit_range_start".$i.""];
-                $rangeFunction->rangeend = $_POST["edit_range_end".$i.""];
-                $rangeFunction->rangepoint = $_POST["edit_range_points".$i.""];
-                $rangeattrupdate = $rangeFunction->rangeattributeUpdate();
-            }
-			echo "success#Record Updated#".$_POST['edit_range_id']."#".$rangeFunction->rangetestname;
-		}else{
-			echo "failure#Range Not Updated";
+		$paramters = $rangeFunction->isParameterExist();
+		if(!$paramters){
+			$rangeupdate = $rangeFunction->rangeUpdate();
+			if($rangeupdate){
+				for($i=1;$i<=$counter;$i++){
+	                $rangeFunction->rangeattributeid = $_POST["edit_rangeattr_id".$i.""];
+	                $rangeFunction->rangestart = $_POST["edit_range_start".$i.""];
+	                $rangeFunction->rangeend = $_POST["edit_range_end".$i.""];
+	                $rangeFunction->rangepoint = $_POST["edit_range_points".$i.""];
+	                $rangeattrupdate = $rangeFunction->rangeattributeUpdate();
+	            }
+				echo "success#Record Updated#".$_POST['edit_range_id']."#".$rangeFunction->rangetestname;
+			}else{
+				echo "failure#Range Not Updated";
+			}
 		}
+		else{
+			echo "failure#Already Assigned Range for this parameter";
+		}	
 	}
 	// To delete stored data
 	if(isset($_GET['deletedata'])){
