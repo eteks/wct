@@ -45,10 +45,12 @@
 			    <tbody>
 					<?php
 				  $data = $parameterunitFunction->parameterunitSelect();
+				  $i=1;
 				  foreach( $data as $eachrecord ) {
 				   ?>
 			      <tr class="align_center delete_color">
-			        <td><?php echo $eachrecord ['parameterunit_id'];?></td>
+			        <td><?php echo $i;?></td>
+			        <input value="<?php echo $eachrecord ['parameterunit_id']; ?>" type="hidden">
 			        <td><?php echo $eachrecord ['parametertype_name'];?></td>
 					<td><?php echo $eachrecord ['parameterunit'];?></td>
 			        <td>
@@ -56,7 +58,7 @@
 		        		<span class="delete_state" data-value="<?php echo $eachrecord ['parameterunit_id'];?>">Delete</span>
 			        </td>
 			      </tr>
-				  <?php } ?>
+				  <?php $i++; } ?>
 			    </tbody>
 			  </table>
 			</div>

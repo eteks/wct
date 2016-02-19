@@ -689,9 +689,8 @@ $(document).ready(function () {
                      </td></tr> ";
                   $('.parameter_type_table tr:last').after(html);
                   document.parameter_type_form.reset();
-
-                }
-                location.reload();
+                  location.reload();
+                }                
                 }
             })
          }
