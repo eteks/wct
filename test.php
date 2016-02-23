@@ -6,11 +6,12 @@ $obj = new testfunction();
 
 ?>
 <?php
+$url = $_SERVER['PHP_SELF'];
 if(isset($_GET['insert'])){
-	echo "<script>alert('Test inserted successfully!')</script>";
+	echo "<script>alert('Test inserted successfully!');var url ='".$url."'; window.location = url ;</script>";
 }
 if(isset($_GET['update'])){
-	echo "<script>alert('Test updated successfully!')</script>";
+	echo "<script>alert('Test updated successfully!');var url ='".$url."'; window.location = url ;</script>";
 }
 ?>
 <div class="container">
