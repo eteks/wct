@@ -134,7 +134,7 @@ if(isset($_GET['insert_success'])){
 					<div class="form-group">
 						  <label for="sel1">Select Sport</label>
 						  <select class="form-control adjust_width classic edit_test_sport" id="sel1" name="Sport" data-validation-error-msg="please Select the Sport" data-validation="required">
-						  <option value=""></option>
+						  <option value="">Select Sport</option>
 							  <?php
 							$data = $sports->sportsselectfunction();
 							foreach( $data as $eachrecord ) {

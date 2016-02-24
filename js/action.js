@@ -1289,7 +1289,7 @@ $(document).ready(function () {
     $('#athlete_form').submit(function(e){
      e.preventDefault();
       var res = true;
-      $('input[type="text"]',this).each(function() {
+      $('input[type="text"],select',this).each(function() {
         if($(this).val().trim() == "") {
           res = false;
 
