@@ -18,6 +18,11 @@ if(isset($_GET['update_success'])){
 	echo "<script>alert('Assign schedule update successfully');var url ='".$url."'; window.location = url ;</script>";
 }
 ?>
+<style>
+	#ui-id-1{
+    	width: 204px !important;
+	}
+</style>
 <div class="container">
 	<div class="container align_center align_height">
 		<span class="sports">ASSIGN SCHEDULE</span>

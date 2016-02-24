@@ -1,6 +1,6 @@
 @font-face{
     font-family: Montserrat;
-    url:(../font/Montserrat-Bold.ttf);
+    src :url(../fonts/Montserrat-Regular.ttf);
 }
 .header_bg {
     background: url("../images/header.png");
@@ -637,8 +637,8 @@ select {
     height: 34px;
     margin: 12px 0 0px 20px;
     position: relative;
-    right: 30px;
-    width: 192px !important;
+    right: 18px;
+    width: 205px !important;
     color: #424242  !important;
     font-family: Montserrat;
 }
@@ -648,8 +648,8 @@ select {
     height: 34px;
     margin: 12px 0 0px 12px;
     position: relative;
-    right: 35px;
-    width: 185px !important;
+    right: 20px;
+    width: 192px !important;
     color: #424242  !important;
     font-family: Montserrat;
 }
@@ -832,8 +832,8 @@ button, input, optgroup, select, textarea {
     height: 34px;
     margin: 12px 0 10px 16px;
     position: relative;
-    right: 15px;
-    width: 172px !important;
+    right: 56px;
+    width: 195px !important;
 }
 .bib_popup{
     border-radius: 0 !important;
@@ -843,8 +843,8 @@ button, input, optgroup, select, textarea {
     height: 34px;
     margin: 12px 0 10px 28px;
     position: relative;
-    right: 30px;
-    width: 155px !important;
+    right: 40px;
+    width: 195px !important;
 }
 .create-date {
     border-radius: 0 !important;
@@ -1159,12 +1159,13 @@ input[type=radio]:checked + label:before {
 .combo--align span input {
     position: relative !important;
     top: 12px;
-    width: 190px;
+    width: 205px;
 }
 .combo--align--popup span input {
     position: relative !important;
     top: 12px;
-    width: 174px;
+    width: 195px;
+    left: -40px;
 }
 .assign-add-button {
     bottom: 65px;
