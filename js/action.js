@@ -132,9 +132,9 @@ function editfunction(data_id){
               dob = obj[i].athlete_dob.split('-');
               $('[name=edit_athlete_id]').val(obj[i].athlete_id);
               $('[name=edit_athlete_name]').val(obj[i].athlete_name);
-              $('[name=dateday]').append("<option value='"+dob[2]+ "'selected>"+dob[2]+"</option>");
-              $('[name=datemonth]').append("<option value='"+dob[1]+ "'selected>"+dob[1]+"</option>");
-              $('[name=dateyear]').append("<option value='"+dob[0]+ "'selected>"+dob[0]+"</option>");
+              $('[name=dateday]').find("option[value="+dob[2]+"]").attr("selected","selected");
+              $('[name=datemonth]').find("option[value="+dob[1]+"]").attr("selected","selected");
+              $('[name=dateyear]').find("option[value="+dob[0]+"]").attr("selected","selected");
               $('[name=edit_athlete_mobile]').val(obj[i].athlete_mobile);
               $('[name=edit_athlete_gender]').find("option:contains("+obj[i].athlete_gender+")").attr("selected","selected");
               $('[name=edit_athlete_state]').find("option:contains("+obj[i].athletestates_name+")").attr("selected","selected");
@@ -162,10 +162,10 @@ function editfunction(data_id){
               time = obj[i].createschedule_time.split(':');
               $('[name=edit_schedule_id]').val(obj[i].createschedule_id);
               $('[name=edit_schedule_name]').val(obj[i].createschedule_name);
-              $('[name=edit_schedule_testbattery]').append("<option value='"+obj[i].createschedule_testbatteryid+ "'selected>"+obj[i].createschedule_testbatteryname+"</option>");
-              $('[name=dateday]').append("<option value='"+date[2]+ "'selected>"+date[2]+"</option>");
-              $('[name=datemonth]').append("<option value='"+date[1]+ "'selected>"+date[1]+"</option>");
-              $('[name=dateyear]').append("<option value='"+date[0]+ "'selected>"+date[0]+"</option>");
+              $('[name=edit_schedule_testbattery]').find("option[value="+obj[i].createschedule_testbatteryid+"]").attr("selected","selected");
+              $('[name=dateday]').find("option[value="+date[2]+"]").attr("selected","selected");
+              $('[name=datemonth]').find("option[value="+date[1]+"]").attr("selected","selected");
+              $('[name=dateyear]').find("option[value="+date[0]+"]").attr("selected","selected");
               $('[name=edit_schedule_hour]').find("option:contains("+time[0]+")").attr("selected","selected");
               $('[name=edit_schedule_minute]').find("option:contains("+time[1]+")").attr("selected","selected");
               $('[name=edit_schedule_seconds]').find("option:contains("+time[2]+")").attr("selected","selected");
@@ -522,8 +522,8 @@ $(document).ready(function () {
    });
 
   $(".athlete_state_act").on('change',function () {
-    selected_state = $('.athlete_state_act option:selected').text();
-    selected_state_id = $('.athlete_state_act option:selected').val();
+    selected_state = $('option:selected',this).text();
+    selected_state_id = $('option:selected',this).val();
     form_data = {'states_name':selected_state,'states_id':selected_state_id};
     alert(JSON.stringify(form_data));
      $.ajax({
