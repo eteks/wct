@@ -59,6 +59,9 @@
 						  <select class="form-control adjust_width classic range_parameter" id="sel1" name="range_parameter" data-validation-error-msg="Please Select the name of the Parameter" data-validation="required">
 						  <option value="">Parameter Name</option>
 						  </select>
+						  <input type="hidden" class="range_parameter_type">
+						  <input type="hidden" class="range_parameter_unit">
+						  <input type="hidden" class="range_parameter_format">
 					</div>
 					<!-- <div class="form-group range_holder">
 						<div class="clone_content" id="range_counter1">
@@ -70,16 +73,16 @@
 					</div> -->
 					<div class="form-group range_holder col-md-12">
 						<div class="clone_content" id="range_counter1">
-						  <label for="range" class="range_label">Ranges</label><br>
+						  <label for="range" class="range_label">Ranges <span class="range_note">(Note:<span class="range_notes"></span>)</span></label><br>
 						  	<div class="form-group col-md-10">
 								  <div class="col-md-4">
-								  	<input type="text" class="form-control classic range_align  r_strt" id="strt1" name="range_start1" placehoder="Start" data-validation-error-msg="Please Enter the start range of Test" data-validation="number" placeholder="Start">				  	
+								  	<input type="text" class="form-control classic range_align  r_strt" id="strt1" name="range_start1" placehoder="Start" data-validation-error-msg="Please Enter the start range of Test" placeholder="Start" data-validation="required">				  	
 								  </div>
 								  <div class="col-md-4">
-								  	<input type="text" class="form-control classic range_align  r_end" id="end1" name="range_end1" placehoder="end" data-validation-error-msg="Please Enter the End range of Test" data-validation="number" placeholder="End">						  	
+								  	<input type="text" class="form-control classic range_align  r_end" id="end1" name="range_end1" placehoder="end" data-validation-error-msg="Please Enter the End range of Test" placeholder="End" data-validation="required">						  	
 								  </div>
 								  <div class="col-md-4">
-								  	<input type="text" class="form-control classic range_align  r_point" id="point1" name="range_points1" placehoder="points" data-validation-error-msg="Please Enter the Point" data-validation="number">				  	
+								  	<input type="text" class="form-control classic range_align  r_point" id="point1" name="range_points1" placehoder="points" data-validation-error-msg="Please Enter the Point" data-validation="required">				  	
 								  </div>
 							</div>
 						</div>

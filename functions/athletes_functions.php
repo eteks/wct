@@ -56,6 +56,16 @@
 					WHERE at.athlete_id='".$this->athleteid."'")or die(mysql_error());
 			return $res;
 		}
+		//Check whether the athlete already exists
+		public function isAthleteExist(){
+			$qr = mysql_query("SELECT * FROM wc_athlete WHERE athlete_name = '".$this->athletename."' AND athlete_dob = '".$this->athletedob."' AND athlete_gender = '".$this->athletegender."' AND athlete_mobile = '".$this->athletemobile."'");
+			$row = mysql_num_rows($qr);
+			if($row > 0){
+				return true;
+			} else {
+				return false;
+			}
+		}
 
 	}
 	if(isset($_POST)){
@@ -73,13 +83,20 @@
 			$athletesFunction->athleteaddress = $_POST['athlete_address'];
 			$athletesFunction->athletesportsid = $_POST['athlete_sports'];
 			$athletesFunction->athletetaluka = $_POST['athlete_taluka'];
-			$athleteinsert = $athletesFunction->athleteInsert();
-			$atheletedob = $athletesFunction->athletedob;
-			if($athleteinsert){
-				echo "success#Athletes Inserted#".$athleteinsert.'#'.$_POST['athlete_name'].'#'.$_POST['athlete_gender'].'#'.$atheletedob.'#'.$_POST['athlete_address'];
-			}else{
-				echo "failure#Athletes Not Inserted";
+			$athletes = $athletesFunction->isAthleteExist();
+			if (!$athletes){
+				$athleteinsert = $athletesFunction->athleteInsert();
+				$atheletedob = $athletesFunction->athletedob;
+				if($athleteinsert){
+					echo "success#Athletes Inserted#".$athleteinsert.'#'.$_POST['athlete_name'].'#'.$_POST['athlete_gender'].'#'.$atheletedob.'#'.$_POST['athlete_address'];
+				}else{
+					echo "failure#Athletes Not Inserted";
+				}
 			}
+			else{
+				echo "failure#Athlete Already Exists";
+			}
+			
 		}
 
 		// To delete stored data

@@ -27,7 +27,7 @@
 						  <!-- <label class="category_text">Please Select the State</label><br> -->
 						</div>
 						<div class="align_margin">					
-							<label>District/Taluka</label><br>
+							<label>District</label><br>
 							<input type="text" class="districts" name="district_name" data-validation-error-msg="Please Enter the name of the District" data-validation="required">
 							<span class="add_district_error"></span>
 							<label class="category_text">Please Enter the District</label>
@@ -42,7 +42,7 @@
 				    <thead>
 				      <tr class="row_color">
 				        <th class="align_center">SLNO</th>	
-				        <th class="align_center">District/Taluka</th>
+				        <th class="align_center">District</th>
 				        <th class="align_center">Action</th>
 				      </tr>
 				    </thead>
@@ -109,7 +109,7 @@
 						  </select>
 						</div>
 						<div class="align_margin">					
-							<label>District/Taluka</label><br>
+							<label>District</label><br>
 							<input type="text" class="districts" name="edit_district_name" data-validation-error-msg="Please Enter the name of the District" data-validation="required">
 							<span class="edit_district_error"></span>
 						</div>
