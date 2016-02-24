@@ -68,7 +68,7 @@
 			$editdeleteFunction = new editdeleteFunction();
 			$editdeleteFunction->statesid = $_POST['edit_states_id'];
 			$editdeleteFunction->statesname = $_POST['edit_states_name'];	
-			if (in_array($_POST['edit_states_name'], $STATES)) {
+			// if (in_array($_POST['edit_states_name'], $STATES)) {
 				$states = $editdeleteFunction->isStatesExist();
 				if(!$states){
 					$statesinsert = $editdeleteFunction->updateData();
@@ -81,10 +81,10 @@
 				else {
 					echo "failure#State Already Exist";
 				}
-			}
-			else{
-				echo "failure#No State Present in that Name";
-			}
+			// }
+			// else{
+			// 	echo "failure#No State Present in that Name";
+			// }
 		}
 		// To delete stored data
 		if(isset($_GET['deletedata'])){
