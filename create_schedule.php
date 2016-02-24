@@ -189,8 +189,8 @@
 						<textarea class="area_width" name="schedule_venue" data-validation-error-msg="please Enter the name of the Venue" data-validation="required"></textarea>
 					</div>
 					<div class="col-md-9 schedule_btn">	
-						<input type="submit" class="btn btn-primary align_right clear add_createschedule_act" value="Submit">
-						<input type="reset" class="btn btn-primary align_right test-submit clear" value="Clear">				
+						<input type="reset" class="btn btn-primary align_right clear" value="Clear">	
+						<input type="submit" class="btn btn-primary align_right test-submit clear add_createschedule_act" value="Submit">									
 					</div>			
 				</form>
 			</div>			
@@ -453,8 +453,8 @@
 					<div class="col-md-10 schedule_btn">					
 						<!-- <button type="button" class="btn btn-primary align_right clear edit_createschedule_act">Submit</button>
 						<button type="button" class="btn btn-primary align_right clear">Clear</button> -->
-						<input type="submit" class="btn btn-primary align_right clear edit_createschedule_act" value="Submit">
-						<input type="reset" class="btn btn-primary align_right test-submit clear" value="Clear">
+						<input type="reset" class="btn btn-primary align_right clear" value="Clear">
+						<input type="submit" class="btn btn-primary align_right test-submit clear edit_createschedule_act" value="Submit">						
 					</div>	
 	          	</form>
 	          		</div>

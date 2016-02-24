@@ -151,7 +151,7 @@ if(isset($_GET['update'])){
 						<div class="form-group col-md-12 test_percentage">
 							<div class="col-md-4">
 								<select class="form-control classic type_align_popup fl parameter_type parameter_type_update" id="type1" name="type1" data-validation-error-msg="Please Select the Type" data-validation="required">
-									<option>Type</option>
+									<option value="">Type</option>
 									<?php
 										$sql = mysql_query('select * from wc_parametertype') or die(mysql_error());
 										$count = mysql_num_rows($sql);

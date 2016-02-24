@@ -26,7 +26,7 @@
 			    <thead>
 			      <tr class="row_color">
 			        <th class="align_center">SLNO</th>
-			        <th class="align_center">Test Name</th>
+			        <th class="align_center">Parameter Type</th>
 			        <th class="align_center">Action</th>
 			      </tr>
 			    </thead>

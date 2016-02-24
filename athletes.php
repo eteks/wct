@@ -62,7 +62,7 @@
 					<div class="form-group">
 						  <label for="sel2">State</label>
 						  <select class="form-control adjust_width classic athlete_state_act" id="sel2" name="athlete_state" data-validation-error-msg="Please Select the State" data-validation="required">
-						  <option value=""></option>
+						  <option value="">State</option>
 						  <?php
 	                        $query = $statesFunction->statesSelect();
 	                        while ($row = mysql_fetch_array($query)) {
@@ -108,8 +108,8 @@
 					</div>
 					<div class="col-md-9 schedule_btn">
 						<!-- <button type="button" class="btn btn-primary align_right clear add_athletes_act">Submit</button> -->
-						<input type="submit" class="btn btn-primary align_right clear add_athletes_act" value="Submit">
-						<input type="reset" class="btn btn-primary align_right test-submit clear" value="Clear">
+						<input type="reset" class="btn btn-primary align_right clear" value="Clear">
+						<input type="submit" class="btn btn-primary align_right test-submit clear add_athletes_act" value="Submit">						
 					</div>
 				</form>
 			</div>
@@ -254,8 +254,8 @@
 					<div class="col-md-10 schedule_btn">
 						<!-- <button type="button" class="btn btn-primary align_right clear edit_athletes_act">Submit</button>
 						<button type="button" class="btn btn-primary align_right clear">Clear</button> -->
-						<input type="submit" class="btn btn-primary align_right clear edit_athletes_act" value="Submit">
-						<input type="reset" class="btn btn-primary align_right test-submit clear" value="Clear">
+						<input type="reset" class="btn btn-primary align_right clear" value="Clear">
+						<input type="submit" class="btn btn-primary align_right test-submit clear edit_athletes_act" value="Submit">						
 					</div>
 				</form>
 	          		</div>

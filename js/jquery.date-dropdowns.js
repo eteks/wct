@@ -16,8 +16,8 @@
             submitFieldName: "date",
             wrapperClass: "date-dropdowns",
             dropdownClass: null,
-            daySuffixes: true,
-            monthSuffixes: true,
+            daySuffixes: false,
+            monthSuffixes: false,
             monthFormat: "long",
             required: true
         };

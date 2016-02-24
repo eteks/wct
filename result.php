@@ -15,7 +15,7 @@
 					<div class="form-group">
 						  <label for="sel1">Select Schedule Name</label>
 						  <select class="form-control adjust_width classic resultcreateschedule_act" id="sel1" name="result_createschedule" data-validation-error-msg="Please Select Name of the Schedule" data-validation="required">
-						  <option></option>
+						  <option value="">Select Schedule Name</option>
 						  <?php
 	                        $query = $createscheduleFunction->createscheduleSelect();
 	                        while ($row = mysql_fetch_array($query)) {
