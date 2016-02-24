@@ -1,38 +1,38 @@
-<?php 
+<?php
 	if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest')
 	{
 	  include ("../dbconnect.php");
 	  include ("../common.php");
 	}
 	else {
-	    include ("dbconnect.php");	
+	    include ("dbconnect.php");
 	    include ("common.php");
 	}
-		
+
  	class editdeleteFunction {
 
 	 	public $statesid;
 	    public $statesname;
-	    public $statesstatus;	
+	    public $statesstatus;
 
 		public function selectData(){
 			$res = mysql_query("SELECT * FROM wc_states WHERE states_id = '".$this->statesid."'")or die(mysql_error());
-			return $res;	
+			return $res;
 		}
-		public function updateData(){		
-            $res = mysql_query("update wc_states set states_name='".$this->statesname."' where states_id ='".$this->statesid."'")or die(mysql_error());          
+		public function updateData(){
+            $res = mysql_query("update wc_states set states_name='".$this->statesname."' where states_id ='".$this->statesid."'")or die(mysql_error());
 			if($res){ return true; }
-			else{ return false; }		
+			else{ return false; }
 		}
-		public function deleteData(){	
+		public function deleteData(){
 			// $res_district = mysql_query("SELECT district_id FROM wc_district WHERE districtstates_id = '".$this->statesid."'")or die(mysql_error());
 			// while ( $result = mysql_fetch_array( $res_district )){
 		 //    	$res_update = mysql_query("update wc_athlete set athlete_status = '0' where athletedistrict_id='".$result."'")or die(mysql_error());
 		 //    }
-			// $res_update = mysql_query("update wc_athlete set athlete_status = '0' where athletedistrict_id='".$res_district."'")or die(mysql_error());	       
-            $res = mysql_query("delete from wc_states where states_id ='".$this->statesid."' ")or die(mysql_error());          		
+			// $res_update = mysql_query("update wc_athlete set athlete_status = '0' where athletedistrict_id='".$res_district."'")or die(mysql_error());
+            $res = mysql_query("delete from wc_states where states_id ='".$this->statesid."' ")or die(mysql_error());
 			if($res){ return true; }
-			else{ return false; }		
+			else{ return false; }
 		}
 
 		public function isStatesExist(){
@@ -48,7 +48,7 @@
 	}
 
 	if(isset($_POST)){
-		// For display edit data 
+		// For display edit data
 		if(isset($_GET['chooseedit'])){
 			$json = array();
 			$editdeleteFunction = new editdeleteFunction();
@@ -67,8 +67,8 @@
 		if(isset($_GET['editdata'])){
 			$editdeleteFunction = new editdeleteFunction();
 			$editdeleteFunction->statesid = $_POST['edit_states_id'];
-			$editdeleteFunction->statesname = $_POST['edit_states_name'];	
-			// if (in_array($_POST['edit_states_name'], $STATES)) {
+			$editdeleteFunction->statesname = $_POST['edit_states_name'];
+			//if (in_array($_POST['edit_states_name'], $STATES)) {
 				$states = $editdeleteFunction->isStatesExist();
 				if(!$states){
 					$statesinsert = $editdeleteFunction->updateData();
@@ -97,7 +97,7 @@
 			else{
 				echo "failure#Record not found";
 			}
-		}	
-	}	
-	
-?>	
+		}
+	}
+
+?>

@@ -132,9 +132,9 @@ function editfunction(data_id){
               dob = obj[i].athlete_dob.split('-');
               $('[name=edit_athlete_id]').val(obj[i].athlete_id);
               $('[name=edit_athlete_name]').val(obj[i].athlete_name);
-              $('[name=dateday]').append("<option value='"+dob[2]+ "'selected>"+dob[2]+"</option>");
-              $('[name=datemonth]').append("<option value='"+dob[1]+ "'selected>"+dob[1]+"</option>");
-              $('[name=dateyear]').append("<option value='"+dob[0]+ "'selected>"+dob[0]+"</option>");
+              $('[name=dateday]').find("option[value="+dob[2]+"]").attr("selected","selected");
+              $('[name=datemonth]').find("option[value="+dob[1]+"]").attr("selected","selected");
+              $('[name=dateyear]').find("option[value="+dob[0]+"]").attr("selected","selected");
               $('[name=edit_athlete_mobile]').val(obj[i].athlete_mobile);
               $('[name=edit_athlete_gender]').find("option:contains("+obj[i].athlete_gender+")").attr("selected","selected");
               $('[name=edit_athlete_state]').find("option:contains("+obj[i].athletestates_name+")").attr("selected","selected");
@@ -162,10 +162,10 @@ function editfunction(data_id){
               time = obj[i].createschedule_time.split(':');
               $('[name=edit_schedule_id]').val(obj[i].createschedule_id);
               $('[name=edit_schedule_name]').val(obj[i].createschedule_name);
-              $('[name=edit_schedule_testbattery]').append("<option value='"+obj[i].createschedule_testbatteryid+ "'selected>"+obj[i].createschedule_testbatteryname+"</option>");
-              $('[name=dateday]').append("<option value='"+date[2]+ "'selected>"+date[2]+"</option>");
-              $('[name=datemonth]').append("<option value='"+date[1]+ "'selected>"+date[1]+"</option>");
-              $('[name=dateyear]').append("<option value='"+date[0]+ "'selected>"+date[0]+"</option>");
+              $('[name=edit_schedule_testbattery]').find("option[value="+obj[i].createschedule_testbatteryid+"]").attr("selected","selected");
+              $('[name=dateday]').find("option[value="+date[2]+"]").attr("selected","selected");
+              $('[name=datemonth]').find("option[value="+date[1]+"]").attr("selected","selected");
+              $('[name=dateyear]').find("option[value="+date[0]+"]").attr("selected","selected");
               $('[name=edit_schedule_hour]').find("option:contains("+time[0]+")").attr("selected","selected");
               $('[name=edit_schedule_minute]').find("option:contains("+time[1]+")").attr("selected","selected");
               $('[name=edit_schedule_seconds]').find("option:contains("+time[2]+")").attr("selected","selected");
@@ -522,8 +522,8 @@ $(document).ready(function () {
    });
 
   $(".athlete_state_act").on('change',function () {
-    selected_state = $('.athlete_state_act option:selected').text();
-    selected_state_id = $('.athlete_state_act option:selected').val();
+    selected_state = $('option:selected',this).text();
+    selected_state_id = $('option:selected',this).val();
     form_data = {'states_name':selected_state,'states_id':selected_state_id};
     alert(JSON.stringify(form_data));
      $.ajax({
@@ -693,7 +693,7 @@ $(document).ready(function () {
                   $('.parameter_type_table tr:last').after(html);
                   document.parameter_type_form.reset();
                   location.reload();
-                }                
+                }
                 }
             })
          }
@@ -833,13 +833,13 @@ $(document).ready(function () {
            data: form_data,
            cache: false,
            success: function(html) {
-               alert(html);
+               //alert(html);
                if(html=='error'){
                  alert('Already sports name exists');
                }else{
                 //alert(html);
                 var sports_split = html.split('-');
-                alert(sports_split[1]);
+                //alert(sports_split[1]);
                 $('#sports_table').find("input[value="+sports_split[1]+"]").siblings('.sports_name').html(sports_split[0]);
                 alert('Sports name updated successfully');
                 $('.popup_fade').hide();
@@ -1124,7 +1124,7 @@ $(document).ready(function () {
            data: form_data,
            cache: false,
            success: function(html) {
-               alert(html);
+               //alert(html);
                if(html=='error'){
                  alert('This category is already used');
                }else{
@@ -1207,10 +1207,35 @@ $(document).ready(function () {
         var param_name = $(this).val();
         var this_content = $(this).attr('name');
         if(param_name=='time'){
-             $('select[name="'+this_content+'"]').parent().find('.parameter_format').attr('disabled', 'disabled');
+             $('select[name="'+this_content+'"]').parents().find('.parameter_format').attr('disabled', 'disabled');
         }
         else{
-            $('select[name="'+this_content+'"]').parent().find('.parameter_format').removeAttr('disabled');
+            $('select[name="'+this_content+'"]').parents().find('.parameter_format').removeAttr('disabled');
+        }
+
+        $.ajax({
+           type: "POST",
+           url: "common.php?param_name='true'",
+           data: {'parameter_name':param_name},
+           cache: false,
+           success: function(html) {
+               if(html !=''){
+                   $('select[name="'+this_content+'"]').parents('.parameter_type_parent').find('.parameter_unit').html(html);
+               }else{
+                    $('select[name="'+this_content+'"]').parents('.parameter_type_parent').find('.parameter_unit').html("<option value=''>UNIT</option>");
+               }
+           }
+       });
+        //$(this).attr('value', $(this).val())
+    });
+    $('.parameter_type_update').change(function() {
+        var param_name = $(this).val();
+        var this_content = $(this).attr('name');
+        if(param_name=='time'){
+             $('select[name="'+this_content+'"]').parents().find('.parameter_format').attr('disabled', 'disabled');
+        }
+        else{
+            $('select[name="'+this_content+'"]').parents().find('.parameter_format').removeAttr('disabled');
         }
 
         $.ajax({
@@ -1266,12 +1291,12 @@ $(document).ready(function () {
                         <span class='edit_state' onclick='editfunction("+result_split[2]+")'>Edit</span>\
                         <span class='delete_state' data-value="+result_split[2]+">Delete</span>\
                       </td></tr> ";
-                   // $('.athletes_table tr:last').after(html);     
+                   // $('.athletes_table tr:last').after(html);
                  }
                  else{
                   alert(result_split[1]);
                  }
-                 location.reload(); 
+                 location.reload();
              }
          });
      }
@@ -1783,12 +1808,14 @@ $(document).ready(function () {
     // });
 
     $('.edit_assign_schedule').click(function() {
-        var assign_schedule_id = $(this).attr('data-value');
+        var assign_schedule_id = $(this).attr('data-schedule');
+        var assign_category_id = $(this).attr('data-category');
+
         //alert(assign_schedule_id);
         $.ajax({
            type: "POST",
            url: "functions/assign_schedule_function.php?edit_get_data=true",
-           data: {'shdl_id':assign_schedule_id},
+           data: {'shdl_id':assign_schedule_id,'cate_id':assign_category_id},
            cache: false,
            dataType:'json',
            success: function(data) {
@@ -1796,6 +1823,7 @@ $(document).ready(function () {
                $('.category_update option[value="'+data[0].assigncategory_id+'"]').attr('selected','selected');
                $('.clone_schedule_update:first .athlete_name1 option[value="'+data[0].assignathlete_id+'"]').attr('selected','selected');
                $('.clone_schedule_update:first .dob_update').val(data[0].athlete_dob);
+               $('.clone_schedule_update:first .custom-combobox-input').val(data[0].athlete_name);
                $('.clone_schedule_update:first .mobile_update').val(data[0].athlete_mobile);
                $('.clone_schedule_update:first .athlete_bib').val(data[0].assignbib_number);
                $('.clone_schedule_update:first .assing_schedule_update_id').val(data[0].assignschedule_id);

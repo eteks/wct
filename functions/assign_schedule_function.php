@@ -8,7 +8,7 @@ class assignscheduleFunction {
     public $assignschedule_status;
    public function assignscheduleSelect(){
        $temp_arr = array();
-       $res = mysql_query("SELECT * from wc_assignschedule INNER JOIN wc_createschedule ON wc_assignschedule.assigncreateschedule_id=wc_createschedule.createschedule_id where wc_assignschedule.assignschedule_status='1' group by wc_createschedule.createschedule_id ORDER BY wc_assignschedule.assignschedule_id DESC")or die(mysql_error());
+       $res = mysql_query("SELECT * from wc_assignschedule INNER JOIN wc_createschedule ON wc_assignschedule.assigncreateschedule_id=wc_createschedule.createschedule_id where wc_assignschedule.assignschedule_status='1' group by wc_assignschedule.assigncreateschedule_id,wc_assignschedule.assigncategory_id ORDER BY wc_assignschedule.assignschedule_id DESC")or die(mysql_error());
        $count=mysql_num_rows($res);
        while($row = mysql_fetch_array($res)) {
            $temp_arr[] =$row;
@@ -39,7 +39,8 @@ class assignscheduleFunction {
     if(isset($_GET['edit_get_data'])){
         include ("../dbconnect.php");
         $scheduleid = $_POST['shdl_id'];
-        $sql=mysql_query("select * from wc_assignschedule INNER JOIN wc_createschedule ON wc_assignschedule.assigncreateschedule_id=wc_createschedule.createschedule_id INNER JOIN wc_categories ON wc_categories.categories_id= wc_assignschedule.assigncategory_id INNER JOIN wc_athlete ON wc_athlete.athlete_id= wc_assignschedule.assignathlete_id where wc_assignschedule.assigncreateschedule_id = '$scheduleid'");
+        $categoryid = $_POST['cate_id'];
+        $sql=mysql_query("select * from wc_assignschedule INNER JOIN wc_createschedule ON wc_assignschedule.assigncreateschedule_id=wc_createschedule.createschedule_id INNER JOIN wc_categories ON wc_categories.categories_id= wc_assignschedule.assigncategory_id INNER JOIN wc_athlete ON wc_athlete.athlete_id= wc_assignschedule.assignathlete_id where wc_assignschedule.assigncreateschedule_id = '$scheduleid'and wc_assignschedule.assigncategory_id ='$categoryid' ");
         $row = array();
         while($r = mysql_fetch_assoc($sql)) {
             $row[] = $r;

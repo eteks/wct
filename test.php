@@ -6,11 +6,12 @@ $obj = new testfunction();
 
 ?>
 <?php
+$url = $_SERVER['PHP_SELF'];
 if(isset($_GET['insert'])){
-	echo "<script>alert('Test inserted successfully!')</script>";
+	echo "<script>alert('Test inserted successfully!');var url ='".$url."'; window.location = url ;</script>";
 }
 if(isset($_GET['update'])){
-	echo "<script>alert('Test updated successfully!')</script>";
+	echo "<script>alert('Test updated successfully!');var url ='".$url."'; window.location = url ;</script>";
 }
 ?>
 <div class="container">
@@ -148,10 +149,10 @@ if(isset($_GET['update'])){
 							<label>Enter Parameter Name</label><br>
 							<input type="text" class="adjust_width test_parameter_name_update" name="parameter_name1" data-validation-error-msg="Please Enter the Parameter Name" data-validation="required" >
 						</div>
-						<div class="form-group col-md-12 test_percentage">
+						<div class="form-group col-md-12 test_percentage parameter_type_parent">
 							<div class="col-md-4">
-								<select class="form-control classic type_align_popup fl parameter_type parameter_type_update" id="type1" name="type1" data-validation-error-msg="Please Select the Type" data-validation="required">
-									<option>Type</option>
+								<select class="form-control classic type_align_popup fl parameter_type_update" id="type_update" name="type_update" data-validation-error-msg="Please Select the Type" data-validation="required">
+									<option value="">Type</option>
 									<?php
 										$sql = mysql_query('select * from wc_parametertype') or die(mysql_error());
 										$count = mysql_num_rows($sql);
@@ -172,7 +173,7 @@ if(isset($_GET['update'])){
 								</select>
 							</div>
 							<div class="col-md-4">
-								<select class="form-control classic type_align_popup fl parameter_format_update" id="format1" name="format1" data-validation-error-msg="Please Select the Format" data-validation="required">
+								<select class="form-control classic type_align_popup fl parameter_format parameter_format_update" id="format1" name="format1" data-validation-error-msg="Please Select the Format" data-validation="required">
 									<option value="0">0</option>
 									<option value="1">1</option>
 									<option value="2">2</option>
