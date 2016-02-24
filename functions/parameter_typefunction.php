@@ -20,10 +20,15 @@
 			return $res;
 		}
 		public function parametertypeInsert(){
-			$res = mysql_query("insert into wc_parametertype (parametertype_name,parametertype_status) values('".$this->parametertypename."','1')")or die(mysql_error());
-			$lastinsertid = mysql_insert_id();
-			if($res){ return $lastinsertid; }
-			else{ return false; }
+			$check_query = "select * from wc_parametertype where parametertype_name = '".$this->parametertypename."' ";
+			if(!mysql_num_rows(mysql_query($check_query))){
+				$res = mysql_query("insert into wc_parametertype (parametertype_name,parametertype_status) values('".$this->parametertypename."','1')")or die(mysql_error());
+				$lastinsertid = mysql_insert_id();
+				if($res){ return $lastinsertid; }
+				else{ return false; }
+			}else{
+	          return false;
+	        }
 		}
 		public function isparametertypeExist(){
 			$qr = mysql_query("SELECT * FROM wc_parametertype WHERE parametertype_name = '".$this->parametertypename."'");

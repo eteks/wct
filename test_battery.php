@@ -19,6 +19,9 @@ if(isset($_GET['update_success'])){
 if(isset($_GET['insert_success'])){
 	echo "<script>alert('Test Battery inserted successfully');var url ='".$url."'; window.location = url ;</script>";
 }
+if(isset($_GET['duplicate'])){
+	echo "<script>alert('Test Battery already exist!');var url ='".$url."'; window.location = url ;</script>";
+}
  ?>
 <div class="container">
 	<div class="container align_center align_height">

@@ -265,6 +265,7 @@ $(window).resize(function () {
     package_menu();
   });
 $(document).ready(function () {
+    $("input").attr('maxlength','50');
   package_menu();
  	state_center_align();
   delete_center_align();
@@ -310,12 +311,13 @@ $(document).ready(function () {
         $('option:selected', this).attr('selected',true).siblings().removeAttr('selected');
     });
     $('.edit_test').click(function(){
-        var test_id = $(this).attr("data-value");
+        var test_attr_id = $(this).attr("data-value");
+        var test_id = $(this).attr("data-test-id");
         //alert(test_id);
         $.ajax({
              type: "POST",
              url: "functions/test_functions.php?gettestdata=true",
-             data:{'id':test_id},
+             data:{'id':test_attr_id,},
              cache: false,
              dataType:'json',
              success: function(data) {
@@ -324,7 +326,7 @@ $(document).ready(function () {
                  $('.parameter_type_update option[value="'+data.test_parameter_type+'"]').attr('selected','selected');
                  $('.parameter_unit_update').append('<option value="'+data.test_parameter_unit+'">'+data.test_parameter_unit+'</option>');
                  $('.parameter_format_update option[value="'+data.test_parameter_format+'"]').attr('selected','selected');
-                 $('.parameter_update').val(test_id);
+                 $('.parameter_update').val(test_attr_id);
                  $('.test_update_id').val(data.test_id);
             }
          });
@@ -457,24 +459,50 @@ $(document).ready(function () {
 	// });
 
   $(".submenu_list li").hide();
-    $('.master-holder').click(function(){
-      $(".master-list li").show();
-      $(".transaction-list li").hide();
+    // $('.master-holder').click(function(){
+    //   $(".master-list li").show();
+    //   $(".transaction-list li").hide();
+    // });
+    // $('.transaction-holder').click(function(){
+    //   $(".transaction-list li").show();
+    //   $(".master-list li").hide();
+    // });
+    // $('.report-holder').click(function(){
+    //   $(".master-list li").hide();
+    //   $(".transaction-list li").hide();
+    // });
+    // $('.master-list').mouseleave(function(){
+    //  $(".master-list li").fadeOut(1000);
+    // });
+    // $('.transaction-list').mouseleave(function(){
+    //  $(".transaction-list li").fadeOut(1000);
+    // });
+    $('.master-list li').click(function(e){
+      e.stopPropagation();
     });
-    $('.transaction-holder').click(function(){
-      $(".transaction-list li").show();
-      $(".master-list li").hide();
+    $(".master-holder").click(function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        $('.master-list li').show();
+        $(".transaction-list li").hide();
     });
-    $('.report-holder').click(function(){
-      $(".master-list li").hide();
-      $(".transaction-list li").hide();
+    $(document).click(function() {
+        $('.master-list li').hide();
     });
-    $('.master-list').mouseleave(function(){
-     $(".master-list li").fadeOut(1000);
+
+    $('.transaction-list li').click(function(e){
+      e.stopPropagation();
     });
-    $('.transaction-list').mouseleave(function(){
-     $(".transaction-list li").fadeOut(1000);
+    $(".transaction-holder").click(function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        $('.transaction-list li').show();
+        $(".master-list li").hide();
     });
+    $(document).click(function() {
+        $('.transaction-list li').hide();
+    });
+
 
     $('master-list li a').click(function(){
       $(this).addClass('clr');
@@ -689,9 +717,12 @@ $(document).ready(function () {
                        <span class='edit_state' onclick='editfunction("+result_split[2]+")'>Edit</span>\
                        <span class='delete_state' data-value="+result_split[2]+">Delete</span>\
                      </td></tr> ";
-                  $('.parameter_type_table tr:last').after(html);
+                  //$('.parameter_type_table tr:first').after(html);
                   document.parameter_type_form.reset();
                   location.reload();
+                }
+                else{
+                    alert('Parameter Type already exist!');
                 }
                 }
             })
@@ -1205,12 +1236,12 @@ $(document).ready(function () {
     $(document.body).delegate('.parameter_type','change',function() {
         var param_name = $(this).val();
         var this_content = $(this).attr('name');
-        if(param_name=='time'){
-             $('select[name="'+this_content+'"]').parents().find('.parameter_format').attr('disabled', 'disabled');
-        }
-        else{
-            $('select[name="'+this_content+'"]').parents().find('.parameter_format').removeAttr('disabled');
-        }
+        // if(param_name=='time'){
+        //      $('select[name="'+this_content+'"]').parents().find('.parameter_format').attr('disabled', 'disabled');
+        // }
+        // else{
+        //     $('select[name="'+this_content+'"]').parents().find('.parameter_format').removeAttr('disabled');
+        // }
 
         $.ajax({
            type: "POST",
@@ -1227,15 +1258,34 @@ $(document).ready(function () {
        });
         //$(this).attr('value', $(this).val())
     });
+    $(document.body).delegate('.parameter_unit','change',function() {
+        var param_unit = $(this).val();
+        var param_type = $('.parameter_type').val();
+        if(param_type == 'time'){
+            $('.parameter_format').empty().append("<option value="+param_unit+">"+param_unit+"</option>");
+        }else{
+            $('.parameter_format').empty().append("<option value=''>Format</option><option value='0'>0</option><option value='1'>1</option><option value='2'>2</option><option value='3'>3</option><option value='4'>4</option><option value='5'>5</option>");
+        }
+    });
+    $(document.body).delegate('.parameter_unit_update','change',function() {
+        var param_unit = $(this).val();
+        var param_type = $('.parameter_type_update').val();
+        if(param_type == 'time'){
+            $('.parameter_format').empty().append("<option value="+param_unit+">"+param_unit+"</option>");
+        }else{
+            $('.parameter_format').empty().append("<option value=''>Format</option><option value='0'>0</option><option value='1'>1</option><option value='2'>2</option><option value='3'>3</option><option value='4'>4</option><option value='5'>5</option>");
+        }
+    });
+
     $('.parameter_type_update').change(function() {
         var param_name = $(this).val();
         var this_content = $(this).attr('name');
-        if(param_name=='time'){
-             $('select[name="'+this_content+'"]').parents().find('.parameter_format').attr('disabled', 'disabled');
-        }
-        else{
-            $('select[name="'+this_content+'"]').parents().find('.parameter_format').removeAttr('disabled');
-        }
+        // if(param_name=='time'){
+        //      $('select[name="'+this_content+'"]').parents().find('.parameter_format').attr('disabled', 'disabled');
+        // }
+        // else{
+        //     $('select[name="'+this_content+'"]').parents().find('.parameter_format').removeAttr('disabled');
+        // }
 
         $.ajax({
            type: "POST",
@@ -1620,6 +1670,8 @@ $(document).ready(function () {
                             if(html == 'success'){
                                 alert('Parameterunit added successfully!');
                                 location.reload();
+                            }else if(html == 'error'){
+                                alert('Parameterunit already exist!');
                             }
                         }
                      });
@@ -1677,6 +1729,8 @@ $(document).ready(function () {
                if(html=='success'){
                    alert('Schedule successfully assigned');
                    location.reload();
+               }else if(html=='error'){
+                   alert('Schedule already exist!');
                }
            }
        });

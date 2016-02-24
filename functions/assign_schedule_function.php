@@ -25,16 +25,21 @@ class assignscheduleFunction {
 
     if(isset($_GET['add_assign_schdule'])){
         include ("../dbconnect.php");
-        $counter = (count($_POST)-2)/2;
-        for($i=1;$i<=$counter;$i++){
-            $scheduleid =  $_POST['Schedule'];
-            $categoryid = $_POST['category'];
-            $athlete_id = $_POST["athlete_name".$i.""];
-            $bib = $_POST["athlete_bib".$i.""];
-            $sql = "insert into wc_assignschedule (assigncreateschedule_id,assigncategory_id,assignathlete_id,assignbib_number,assignschedule_status)values('$scheduleid','$categoryid','$athlete_id','$bib','1')";
-            mysql_query($sql) or die(mysql_error());
+        $check_query = "select * from wc_assignschedule where assigncreateschedule_id = '".$_POST['Schedule']."' and assigncategory_id = '".$_POST['category']."'";
+        if(!mysql_num_rows(mysql_query($check_query))){
+            $counter = (count($_POST)-2)/2;
+            for($i=1;$i<=$counter;$i++){
+                $scheduleid =  $_POST['Schedule'];
+                $categoryid = $_POST['category'];
+                $athlete_id = $_POST["athlete_name".$i.""];
+                $bib = $_POST["athlete_bib".$i.""];
+                $sql = "insert into wc_assignschedule (assigncreateschedule_id,assigncategory_id,assignathlete_id,assignbib_number,assignschedule_status)values('$scheduleid','$categoryid','$athlete_id','$bib','1')";
+                mysql_query($sql) or die(mysql_error());
+            }
+            echo 'success';
+        }else {
+            echo 'error';
         }
-        echo 'success';
     }
     if(isset($_GET['edit_get_data'])){
         include ("../dbconnect.php");

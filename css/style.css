@@ -642,6 +642,17 @@ select {
     color: #424242  !important;
     font-family: Montserrat;
 }
+.result_athletename,.result_athletemobile{
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    height: 34px;
+    margin: 12px 0 0px 5px;
+    position: relative;
+    right: 18px;
+    width: 205px !important;
+    color: #424242  !important;
+    font-family: Montserrat;
+}
 .date_assign{
     border-radius: 0 !important;
     box-shadow: none !important;
@@ -650,6 +661,17 @@ select {
     position: relative;
     right: 20px;
     width: 192px !important;
+    color: #424242  !important;
+    font-family: Montserrat;
+}
+.result_athletedate,.result_athletebib{
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    height: 34px;
+    margin: 12px 0 0;
+    position: relative;
+    right: 35px;
+    width: 195px !important;
     color: #424242  !important;
     font-family: Montserrat;
 }
@@ -704,7 +726,7 @@ select {
 label{
     color: #414141 !important;
     font-family: Montserrat;
-}
+} 
 button, input, optgroup, select, textarea {
     font-family: Montserrat !important;
 }
@@ -995,7 +1017,7 @@ input[type=radio]:checked + label:before {
     margin: 15px 0 10px -10px;
     position: relative;
     right: 100px;
-    width: 132px !important;
+    width: 125px !important;
 }
 .create-time2{
     border-radius: 0 !important;
@@ -1006,7 +1028,7 @@ input[type=radio]:checked + label:before {
     margin: 15px 0 10px;
     position: relative;
     right: 65px;
-    width: 132px !important;
+    width: 125px !important;
 }
 .create-time3{
     border-radius: 0 !important;
@@ -1017,7 +1039,7 @@ input[type=radio]:checked + label:before {
     margin: 15px 0 10px -36px;
     position: relative;
     right: -15px;
-    width: 132px !important;
+    width: 125px !important;
 }
 .area_width_create{
     width: 102%;
@@ -1088,12 +1110,12 @@ input[type=radio]:checked + label:before {
     border: 1px solid #ccc;
     color: black;
     height: 34px;
-    margin-right: 10px;
+    margin-right: 17px;
     margin-top: 10px;
-    padding: 6px 12px;
+    padding: 6px 2px;
     position: relative;
-    right: 78px;
-    width: 128px;
+    right: 80px;
+    width: 125px;
 }
 .date_pick {
     width: 33%;
@@ -1278,7 +1300,7 @@ input[type=radio]:checked + label:before {
     border-right: 12px solid transparent;
     border-top: 14px solid #828282;
     height: 0;
-    left: 7px;
+    left: 8px;
     position: absolute;
     top: -15px;
     width: 0;
@@ -1305,4 +1327,7 @@ input[type=radio]:checked + label:before {
     display: none;
     color: red;
     font-size: 12px;
+}
+.athlete__txt{
+    font-weight: bold !important;
 }

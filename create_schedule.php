@@ -35,7 +35,7 @@
 				    	<input class="date_pick" type="text">					  
 					</div>				
 					<div class="form-group col-md-12">
-					  <label for="date" class="fl">Select Time</label><br>
+					  <label for="date" class="fl" style="position: relative; left: -10px;">Select Time</label><br>
 					  	<div class="form-group align-time col-md-3">
 							<select class="form-control classic adjust_tiny fl" id="hour" name="schedule_hour" data-validation-error-msg="Please Select the Hour" data-validation="required">
 							  	<option value="">Hour</option>
