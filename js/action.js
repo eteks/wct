@@ -525,12 +525,14 @@ $(document).ready(function () {
     selected_state = $('option:selected',this).text();
     selected_state_id = $('option:selected',this).val();
     form_data = {'states_name':selected_state,'states_id':selected_state_id};
+    alert(JSON.stringify(form_data));
      $.ajax({
            type: "POST",
            url: "functions/district_function.php?loaddistrictfromdb=true",
            data: form_data,
            cache: false,
            success: function(data) {
+            alert(data);
             var obj = JSON.parse(data);
             var options = '<option></option>';
               $.each(obj, function(i){
