@@ -3,6 +3,11 @@
       require_once 'functions/assign_schedule_function.php';
       $assignscheduleFunction = new assignscheduleFunction()
 ?>
+<style>
+	#ui-id-1{
+    	width: 204px !important;
+	}
+</style>
 <div class="container">
 	<div class="container align_center align_height">
 		<span class="sports">RESULT</span>
@@ -25,7 +30,7 @@
 						  </select>
 					</div>
 					<div class="form-group col-md-12 schedule_btn">
-				      	<label for="athlete" class="email_txt">Select Athletes</label><br>
+				      	<label for="athlete" class="email_txt athlete__txt">Select Athletes</label><br>
 				      	<div class="form-group col-md-5">
 				      		<input type="text" class="form-control name_align fl result_athletename" id="result_athletename" placeholder="Name" name="result_athletename" data-validation-error-msg="Please Enter the name of the Athelete" data-validation="required">
 				      	</div>

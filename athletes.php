@@ -23,8 +23,8 @@
 						<input type="text" class="adjust_width" name="athlete_name" data-validation-error-msg="Please Enter the name of the Athelete" data-validation="required">
 					</div>
 
-					<div class="form-group">
-					  <label for="date" class="fl">Date Of Birth</label><br>
+					<div class="form-group" style="margin-left: -15px;">
+					  <label for="date" class="fl" style="position: relative; left: 15px;">Date Of Birth</label><br>
 					  <input class="athlete_date_pick" type="text">
 					 <!-- <select class="form-control classic dob_align fl" id="date" name="athlete_dobday" data-validation-error-msg="Please Select the Date" data-validation="required">
 					  	<option value="">Date</option>
@@ -176,8 +176,8 @@
 						<label>Athlete Name</label><br>
 						<input type="text" class="adjust_width" name="edit_athlete_name" data-validation-error-msg="Please Enter the name of the Athelete" data-validation="required">
 					</div>
-					<div class="form-group align-day">
-					  <label for="date" class="fl">Date Of Birth</label><br>
+					<div class="form-group align-day" style="margin-left: -15px;">
+					  <label for="date" class="fl" style="position: relative; left: 15px;">Date Of Birth</label><br>
 					  <input class="popup_athlete_datepick" type="text">
 					 <!--  <select class="form-control classic dob_align1 fl" id="date1" name="edit_athlete_dobday" data-validation-error-msg="Please Select the Date" data-validation="required">
 					  	<option value="">Date</option>

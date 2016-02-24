@@ -5,11 +5,11 @@ require_once "functions/create_schedule_function.php";
 $createschedule = new createscheduleFunction();
 ?>
 
-<div class="container">
+<div class="container col-md-12" style="padding: 0px;">
 	<div class="container align_center align_height">
 		<span class="sports">REPORTS</span>
 	</div><!--end container-->
-	<div class="container">
+	<div class="container col-md-12" style="padding: 0px;">
 		<div class="col-xs-12 col-md-11">
 			<div class="col-md-4 hidden-xs"></div>
 			<div class="col-xs-12 col-md-7 align_margin">
@@ -90,6 +90,7 @@ $createschedule = new createscheduleFunction();
 			</div>
 		</div>
 	</div><!-- end  container-->
+
 
 	<div class="text-center">
 		<a href="#" class="export btn btn-primary">Export Table data into Excel</a>

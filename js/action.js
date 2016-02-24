@@ -456,24 +456,50 @@ $(document).ready(function () {
 	// });
 
   $(".submenu_list li").hide();
-    $('.master-holder').click(function(){
-      $(".master-list li").show();
-      $(".transaction-list li").hide();
+    // $('.master-holder').click(function(){
+    //   $(".master-list li").show();
+    //   $(".transaction-list li").hide();
+    // });
+    // $('.transaction-holder').click(function(){
+    //   $(".transaction-list li").show();
+    //   $(".master-list li").hide();
+    // });
+    // $('.report-holder').click(function(){
+    //   $(".master-list li").hide();
+    //   $(".transaction-list li").hide();
+    // });
+    // $('.master-list').mouseleave(function(){
+    //  $(".master-list li").fadeOut(1000);
+    // });
+    // $('.transaction-list').mouseleave(function(){
+    //  $(".transaction-list li").fadeOut(1000);
+    // });
+    $('.master-list li').click(function(e){
+      e.stopPropagation();
     });
-    $('.transaction-holder').click(function(){
-      $(".transaction-list li").show();
-      $(".master-list li").hide();
+    $(".master-holder").click(function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        $('.master-list li').show();
+        $(".transaction-list li").hide();
     });
-    $('.report-holder').click(function(){
-      $(".master-list li").hide();
-      $(".transaction-list li").hide();
+    $(document).click(function() {
+        $('.master-list li').hide();
     });
-    $('.master-list').mouseleave(function(){
-     $(".master-list li").fadeOut(1000);
+
+    $('.transaction-list li').click(function(e){
+      e.stopPropagation();
     });
-    $('.transaction-list').mouseleave(function(){
-     $(".transaction-list li").fadeOut(1000);
+    $(".transaction-holder").click(function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        $('.transaction-list li').show();
+        $(".master-list li").hide();
     });
+    $(document).click(function() {
+        $('.transaction-list li').hide();
+    });
+
 
     $('master-list li a').click(function(){
       $(this).addClass('clr');
