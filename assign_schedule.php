@@ -80,8 +80,17 @@ if(isset($_GET['update_success'])){
 						    </div>
 						</div>
 					</div>
-					<div class="form-group assign-add-button">
-						<input type="submit" class="btn btn-primary align_right adds_btn add_athelete" value="Add"><i class="fa fa-plus add_align"></i>
+					<div class="form-group assign-add-button col-md-3">
+						<!-- <input type="submit" class="btn btn-primary align_right adds_btn add_athelete" value="Add"> -->
+						<!-- <i class="fa fa-plus add_align"></i> -->
+						<i class="fa fa-plus plus_align add_athelete">
+							<div class="tooltip_parameter">Add</div>
+							<div class="tip_triangle"></div>
+						</i>
+						<i class="fa fa-minus assign_remove">
+							<div class="tooltip_remove">Remove</div>
+							<div class="tip_triangle"></div>
+						</i>
 					</div>
 					<div class="col-md-9 schedule_btn">
 						<input type="submit" class="btn btn-primary align_right clear assignschedule_submit" value="Submit">

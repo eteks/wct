@@ -1,7 +1,7 @@
 <?php require_once "session.php";
 	  require_once "header.php";
-	  require_once 'functions/create_schedule_function.php';
-      $createscheduleFunction = new createscheduleFunction();
+      require_once 'functions/assign_schedule_function.php';
+      $assignscheduleFunction = new assignscheduleFunction()
 ?>
 <div class="container">
 	<div class="container align_center align_height">
@@ -17,10 +17,10 @@
 						  <select class="form-control adjust_width classic resultcreateschedule_act" id="sel1" name="result_createschedule" data-validation-error-msg="Please Select Name of the Schedule" data-validation="required">
 						  <option></option>
 						  <?php
-	                        $query = $createscheduleFunction->createscheduleSelect();
-	                        while ($row = mysql_fetch_array($query)) {
+	                        $query = $assignscheduleFunction->assignscheduleSelect();
+	                        foreach( $query as $eachrecord ) {
 	                            ?>
-	                            <option value="<?php echo $row['createschedule_id']; ?>"><?php echo $row['createschedule_name']; ?></option>
+	                            <option value="<?php echo $eachrecord['createschedule_id']; ?>"><?php echo $eachrecord['createschedule_name']; ?></option>
 	                      <?php } ?>
 						  </select>
 					</div>

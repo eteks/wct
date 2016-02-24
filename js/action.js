@@ -525,12 +525,14 @@ $(document).ready(function () {
     selected_state = $('.athlete_state_act option:selected').text();
     selected_state_id = $('.athlete_state_act option:selected').val();
     form_data = {'states_name':selected_state,'states_id':selected_state_id};
+    alert(JSON.stringify(form_data));
      $.ajax({
            type: "POST",
            url: "functions/district_function.php?loaddistrictfromdb=true",
            data: form_data,
            cache: false,
            success: function(data) {
+            alert(data);
             var obj = JSON.parse(data);
             var options = '<option></option>';
               $.each(obj, function(i){
@@ -690,9 +692,8 @@ $(document).ready(function () {
                      </td></tr> ";
                   $('.parameter_type_table tr:last').after(html);
                   document.parameter_type_form.reset();
-
-                }
-                location.reload();
+                  location.reload();
+                }                
                 }
             })
          }
@@ -1752,7 +1753,8 @@ $(document).ready(function () {
         var id = current_id+1;
         current_id = id;
         newElement.find('.range_label').remove();
-        newElement.find('.r_strt').removeAttr('name').attr('name', 'range_start'+id).val($('#end'+(id-1)).val());
+        startrange = Number($('#end'+(id-1)).val())+1;
+        newElement.find('.r_strt').removeAttr('name').attr('name', 'range_start'+id).val(startrange);
         newElement.find('.r_end').removeAttr('name').attr('name', 'range_end'+id).val('');
         newElement.find('.r_point').removeAttr('name').attr('name', 'range_points'+id).val('');
         newElement.find('.r_strt').removeAttr('id').attr('id','strt'+id);
@@ -1921,9 +1923,14 @@ $(document).ready(function () {
 
         // status = 0;
         for (var i = 0; i < ranges.length; i++) {
-          if ((value>=ranges[i].range_start) && (value<=ranges[i].range_end)){
+          // alert(ranges[i].range_start);
+          // alert(ranges[i].range_end);
+          // alert(value);
+          if (value >= ranges[i].range_start && value <= ranges[i].range_end){
+            // alert("if");
             status = 1;
             if(decimals <= parameter_format){
+               // alert("yes");
                $(this).parents('tr').find('.enter_points').text(ranges[i].range_point);
                break;
             }
@@ -2027,6 +2034,12 @@ $(document).ready(function () {
     $('.range_remove').click(function(){
       if($('.clone_content').length !=1){
         $('.clone_content:last').remove();
+        current_id -=1;
+      }
+    });
+    $('.assign_remove').click(function(){
+      if($('.assign_clone_content').length !=1){
+        $('.assign_clone_content:last').remove();
       }
     });
 

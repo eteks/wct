@@ -12,7 +12,7 @@
 
 		}
 		public function parametertypeSelect(){
-			$res = mysql_query("select * from wc_parametertype where parametertype_status ='1'")or die(mysql_error());
+			$res = mysql_query("select * from wc_parametertype where parametertype_status ='1' ORDER BY parametertype_id DESC")or die(mysql_error());
 			return $res;
 		}
 		public function selectData(){

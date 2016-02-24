@@ -14,7 +14,7 @@ class parameterunitFunction {
     }
     public function parameterunitSelect(){
         $temp_arr = array();
-        $res = mysql_query("select * from wc_parameterunit inner join wc_parametertype on wc_parameterunit.parametertype_id=wc_parametertype.parametertype_id  where parametertype_status ='1'")or die(mysql_error());
+        $res = mysql_query("select * from wc_parameterunit inner join wc_parametertype on wc_parameterunit.parametertype_id=wc_parametertype.parametertype_id  where parametertype_status ='1' ORDER BY parameterunit_id DESC")or die(mysql_error());
         while($row = mysql_fetch_array($res)) {
             $temp_arr[] =$row;
         }

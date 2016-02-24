@@ -33,18 +33,19 @@
 			    <tbody>
 					<?php
 					   $query = $parametertypeFunction->parametertypeSelect();
+					   $i=1;
 					   while ($row = mysql_fetch_array($query)) {
 					?>
 			      <tr class="align_center delete_color">
 					  <input type="hidden" name="states_id" value="<?php echo $row['parametertype_id']; ?>">
-			        <td class="t_pararmeter_id"><?php echo $row['parametertype_id']; ?></td>
+			        <td class="t_pararmeter_id"><?php echo $i; ?></td>
 			        <td class="t_pararmeter_name"><?php echo $row['parametertype_name']; ?></td>
 			        <td>
 			        	<span class="edit_state" onclick="editfunction(<?php echo $row['parametertype_id'] ?>)">Edit</span>
 		        		<span class="delete_state" data-value="<?php echo $row['parametertype_id'] ?>">Delete</span>
 			        </td>
 			      </tr>
-				   <?php } ?>
+				   <?php $i++; } ?>
 			    </tbody>
 			  </table>
 			</div>

@@ -116,7 +116,7 @@
 			foreach ($DISTRICT as $element) {
 		        if (in_array($_POST['edit_district_name'], $element)){$editstatus = true;}
 	        }
-			if ($editstatus) {
+			// if ($editstatus) {
 				$district = $districtFunction->isdistrictExist();
 				if(!$district){
 					$districtupdate = $districtFunction->districtUpdate();
@@ -129,10 +129,10 @@
 				else {
 					echo "failure#District Already Exist";
 				}
-			}
-			else{
-				echo "failure#No District Present in that Name";
-			}
+			// }
+			// else{
+			// 	echo "failure#No District Present in that Name";
+			// }
 		}
 		// To delete stored data
 		if(isset($_GET['deletedata'])){

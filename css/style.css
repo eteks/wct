@@ -1167,8 +1167,8 @@ input[type=radio]:checked + label:before {
     width: 174px;
 }
 .assign-add-button {
-    bottom: 75px;
-    float: right;
+    bottom: 65px;
+    float: right !important;
     left: 10px;
     position: relative;
 }
@@ -1265,6 +1265,12 @@ input[type=radio]:checked + label:before {
 .range_remove:hover .tip_triangle{
     display: block;
 }
+.assign_remove:hover .tooltip_remove{
+    display: block;
+}
+.assign_remove:hover .tip_triangle{
+    display: block;
+}
 .tip_triangle{
     display:none;
     border-left: 10px solid transparent;
@@ -1277,6 +1283,15 @@ input[type=radio]:checked + label:before {
     width: 0;
 }
 .range_remove{
+    background: #006687 none repeat scroll 0 0;
+    color: #fff;
+    cursor: pointer;
+    left: 6px;
+    padding: 10px;
+    position: relative;
+    top: -1px;
+}
+.assign_remove{
     background: #006687 none repeat scroll 0 0;
     color: #fff;
     cursor: pointer;
