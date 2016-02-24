@@ -56,7 +56,7 @@ if(isset($_GET['update_success'])){
 						  	  <?php } ?>
 						  </select>
 					</div>
-					<label for="athlete" class="email_txt">Add Athletes</label><br>
+					<label for="athlete">Add Athletes</label><br>
 					<div class="assign_content_holder col-md-11">
 						<div class="assign_clone_content">
 							<div class="form-group col-md-12">

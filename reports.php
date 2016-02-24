@@ -9,7 +9,6 @@ $createschedule = new createscheduleFunction();
 	<div class="container align_center align_height">
 		<span class="sports">REPORTS</span>
 	</div><!--end container-->
-
 	<div class="container">
 		<div class="col-xs-12 col-md-11">
 			<div class="col-md-4 hidden-xs"></div>
