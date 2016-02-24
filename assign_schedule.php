@@ -121,7 +121,7 @@ if(isset($_GET['update_success'])){
 			        <td><?php echo $i; ?></td>
 			        <td><?php echo $eachrecord ['createschedule_name']; ?></td>
 			        <td>
-			        	<span class="edit_state edit_assign_schedule" data-value="<?php echo $eachrecord ['createschedule_id']; ?>">Edit</span>
+			        	<span class="edit_state edit_assign_schedule" data-schedule="<?php echo $eachrecord ['createschedule_id']; ?>" data-category="<?php echo $eachrecord ['assigncategory_id']; ?>">Edit</span>
 		        		<span class="delete_state" data-value="<?php echo $eachrecord ['assignschedule_id']; ?>">Delete</span>
 			        </td>
 			      </tr>
