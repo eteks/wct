@@ -287,11 +287,24 @@ $(document).ready(function () {
        });
   });
 
-  $(document).on('keypress','#mobile,#result_athletemobile,#bib,#result_athletebib,.r_strt,.r_end,.r_point',function(e){
+  $(document).on('keypress','#mobile,#result_athletemobile,#bib,#result_athletebib',function(e){
+     var pattern = /^[0-9@!#\$\^%&*()+=\-\[\]\\\';,\.\/\{\}\|\":<>\? ]+$/;
      if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
                return false;
     }
    });
+
+  $(document).on('keypress','.r_strt,.r_end,.r_point,.edit_r_strt,.edit_r_end,.edit_r_point',function(e){
+      var theEvent = e || window.event;
+          var key = theEvent.keyCode || theEvent.which;
+          key = String.fromCharCode(key);
+          if (key.length == 0) return;
+          var regex = /^[0-9.:\b]+$/;
+          if (!regex.test(key)) {
+              theEvent.returnValue = false;
+              if (theEvent.preventDefault) theEvent.preventDefault();
+          }
+     });
 
    //Edit popup
   	$(document.body).delegate('.edit_state','click',function() {
@@ -534,7 +547,7 @@ $(document).ready(function () {
            success: function(data) {
             alert(data);
             var obj = JSON.parse(data);
-            var options = '<option></option>';
+            var options = '<option value="">District</option>';
               $.each(obj, function(i){
                 options += '<option value="'+obj[i].district_id+'">'+obj[i].district_name+'</option>';
               });

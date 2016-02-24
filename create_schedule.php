@@ -50,7 +50,19 @@
 							    <option value="09">09</option>
 							    <option value="10">10</option>
 							    <option value="11">11</option>
-							    <option value="12">12</option>					   
+							    <option value="12">12</option>
+							    <option value="01">13</option>
+							    <option value="02">14</option>
+							    <option value="03">15</option>
+							    <option value="04">16</option>						   
+							    <option value="05">17</option>
+							    <option value="06">18</option>
+							    <option value="07">19</option>
+							    <option value="08">20</option>
+							    <option value="09">21</option>
+							    <option value="10">22</option>
+							    <option value="11">23</option>
+							    <option value="12">24</option>						   
 							</select>
 						</div>
 						<div class="form-group align-time col-md-3">
@@ -311,7 +323,19 @@
 							    <option value="09">09</option>
 							    <option value="10">10</option>
 							    <option value="11">11</option>
-							    <option value="12">12</option>
+							    <option value="12">12</option>							 
+							    <option value="01">13</option>
+							    <option value="02">14</option>
+							    <option value="03">15</option>
+							    <option value="04">16</option>						   
+							    <option value="05">17</option>
+							    <option value="06">18</option>
+							    <option value="07">19</option>
+							    <option value="08">20</option>
+							    <option value="09">21</option>
+							    <option value="10">22</option>
+							    <option value="11">23</option>
+							    <option value="12">24</option>			
 							</select>
 						</div>
 						<div class="col-md-3">
