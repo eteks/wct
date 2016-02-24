@@ -1,5 +1,6 @@
 <div class="footer col-md-12">
-    <span class="footer_txt col-md-12">@2016 Atomicka.All Right Reserved.</span>
+    <span class="footer_txt col-md-12">Copyright &copy; 2016 Wellocity All Rights Reserved  <span class="fr">Powered by INFOM ATOMICKA (TECH) Pvt Ltd.</span></span>
+
 </div>
 <script type="text/javascript" src="js/paging.js"></script>   
 <script type="text/javascript">

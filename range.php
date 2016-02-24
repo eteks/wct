@@ -19,10 +19,9 @@
 			<div class="col-xs-12 col-md-7 align_margin">
 				<form name="range_form" id="range_form_id">
 					<div class="form-group">
-						  <label for="sel1">Select Test Battery Names</label>
-						  <option value=""></option>
+						  <label for="sel1">Select Test Battery Names</label>					
 						  <select class="form-control adjust_width classic" id="sel1" name="range_testbattery" data-validation-error-msg="Please Select the Name of Test Battery " data-validation="required">
-						  <option></option>
+						  <option value="">Select Test Battery Names</option>
 						  <?php
 	                        $query = $testbatteryfunction->testbatterySelect();
 	                        while ($row = mysql_fetch_array($query)) {
@@ -34,7 +33,7 @@
 					<div class="form-group">
 						  <label for="sel1">Category</label>
 						  <select class="form-control adjust_width classic range_category" id="sel1" name="range_category" data-validation-error-msg="Please Select the Category of Test Battery" data-validation="required">
-						    <option value=""></option>
+						    <option value="">Category</option>
 						  <!--<?php
 						  $cat_data = $categoryfunction->categoryselectfunction();
 						  foreach( $cat_data as $eachrecord ) {
@@ -46,7 +45,7 @@
 					<div class="form-group">
 						  <label for="sel1">Test Name</label>
 						  <select class="form-control adjust_width classic range_test" id="sel1" name="range_test" data-validation-error-msg="Please Select the name of the Test" data-validation="required">
-						  <option value=""></option>
+						  <option value="">Test Name</option>
 						   <!-- <?php
 	                        $query = $testfunction->testSelect();
 	                        while ($row = mysql_fetch_array($query)) {
@@ -58,7 +57,7 @@
 					<div class="form-group">
 						  <label for="sel1">Parameter Name</label>
 						  <select class="form-control adjust_width classic range_parameter" id="sel1" name="range_parameter" data-validation-error-msg="Please Select the name of the Parameter" data-validation="required">
-						  <option value=""></option>
+						  <option value="">Parameter Name</option>
 						  </select>
 					</div>
 					<!-- <div class="form-group range_holder">
@@ -162,7 +161,7 @@
 					<div class="form-group">
 					    <label for="sel1">Select Test Battery Names</label>
 					  	<select class="form-control adjust_width classic" id="sel1" name="edit_range_testbattery" data-validation-error-msg="Please Select the Name of Test Battery " data-validation="required">
-						  <option value=""></option>
+						  <option value="">Select Test Battery Names</option>
 						  <?php
 	                        $query = $testbatteryfunction->testbatterySelect();
 	                        while ($row = mysql_fetch_array($query)) {
@@ -174,7 +173,7 @@
 					<div class="form-group">
 						  <label for="sel1">Category</label>
 						  <select class="form-control adjust_width classic range_category" id="sel1" name="edit_range_category" data-validation-error-msg="Please Select the Category of Test Battery " data-validation="required">
-						  <option value=""></option>
+						  <option value="">Category</option>
 						  <!-- <?php
 						  $cat_data = $categoryfunction->categoryselectfunction();
 						  foreach( $cat_data as $eachrecord ) {
@@ -186,7 +185,7 @@
 					<div class="form-group">
 						  <label for="sel1">Test Name</label>
 						  <select class="form-control adjust_width classic range_test" id="sel1" name="edit_range_test" data-validation-error-msg="Please Select the Test Name" data-validation="required">
-						  <option value=""></option>
+						  <option value="">Test Name</option>
 						 <!--  <?php
 	                        $query = $testfunction->testSelect();
 	                        while ($row = mysql_fetch_array($query)) {
@@ -198,7 +197,7 @@
 					<div class="form-group">
 						  <label for="sel1">Parameter Name</label>
 						  <select class="form-control adjust_width classic range_parameter" id="sel1" name="edit_range_parameter" data-validation-error-msg="Please Select the name of the Parameter" data-validation="required">
-						  <option value=""></option>
+						  <option value="">Parameter Name</option>
 						  <!-- <?php
 	                        $query = $testfunction->testattributeSelect();
 	                        while ($row = mysql_fetch_array($query)) {

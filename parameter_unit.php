@@ -15,6 +15,8 @@
 					<div class="form-group">
 						  <label for="sel1">Select Parameter Type</label>
 						  <select class="form-control adjust_width classic" id="sel1" name="parametertype"  data-validation-error-msg="Please Select the Type of the Parameter" data-validation="required">
+							
+							<option value="">Select Parameter Type</option>
 							  <?php
 			  				$data = $parameterunitFunction->parametertypeSelect();
 			  				foreach( $data as $eachrecord ) {
@@ -80,7 +82,7 @@
 						  <label for="sel1">Select Parameter Type</label>
 						  <input type="hidden" class="edit_param_unit_id" name="edit_param_unit_id"  value=""/>
 						  <select class="form-control adjust_width classic edit_param_type" id="sel1" name="parameter_type" data-validation-error-msg="Please Select the Type of the Parameter" data-validation="required">
-							  <?php
+							<option value="">Select Parameter Type</option>  <?php
 							$data = $parameterunitFunction->parametertypeSelect();
 							foreach( $data as $eachrecord ) {
 							 ?>

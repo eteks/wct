@@ -35,6 +35,7 @@ if(isset($_GET['update_success'])){
 					<div class="form-group">
 						  <label for="sel1">Select Schedule Name</label>
 						  <select class="form-control adjust_width classic" id="sel1" name="Schedule" data-validation-error-msg="Please Select Name of the Schedule" data-validation="required">
+							 <option value="">Select Schedule Name</option>
 							 <?php
 		   						 $data = $createschedule->createscheduleselectfunction();
 		   						 foreach( $data as $eachrecord ) {
@@ -98,8 +99,8 @@ if(isset($_GET['update_success'])){
 						</i>
 					</div>
 					<div class="col-md-9 schedule_btn">
-						<input type="submit" class="btn btn-primary align_right clear assignschedule_submit" value="Submit">
-						<input type="reset" class="btn btn-primary align_right test-submit clear" value="Clear">
+						<input type="reset" class="btn btn-primary align_right clear" value="Clear">
+						<input type="submit" class="btn btn-primary align_right test-submit clear assignschedule_submit" value="Submit">						
 					</div>
 				</form>
 			</div>
@@ -155,7 +156,7 @@ if(isset($_GET['update_success'])){
 					<div class="form-group">
 						  <label for="sel1">Select Category Name</label>
 						  <select class="form-control adjust_width classic category_update" id="sel1" name="category" data-validation-error-msg="Please Select Category of the Schedule" data-validation="required">
-							<option value="">Category Name</option>
+							<option value="">Select Category Name</option>
 							<?php
    							 $data = $category->categoryselectfunction();
    							 foreach( $data as $eachrecord ) {
@@ -198,8 +199,8 @@ if(isset($_GET['update_success'])){
 					<input type="hidden" name="assing_schedule_update" value="1" />
 
 					<div class="col-md-10 schedule_btn">
-						<input type="submit" class="btn btn-primary align_right clear" value="Submit">
-						<input type="reset" class="btn btn-primary align_right test-submit clear" value="Clear">
+						<input type="reset" value="Clear" class="btn btn-primary align_right  clear">
+  					<input type="submit" value="Submit" class="btn btn-primary align_right test-submit clear">			
 					</div>
 				</form>
 			</div>

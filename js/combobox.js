@@ -24,6 +24,7 @@
           minLength: 0,
           source: $.proxy( this, "_source" )
         })
+        .attr("required","true")
         .tooltip({
           tooltipClass: "ui-state-highlight"
         });
