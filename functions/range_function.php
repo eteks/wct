@@ -166,8 +166,8 @@
 
 		$testname = mysql_fetch_array( $rangeFunction->testnameSelect());
 		$rangeFunction->rangetestname = $testname['test_name'];
-		$paramters = $rangeFunction->isParameterExist();
-		if(!$paramters){
+		// $paramters = $rangeFunction->isParameterExist();
+		// if(!$paramters){
 			$rangeupdate = $rangeFunction->rangeUpdate();
 			if($rangeupdate){
 				for($i=1;$i<=$counter;$i++){
@@ -181,10 +181,10 @@
 			}else{
 				echo "failure#Range Not Updated";
 			}
-		}
-		else{
-			echo "failure#Already Assigned Range for this parameter";
-		}	
+		// }
+		// else{
+		// 	echo "failure#Already Assigned Range for this parameter";
+		// }	
 	}
 	// To delete stored data
 	if(isset($_GET['deletedata'])){
