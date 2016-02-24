@@ -1,4 +1,4 @@
-<?php
+ <?php
 class testfunction{
     public $testid;
     public $testname;
@@ -20,19 +20,19 @@ class testfunction{
     }
 
     public function testnameinsertfunction(){
-        // $check_query = "select * from wc_test where test_name = '".$this->testname."' ";
-        // if(!mysql_num_rows(mysql_query($check_query))){
+        $check_query = "select * from wc_test where test_name = '".$this->testname."' ";
+        if(!mysql_num_rows(mysql_query($check_query))){
           $sql = "insert into wc_test (test_name,test_status) values ('".$this->testname."','1') ";
           mysql_query($sql) or die("insert:".mysql_error());
           return true;
-        // }else{
-        //   return false;
-        // }
+        }else{
+          return false;
+        }
 
     }
 
     public function testupdatefunction(){
-        $check_query = "select * from wc_sports where sports_name = '".$this->sportsname."' ";
+        $check_query = "select * from wc_sports where sports_id = '".$this->sportsid."' ";
         if(!mysql_num_rows(mysql_query($check_query))){
             $sql = "update wc_sports set sports_name='".$this->sportsname."',sports_status='1' where sports_id ='".$this->sportsid."' ";
             mysql_query($sql) or die("update:".mysql_error());
@@ -84,7 +84,7 @@ class testfunction{
             }
             header('Location:../test.php?insert=true');
         }else {
-          echo "error";
+          header('Location:../test.php?insert_error=true');
         }
     }
     if(isset($_POST['parameter_update'])){
@@ -92,9 +92,11 @@ class testfunction{
         $parameter_id = $_POST['parameter_update'];
         $testid =$_POST['test_update_id'];
         $parameter_name = $_POST['parameter_name1'];
-        $paramtype = $_POST['type_update'];
+        $paramtype = $_POST['type1'];
         $paramunit = $_POST['unit1'];
         $paramformat = $_POST['format1'];
+        $test_name = $_POST['test_name'];
+        mysql_query("update wc_test set test_name ='$test_name' where test_id = $testid ")or die(mysql_error());
         mysql_query("update wc_test_attribute set test_parameter_name ='$parameter_name',test_parameter_type ='$paramtype',test_parameter_unit='$paramunit',test_parameter_format ='$paramformat' where test_attribute_id = $parameter_id ")or die(mysql_error());
         header('Location:../test.php?update=true');
 

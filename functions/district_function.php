@@ -10,7 +10,7 @@
 		}
 		// destructor
 		function __destruct() {
-
+			
 		}
 		//To select all record for displaying data in table
 		public function districtSelect(){

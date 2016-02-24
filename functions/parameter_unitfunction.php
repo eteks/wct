@@ -26,9 +26,14 @@ class parameterunitFunction {
         return $row;
     }
     public function parameterunitinsertfunction(){
-        $sql = "insert into wc_parameterunit (parametertype_id,parameterunit,parameterunit_status) values ('".$this->parametertypeid."','".$this->parameterunitname."','1')";
-        mysql_query($sql) or die("delete".mysql_error());
-        return true;
+        $check_query = "select * from wc_parameterunit where parametertype_id = '".$this->parametertypeid."' and parameterunit = '".$this->parameterunitname."' ";
+        if(!mysql_num_rows(mysql_query($check_query))){
+            $sql = "insert into wc_parameterunit (parametertype_id,parameterunit,parameterunit_status) values ('".$this->parametertypeid."','".$this->parameterunitname."','1')";
+            mysql_query($sql) or die("delete".mysql_error());
+            return true;
+        }else{
+            return false;
+        }
     }
     public function parameterdeletefunction(){
         $sql = "delete from wc_parameterunit where parameterunit_id ='".$this->parameterunitid."'";

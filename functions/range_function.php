@@ -66,6 +66,10 @@
 			$res = mysql_query("SELECT * FROM wc_test_attribute WHERE test_id='".$this->rangetestid."'")or die(mysql_error());
 			return $res;
 		}
+		public function parameterSelect(){
+			$res = mysql_query("SELECT * FROM wc_test_attribute WHERE test_attribute_id='".$this->rangetestattributeid."'")or die(mysql_error());
+			return $res;
+		}
 		//Fetch Category by selected testbattery id
 		public function categoryselect(){
 			$res = mysql_query("SELECT categories_id, categories_name FROM wc_categories as c INNER JOIN wc_testbattery_category_attribute as tbca ON 
@@ -238,4 +242,20 @@
 
 	    echo json_encode($category_json).'#####'.json_encode($test_json);
 	} 
+	// To load parameter format and unit using testattribute id
+	if(isset($_GET['paramformat'])){
+		$json =array();
+		$rangeFunction = new rangeFunction();
+		$rangeFunction->rangetestattributeid =$_POST['testattribute_id'];
+		$select_data = $rangeFunction->parameterSelect();
+		while ( $result = mysql_fetch_array( $select_data )){
+	    	$tmp = array(
+	    	   'test_parameter_type' => $result['test_parameter_type'],
+	           'test_parameter_unit' => $result['test_parameter_unit'],
+	           'test_parameter_format' => $result['test_parameter_format'],
+           );
+    		array_push( $json, $tmp );
+	    }
+	    echo json_encode($json);
+	}
 ?>

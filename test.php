@@ -13,6 +13,9 @@ if(isset($_GET['insert'])){
 if(isset($_GET['update'])){
 	echo "<script>alert('Test updated successfully!');var url ='".$url."'; window.location = url ;</script>";
 }
+if(isset($_GET['insert_error'])){
+	echo "<script>alert('Test already exist!');var url ='".$url."'; window.location = url ;</script>";
+}
 ?>
 <div class="container">
 	<div class="container align_center align_height">
@@ -61,13 +64,7 @@ if(isset($_GET['update'])){
 								</div>
 								<div class="form-group col-md-3">
 									<select class="form-control classic type_align fl parameter_format" id="format" name="format1" data-validation-error-msg="Please Select the Format of the Parameter" data-validation="required">
-										<option value="">Format</option>
-										<option value="0">0</option>
-										<option value="1">1</option>
-										<option value="2">2</option>
-										<option value="3">3</option>
-										<option value="4">4</option>
-										<option value="5">5</option>
+
 									</select>
 								</div>
 							</div>
@@ -118,7 +115,7 @@ if(isset($_GET['update'])){
 			        <td><?php echo $eachrecord ['test_parameter_unit']; ?></td>
 			        <td><?php echo $eachrecord ['test_parameter_format']; ?></td>
 			        <td>
-			        	<span class="edit_state edit_test" data-value="<?php echo $eachrecord ['test_attribute_id']; ?>">Edit</span>
+			        	<span class="edit_state edit_test" data-value="<?php echo $eachrecord ['test_attribute_id']; ?>" data-test-id="<?php echo $eachrecord ['test_id']; ?>">Edit</span>
 		        		<span class="delete_state" data-value="<?php echo $eachrecord ['test_attribute_id']; ?>">Delete</span>
 			        </td>
 					<input type="hidden" name="test_attribute_id" id="test_attribute_id" value="<?php echo $eachrecord ['test_attribute_id']; ?>" />
@@ -142,7 +139,7 @@ if(isset($_GET['update'])){
 				<form id="test_updation_form" action="functions/test_functions.php" method="post">
 					<div class="form-group">
 						<label>Enter Test Name</label><br>
-						<input type="text" class="adjust_width test_name_update" name="test_name" data-validation-error-msg="Please Enter the Test Name" data-validation="required" disabled>
+						<input type="text" class="adjust_width test_name_update" name="test_name" data-validation-error-msg="Please Enter the Test Name" data-validation="required" >
 					</div>
 					<div class="parameter_holder">
 						<div class="form-group">

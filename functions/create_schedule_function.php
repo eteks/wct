@@ -50,6 +50,16 @@
 					WHERE cs.createschedule_id='".$this->createscheduleid."'")or die(mysql_error());
 			return $res;
 		}
+		//Check whether the schedule name already exists
+		public function isScheduleExist(){
+			$qr = mysql_query("SELECT * FROM wc_createschedule WHERE createschedule_name = '".$this->createschedulename."'");
+			$row = mysql_num_rows($qr);
+			if($row > 0){
+				return true;
+			} else {
+				return false;
+			}
+		}
 	}
 	if(isset($_POST)){
 		//To insert data
@@ -59,15 +69,22 @@
 			$createscheduleFunction->createschedule_testbatteryid = $_POST['schedule_testbattery'];
 			$createscheduleFunction->createscheduledate = $_POST['dateyear'].'-'.$_POST['datemonth'].'-'.$_POST['dateday'];
 			$createscheduleFunction->createscheduletime = $_POST['schedule_hour'].':'.$_POST['schedule_minute'].':'.$_POST['schedule_seconds'];
-			$createscheduleFunction->createschedulevenue = $_POST['schedule_venue'];
-			$createscheduleinsert = $createscheduleFunction->createscheduleInsert();
+			$createscheduleFunction->createschedulevenue = $_POST['schedule_venue'];	
 			$scheduledate = $createscheduleFunction->createscheduledate;
 			$scheduletime = $createscheduleFunction->createscheduletime;
-			if($createscheduleinsert){
-				$testbattery = mysql_fetch_array($createscheduleFunction->testbatterynameSelect());
-				echo "success#Schedule Created#".$createscheduleinsert.'#'.$_POST['schedule_name'].'#'.$testbattery['testbattery_name'].'#'.$scheduledate.'#'.$scheduletime.'#'.$_POST['schedule_venue'];
-			}else{
-				echo "failure#Schedule Not Created";
+			$createschedule = $createscheduleFunction->isScheduleExist();
+			if (!$createschedule){
+				$createscheduleinsert = $createscheduleFunction->createscheduleInsert();
+				if($createscheduleinsert){
+					$testbattery = mysql_fetch_array($createscheduleFunction->testbatterynameSelect());
+					echo "success#Schedule Created#".$createscheduleinsert.'#'.$_POST['schedule_name'].'#'.$testbattery['testbattery_name'].'#'.$scheduledate.'#'.$scheduletime.'#'.$_POST['schedule_venue'];
+				}else{
+					echo "failure#Schedule Not Created";
+				}
+				echo "success";
+			}
+			else{
+				echo "failure#Already Created schedule with the entered name";
 			}
 		}
 
