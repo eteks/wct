@@ -81,10 +81,10 @@
 				else {
 					echo "failure#State Already Exist";
 				}
-			//}
-			//else{
-			//	echo "failure#No State Present in that Name";
-			//}
+			// }
+			// else{
+			// 	echo "failure#No State Present in that Name";
+			// }
 		}
 		// To delete stored data
 		if(isset($_GET['deletedata'])){

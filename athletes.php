@@ -96,7 +96,7 @@
 
 					<div class="form-group">
 						  <label for="sel1">Sports</label>
-						  <select class="form-control adjust_width classic" id="sel1" name="athlete_sports" data-validation-error-msg="please Select the Sports" data-validation="required">
+						  <select class="form-control adjust_width classic" id="sel1" name="athlete_sports" data-validation-error-msg="Please Select the Sports" data-validation="required">
 						   <option value="">Sports</option>                  
 						   <?php
 	                        $query = $sportsfunction->sportsSelect();
@@ -212,7 +212,7 @@
 					</div>
 					<div class="form-group">
 						  <label for="sel1">State</label>
-						  <select class="form-control adjust_width classic" id="sel1" name="edit_athlete_state" data-validation-error-msg="Please Select the State" data-validation="required">
+						  <select class="form-control adjust_width classic athlete_state_act" id="sel1" name="edit_athlete_state" data-validation-error-msg="Please Select the State" data-validation="required">
 						  <option value="">State</option>
 						   <?php
 	                        $query = $statesFunction->statesSelect();
@@ -224,7 +224,7 @@
 					</div>
 					<div class="form-group">
 						  <label for="sel1">District</label>
-						  <select class="form-control adjust_width classic" id="sel1" name="edit_athlete_district" data-validation-error-msg="Please Select the District" data-validation="required">
+						  <select class="form-control adjust_width classic athlete_district_act" id="sel1" name="edit_athlete_district" data-validation-error-msg="Please Select the District" data-validation="required">
 						  <option value=""> District</option>
 						  </select>
 					</div>
