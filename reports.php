@@ -30,7 +30,7 @@ $createschedule = new createscheduleFunction();
 					</div>
 					<div class="col-md-9">
 						<input type="reset" class="btn btn-primary align_right clear" value="Clear">
-						<input type="submit" class="btn btn-primary align_right test-submit clear" name="submit" value="Submit">						
+						<input type="submit" class="btn btn-primary align_right test-submit clear" name="submit" value="Submit">
 					</div>
 				</form>
 			</div>
@@ -88,13 +88,14 @@ $createschedule = new createscheduleFunction();
 
 			  </table>
 			</div>
+			<?php } ?>
 		</div>
 	</div><!-- end  container-->
-
+	<?php if(isset($_POST['submit'])){ ?>
 	<div class="text-center">
 		<a href="#" class="export btn btn-primary">Export Table data into Excel</a>
 	</div>
-	<?php } ?>	
+	<?php } ?>
 </div><!-- end  container-->
 
 <script type="text/javascript">
@@ -152,4 +153,3 @@ $(document).ready(function () {
 });
 </script>
 <?php require_once "footer.php" ?>
-

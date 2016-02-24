@@ -71,7 +71,7 @@ if(isset($_POST['testbattery_add'])){
         }
         header('Location:../test_battery.php?insert_success=true');
     }else {
-      echo "error";
+      header('Location:../test_battery.php?duplicate=true');
     }
 }
 
