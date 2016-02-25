@@ -1117,6 +1117,18 @@ input[type=radio]:checked + label:before {
     right: 80px;
     width: 125px;
 }
+.athletes_drop{
+    background-color: white;
+    border: 1px solid #ccc;
+    color: black;
+    height: 34px;
+    margin-right: 17px;
+    margin-top: 12px;
+    padding: 6px 2px;
+    position: relative;
+    right: 18px;
+    width: 205px;
+}
 .date_pick {
     width: 33%;
     min-width: 400px;
