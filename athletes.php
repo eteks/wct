@@ -254,7 +254,7 @@
 					<div class="col-md-10 schedule_btn">
 						<!-- <button type="button" class="btn btn-primary align_right clear edit_athletes_act">Submit</button>
 						<button type="button" class="btn btn-primary align_right clear">Clear</button> -->
-						<input type="reset" class="btn btn-primary align_right clear" value="Clear">
+						<input type="reset" class="btn btn-primary align_right clear edit_athlete_clear" value="Clear">
 						<input type="submit" class="btn btn-primary align_right test-submit clear edit_athletes_act" value="Submit">						
 					</div>
 				</form>

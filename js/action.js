@@ -2258,4 +2258,9 @@ $(document).ready(function () {
         }     
      });
 
+    //To clear selected dropdown values in edit form
+    // $('.edit_athlete_clear,').click(function(){
+    //   $('option').removeAttr('selected');
+    // });
+
 });

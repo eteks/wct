@@ -105,7 +105,7 @@
 			$athletesFunction->athleteid = $_POST['delete_id'];
 			$statesdelete = $athletesFunction->athleteDelete();
 			if($statesdelete){
-				echo "success#State Deleted#".$_POST['delete_id'];
+				echo "success#Athlete Deleted#".$_POST['delete_id'];
 			}
 			else{
 				echo "failure#Record not found";
