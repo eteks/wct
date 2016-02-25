@@ -296,7 +296,7 @@ $(document).ready(function () {
     }
    });
 
-  $(document).on('keypress','.r_strt,.r_end,.r_point,.edit_r_strt,.edit_r_end,.edit_r_point',function(e){
+  $(document).on('keypress','.r_strt,.r_end,.r_point,.edit_r_strt,.edit_r_end,.edit_r_point,.enter_result',function(e){
       var theEvent = e || window.event;
           var key = theEvent.keyCode || theEvent.which;
           key = String.fromCharCode(key);
@@ -2007,19 +2007,19 @@ $(document).ready(function () {
       });
      });
 
-    $(document).on('keypress','.enter_result',function(e){
-      var theEvent = e || window.event;
-          var key = theEvent.keyCode || theEvent.which;
-          key = String.fromCharCode(key);
-          if (key.length == 0) return;
-          var regex = /^[0-9.\b]+$/;
-          if (!regex.test(key)) {
-              theEvent.returnValue = false;
-              if (theEvent.preventDefault) theEvent.preventDefault();
-          }
-     });
+    // $(document).on('keypress','.enter_result',function(e){
+    //   var theEvent = e || window.event;
+    //       var key = theEvent.keyCode || theEvent.which;
+    //       key = String.fromCharCode(key);
+    //       if (key.length == 0) return;
+    //       var regex = /^[0-9.\b]+$/;
+    //       if (!regex.test(key)) {
+    //           theEvent.returnValue = false;
+    //           if (theEvent.preventDefault) theEvent.preventDefault();
+    //       }
+    //  });
 
-     $(document).on('blur','.enter_result',function(e){
+    $(document).on('blur','.enter_result',function(e){
         //Checking entered Result
         value=$(this).val();
         if(value!=''){
