@@ -1844,7 +1844,10 @@ $(document).ready(function () {
         var id = current_id+1;
         current_id = id;
         newElement.find('.range_label').remove();
-        startrange = Number($('#end'+(id-1)).val())+1;
+        if($('.range_parameter_type').val() == "time")
+          startrange = $('#end'+(id-1)).val();
+        else
+          startrange = Number($('#end'+(id-1)).val())+1;
         newElement.find('.r_strt').removeAttr('name').attr('name', 'range_start'+id).val(startrange);
         newElement.find('.r_end').removeAttr('name').attr('name', 'range_end'+id).val('');
         newElement.find('.r_point').removeAttr('name').attr('name', 'range_points'+id).val('');
@@ -1935,13 +1938,13 @@ $(document).ready(function () {
     });
 
     //Jquery and Ajax functionality for Result form
-    var athletes_list = [];
+    // var athletes_list = [];
     var athlete_json = [];
     $('.resultcreateschedule_act').on('change',function () {
         selected_createschedule = $('.resultcreateschedule_act option:selected').val();
         form_data = {'createschedule_id':selected_createschedule};
         // alert(JSON.stringify(form_data));
-        athletes_list.length = 0;
+        // athletes_list.length = 0;
         athlete_json.length =0;
          $.ajax({
                type: "POST",
@@ -1953,10 +1956,13 @@ $(document).ready(function () {
                 var result_split = data.split('#');
                if (result_split[0].indexOf("success") !== -1){
                 var obj = JSON.parse(result_split[1]);
+                var options = '<option></option>';
                   $.each(obj, function(i){
-                    athletes_list.push(obj[i].athlete_name);
+                    // athletes_list.push(obj[i].athlete_name);
                     athlete_json.push({'athlete_id':obj[i].athlete_id,'athlete_name':obj[i].athlete_name,'athlete_dob':obj[i].athlete_dob,'athlete_mobile':obj[i].athlete_mobile,'athlete_bibno':obj[i].assignbib_number})
+                    options += '<option value="'+obj[i].athlete_id+'">'+obj[i].athlete_name+'</option>';
                   });
+                  $('.result_athletename').html(options);
                   // alert(JSON.stringify(athlete_json));
                 }
                 else{
@@ -1966,19 +1972,33 @@ $(document).ready(function () {
         });
     });
 
-    $('.result_athletename').focus(function (e) {
-      // alert(athlete_json);
-      $(this).autocomplete({
-        source: athletes_list,
-      });
-    });
+    // $('.result_athletename').focus(function (e) {
+    //   // alert(athlete_json);
+    //   $(this).autocomplete({
+    //     source: athletes_list,
+    //   });
+    // });
 
-     $('.result_athletename').blur(function (e) {
+     // $('.result_athletename').blur(function (e) {
+     //  // alert(JSON.stringify(athlete_json));
+     //  select_name = $('.result_athletename').val();
+     //  var obj = athlete_json;
+     //  $.each(obj, function(i){
+     //    if(obj[i].athlete_name == select_name){
+     //      $('.result_athleteid').val(obj[i].athlete_id).prop("readonly", true);
+     //      $('.result_athletedate').val(obj[i].athlete_dob).prop("readonly", true);
+     //      $('.result_athletemobile').val(obj[i].athlete_mobile).prop("readonly", true);
+     //      $('.result_athletebib').val(obj[i].athlete_bibno).prop("readonly", true);
+     //    }
+     //  });
+     // });
+
+    $(document).on('change','.result_athletename',function(e){
       // alert(JSON.stringify(athlete_json));
-      select_name = $('.result_athletename').val();
+      select_id = $('option:selected',this).val();
       var obj = athlete_json;
       $.each(obj, function(i){
-        if(obj[i].athlete_name == select_name){
+        if(obj[i].athlete_id == select_id){
           $('.result_athleteid').val(obj[i].athlete_id).prop("readonly", true);
           $('.result_athletedate').val(obj[i].athlete_dob).prop("readonly", true);
           $('.result_athletemobile').val(obj[i].athlete_mobile).prop("readonly", true);
@@ -2178,32 +2198,38 @@ $(document).ready(function () {
        });
     });
 
-    // $(document).on('blur','.r_strt,.r_end',function(e){
-    //     //Checking entered range
-    //     value=$(this).val();
-    //     if($('.range_parameter_type').val()=="time"){
-    //       if($('.range_parameter_format').val()=="HH:MM:SS"){
-    //         // regex=/^(?:(?:([01]?\d|2[0-3]):)?([0-5]?\d):)?([0-5]?\d)$/;
-    //         if(!(/^(?:[0-5][0-9]):(?:[0-5][0-9]):[0-5][0-9]$/).test(value)){
-    //           alert("check time format");
-    //         }
-    //       }
-    //     }
-    //     else{
-    //       if(value!=''){
-    //           if(value.indexOf(".")==-1){
-    //           decimals = 0;
-    //           }
-    //           else{
-    //             decimals = value.toString().split(".")[1].length;
-    //           }
-    //           paramter_unit = $('.range_parameter_unit').val();
-    //           parameter_format = $('.range_parameter_format').val();
-    //           if(decimals > parameter_format){
-    //             alert("Check decimal points");
-    //           }  
-    //       }    
-    //     }     
-    //  });
+    $(document).on('blur','.r_strt,.r_end',function(e){
+        //Checking entered range
+        value=$(this).val();
+        if(($('.range_parameter_type').val()=="time") && (value!='')){
+          if($('.range_parameter_format').val()=="HH:MM:SS"){
+            // regex=/^(?:(?:([01]?\d|2[0-3]):)?([0-5]?\d):)?([0-5]?\d)$/;
+            if(!(/^(?:[0-5][0-9]):(?:[0-5][0-9]):[0-5][0-9]$/).test(value)){
+              alert("check time format");
+            }
+          }
+          if($('.range_parameter_format').val()=="HH:MM"){
+            // regex=/^(?:(?:([01]?\d|2[0-3]):)?([0-5]?\d):)?([0-5]?\d)$/;
+            if(!(/^(?:[0-5][0-9]):[0-5][0-9]$/).test(value)){
+              alert("check time format");
+            }
+          }
+        }
+        else{
+          if(value!=''){
+              if(value.indexOf(".")==-1){
+              decimals = 0;
+              }
+              else{
+                decimals = value.toString().split(".")[1].length;
+              }
+              paramter_unit = $('.range_parameter_unit').val();
+              parameter_format = $('.range_parameter_format').val();
+              if(decimals > parameter_format){
+                alert("Check the range format");
+              }  
+          }    
+        }     
+     });
 
 });
