@@ -51,8 +51,8 @@
 				    	</div>
 				    </div>
 					<div class="col-md-9">
-						<input type="submit" class="btn btn-primary align_right clear" value="Submit">
-						<input type="reset" class="btn btn-primary align_right test-submit clear" value="Clear">
+						<input type="reset" class="btn btn-primary align_right clear result_clear" value="Clear">
+						<input type="submit" class="btn btn-primary align_right test-submit clear" value="Submit">
 					</div>
 				<input type="hidden" name="result_createscheduleid" class="result_createscheduleid">
 				<input type="hidden" name="result_athleteid" class="result_athleteid">
@@ -81,8 +81,8 @@
 				</tbody>
 			  </table>
 			  	<div class="col-md-11 btn_div">
-					<input type="submit" class="btn btn-primary align_right clear result_submit_act" value="Save">
-					<input type="reset" class="btn btn-primary align_right test-submit clear" value="Clear">
+			  		<input type="reset" class="btn btn-primary align_right clear result_clear_act" value="Clear">
+					<input type="submit" class="btn btn-primary align_right test-submit clear result_submit_act" value="Save">
 				</div>
 			</div>
 <!-- 			<div class="table-hidden">

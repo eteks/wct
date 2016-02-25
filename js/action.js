@@ -1845,9 +1845,19 @@ $(document).ready(function () {
         var id = current_id+1;
         current_id = id;
         newElement.find('.range_label').remove();
-        if($('.range_parameter_type').val() == "time")
-          startrange = $('#end'+(id-1)).val();
-        else
+        // if($('.range_parameter_type').val() == "time"){        
+        //   // data = $('#end'+(id-1)).val().split(':').pop(-1);
+        //   // startrange = Number(data) + 1;
+        //   // alert(startrange); 
+        //   time_data = $('#end'+(id-1)).val();
+        //   var t = new Date();
+        //   alert(t);
+        //   alert(t.getSeconds());
+        //   data = t.getSeconds()+1;
+        //   startrange =data;
+        //   alert(data);
+        // }
+        // else
           startrange = Number($('#end'+(id-1)).val())+1;
         newElement.find('.r_strt').removeAttr('name').attr('name', 'range_start'+id).val(startrange);
         newElement.find('.r_end').removeAttr('name').attr('name', 'range_end'+id).val('');
@@ -2096,12 +2106,27 @@ $(document).ready(function () {
              type: "POST",
              url: "functions/result_function.php?storeresult=true",
              data: JSON.stringify(result_data),
-             dataType: 'json',
+             // dataType: 'json',
              cache: false,
              success: function(data) {
               alert(data);
+              document.result_form.reset();
+              $('.result_table tbody tr:not(:last)').remove();
+              $('.total_result').text('');
               }
           });
+     });
+
+     $('.result_clear_act').click(function(){
+      $('.enter_result').val('');
+      $('.enter_points').text('');
+      $('.total_result').text('');
+     });
+
+     $('.result_clear').click(function(){
+      document.result_form.reset();
+      $('.result_table tbody tr:not(:last)').remove();
+      $('.total_result').text('');
      });
 
      $('.edit_parameter_unit').click(function(event) {

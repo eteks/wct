@@ -105,7 +105,7 @@
 				$resultFunction->points = $value->enter_points;  
 				$resultinsert = $resultFunction->resultInsert();
 			}
-			echo "<script>Result Created</script>";
+			echo "Result Created";
 		}
 	}
 ?>
