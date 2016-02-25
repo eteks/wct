@@ -849,6 +849,7 @@ $(document).ready(function () {
                  $('.popup_fade').hide();
                  $('.district_div, .close_btn').hide();
                  document.body.style.overflow = 'auto';
+                 location.reload();
                }
                else{
                 $('.edit_district_error').text(result_split[1]).show();
