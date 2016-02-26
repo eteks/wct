@@ -21,7 +21,7 @@
 					<div class="form-group">
 					  <label for="battey_name">Select Test Battery Name</label>
 					  <select class="form-control classic adjust_width" id="battey_name" name="schedule_testbattery" data-validation-error-msg="Please Select the name of the Test Battery Name" data-validation="required">
-					  	<option value="">Test Battery Name</option>
+					  	<option value="">Select Test Battery Name</option>
 					    <?php
 	                        $query = $testbattery->testbatterySelect();
 	                        while ($row = mysql_fetch_array($query)) {

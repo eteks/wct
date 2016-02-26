@@ -264,21 +264,24 @@ function editfunction(data_id){
 $(window).resize(function () {
     package_menu();
   });
+  $(document).delegate('.assign_clone_content .custom-combobox-input','blur',function(){
+      var j = 0;
+      var currentInput  = $(this).val();
+    $(".assign_clone_content .custom-combobox-input").each(function(index) {
+      if(currentInput === $(this).val()) {
+          j++;
+      }
+    });
+    if(j=='2'){
+        alert('Already Exists!');
+        $(this).val('');
+        $(this).parents('.assign_clone_content').find('.dob').val('');
+        $(this).parents('.assign_clone_content').find('.mobile').val('');
+        //alert($(this).parents('.assign_clone_content').find('date_assign dob').val('').html());
+    }
+  });
 $(document).ready(function () {
-    // $('.assignschedule_submit').click(function(){
-    //     var currentInput;
-    //     $(".assign_clone_content .custom-combobox-input").each(function(index) {
-    //       currentInput = $(this);
-    //       alert($(this).val());
-    //       $(".assign_clone_content .custom-combobox-input").each(function(index) {
-    //          alert($(this).val());
-    //         if(currentInput.val() === $(this).val()) {
-    //           alert("Error: input fields match found");
-    //         }
-    //       });
-    //     });
-    //
-    // });
+
     $("input").attr('maxlength','50');
   package_menu();
  	state_center_align();
@@ -1211,14 +1214,33 @@ $(document).ready(function () {
       }
     });
 
-    // $('.parameter_btn').click(function() {
-    //     var $div = $('div[class^="parameter_name"]:last');
-    //     alert($div.html());
-    // });
     var current_id = 1;
     $('.parameter_btn').click(function(){
-        //alert('test')
-        nextElement($('.clone_content:last'));
+        if($('.clone_content:last').find('.parameter_name').val() == ''){
+            $('.clone_content:last .param_name_error').addClass('custom_error');
+        }else{
+            $('.clone_content:last .param_name_error').removeClass('custom_error');
+        }
+        if($('.clone_content:last').find('.parameter_type').val() == ''){
+            $('.clone_content:last .param_type_error').addClass('custom_error');
+        }else{
+            $('.clone_content:last .param_type_error').removeClass('custom_error');
+        }
+        if($('.clone_content:last').find('.parameter_unit').val() == ''){
+            $('.clone_content:last .param_unit_error').addClass('custom_error');
+        }else{
+            $('.clone_content:last .param_unit_error').removeClass('custom_error');
+        }
+        if($('.clone_content:last').find('.parameter_format').val() == ''){
+            $('.clone_content:last .param_format_error').addClass('custom_error');
+        }else{
+            $('.clone_content:last .param_format_error').removeClass('custom_error');
+            nextElement($('.clone_content:last'));
+        }
+
+
+
+
     })
 
     function nextElement(element){
@@ -1227,8 +1249,7 @@ $(document).ready(function () {
         current_id = id;
         newElement.find('.parameter_name').removeAttr('name').attr('name', 'parameter_name'+id).val('');
         newElement.find('#type').removeAttr('name').attr('name', 'type'+id);
-        newElement.find('#unit').removeAttr('name').attr('name', 'unit'+id).removeClass('error').removeAttr('style');
-        newElement.find('#unit option').remove();
+        newElement.find('#unit').removeAttr('name').attr('name', 'unit'+id).removeClass('error').removeAttr('style').empty().append("<option value='' selected>UNIT</option>");
         newElement.find('#unit').next('span').remove();
         newElement.find('#format').removeAttr('name').attr('name', 'format'+id);
         newElement.appendTo($(".parameter_holder1"));
@@ -1875,7 +1896,7 @@ $(document).ready(function () {
         $('.clone_content:last').attr('id','range_counter'+id);
        }
     });
-    
+
     function nextrangeElement(element){
         var newElement = element.clone();
         var id = current_id+1;
