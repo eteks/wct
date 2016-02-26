@@ -1,7 +1,9 @@
 <?php require_once "session.php";
 	  require_once "header.php";
-      require_once 'functions/assign_schedule_function.php';
-      $assignscheduleFunction = new assignscheduleFunction()
+      // require_once 'functions/assign_schedule_function.php';
+      // $assignscheduleFunction = new assignscheduleFunction()
+      require_once 'functions/result_function.php';
+      $resultFunction = new resultFunction();
 ?>
 <style>
 	#ui-id-1{
@@ -21,21 +23,21 @@
 						  <label for="sel1">Select Schedule Name</label>
 						  <select class="form-control adjust_width classic resultcreateschedule_act" id="sel1" name="result_createschedule" data-validation-error-msg="Please Select Name of the Schedule" data-validation="required">
 						  <option value="">Select Schedule Name</option>
-						  <?php
-	                        $query = $assignscheduleFunction->assignscheduleSelect();
-	                        foreach( $query as $eachrecord ) {
+	                       <?php
+	                        $query = $resultFunction->resultassignscheduleSelect();
+	                        while ($row = mysql_fetch_array($query)) {
 	                            ?>
-	                            <option value="<?php echo $eachrecord['createschedule_id']; ?>"><?php echo $eachrecord['createschedule_name']; ?></option>
+	                            <option value="<?php echo $row['createschedule_id']; ?>"><?php echo $row['createschedule_name']; ?></option>
 	                      <?php } ?>
 						  </select>
 					</div>
 					<div class="form-group col-md-12 schedule_btn">
 				      	<label for="athlete" class="email_txt athlete__txt">Select Athletes</label><br>
 				      	<div class="form-group col-md-5">
-				      		<!-- <input type="text" class="form-control name_align fl result_athletename" id="result_athletename" placeholder="Name" name="result_athletename" data-validation-error-msg="Please Enter the name of the Athelete" data-validation="required"> -->
-				      		<select class="athletes_drop classic result_athletename" name="result_athletename" id="result_athletename" required="required" data-validation-error-msg="Please Select the name of the Athelete" data-validation="required">
+				      		<input type="text" class="form-control name_align fl result_athletename" id="result_athletename" placeholder="Name" name="result_athletename" data-validation-error-msg="Please Enter the name of the Athelete" data-validation="required">
+				      		<!-- <select class="athletes_drop classic result_athletename" name="result_athletename" id="result_athletename" required="required" data-validation-error-msg="Please Select the name of the Athelete" data-validation="required">
 				      		<option></option>
-				      		</select>
+				      		</select> -->
 				      	</div>
 				      	<div class="form-group col-md-5">
 				      		<!-- <input type="text" class="form-control date_assign fl result_athletedate" id="result_athletedate" placeholder="Date" name="result_athletedate"  data-validation="date" data-validation-format="dd/mm/yyyy"> -->
