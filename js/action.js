@@ -1960,13 +1960,13 @@ $(document).ready(function () {
     });
 
     //Jquery and Ajax functionality for Result form
-    // var athletes_list = [];
+    var athletes_list = [];
     var athlete_json = [];
     $('.resultcreateschedule_act').on('change',function () {
         selected_createschedule = $('.resultcreateschedule_act option:selected').val();
         form_data = {'createschedule_id':selected_createschedule};
         // alert(JSON.stringify(form_data));
-        // athletes_list.length = 0;
+        athletes_list.length = 0;
         athlete_json.length =0;
          $.ajax({
                type: "POST",
@@ -1978,13 +1978,15 @@ $(document).ready(function () {
                 var result_split = data.split('#');
                if (result_split[0].indexOf("success") !== -1){
                 var obj = JSON.parse(result_split[1]);
-                var options = '<option></option>';
+                // var options = '<option></option>';
                   $.each(obj, function(i){
-                    // athletes_list.push(obj[i].athlete_name);
+                    athletes_list.push(obj[i].athlete_name);
                     athlete_json.push({'athlete_id':obj[i].athlete_id,'athlete_name':obj[i].athlete_name,'athlete_dob':obj[i].athlete_dob,'athlete_mobile':obj[i].athlete_mobile,'athlete_bibno':obj[i].assignbib_number})
-                    options += '<option value="'+obj[i].athlete_id+'">'+obj[i].athlete_name+'</option>';
+                    // options += '<option value="'+obj[i].athlete_id+'">'+obj[i].athlete_name+'</option>';
+                    $('.result_athletename,.result_athletedate,.result_athletemobile,.result_athletebib').val('');
+                    $('.result_table tbody tr:not(:last)').remove();
                   });
-                  $('.result_athletename').html(options);
+                  // $('.result_athletename').html(options);
                   // alert(JSON.stringify(athlete_json));
                 }
                 else{
@@ -1994,33 +1996,19 @@ $(document).ready(function () {
         });
     });
 
-    // $('.result_athletename').focus(function (e) {
-    //   // alert(athlete_json);
-    //   $(this).autocomplete({
-    //     source: athletes_list,
-    //   });
-    // });
+    $('.result_athletename').focus(function (e) {
+      // alert(athlete_json);
+      $(this).autocomplete({
+        source: athletes_list,
+      });
+    });
 
-     // $('.result_athletename').blur(function (e) {
-     //  // alert(JSON.stringify(athlete_json));
-     //  select_name = $('.result_athletename').val();
-     //  var obj = athlete_json;
-     //  $.each(obj, function(i){
-     //    if(obj[i].athlete_name == select_name){
-     //      $('.result_athleteid').val(obj[i].athlete_id).prop("readonly", true);
-     //      $('.result_athletedate').val(obj[i].athlete_dob).prop("readonly", true);
-     //      $('.result_athletemobile').val(obj[i].athlete_mobile).prop("readonly", true);
-     //      $('.result_athletebib').val(obj[i].athlete_bibno).prop("readonly", true);
-     //    }
-     //  });
-     // });
-
-    $(document).on('change','.result_athletename',function(e){
+     $('.result_athletename').blur(function (e) {
       // alert(JSON.stringify(athlete_json));
-      select_id = $('option:selected',this).val();
+      select_name = $('.result_athletename').val();
       var obj = athlete_json;
       $.each(obj, function(i){
-        if(obj[i].athlete_id == select_id){
+        if(obj[i].athlete_name == select_name){
           $('.result_athleteid').val(obj[i].athlete_id).prop("readonly", true);
           $('.result_athletedate').val(obj[i].athlete_dob).prop("readonly", true);
           $('.result_athletemobile').val(obj[i].athlete_mobile).prop("readonly", true);
@@ -2028,6 +2016,20 @@ $(document).ready(function () {
         }
       });
      });
+
+    // $(document).on('change','.result_athletename',function(e){
+    //   // alert(JSON.stringify(athlete_json));
+    //   select_id = $('option:selected',this).val();
+    //   var obj = athlete_json;
+    //   $.each(obj, function(i){
+    //     if(obj[i].athlete_id == select_id){
+    //       $('.result_athleteid').val(obj[i].athlete_id).prop("readonly", true);
+    //       $('.result_athletedate').val(obj[i].athlete_dob).prop("readonly", true);
+    //       $('.result_athletemobile').val(obj[i].athlete_mobile).prop("readonly", true);
+    //       $('.result_athletebib').val(obj[i].athlete_bibno).prop("readonly", true);
+    //     }
+    //   });
+    //  });
 
     // $(document).on('keypress','.enter_result',function(e){
     //   var theEvent = e || window.event;
@@ -2042,47 +2044,76 @@ $(document).ready(function () {
     //  });
 
     $(document).on('blur','.enter_result',function(e){
-        //Checking entered Result
-        value=$(this).val();
-        if(value!=''){
-          if(value.indexOf(".")==-1){
-          decimals = 0;
-        }
-        else{
-          decimals = value.toString().split(".")[1].length;
-        }
         ranges = $(this).parents('tr').find('.result_ranges').val();
-        paramter_type = $(this).parents('tr').find('.result_parametertype').val();
-        paramter_unit = $(this).parents('tr').find('.result_parameterunit').val();
+        parameter_type = $(this).parents('tr').find('.result_parametertype').val();
+        parameter_unit = $(this).parents('tr').find('.result_parameterunit').val();
         parameter_format = $(this).parents('tr').find('.result_parameterformat').val();
         ranges = JSON.parse(ranges);
-
-        // status = 0;
-        for (var i = 0; i < ranges.length; i++) {
-          // alert(ranges[i].range_start);
-          // alert(ranges[i].range_end);
-          // alert(value);
-          if (value >= ranges[i].range_start && value <= ranges[i].range_end){
-            // alert("if");
-            status = 1;
-            if(decimals <= parameter_format){
-               // alert("yes");
-               $(this).parents('tr').find('.enter_points').text(ranges[i].range_point);
-               break;
+        value=$(this).val();
+        if(parameter_type == "time" && value!=''){
+          for (var i = 0; i < ranges.length; i++) {
+            rangestart = ranges[i].range_start;
+            rangeend = ranges[i].range_end;
+            if((parameter_format=="HH:MM:SS")&&(!(/^(?:[0-5][0-9]):(?:[0-5][0-9]):[0-5][0-9]$/).test(value))){
+              alert("check time format");
+              break;
+            } else if((parameter_format=="HH:MM")&&(!(/^(?:[0-5][0-9]):[0-5][0-9]$/).test(value))){
+              alert("check time format");
+              break;
             }
             else{
-               alert("check decimal points");
-               totalvlaue = $('.total_result').text();
-               pointvalue = $(this).parents('tr').find('.enter_points').text();
-               result = totalvlaue - pointvalue;
-               $('.total_result').text(result);
-               $(this).parents('tr').find('.enter_points').text('');
+              // alert("else");
+              if (value >= rangestart && value <= rangeend){
+                status = 1;
+                $(this).parents('tr').find('.enter_points').text(ranges[i].range_point);
+                break;
+              }
+              else{
+                status = 0;
+              }
+            }  
+          }
+        }
+        else{
+            //Checking entered Result   
+            if(value!=''){
+              if(value.indexOf(".")==-1){
+              decimals = 0;
             }
-            break;
-          }
-          else{
-            status = 0;
-          }
+            else{
+              decimals = value.toString().split(".")[1].length;
+            }
+        
+            // status = 0;
+            for (var i = 0; i < ranges.length; i++) {
+              // alert(ranges[i].range_start);
+              rangestart = Number(ranges[i].range_start);
+              rangeend = Number(ranges[i].range_end);
+              // alert(ranges[i].range_end);
+              // alert(value);
+              if (value >= rangestart && value <= rangeend){
+                // alert("if");
+                status = 1;
+                if(decimals <= parameter_format){
+                   // alert("yes");
+                   $(this).parents('tr').find('.enter_points').text(ranges[i].range_point);
+                   break;
+                }
+                else{
+                   alert("check decimal points");
+                   totalvlaue = $('.total_result').text();
+                   pointvalue = $(this).parents('tr').find('.enter_points').text();
+                   result = totalvlaue - pointvalue;
+                   $('.total_result').text(result);
+                   $(this).parents('tr').find('.enter_points').text('');
+                }
+                break;
+              }
+              else{
+                status = 0;
+              }
+            }
+        }
         }
         if(status==0){
           alert("Entered value is not in range");
@@ -2092,13 +2123,14 @@ $(document).ready(function () {
           $('.total_result').text(result);
           $(this).parents('tr').find('.enter_points').text('');
         }
+        
         //Points total result
         var val=0;
         $(".enter_points").each(function() {
           val += Number($(this).text());
           $('.total_result').text(val);
         });
-        }
+        
      });
 
      $('.result_submit_act').click(function(){
