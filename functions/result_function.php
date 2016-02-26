@@ -45,6 +45,15 @@
 			if($res){ return $lastinsertid; }
 			else{ return false; }
 		}
+		public function isresultExist(){
+			$qr = mysql_query("SELECT * FROM wc_result WHERE resultcreateschedule_id = '".$this->createscheduleid."' AND resultathlete_id = '".$this->athleteid."' AND resulttest_name = '".$this->resulttest_name."' AND resultparameter_name = '".$this->resultparameter_name."'");
+			$row = mysql_num_rows($qr);
+			if($row > 0){
+				return true;
+			} else {
+				return false;
+			}
+		}
 	}
 	if(isset($_POST)){
 		//To load athletes based on selected schedule
@@ -109,9 +118,19 @@
 				$resultFunction->resultparameter_name = $value->parameter_name; 
 				$resultFunction->result = $value->enter_result; 
 				$resultFunction->points = $value->enter_points;  
-				$resultinsert = $resultFunction->resultInsert();
+				$result = $resultFunction->isresultExist();
+				if(!$result){
+					$resultinsert = $resultFunction->resultInsert();
+					$status = true;
+				}
+				else{
+					$status = false;
+				}		
 			}
-			echo "Result Created";
+			if($status == true)
+				echo "success#Result Created";
+			else
+				echo "failure#Result Already Created for this athlete with the same parameter name";	
 		}
 	}
 ?>
