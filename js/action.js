@@ -308,7 +308,7 @@ $(document).ready(function () {
     }
    });
 
-  $(document).on('keypress','.r_strt,.r_end,.r_point,.edit_r_strt,.edit_r_end,.edit_r_point',function(e){
+  $(document).on('keypress','.r_strt,.r_end,.r_point,.edit_r_strt,.edit_r_end,.edit_r_point,.enter_result',function(e){
       var theEvent = e || window.event;
           var key = theEvent.keyCode || theEvent.which;
           key = String.fromCharCode(key);
@@ -861,6 +861,7 @@ $(document).ready(function () {
                  $('.popup_fade').hide();
                  $('.district_div, .close_btn').hide();
                  document.body.style.overflow = 'auto';
+                 location.reload();
                }
                else{
                 $('.edit_district_error').text(result_split[1]).show();
@@ -1846,7 +1847,7 @@ $(document).ready(function () {
 
     // Jquery functions for Range Form added by kalai
     var current_id = 1;
-    $('.add_range_points').click(function(){
+    $(document).on('click','.add_range_points',function(){
         var id = current_id+1;
         nextrangeElement($('.clone_content:last'));
         $('.clone_content:last').attr('id','range_counter'+id)
@@ -1856,7 +1857,19 @@ $(document).ready(function () {
         var id = current_id+1;
         current_id = id;
         newElement.find('.range_label').remove();
-        startrange = Number($('#end'+(id-1)).val())+1;
+        if($('.range_parameter_type').val() == "time"){
+          data = $('#end'+(id-1)).val().split(':').pop(-1);
+          startrange = Number(data) + 1;
+          startrange = $('#end'+(id-1)).val().replace($('#end'+(id-1)).val().substr($('#end'+(id-1)).val().length - 2),startrange);
+        } else if($('#end'+(id-1)).val().indexOf(".") !== -1){
+          data = $('#end'+(id-1)).val().split('.').pop(-1);
+          startrange = Number(data) + 1;
+          s = $('#end'+(id-1)).val().substring(0, $('#end'+(id-1)).val().indexOf('.'));
+          startrange = s +'.'+ startrange;
+        }
+        else{
+           startrange = Number($('#end'+(id-1)).val())+1;
+        }
         newElement.find('.r_strt').removeAttr('name').attr('name', 'range_start'+id).val(startrange);
         newElement.find('.r_end').removeAttr('name').attr('name', 'range_end'+id).val('');
         newElement.find('.r_point').removeAttr('name').attr('name', 'range_points'+id).val('');
@@ -1947,13 +1960,13 @@ $(document).ready(function () {
     });
 
     //Jquery and Ajax functionality for Result form
-    var athletes_list = [];
+    // var athletes_list = [];
     var athlete_json = [];
     $('.resultcreateschedule_act').on('change',function () {
         selected_createschedule = $('.resultcreateschedule_act option:selected').val();
         form_data = {'createschedule_id':selected_createschedule};
         // alert(JSON.stringify(form_data));
-        athletes_list.length = 0;
+        // athletes_list.length = 0;
         athlete_json.length =0;
          $.ajax({
                type: "POST",
@@ -1965,10 +1978,13 @@ $(document).ready(function () {
                 var result_split = data.split('#');
                if (result_split[0].indexOf("success") !== -1){
                 var obj = JSON.parse(result_split[1]);
+                var options = '<option></option>';
                   $.each(obj, function(i){
-                    athletes_list.push(obj[i].athlete_name);
+                    // athletes_list.push(obj[i].athlete_name);
                     athlete_json.push({'athlete_id':obj[i].athlete_id,'athlete_name':obj[i].athlete_name,'athlete_dob':obj[i].athlete_dob,'athlete_mobile':obj[i].athlete_mobile,'athlete_bibno':obj[i].assignbib_number})
+                    options += '<option value="'+obj[i].athlete_id+'">'+obj[i].athlete_name+'</option>';
                   });
+                  $('.result_athletename').html(options);
                   // alert(JSON.stringify(athlete_json));
                 }
                 else{
@@ -1978,19 +1994,33 @@ $(document).ready(function () {
         });
     });
 
-    $('.result_athletename').focus(function (e) {
-      // alert(athlete_json);
-      $(this).autocomplete({
-        source: athletes_list,
-      });
-    });
+    // $('.result_athletename').focus(function (e) {
+    //   // alert(athlete_json);
+    //   $(this).autocomplete({
+    //     source: athletes_list,
+    //   });
+    // });
 
-     $('.result_athletename').blur(function (e) {
+     // $('.result_athletename').blur(function (e) {
+     //  // alert(JSON.stringify(athlete_json));
+     //  select_name = $('.result_athletename').val();
+     //  var obj = athlete_json;
+     //  $.each(obj, function(i){
+     //    if(obj[i].athlete_name == select_name){
+     //      $('.result_athleteid').val(obj[i].athlete_id).prop("readonly", true);
+     //      $('.result_athletedate').val(obj[i].athlete_dob).prop("readonly", true);
+     //      $('.result_athletemobile').val(obj[i].athlete_mobile).prop("readonly", true);
+     //      $('.result_athletebib').val(obj[i].athlete_bibno).prop("readonly", true);
+     //    }
+     //  });
+     // });
+
+    $(document).on('change','.result_athletename',function(e){
       // alert(JSON.stringify(athlete_json));
-      select_name = $('.result_athletename').val();
+      select_id = $('option:selected',this).val();
       var obj = athlete_json;
       $.each(obj, function(i){
-        if(obj[i].athlete_name == select_name){
+        if(obj[i].athlete_id == select_id){
           $('.result_athleteid').val(obj[i].athlete_id).prop("readonly", true);
           $('.result_athletedate').val(obj[i].athlete_dob).prop("readonly", true);
           $('.result_athletemobile').val(obj[i].athlete_mobile).prop("readonly", true);
@@ -1999,19 +2029,19 @@ $(document).ready(function () {
       });
      });
 
-    $(document).on('keypress','.enter_result',function(e){
-      var theEvent = e || window.event;
-          var key = theEvent.keyCode || theEvent.which;
-          key = String.fromCharCode(key);
-          if (key.length == 0) return;
-          var regex = /^[0-9.\b]+$/;
-          if (!regex.test(key)) {
-              theEvent.returnValue = false;
-              if (theEvent.preventDefault) theEvent.preventDefault();
-          }
-     });
+    // $(document).on('keypress','.enter_result',function(e){
+    //   var theEvent = e || window.event;
+    //       var key = theEvent.keyCode || theEvent.which;
+    //       key = String.fromCharCode(key);
+    //       if (key.length == 0) return;
+    //       var regex = /^[0-9.\b]+$/;
+    //       if (!regex.test(key)) {
+    //           theEvent.returnValue = false;
+    //           if (theEvent.preventDefault) theEvent.preventDefault();
+    //       }
+    //  });
 
-     $(document).on('blur','.enter_result',function(e){
+    $(document).on('blur','.enter_result',function(e){
         //Checking entered Result
         value=$(this).val();
         if(value!=''){
@@ -2087,12 +2117,27 @@ $(document).ready(function () {
              type: "POST",
              url: "functions/result_function.php?storeresult=true",
              data: JSON.stringify(result_data),
-             dataType: 'json',
+             // dataType: 'json',
              cache: false,
              success: function(data) {
               alert(data);
+              document.result_form.reset();
+              $('.result_table tbody tr:not(:last)').remove();
+              $('.total_result').text('');
               }
           });
+     });
+
+     $('.result_clear_act').click(function(){
+      $('.enter_result').val('');
+      $('.enter_points').text('');
+      $('.total_result').text('');
+     });
+
+     $('.result_clear').click(function(){
+      document.result_form.reset();
+      $('.result_table tbody tr:not(:last)').remove();
+      $('.total_result').text('');
      });
 
      $('.edit_parameter_unit').click(function(event) {
@@ -2186,46 +2231,50 @@ $(document).ready(function () {
        });
     });
 
-    // $(document).on('blur','.r_strt,.r_end',function(e){
-    //     //Checking entered range
-    //     value=$(this).val();
-    //     if($('.range_parameter_type').val()=="time"){
-    //       if($('.range_parameter_format').val()=="HH:MM:SS"){
-    //         // regex=/^(?:(?:([01]?\d|2[0-3]):)?([0-5]?\d):)?([0-5]?\d)$/;
-    //         if(!(/^(?:[0-5][0-9]):(?:[0-5][0-9]):[0-5][0-9]$/).test(value)){
-    //           alert("check time format");
-    //         }
-    //       }
-    //     }
-    //     else{
-    //       if(value!=''){
-    //           if(value.indexOf(".")==-1){
-    //           decimals = 0;
-    //           }
-    //           else{
-    //             decimals = value.toString().split(".")[1].length;
-    //           }
-    //           paramter_unit = $('.range_parameter_unit').val();
-    //           parameter_format = $('.range_parameter_format').val();
-    //           if(decimals > parameter_format){
-    //             alert("Check decimal points");
-    //           }
-    //       }
-    //     }
-    //  });
-    // $('.assignschedule_submit').click(function() {
-    //     $('.assign_content_holder .custom-combobox-input').each(function() {
-    //         var current = $(this).val();
-    //         if(!$(this)){
-    //             $('.assign_content_holder .custom-combobox-input').each(function() {
-    //                 if($(this).val == current){
-    //                     alert('Same Athelete allocarte twice.Ple');
-    //                 }
-    //             }
-    //         }
-    //     });
+    $(document).on('blur','.r_strt,.r_end',function(e){
+        //Checking entered range
+        value=$(this).val();
+        if(($('.range_parameter_type').val()=="time") && (value!='')){
+          if($('.range_parameter_format').val()=="HH:MM:SS"){
+            // regex=/^(?:(?:([01]?\d|2[0-3]):)?([0-5]?\d):)?([0-5]?\d)$/;
+            if(!(/^(?:[0-5][0-9]):(?:[0-5][0-9]):[0-5][0-9]$/).test(value)){
+              alert("check time format");
+            }
+          }
+          if($('.range_parameter_format').val()=="HH:MM"){
+            // regex=/^(?:(?:([01]?\d|2[0-3]):)?([0-5]?\d):)?([0-5]?\d)$/;
+            if(!(/^(?:[0-5][0-9]):[0-5][0-9]$/).test(value)){
+              alert("check time format");
+            }
+          }
+        }
+        else{
+          if(value!=''){
+              if(value.indexOf(".")==-1){
+              decimals = 0;
+              }
+              else{
+                decimals = value.toString().split(".")[1].length;
+              }
+              paramter_unit = $('.range_parameter_unit').val();
+              parameter_format = $('.range_parameter_format').val();
+              if(decimals > parameter_format){
+                alert("Check the range format");
+              }
+          }
+        }
+     });
+
+    //To clear selected dropdown values in edit form
+    // $('.edit_athlete_clear,').click(function(){
+    //   $('option').removeAttr('selected');
     // });
 
+    $(document).on('change','.range_parameter',function () {
+      current_id -=$('.clone_content:not(:first-child)').length;
+      $('.clone_content:not(:first-child)').remove();
+      $('.r_strt,.r_end,.r_point').val('');
+    });
 
 });
 $(document).delegate('.athlete_name', 'change', function(event) {

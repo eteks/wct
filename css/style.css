@@ -59,8 +59,8 @@
     font-family: Montserrat;
     height: 34px;
     padding: 8px 0 0;
-    text-align: center;
-    width: 100%;
+/*    text-align: center;
+*/    width: 100%;
     bottom: 0;
     position: relative !important;
 }
@@ -272,7 +272,8 @@
     width: 80%;
 }
 .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td{
-border-top: 0 !important;
+    border-top: 0 !important;
+    max-width: 12px;
 }
 .table > thead > tr > th{
 	border-bottom: 1px !important;
@@ -969,8 +970,9 @@ input[type=radio]:checked + label:before {
 }
 .parameter-list li:hover {
     background: #006687 none repeat scroll 0 0;
+    color: #fff;
 }
-.parameter-list li a:hover {
+.parameter-list a:hover {
     background: #006687 none repeat scroll 0 0;
     color: #fff;
     text-decoration: none;
@@ -1116,6 +1118,18 @@ input[type=radio]:checked + label:before {
     position: relative;
     right: 80px;
     width: 125px;
+}
+.athletes_drop{
+    background-color: white;
+    border: 1px solid #ccc;
+    color: black;
+    height: 34px;
+    margin-right: 17px;
+    margin-top: 12px;
+    padding: 6px 2px;
+    position: relative;
+    right: 18px;
+    width: 205px;
 }
 .date_pick {
     width: 33%;
@@ -1330,4 +1344,14 @@ input[type=radio]:checked + label:before {
 }
 .athlete__txt{
     font-weight: bold !important;
+}
+.footer_txt > span {
+    padding: 10px 0 0;
+}
+.cpy_right {
+    left: 40%;
+    position: absolute;
+}
+.parameter-menu a {
+    display: block;
 }

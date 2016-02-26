@@ -76,13 +76,13 @@
 						  <label for="range" class="range_label">Ranges <span class="range_note">(Note:<span class="range_notes"></span>)</span></label><br>
 						  	<div class="form-group col-md-10">
 								  <div class="col-md-4">
-								  	<input type="text" class="form-control classic range_align  r_strt" id="strt1" name="range_start1" placehoder="Start" data-validation-error-msg="Please Enter the start range of Test" placeholder="Start" data-validation="required">
+								  	<input type="text" class="form-control classic range_align  r_strt" id="strt1" name="range_start1" placeholder="Start" data-validation-error-msg="Please Enter the start range of Test" data-validation="required">
 								  </div>
 								  <div class="col-md-4">
-								  	<input type="text" class="form-control classic range_align  r_end" id="end1" name="range_end1" placehoder="end" data-validation-error-msg="Please Enter the End range of Test" placeholder="End" data-validation="required">
+								  	<input type="text" class="form-control classic range_align  r_end" id="end1" name="range_end1" placeholder="End" data-validation-error-msg="Please Enter the End range of Test" data-validation="required">
 								  </div>
 								  <div class="col-md-4">
-								  	<input type="text" class="form-control classic range_align  r_point" id="point1" name="range_points1" placehoder="points" data-validation-error-msg="Please Enter the Point" data-validation="required">
+								  	<input type="text" class="form-control classic range_align  r_point" id="point1" name="range_points1" placeholder="Points" data-validation-error-msg="Please Enter the Point" data-validation="required">
 								  </div>
 							</div>
 						</div>
@@ -91,17 +91,18 @@
 						<!-- <input type="button" class="btn btn-primary ranges_btn add_range_points" value="Add Ranges"> -->
 						<!-- <i class="fa fa-plus plus_align add_range_points"></i> -->
 						<i class="fa fa-plus plus_align add_range_points">
-							<div class="tooltip_parameter">Add Parameter</div>
+							<div class="tooltip_parameter">Add Range</div>
 							<div class="tip_triangle"></div>
 						</i>
 						<i class="fa fa-minus range_remove">
-							<div class="tooltip_remove">Remove Parameter</div>
+							<div class="tooltip_remove">Remove Range</div>
 							<div class="tip_triangle"></div>
 						</i>
 					</div>
 					<!-- <button type="button" class="btn btn-primary align_right ranges_btn add_range_points">Add Ranges</button><i class="fa fa-plus plus_align"></i> -->
 					<div class="col-md-9 schedule_btn">
-						<input type="submit" class="btn btn-primary align_right clear add_range_act" value="Submit">
+						<input type="reset" value="Clear" class="btn btn-primary align_right clear" maxlength="50">
+						<input type="submit" class="btn btn-primary align_right test-submit clear add_range_act" value="Submit">
 					</div>
 				</form>
 			</div>
@@ -228,7 +229,8 @@
 					  </div>
 					</div>
 					<div class="col-md-12 schedule_btn">
-						<input type="submit" class="btn btn-primary align_right clear edit_range_act" value="Submit">
+						<input type="reset" value="Clear" class="btn btn-primary align_right clear" maxlength="50">
+						<input type="submit" class="btn btn-primary align_right test-submit clear edit_range_act" value="Submit">
 					</div>
 				</form>
 			</div>

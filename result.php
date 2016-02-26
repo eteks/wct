@@ -32,7 +32,10 @@
 					<div class="form-group col-md-12 schedule_btn">
 				      	<label for="athlete" class="email_txt athlete__txt">Select Athletes</label><br>
 				      	<div class="form-group col-md-5">
-				      		<input type="text" class="form-control name_align fl result_athletename" id="result_athletename" placeholder="Name" name="result_athletename" data-validation-error-msg="Please Enter the name of the Athelete" data-validation="required">
+				      		<!-- <input type="text" class="form-control name_align fl result_athletename" id="result_athletename" placeholder="Name" name="result_athletename" data-validation-error-msg="Please Enter the name of the Athelete" data-validation="required"> -->
+				      		<select class="athletes_drop classic result_athletename" name="result_athletename" id="result_athletename" required="required" data-validation-error-msg="Please Select the name of the Athelete" data-validation="required">
+				      		<option></option>
+				      		</select>
 				      	</div>
 				      	<div class="form-group col-md-5">
 				      		<!-- <input type="text" class="form-control date_assign fl result_athletedate" id="result_athletedate" placeholder="Date" name="result_athletedate"  data-validation="date" data-validation-format="dd/mm/yyyy"> -->
@@ -48,8 +51,8 @@
 				    	</div>
 				    </div>
 					<div class="col-md-9">
-						<input type="submit" class="btn btn-primary align_right clear" value="Submit">
-						<input type="reset" class="btn btn-primary align_right test-submit clear" value="Clear">
+						<input type="reset" class="btn btn-primary align_right clear result_clear" value="Clear">
+						<input type="submit" class="btn btn-primary align_right test-submit clear" value="Submit">
 					</div>
 				<input type="hidden" name="result_createscheduleid" class="result_createscheduleid">
 				<input type="hidden" name="result_athleteid" class="result_athleteid">
@@ -78,8 +81,8 @@
 				</tbody>
 			  </table>
 			  	<div class="col-md-11 btn_div">
-					<input type="submit" class="btn btn-primary align_right clear result_submit_act" value="Save">
-					<input type="reset" class="btn btn-primary align_right test-submit clear" value="Clear">
+			  		<input type="reset" class="btn btn-primary align_right clear result_clear_act" value="Clear">
+					<input type="submit" class="btn btn-primary align_right test-submit clear result_submit_act" value="Save">
 				</div>
 			</div>
 <!-- 			<div class="table-hidden">
