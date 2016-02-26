@@ -272,7 +272,8 @@
     width: 80%;
 }
 .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td{
-border-top: 0 !important;
+    border-top: 0 !important;
+    max-width: 12px;
 }
 .table > thead > tr > th{
 	border-bottom: 1px !important;
@@ -969,8 +970,9 @@ input[type=radio]:checked + label:before {
 }
 .parameter-list li:hover {
     background: #006687 none repeat scroll 0 0;
+    color: #fff;
 }
-.parameter-list li a:hover {
+.parameter-list a:hover {
     background: #006687 none repeat scroll 0 0;
     color: #fff;
     text-decoration: none;
@@ -1342,4 +1344,14 @@ input[type=radio]:checked + label:before {
 }
 .athlete__txt{
     font-weight: bold !important;
+}
+.footer_txt > span {
+    padding: 10px 0 0;
+}
+.cpy_right {
+    left: 40%;
+    position: absolute;
+}
+.parameter-menu a {
+    display: block;
 }
