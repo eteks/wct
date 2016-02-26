@@ -1146,6 +1146,7 @@ input[type=radio]:checked + label:before {
     margin: 0 3px;
 }
 
+
 /* end */
 
 .range_popup_scroll {
@@ -1342,4 +1343,12 @@ input[type=radio]:checked + label:before {
 }
 .athlete__txt{
     font-weight: bold !important;
+}
+.hided{
+    display: none;
+}
+.custom_error{
+    display: block;
+    color: red;
+    font-size: 11px;
 }

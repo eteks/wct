@@ -1835,10 +1835,19 @@ $(document).ready(function () {
 
     // Jquery functions for Range Form added by kalai
     var current_id = 1;
-    $(document).on('click','.add_range_points',function(){
+    $(document).on('click','.add_range_points',function(e){
+        if(($('.clone_content:last').children().find('.r_strt').val() == '') || ($('.clone_content:last').children().find('.r_end').val() == '') || ($('.clone_content:last').children().find('.r_point').val() == '') || ($('.clone_content').children().find('.r_strt').val() == '') || ($('.clone_content').children().find('.r_end').val() == '') || ($('.clone_content').children().find('.r_point').val() == ''))
+        { 
+          $('.clone_content:last').children().find('input[type="text"]').next().addClass('custom_error');
+          e.preventDefault();
+          alert('please fill all the fields');
+        }
+        else{
+        $('.clone_content:last').children().find('input[type="text"]').next().removeClass('custom_error');
         var id = current_id+1;
         nextrangeElement($('.clone_content:last'));
-        $('.clone_content:last').attr('id','range_counter'+id)
+        $('.clone_content:last').attr('id','range_counter'+id);
+       }
     })
     function nextrangeElement(element){
         var newElement = element.clone();
@@ -1858,7 +1867,7 @@ $(document).ready(function () {
         else{
            startrange = Number($('#end'+(id-1)).val())+1;
         }
-        newElement.find('.r_strt').removeAttr('name').attr('name', 'range_start'+id).val(startrange);
+        newElement.find('.r_strt').removeAttr('name').attr('name', 'range_start'+id).val('');
         newElement.find('.r_end').removeAttr('name').attr('name', 'range_end'+id).val('');
         newElement.find('.r_point').removeAttr('name').attr('name', 'range_points'+id).val('');
         newElement.find('.r_strt').removeAttr('id').attr('id','strt'+id);
