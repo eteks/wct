@@ -64,7 +64,7 @@ if(isset($_GET['insert_error'])){
 								</div>
 								<div class="form-group col-md-3">
 									<select class="form-control classic type_align fl parameter_format" id="format" name="format1" data-validation-error-msg="Please Select the Format of the Parameter" data-validation="required">
-
+										<option value="">Format</option>
 									</select>
 								</div>
 							</div>
@@ -83,7 +83,8 @@ if(isset($_GET['insert_error'])){
 					</div>
 					<input type="hidden" name="test_add" value="1">
 					<div class="col-md-9 schedule_btn">
-						<input type="submit" class="btn btn-primary align_right clear test_submit_act" value="Submit">
+						<input type="reset" value="Clear" class="btn btn-primary align_right clear" maxlength="50">
+						<input type="submit" class="btn btn-primary align_right clear test-submit test_submit_act" value="Submit">
 					</div>
 				</form>
 			</div>
@@ -171,6 +172,7 @@ if(isset($_GET['insert_error'])){
 							</div>
 							<div class="col-md-4">
 								<select class="form-control classic type_align_popup fl parameter_format parameter_format_update" id="format1" name="format1" data-validation-error-msg="Please Select the Format" data-validation="required">
+									<option value="">Format</option>
 									<option value="0">0</option>
 									<option value="1">1</option>
 									<option value="2">2</option>
@@ -183,8 +185,9 @@ if(isset($_GET['insert_error'])){
 					</div><!-- end parameter_holder -->
 					<input class="parameter_update" type="hidden" name="parameter_update" value="" />
 					<input class="test_update_id" type="hidden" name="test_update_id" value="" />
-					<div class="col-md-9 schedule_btn">
-						<input type="submit" class="btn btn-primary align_right clear" value="Submit">
+					<div class="col-md-10 schedule_btn">
+						<input type="reset" value="Clear" class="btn btn-primary align_right clear" maxlength="50">
+						<input type="submit" class="btn btn-primary align_right test-submit clear" value="Submit">
 					</div>
 				</form>
 			</div>

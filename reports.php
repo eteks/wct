@@ -74,7 +74,7 @@ $createschedule = new createscheduleFunction();
 								?>
 							  <tr class="align_center delete_color">
 								<td><?php echo $res['athlete_name']; ?></td>
-								<td><?php echo $res['athlete_dob']; ?></td>
+								<td><?php echo date("d/m/Y", strtotime($res['athlete_dob'])); ?></td>
 								<td><?php echo $res['resultparameter_name']; ?></td>
 								<td><?php echo $res['result']; ?></td>
 								<td><?php echo $res['points']; ?></td>

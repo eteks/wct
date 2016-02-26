@@ -9,17 +9,23 @@
  		public $result;
  		public $points;
 		public function resultathleteRecord(){
-			// $res = mysql_query("SELECT * FROM wc_assignschedule as ash INNER JOIN wc_athlete as at ON at.athlete_id = ash.assignathlete_id WHERE ash.assigncreateschedule_id='".$this->createscheduleid."'")or die(mysql_error());
-			// return $res;
+			$res = mysql_query("SELECT * FROM wc_assignschedule as ash INNER JOIN wc_athlete as at ON ash.assignathlete_id=at.athlete_id WHERE ash.assigncreateschedule_id='".$this->createscheduleid."'")or die(mysql_error());
+			return $res;
 
-			$res = mysql_query("SELECT * FROM wc_assignschedule as ash INNER JOIN wc_athlete as at ON at.athlete_id = ash.assignathlete_id WHERE ash.assigncreateschedule_id='".$this->createscheduleid."'")or die(mysql_error());
-			$results = mysql_fetch_array($res);
-			if($results){
-				return $res;
-			}
-			else{
-				return false;
-			}
+			// $res = mysql_query("SELECT * FROM wc_assignschedule as ash INNER JOIN wc_athlete as at ON ash.assignathlete_id=at.athlete_id WHERE ash.assigncreateschedule_id='".$this->createscheduleid."'")or die(mysql_error());
+			// $results = mysql_fetch_array($res);
+			// if($results){
+			// 	return $res;
+			// }
+			// else{
+			// 	return false;
+			// }
+		}
+
+		public function resultassignscheduleSelect(){
+			$res = mysql_query("SELECT DISTINCT createschedule_id,createschedule_name FROM wc_assignschedule as asch INNER JOIN wc_createschedule cs
+				 ON asch.assigncreateschedule_id = cs.createschedule_id")or die(mysql_error());
+			return $res;
 		}
 
 		public function resultSelect(){
@@ -47,16 +53,16 @@
 			$resultFunction = new resultFunction();
 			$resultFunction->createscheduleid = $_POST['createschedule_id'];
 			$select_athletes = $resultFunction->resultathleteRecord();
-			if($select_athletes){
+			// if($select_athletes){
 				while ( $result = mysql_fetch_array( $select_athletes )){
 		    		array_push( $json, $result );
 			    }
 			    // echo json_encode($json);
 			    echo "success#".json_encode($json);
-			}
-			else{
-				echo "failure#No Athletes assign for this schedule";
-			}
+			// }
+			// else{
+			// 	echo "failure#No Athletes assign for this schedule";
+			// }
 		}
 		//To load test name and parameter name for entering reseult based on selected schedule and athelete
 		if(isset($_GET['loadtestparam'])){

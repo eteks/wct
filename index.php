@@ -1,4 +1,7 @@
-<?php require_once 'header.php';
+
+<?php
+
+	  require_once 'header.php';
 	  require_once 'functions/usermanagement_function.php';
 	  $usermanagementFunction = new usermanagementFunction();
 	  if(isset($_POST['login'])){
@@ -15,6 +18,12 @@
 		}
 	}
 	
+?>
+<?php
+session_start();
+if(isset($_SESSION['userid'])){
+	header("location:sports.php");
+}
 ?>
 <form role="form" action="" method="post" name="login_form" id="login_form_id">
 	<div class="select_user_content">
