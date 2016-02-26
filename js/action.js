@@ -1871,7 +1871,7 @@ $('.reset_form').on('click',function(){
         $('.clone_content:last').attr('id','range_counter'+id);
        }
     });
-    
+
     function nextrangeElement(element){
         var newElement = element.clone();
         var id = current_id+1;
@@ -2076,9 +2076,11 @@ $('.reset_form').on('click',function(){
             rangeend = ranges[i].range_end;
             if((parameter_format=="HH:MM:SS")&&(!(/^(?:[0-5][0-9]):(?:[0-5][0-9]):[0-5][0-9]$/).test(value))){
               alert("check time format");
+              $("select:first").focus();
               break;
             } else if((parameter_format=="HH:MM")&&(!(/^(?:[0-5][0-9]):[0-5][0-9]$/).test(value))){
               alert("check time format");
+              $("select:first").focus();
               break;
             }
             else{
@@ -2297,12 +2299,14 @@ $('.reset_form').on('click',function(){
             // regex=/^(?:(?:([01]?\d|2[0-3]):)?([0-5]?\d):)?([0-5]?\d)$/;
             if(!(/^(?:[0-5][0-9]):(?:[0-5][0-9]):[0-5][0-9]$/).test(value)){
               alert("check time format");
+              $("select:first").focus();
             }
           }
           if($('.range_parameter_format').val()=="HH:MM"){
             // regex=/^(?:(?:([01]?\d|2[0-3]):)?([0-5]?\d):)?([0-5]?\d)$/;
             if(!(/^(?:[0-5][0-9]):[0-5][0-9]$/).test(value)){
               alert("check time format");
+              $("select:first").focus();
             }
           }
         }
