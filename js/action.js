@@ -1835,7 +1835,7 @@ $(document).ready(function () {
 
     // Jquery functions for Range Form added by kalai
     var current_id = 1;
-    $('.add_range_points').click(function(){
+    $(document).on('click','.add_range_points',function(){
         var id = current_id+1;
         nextrangeElement($('.clone_content:last'));
         $('.clone_content:last').attr('id','range_counter'+id)
@@ -1845,20 +1845,19 @@ $(document).ready(function () {
         var id = current_id+1;
         current_id = id;
         newElement.find('.range_label').remove();
-        // if($('.range_parameter_type').val() == "time"){        
-        //   // data = $('#end'+(id-1)).val().split(':').pop(-1);
-        //   // startrange = Number(data) + 1;
-        //   // alert(startrange); 
-        //   time_data = $('#end'+(id-1)).val();
-        //   var t = new Date();
-        //   alert(t);
-        //   alert(t.getSeconds());
-        //   data = t.getSeconds()+1;
-        //   startrange =data;
-        //   alert(data);
-        // }
-        // else
-          startrange = Number($('#end'+(id-1)).val())+1;
+        if($('.range_parameter_type').val() == "time"){        
+          data = $('#end'+(id-1)).val().split(':').pop(-1);
+          startrange = Number(data) + 1;
+          startrange = $('#end'+(id-1)).val().replace($('#end'+(id-1)).val().substr($('#end'+(id-1)).val().length - 2),startrange);
+        } else if($('#end'+(id-1)).val().indexOf(".") !== -1){         
+          data = $('#end'+(id-1)).val().split('.').pop(-1);
+          startrange = Number(data) + 1;
+          s = $('#end'+(id-1)).val().substring(0, $('#end'+(id-1)).val().indexOf('.'));
+          startrange = s +'.'+ startrange;
+        }
+        else{
+           startrange = Number($('#end'+(id-1)).val())+1;
+        }
         newElement.find('.r_strt').removeAttr('name').attr('name', 'range_start'+id).val(startrange);
         newElement.find('.r_end').removeAttr('name').attr('name', 'range_end'+id).val('');
         newElement.find('.r_point').removeAttr('name').attr('name', 'range_points'+id).val('');
@@ -2262,5 +2261,11 @@ $(document).ready(function () {
     // $('.edit_athlete_clear,').click(function(){
     //   $('option').removeAttr('selected');
     // });
+
+    $(document).on('change','.range_parameter',function () {
+      current_id -=$('.clone_content:not(:first-child)').length;
+      $('.clone_content:not(:first-child)').remove();
+      $('.r_strt,.r_end,.r_point').val('');
+    });
 
 });

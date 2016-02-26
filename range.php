@@ -76,13 +76,13 @@
 						  <label for="range" class="range_label">Ranges <span class="range_note">(Note:<span class="range_notes"></span>)</span></label><br>
 						  	<div class="form-group col-md-10">
 								  <div class="col-md-4">
-								  	<input type="text" class="form-control classic range_align  r_strt" id="strt1" name="range_start1" placehoder="Start" data-validation-error-msg="Please Enter the start range of Test" placeholder="Start" data-validation="required">				  	
+								  	<input type="text" class="form-control classic range_align  r_strt" id="strt1" name="range_start1" placeholder="Start" data-validation-error-msg="Please Enter the start range of Test" placeholder="Start" data-validation="required">				  	
 								  </div>
 								  <div class="col-md-4">
-								  	<input type="text" class="form-control classic range_align  r_end" id="end1" name="range_end1" placehoder="end" data-validation-error-msg="Please Enter the End range of Test" placeholder="End" data-validation="required">						  	
+								  	<input type="text" class="form-control classic range_align  r_end" id="end1" name="range_end1" placeholder="End" data-validation-error-msg="Please Enter the End range of Test" placeholder="End" data-validation="required">						  	
 								  </div>
 								  <div class="col-md-4">
-								  	<input type="text" class="form-control classic range_align  r_point" id="point1" name="range_points1" placehoder="points" data-validation-error-msg="Please Enter the Point" data-validation="required">				  	
+								  	<input type="text" class="form-control classic range_align  r_point" id="point1" name="range_points1" placeholder="Points" data-validation-error-msg="Please Enter the Point" data-validation="required">				  	
 								  </div>
 							</div>
 						</div>
