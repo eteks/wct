@@ -287,7 +287,19 @@ $(document).ready(function () {
           }
        });
   });
-
+  $('.assignsche_create').change(function() {
+      var sche_id = $(this).val();
+      //alert(sche_id);
+      $.ajax({
+           type: "POST",
+           url: "functions/assign_schedule_function.php?cate_list=true",
+           data:{'id':sche_id},
+           cache: false,
+           success: function(data) {
+                $('.assignsche_cate').empty().append("<option value=''>Select Category Name</option>"+data);
+          }
+       });
+  });
 
   // $(document).on('keypress','#mobile,#result_athletemobile,#bib,#result_athletebib,.r_strt,.r_end,.r_point',function(e){
    $(document).on('keypress','#mobile,#result_athletemobile,#bib,#result_athletebib',function(e){
@@ -1216,7 +1228,7 @@ $(document).ready(function () {
         var newElement = element.clone();
         var id = test_id+1;
         test_id = id;
-        newElement.find('.athlete_name').removeAttr('name').attr('name', 'athlete_name'+id);
+        newElement.find('.athlete_name').removeAttr('name').attr('name', 'athlete_name'+id).removeClass('class name');
         newElement.find('.athlete_bib').removeAttr('name').attr('name', 'athlete_bib'+id).val('');
         newElement.find('.dob').val('');
         newElement.find('.mobile').val('');
@@ -1358,7 +1370,7 @@ $(document).ready(function () {
                  }
                  else{
                   alert(result_split[1]);
-                 }      
+                 }
              }
          });
      }
@@ -1668,7 +1680,7 @@ $(document).ready(function () {
               $('input[type="text"],textarea,select',this).each(function() {
                 if($(this).val().trim() == "") {
                   res = false;
-                  alert('parameter_unit false');
+                  //alert('parameter_unit false');
                 }
               });
               if(res){
@@ -2136,11 +2148,7 @@ $(document).ready(function () {
         $('.assign_clone_content:last').remove();
       }
     });
-    $('.assign_remove').click(function(){
-      if($('.assign_clone_content').length !=1){
-        $('.assign_clone_content:last').remove();
-      }
-    });
+
 
 
     $('[name=states_name],[name=district_name],[name=edit_states_name],[name=edit_district_name]').focus(function(){
@@ -2170,10 +2178,10 @@ $(document).ready(function () {
               $('.range_parameter_format').val(obj[i].test_parameter_format);
               if($('.range_parameter_type').val()=="time")
                 $('.range_notes').text("Enter the range in "+obj[i].test_parameter_unit);
-              else 
+              else
                 $('.range_notes').text("Enter the range in "+obj[i].test_parameter_unit+ " with "+obj[i].test_parameter_format+" formats");
               $('.range_note').show();
-            });         
+            });
            }
        });
     });
@@ -2201,9 +2209,43 @@ $(document).ready(function () {
     //           parameter_format = $('.range_parameter_format').val();
     //           if(decimals > parameter_format){
     //             alert("Check decimal points");
-    //           }  
-    //       }    
-    //     }     
+    //           }
+    //       }
+    //     }
     //  });
+    // $('.assignschedule_submit').click(function() {
+    //     $('.assign_content_holder .custom-combobox-input').each(function() {
+    //         var current = $(this).val();
+    //         if(!$(this)){
+    //             $('.assign_content_holder .custom-combobox-input').each(function() {
+    //                 if($(this).val == current){
+    //                     alert('Same Athelete allocarte twice.Ple');
+    //                 }
+    //             }
+    //         }
+    //     });
+    // });
+
 
 });
+$(document).delegate('.athlete_name', 'change', function(event) {
+    alert('ddfdf');
+    $(".athlete_name option").attr("disabled",""); //enable everything
+    DisableOptions(); //disable selected values
+});
+
+function DisableOptions()
+{
+var arr=[];
+  $(".athlete_name option:selected").each(function()
+          {
+              arr.push($(this).val());
+          });
+
+$(".athlete_name option").filter(function()
+    {
+
+          return $.inArray($(this).val(),arr)>-1;
+}).attr("disabled","disabled");
+
+}

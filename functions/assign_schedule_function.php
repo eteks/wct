@@ -76,4 +76,12 @@ class assignscheduleFunction {
           echo "error";
         }
     }
+    if(isset($_GET['cate_list'])){
+        include ("../dbconnect.php");
+        $id = $_POST['id'];
+        $query = mysql_query("select * from wc_createschedule inner join wc_testbattery_category_attribute on wc_createschedule.createscheduletestbattery_id = wc_testbattery_category_attribute.testbattery_id inner join wc_categories on wc_categories.categories_id = wc_testbattery_category_attribute.testbattery_category_id where wc_createschedule.createschedule_id = '$id' ");
+        while($row = mysql_fetch_array($query)){
+            echo "<option value=".$row['categories_id'].">".$row['categories_name']."</option>";
+        }
+    }
  ?>

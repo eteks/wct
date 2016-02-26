@@ -2,9 +2,9 @@
 	  require_once "header.php";
 	  require_once 'functions/states_function.php';
 	  require_once 'functions/district_function.php';
-	  $statesFunction = new statesFunction();	
+	  $statesFunction = new statesFunction();
 	  $districtFunction = new districtFunction();
-?>		
+?>
 		<div class="container align_center align-height">
 			<span class="sports">DISTRICT</span>
 		</div><!--end container-->
@@ -16,17 +16,17 @@
 						<div class="form-group">
 						  <label for="sel1">Select the State</label>
 						  <select class="form-control adjust_width classic choose_state" id="sel1" name="district_state" data-validation-error-msg="Please Select the name of the State" data-validation="required">
-						  <option value=""></option>
+						  <option value="">Select the state</option>
 						  <?php
 	                        $query = $statesFunction->statesSelect();
 	                        while ($row = mysql_fetch_array($query)) {
 	                            ?>
-	                            <option value="<?php echo $row['states_id']; ?>"><?php echo $row['states_name']; ?></option>	                                            
-	                      <?php } ?>							   
+	                            <option value="<?php echo $row['states_id']; ?>"><?php echo $row['states_name']; ?></option>
+	                      <?php } ?>
 						  </select>
 						  <!-- <label class="category_text">Please Select the State</label><br> -->
 						</div>
-						<div class="align_margin">					
+						<div class="align_margin">
 							<label>District</label><br>
 							<input type="text" class="districts" name="district_name" data-validation-error-msg="Please Enter the name of the District" data-validation="required">
 							<span class="add_district_error"></span>
@@ -37,16 +37,16 @@
 						<input type="submit" class="btn btn-primary align_right clear add_district_act" name="district" value="Submit">
 					</form>
 				</div>
-				<div class="container">           
+				<div class="container">
 				  <table class="table district_table">
 				    <thead>
 				      <tr class="row_color">
-				        <th class="align_center">SLNO</th>	
+				        <th class="align_center">SLNO</th>
 				        <th class="align_center">District</th>
 				        <th class="align_center">Action</th>
 				      </tr>
 				    </thead>
-				    <tbody>  
+				    <tbody>
 				      <?php
                         $query = $districtFunction->districtSelect();
                         $i=1;
@@ -60,9 +60,9 @@
 						        <td>
 						        	<span class="edit_state" onclick="editfunction(<?php echo $row['district_id'] ?>)">Edit</span>
 						        	<span class="delete_state" data-value="<?php echo $row['district_id'] ?>">Delete</span>
-						        </td> 				    
-					        </tr>                         
-                     <?php $i++; } ?>	 
+						        </td>
+					        </tr>
+                     <?php $i++; } ?>
 				    </tbody>
 				  </table>
 				</div>
@@ -70,17 +70,17 @@
 					<ul></ul>
 				</div>
 			</div>
-		</div><!-- end  container-->					
-		<!-- <div class="container align_center">		          
+		</div><!-- end  container-->
+		<!-- <div class="container align_center">
 		  	<ul class="pagination">
-		  		<li><a href="#" class="align_left_icon"><i class="fa fa-angle-double-left"></i></a></li>    	
+		  		<li><a href="#" class="align_left_icon"><i class="fa fa-angle-double-left"></i></a></li>
 			    <li><a href="#">1</a></li>
 			    <li><a href="#">2</a></li>
 			    <li><a href="#">3</a></li>
 			    <li><a href="#">4</a></li>
 			    <li><a href="#">5</a></li>
 			    <li><a href="#" class="align_right_icon"><i class="fa fa-angle-double-right"></i></a></li>
-			</ul>		   
+			</ul>
 		</div> --><!-- end  container-->
 		<div class="district_list">
 			<ul>
@@ -93,22 +93,22 @@
           		<div class="edit_title">
                 	<span class="del_txt">EDIT</span>
               	</div><!--edit_title-->
-          			<div class="container state-content col-md-12">		
+          			<div class="container state-content col-md-12">
 	          			<form name="edit_district_form" id="edit_district_form">
 	          			<input type="hidden" class="statesid" name="edit_district_id">
 						<div class="form-group">
 						  <label for="sel1">Select the State</label>
 						  <select class="form-control adjust_width classic choose_state" id="sel1" name="edit_district_state" data-validation-error-msg="Please Select the name of the State" data-validation="required">
-						  	<option value=""></option>
+						  	<option value="">Select the state</option>
 						  	<?php
 	                        $query = $statesFunction->statesSelect();
 	                        while ($row = mysql_fetch_array($query)) {
 	                            ?>
-	                            <option value="<?php echo $row['states_id']; ?>"><?php echo $row['states_name']; ?></option>	                                            
-	                      <?php } ?>	
+	                            <option value="<?php echo $row['states_id']; ?>"><?php echo $row['states_name']; ?></option>
+	                      <?php } ?>
 						  </select>
 						</div>
-						<div class="align_margin">					
+						<div class="align_margin">
 							<label>District</label><br>
 							<input type="text" class="districts" name="edit_district_name" data-validation-error-msg="Please Enter the name of the District" data-validation="required">
 							<span class="edit_district_error"></span>

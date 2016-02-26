@@ -39,7 +39,7 @@ if(isset($_GET['duplicate'])){
 					<div class="form-group">
 						  <label for="sel1">Select Sport</label>
 						  <select class="form-control adjust_width classic" id="sel1" name="Sport" data-validation-error-msg="Please Select the sport" data-validation="required">
-							  <option value="">Sport</option>
+							  <option value="">Select Sport</option>
 							  <?php
 					  		$data = $sports->sportsselectfunction();
 					  		foreach( $data as $eachrecord ) {

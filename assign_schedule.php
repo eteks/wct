@@ -34,7 +34,7 @@ if(isset($_GET['update_success'])){
 				<form method="post" id="assignschedule_form">
 					<div class="form-group">
 						  <label for="sel1">Select Schedule Name</label>
-						  <select class="form-control adjust_width classic" id="sel1" name="Schedule" data-validation-error-msg="Please Select Name of the Schedule" data-validation="required">
+						  <select class="form-control adjust_width classic assignsche_create" id="sel1" name="Schedule" data-validation-error-msg="Please Select Name of the Schedule" data-validation="required">
 							 <option value="">Select Schedule Name</option>
 							 <?php
 		   						 $data = $createschedule->createscheduleselectfunction();
@@ -46,14 +46,8 @@ if(isset($_GET['update_success'])){
 					</div>
 					<div class="form-group">
 						  <label for="sel1">Select Category Name</label>
-						  <select class="form-control adjust_width classic" id="sel1" name="category" data-validation-error-msg="Please Select Category of the Schedule" data-validation="required">
-							<option value="">Category Name</option>
-							  <?php
-						 		$data = $category->categoryselectfunction();
-						 		foreach( $data as $eachrecord ) {
-						  	  ?>
-						  		<option value="<?php echo $eachrecord ['categories_id']; ?>"><?php echo $eachrecord ['categories_name']; ?></option>
-						  	  <?php } ?>
+						  <select class="form-control adjust_width classic assignsche_cate" id="sel1" name="category" data-validation-error-msg="Please Select Category of the Schedule" data-validation="required">
+							<option value="">Select Category Name</option>
 						  </select>
 					</div>
 					<label for="athlete">Add Athletes</label><br>
@@ -100,7 +94,7 @@ if(isset($_GET['update_success'])){
 					</div>
 					<div class="col-md-9 schedule_btn">
 						<input type="reset" class="btn btn-primary align_right clear" value="Clear">
-						<input type="submit" class="btn btn-primary align_right test-submit clear assignschedule_submit" value="Submit">						
+						<input type="submit" class="btn btn-primary align_right test-submit clear assignschedule_submit" value="Submit">
 					</div>
 				</form>
 			</div>
@@ -200,7 +194,7 @@ if(isset($_GET['update_success'])){
 
 					<div class="col-md-10 schedule_btn">
 						<input type="reset" value="Clear" class="btn btn-primary align_right  clear">
-  					<input type="submit" value="Submit" class="btn btn-primary align_right test-submit clear">			
+  					<input type="submit" value="Submit" class="btn btn-primary align_right test-submit clear">
 					</div>
 				</form>
 			</div>
