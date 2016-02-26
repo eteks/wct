@@ -727,7 +727,7 @@ select {
 label{
     color: #414141 !important;
     font-family: Montserrat;
-} 
+}
 button, input, optgroup, select, textarea {
     font-family: Montserrat !important;
 }
@@ -1197,6 +1197,7 @@ input[type=radio]:checked + label:before {
     position: relative !important;
     top: 12px;
     width: 205px;
+    box-shadow: none;   
 }
 .combo--align--popup span input {
     position: relative !important;

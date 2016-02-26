@@ -265,6 +265,20 @@ $(window).resize(function () {
     package_menu();
   });
 $(document).ready(function () {
+    // $('.assignschedule_submit').click(function(){
+    //     var currentInput;
+    //     $(".assign_clone_content .custom-combobox-input").each(function(index) {
+    //       currentInput = $(this);
+    //       alert($(this).val());
+    //       $(".assign_clone_content .custom-combobox-input").each(function(index) {
+    //          alert($(this).val());
+    //         if(currentInput.val() === $(this).val()) {
+    //           alert("Error: input fields match found");
+    //         }
+    //       });
+    //     });
+    //
+    // });
     $("input").attr('maxlength','50');
   package_menu();
  	state_center_align();
@@ -1745,7 +1759,7 @@ $(document).ready(function () {
     });
     if(res){
         var form_data = $('#assignschedule_form').serialize();
-       // alert(form_data);
+       //alert(form_data);
         $.ajax({
            type: "POST",
            url: "functions/assign_schedule_function.php?add_assign_schdule=true",
@@ -1849,7 +1863,7 @@ $(document).ready(function () {
     var current_id = 1;
     $(document).on('click','.add_range_points',function(e){
         if(($('.clone_content:last').children().find('.r_strt').val() == '') || ($('.clone_content:last').children().find('.r_end').val() == '') || ($('.clone_content:last').children().find('.r_point').val() == '') || ($('.clone_content').children().find('.r_strt').val() == '') || ($('.clone_content').children().find('.r_end').val() == '') || ($('.clone_content').children().find('.r_point').val() == ''))
-        { 
+        {
           $('.clone_content:last').children().find('input[type="text"]').next().addClass('custom_error');
           e.preventDefault();
           alert('please fill all the fields');
@@ -2080,11 +2094,11 @@ $(document).ready(function () {
               else{
                 status = 0;
               }
-            }  
+            }
           }
         }
         else{
-            //Checking entered Result   
+            //Checking entered Result
             if(value!=''){
               if(value.indexOf(".")==-1){
               decimals = 0;
@@ -2092,7 +2106,7 @@ $(document).ready(function () {
             else{
               decimals = value.toString().split(".")[1].length;
             }
-        
+
             // status = 0;
             for (var i = 0; i < ranges.length; i++) {
               // alert(ranges[i].range_start);
@@ -2132,14 +2146,14 @@ $(document).ready(function () {
           $('.total_result').text(result);
           $(this).parents('tr').find('.enter_points').text('');
         }
-        
+
         //Points total result
         var val=0;
         $(".enter_points").each(function() {
           val += Number($(this).text());
           $('.total_result').text(val);
         });
-        
+
      });
 
      $('.result_submit_act').click(function(){
@@ -2317,25 +2331,5 @@ $(document).ready(function () {
       $('.r_strt,.r_end,.r_point').val('');
     });
 
+
 });
-$(document).delegate('.athlete_name', 'change', function(event) {
-    alert('ddfdf');
-    $(".athlete_name option").attr("disabled",""); //enable everything
-    DisableOptions(); //disable selected values
-});
-
-function DisableOptions()
-{
-var arr=[];
-  $(".athlete_name option:selected").each(function()
-          {
-              arr.push($(this).val());
-          });
-
-$(".athlete_name option").filter(function()
-    {
-
-          return $.inArray($(this).val(),arr)>-1;
-}).attr("disabled","disabled");
-
-}
