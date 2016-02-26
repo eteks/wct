@@ -1879,7 +1879,7 @@ $(document).ready(function () {
         else{
            startrange = Number($('#end'+(id-1)).val())+1;
         }
-        newElement.find('.r_strt').removeAttr('name').attr('name', 'range_start'+id).val('');
+        newElement.find('.r_strt').removeAttr('name').attr('name', 'range_start'+id).val(startrange);
         newElement.find('.r_end').removeAttr('name').attr('name', 'range_end'+id).val('');
         newElement.find('.r_point').removeAttr('name').attr('name', 'range_points'+id).val('');
         newElement.find('.r_strt').removeAttr('id').attr('id','strt'+id);
