@@ -849,6 +849,7 @@ $(document).ready(function () {
                  $('.popup_fade').hide();
                  $('.district_div, .close_btn').hide();
                  document.body.style.overflow = 'auto';
+                 location.reload();
                }
                else{
                 $('.edit_district_error').text(result_split[1]).show();
@@ -1834,7 +1835,7 @@ $(document).ready(function () {
 
     // Jquery functions for Range Form added by kalai
     var current_id = 1;
-    $('.add_range_points').click(function(){
+    $(document).on('click','.add_range_points',function(){
         var id = current_id+1;
         nextrangeElement($('.clone_content:last'));
         $('.clone_content:last').attr('id','range_counter'+id)
@@ -1844,10 +1845,19 @@ $(document).ready(function () {
         var id = current_id+1;
         current_id = id;
         newElement.find('.range_label').remove();
-        if($('.range_parameter_type').val() == "time")
-          startrange = $('#end'+(id-1)).val();
-        else
-          startrange = Number($('#end'+(id-1)).val())+1;
+        if($('.range_parameter_type').val() == "time"){        
+          data = $('#end'+(id-1)).val().split(':').pop(-1);
+          startrange = Number(data) + 1;
+          startrange = $('#end'+(id-1)).val().replace($('#end'+(id-1)).val().substr($('#end'+(id-1)).val().length - 2),startrange);
+        } else if($('#end'+(id-1)).val().indexOf(".") !== -1){         
+          data = $('#end'+(id-1)).val().split('.').pop(-1);
+          startrange = Number(data) + 1;
+          s = $('#end'+(id-1)).val().substring(0, $('#end'+(id-1)).val().indexOf('.'));
+          startrange = s +'.'+ startrange;
+        }
+        else{
+           startrange = Number($('#end'+(id-1)).val())+1;
+        }
         newElement.find('.r_strt').removeAttr('name').attr('name', 'range_start'+id).val(startrange);
         newElement.find('.r_end').removeAttr('name').attr('name', 'range_end'+id).val('');
         newElement.find('.r_point').removeAttr('name').attr('name', 'range_points'+id).val('');
@@ -2095,12 +2105,27 @@ $(document).ready(function () {
              type: "POST",
              url: "functions/result_function.php?storeresult=true",
              data: JSON.stringify(result_data),
-             dataType: 'json',
+             // dataType: 'json',
              cache: false,
              success: function(data) {
               alert(data);
+              document.result_form.reset();
+              $('.result_table tbody tr:not(:last)').remove();
+              $('.total_result').text('');
               }
           });
+     });
+
+     $('.result_clear_act').click(function(){
+      $('.enter_result').val('');
+      $('.enter_points').text('');
+      $('.total_result').text('');
+     });
+
+     $('.result_clear').click(function(){
+      document.result_form.reset();
+      $('.result_table tbody tr:not(:last)').remove();
+      $('.total_result').text('');
      });
 
      $('.edit_parameter_unit').click(function(event) {
@@ -2231,5 +2256,16 @@ $(document).ready(function () {
           }    
         }     
      });
+
+    //To clear selected dropdown values in edit form
+    // $('.edit_athlete_clear,').click(function(){
+    //   $('option').removeAttr('selected');
+    // });
+
+    $(document).on('change','.range_parameter',function () {
+      current_id -=$('.clone_content:not(:first-child)').length;
+      $('.clone_content:not(:first-child)').remove();
+      $('.r_strt,.r_end,.r_point').val('');
+    });
 
 });
