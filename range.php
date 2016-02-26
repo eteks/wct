@@ -77,13 +77,16 @@
 						  	<div class="form-group col-md-10">
 								  <div class="col-md-4">
 								  	<input type="text" class="form-control classic range_align  r_strt" id="strt1" name="range_start1" placeholder="Start">
+								 	<span class="hided">Please Enter the start range</span>		
 								  </div>
 								  <div class="col-md-4">
 								  	<input type="text" class="form-control classic range_align  r_end" id="end1" name="range_end1" placeholder="End">
-								  </div>
+								 	<span class="hided">Please Enter the start range</span>		
+							 		</div>
 								  <div class="col-md-4">
 								  	<input type="text" class="form-control classic range_align  r_point" id="point1" name="range_points1" placeholder="Points">
-								  </div>
+							  		<span class="hided">Please Enter the start range</span>		
+							  	</div>
 							</div>
 						</div>
 					</div>

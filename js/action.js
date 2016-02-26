@@ -320,6 +320,16 @@ $(document).ready(function () {
           }
      });
 
+  //form reset
+$('.reset_form').on('click',function(){ 
+  $("#edit_create_schedule_form, #edit_athletes_form,#edit_assign_schedule_form").find("select").each(function (index) {
+          var ctrl=$(this);     
+          $(ctrl.children()).each(function(index) {
+              if (index===0) $(this).attr('selected', 'selected'); 
+              else $(this).removeAttr('selected');
+          });      
+  });
+});
    //Edit popup
   	$(document.body).delegate('.edit_state','click',function() {
         state_center_align();
@@ -2339,3 +2349,4 @@ $(".athlete_name option").filter(function()
 }).attr("disabled","disabled");
 
 }
+
