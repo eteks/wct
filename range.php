@@ -91,17 +91,18 @@
 						<!-- <input type="button" class="btn btn-primary ranges_btn add_range_points" value="Add Ranges"> -->
 						<!-- <i class="fa fa-plus plus_align add_range_points"></i> -->
 						<i class="fa fa-plus plus_align add_range_points">
-							<div class="tooltip_parameter">Add Parameter</div>
+							<div class="tooltip_parameter">Add Range</div>
 							<div class="tip_triangle"></div>
 						</i>
 						<i class="fa fa-minus range_remove">
-							<div class="tooltip_remove">Remove Parameter</div>
+							<div class="tooltip_remove">Remove Range</div>
 							<div class="tip_triangle"></div>
 						</i>
 					</div>
 					<!-- <button type="button" class="btn btn-primary align_right ranges_btn add_range_points">Add Ranges</button><i class="fa fa-plus plus_align"></i> -->
-					<div class="col-md-9 schedule_btn">					
-						<input type="submit" class="btn btn-primary align_right clear add_range_act" value="Submit">	
+					<div class="col-md-9 schedule_btn">	
+						<input type="reset" value="Clear" class="btn btn-primary align_right clear" maxlength="50">				
+						<input type="submit" class="btn btn-primary align_right test-submit clear add_range_act" value="Submit">	
 					</div>			
 				</form>
 			</div>			
@@ -227,8 +228,9 @@
 					  		</div>
 					  </div>
 					</div>				
-					<div class="col-md-12 schedule_btn">					
-						<input type="submit" class="btn btn-primary align_right clear edit_range_act" value="Submit">
+					<div class="col-md-12 schedule_btn">	
+						<input type="reset" value="Clear" class="btn btn-primary align_right clear" maxlength="50">				
+						<input type="submit" class="btn btn-primary align_right test-submit clear edit_range_act" value="Submit">
 					</div>			
 				</form>
 			</div>		
