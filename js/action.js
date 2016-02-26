@@ -337,6 +337,16 @@ $(document).ready(function () {
           }
      });
 
+  //form reset
+$('.reset_form').on('click',function(){
+  $("#edit_create_schedule_form, #edit_athletes_form,#edit_assign_schedule_form").find("select").each(function (index) {
+          var ctrl=$(this);
+          $(ctrl.children()).each(function(index) {
+              if (index===0) $(this).attr('selected', 'selected');
+              else $(this).removeAttr('selected');
+          });
+  });
+});
    //Edit popup
   	$(document.body).delegate('.edit_state','click',function() {
         state_center_align();
@@ -2101,9 +2111,11 @@ $(document).ready(function () {
             rangeend = ranges[i].range_end;
             if((parameter_format=="HH:MM:SS")&&(!(/^(?:[0-5][0-9]):(?:[0-5][0-9]):[0-5][0-9]$/).test(value))){
               alert("check time format");
+              $("select:first").focus();
               break;
             } else if((parameter_format=="HH:MM")&&(!(/^(?:[0-5][0-9]):[0-5][0-9]$/).test(value))){
               alert("check time format");
+              $("select:first").focus();
               break;
             }
             else{
@@ -2322,12 +2334,14 @@ $(document).ready(function () {
             // regex=/^(?:(?:([01]?\d|2[0-3]):)?([0-5]?\d):)?([0-5]?\d)$/;
             if(!(/^(?:[0-5][0-9]):(?:[0-5][0-9]):[0-5][0-9]$/).test(value)){
               alert("check time format");
+              $("select:first").focus();
             }
           }
           if($('.range_parameter_format').val()=="HH:MM"){
             // regex=/^(?:(?:([01]?\d|2[0-3]):)?([0-5]?\d):)?([0-5]?\d)$/;
             if(!(/^(?:[0-5][0-9]):[0-5][0-9]$/).test(value)){
               alert("check time format");
+              $("select:first").focus();
             }
           }
         }
@@ -2358,6 +2372,4 @@ $(document).ready(function () {
       $('.clone_content:not(:first-child)').remove();
       $('.r_strt,.r_end,.r_point').val('');
     });
-
-
 });

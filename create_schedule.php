@@ -51,18 +51,18 @@
 							    <option value="10">10</option>
 							    <option value="11">11</option>
 							    <option value="12">12</option>
-							    <option value="01">13</option>
-							    <option value="02">14</option>
-							    <option value="03">15</option>
-							    <option value="04">16</option>
-							    <option value="05">17</option>
-							    <option value="06">18</option>
-							    <option value="07">19</option>
-							    <option value="08">20</option>
-							    <option value="09">21</option>
-							    <option value="10">22</option>
-							    <option value="11">23</option>
-							    <option value="12">24</option>
+							    <option value="13">13</option>
+							    <option value="14">14</option>
+							    <option value="15">15</option>
+							    <option value="16">16</option>
+							    <option value="17">17</option>
+							    <option value="18">18</option>
+							    <option value="19">19</option>
+							    <option value="20">20</option>
+							    <option value="21">21</option>
+							    <option value="22">22</option>
+							    <option value="23">23</option>
+							    <option value="24">24</option>							  
 							</select>
 						</div>
 						<div class="form-group align-time col-md-3">
@@ -231,7 +231,7 @@
 					        <td class="t_createschedule_name"><?php echo $row['createschedule_name']; ?></td>
 					        <td class="t_testbattery_name"><?php echo $row['testbattery_name']; ?></td>
 					        <td class="t_createschedule_date"><?php echo date("d/m/Y", strtotime($row['createschedule_date'])); ?></td>
-					        <td class="t_createschedule_time"><?php echo $row['createschedule_time']; ?></td>
+					        <td class="t_createschedule_time"><?php echo date("H:i:s", strtotime($row['createschedule_time'])); ?></td>
 					        <td class="t_createschedule_venue"><?php echo $row['createschedule_venue']; ?></td>
 					        <td>
 					        	<span class="edit_state" onclick="editfunction(<?php echo $row['createschedule_id'] ?>)">Edit</span>
@@ -324,18 +324,18 @@
 							    <option value="10">10</option>
 							    <option value="11">11</option>
 							    <option value="12">12</option>
-							    <option value="01">13</option>
-							    <option value="02">14</option>
-							    <option value="03">15</option>
-							    <option value="04">16</option>
-							    <option value="05">17</option>
-							    <option value="06">18</option>
-							    <option value="07">19</option>
-							    <option value="08">20</option>
-							    <option value="09">21</option>
-							    <option value="10">22</option>
-							    <option value="11">23</option>
-							    <option value="12">24</option>
+							    <option value="13">13</option>
+							    <option value="14">14</option>
+							    <option value="15">15</option>
+							    <option value="16">16</option>
+							    <option value="17">17</option>
+							    <option value="18">18</option>
+							    <option value="19">19</option>
+							    <option value="20">20</option>
+							    <option value="21">21</option>
+							    <option value="22">22</option>
+							    <option value="23">23</option>
+							    <option value="24">24</option>	
 							</select>
 						</div>
 						<div class="col-md-3">
@@ -477,7 +477,7 @@
 					<div class="col-md-10 schedule_btn">
 						<!-- <button type="button" class="btn btn-primary align_right clear edit_createschedule_act">Submit</button>
 						<button type="button" class="btn btn-primary align_right clear">Clear</button> -->
-						<input type="reset" class="btn btn-primary align_right clear" value="Clear">
+						<input type="reset" class="btn btn-primary align_right clear reset_form" value="Clear">
 						<input type="submit" class="btn btn-primary align_right test-submit clear edit_createschedule_act" value="Submit">
 					</div>
 	          	</form>
