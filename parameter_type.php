@@ -14,7 +14,7 @@
 				<form id="parameter_type_form" name="parameter_type_form">
 					<div class="form-group">
 						  <label for="sel1">Select Parameter Type</label>
-						  <input type="text" class="form-control adjust_width classic" id="sel1" value='' name="parameter_type" data-validation-error-msg="Please Select the Type of the Parameter" data-validation="required">
+						  <input type="text" class="form-control adjust_width classic" id="sel1" value='' name="parameter_type" data-validation-error-msg="Please Enter Parameter type" data-validation="required">
 					</div>
 					<div class="col-md-9 schedule_btn">
 						<input type="submit" class="btn btn-primary align_right parameter-submit clear add_parameter_act" value="Submit">

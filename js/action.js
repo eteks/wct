@@ -266,7 +266,25 @@ $(window).resize(function () {
   });
   $(document).delegate('.assign_clone_content .custom-combobox-input','blur',function(){
       var j = 0;
+      var main =  $(this);
+      var schedule = $('.assignsche_create').val();
+      var category = $('.assignsche_cate').val();
+      var athe_id = main.parents('.assign_clone_content').find('.athlete_name').val();
       var currentInput  = $(this).val();
+      $.ajax({
+           type: "POST",
+           url: "functions/athletes_functions.php?athelete_check=true",
+           data:{'sche':1,'cate':category,'athe':athe_id},
+           cache: false,
+           success: function(data) {
+                if(data == 'error'){
+                    alert('This athelete already assigned another category!');
+                    main.val('');
+                    main.parents('.assign_clone_content').find('.dob').val('');
+                    main.parents('.assign_clone_content').find('.mobile').val('');
+                }
+          }
+       });
     $(".assign_clone_content .custom-combobox-input").each(function(index) {
       if(currentInput === $(this).val()) {
           j++;
