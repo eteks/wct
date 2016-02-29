@@ -63,7 +63,7 @@
 			return $res;
 		}
 		public function parameternameSelect(){
-			$res = mysql_query("SELECT * FROM wc_test_attribute WHERE test_id='".$this->rangetestid."'")or die(mysql_error());
+			$res = mysql_query("SELECT * FROM wc_test_attribute WHERE test_id='".$this->rangetestid."' LIMIT 1")or die(mysql_error());
 			return $res;
 		}
 		public function parameterSelect(){
@@ -83,7 +83,9 @@
 			return $res;
 		}
 		public function isParameterExist(){
-			$qr = mysql_query("SELECT * FROM wc_range WHERE rangetestattribute_id = '".$this->rangetestattributeid."'");
+			// $qr = mysql_query("SELECT * FROM wc_range WHERE rangetestattribute_id = '".$this->rangetestattributeid."'");
+			//newly changed
+			$qr = mysql_query("SELECT * FROM wc_range WHERE rangecategories_id='".$this->rangecategoryid."' AND rangetest_id='".$this->rangetestid."' AND rangetestattribute_id='".$this->rangetestattributeid."'");
 			$row = mysql_num_rows($qr);
 			if($row > 0){
 				return true;
@@ -121,7 +123,9 @@
 			} 
 		}
 		else{
-			echo "failure#Already Assigned Range for this parameter";
+			// echo "failure#Already Assigned Range for this parameter";
+			//newly changed
+			echo "failure#Already Range Assigned";
 		}
 	}	
 	// For display edit data 
@@ -143,6 +147,9 @@
            'rangetest_name' => $result['test_name'],
            'rangetestattribute_id' => $result['test_attribute_id'],
            'rangeparameter_name' => $result['test_parameter_name'],
+           'rangeparameter_type' => $result['test_parameter_type'],
+           'rangeparameter_unit' => $result['test_parameter_unit'],
+           'rangeparameter_format' => $result['test_parameter_format'],
            );
     		array_push( $range_json, $tmp );
 	    }

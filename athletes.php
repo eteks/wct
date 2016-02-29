@@ -39,7 +39,7 @@
 					    <option value="2">February</option>
 					    <option value="3">March</option>
 					  </select>
-		    
+
 					  <select class="form-control classic dob_align fl" id="year" name="athlete_dobyear" data-validation-error-msg="Please Select the Year" data-validation="required">
 					  	<option value="">Years</option>
 					    <option value="1991">1991</option>
@@ -97,7 +97,7 @@
 					<div class="form-group">
 						  <label for="sel1">Sports</label>
 						  <select class="form-control adjust_width classic" id="sel1" name="athlete_sports" data-validation-error-msg="Please Select the Sports" data-validation="required">
-						   <option value="">Sports</option>                  
+						   <option value="">Sports</option>
 						   <?php
 	                        $query = $sportsfunction->sportsSelect();
 	                        while ($row = mysql_fetch_array($query)) {
@@ -109,7 +109,7 @@
 					<div class="col-md-9 schedule_btn">
 						<!-- <button type="button" class="btn btn-primary align_right clear add_athletes_act">Submit</button> -->
 						<input type="reset" class="btn btn-primary align_right clear" value="Clear">
-						<input type="submit" class="btn btn-primary align_right test-submit clear add_athletes_act" value="Submit">						
+						<input type="submit" class="btn btn-primary align_right test-submit clear add_athletes_act" value="Submit">
 					</div>
 				</form>
 			</div>
@@ -136,7 +136,7 @@
 					        <td class="t_athlete_s_id"><?php echo $i; ?></td>
 					        <td class="t_athlete_name"><?php echo $row['athlete_name']; ?></td>
 					        <td class="t_athlete_gender"><?php echo $row['athlete_gender']; ?></td>
-					        <td class="t_athlete_dob"><?php echo $row['athlete_dob']; ?></td>
+					        <td class="t_athlete_dob"><?php echo date("d/m/Y", strtotime($row['athlete_dob'])); ?></td>
 					        <td class="t_athlete_address"><?php echo $row['athlete_address']; ?></td>
 					        <td>
 					        	<span class="edit_state" onclick="editfunction(<?php echo $row['athlete_id'] ?>)">Edit</span>
@@ -254,8 +254,8 @@
 					<div class="col-md-10 schedule_btn">
 						<!-- <button type="button" class="btn btn-primary align_right clear edit_athletes_act">Submit</button>
 						<button type="button" class="btn btn-primary align_right clear">Clear</button> -->
-						<input type="reset" class="btn btn-primary align_right clear edit_athlete_clear" value="Clear">
-						<input type="submit" class="btn btn-primary align_right test-submit clear edit_athletes_act" value="Submit">						
+						<input type="reset" class="btn btn-primary align_right clear reset_form edit_athlete_clear" value="Clear">
+						<input type="submit" class="btn btn-primary align_right test-submit clear edit_athletes_act" value="Submit">
 					</div>
 				</form>
 	          		</div>

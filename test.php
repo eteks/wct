@@ -35,6 +35,7 @@ if(isset($_GET['insert_error'])){
 							<div class="form-group col-md-12 schedule_btn">
 								<label>Enter Parameter Name</label><br>
 								<input type="text" class="adjust_width parameter_name" name="parameter_name1" data-validation-error-msg="Please Enter the Parameter Name" data-validation="required">
+								<span class="hided param_name_error">Please Enter the parameter name</span>
 							</div>
 							<div class="form-group parameter_type_parent">
 								<div class="form-group col-md-3">
@@ -56,16 +57,19 @@ if(isset($_GET['insert_error'])){
 											}
 										?>
 									</select>
+									<span class="hided param_type_error">Please Select the type</span>
 								</div>
 								<div class="form-group col-md-3">
 									<select class="form-control classic type_align fl parameter_unit" id="unit" name="unit1" data-validation-error-msg="Please Select the Unit of the Parameter" data-validation="required">
 									<option value="">Unit</option>
 									</select>
+									<span class="hided param_unit_error">Please Select the unit</span>
 								</div>
 								<div class="form-group col-md-3">
 									<select class="form-control classic type_align fl parameter_format" id="format" name="format1" data-validation-error-msg="Please Select the Format of the Parameter" data-validation="required">
-
+										<option value="">Format</option>
 									</select>
+									<span class="hided param_format_error">Please Select the format</span>
 								</div>
 							</div>
 						</div>
@@ -83,7 +87,8 @@ if(isset($_GET['insert_error'])){
 					</div>
 					<input type="hidden" name="test_add" value="1">
 					<div class="col-md-9 schedule_btn">
-						<input type="submit" class="btn btn-primary align_right clear test_submit_act" value="Submit">
+						<input type="reset" value="Clear" class="btn btn-primary align_right clear" maxlength="50">
+						<input type="submit" class="btn btn-primary align_right clear test-submit test_submit_act" value="Submit">
 					</div>
 				</form>
 			</div>
@@ -171,6 +176,7 @@ if(isset($_GET['insert_error'])){
 							</div>
 							<div class="col-md-4">
 								<select class="form-control classic type_align_popup fl parameter_format parameter_format_update" id="format1" name="format1" data-validation-error-msg="Please Select the Format" data-validation="required">
+									<option value="">Format</option>
 									<option value="0">0</option>
 									<option value="1">1</option>
 									<option value="2">2</option>
@@ -183,8 +189,9 @@ if(isset($_GET['insert_error'])){
 					</div><!-- end parameter_holder -->
 					<input class="parameter_update" type="hidden" name="parameter_update" value="" />
 					<input class="test_update_id" type="hidden" name="test_update_id" value="" />
-					<div class="col-md-9 schedule_btn">
-						<input type="submit" class="btn btn-primary align_right clear" value="Submit">
+					<div class="col-md-10 schedule_btn">
+						<input type="reset" value="Clear" class="btn btn-primary align_right clear" maxlength="50">
+						<input type="submit" class="btn btn-primary align_right test-submit clear" value="Submit">
 					</div>
 				</form>
 			</div>

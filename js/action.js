@@ -177,33 +177,6 @@ function editfunction(data_id){
             document.body.style.overflow = 'hidden';
            }
         });
-    } else if(window.location.href.indexOf("test_battery.php") !== -1){
-          $.ajax({
-           type: "POST",
-           url: "functions/test_battery_functions.php?chooseedit=true",
-           data: {data_id:data_id},
-           cache: false,
-           success: function(data) {
-            var obj = JSON.parse(data);
-            $.each(obj, function(i){
-                date = obj[i].createschedule_date.split('-');
-                time = obj[i].createschedule_time.split(':');
-                $('[name=edit_schedule_id]').val(obj[i].createschedule_id);
-                $('[name=edit_schedule_name]').val(obj[i].createschedule_name);
-                $('[name=edit_schedule_testbattery]').append("<option value='"+obj[i].createschedule_testbatteryid+ "'selected>"+obj[i].createschedule_testbatteryname+"</option>");
-                $('[name=edit_schedule_day]').append("<option value='"+date[2]+ "'selected>"+date[2]+"</option>");
-                $('[name=edit_schedule_month]').append("<option value='"+date[1]+ "'selected>"+date[1]+"</option>");
-                $('[name=edit_schedule_year]').append("<option value='"+date[0]+ "'selected>"+date[0]+"</option>");
-                $('[name=edit_schedule_hour]').append("<option value='"+time[0]+ "'selected>"+time[0]+"</option>");
-                $('[name=edit_schedule_minute]').append("<option value='"+time[1]+ "'selected>"+time[1]+"</option>");
-                $('[name=edit_schedule_seconds]').append("<option value='"+time[2]+ "'selected>"+time[2]+"</option>");
-                $('[name=edit_schedule_venue]').val(obj[i].createschedule_venue);
-            });
-            $('.popup_fade').show();
-            $('.createschedule_div, .close_btn').show();
-            document.body.style.overflow = 'hidden';
-           }
-        });
     } else if(window.location.href.indexOf("range.php") !== -1){
           $.ajax({
            type: "POST",
@@ -220,7 +193,12 @@ function editfunction(data_id){
               $('[name=edit_range_category]').html('<option value="'+range_obj[i].rangecategory_id+'" selected>'+range_obj[i].rangecategory_name+'</option>');
               $('[name=edit_range_test]').html('<option value="'+range_obj[i].rangetest_id+'" selected>'+range_obj[i].rangetest_name+'</option>');
               $('[name=edit_range_parameter]').html('<option value="'+range_obj[i].rangetestattribute_id+'" selected>'+range_obj[i].rangeparameter_name+'</option>');
+              if(range_obj[i].rangeparameter_type == "time")
+                $('.edit_range_notes').text("Enter the range in "+range_obj[i].rangeparameter_unit+ " format");
+              else
+                $('.edit_range_notes').text("Enter the range in "+range_obj[i].rangeparameter_unit+ " with "+range_obj[i].rangeparameter_format +" format");
             });
+            $('.edit_range_note').show();
             //Append data to first range part without using for loop
             data = rangeattr_obj[0];
             element = $('.edit_clone_content:first');
@@ -264,7 +242,24 @@ function editfunction(data_id){
 $(window).resize(function () {
     package_menu();
   });
+  $(document).delegate('.assign_clone_content .custom-combobox-input','blur',function(){
+      var j = 0;
+      var currentInput  = $(this).val();
+    $(".assign_clone_content .custom-combobox-input").each(function(index) {
+      if(currentInput === $(this).val()) {
+          j++;
+      }
+    });
+    if(j=='2'){
+        alert('Already Exists!');
+        $(this).val('');
+        $(this).parents('.assign_clone_content').find('.dob').val('');
+        $(this).parents('.assign_clone_content').find('.mobile').val('');
+        //alert($(this).parents('.assign_clone_content').find('date_assign dob').val('').html());
+    }
+  });
 $(document).ready(function () {
+
     $("input").attr('maxlength','50');
   package_menu();
  	state_center_align();
@@ -287,7 +282,19 @@ $(document).ready(function () {
           }
        });
   });
-
+  $('.assignsche_create').change(function() {
+      var sche_id = $(this).val();
+      //alert(sche_id);
+      $.ajax({
+           type: "POST",
+           url: "functions/assign_schedule_function.php?cate_list=true",
+           data:{'id':sche_id},
+           cache: false,
+           success: function(data) {
+                $('.assignsche_cate').empty().append("<option value=''>Select Category Name</option>"+data);
+          }
+       });
+  });
 
   // $(document).on('keypress','#mobile,#result_athletemobile,#bib,#result_athletebib,.r_strt,.r_end,.r_point',function(e){
    $(document).on('keypress','#mobile,#result_athletemobile,#bib,#result_athletebib',function(e){
@@ -308,6 +315,16 @@ $(document).ready(function () {
           }
      });
 
+  //form reset
+$('.reset_form').on('click',function(){
+  $("#edit_create_schedule_form, #edit_athletes_form,#edit_assign_schedule_form").find("select").each(function (index) {
+          var ctrl=$(this);
+          $(ctrl.children()).each(function(index) {
+              if (index===0) $(this).attr('selected', 'selected');
+              else $(this).removeAttr('selected');
+          });
+  });
+});
    //Edit popup
   	$(document.body).delegate('.edit_state','click',function() {
         state_center_align();
@@ -611,6 +628,8 @@ $(document).ready(function () {
                 });
                 $('.range_test').html(test_options);
                 $('.range_parameter').html('');
+                //newly added
+                $('.range_note').hide();
 
              }
          });
@@ -1185,14 +1204,33 @@ $(document).ready(function () {
       }
     });
 
-    // $('.parameter_btn').click(function() {
-    //     var $div = $('div[class^="parameter_name"]:last');
-    //     alert($div.html());
-    // });
     var current_id = 1;
     $('.parameter_btn').click(function(){
-        //alert('test')
-        nextElement($('.clone_content:last'));
+        if($('.clone_content:last').find('.parameter_name').val() == ''){
+            $('.clone_content:last .param_name_error').addClass('custom_error');
+        }else{
+            $('.clone_content:last .param_name_error').removeClass('custom_error');
+        }
+        if($('.clone_content:last').find('.parameter_type').val() == ''){
+            $('.clone_content:last .param_type_error').addClass('custom_error');
+        }else{
+            $('.clone_content:last .param_type_error').removeClass('custom_error');
+        }
+        if($('.clone_content:last').find('.parameter_unit').val() == ''){
+            $('.clone_content:last .param_unit_error').addClass('custom_error');
+        }else{
+            $('.clone_content:last .param_unit_error').removeClass('custom_error');
+        }
+        if($('.clone_content:last').find('.parameter_format').val() == ''){
+            $('.clone_content:last .param_format_error').addClass('custom_error');
+        }else{
+            $('.clone_content:last .param_format_error').removeClass('custom_error');
+            nextElement($('.clone_content:last'));
+        }
+
+
+
+
     })
 
     function nextElement(element){
@@ -1201,8 +1239,7 @@ $(document).ready(function () {
         current_id = id;
         newElement.find('.parameter_name').removeAttr('name').attr('name', 'parameter_name'+id).val('');
         newElement.find('#type').removeAttr('name').attr('name', 'type'+id);
-        newElement.find('#unit').removeAttr('name').attr('name', 'unit'+id).removeClass('error').removeAttr('style');
-        newElement.find('#unit option').remove();
+        newElement.find('#unit').removeAttr('name').attr('name', 'unit'+id).removeClass('error').removeAttr('style').empty().append("<option value='' selected>UNIT</option>");
         newElement.find('#unit').next('span').remove();
         newElement.find('#format').removeAttr('name').attr('name', 'format'+id);
         newElement.appendTo($(".parameter_holder1"));
@@ -1217,7 +1254,7 @@ $(document).ready(function () {
         var newElement = element.clone();
         var id = test_id+1;
         test_id = id;
-        newElement.find('.athlete_name').removeAttr('name').attr('name', 'athlete_name'+id);
+        newElement.find('.athlete_name').removeAttr('name').attr('name', 'athlete_name'+id).removeClass('class name');
         newElement.find('.athlete_bib').removeAttr('name').attr('name', 'athlete_bib'+id).val('');
         newElement.find('.dob').val('');
         newElement.find('.mobile').val('');
@@ -1359,7 +1396,7 @@ $(document).ready(function () {
                  }
                  else{
                   alert(result_split[1]);
-                 }      
+                 }
              }
          });
      }
@@ -1669,7 +1706,7 @@ $(document).ready(function () {
               $('input[type="text"],textarea,select',this).each(function() {
                 if($(this).val().trim() == "") {
                   res = false;
-                  alert('parameter_unit false');
+                  //alert('parameter_unit false');
                 }
               });
               if(res){
@@ -1733,7 +1770,7 @@ $(document).ready(function () {
     });
     if(res){
         var form_data = $('#assignschedule_form').serialize();
-       // alert(form_data);
+       //alert(form_data);
         $.ajax({
            type: "POST",
            url: "functions/assign_schedule_function.php?add_assign_schdule=true",
@@ -1835,30 +1872,55 @@ $(document).ready(function () {
 
     // Jquery functions for Range Form added by kalai
     var current_id = 1;
-    $(document).on('click','.add_range_points',function(){
+    $(document).on('click','.add_range_points',function(e){
+        if(($('.clone_content:last').children().find('.r_strt').val() == '') || ($('.clone_content:last').children().find('.r_end').val() == '') || ($('.clone_content:last').children().find('.r_point').val() == '') || ($('.clone_content').children().find('.r_strt').val() == '') || ($('.clone_content').children().find('.r_end').val() == '') || ($('.clone_content').children().find('.r_point').val() == ''))
+        {
+          $('.clone_content:last').children().find('input[type="text"]').next().addClass('custom_error');
+          e.preventDefault();
+          // alert('please fill all the fields');
+        }
+        else{
+        $('.clone_content:last').children().find('input[type="text"]').next().removeClass('custom_error');
         var id = current_id+1;
         nextrangeElement($('.clone_content:last'));
-        $('.clone_content:last').attr('id','range_counter'+id)
-    })
+        $('.clone_content:last').attr('id','range_counter'+id);
+       }
+    });
+
+    // $(document).on('click','.add_range_points',function(e){
+    //   $('.r_strt .r_end .r_point').filter(function() {
+    //     if (this.value != '') {
+    //       alert("not empty");
+    //       var id = current_id+1;
+    //       nextrangeElement($('.clone_content:last'));
+    //       $('.clone_content:last').attr('id','range_counter'+id);
+    //     }
+    //     else{
+    //       alert("empty");
+    //     }
+    //   });
+    // });
+    
     function nextrangeElement(element){
         var newElement = element.clone();
         var id = current_id+1;
         current_id = id;
         newElement.find('.range_label').remove();
-        if($('.range_parameter_type').val() == "time"){        
-          data = $('#end'+(id-1)).val().split(':').pop(-1);
-          startrange = Number(data) + 1;
-          startrange = $('#end'+(id-1)).val().replace($('#end'+(id-1)).val().substr($('#end'+(id-1)).val().length - 2),startrange);
-        } else if($('#end'+(id-1)).val().indexOf(".") !== -1){         
-          data = $('#end'+(id-1)).val().split('.').pop(-1);
-          startrange = Number(data) + 1;
-          s = $('#end'+(id-1)).val().substring(0, $('#end'+(id-1)).val().indexOf('.'));
-          startrange = s +'.'+ startrange;
-        }
-        else{
-           startrange = Number($('#end'+(id-1)).val())+1;
-        }
-        newElement.find('.r_strt').removeAttr('name').attr('name', 'range_start'+id).val(startrange);
+        //newly commented for range updation
+        // if($('.range_parameter_type').val() == "time"){
+        //   data = $('#end'+(id-1)).val().split(':').pop(-1);
+        //   startrange = Number(data) + 1;
+        //   startrange = $('#end'+(id-1)).val().replace($('#end'+(id-1)).val().substr($('#end'+(id-1)).val().length - 2),startrange);
+        // } else if($('#end'+(id-1)).val().indexOf(".") !== -1){
+        //   data = $('#end'+(id-1)).val().split('.').pop(-1);
+        //   startrange = Number(data) + 1;
+        //   s = $('#end'+(id-1)).val().substring(0, $('#end'+(id-1)).val().indexOf('.'));
+        //   startrange = s +'.'+ startrange;
+        // }
+        // else{
+        //    startrange = Number($('#end'+(id-1)).val())+1;
+        // }
+        newElement.find('.r_strt').removeAttr('name').attr('name', 'range_start'+id).val($('#end'+(id-1)).val());
         newElement.find('.r_end').removeAttr('name').attr('name', 'range_end'+id).val('');
         newElement.find('.r_point').removeAttr('name').attr('name', 'range_points'+id).val('');
         newElement.find('.r_strt').removeAttr('id').attr('id','strt'+id);
@@ -1948,13 +2010,13 @@ $(document).ready(function () {
     });
 
     //Jquery and Ajax functionality for Result form
-    // var athletes_list = [];
+    var athletes_list = [];
     var athlete_json = [];
     $('.resultcreateschedule_act').on('change',function () {
         selected_createschedule = $('.resultcreateschedule_act option:selected').val();
         form_data = {'createschedule_id':selected_createschedule};
         // alert(JSON.stringify(form_data));
-        // athletes_list.length = 0;
+        athletes_list.length = 0;
         athlete_json.length =0;
          $.ajax({
                type: "POST",
@@ -1966,13 +2028,15 @@ $(document).ready(function () {
                 var result_split = data.split('#');
                if (result_split[0].indexOf("success") !== -1){
                 var obj = JSON.parse(result_split[1]);
-                var options = '<option></option>';
+                // var options = '<option></option>';
                   $.each(obj, function(i){
-                    // athletes_list.push(obj[i].athlete_name);
+                    athletes_list.push(obj[i].athlete_name);
                     athlete_json.push({'athlete_id':obj[i].athlete_id,'athlete_name':obj[i].athlete_name,'athlete_dob':obj[i].athlete_dob,'athlete_mobile':obj[i].athlete_mobile,'athlete_bibno':obj[i].assignbib_number})
-                    options += '<option value="'+obj[i].athlete_id+'">'+obj[i].athlete_name+'</option>';
+                    // options += '<option value="'+obj[i].athlete_id+'">'+obj[i].athlete_name+'</option>';
+                    $('.result_athletename,.result_athletedate,.result_athletemobile,.result_athletebib').val('');
+                    $('.result_table tbody tr:not(:last)').remove();
                   });
-                  $('.result_athletename').html(options);
+                  // $('.result_athletename').html(options);
                   // alert(JSON.stringify(athlete_json));
                 }
                 else{
@@ -1982,33 +2046,19 @@ $(document).ready(function () {
         });
     });
 
-    // $('.result_athletename').focus(function (e) {
-    //   // alert(athlete_json);
-    //   $(this).autocomplete({
-    //     source: athletes_list,
-    //   });
-    // });
+    $('.result_athletename').focus(function (e) {
+      // alert(athlete_json);
+      $(this).autocomplete({
+        source: athletes_list,
+      });
+    });
 
-     // $('.result_athletename').blur(function (e) {
-     //  // alert(JSON.stringify(athlete_json));
-     //  select_name = $('.result_athletename').val();
-     //  var obj = athlete_json;
-     //  $.each(obj, function(i){
-     //    if(obj[i].athlete_name == select_name){
-     //      $('.result_athleteid').val(obj[i].athlete_id).prop("readonly", true);
-     //      $('.result_athletedate').val(obj[i].athlete_dob).prop("readonly", true);
-     //      $('.result_athletemobile').val(obj[i].athlete_mobile).prop("readonly", true);
-     //      $('.result_athletebib').val(obj[i].athlete_bibno).prop("readonly", true);
-     //    }
-     //  });
-     // });
-
-    $(document).on('change','.result_athletename',function(e){
+     $('.result_athletename').blur(function (e) {
       // alert(JSON.stringify(athlete_json));
-      select_id = $('option:selected',this).val();
+      select_name = $('.result_athletename').val();
       var obj = athlete_json;
       $.each(obj, function(i){
-        if(obj[i].athlete_id == select_id){
+        if(obj[i].athlete_name == select_name){
           $('.result_athleteid').val(obj[i].athlete_id).prop("readonly", true);
           $('.result_athletedate').val(obj[i].athlete_dob).prop("readonly", true);
           $('.result_athletemobile').val(obj[i].athlete_mobile).prop("readonly", true);
@@ -2016,6 +2066,20 @@ $(document).ready(function () {
         }
       });
      });
+
+    // $(document).on('change','.result_athletename',function(e){
+    //   // alert(JSON.stringify(athlete_json));
+    //   select_id = $('option:selected',this).val();
+    //   var obj = athlete_json;
+    //   $.each(obj, function(i){
+    //     if(obj[i].athlete_id == select_id){
+    //       $('.result_athleteid').val(obj[i].athlete_id).prop("readonly", true);
+    //       $('.result_athletedate').val(obj[i].athlete_dob).prop("readonly", true);
+    //       $('.result_athletemobile').val(obj[i].athlete_mobile).prop("readonly", true);
+    //       $('.result_athletebib').val(obj[i].athlete_bibno).prop("readonly", true);
+    //     }
+    //   });
+    //  });
 
     // $(document).on('keypress','.enter_result',function(e){
     //   var theEvent = e || window.event;
@@ -2030,49 +2094,100 @@ $(document).ready(function () {
     //  });
 
     $(document).on('blur','.enter_result',function(e){
-        //Checking entered Result
-        value=$(this).val();
-        if(value!=''){
-          if(value.indexOf(".")==-1){
-          decimals = 0;
-        }
-        else{
-          decimals = value.toString().split(".")[1].length;
-        }
         ranges = $(this).parents('tr').find('.result_ranges').val();
-        paramter_type = $(this).parents('tr').find('.result_parametertype').val();
-        paramter_unit = $(this).parents('tr').find('.result_parameterunit').val();
+        parameter_type = $(this).parents('tr').find('.result_parametertype').val();
+        parameter_unit = $(this).parents('tr').find('.result_parameterunit').val();
         parameter_format = $(this).parents('tr').find('.result_parameterformat').val();
         ranges = JSON.parse(ranges);
-
-        // status = 0;
-        for (var i = 0; i < ranges.length; i++) {
-          // alert(ranges[i].range_start);
-          // alert(ranges[i].range_end);
-          // alert(value);
-          if (value >= ranges[i].range_start && value <= ranges[i].range_end){
-            // alert("if");
-            status = 1;
-            if(decimals <= parameter_format){
-               // alert("yes");
-               $(this).parents('tr').find('.enter_points').text(ranges[i].range_point);
-               break;
+        value=$(this).val();
+        if((parameter_type == "time") && (value!='')){
+          for (var i = 0; i < ranges.length; i++) {
+            rangestart = ranges[i].range_start;
+            rangeend = ranges[i].range_end;
+            if((parameter_format=="HH:MM:SS")&&(!(/^(?:[0-5][0-9]):(?:[0-5][0-9]):[0-5][0-9]$/).test(value))){
+              alert("check time format");
+              status=1;
+              break;
+            } else if((parameter_format=="HH:MM")&&(!(/^(?:[0-5][0-9]):[0-5][0-9]$/).test(value))){
+              alert("check time format");
+              status=1;
+              break;
+            }
+            else if((parameter_format=="MM:SS")&&(!(/^(?:[0-5][0-9]):[0-5][0-9]$/).test(value))){
+              alert("check time format");
+              status=1;
+              break;
+            }
+            else if((parameter_format=="HH:MM:SS:MSS")&&(!(/^(?:[0-2][0-4]):(?:[0-5][0-9]):(?:[0-5][0-9]):([0-9][0-9]|[0-9][0-9][0-9]|[0-1][0][0][0])$/).test(value))){
+              alert("check time format");
+              status=1;
+              break;
+            }
+            else if((parameter_format=="MM:SS:MSS")&&(!(/^(?:[0-5][0-9]):(?:[0-5][0-9]):([0-9][0-9]|[0-9][0-9][0-9]|[0-1][0][0][0])$/).test(value))){
+              alert("check time format");
+              status=1;
+              break;
+            }
+            else if((parameter_format=="SS:MSS")&&(!(/^(?:[0-5][0-9]):([0-9][0-9]|[0-9][0-9][0-9]|[0-1][0][0][0])$/).test(value))){
+              alert("check time format");
+              status=1;
+              break;
             }
             else{
-               alert("check decimal points");
-               totalvlaue = $('.total_result').text();
-               pointvalue = $(this).parents('tr').find('.enter_points').text();
-               result = totalvlaue - pointvalue;
-               $('.total_result').text(result);
-               $(this).parents('tr').find('.enter_points').text('');
+              // alert("else");
+              if (value >= rangestart && value < rangeend){
+                status = 1;
+                $(this).parents('tr').find('.enter_points').text(ranges[i].range_point);
+                break;
+              }
+              else{
+                status = 0;
+              }
             }
-            break;
-          }
-          else{
-            status = 0;
           }
         }
-        if(status==0){
+        else{
+            //Checking entered Result
+            if(value!=''){
+              if(value.indexOf(".")==-1){
+              decimals = 0;
+            }
+            else{
+              decimals = value.toString().split(".")[1].length;
+            }
+
+            // status = 0;
+            for (var i = 0; i < ranges.length; i++) {
+              // alert(ranges[i].range_start);
+              rangestart = Number(ranges[i].range_start);
+              rangeend = Number(ranges[i].range_end);
+              // alert(ranges[i].range_end);
+              // alert(value);
+              if (value >= rangestart && value < rangeend){
+                // alert("if");
+                status = 1;
+                if(decimals <= parameter_format){
+                   // alert("yes");
+                   $(this).parents('tr').find('.enter_points').text(ranges[i].range_point);
+                   break;
+                }
+                else{
+                   alert("check decimal points");
+                   totalvlaue = $('.total_result').text();
+                   pointvalue = $(this).parents('tr').find('.enter_points').text();
+                   result = totalvlaue - pointvalue;
+                   $('.total_result').text(result);
+                   $(this).parents('tr').find('.enter_points').text('');
+                }
+                break;
+              }
+              else{
+                status = 0;
+              }
+            }
+        }
+        }
+        if(status == 0 && value!=''){
           alert("Entered value is not in range");
           totalvlaue = $('.total_result').text();
           pointvalue = $(this).parents('tr').find('.enter_points').text();
@@ -2080,13 +2195,14 @@ $(document).ready(function () {
           $('.total_result').text(result);
           $(this).parents('tr').find('.enter_points').text('');
         }
+
         //Points total result
         var val=0;
         $(".enter_points").each(function() {
           val += Number($(this).text());
           $('.total_result').text(val);
         });
-        }
+
      });
 
      $('.result_submit_act').click(function(){
@@ -2108,10 +2224,16 @@ $(document).ready(function () {
              // dataType: 'json',
              cache: false,
              success: function(data) {
-              alert(data);
-              document.result_form.reset();
-              $('.result_table tbody tr:not(:last)').remove();
-              $('.total_result').text('');
+              var result_split = data.split('#');
+               if (result_split[0].indexOf("success") !== -1){
+                alert(result_split[1]);
+                document.result_form.reset();
+                $('.result_table tbody tr:not(:last)').remove();
+                $('.total_result').text('');
+               }
+               else{
+                alert(result_split[1]);
+               }
               }
           });
      });
@@ -2161,6 +2283,7 @@ $(document).ready(function () {
                 options += '<option value="'+obj[i].testattribute_id+'">'+obj[i].testparameter_name+'</option>';
               });
               $('.range_parameter').html(options);
+              $('.range_note').hide();
            }
        });
     });
@@ -2181,11 +2304,7 @@ $(document).ready(function () {
         $('.assign_clone_content:last').remove();
       }
     });
-    $('.assign_remove').click(function(){
-      if($('.assign_clone_content').length !=1){
-        $('.assign_clone_content:last').remove();
-      }
-    });
+
 
 
     $('[name=states_name],[name=district_name],[name=edit_states_name],[name=edit_district_name]').focus(function(){
@@ -2215,10 +2334,10 @@ $(document).ready(function () {
               $('.range_parameter_format').val(obj[i].test_parameter_format);
               if($('.range_parameter_type').val()=="time")
                 $('.range_notes').text("Enter the range in "+obj[i].test_parameter_unit);
-              else 
+              else
                 $('.range_notes').text("Enter the range in "+obj[i].test_parameter_unit+ " with "+obj[i].test_parameter_format+" formats");
               $('.range_note').show();
-            });         
+            });
            }
        });
     });
@@ -2226,17 +2345,56 @@ $(document).ready(function () {
     $(document).on('blur','.r_strt,.r_end',function(e){
         //Checking entered range
         value=$(this).val();
+      
         if(($('.range_parameter_type').val()=="time") && (value!='')){
           if($('.range_parameter_format').val()=="HH:MM:SS"){
             // regex=/^(?:(?:([01]?\d|2[0-3]):)?([0-5]?\d):)?([0-5]?\d)$/;
-            if(!(/^(?:[0-5][0-9]):(?:[0-5][0-9]):[0-5][0-9]$/).test(value)){
-              alert("check time format");
+            if(!(/^(?:[0-2][0-4]):(?:[0-5][0-9]):[0-5][0-9]$/).test(value)){
+              // alert("check time format");
+              $(this).next('.hided').addClass('custom_error').text('Please Check time format').show();
+            }
+            else{
+              $(this).next('.hided').removeClass('custom_error').text('').hide();
             }
           }
-          if($('.range_parameter_format').val()=="HH:MM"){
-            // regex=/^(?:(?:([01]?\d|2[0-3]):)?([0-5]?\d):)?([0-5]?\d)$/;
+          else if($('.range_parameter_format').val()=="HH:MM"){
+            if(!(/^(?:[0-2][0-4]):[0-5][0-9]$/).test(value)){
+              $(this).next('.hided').addClass('custom_error').text('Please Check time format').show();
+            }
+            else{
+              $(this).next('.hided').removeClass('custom_error').text('').hide();
+            }
+          }
+          else if($('.range_parameter_format').val()=="MM:SS"){
             if(!(/^(?:[0-5][0-9]):[0-5][0-9]$/).test(value)){
-              alert("check time format");
+              $(this).next('.hided').addClass('custom_error').text('Please Check time format').show();
+            }
+            else{
+              $(this).next('.hided').removeClass('custom_error').text('').hide();
+            }
+          }
+          else if($('.range_parameter_format').val()=="HH:MM:SS:MSS"){
+            if(!(/^(?:[0-2][0-4]):(?:[0-5][0-9]):(?:[0-5][0-9]):([0-9][0-9]|[0-9][0-9][0-9]|[0-1][0][0][0])$/).test(value)){
+              $(this).next('.hided').addClass('custom_error').text('Please Check time format').show();
+            }
+            else{
+              $(this).next('.hided').removeClass('custom_error').text('').hide();
+            }
+          }
+          else if($('.range_parameter_format').val()=="MM:SS:MSS"){
+            if(!(/^(?:[0-5][0-9]):(?:[0-5][0-9]):([0-9][0-9]|[0-9][0-9][0-9]|[0-1][0][0][0])$/).test(value)){
+              $(this).next('.hided').addClass('custom_error').text('Please Check time format').show();
+            }
+            else{
+              $(this).next('.hided').removeClass('custom_error').text('').hide();
+            }
+          }
+          else if($('.range_parameter_format').val()=="SS:MSS"){
+            if(!(/^(?:[0-5][0-9]):([0-9][0-9]|[0-9][0-9][0-9]|[0-1][0][0][0])$/).test(value)){
+            $(this).next('.hided').addClass('custom_error').text('Please Check time format').show();
+            }
+            else{
+              $(this).next('.hided').removeClass('custom_error').text('').hide();
             }
           }
         }
@@ -2250,11 +2408,15 @@ $(document).ready(function () {
               }
               paramter_unit = $('.range_parameter_unit').val();
               parameter_format = $('.range_parameter_format').val();
-              if(decimals > parameter_format){
-                alert("Check the range format");
-              }  
-          }    
-        }     
+              if(decimals > parameter_format || value.indexOf(":") !== -1){
+                 $(this).next('.hided').addClass('custom_error').text('Please Check range format').show();
+              } 
+              else{
+                 $(this).next('.hided').removeClass('custom_error').text('').hide();
+              }
+              
+          }
+        }
      });
 
     //To clear selected dropdown values in edit form
@@ -2267,5 +2429,4 @@ $(document).ready(function () {
       $('.clone_content:not(:first-child)').remove();
       $('.r_strt,.r_end,.r_point').val('');
     });
-
 });
