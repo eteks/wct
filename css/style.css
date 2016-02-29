@@ -1351,6 +1351,9 @@ input[type=radio]:checked + label:before {
 
 .hided{
     display: none;
+    color: red;
+    font-size: 11px;
+    margin-left: -42px;
 }
 .custom_error{
     display: block;
@@ -1366,9 +1369,4 @@ input[type=radio]:checked + label:before {
 }
 .parameter-menu a {
     display: block;
-}
-.hided{
-    color: red;
-    font-size: 11px;
-    margin-left: -42px;
 }

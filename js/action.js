@@ -102,7 +102,7 @@ function editfunction(data_id){
             document.body.style.overflow = 'hidden';
            }
         });
-    }else if(window.location.href.indexOf("parameter_type.php") !== -1){
+    } else if(window.location.href.indexOf("parameter_type.php") !== -1){
         $.ajax({
          type: "POST",
          url: "functions/parameter_typefunction.php?chooseedit=true",
@@ -119,8 +119,7 @@ function editfunction(data_id){
           document.body.style.overflow = 'hidden';
          }
       });
-    }
-     else if(window.location.href.indexOf("athletes.php") !== -1){
+    } else if(window.location.href.indexOf("athletes.php") !== -1){
           $.ajax({
            type: "POST",
            url: "functions/athletes_functions.php?chooseedit=true",
@@ -244,7 +243,25 @@ $(window).resize(function () {
   });
   $(document).delegate('.assign_clone_content .custom-combobox-input','blur',function(){
       var j = 0;
+      var main =  $(this);
+      var schedule = $('.assignsche_create').val();
+      var category = $('.assignsche_cate').val();
+      var athe_id = main.parents('.assign_clone_content').find('.athlete_name').val();
       var currentInput  = $(this).val();
+      $.ajax({
+           type: "POST",
+           url: "functions/athletes_functions.php?athelete_check=true",
+           data:{'sche':1,'cate':category,'athe':athe_id},
+           cache: false,
+           success: function(data) {
+                if(data == 'error'){
+                    alert('This athelete already assigned another category!');
+                    main.val('');
+                    main.parents('.assign_clone_content').find('.dob').val('');
+                    main.parents('.assign_clone_content').find('.mobile').val('');
+                }
+          }
+       });
     $(".assign_clone_content .custom-combobox-input").each(function(index) {
       if(currentInput === $(this).val()) {
           j++;
@@ -2045,7 +2062,7 @@ $('.reset_form').on('click',function(){
               }
         });
     });
-
+    
     $('.result_athletename').focus(function (e) {
       // alert(athlete_json);
       $(this).autocomplete({
@@ -2414,7 +2431,6 @@ $('.reset_form').on('click',function(){
               else{
                  $(this).next('.hided').removeClass('custom_error').text('').hide();
               }
-              
           }
         }
      });
@@ -2425,8 +2441,9 @@ $('.reset_form').on('click',function(){
     // });
 
     $(document).on('change','.range_parameter',function () {
-      current_id -=$('.clone_content:not(:first-child)').length;
+      current_id -= $('.clone_content:not(:first-child)').length;
       $('.clone_content:not(:first-child)').remove();
       $('.r_strt,.r_end,.r_point').val('');
     });
+    
 });

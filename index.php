@@ -17,6 +17,7 @@
 			echo "<script>alert('Emailid / Password Not Match')</script>";
 		}
 	}
+<<<<<<< HEAD
 	
 ?>
 <?php
@@ -24,6 +25,20 @@ session_start();
 if(isset($_SESSION['userid'])){
 	header("location:sports.php");
 }
+=======
+
+?>
+<?php
+session_start();
+if(isset($_SESSION['login'])){
+	if($_SESSION['userid'] == '100'){
+		header("location:athletes.php");
+	}else{
+		header("location:sports.php");
+	}
+}
+
+>>>>>>> ab7a35821f9da359376138f6583262bd1c2e9d01
 ?>
 <form role="form" action="" method="post" name="login_form" id="login_form_id">
 	<div class="select_user_content">

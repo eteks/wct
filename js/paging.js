@@ -29,14 +29,14 @@
                 //create previous link
                 this._on($('<a>', {
                     href: '#',
-                    text: '<<',
+                    text: '<',
                     "data-direction": -1
                 }).prependTo(nav),
                         {click: "pageStepHandler"});
                 //create next link
                 this._on($('<a>', {
                     href: '#',
-                    text: '>>',
+                    text: '>',
                     "data-direction": +1
                 }).appendTo(nav),
                         {click: "pageStepHandler"});
@@ -75,6 +75,3 @@
         });
     });
 })(jQuery);
-
-
-
