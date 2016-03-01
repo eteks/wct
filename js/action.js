@@ -2212,7 +2212,7 @@ $('.reset_form').on('click',function(){
                      break;
                   }
                   else{
-                     $(this).siblings('.enter_result_error').addClass('error').text('Please Check decimals points').show();
+                     $(this).siblings('.enter_result_error').addClass('error').text('Please Check decimal points').show();
                      totalvlaue = $('.total_result').text();
                      pointvalue = $(this).parents('tr').find('.enter_points').text();
                      result = totalvlaue - pointvalue;
@@ -2232,7 +2232,7 @@ $('.reset_form').on('click',function(){
                $(this).siblings('.enter_result_error').removeClass('error').hide();
             }
             else{
-              $(this).siblings('.enter_result_error').addClass('error').text('Please Check decimals points').show(); 
+              $(this).siblings('.enter_result_error').addClass('error').text('Please Check decimal points').show(); 
             }
           }
         }
