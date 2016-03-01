@@ -1857,7 +1857,7 @@ $('.reset_form').on('click',function(){
                                 <input type='hidden' name='result_ranges' class='result_ranges' value="+ranges+">\
                                 <td class='result_test_name'>"+obj[i].test_name+"</td>\
                                 <td class='result_parameter_name'>"+obj[i].parameter_name+"</td>\
-                                <td><input type='text' class='assign_border enter_result' name='enter_result'></td>\
+                                <td><input type='text' class='assign_border enter_result' name='enter_result'><br><span class='enter_result_error'></span></td>\
                                 <td><span class='result_error' name='result_error'>Enter the result in " +obj[i].parameter_unit+ " with "+obj[i].parameter_format+" formats</span></td>\
                                 <td><span class='assign_border enter_points'></span></td></tr>";
                     $('.result_table tr:last').before(html);
@@ -2133,47 +2133,55 @@ $('.reset_form').on('click',function(){
         value=$(this).val();
         if((parameter_type == "time") && (value!='')){
           if((parameter_format=="HH:MM:SS")&&(!(/^(?:[0-5][0-9]):(?:[0-5][0-9]):[0-5][0-9]$/).test(value))){
-              alert("check time format");
+              $(this).siblings('.enter_result_error').addClass('error').text('Please Check time format').show();
               status=1;
               // break;
             } else if((parameter_format=="HH:MM")&&(!(/^(?:[0-5][0-9]):[0-5][0-9]$/).test(value))){
-              alert("check time format");
+              $(this).siblings('.enter_result_error').addClass('error').text('Please Check time format').show();
               status=1;
               // break;
             }
             else if((parameter_format=="MM:SS")&&(!(/^(?:[0-5][0-9]):[0-5][0-9]$/).test(value))){
-              alert("check time format");
+              $(this).siblings('.enter_result_error').addClass('error').text('Please Check time format').show();
               status=1;
               // break;
             }
             else if((parameter_format=="HH:MM:SS:MSS")&&(!(/^(?:[0-2][0-4]):(?:[0-5][0-9]):(?:[0-5][0-9]):([0-9][0-9]|[0-9][0-9][0-9]|[0-1][0][0][0])$/).test(value))){
-              alert("check time format");
+              $(this).siblings('.enter_result_error').addClass('error').text('Please Check time format').show();
               status=1;
               // break;
             }
             else if((parameter_format=="MM:SS:MSS")&&(!(/^(?:[0-5][0-9]):(?:[0-5][0-9]):([0-9][0-9]|[0-9][0-9][0-9]|[0-1][0][0][0])$/).test(value))){
-              alert("check time format");
+              $(this).siblings('.enter_result_error').addClass('error').text('Please Check time format').show();
               status=1;
               // break;
             }
             else if((parameter_format=="SS:MSS")&&(!(/^(?:[0-5][0-9]):([0-9][0-9]|[0-9][0-9][0-9]|[0-1][0][0][0])$/).test(value))){
-              alert("check time format");
+              $(this).siblings('.enter_result_error').addClass('error').text('Please Check time format').show();
               status=1;
               // break;
             }
             else{
-              for (var i = 0; i < ranges.length; i++) {
-              rangestart = ranges[i].range_start;
-              rangeend = ranges[i].range_end;
-                if (value >= rangestart && value < rangeend){
-                  status = 1;
-                  $(this).parents('tr').find('.enter_points').text(ranges[i].range_point);
-                  break;
-                }
-                else{
-                  status = 0;
+              if(ranges.length!=0){
+                for (var i = 0; i < ranges.length; i++) {
+                rangestart = ranges[i].range_start;
+                rangeend = ranges[i].range_end;
+                  if (value >= rangestart && value < rangeend){
+                    status = 1;
+                    $(this).parents('tr').find('.enter_points').text(ranges[i].range_point);
+                    $(this).siblings('.enter_result_error').removeClass('error').hide();
+                    break;
+                  }
+                  else{
+                    status = 0;
+                  }
                 }
               }
+              else{
+                $(this).parents('tr').find('.enter_points').text('0');
+                $(this).siblings('.enter_result_error').removeClass('error').hide();
+              }
+              
             }
             
         }
@@ -2186,40 +2194,52 @@ $('.reset_form').on('click',function(){
             else{
               decimals = value.toString().split(".")[1].length;
             }
-
-            // status = 0;
-            for (var i = 0; i < ranges.length; i++) {
-              // alert(ranges[i].range_start);
-              rangestart = Number(ranges[i].range_start);
-              rangeend = Number(ranges[i].range_end);
-              // alert(ranges[i].range_end);
-              // alert(value);
-              if (value >= rangestart && value < rangeend){
-                // alert("if");
-                status = 1;
-                if(decimals <= parameter_format){
-                   // alert("yes");
-                   $(this).parents('tr').find('.enter_points').text(ranges[i].range_point);
-                   break;
+            if(ranges.length!=0){
+              // status = 0;
+              for (var i = 0; i < ranges.length; i++) {
+                // alert(ranges[i].range_start);
+                rangestart = Number(ranges[i].range_start);
+                rangeend = Number(ranges[i].range_end);
+                // alert(ranges[i].range_end);
+                // alert(value);
+                if (value >= rangestart && value < rangeend){
+                  // alert("if");
+                  status = 1;
+                  if(decimals <= parameter_format){
+                     // alert("yes");
+                     $(this).siblings('.enter_result_error').removeClass('error').hide();
+                     $(this).parents('tr').find('.enter_points').text(ranges[i].range_point);
+                     break;
+                  }
+                  else{
+                     $(this).siblings('.enter_result_error').addClass('error').text('Please Check decimals points').show();
+                     totalvlaue = $('.total_result').text();
+                     pointvalue = $(this).parents('tr').find('.enter_points').text();
+                     result = totalvlaue - pointvalue;
+                     $('.total_result').text(result);
+                     $(this).parents('tr').find('.enter_points').text('');
+                  }
+                  break;
                 }
                 else{
-                   alert("check decimal points");
-                   totalvlaue = $('.total_result').text();
-                   pointvalue = $(this).parents('tr').find('.enter_points').text();
-                   result = totalvlaue - pointvalue;
-                   $('.total_result').text(result);
-                   $(this).parents('tr').find('.enter_points').text('');
+                  status = 0;
                 }
-                break;
               }
-              else{
-                status = 0;
-              }
+          }
+          else{
+            $(this).parents('tr').find('.enter_points').text('0');
+            if(decimals <= parameter_format){
+               $(this).siblings('.enter_result_error').removeClass('error').hide();
+               $(this).parents('tr').find('.enter_points').text(ranges[i].range_point);
             }
+            else{
+              $(this).siblings('.enter_result_error').addClass('error').text('Please Check decimals points').show(); 
+            }
+          }
         }
         }
         if(status == 0 && value!=''){
-          alert("Entered value is not in range");
+          $(this).siblings('.enter_result_error').addClass('error').text('Entered value is not in range').show();
           totalvlaue = $('.total_result').text();
           pointvalue = $(this).parents('tr').find('.enter_points').text();
           result = totalvlaue - pointvalue;
@@ -2237,6 +2257,11 @@ $('.reset_form').on('click',function(){
      });
 
      $('.result_submit_act').click(function(){
+        res = true;
+        if($('.enter_result_error').hasClass('error')){
+          res = false;
+        }
+        else{
           var result_data = [];
           createschedule_id = $('.result_createscheduleid').val();
           athlete_id = $('.result_athleteid').val();
@@ -2267,6 +2292,7 @@ $('.reset_form').on('click',function(){
                }
               }
           });
+        } 
      });
 
      $('.result_clear_act').click(function(){
