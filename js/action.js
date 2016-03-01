@@ -2230,7 +2230,6 @@ $('.reset_form').on('click',function(){
             $(this).parents('tr').find('.enter_points').text('0');
             if(decimals <= parameter_format){
                $(this).siblings('.enter_result_error').removeClass('error').hide();
-               $(this).parents('tr').find('.enter_points').text(ranges[i].range_point);
             }
             else{
               $(this).siblings('.enter_result_error').addClass('error').text('Please Check decimals points').show(); 
