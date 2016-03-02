@@ -208,7 +208,7 @@ function editfunction(data_id){
               $('[name=edit_range_test]').find("option[value="+range_obj[i].rangetest_id+"]").attr("selected","selected");
 
               $('[name=edit_range_parameter]').html('<option value="'+range_obj[i].rangetestattribute_id+'" selected>'+range_obj[i].rangeparameter_name+'</option>');
-              if(range_obj[i].rangeparameter_type == "time")
+              if(range_obj[i].rangeparameter_type == "time" || range_obj[i].rangeparameter_type == "Time")
                 $('.edit_range_notes').text("Enter the range in "+range_obj[i].rangeparameter_unit+ " format");
               else
                 $('.edit_range_notes').text("Enter the range in "+range_obj[i].rangeparameter_unit+ " with "+range_obj[i].rangeparameter_format +" format");
@@ -2167,7 +2167,7 @@ $('.reset_form').on('click',function(){
         parameter_format = $(this).parents('tr').find('.result_parameterformat').val();
         ranges = JSON.parse(ranges);
         value=$(this).val();
-        if((parameter_type == "time") && (value!='')){
+        if(((parameter_type == "time") && (value!=''))||((parameter_type == "Time") && (value!=''))){
           if((parameter_format=="HH:MM:SS")&&(!(/^(?:[0-5][0-9]):(?:[0-5][0-9]):[0-5][0-9]$/).test(value))){
               $(this).siblings('.enter_result_error').addClass('error').text('Please Check time format').show();
               status=1;
@@ -2424,7 +2424,7 @@ $('.reset_form').on('click',function(){
               $('.range_parameter_type').val(obj[i].test_parameter_type);
               $('.range_parameter_unit').val(obj[i].test_parameter_unit);
               $('.range_parameter_format').val(obj[i].test_parameter_format);
-              if($('.range_parameter_type').val()=="time")
+              if($('.range_parameter_type').val().toLowerCase()=="time")
                 $('.range_notes').text("Enter the range in "+obj[i].test_parameter_unit);
               else
                 $('.range_notes').text("Enter the range in "+obj[i].test_parameter_unit+ " with "+obj[i].test_parameter_format+" formats");
@@ -2443,7 +2443,7 @@ $('.reset_form').on('click',function(){
         }
         else
           $(this).next('.hided').removeClass('custom_error').hide();
-        if(($('.range_parameter_type').val()=="time") && (value!='')){
+        if(($('.range_parameter_type').val().toLowerCase()=="time") && (value!='')){
           if($('.range_parameter_format').val()=="HH:MM:SS"){
             // regex=/^(?:(?:([01]?\d|2[0-3]):)?([0-5]?\d):)?([0-5]?\d)$/;
             if(!(/^(?:[0-2][0-4]):(?:[0-5][0-9]):[0-5][0-9]$/).test(value)){
