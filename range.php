@@ -104,7 +104,7 @@
 					</div>
 					<!-- <button type="button" class="btn btn-primary align_right ranges_btn add_range_points">Add Ranges</button><i class="fa fa-plus plus_align"></i> -->
 					<div class="col-md-9 schedule_btn">
-						<input type="reset" value="Clear" class="btn btn-primary align_right clear" maxlength="50">
+						<input type="reset" value="Cancel" class="btn btn-primary align_right clear" maxlength="50">
 						<input type="submit" class="btn btn-primary align_right test-submit clear add_range_act" value="Submit">
 					</div>
 				</form>
@@ -181,24 +181,24 @@
 						  <label for="sel1">Category</label>
 						  <select class="form-control adjust_width classic range_category" id="sel1" name="edit_range_category" data-validation-error-msg="Please Select the Category of Test Battery " data-validation="required">
 						  <option value="">Select Category</option>
-						  <!-- <?php
+						  <?php
 						  $cat_data = $categoryfunction->categoryselectfunction();
 						  foreach( $cat_data as $eachrecord ) {
 						   ?>
 							<option value="<?php echo $eachrecord['categories_id']; ?>"><?php echo $eachrecord['categories_name']; ?></option>
-							<?php } ?> -->
+							<?php } ?>
 						  </select>
 					</div>
 					<div class="form-group">
 						  <label for="sel1">Test Name</label>
 						  <select class="form-control adjust_width classic range_test" id="sel1" name="edit_range_test" data-validation-error-msg="Please Select the Test Name" data-validation="required">
 						  <option value="">Select Test Name</option>
-						 <!--  <?php
+						  <?php
 	                        $query = $testfunction->testSelect();
 	                        while ($row = mysql_fetch_array($query)) {
 	                            ?>
 	                            <option value="<?php echo $row['test_id']; ?>"><?php echo $row['test_name']; ?></option>
-	                      <?php } ?> -->
+	                      <?php } ?>
 						  </select>
 					</div>
 					<div class="form-group">
@@ -232,7 +232,7 @@
 					  </div>
 					</div>
 					<div class="col-md-12 schedule_btn">
-						<input type="reset" value="Clear" class="btn btn-primary align_right clear" maxlength="50">
+						<input type="reset" value="Cancel" class="btn btn-primary align_right clear" maxlength="50">
 						<input type="submit" class="btn btn-primary align_right test-submit clear edit_range_act" value="Submit">
 					</div>
 				</form>

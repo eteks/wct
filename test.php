@@ -35,6 +35,7 @@ if(isset($_GET['insert_error'])){
 							<div class="form-group col-md-12 schedule_btn">
 								<label>Enter Parameter Name</label><br>
 								<input type="text" class="adjust_width parameter_name" name="parameter_name1" data-validation-error-msg="Please Enter the Parameter Name" data-validation="required">
+								<input type="hidden" class="parameter_count" value="1" />
 								<span class="hided param_name_error">Please Enter the parameter name</span>
 							</div>
 							<div class="form-group parameter_type_parent">
@@ -87,7 +88,7 @@ if(isset($_GET['insert_error'])){
 					</div>
 					<input type="hidden" name="test_add" value="1">
 					<div class="col-md-9 schedule_btn">
-						<input type="reset" value="Clear" class="btn btn-primary align_right clear" maxlength="50">
+						<input type="reset" value="Cancel" class="btn btn-primary align_right clear" maxlength="50">
 						<input type="submit" class="btn btn-primary align_right clear test-submit test_submit_act" value="Submit">
 					</div>
 				</form>
@@ -190,7 +191,7 @@ if(isset($_GET['insert_error'])){
 					<input class="parameter_update" type="hidden" name="parameter_update" value="" />
 					<input class="test_update_id" type="hidden" name="test_update_id" value="" />
 					<div class="col-md-10 schedule_btn">
-						<input type="reset" value="Clear" class="btn btn-primary align_right clear" maxlength="50">
+						<input type="reset" value="Cancel" class="btn btn-primary align_right clear" maxlength="50">
 						<input type="submit" class="btn btn-primary align_right test-submit clear" value="Submit">
 					</div>
 				</form>

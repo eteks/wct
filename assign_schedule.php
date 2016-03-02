@@ -93,7 +93,7 @@ if(isset($_GET['update_success'])){
 						</i>
 					</div>
 					<div class="col-md-9 schedule_btn">
-						<input type="reset" class="btn btn-primary align_right clear" value="Clear">
+						<input type="reset" class="btn btn-primary align_right clear" value="Cancel">
 						<input type="submit" class="btn btn-primary align_right test-submit clear assignschedule_submit" value="Submit">
 					</div>
 				</form>
@@ -193,7 +193,7 @@ if(isset($_GET['update_success'])){
 					<input type="hidden" name="assing_schedule_update" value="1" />
 
 					<div class="col-md-10 schedule_btn">
-						<input type="reset" value="Clear" class="btn btn-primary align_right clear reset_form">
+						<input type="reset" value="Cancel" class="btn btn-primary align_right clear reset_form">
   					<input type="submit" value="Submit" class="btn btn-primary align_right test-submit clear">
 					</div>
 				</form>

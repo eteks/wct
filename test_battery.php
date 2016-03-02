@@ -77,7 +77,7 @@ if(isset($_GET['duplicate'])){
 
 					<div class="col-md-9 schedule_btn">
 						<input type="hidden" value="1" name="testbattery_add" />
-						<input type="reset" value="Clear" class="btn btn-primary align_right clear" maxlength="50">
+						<input type="reset" value="Cancel" class="btn btn-primary align_right clear" maxlength="50">
 						<input type="submit" class="btn btn-primary align_right test-submit clear" value="Submit">
 					</div>
 				</form>
@@ -175,7 +175,7 @@ if(isset($_GET['duplicate'])){
 					</div>
 
 					<div class="col-md-12 schedule_btn">
-						<input type="reset" value="Clear" class="btn btn-primary align_right clear" maxlength="50">
+						<input type="reset" value="Cancel" class="btn btn-primary align_right clear" maxlength="50">
 						<input type="submit" class="btn btn-primary align_right test-submit clear" value="Submit">
 					</div>
 				</form>
