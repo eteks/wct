@@ -1370,3 +1370,10 @@ input[type=radio]:checked + label:before {
 .parameter-menu a {
     display: block;
 }
+.enter_result_error{
+    display: none;
+    color: red;
+    font-size: 11px;
+    /*margin-left: -42px;*/
+    font-weight: normal;
+}
