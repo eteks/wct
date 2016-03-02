@@ -184,18 +184,37 @@ function editfunction(data_id){
            cache: false,
            success: function(data) {
             data =  data.split('#####');
-            var range_obj = JSON.parse(data[0]);
-            var rangeattr_obj = JSON.parse(data[1]);
+            var rangetest_obj = JSON.parse(data[0]);
+            var rangecategory_obj = JSON.parse(data[1]);
+            var range_obj = JSON.parse(data[2]);
+            var rangeattr_obj = JSON.parse(data[3]);
+
+            var rangetest_options = '<option></option>';
+            $.each(rangetest_obj, function(i){
+              rangetest_options += '<option value="'+rangetest_obj[i].test_id+'">'+rangetest_obj[i].test_name+'</option>';
+            });
+            $('[name=edit_range_test]').html(rangetest_options);
+
+            var rangecategory_options = '<option></option>';
+            $.each(rangecategory_obj, function(i){
+              rangecategory_options += '<option value="'+rangecategory_obj[i].categories_id+'">'+rangecategory_obj[i].categories_name+'</option>';
+            });
+            $('[name=edit_range_category]').html(rangecategory_options);
+
             $.each(range_obj, function(i){
               $('[name=edit_range_id').val(range_obj[i].range_id);
               $('[name=edit_range_testbattery]').find("option:contains("+range_obj[i].rangetestbattery_name+")").attr("selected","selected");
-              $('[name=edit_range_category]').html('<option value="'+range_obj[i].rangecategory_id+'" selected>'+range_obj[i].rangecategory_name+'</option>');
-              $('[name=edit_range_test]').html('<option value="'+range_obj[i].rangetest_id+'" selected>'+range_obj[i].rangetest_name+'</option>');
+              $('[name=edit_range_category]').find("option[value="+range_obj[i].rangecategory_id+"]").attr("selected","selected");
+              $('[name=edit_range_test]').find("option[value="+range_obj[i].rangetest_id+"]").attr("selected","selected");
+
               $('[name=edit_range_parameter]').html('<option value="'+range_obj[i].rangetestattribute_id+'" selected>'+range_obj[i].rangeparameter_name+'</option>');
               if(range_obj[i].rangeparameter_type == "time")
                 $('.edit_range_notes').text("Enter the range in "+range_obj[i].rangeparameter_unit+ " format");
               else
                 $('.edit_range_notes').text("Enter the range in "+range_obj[i].rangeparameter_unit+ " with "+range_obj[i].rangeparameter_format +" format");
+              $('.range_parameter_type').val(range_obj[i].rangeparameter_type);
+              $('.range_parameter_unit').val(range_obj[i].rangeparameter_unit);
+              $('.range_parameter_format').val(range_obj[i].rangeparameter_format);
             });
             $('.edit_range_note').show();
             //Append data to first range part without using for loop
@@ -1658,10 +1677,13 @@ $('.reset_form').on('click',function(){
         var res = true;
         $('input[type="text"],textarea,select',this).each(function() {
           if($(this).val().trim() == "") {
+            $(this).next('.hided').addClass('custom_error').show();
             res = false;
-            // alert('test_updation_form false');
           }
         });
+        if($(this).find(":input").siblings('span').hasClass("custom_error")){
+          res =  false;
+        }
         if(res){
             var form_data = $('[name=edit_range_form]').serialize();
             $.ajax({
@@ -2273,7 +2295,7 @@ $('.reset_form').on('click',function(){
         res = true;
         if($('.enter_result_error').hasClass('error')){
           res = false;
-        }
+        } 
         else{
           var result_data = [];
           createschedule_id = $('.result_createscheduleid').val();
@@ -2412,11 +2434,13 @@ $('.reset_form').on('click',function(){
        });
     });
 
-    $(document).on('blur','.r_strt,.r_end',function(e){
+    $(document).on('blur','.r_strt,.r_end,.edit_r_strt,.edit_r_end',function(e){
         //Checking entered range
         value=$(this).val();
-        if(value == '')
+        if(value == ''){
+          $(this).next().next('.hided').addClass('custom_error').hide();
           $(this).next('.hided').addClass('custom_error').show();
+        }
         else
           $(this).next('.hided').removeClass('custom_error').hide();
         if(($('.range_parameter_type').val()=="time") && (value!='')){
@@ -2491,7 +2515,7 @@ $('.reset_form').on('click',function(){
         }
      });
 
-    $(document).on('blur','.r_point',function(e){
+    $(document).on('blur','.r_point,.edit_r_point',function(e){
       value=$(this).val();
        if(value == ''){
          $(this).next('.hided').addClass('custom_error').show();

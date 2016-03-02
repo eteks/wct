@@ -93,7 +93,19 @@
 				return false;
 			}
 		}
-		
+		// To select particular data by using id
+		public function rangeselectCategory(){
+			$res = mysql_query("SELECT categories_id,categories_name FROM wc_range as r INNER JOIN wc_testbattery_category_attribute as tca 
+				ON tca.testbattery_id = r.rangetestbattery_id INNER JOIN wc_categories as c ON 
+				c.categories_id = tca.testbattery_category_id WHERE range_id = '".$this->rangeid."'")or die(mysql_error());
+			return $res;	
+		}
+		public function rangeselectTest(){
+			$res = mysql_query("SELECT test_id,test_name FROM wc_range as r INNER JOIN wc_testbattery_test_attribute as tta ON
+				tta.testbattery_id =r.rangetestbattery_id INNER JOIN wc_test as t On t.test_id = tta.testbattery_test_id 
+				WHERE range_id = '".$this->rangeid."'")or die(mysql_error());
+			return $res;	
+		}	
 	}
 	//To insert data
 	if(isset($_GET['adddata'])){
@@ -132,10 +144,32 @@
 	if(isset($_GET['chooseedit'])){
 		$range_json = array();
 		$rangeattr_json = array();
+		$rangetest_json = array();
+		$rangecategory_json = array();
+
 		$rangeFunction = new rangeFunction();
 		$rangeFunction->rangeid = $_POST['data_id'];
+
+		$range_test = $rangeFunction->rangeselectTest();
+	    $range_category = $rangeFunction->rangeselectCategory();
+
 	    $range_edit_data = $rangeFunction->rangeselectRecord();
 	    $rangeattr_edit_data = $rangeFunction->rangeattributeselectRecord();
+
+	    while ( $result = mysql_fetch_array( $range_test )){
+	    	$tmp = array(
+           'test_id' => $result['test_id'],
+           'test_name' => $result['test_name'],
+           );
+    		array_push( $rangetest_json, $tmp );
+	    }
+	    while ( $result = mysql_fetch_array( $range_category )){
+	    	$tmp = array(
+           'categories_id' => $result['categories_id'],
+           'categories_name' => $result['categories_name'],
+           );
+    		array_push( $rangecategory_json, $tmp );
+	    }
 	    while ( $result = mysql_fetch_array( $range_edit_data )){
 	    	$tmp = array(
            'range_id' => $result['range_id'],
@@ -163,7 +197,7 @@
            );
     		array_push( $rangeattr_json, $tmp );
 	    }
-	    echo json_encode($range_json).'#####'.json_encode($rangeattr_json);
+	    echo json_encode($rangetest_json).'#####'.json_encode($rangecategory_json).'#####'.json_encode($range_json).'#####'.json_encode($rangeattr_json);
 	}	
 	//To store edited data
 	if(isset($_GET['editdata'])){
