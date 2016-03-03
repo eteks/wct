@@ -85,7 +85,8 @@
 		public function isParameterExist(){
 			// $qr = mysql_query("SELECT * FROM wc_range WHERE rangetestattribute_id = '".$this->rangetestattributeid."'");
 			//newly changed
-			$qr = mysql_query("SELECT * FROM wc_range WHERE rangecategories_id='".$this->rangecategoryid."' AND rangetest_id='".$this->rangetestid."' AND rangetestattribute_id='".$this->rangetestattributeid."'");
+			// echo "SELECT * FROM wc_range WHERE rangecategories_id='".$this->rangecategoryid."' AND rangetest_id='".$this->rangetestid."' AND rangetestattribute_id='".$this->rangetestattributeid."'";
+			$qr = mysql_query("SELECT * FROM wc_range WHERE rangecategories_id='".$this->rangecategoryid."' AND rangetest_id='".$this->rangetestid."' AND rangetestattribute_id='".$this->rangetestattributeid."'")or die(mysql_error());
 			$row = mysql_num_rows($qr);
 			if($row > 0){
 				return true;

@@ -1882,7 +1882,6 @@ $('.reset_form').on('click',function(){
                cache: false,
                dataType:'json',
                success: function(html) {
-                console.log(html);
                 $('.result_table tbody tr:not(:last)').remove();
                 // var obj = JSON.parse(html);
                 obj=html;
