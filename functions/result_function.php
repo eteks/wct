@@ -1,5 +1,5 @@
 <?php
-	include($_SERVER["DOCUMENT_ROOT"] . "/wct/common.php");
+	include($_SERVER["DOCUMENT_ROOT"] . "/wct_v2/common.php");
  	class resultFunction {
  		public $resultid;
  		public $createscheduleid;
