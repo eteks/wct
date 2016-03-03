@@ -10,12 +10,12 @@
 	  $athleteFunction = new athletesFunction();
 ?>
 <div class="container">
-	<div class="container align_center align_height">
+	<div class="container left_align_testbattery align_height">
 		<span class="sports">ADD ATHLETES</span>
 	</div><!--end container-->
 	<div class="container">
 		<div class="col-xs-12 col-md-11">
-			<div class="col-md-4 hidden-xs"></div>
+			<!-- <div class="col-md-4 hidden-xs"></div> -->
 			<div class="col-xs-12 col-md-7 align_margin">
 				<form name="athletes_form" id="athlete_form">
 					<div class="form-group">
@@ -108,8 +108,8 @@
 					</div>
 					<div class="col-md-9 schedule_btn">
 						<!-- <button type="button" class="btn btn-primary align_right clear add_athletes_act">Submit</button> -->
-						<input type="reset" class="btn btn-primary align_right clear" value="Cancel">
-						<input type="submit" class="btn btn-primary align_right test-submit clear add_athletes_act" value="Submit">
+						<input type="reset" class="btn btn-primary clear" value="Clear">
+						<input type="submit" class="btn btn-primary test-submit clear add_athletes_act" value="Submit">
 					</div>
 				</form>
 			</div>
@@ -254,7 +254,7 @@
 					<div class="col-md-10 schedule_btn">
 						<!-- <button type="button" class="btn btn-primary align_right clear edit_athletes_act">Submit</button>
 						<button type="button" class="btn btn-primary align_right clear">Clear</button> -->
-						<input type="reset" class="btn btn-primary align_right clear reset_form edit_athlete_clear" value="Cancel">
+						<input type="reset" class="btn btn-primary align_right clear reset_form edit_athlete_clear" value="Clear">
 						<input type="submit" class="btn btn-primary align_right test-submit clear edit_athletes_act" value="Submit">
 					</div>
 				</form>

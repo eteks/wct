@@ -24,12 +24,12 @@ if(isset($_GET['update_success'])){
 	}
 </style>
 <div class="container">
-	<div class="container align_center align_height">
+	<div class="container left_align_parameter align_height">
 		<span class="sports">ASSIGN SCHEDULE</span>
 	</div><!--end container-->
 	<div class="container">
 		<div class="col-xs-12 col-md-11">
-			<div class="col-md-4 hidden-xs"></div>
+		<!--	<div class="col-md-4 hidden-xs"></div> -->
 			<div class="col-xs-12 col-md-7 align_margin">
 				<form method="post" id="assignschedule_form">
 					<div class="form-group">
@@ -93,8 +93,8 @@ if(isset($_GET['update_success'])){
 						</i>
 					</div>
 					<div class="col-md-9 schedule_btn">
-						<input type="reset" class="btn btn-primary align_right clear" value="Cancel">
-						<input type="submit" class="btn btn-primary align_right test-submit clear assignschedule_submit" value="Submit">
+						<input type="reset" class="btn btn-primary clear" value="Clear">
+						<input type="submit" class="btn btn-primary test-submit clear assignschedule_submit" value="Submit">
 					</div>
 				</form>
 			</div>
@@ -193,7 +193,7 @@ if(isset($_GET['update_success'])){
 					<input type="hidden" name="assing_schedule_update" value="1" />
 
 					<div class="col-md-10 schedule_btn">
-						<input type="reset" value="Cancel" class="btn btn-primary align_right clear reset_form">
+						<input type="reset" value="Clear" class="btn btn-primary align_right clear reset_form">
   					<input type="submit" value="Submit" class="btn btn-primary align_right test-submit clear">
 					</div>
 				</form>

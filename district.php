@@ -5,13 +5,13 @@
 	  $statesFunction = new statesFunction();
 	  $districtFunction = new districtFunction();
 ?>
-		<div class="container align_center align-height">
+		<div class="container align_center left_align align_height">
 			<span class="sports">DISTRICT</span>
 		</div><!--end container-->
 		<div class="container">
 			<div class="col-md-8">
-				<div class="col-md-4"></div>
-				<div class="col-md-8 col-xs-12 align_left">
+				<!-- <div class="col-md-4"></div> -->
+				<div class="col-md-6 col-xs-12 align_left_district">
 					<form name="district_form" id="districts_form">
 						<div class="form-group">
 						  <label for="sel1">Select the State</label>
@@ -34,16 +34,15 @@
 						</div>
 
 						<!-- <button type="button" class="btn btn-primary align_right clear add_district_act" name="district">Submit</button> -->
-						<input type="submit" class="btn btn-primary align_right clear add_district_act" name="district" value="Submit">
+						<input type="submit" class="btn btn-primary clear add_district_act" name="district" value="Submit">
 					</form>
 				</div>
 				<div class="container">
 				  <table class="table district_table">
 				    <thead>
 				      <tr class="row_color">
-				        <th class="align_center">SLNO</th>
-				        <th class="align_center">District</th>
-				        <th class="align_center">Action</th>
+				        <th>District</th>
+				        <th style="text-align:right">Action</th>
 				      </tr>
 				    </thead>
 				    <tbody>
@@ -52,15 +51,62 @@
                         $i=1;
                         while ($row = mysql_fetch_array($query)) {
                             ?>
-                            <tr class="align_center delete_color">
+                            <tr class="delete_color">
                             <input type="hidden" name="district_id" value="<?php echo $row['district_id']; ?>">
-						        <td class="t_district_id"><?php echo $i; ?></td>
+						       <!-- <td class="t_district_id"><?php // echo $i; ?></td> -->
 						        <!-- <td class="t_states_name"><?php echo $row['states_name']; ?></td> -->
 						        <td class="t_district_name"><?php echo $row['district_name']; ?></td>
-						        <td>
-						        	<span class="edit_state" onclick="editfunction(<?php echo $row['district_id'] ?>)">Edit</span>
-						        	<span class="delete_state" data-value="<?php echo $row['district_id'] ?>">Delete</span>
-						        </td>
+						        <td class="popup-edit_district">
+						        	<span class="edit_state" onclick="editfunction(<?php echo $row['district_id'] ?>)"><i class="fa fa-pencil-square-o"></i></span>
+						        	<span class="delete_state" data-value="<?php echo $row['district_id'] ?>"><i class="fa fa-trash-o"></i></span>
+						        
+								<div class="district_div edit_district_div popup_hidden">
+					          		<code class="close_btn cancel_btn"> </code>
+					          		<div class="edit_title">
+					                	<span class="del_txt">EDIT</span>
+					              	</div><!--edit_title-->
+					          			<div class="container state-content col-md-12">
+						          			<form name="edit_district_form" id="edit_district_form">
+						          			<input type="hidden" class="statesid" name="edit_district_id">
+											<div class="form-group">
+											  <label for="sel1">Select the State</label>
+											  <select class="form-control adjust_width adjust_popup_width classic choose_state" id="sel1" name="edit_district_state" data-validation-error-msg="Please Select the name of the State" data-validation="required">
+											  	<option value="">Select the state</option>
+						  	<?php
+	                        $query = $statesFunction->statesSelect();
+	                        while ($row = mysql_fetch_array($query)) {
+	                            ?>
+	                            <option value="<?php echo $row['states_id']; ?>"><?php echo $row['states_name']; ?></option>
+	                      <?php } ?>
+						  </select>
+						</div>
+						<div class="align_margin">
+							<label>District</label><br>
+							<input type="text" class="districts adjust_popup_width" name="edit_district_name" data-validation-error-msg="Please Enter the name of the District" data-validation="required">
+							<span class="edit_district_error"></span>
+						</div>
+						<!-- <button type="button" class="btn btn-primary align_right clear edit_district_act" name="district">Submit</button>	 -->
+						<input type="submit" class="btn btn-primary align_right clear edit_district_act" name="district" value="Submit">
+					</form>
+					</div><!--tate-content-->
+			</div><!--state_div-->
+		<!-- pop_up del-->		<div class="delete_div delete_district_div">
+								           <!-- <code class="close_btn cancel_btn"> </code> -->
+								              <div class="del_title">
+								                <span class="del_txt">DELETE</span>
+								              </div>
+								              <div class="del_content">
+								                <span class="del_content_txt">Are you sure want to delete this whole record?</span>
+								                <input type="button" class="btn btn-primary align_right yes_btn" value="Yes">
+								                <input type="button" class="btn btn-primary align_right no_btn" value="No">
+								                <input type="hidden" name="delete_id" value="" id="delete_id"/>
+								              </div><!--del_content-->
+          								</div><!--delete_div-->
+								
+								
+								
+								
+								</td>
 					        </tr>
                      <?php $i++; } ?>
 				    </tbody>
@@ -82,41 +128,12 @@
 			    <li><a href="#" class="align_right_icon"><i class="fa fa-angle-double-right"></i></a></li>
 			</ul>
 		</div> --><!-- end  container-->
-		<div class="district_list">
+		<!-- <div class="district_list">
 			<ul>
 			</ul>
 		</div>
-		<div class="popup_fade cancel_btn"></div><!--popup_fade-->
-		<div class="container">
-            <div class="district_div">
-          		<code class="close_btn cancel_btn"> </code>
-          		<div class="edit_title">
-                	<span class="del_txt">EDIT</span>
-              	</div><!--edit_title-->
-          			<div class="container state-content col-md-12">
-	          			<form name="edit_district_form" id="edit_district_form">
-	          			<input type="hidden" class="statesid" name="edit_district_id">
-						<div class="form-group">
-						  <label for="sel1">Select the State</label>
-						  <select class="form-control adjust_width classic choose_state" id="sel1" name="edit_district_state" data-validation-error-msg="Please Select the name of the State" data-validation="required">
-						  	<option value="">Select the state</option>
-						  	<?php
-	                        $query = $statesFunction->statesSelect();
-	                        while ($row = mysql_fetch_array($query)) {
-	                            ?>
-	                            <option value="<?php echo $row['states_id']; ?>"><?php echo $row['states_name']; ?></option>
-	                      <?php } ?>
-						  </select>
-						</div>
-						<div class="align_margin">
-							<label>District</label><br>
-							<input type="text" class="districts" name="edit_district_name" data-validation-error-msg="Please Enter the name of the District" data-validation="required">
-							<span class="edit_district_error"></span>
-						</div>
-						<!-- <button type="button" class="btn btn-primary align_right clear edit_district_act" name="district">Submit</button>	 -->
-						<input type="submit" class="btn btn-primary align_right clear edit_district_act" name="district" value="Submit">
-					</form>
-					</div><!--tate-content-->
-			</div><!--state_div-->
-		</div><!--container-->
+		<div class="popup_fade cancel_btn"></div> --> <!--popup_fade-->
+		<!--<div class="container">
+            
+		</div> --><!--container-->
 <?php require_once "footer.php" ?>

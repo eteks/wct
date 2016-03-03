@@ -11,13 +11,13 @@
 	}
 </style>
 <div class="container">
-	<div class="container align_center align_height">
+	<div class="container left_align_parameter align_height">
 		<span class="sports">RESULT</span>
 	</div><!--end container-->
 	<div class="container">
 		<div class="col-xs-12 col-md-11">
-			<div class="col-md-4 hidden-xs"></div>
-			<div class="col-xs-12 col-md-7 align_margin">
+		<!--	<div class="col-md-4 hidden-xs"></div> -->
+			<div class="col-xs-12 col-md-12 align_margin">
 				<form id="result_form" name="result_form">
 					<div class="form-group">
 						  <label for="sel1">Select Schedule Name</label>
@@ -31,31 +31,32 @@
 	                      <?php } ?>
 						  </select>
 					</div>
-					<div class="form-group col-md-12 schedule_btn">
+					<div class="form-group col-md-11 schedule_btn">
 				      	<label for="athlete" class="email_txt athlete__txt">Select Athletes</label><br>
-				      	<div class="form-group col-md-5">
+				      	<div class="form-group col-md-3">
 				      		<input type="text" class="form-control name_align fl result_athletename" id="result_athletename" placeholder="Name" name="result_athletename" data-validation-error-msg="Please Enter the name of the Athelete" data-validation="required">
 				      		<!-- <select class="athletes_drop classic result_athletename" name="result_athletename" id="result_athletename" required="required" data-validation-error-msg="Please Select the name of the Athelete" data-validation="required">
 				      		<option></option>
 				      		</select> -->
 				      	</div>
-				      	<div class="form-group col-md-5">
+				      	<div class="form-group col-md-3">
 				      		<!-- <input type="text" class="form-control date_assign fl result_athletedate" id="result_athletedate" placeholder="Date" name="result_athletedate"  data-validation="date" data-validation-format="dd/mm/yyyy"> -->
 				      		<input type="text" class="form-control date_assign fl result_athletedate" id="result_athletedate" placeholder="Date" name="result_athletedate">
 			      		</div>
-				    </div>
-				    <div class="form-group">
-				    	<div class="form-group col-md-5">
+						<div class="form-group col-md-3">
 				      		<input type="text" class="form-control name_align fl result_athletemobile" id="result_athletemobile" placeholder="Mobile no" name="result_athletemobile" data-validation-error-msg="Please Enter the value that must contain 10 numbers" data-validation="length" data-validation-length="10">
 				      	</div>
-				      	<div class="form-group col-md-5">
+				      	<div class="form-group col-md-3">
 				      		<input type="text" class="form-control date_assign fl result_athletebib" id="result_athletebib" placeholder="BIB NO" name="result_athletebib" data-validation-error-msg="Please Enter the BIB NO" data-validation="required">
 				    	</div>
-				    </div>
-					<div class="col-md-9">
-						<input type="reset" class="btn btn-primary align_right clear result_clear" value="Cancel">
-						<input type="submit" class="btn btn-primary align_right test-submit clear" value="Submit">
 					</div>
+				    <div class="form-group">
+				    	<input type="reset" class="btn btn-primary clear result_clear" value="Clear">
+						<input type="submit" class="btn btn-primary test-submit clear" value="Submit">
+				    </div>
+				<!--	<div class="col-md-9">
+						
+					</div> -->
 				<input type="hidden" name="result_createscheduleid" class="result_createscheduleid">
 				<input type="hidden" name="result_athleteid" class="result_athleteid">
 				</form>
@@ -82,8 +83,8 @@
 			      </tr>
 				</tbody>
 			  </table>
-			  	<div class="col-md-11 btn_div">
-			  		<input type="reset" class="btn btn-primary align_right clear result_clear_act" value="Cancel">
+			  	<div class="col-md-12 btn_div">
+			  		<input type="reset" class="btn btn-primary align_right clear result_clear_act" value="Clear">
 					<input type="submit" class="btn btn-primary align_right test-submit clear result_submit_act" value="Save">
 				</div>
 			</div>

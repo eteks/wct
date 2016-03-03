@@ -5,12 +5,12 @@ require_once "functions/category_function.php";
 $obj = new categoryfunction();
 ?>
 	<div class="container">
-		<div class="container align_center align_height">
+		<div class="container align_center left_align_category align_height">
 			<span class="sports">CATEGORY</span>
 		</div><!--end container-->
 		<div class="container align_margin">
 			<div class="col-md-8">
-				<div class="col-md-6"></div>
+				<!-- <div class="col-md-6"></div> -->
 				<div class="col-md-6 align_margin">
 					<form id="category_form" name="categories_form" role="form">
 						<div class="align_margin">
@@ -19,16 +19,15 @@ $obj = new categoryfunction();
 							<input type="hidden" name="category_add" value="1">
 						</div>
 						<!-- <button type="button" class="btn btn-primary align_right clear category_submit_act">Submit</button> -->
-						<input type="submit" class="btn btn-primary align_right clear category_submit_act" value="Submit">
+						<input type="submit" class="btn btn-primary clear category_submit_act" value="Submit">
 					</form>
 				</div>
 				<div class="container table-position">
-				  <table class="table state_table" id="category_table">
+				  <table class="table" id="category_table">
 				    <thead>
 				      <tr class="row_color">
-				        <th class="align_center">SLNO</th>
-				        <th class="align_center">Category Name</th>
-				        <th class="align_center">Action</th>
+				        <th>Category Name</th>
+				        <th style="text-align:right">Action</th>
 				      </tr>
 				    </thead>
 				    <tbody>
@@ -37,14 +36,44 @@ $obj = new categoryfunction();
 							$i=1;
 							foreach( $data as $eachrecord ) {
 						 ?>
-				    	<tr class="align_center delete_color">
-					        <td><?php echo $i; ?></td>
+				    	<tr class="delete_color">
+					       <!-- <td><?php //echo $i; ?></td> -->
 							<input class="category_id" value="<?php echo $eachrecord ['categories_id']; ?>" type="hidden">
 					        <td class="category_name"><?php echo $eachrecord ['categories_name']; ?></td>
 					         <td>
-					        	<span class="edit_state">Edit</span>
-					        	<span class="delete_state" data-value="<?php echo $eachrecord ['categories_id']; ?>">Delete</span>
-					        </td>
+					        	<span class="edit_state"><i class="fa fa-pencil-square-o"></i></span>
+					        	<span class="delete_state" data-value="<?php echo $eachrecord ['categories_id']; ?>"><i class="fa fa-trash-o"></i></span>
+					        <div class="state_div edit_category_div popup_hidden">
+				          		<code class="close_btn cancel_btn"> </code>
+				          		<div class="edit_title">
+				                	<span class="del_txt">EDIT</span>
+				              	</div><!--edit_title-->
+				      			<div class="container state-content col-md-12">
+									<form name="category_update" id="category_update_form">
+										<div class="align_margin">
+											<label>Enter the Category Name</label><br>
+											<input type="text" class="sportsname category_update_name" name="category_name" data-validation-error-msg="Please enter the category name" data-validation="required">
+											<input type="hidden" class="category_update_id" name="category_id">
+											<input type="hidden" name="category_update" value="1">
+										</div><!--align_margin-->
+										<!-- <button type="button" class="btn btn-primary align_right clear category_update_act">Submit</button> -->
+										<input type="submit" class="btn btn-primary align_right clear category_update_act" value="Submit">
+									</form>
+								</div><!--tate-content-->
+							</div><!--state_div-->
+			<!-- pop_up del-->		<div class="delete_div delete_catagory_div">
+								          <!--  <code class="close_btn cancel_btn"> </code> -->
+								              <div class="del_title">
+								                <span class="del_txt">DELETE</span>
+								              </div>
+								              <div class="del_content">
+								                <span class="del_content_txt">Are you sure want to delete this whole record?</span>
+								                <input type="button" class="btn btn-primary align_right yes_btn" value="Yes">
+								                <input type="button" class="btn btn-primary align_right no_btn" value="No">
+								                <input type="hidden" name="delete_id" value="" id="delete_id"/>
+								              </div><!--del_content-->
+          								</div><!--delete_div-->
+							</td>
 				      	</tr>
 						<?php $i++; } ?>
 				    </tbody>
@@ -53,26 +82,26 @@ $obj = new categoryfunction();
 			</div>
 		</div><!-- end  container-->
 	</div>
-	<div class="popup_fade cancel_btn"></div><!--popup_fade-->
-		<div class="container">
+	<!-- <div class="popup_fade cancel_btn"></div> -->   <!--popup_fade-->
+		<!-- <div class="container">
             <div class="state_div">
           		<code class="close_btn cancel_btn"> </code>
           		<div class="edit_title">
                 	<span class="del_txt">EDIT</span>
-              	</div><!--edit_title-->
-      			<div class="container state-content col-md-12">
+              	</div> --> <!--edit_title-->
+      			<!--<div class="container state-content col-md-12">
 					<form name="category_update" id="category_update_form">
 						<div class="align_margin">
 							<label>Enter the Category Name</label><br>
 							<input type="text" class="sportsname category_update_name" name="category_name" data-validation-error-msg="Please enter the category name" data-validation="required">
 							<input type="hidden" class="category_update_id" name="category_id">
 							<input type="hidden" name="category_update" value="1">
-						</div><!--align_margin-->
+						</div>--><!--align_margin-->
 						<!-- <button type="button" class="btn btn-primary align_right clear category_update_act">Submit</button> -->
-						<input type="submit" class="btn btn-primary align_right clear category_update_act" value="Submit">
+						<!--<input type="submit" class="btn btn-primary align_right clear category_update_act" value="Submit">
 					</form>
-				</div><!--tate-content-->
-			</div><!--state_div-->
-		</div><!--container-->
+				</div>--> <!--tate-content-->
+			<!--</div> --><!--state_div-->
+		<!--</div> --> <!--container-->
 
 <?php require_once "footer.php" ?>

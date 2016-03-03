@@ -6,12 +6,12 @@ $createschedule = new createscheduleFunction();
 ?>
 
 <div class="container">
-	<div class="container align_center align_height">
+	<div class="container left_align_testbattery align_height">
 		<span class="sports">REPORTS</span>
 	</div><!--end container-->
 	<div class="container">
-		<div class="col-xs-12 col-md-11">
-			<div class="col-md-4 hidden-xs"></div>
+		<div class="col-xs-12 col-md-10">
+		<!--	<div class="col-md-4 hidden-xs"></div> -->
 			<div class="col-xs-12 col-md-7 align_margin">
 				<form id="report_form" name="report_form" action="reports.php" method="post">
 					<div class="align_margin">
@@ -27,10 +27,10 @@ $createschedule = new createscheduleFunction();
 							<?php } ?>
 						</div>
 					</div>
-					<div class="col-md-9">
-						<input type="reset" class="btn btn-primary align_right clear" value="Clear">
-						<input type="submit" class="btn btn-primary align_right test-submit clear" name="submit" value="Submit">
-					</div>
+				<!--	<div class="col-md-9"> -->
+						<input type="reset" class="btn btn-primary clear" value="Clear">
+						<input type="submit" class="btn btn-primary test-submit clear" name="submit" value="Submit">
+				<!--	</div> -->
 				</form>
 			</div>
 			<?php if(isset($_POST['submit'])){ ?>

@@ -6,11 +6,11 @@
 	  $testbattery = new testbatteryfunction();
 ?>
 <div class="container">
-	<div class="container align_center align_height">
+	<div class="container left_align_parameter align_height">
 		<span class="sports">CREATE SCHEDULE</span>
 	</div><!--end container-->
 		<div class="col-xs-12 col-md-11">
-			<div class="col-md-4 hidden-xs"></div>
+		<!--	<div class="col-md-4 hidden-xs"></div> -->
 			<div class="col-xs-12 col-md-7 align_margin">
 				<form name="create_schedule_form" id="createschedule_form">
 				<input type="hidden" class="statesid" name="edit_schedule_id">
@@ -62,7 +62,7 @@
 							    <option value="21">21</option>
 							    <option value="22">22</option>
 							    <option value="23">23</option>
-							    <option value="24">24</option>
+							    <option value="24">24</option>							  
 							</select>
 						</div>
 						<div class="form-group align-time col-md-3">
@@ -201,8 +201,8 @@
 						<textarea class="area_width" name="schedule_venue" data-validation-error-msg="please Enter the name of the Venue" data-validation="required"></textarea>
 					</div>
 					<div class="col-md-9 schedule_btn">
-						<input type="reset" class="btn btn-primary align_right clear" value="Cancel">
-						<input type="submit" class="btn btn-primary align_right test-submit clear add_createschedule_act" value="Submit">
+						<input type="reset" class="btn btn-primary clear" value="Clear">
+						<input type="submit" class="btn btn-primary test-submit clear add_createschedule_act" value="Submit">
 					</div>
 				</form>
 			</div>
@@ -335,7 +335,7 @@
 							    <option value="21">21</option>
 							    <option value="22">22</option>
 							    <option value="23">23</option>
-							    <option value="24">24</option>
+							    <option value="24">24</option>	
 							</select>
 						</div>
 						<div class="col-md-3">
@@ -477,7 +477,7 @@
 					<div class="col-md-10 schedule_btn">
 						<!-- <button type="button" class="btn btn-primary align_right clear edit_createschedule_act">Submit</button>
 						<button type="button" class="btn btn-primary align_right clear">Clear</button> -->
-						<input type="reset" class="btn btn-primary align_right clear reset_form" value="Cancel">
+						<input type="reset" class="btn btn-primary align_right clear reset_form" value="Clear">
 						<input type="submit" class="btn btn-primary align_right test-submit clear edit_createschedule_act" value="Submit">
 					</div>
 	          	</form>

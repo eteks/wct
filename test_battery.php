@@ -24,13 +24,13 @@ if(isset($_GET['duplicate'])){
 }
  ?>
 <div class="container">
-	<div class="container align_center align_height">
+	<div class="container left_align_testbattery align_height">
 		<span class="sports">TEST BATTERY</span>
 	</div><!--end container-->
 	<div class="container">
-		<div class="col-xs-12 col-md-11">
-			<div class="col-md-4 hidden-xs"></div>
-			<div class="col-xs-12 col-md-7 align_margin">
+		<div class="col-xs-12 col-md-8">
+		<!--	<div class="col-md-4 hidden-xs"></div> -->
+			<div class="col-xs-12 col-md-8 align_margin">
 				<form method="post" action="functions/test_battery_functions.php" id="test_battery_form">
 					<div class="form-group">
 						<label>Enter the name of the Test Battery</label><br>
@@ -77,8 +77,8 @@ if(isset($_GET['duplicate'])){
 
 					<div class="col-md-9 schedule_btn">
 						<input type="hidden" value="1" name="testbattery_add" />
-						<input type="reset" value="Cancel" class="btn btn-primary align_right clear" maxlength="50">
-						<input type="submit" class="btn btn-primary align_right test-submit clear" value="Submit">
+						<input type="reset" value="Clear" class="btn btn-primary clear" maxlength="50">
+						<input type="submit" class="btn btn-primary test-submit clear" value="Submit">
 					</div>
 				</form>
 			</div>
@@ -175,7 +175,7 @@ if(isset($_GET['duplicate'])){
 					</div>
 
 					<div class="col-md-12 schedule_btn">
-						<input type="reset" value="Cancel" class="btn btn-primary align_right clear" maxlength="50">
+						<input type="reset" value="Clear" class="btn btn-primary align_right clear" maxlength="50">
 						<input type="submit" class="btn btn-primary align_right test-submit clear" value="Submit">
 					</div>
 				</form>

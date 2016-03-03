@@ -51,6 +51,7 @@
     position: relative;
     top: 20px;
     font-family: Montserrat;
+    width: 80% !important;
     }
 }
 .footer_txt {
@@ -149,6 +150,7 @@
 }
 .statesname,.sportsname,.edit_states_name{
     width: 100%;
+    height: 33px;
 }
 .align_margin{
 	margin-bottom:23px;
@@ -184,9 +186,9 @@
     font-family: Montserrat;
 }
 .delete_color {
-    color: #414141;
-    font-weight: bold;
+    color: #aaaaaa;
     font-family: Montserrat;
+    font-weight: normal;
 }
 .align_left_icon{
     margin-right: 10px;
@@ -272,24 +274,25 @@
     width: 80%;
 }
 .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td{
-    border-top: 0 !important;
-    max-width: 12px;
+    border: 0 !important;
+    /*max-width: 12px;*/
 }
 .table > thead > tr > th{
 	border-bottom: 1px !important;
 }
 .table > tbody{
-	border:1px solid !important;
+	border:1px solid #e2e2e2 !important;
 }
 .table > tbody td{
-     border:1px solid;
-     border-bottom: 0 !important
+    border-left: 1px solid #e2e2e2;
+    border-right: 1px solid #e2e2e2;
+    border-bottom: 0 !important
 }
 .table > thead{
-    border-bottom: 1px solid;
+    border-bottom: 1px solid #e2e2e2 !important;
 }
 .table > tbody tr:last-child{
-    border-bottom: 1px solid !important;
+    border-bottom: 1px solid #e2e2e2 !important;
 }
 .align-height{
     line-height: 2;
@@ -389,8 +392,9 @@ select {
 }
 .edit_state,.edit_district{
     cursor: pointer;
+    float: right;
     position: relative;
-    right: 20px;
+    right: 50px;
 }
 .popup_fade {
     background:#000000;
@@ -404,26 +408,27 @@ select {
     z-index: 1100;
     overflow: hidden;
 }
-.state_div{
+/*.state_div{
     height: 200px;
-    width: 400px;
-    top:50%;
-    left:50%;
-    position:fixed;
+    width: 360px;
+    position:absolute;
     z-index:9999;
     background:#fff;
     display: none;
+    box-shadow: 0 2px 10px 3px #b8b7b9;
+     margin: -9px 0 0 -28px;
 }
 .delete_div{
-    height: 200px;
-    width: 400px;
-    top:50%;
-    left:50%;
-    position:fixed;
-    z-index:9999;
-    background:#fff;
-    display:none;
-}
+    background: #fff none repeat scroll 0 0;
+    box-shadow: 0 2px 10px 3px #b8b7b9;
+    display: none;
+    height: 145px;
+    position: absolute;
+    width: 200px;
+    z-index: 9999;
+    padding: 5px 7px;
+    margin: 23px 0 0 125px;
+}*/
 .login_div{
     height: 350px;
     width: 500px;
@@ -445,25 +450,27 @@ select {
     display:none;
 }
 .test_div{
-    height: 350px;
-    width: 500px;
-    top:50%;
-    left:50%;
-    position:fixed;
-    z-index:9999;
-    background:#fff;
-    display:none;
+    background: #fff none repeat scroll 0 0;
+    box-shadow: 0 2px 10px 3px #b8b7b9;
+    display: none;
+    height: 353px;
+    margin: -9px 0 0 -152px;
+    position: absolute;
+    width: 275px;
+    z-index: 9999;
 }
-.district_div{
+/*.district_div{
     height: 300px;
     width: 440px;
     top:50%;
     left:50%;
-    position:fixed;
+    position:absolute;
     z-index:9999;
     background:#fff;
     display:none;
-}
+    box-shadow: 0 2px 10px 3px #b8b7b9;
+    margin: -9px 0 0 -28px;
+}*/
 .test_battery_div,.athletes_div,.createschedule_div{
     height: 600px;
     width: 465px;
@@ -501,23 +508,23 @@ select {
 }
 .yes_btn{
     background-color: #ffffff !important;
-    color: #006687 !important;
-    height: 45px;
-    width: 135px;
     border-radius: 0 !important;
-    font-weight: bold;
+    color: #006687 !important;
     font-family: Montserrat;
-    margin-right: 60px;
+    font-weight: bold;
+    height: 32px;
+    margin-right: 9px;
+    width: 45px;
 }
 .no_btn{
     background-color: #ffffff !important;
-    color: #006687 !important;
-    height: 45px;
-    width: 135px;
     border-radius: 0 !important;
-    font-weight: bold;
+    color: #006687 !important;
     font-family: Montserrat;
-    margin-right: 10px;
+    font-weight: bold;
+    height: 32px;
+    margin-right: 15px;
+    width: 45px;
 }
 .yes_btn:hover,.no_btn:hover{
     background-color: #006687 !important;
@@ -527,25 +534,24 @@ select {
     cursor: pointer;
     float: right;
     position: relative;
-    right: 20%;
 }
 .edit_state:hover,.edit_district:hover{
     color: #006687 !important;
 }
 .del_title ,.login_title,.edit_title{
-    font-size: 18px;
+    font-size: 14px;
     height: 40px;
     padding: 12px 0 0 15px;
     font-weight: bold;
     font-family: Montserrat;
 }
 .del_content {
-    font-size: 18px;
+    color: #414141;
     font-family: Montserrat;
-    height: 100px;
-    color: #33859f;
-    text-align: center;
-    line-height: 3;
+    font-size: 14px;
+    line-height: 2;
+    text-align: left;
+    
 }
 .states_list,.district_list,.edit_states_list{
     display: none;
@@ -562,6 +568,7 @@ select {
 }
 .delete_color:hover {
     background: #d9e8ed;
+    color: #414141;
 }
 .schedule_btn {
     padding: 0 !important;
@@ -584,7 +591,7 @@ select {
     font-family: Montserrat;
     height: 34px;
     position: relative;
-    right: 15px;
+    right: 45px;
     width: 130px !important;
 }
 .ranges_btn{
@@ -616,9 +623,7 @@ select {
     border-radius: 0 !important;
     box-shadow: none !important;
     height: 34px;
-    margin: 12px 0 10px 20px;
-    position: relative;
-    right: 34px;
+    margin: 25px 0 10px 2px; /* added by siva */
     width: 130px !important;
     font-family: Montserrat;
     color: #424242  !important;
@@ -671,7 +676,7 @@ select {
     height: 34px;
     margin: 12px 0 0;
     position: relative;
-    right: 35px;
+    right: 12px;
     width: 195px !important;
     color: #424242  !important;
     font-family: Montserrat;
@@ -710,22 +715,18 @@ select {
     background: #006687 none repeat scroll 0 0;
     color: #fff;
     cursor: pointer;
-    left: 0;
+    left: 53px;
     padding: 10px;
-    position: relative;
-    top: 1px;
+    position: absolute;
 }
 .parameter_add{
     background: #006687 none repeat scroll 0 0;
     color: #fff;
     cursor: pointer;
-    left: -8px;
     padding: 10px;
-    position: relative;
-    top: 1px;
 }
 label{
-    color: #414141 !important;
+    color: #606060 !important;
     font-family: Montserrat;
 }
 button, input, optgroup, select, textarea {
@@ -734,13 +735,14 @@ button, input, optgroup, select, textarea {
 .type_align_popup{
     border-radius: 0 !important;
     box-shadow: none !important;
-    height: 34px;
-    margin: 12px 0 10px 30px;
-    position: relative;
-    right: 45px;
-    width: 135px !important;
+    color: #424242 !important;
     font-family: Montserrat;
-    color: #424242  !important;
+    height: 30px !important;
+    margin: 0 0 4px 30px;
+    padding: 2px 5px !important;
+    position: relative;
+    right: 27px;
+    width: 219px !important;
 }
 .area_scroll_popup{
     border: 1px solid #A0A0A0;
@@ -895,7 +897,7 @@ button, input, optgroup, select, textarea {
     display: none;
     color: red;
     float: right;
-    font-size: 14px;
+    font-size: 11px;
 }
 .ui-helper-hidden-accessible{
     display: none;
@@ -930,7 +932,7 @@ input[type=radio]:checked + label:before {
   text-align: center;
   line-height: 17px;
 }
-.paramter_div{
+/*.paramter_div{
     background: #fff none repeat scroll 0 0;
     display: none;
     height: 280px;
@@ -939,11 +941,11 @@ input[type=radio]:checked + label:before {
     top: 50%;
     width: 478px;
     z-index: 9999;
-}
+}*/
 .adjust_width_parameter{
     box-shadow: none !important;
     height: 34px;
-    width: 370px !important;
+    width: 335px !important;
 }
 .submenu-align > li {
     position: absolute !important;
@@ -1236,9 +1238,8 @@ input[type=radio]:checked + label:before {
     display: none;
 }
 .parameter__align {
-    left: 15px;
+    margin: 24px 0 0 -8px;
     position: relative;
-    top: 10px;
 }
 .align-time {
     margin-right: 4px;
@@ -1353,15 +1354,12 @@ input[type=radio]:checked + label:before {
     display: none;
     color: red;
     font-size: 11px;
-    /*margin-left: -42px;*/
+    margin-left: -42px;
 }
 .custom_error{
-    color: red;
     display: block;
+    color: red;
     font-size: 11px;
-    left: 0;
-    position: absolute;
-    width: 138px;
 }
 .footer_txt > span {
     padding: 10px 0 0;
@@ -1373,14 +1371,290 @@ input[type=radio]:checked + label:before {
 .parameter-menu a {
     display: block;
 }
-.enter_result_error{
-    display: none;
-    color: red;
-    font-size: 11px;
-    /*margin-left: -42px;*/
-    font-weight: normal;
-}
-.form-align-range {
+.left_align {
+    left: 40px;
     position: relative;
-    right: 30px;
+    text-align: left;
+}
+tbody tr {
+    border-left: 1px solid #e2e2e2 !important;
+    border-right: 1px solid #e2e2e2 !important;
+}
+/*added by siva*/
+.left_align_category { /* added by siva */
+    left: 27px;
+    position: relative;
+    text-align: left;
+}
+.district_table { /* added by siva */
+    left: 9px;
+    position: relative;
+}
+.sports_table { /* added by siva */
+    left: 34px;
+    position: relative;
+}
+.left_align_parameter { /* added by siva */
+    left: 27px;
+    position: relative;
+    text-align: left;
+}
+.left_align_testbattery { /* added by siva */
+    left: 30px;
+    position: relative;
+    text-align: left;
+}
+.schedule_test { /* added by siva */
+    padding: 0 !important;
+    margin-left: -16px;   
+}
+.search_part {
+    margin: 14px 0 0;
+}
+.search-content {
+    border: 1px solid #e8e7e8;
+    padding: 25px 0 0;
+}
+.test_title span{
+    color: #006687;
+    font-family: Montserrat;
+    font-weight: bold;
+}
+.test_title {
+    height: 22px;
+    margin: 0 0 0 12px;
+}
+.search_box{
+    height: 33px;
+    width: 150px;
+}
+.font-search {
+    background: #006687 none repeat scroll 0 0;
+    color: #fff;
+    cursor: pointer;
+    height: 32px;
+    padding: 8px 0 0;
+    position: absolute;
+    text-align: center;
+    width: 35px;
+}
+.test-name {
+    cursor: pointer;
+    display: block;
+    width: 270px;
+    color: #414141;
+    font-family: Montserrat;
+    line-height: 3;
+    text-align: left;
+}
+.check_test {
+    left: 32px;
+    position: relative;
+    display: none;
+}
+.test-alter {
+    float: right;
+}
+.search__list {
+    margin: 0 0 0 40px;
+}
+.test-name:hover .check_test{
+    display: inline-table;
+}
+.search-list {
+    left: 40px;
+    position: relative;
+}
+.list_edit {
+    border: 0 none;
+    height: 24px;
+    left: 35px;
+    position: relative;
+    background: transparent none repeat scroll 0 0;
+}
+.list_edit_rollover{
+    background: #fff none repeat scroll 0 0;
+    border: 1px solid;
+    height: 24px;
+    width: 165px;
+}
+.test-name:hover {
+    background: #e2e2e2 none repeat scroll 0 0;
+}
+.align_left_district {
+    left : 10px;
+    position:relative;
+}
+/* added by siva for pop_up alignment */
+.edit_state_div{    /* state div */
+    height: 200px;
+    width: 360px;
+    position:absolute;
+    z-index:9999;
+    background:#fff;
+    display: none;
+    box-shadow: 0 2px 10px 3px #b8b7b9;
+    margin: -8px 0 0 8px;
+}
+.delete_state_div{  /* added by siva */ 
+    background: #fff none repeat scroll 0 0;
+    box-shadow: 0 2px 10px 3px #b8b7b9;
+    display: none;
+    height: 145px;
+    position: absolute;
+    width: 200px;
+    z-index: 9999;
+    padding: 5px 7px;
+    margin: 18px 0 0 135px;
+}
+
+.edit_sports_div {  /* state div */
+    height: 200px;
+    width: 360px;
+    position:absolute;
+    z-index:9999;
+    background:#fff;
+    display: none;
+    box-shadow: 0 2px 10px 3px #b8b7b9;
+    margin: -8px 0 0 -22px;
+}
+.delete_sports_div {
+    background: #fff none repeat scroll 0 0;
+    box-shadow: 0 2px 10px 3px #b8b7b9;
+    display: none;
+    height: 145px;
+    position: absolute;
+    width: 200px;
+    z-index: 9999;
+    padding: 5px 7px;
+     margin: 18px 0 0 135px;
+}
+.delete_catagory_div {
+    background: #fff none repeat scroll 0 0;
+    box-shadow: 0 2px 10px 3px #b8b7b9;
+    display: none;
+    height: 145px;
+    position: absolute;
+    width: 200px;
+    z-index: 9999;
+    padding: 5px 7px;
+    margin: 18px 0 0 95px;
+    
+}
+.edit_category_div { /* state div */
+    height: 200px;
+    width: 360px;
+    position:absolute;
+    z-index:9999;
+    background:#fff;
+    display: none;
+    box-shadow: 0 2px 10px 3px #b8b7b9;
+    margin: -8px 0 0 -67px;
+}
+.edit_district_div{ /* district div */
+      background: #fff none repeat scroll 0 0;
+    box-shadow: 0 2px 10px 3px #b8b7b9;
+    display: none;
+    height: 270px;
+    margin: -8px 0 0 170px;
+    position: absolute;
+    width: 360px;
+    z-index: 9999;
+}
+.delete_district_div {
+    background: #fff none repeat scroll 0 0;
+    box-shadow: 0 2px 10px 3px #b8b7b9;
+    display: none;
+    height: 145px;
+    position: absolute;
+    width: 200px;
+    z-index: 9999;
+    padding: 5px 7px;
+    margin: 18px 0 0 213px;
+}
+.adjust_popup_width{
+    box-shadow: none !important;
+    height: 34px;
+    width: 326px !important;
+}
+.edit_parametertype_div {
+    height: 200px;
+    width: 360px;
+    position:absolute;
+    z-index:9999;
+    background:#fff;
+    display: none;
+    box-shadow: 0 2px 10px 3px #b8b7b9;
+    margin: -8px 0 0 5px;
+    
+}
+.delete_parametertype_div {
+    background: #fff none repeat scroll 0 0;
+    box-shadow: 0 2px 10px 3px #b8b7b9;
+    display: none;
+    height: 145px;
+    position: absolute;
+    width: 200px;
+    z-index: 9999;
+    padding: 5px 7px;
+    margin: 18px 0 0 165px;
+}
+.edit_parameterunit_div{
+    background: #fff none repeat scroll 0 0;
+    box-shadow: 0 2px 10px 3px #b8b7b9;
+    display: none;
+    height: 270px;
+    margin: -8px 0 0 -142px;
+    position: absolute;
+    width: 360px;
+    z-index: 9999;
+}
+.delete_parameterunit_div {
+    background: #fff none repeat scroll 0 0;
+    box-shadow: 0 2px 10px 3px #b8b7b9;
+    display: none;
+    height: 145px;
+    position: absolute;
+    width: 200px;
+    z-index: 9999;
+    padding: 5px 7px;
+    margin: 22px 0 0 17px !important;
+}
+.save_item,.edit_item,.delete_item{
+    display: none !important;
+}
+.test-name:hover .edit_item{
+    display: inline-block !important;
+}
+.test-name:hover .delete_item{
+    display: inline-block !important;
+}
+.popup_label{
+    float: left;
+    font-size: 12px;
+}
+.delete_test_div{
+    background: #fff none repeat scroll 0 0;
+    box-shadow: 0 2px 10px 3px #b8b7b9;
+    display: none;
+    height: 145px;
+    position: absolute;
+    width: 200px;
+    z-index: 9999;
+    padding: 5px 7px;
+    margin: 18px 0 0 -78px;
+}
+.delete_search{
+    background: #fff none repeat scroll 0 0;
+    box-shadow: 0 2px 10px 3px #b8b7b9;
+    display: none;
+    height: 145px;
+    position: absolute;
+    width: 200px;
+    z-index: 9999;
+    padding: 5px 7px;
+    margin: -45px 0 0 270px;
+}
+.edit_item,.save_item,.delete_item {
+    font-size: 18px !important;
 }

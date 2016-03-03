@@ -1,13 +1,13 @@
-function state_center_align(){
-      var height=$('.state_div').height();
-      var width=$('.state_div').width();
-      $('.state_div').css({'margin-top': -height / 2 + "px", 'margin-left': -width / 2 + "px"});
-}
-function delete_center_align(){
-      var height=$('.delete_div').height();
-      var width=$('.delete_div').width();
-      $('.delete_div').css({'margin-top': -height / 2 + "px", 'margin-left': -width / 2 + "px"});
-}
+// function state_center_align(){
+//       var height=$('.state_div').height();
+//       var width=$('.state_div').width();
+//       $('.state_div').css({'margin-top': -height / 2 + "px", 'margin-left': -width / 2 + "px"});
+// }
+// function delete_center_align(){
+//       var height=$('.delete_div').height();
+//       var width=$('.delete_div').width();
+//       $('.delete_div').css({'margin-top': -height / 2 + "px", 'margin-left': -width / 2 + "px"});
+// }
 function login_center_align(){
       var height=$('.login_div').height();
       var width=$('.login_div').width();
@@ -18,41 +18,41 @@ function register_center_align(){
       var width=$('.register_div').width();
       $('.register_div').css({'margin-top': -height / 2 + "px", 'margin-left': -width / 2 + "px"});
 }
-function test_center_align(){
-      var height=$('.test_div').height();
-      var width=$('.test_div').width();
-      $('.test_div').css({'margin-top': -height / 2 + "px", 'margin-left': -width / 2 + "px"});
-}
-function district_center_align(){
-      var height=$('.district_div').height();
-      var width=$('.district_div').width();
-      $('.district_div').css({'margin-top': -height / 2 + "px", 'margin-left': -width / 2 + "px"});
-}
-function athletes_center_align(){
-      var height=$('.athletes_div').height();
-      var width=$('.athletes_div').width();
-      $('.athletes_div').css({'margin-top': -height / 2 + "px", 'margin-left': -width / 2 + "px"});
-}
-function createschedule_center_align(){
-      var height=$('.createschedule_div').height();
-      var width=$('.createschedule_div').width();
-      $('.createschedule_div').css({'margin-top': -height / 2 + "px", 'margin-left': -width / 2 + "px"});
-}
-function test_battery_center_align(){
-      var height=$('.test_battery_div').height();
-      var width=$('.test_battery_div').width();
-      $('.test_battery_div').css({'margin-top': -height / 2 + "px", 'margin-left': -width / 2 + "px"});
-}
-function range_center_align(){
-      var height=$('.range_div').height();
-      var width=$('.range_div').width();
-      $('.range_div').css({'margin-top': -height / 2 + "px", 'margin-left': -width / 2 + "px"});
-}
-function parameter_center_align(){
-      var height=$('.paramter_div').height();
-      var width=$('.paramter_div').width();
-      $('.paramter_div').css({'margin-top': -height / 2 + "px", 'margin-left': -width / 2 + "px"});
-}
+// function test_center_align(){
+//       var height=$('.test_div').height();
+//       var width=$('.test_div').width();
+//       $('.test_div').css({'margin-top': -height / 2 + "px", 'margin-left': -width / 2 + "px"});
+// }
+// function district_center_align(){
+//       var height=$('.district_div').height();
+//       var width=$('.district_div').width();
+//       $('.district_div').css({'margin-top': -height / 2 + "px", 'margin-left': -width / 2 + "px"});
+// }
+// function athletes_center_align(){
+//       var height=$('.athletes_div').height();
+//       var width=$('.athletes_div').width();
+//       $('.athletes_div').css({'margin-top': -height / 2 + "px", 'margin-left': -width / 2 + "px"});
+// }
+// function createschedule_center_align(){
+//       var height=$('.createschedule_div').height();
+//       var width=$('.createschedule_div').width();
+//       $('.createschedule_div').css({'margin-top': -height / 2 + "px", 'margin-left': -width / 2 + "px"});
+// }
+// function test_battery_center_align(){
+//       var height=$('.test_battery_div').height();
+//       var width=$('.test_battery_div').width();
+//       $('.test_battery_div').css({'margin-top': -height / 2 + "px", 'margin-left': -width / 2 + "px"});
+// }
+// function range_center_align(){
+//       var height=$('.range_div').height();
+//       var width=$('.range_div').width();
+//       $('.range_div').css({'margin-top': -height / 2 + "px", 'margin-left': -width / 2 + "px"});
+// }
+// function parameter_center_align(){
+//       var height=$('.paramter_div').height();
+//       var width=$('.paramter_div').width();
+//       $('.paramter_div').css({'margin-top': -height / 2 + "px", 'margin-left': -width / 2 + "px"});
+// }
 
 function package_menu() {
     var wh = window.innerHeight;
@@ -81,7 +81,7 @@ function editfunction(data_id){
               });
               $('.popup_fade').show();
               $('.state_div, .close_btn').show();
-              document.body.style.overflow = 'hidden';
+              document.body.style.overflow = 'auto';
              }
           });
     } else if(window.location.href.indexOf("district.php") !== -1){
@@ -99,7 +99,7 @@ function editfunction(data_id){
             });
             $('.popup_fade').show();
             $('.district_div, .close_btn').show();
-            document.body.style.overflow = 'hidden';
+            document.body.style.overflow = 'auto';
            }
         });
     } else if(window.location.href.indexOf("parameter_type.php") !== -1){
@@ -116,7 +116,7 @@ function editfunction(data_id){
           });
           $('.popup_fade').show();
           $('.state_div, .close_btn').show();
-          document.body.style.overflow = 'hidden';
+          document.body.style.overflow = 'auto';
          }
       });
     } else if(window.location.href.indexOf("athletes.php") !== -1){
@@ -145,7 +145,7 @@ function editfunction(data_id){
             $('.popup_fade').show();
             athletes_center_align();
             $('.athletes_div, .close_btn').show();
-            document.body.style.overflow = 'hidden';
+            document.body.style.overflow = 'auto';
            }
         });
     } else if(window.location.href.indexOf("create_schedule.php") !== -1){
@@ -173,7 +173,7 @@ function editfunction(data_id){
             $('.popup_fade').show();
             createschedule_center_align();
             $('.createschedule_div, .close_btn').show();
-            document.body.style.overflow = 'hidden';
+            document.body.style.overflow = 'auto';
            }
         });
     } else if(window.location.href.indexOf("range.php") !== -1){
@@ -184,37 +184,18 @@ function editfunction(data_id){
            cache: false,
            success: function(data) {
             data =  data.split('#####');
-            var rangetest_obj = JSON.parse(data[0]);
-            var rangecategory_obj = JSON.parse(data[1]);
-            var range_obj = JSON.parse(data[2]);
-            var rangeattr_obj = JSON.parse(data[3]);
-
-            var rangetest_options = '<option></option>';
-            $.each(rangetest_obj, function(i){
-              rangetest_options += '<option value="'+rangetest_obj[i].test_id+'">'+rangetest_obj[i].test_name+'</option>';
-            });
-            $('[name=edit_range_test]').html(rangetest_options);
-
-            var rangecategory_options = '<option></option>';
-            $.each(rangecategory_obj, function(i){
-              rangecategory_options += '<option value="'+rangecategory_obj[i].categories_id+'">'+rangecategory_obj[i].categories_name+'</option>';
-            });
-            $('[name=edit_range_category]').html(rangecategory_options);
-
+            var range_obj = JSON.parse(data[0]);
+            var rangeattr_obj = JSON.parse(data[1]);
             $.each(range_obj, function(i){
               $('[name=edit_range_id').val(range_obj[i].range_id);
               $('[name=edit_range_testbattery]').find("option:contains("+range_obj[i].rangetestbattery_name+")").attr("selected","selected");
-              $('[name=edit_range_category]').find("option[value="+range_obj[i].rangecategory_id+"]").attr("selected","selected");
-              $('[name=edit_range_test]').find("option[value="+range_obj[i].rangetest_id+"]").attr("selected","selected");
-
+              $('[name=edit_range_category]').html('<option value="'+range_obj[i].rangecategory_id+'" selected>'+range_obj[i].rangecategory_name+'</option>');
+              $('[name=edit_range_test]').html('<option value="'+range_obj[i].rangetest_id+'" selected>'+range_obj[i].rangetest_name+'</option>');
               $('[name=edit_range_parameter]').html('<option value="'+range_obj[i].rangetestattribute_id+'" selected>'+range_obj[i].rangeparameter_name+'</option>');
-              if(range_obj[i].rangeparameter_type == "time" || range_obj[i].rangeparameter_type == "Time")
+              if(range_obj[i].rangeparameter_type == "time")
                 $('.edit_range_notes').text("Enter the range in "+range_obj[i].rangeparameter_unit+ " format");
               else
                 $('.edit_range_notes').text("Enter the range in "+range_obj[i].rangeparameter_unit+ " with "+range_obj[i].rangeparameter_format +" format");
-              $('.range_parameter_type').val(range_obj[i].rangeparameter_type);
-              $('.range_parameter_unit').val(range_obj[i].rangeparameter_unit);
-              $('.range_parameter_format').val(range_obj[i].rangeparameter_format);
             });
             $('.edit_range_note').show();
             //Append data to first range part without using for loop
@@ -251,7 +232,7 @@ function editfunction(data_id){
             }
             $('.popup_fade').show();
             $('.range_div, .close_btn').show();
-            document.body.style.overflow = 'hidden';
+            document.body.style.overflow = 'auto';
            }
         });
     }
@@ -267,11 +248,10 @@ $(window).resize(function () {
       var category = $('.assignsche_cate').val();
       var athe_id = main.parents('.assign_clone_content').find('.athlete_name').val();
       var currentInput  = $(this).val();
-      if(currentInput){
       $.ajax({
            type: "POST",
            url: "functions/athletes_functions.php?athelete_check=true",
-           data:{'sche':schedule,'cate':category,'athe':athe_id},
+           data:{'sche':1,'cate':category,'athe':athe_id},
            cache: false,
            success: function(data) {
                 if(data == 'error'){
@@ -282,7 +262,6 @@ $(window).resize(function () {
                 }
           }
        });
-   }
     $(".assign_clone_content .custom-combobox-input").each(function(index) {
       if(currentInput === $(this).val()) {
           j++;
@@ -297,18 +276,32 @@ $(window).resize(function () {
     }
   });
 $(document).ready(function () {
+  
+ 
+  $('input:checkbox').change(function(){
+    if($(this).is(":checked")) {
+        $('.list_edit').addClass("list_edit_rollover");
+    } else {
+        $('.list_edit').removeClass("list_edit_rollover");
+    }
+  });
+  $('.delete_item').on('click',function(){
+    $(this).parents('.test-list').find('.delete_div').show();
+    $(this).parents('.test-name').next().siblings('.delete_div').hide();
+  });
+  
 
-    $("input").attr('maxlength','50');
+  $("input").attr('maxlength','50');
   package_menu();
- 	state_center_align();
-  delete_center_align();
+ 	// state_center_align();
+  // delete_center_align();
   login_center_align();
   register_center_align();
-  test_center_align();
-  district_center_align();
-  test_battery_center_align();
-  range_center_align();
-  parameter_center_align();
+  // test_center_align();
+  // district_center_align();
+  // test_battery_center_align();
+  // range_center_align();
+  // parameter_center_align();
   $('#radio-2').click(function() {
       $.ajax({
            type: "POST",
@@ -365,10 +358,13 @@ $('.reset_form').on('click',function(){
 });
    //Edit popup
   	$(document.body).delegate('.edit_state','click',function() {
-        state_center_align();
-        $('.popup_fade').show();
-        $('.state_div, .close_btn').show();
-        document.body.style.overflow = 'hidden';
+        // state_center_align();
+        // $('.popup_fade').show();
+        // $('.state_div').hide();
+        $(this).next().next().show();
+        $(this).parents('tr').siblings().children('.popup-edit').hide();
+        // $('.state_div, .close_btn').show();
+        document.body.style.overflow = 'auto';
         //alert($(this).parents('tr').find('.sports_id').text());
         $('.sports_update_name').val($(this).parents('tr').find('.sports_name').text());
         $('.sports_update_id').val($(this).parents('tr').find('.sports_id').val());
@@ -389,16 +385,11 @@ $('.reset_form').on('click',function(){
              cache: false,
              dataType:'json',
              success: function(data) {
-                //alert(data.test_parameter_type.toLowerCase());
                  $('.test_name_update').val(data.test_name);
                  $('.test_parameter_name_update').val(data.test_parameter_name);
                  $('.parameter_type_update option[value="'+data.test_parameter_type+'"]').attr('selected','selected');
                  $('.parameter_unit_update').append('<option value="'+data.test_parameter_unit+'">'+data.test_parameter_unit+'</option>');
-                 if(data.test_parameter_type.toLowerCase() == 'time'){
-                     $('.parameter_format_update').empty().append("<option value='"+data.test_parameter_unit+"'>"+data.test_parameter_unit+"</option>");
-                 }else{
-                     $('.parameter_format_update option[value="'+data.test_parameter_format+'"]').attr('selected','selected');
-                 }
+                 $('.parameter_format_update option[value="'+data.test_parameter_format+'"]').attr('selected','selected');
                  $('.parameter_update').val(test_attr_id);
                  $('.test_update_id').val(data.test_id);
             }
@@ -473,55 +464,52 @@ $('.reset_form').on('click',function(){
         document.body.style.overflow = 'hidden';
     });
     $('.edit_state').click(function(){
-        test_center_align();
-        $('.popup_fade').show();
-        $('.test_div, .close_btn').show();
+        // test_center_align();
+        // $('.popup_fade').show();
+        // $('.test_div, .close_btn').show();
+        $(this).next().next().show();
+        $(this).parents('tr').siblings().children('.popup-edit').hide();
         document.body.style.overflow = 'hidden';
     });
     $('.edit_state').click(function(){
-        district_center_align();
+        // district_center_align();
         $('.popup_fade').show();
         $('.district_div, .close_btn').show();
         document.body.style.overflow = 'hidden';
     });
     $('.edit_state').click(function(){
-        test_battery_center_align();
+        // test_battery_center_align();
         $('.popup_fade').show();
         $('.test_battery_div, .close_btn').show();
         document.body.style.overflow = 'hidden';
     });
     $('.edit_state').click(function(){
-        athletes_center_align();
+        // athletes_center_align();
         $('.popup_fade').show();
         $('.athletes_div, .close_btn').show();
         document.body.style.overflow = 'hidden';
     });
     $('.edit_state').click(function(){
-        createschedule_center_align();
+        // createschedule_center_align();
         $('.popup_fade').show();
         $('.createschedule_div, .close_btn').show();
         document.body.style.overflow = 'hidden';
     });
     $('.edit_state').click(function(){
-        range_center_align();
+        // range_center_align();
         $('.popup_fade').show();
         $('.range_div, .close_btn').show();
         document.body.style.overflow = 'hidden';
     });
     $('.edit_state').click(function(){
-        parameter_center_align();
-        $('.popup_fade').show();
-        $('.paramter_div, .close_btn').show();
+        // parameter_center_align();
+        // $('.popup_fade').show();
+        // $('.paramter_div, .close_btn').show();
+        $(this).next().next().show();
+        $(this).parents('tr').siblings().children('.popup-edit').hide();
         document.body.style.overflow = 'hidden';
     });
     $('.cancel_btn').on('click',function(){
-        $('.popup_fade').hide();
-        $('.state_div,.delete_div,.login_div,.register_div,.test_div,.district_div,.test_battery_div,.range_div,.paramter_div,.athletes_div,.createschedule_div').hide();
-        document.body.style.overflow = 'auto';
-         location.reload();
-
-    });
-    $('input[type="reset"]').on('click',function(){
         $('.popup_fade').hide();
         $('.state_div,.delete_div,.login_div,.register_div,.test_div,.district_div,.test_battery_div,.range_div,.paramter_div,.athletes_div,.createschedule_div').hide();
         document.body.style.overflow = 'auto';
@@ -846,9 +834,11 @@ $('.reset_form').on('click',function(){
 
     $(document).on('click','.delete_state',function(){
         $('#delete_id').val($(this).attr("data-value"));
-        $('.popup_fade').show();
-        $('.delete_div, .close_btn').show();
-        document.body.style.overflow = 'hidden';
+        // $('.popup_fade').show();
+        // $('.delete_div, .close_btn').show();
+        $(this).next().next().show();
+        $(this).parents('tr').siblings('.state_div').hide();
+        document.body.style.overflow = 'auto';
     });
 
     // Jquery and ajax functionality for district
@@ -1241,15 +1231,12 @@ $('.reset_form').on('click',function(){
                if(html=='error'){
                  alert('This category is already used');
                }else{
-                 location.reload();
                  var category_split = html.split('-');
-                 //alert(category_split);
                 $('#category_table').find("input[value="+category_split[1]+"]").next('.category_name').html(category_split[0]);
                 //alert('Sports name updated successfully');
                 $('.popup_fade').hide();
                 $('.state_div,.delete_div').hide();
                 document.body.style.overflow = 'auto';
-                location.reload();
                }
 
            }
@@ -1287,12 +1274,9 @@ $('.reset_form').on('click',function(){
     })
 
     function nextElement(element){
-        var last_id = parseInt(element.find('.parameter_count').val());
         var newElement = element.clone();
-        var id = last_id+1;
+        var id = current_id+1;
         current_id = id;
-        //alert(last_id);
-        newElement.find('.parameter_count').val(id);
         newElement.find('.parameter_name').removeAttr('name').attr('name', 'parameter_name'+id).val('');
         newElement.find('#type').removeAttr('name').attr('name', 'type'+id);
         newElement.find('#unit').removeAttr('name').attr('name', 'unit'+id).removeClass('error').removeAttr('style').empty().append("<option value='' selected>UNIT</option>");
@@ -1349,6 +1333,7 @@ $('.reset_form').on('click',function(){
         // else{
         //     $('select[name="'+this_content+'"]').parents().find('.parameter_format').removeAttr('disabled');
         // }
+
         $.ajax({
            type: "POST",
            url: "common.php?param_name='true'",
@@ -1366,23 +1351,20 @@ $('.reset_form').on('click',function(){
     });
     $(document.body).delegate('.parameter_unit','change',function() {
         var param_unit = $(this).val();
-
-        var param_type = $(this).parents('.parameter_type_parent').find('.parameter_type').val();
-        //alert(param_type);
-        if(param_type == 'time' || param_type == 'Time' ){
-            //alert($(this).parents('.parameter_type_parent').html());
-            $(this).parents('.parameter_type_parent').find('.parameter_format').empty().append("<option value="+param_unit+">"+param_unit+"</option>");
+        var param_type = $('.parameter_type').val();
+        if(param_type == 'time'){
+            $('.parameter_format').empty().append("<option value="+param_unit+">"+param_unit+"</option>");
         }else{
-            $(this).parents('.parameter_type_parent').find('.parameter_format').empty().append("<option value=''>Format</option><option value='0'>0</option><option value='1'>1</option><option value='2'>2</option><option value='3'>3</option><option value='4'>4</option><option value='5'>5</option>");
+            $('.parameter_format').empty().append("<option value=''>Format</option><option value='0'>0</option><option value='1'>1</option><option value='2'>2</option><option value='3'>3</option><option value='4'>4</option><option value='5'>5</option>");
         }
     });
     $(document.body).delegate('.parameter_unit_update','change',function() {
         var param_unit = $(this).val();
-        var param_type = $(this).parents('.parameter_type_parent').find('.parameter_type_update').val();
-        if(param_type == 'time' || param_type == 'Time' ){
-            $(this).parents('.parameter_type_parent').find('.parameter_format').empty().append("<option value="+param_unit+">"+param_unit+"</option>");
+        var param_type = $('.parameter_type_update').val();
+        if(param_type == 'time'){
+            $('.parameter_format').empty().append("<option value="+param_unit+">"+param_unit+"</option>");
         }else{
-            $(this).parents('.parameter_type_parent').find('.parameter_format').empty().append("<option value=''>Format</option><option value='0'>0</option><option value='1'>1</option><option value='2'>2</option><option value='3'>3</option><option value='4'>4</option><option value='5'>5</option>");
+            $('.parameter_format').empty().append("<option value=''>Format</option><option value='0'>0</option><option value='1'>1</option><option value='2'>2</option><option value='3'>3</option><option value='4'>4</option><option value='5'>5</option>");
         }
     });
 
@@ -1642,13 +1624,9 @@ $('.reset_form').on('click',function(){
         var res = true;
         $('input[type="text"],textarea,select',this).each(function() {
           if($(this).val().trim() == "") {
-            $(this).next('.hided').addClass('custom_error').show();
             res = false;
           }
         });
-        if($(":input").siblings('span').hasClass("custom_error")){
-          res =  false;
-        }
         if(res){
           var form_data = $('[name=range_form]').serialize();
            $.ajax({
@@ -1685,13 +1663,10 @@ $('.reset_form').on('click',function(){
         var res = true;
         $('input[type="text"],textarea,select',this).each(function() {
           if($(this).val().trim() == "") {
-            $(this).next('.hided').addClass('custom_error').show();
             res = false;
+            // alert('test_updation_form false');
           }
         });
-        if($(this).find(":input").siblings('span').hasClass("custom_error")){
-          res =  false;
-        }
         if(res){
             var form_data = $('[name=edit_range_form]').serialize();
             $.ajax({
@@ -1887,6 +1862,7 @@ $('.reset_form').on('click',function(){
                cache: false,
                dataType:'json',
                success: function(html) {
+                console.log(html);
                 $('.result_table tbody tr:not(:last)').remove();
                 // var obj = JSON.parse(html);
                 obj=html;
@@ -1900,7 +1876,7 @@ $('.reset_form').on('click',function(){
                                 <input type='hidden' name='result_ranges' class='result_ranges' value="+ranges+">\
                                 <td class='result_test_name'>"+obj[i].test_name+"</td>\
                                 <td class='result_parameter_name'>"+obj[i].parameter_name+"</td>\
-                                <td><input type='text' class='assign_border enter_result' name='enter_result'><br><span class='enter_result_error'></span></td>\
+                                <td><input type='text' class='assign_border enter_result' name='enter_result'></td>\
                                 <td><span class='result_error' name='result_error'>Enter the result in " +obj[i].parameter_unit+ " with "+obj[i].parameter_format+" formats</span></td>\
                                 <td><span class='assign_border enter_points'></span></td></tr>";
                     $('.result_table tr:last').before(html);
@@ -1952,16 +1928,6 @@ $('.reset_form').on('click',function(){
     });
 
     // $(document).on('click','.add_range_points',function(e){
-    //   if($('.r_strt').val() == '' || $('.r_end').val() == '' || $('.r_point').val() == ''){
-    //   }
-    //   else{
-    //     var id = current_id+1;
-    //     nextrangeElement($('.clone_content:last'));
-    //     $('.clone_content:last').attr('id','range_counter'+id);
-    //   }
-    // });
-
-    // $(document).on('click','.add_range_points',function(e){
     //   $('.r_strt .r_end .r_point').filter(function() {
     //     if (this.value != '') {
     //       alert("not empty");
@@ -1974,7 +1940,7 @@ $('.reset_form').on('click',function(){
     //     }
     //   });
     // });
-
+    
     function nextrangeElement(element){
         var newElement = element.clone();
         var id = current_id+1;
@@ -2119,7 +2085,7 @@ $('.reset_form').on('click',function(){
               }
         });
     });
-
+    
     $('.result_athletename').focus(function (e) {
       // alert(athlete_json);
       $(this).autocomplete({
@@ -2174,59 +2140,51 @@ $('.reset_form').on('click',function(){
         parameter_format = $(this).parents('tr').find('.result_parameterformat').val();
         ranges = JSON.parse(ranges);
         value=$(this).val();
-        if(((parameter_type == "time") && (value!=''))||((parameter_type == "Time") && (value!=''))){
-          if((parameter_format=="HH:MM:SS")&&(!(/^(?:[0-5][0-9]):(?:[0-5][0-9]):[0-5][0-9]$/).test(value))){
-              $(this).siblings('.enter_result_error').addClass('error').text('Please Check time format').show();
+        if((parameter_type == "time") && (value!='')){
+          for (var i = 0; i < ranges.length; i++) {
+            rangestart = ranges[i].range_start;
+            rangeend = ranges[i].range_end;
+            if((parameter_format=="HH:MM:SS")&&(!(/^(?:[0-5][0-9]):(?:[0-5][0-9]):[0-5][0-9]$/).test(value))){
+              alert("check time format");
               status=1;
-              // break;
+              break;
             } else if((parameter_format=="HH:MM")&&(!(/^(?:[0-5][0-9]):[0-5][0-9]$/).test(value))){
-              $(this).siblings('.enter_result_error').addClass('error').text('Please Check time format').show();
+              alert("check time format");
               status=1;
-              // break;
+              break;
             }
             else if((parameter_format=="MM:SS")&&(!(/^(?:[0-5][0-9]):[0-5][0-9]$/).test(value))){
-              $(this).siblings('.enter_result_error').addClass('error').text('Please Check time format').show();
+              alert("check time format");
               status=1;
-              // break;
+              break;
             }
             else if((parameter_format=="HH:MM:SS:MSS")&&(!(/^(?:[0-2][0-4]):(?:[0-5][0-9]):(?:[0-5][0-9]):([0-9][0-9]|[0-9][0-9][0-9]|[0-1][0][0][0])$/).test(value))){
-              $(this).siblings('.enter_result_error').addClass('error').text('Please Check time format').show();
+              alert("check time format");
               status=1;
-              // break;
+              break;
             }
             else if((parameter_format=="MM:SS:MSS")&&(!(/^(?:[0-5][0-9]):(?:[0-5][0-9]):([0-9][0-9]|[0-9][0-9][0-9]|[0-1][0][0][0])$/).test(value))){
-              $(this).siblings('.enter_result_error').addClass('error').text('Please Check time format').show();
+              alert("check time format");
               status=1;
-              // break;
+              break;
             }
             else if((parameter_format=="SS:MSS")&&(!(/^(?:[0-5][0-9]):([0-9][0-9]|[0-9][0-9][0-9]|[0-1][0][0][0])$/).test(value))){
-              $(this).siblings('.enter_result_error').addClass('error').text('Please Check time format').show();
+              alert("check time format");
               status=1;
-              // break;
+              break;
             }
             else{
-              if(ranges.length!=0){
-                for (var i = 0; i < ranges.length; i++) {
-                rangestart = ranges[i].range_start;
-                rangeend = ranges[i].range_end;
-                  if (value >= rangestart && value < rangeend){
-                    status = 1;
-                    $(this).parents('tr').find('.enter_points').text(ranges[i].range_point);
-                    $(this).siblings('.enter_result_error').removeClass('error').hide();
-                    break;
-                  }
-                  else{
-                    status = 0;
-                  }
-                }
+              // alert("else");
+              if (value >= rangestart && value < rangeend){
+                status = 1;
+                $(this).parents('tr').find('.enter_points').text(ranges[i].range_point);
+                break;
               }
               else{
-                $(this).parents('tr').find('.enter_points').text('0');
-                $(this).siblings('.enter_result_error').removeClass('error').hide();
+                status = 0;
               }
-
             }
-
+          }
         }
         else{
             //Checking entered Result
@@ -2237,51 +2195,40 @@ $('.reset_form').on('click',function(){
             else{
               decimals = value.toString().split(".")[1].length;
             }
-            if(ranges.length!=0){
-              // status = 0;
-              for (var i = 0; i < ranges.length; i++) {
-                // alert(ranges[i].range_start);
-                rangestart = Number(ranges[i].range_start);
-                rangeend = Number(ranges[i].range_end);
-                // alert(ranges[i].range_end);
-                // alert(value);
-                if (value >= rangestart && value < rangeend){
-                  // alert("if");
-                  status = 1;
-                  if(decimals <= parameter_format){
-                     // alert("yes");
-                     $(this).siblings('.enter_result_error').removeClass('error').hide();
-                     $(this).parents('tr').find('.enter_points').text(ranges[i].range_point);
-                     break;
-                  }
-                  else{
-                     $(this).siblings('.enter_result_error').addClass('error').text('Please Check decimal points').show();
-                     totalvlaue = $('.total_result').text();
-                     pointvalue = $(this).parents('tr').find('.enter_points').text();
-                     result = totalvlaue - pointvalue;
-                     $('.total_result').text(result);
-                     $(this).parents('tr').find('.enter_points').text('');
-                  }
-                  break;
+
+            // status = 0;
+            for (var i = 0; i < ranges.length; i++) {
+              // alert(ranges[i].range_start);
+              rangestart = Number(ranges[i].range_start);
+              rangeend = Number(ranges[i].range_end);
+              // alert(ranges[i].range_end);
+              // alert(value);
+              if (value >= rangestart && value < rangeend){
+                // alert("if");
+                status = 1;
+                if(decimals <= parameter_format){
+                   // alert("yes");
+                   $(this).parents('tr').find('.enter_points').text(ranges[i].range_point);
+                   break;
                 }
                 else{
-                  status = 0;
+                   alert("check decimal points");
+                   totalvlaue = $('.total_result').text();
+                   pointvalue = $(this).parents('tr').find('.enter_points').text();
+                   result = totalvlaue - pointvalue;
+                   $('.total_result').text(result);
+                   $(this).parents('tr').find('.enter_points').text('');
                 }
+                break;
               }
-          }
-          else{
-            $(this).parents('tr').find('.enter_points').text('0');
-            if(decimals <= parameter_format){
-               $(this).siblings('.enter_result_error').removeClass('error').hide();
+              else{
+                status = 0;
+              }
             }
-            else{
-              $(this).siblings('.enter_result_error').addClass('error').text('Please Check decimal points').show();
-            }
-          }
         }
         }
         if(status == 0 && value!=''){
-          $(this).siblings('.enter_result_error').addClass('error').text('Entered value is not in range').show();
+          alert("Entered value is not in range");
           totalvlaue = $('.total_result').text();
           pointvalue = $(this).parents('tr').find('.enter_points').text();
           result = totalvlaue - pointvalue;
@@ -2299,11 +2246,6 @@ $('.reset_form').on('click',function(){
      });
 
      $('.result_submit_act').click(function(){
-        res = true;
-        if($('.enter_result_error').hasClass('error')){
-          res = false;
-        }
-        else{
           var result_data = [];
           createschedule_id = $('.result_createscheduleid').val();
           athlete_id = $('.result_athleteid').val();
@@ -2334,7 +2276,6 @@ $('.reset_form').on('click',function(){
                }
               }
           });
-        }
      });
 
      $('.result_clear_act').click(function(){
@@ -2431,7 +2372,7 @@ $('.reset_form').on('click',function(){
               $('.range_parameter_type').val(obj[i].test_parameter_type);
               $('.range_parameter_unit').val(obj[i].test_parameter_unit);
               $('.range_parameter_format').val(obj[i].test_parameter_format);
-              if($('.range_parameter_type').val().toLowerCase()=="time")
+              if($('.range_parameter_type').val()=="time")
                 $('.range_notes').text("Enter the range in "+obj[i].test_parameter_unit);
               else
                 $('.range_notes').text("Enter the range in "+obj[i].test_parameter_unit+ " with "+obj[i].test_parameter_format+" formats");
@@ -2441,78 +2382,59 @@ $('.reset_form').on('click',function(){
        });
     });
 
-    // $(document).on('blur','.r_end,.edit_r_end',function(e){
-    //   value=$(this).val();
-    //   start_value = $(this).parent().prev().children('.r_strt').val();
-    //   if((start_value >= value) && (value!='')){
-    //     $(this).next().next('.hided').addClass('custom_error').hide();
-    //     $(this).next('.hided').addClass('custom_error').hide();
-    //     $(this).next().next().next('.hided').addClass('custom_error').show();
-    //   }
-    //   else{
-    //     $(this).next().next().next('.hided').removeClass('custom_error').hide();
-    //   }
-        
-    // });
-
-    $(document).on('blur','.r_strt,.r_end,.edit_r_strt,.edit_r_end',function(e){
+    $(document).on('blur','.r_strt,.r_end',function(e){
         //Checking entered range
         value=$(this).val();
-        if(value == ''){
-          $(this).next().next('.hided').addClass('custom_error').hide();
-          $(this).next('.hided').addClass('custom_error').show();
-        }
-        else
-          $(this).next('.hided').removeClass('custom_error').hide();
-        if(($('.range_parameter_type').val().toLowerCase()=="time") && (value!='')){
+      
+        if(($('.range_parameter_type').val()=="time") && (value!='')){
           if($('.range_parameter_format').val()=="HH:MM:SS"){
             // regex=/^(?:(?:([01]?\d|2[0-3]):)?([0-5]?\d):)?([0-5]?\d)$/;
             if(!(/^(?:[0-2][0-4]):(?:[0-5][0-9]):[0-5][0-9]$/).test(value)){
               // alert("check time format");
-              $(this).next().next('.hided').addClass('custom_error').text('Please Check time format').show();
+              $(this).next('.hided').addClass('custom_error').text('Please Check time format').show();
             }
             else{
-              $(this).next().next('.hided').removeClass('custom_error').text('').hide();
+              $(this).next('.hided').removeClass('custom_error').text('').hide();
             }
           }
           else if($('.range_parameter_format').val()=="HH:MM"){
             if(!(/^(?:[0-2][0-4]):[0-5][0-9]$/).test(value)){
-              $(this).next().next('.hided').addClass('custom_error').text('Please Check time format').show();
+              $(this).next('.hided').addClass('custom_error').text('Please Check time format').show();
             }
             else{
-              $(this).next().next('.hided').removeClass('custom_error').text('').hide();
+              $(this).next('.hided').removeClass('custom_error').text('').hide();
             }
           }
           else if($('.range_parameter_format').val()=="MM:SS"){
             if(!(/^(?:[0-5][0-9]):[0-5][0-9]$/).test(value)){
-              $(this).next().next('.hided').addClass('custom_error').text('Please Check time format').show();
+              $(this).next('.hided').addClass('custom_error').text('Please Check time format').show();
             }
             else{
-              $(this).next().next('.hided').removeClass('custom_error').text('').hide();
+              $(this).next('.hided').removeClass('custom_error').text('').hide();
             }
           }
           else if($('.range_parameter_format').val()=="HH:MM:SS:MSS"){
             if(!(/^(?:[0-2][0-4]):(?:[0-5][0-9]):(?:[0-5][0-9]):([0-9][0-9]|[0-9][0-9][0-9]|[0-1][0][0][0])$/).test(value)){
-              $(this).next().next('.hided').addClass('custom_error').text('Please Check time format').show();
+              $(this).next('.hided').addClass('custom_error').text('Please Check time format').show();
             }
             else{
-              $(this).next().next('.hided').removeClass('custom_error').text('').hide();
+              $(this).next('.hided').removeClass('custom_error').text('').hide();
             }
           }
           else if($('.range_parameter_format').val()=="MM:SS:MSS"){
             if(!(/^(?:[0-5][0-9]):(?:[0-5][0-9]):([0-9][0-9]|[0-9][0-9][0-9]|[0-1][0][0][0])$/).test(value)){
-              $(this).next().next('.hided').addClass('custom_error').text('Please Check time format').show();
+              $(this).next('.hided').addClass('custom_error').text('Please Check time format').show();
             }
             else{
-              $(this).next().next('.hided').removeClass('custom_error').text('').hide();
+              $(this).next('.hided').removeClass('custom_error').text('').hide();
             }
           }
           else if($('.range_parameter_format').val()=="SS:MSS"){
             if(!(/^(?:[0-5][0-9]):([0-9][0-9]|[0-9][0-9][0-9]|[0-1][0][0][0])$/).test(value)){
-            $(this).next().next('.hided').addClass('custom_error').text('Please Check time format').show();
+            $(this).next('.hided').addClass('custom_error').text('Please Check time format').show();
             }
             else{
-              $(this).next().next('.hided').removeClass('custom_error').text('').hide();
+              $(this).next('.hided').removeClass('custom_error').text('').hide();
             }
           }
         }
@@ -2527,24 +2449,14 @@ $('.reset_form').on('click',function(){
               paramter_unit = $('.range_parameter_unit').val();
               parameter_format = $('.range_parameter_format').val();
               if(decimals > parameter_format || value.indexOf(":") !== -1){
-                 $(this).next().next('.hided').addClass('custom_error').text('Please Check range format').show();
-              }
+                 $(this).next('.hided').addClass('custom_error').text('Please Check range format').show();
+              } 
               else{
-                 $(this).next().next('.hided').removeClass('custom_error').text('').hide();
+                 $(this).next('.hided').removeClass('custom_error').text('').hide();
               }
           }
         }
      });
-
-    $(document).on('blur','.r_point,.edit_r_point',function(e){
-      value=$(this).val();
-       if(value == ''){
-         $(this).next('.hided').addClass('custom_error').show();
-       }
-       else{
-         $(this).next('.hided').removeClass('custom_error').hide();
-       }
-    });
 
     //To clear selected dropdown values in edit form
     // $('.edit_athlete_clear,').click(function(){
@@ -2556,5 +2468,15 @@ $('.reset_form').on('click',function(){
       $('.clone_content:not(:first-child)').remove();
       $('.r_strt,.r_end,.r_point').val('');
     });
-
+    
 });
+  $(document).mouseup(function (e) {
+     var popup = $(".popup_hidden");
+     if (!$('.fa-pencil-square-o').is(e.target) && !popup.is(e.target) && popup.has(e.target).length == 0) {
+         popup.hide();
+     }
+    var del_popup = $(".delete_div");
+     if (!$('.fa-trash-o').is(e.target) && !del_popup.is(e.target) && del_popup.has(e.target).length == 0) {
+         del_popup.hide();
+    }
+ });

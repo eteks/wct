@@ -93,19 +93,6 @@
         </ul>
       </nav>
     </div><!--menu_list-->
-    <div class="popup_fade cancel_btn"></div><!--popup_fade-->
-      <div class="container">
-          <div class="delete_div">
-            <code class="close_btn cancel_btn"> </code>
-              <div class="del_title">
-                <span class="del_txt">DELETE</span>
-              </div><!--del_title-->
-              <div class="del_content">
-                <span class="del_content_txt">Are you sure want to delete this record?</span>
-                <input type="button" class="btn btn-primary align_right yes_btn" value="Yes">
-                <input type="button" class="btn btn-primary align_right no_btn" value="No">
-                <input type="hidden" name="delete_id" value="" id="delete_id"/>
-              </div><!--del_content-->
-          </div><!--delete_div-->
-      </div><!--container-->
+    <!-- <div class="popup_fade cancel_btn"></div> -->
+     
 <?php } ?>

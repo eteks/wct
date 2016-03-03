@@ -3,12 +3,12 @@
 	  require_once 'functions/states_function.php';
 	  $statesFunction = new statesFunction();
 ?>
-		<div class="container align_center align_height">
+		<div class="container align_center left_align align_height">
 			<span class="sports">STATE</span>
 		</div><!--end container-->
-		<div class="container align_margin">
+		<div class="container align_margin" style="width: 85%;">
 			<div class="col-md-8">
-				<div class="col-md-6"></div>
+				<!-- <div class="col-md-6"></div> -->
 				<div class="col-md-6 align_margin">
 					<form name="states_form" id="state_form">
 						<div class="align_margin">
@@ -17,16 +17,16 @@
 							<span class="add_states_error"></span>
 						</div>
 						<!-- <button type="button" class="btn btn-primary align_right clear add_states_act" name="states">Submit</button>																							 -->
-						<input type="submit" class="btn btn-primary align_right clear add_states_act" name="states" value="Submit">
+						<input type="submit" class="btn btn-primary clear add_states_act" name="states" value="Submit">
 					</form>
 				</div>
-				<div class="container  table-position">
+				<div class="container table-position">
 				  <table class="table state_table">
 				    <thead>
 				      <tr class="row_color">
-				        <th class="align_center">SLNO</th>
-				        <th class="align_center">State Name</th>
-				        <th class="align_center">Action</th>
+				        <!-- <th class="align_center">SLNO</th> -->
+				        <th>State Name</th>
+				        <th style="text-align: right;">Action</th>
 				      </tr>
 				    </thead>
 				    <tbody>
@@ -35,13 +35,54 @@
                         $i=1;
                         while ($row = mysql_fetch_array($query)) {
                             ?>
-                            <tr class="align_center delete_color">
+                            <tr class="delete_color">
                             <input type="hidden" name="states_id" class="t_states_id" value="<?php echo $row['states_id']; ?>">
-						        <td class="t_s_id"><?php echo  $i;?></td>
+						        <!-- <td class="t_s_id"><?php //echo  $i;?></td> -->
 						        <td class="t_states_name"><?php echo $row['states_name']; ?></td>
-						        <td>
-						        	<span class="edit_state" onclick="editfunction(<?php echo $row['states_id'] ?>)">Edit</span>
-						        	<span class="delete_state" data-value="<?php echo $row['states_id'] ?>">Delete</span>
+						        <td class="popup-edit">
+						        	<span class="edit_state" onclick="editfunction(<?php echo $row['states_id'] ?>)"><i class="fa fa-pencil-square-o"></i></span>
+						        	<span class="delete_state" data-value="<?php echo $row['states_id'] ?>"><i class="fa fa-trash-o"></i></span>
+					
+					<!-- edit option --><div class="state_div edit_state_div popup_hidden">
+							          		<code class="close_btn cancel_btn"> </code>
+							          		<div class="edit_title">
+							                	<span class="del_txt">Edit Detail</span>
+							              	</div><!--edit_title-->
+							          			<div class="container state-content col-md-12">
+								          			<form name="edit_states_form" id="edit_state_form">
+														<div class="align_margin">
+															<label>Enter the State</label><br>
+															<input type="hidden" class="statesid" name="edit_states_id">
+															<input type="text" class="edit_states_name" name="edit_states_name" data-validation-error-msg="Please Enter the State" data-validation="required">
+															<span class="edit_states_error"></span>
+														</div>
+														<!-- <button type="button" class="btn btn-primary align_right clear edit_states_act" name="edit_states">Submit</button> -->
+														<input type="submit" class="btn btn-primary align_right clear edit_states_act" value="Save">
+
+													</form>
+												</div><!--state-content-->
+										</div><!--state_div-->
+								<!-- pop_up del-->		<div class="delete_div delete_state_div">
+								            <!-- <code class="close_btn cancel_btn"> </code>  -->
+								              <div class="del_title">
+								                <span class="del_txt">DELETE</span>
+								              </div>
+								              <div class="del_content">
+								                <span class="del_content_txt">Are you sure want to delete this whole record?</span>
+								                <input type="button" class="btn btn-primary align_right yes_btn" value="Yes">
+								                <input type="button" class="btn btn-primary align_right no_btn" value="No">
+								                <input type="hidden" name="delete_id" value="" id="delete_id"/>
+								              </div><!--del_content-->
+          								</div><!--delete_div-->
+								
+				<div class="edit_states_list">
+					<ul>
+						<?php foreach ($STATES as $key => $value) { ?>
+						    <li><?php echo $value; ?></li>
+						<?php } ?>
+					</ul>
+				</div>
+		</div><!--container-->
 						        </td>
 					        </tr>
                      <?php $i++;  } ?>
@@ -69,33 +110,6 @@
 			</ul>
 		</div> --><!-- end  container-->
 	</div>
-		<div class="popup_fade cancel_btn"></div><!--popup_fade-->
-		<div class="container">
-            <div class="state_div">
-          		<code class="close_btn cancel_btn"> </code>
-          		<div class="edit_title">
-                	<span class="del_txt">EDIT</span>
-              	</div><!--edit_title-->
-          			<div class="container state-content col-md-12">
-	          			<form name="edit_states_form" id="edit_state_form">
-							<div class="align_margin">
-								<label>Enter the State</label><br>
-								<input type="hidden" class="statesid" name="edit_states_id">
-								<input type="text" class="edit_states_name" name="edit_states_name" data-validation-error-msg="Please Enter the State" data-validation="required">
-								<span class="edit_states_error"></span>
-							</div>
-							<!-- <button type="button" class="btn btn-primary align_right clear edit_states_act" name="edit_states">Submit</button> -->
-							<input type="submit" class="btn btn-primary align_right clear edit_states_act" value="Submit">
-
-						</form>
-					</div><!--tate-content-->
-			</div><!--state_div-->
-				<div class="edit_states_list">
-					<ul>
-						<?php foreach ($STATES as $key => $value) { ?>
-						    <li><?php echo $value; ?></li>
-						<?php } ?>
-					</ul>
-				</div>
-		</div><!--container-->
+		<!-- <div class="popup_fade cancel_btn"></div> -->
+		
 <?php require_once "footer.php" ?>
