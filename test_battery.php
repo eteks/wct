@@ -165,8 +165,8 @@ if(isset($_GET['duplicate'])){
 			       	<!-- <td class="testbattery_name"><?php //echo $eachrecord ['testbattery_name']; ?></td> -->
 			        <!-- <td class="sports_name"><?php //echo $eachrecord ['sports_name']; ?></td> -->
 			        <td>Long Jump</td>
-			        <td>Categories5</td>
-			        <td>Categories5</td>
+			        <td class="">Categories5</td>
+			        <td>Categories7</td>
 			        <td>
 			        	<span class="edit_state edit_test_battery " data-value="<?php echo $eachrecord ['testbattery_id']; ?>"><i class="fa fa-pencil-square-o"></i></span>
 		        		<span class="delete_state" data-value="<?php echo $eachrecord ['testbattery_id']; ?>"><i class="fa fa-trash-o"></i></span>

@@ -472,35 +472,45 @@ select {
     margin: -9px 0 0 -28px;
 }*/
 .test_battery_div,.athletes_div,.createschedule_div{
-    height: 600px;
-    width: 465px;
-    top:50%;
-    left:50%;
-    position:fixed;
-    z-index:9999;
-    background:#fff;
-    display:none;
-    overflow-y: scroll;
-}
-.test_battery{
-    height: 330px;
+    height: 370px;
+    margin: 0 0 0 -160px;
     width: 290px;
     position:absolute;
     z-index:9999;
     background:#fff;
-    display:none;
-    margin: 0 0 0 -330px;
     box-shadow: 0 2px 10px 3px #b8b7b9;
+    display:none;
+    overflow-y: scroll;
+}
+.test_battery{
+    background: #fff none repeat scroll 0 0;
+    box-shadow: 0 2px 10px 3px #b8b7b9;
+    display: none;
+    height: 363px;
+    margin: 0 0 0 -154px;
+    position: absolute;
+    width: 290px;
+    z-index: 9999;
 }
 .range_div{
-    height: 450px;
-    width: 500px;
-    top:50%;
-    left:50%;
-    position:fixed;
-    z-index:9999;
-    background:#fff;
-    display:none;
+   background: #fff none repeat scroll 0 0;
+    box-shadow: 0 2px 10px 3px #b8b7b9;
+    display: none;
+    height: 425px;
+    margin: 0 0 0 -154px;
+    position: absolute;
+    width: 290px;
+    z-index: 9999;
+}
+.assign-schedule-popup{
+    background: #fff none repeat scroll 0 0;
+    box-shadow: 0 2px 10px 3px #b8b7b9;
+    display: none;
+    height: 425px;
+    margin: 0 0 0 75px;
+    position: absolute;
+    width: 290px;
+    z-index: 9999;
 }
 .close_btn{
     background-color: hsla(0, 0%, 0%, 0);
@@ -641,7 +651,7 @@ select {
 .area_scroll{
     border: 1px solid #a0a0a0;
     overflow-y: scroll;
-    width: 73%;
+    width: 78%;
     height: 120px;
 }
 .align_check {
@@ -652,6 +662,17 @@ select {
     box-shadow: none !important;
     height: 34px;
     margin: 12px 0 0px 20px;
+    position: relative;
+    right: 18px;
+    width: 205px !important;
+    color: #424242  !important;
+    font-family: Montserrat;
+}
+.name_align_popup{
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    height: 34px;
+    margin: 12px 0 0px -25px;
     position: relative;
     right: 18px;
     width: 205px !important;
@@ -759,6 +780,7 @@ button, input, optgroup, select, textarea {
     overflow-y: scroll;
     width: 100%;
     height: 74px;
+    text-align: left;
 }
 .range_align_popup{
     border-radius: 0 !important;
@@ -769,7 +791,7 @@ button, input, optgroup, select, textarea {
     margin: 5px 0 0 10px;
     position: relative;
     right: 20px;
-    width: 130px !important;
+    width: 220px !important;
 }
 .footer {
     padding: 0 !important;
@@ -860,26 +882,26 @@ button, input, optgroup, select, textarea {
     top: 20px;
 }
 .schedule-name{
-    border-radius: 0 !important;
+     border-radius: 0 !important;
     box-shadow: none !important;
-    color: #424242  !important;
+    color: #424242 !important;
     font-family: Montserrat;
     height: 34px;
-    margin: 12px 0 10px 16px;
+    margin: -8px 0 10px 16px;
     position: relative;
     right: 56px;
-    width: 195px !important;
+    width: 225px !important;
 }
 .bib_popup{
     border-radius: 0 !important;
     box-shadow: none !important;
-    color: #424242  !important;
+    color: #424242 !important;
     font-family: Montserrat;
     height: 34px;
     margin: 12px 0 10px 28px;
     position: relative;
-    right: 40px;
-    width: 195px !important;
+    right: 70px;
+    width: 230px !important;
 }
 .create-date {
     border-radius: 0 !important;
@@ -1025,13 +1047,13 @@ input[type=radio]:checked + label:before {
 .create-time1{
     border-radius: 0 !important;
     box-shadow: none !important;
-    color: #424242  !important;
+    color: #424242 !important;
     font-family: Montserrat;
     height: 34px;
-    margin: 15px 0 10px -10px;
+    margin: 0 0 10px -25px;
     position: relative;
-    right: 100px;
-    width: 125px !important;
+    right: 0;
+    width: 220px !important;
 }
 .create-time2{
     border-radius: 0 !important;
@@ -1039,10 +1061,10 @@ input[type=radio]:checked + label:before {
     color: #424242  !important;
     font-family: Montserrat;
     height: 34px;
-    margin: 15px 0 10px;
+    margin: 0px 0 10px;
     position: relative;
-    right: 65px;
-    width: 125px !important;
+    right: 25px;
+    width: 220px !important;
 }
 .create-time3{
     border-radius: 0 !important;
@@ -1050,10 +1072,10 @@ input[type=radio]:checked + label:before {
     color: #424242  !important;
     font-family: Montserrat;
     height: 34px;
-    margin: 15px 0 10px -36px;
+    margin: 0px 0 10px -36px;
     position: relative;
-    right: -15px;
-    width: 125px !important;
+    right: -10px;
+    width: 220px !important;
 }
 .area_width_create{
     width: 102%;
@@ -1257,7 +1279,7 @@ input[type=radio]:checked + label:before {
     right: 20%;
 }
 .align-day {
-    width: 140%;
+    width: 100%;
 }
 .tooltip_parameter{
     background: #828282 none repeat scroll 0 0;
@@ -1451,10 +1473,10 @@ tbody tr {
 .test-name {
     cursor: pointer;
     display: block;
-    width: 270px;
+    width: 245px;
     color: #414141;
     font-family: Montserrat;
-    line-height: 3;
+    
     text-align: left;
     margin: 12px 0 0;
 }
@@ -1487,7 +1509,7 @@ tbody tr {
     background: #fff none repeat scroll 0 0;
     border: 1px solid;
     height: 24px;
-    width: 165px;
+    width: 145px;
 }
 .test-name:hover {
     background: #e2e2e2 none repeat scroll 0 0;
@@ -1706,3 +1728,13 @@ tbody tr {
     height: 30px !important;
     width: 230px !important;
 }
+.align-day-popup select {
+    left: 2px !important;
+    position: relative !important;
+    width: 105% !important;
+}
+.test-list {
+    max-height: 175px;
+    overflow-y: scroll;
+}
+

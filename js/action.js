@@ -837,7 +837,8 @@ $('.reset_form').on('click',function(){
         // $('.popup_fade').show();
         // $('.delete_div, .close_btn').show();
         $(this).next().next().show();
-        $(this).parents('tr').siblings('.state_div').hide();
+        // $(this).parents('tr').siblings('.state_div').hide();
+        $(this).parents('tr').siblings().find('.delete_div').hide();
         document.body.style.overflow = 'auto';
     });
 
