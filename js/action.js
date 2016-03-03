@@ -1236,12 +1236,15 @@ $('.reset_form').on('click',function(){
                if(html=='error'){
                  alert('This category is already used');
                }else{
+                 location.reload();
                  var category_split = html.split('-');
+                 //alert(category_split);
                 $('#category_table').find("input[value="+category_split[1]+"]").next('.category_name').html(category_split[0]);
                 //alert('Sports name updated successfully');
                 $('.popup_fade').hide();
                 $('.state_div,.delete_div').hide();
                 document.body.style.overflow = 'auto';
+                location.reload();
                }
 
            }
