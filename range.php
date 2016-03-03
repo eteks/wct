@@ -84,6 +84,7 @@
 								  	<input type="text" class="form-control classic range_align  r_end" id="end1" name="range_end1" placeholder="End">
 								  	<span class="hided">Please Enter the end range</span>
 								  	<span class="hided">Please Check the format</span>
+								  	<!-- <span class="hided">Please Enter greater than start range</span> -->
 								  </div>
 								  <div class="col-md-4">
 								  	<input type="text" class="form-control classic range_align  r_point" id="point1" name="range_points1" placeholder="Points">
@@ -234,6 +235,7 @@
 						      		<input type="text" class="form-control classic range_align_popup edit_r_end" id="edit_end1" name="edit_range_end1" placehoder="end">
 						       		<span class="hided">Please Enter the end range</span>
 								  	<span class="hided">Please Check the format</span>
+								  	<!-- <span class="hided">Please Enter greater than start range</span> -->
 						       	</div>
 						       	<div class="col-md-4">
 						      		<input type="text" class="form-control classic range_align_popup edit_r_point" id="edit_point1" name="edit_range_points1" placehoder="points">

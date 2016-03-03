@@ -2441,6 +2441,20 @@ $('.reset_form').on('click',function(){
        });
     });
 
+    // $(document).on('blur','.r_end,.edit_r_end',function(e){
+    //   value=$(this).val();
+    //   start_value = $(this).parent().prev().children('.r_strt').val();
+    //   if((start_value >= value) && (value!='')){
+    //     $(this).next().next('.hided').addClass('custom_error').hide();
+    //     $(this).next('.hided').addClass('custom_error').hide();
+    //     $(this).next().next().next('.hided').addClass('custom_error').show();
+    //   }
+    //   else{
+    //     $(this).next().next().next('.hided').removeClass('custom_error').hide();
+    //   }
+        
+    // });
+
     $(document).on('blur','.r_strt,.r_end,.edit_r_strt,.edit_r_end',function(e){
         //Checking entered range
         value=$(this).val();
