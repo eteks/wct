@@ -389,11 +389,16 @@ $('.reset_form').on('click',function(){
              cache: false,
              dataType:'json',
              success: function(data) {
+                //alert(data.test_parameter_type.toLowerCase());
                  $('.test_name_update').val(data.test_name);
                  $('.test_parameter_name_update').val(data.test_parameter_name);
                  $('.parameter_type_update option[value="'+data.test_parameter_type+'"]').attr('selected','selected');
                  $('.parameter_unit_update').append('<option value="'+data.test_parameter_unit+'">'+data.test_parameter_unit+'</option>');
-                 $('.parameter_format_update option[value="'+data.test_parameter_format+'"]').attr('selected','selected');
+                 if(data.test_parameter_type.toLowerCase() == 'time'){
+                     $('.parameter_format_update').empty().append("<option value='"+data.test_parameter_unit+"'>"+data.test_parameter_unit+"</option>");
+                 }else{
+                     $('.parameter_format_update option[value="'+data.test_parameter_format+'"]').attr('selected','selected');
+                 }
                  $('.parameter_update').val(test_attr_id);
                  $('.test_update_id').val(data.test_id);
             }
@@ -1236,12 +1241,15 @@ $('.reset_form').on('click',function(){
                if(html=='error'){
                  alert('This category is already used');
                }else{
+                 location.reload();
                  var category_split = html.split('-');
+                 //alert(category_split);
                 $('#category_table').find("input[value="+category_split[1]+"]").next('.category_name').html(category_split[0]);
                 //alert('Sports name updated successfully');
                 $('.popup_fade').hide();
                 $('.state_div,.delete_div').hide();
                 document.body.style.overflow = 'auto';
+                location.reload();
                }
 
            }
@@ -2295,7 +2303,7 @@ $('.reset_form').on('click',function(){
         res = true;
         if($('.enter_result_error').hasClass('error')){
           res = false;
-        } 
+        }
         else{
           var result_data = [];
           createschedule_id = $('.result_createscheduleid').val();
@@ -2507,7 +2515,7 @@ $('.reset_form').on('click',function(){
               parameter_format = $('.range_parameter_format').val();
               if(decimals > parameter_format || value.indexOf(":") !== -1){
                  $(this).next().next('.hided').addClass('custom_error').text('Please Check range format').show();
-              } 
+              }
               else{
                  $(this).next().next('.hided').removeClass('custom_error').text('').hide();
               }
