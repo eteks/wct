@@ -9,9 +9,9 @@
 			<span class="sports">DISTRICT</span>
 		</div><!--end container-->
 		<div class="container">
-			<div class="col-md-8">
+			
 				<!-- <div class="col-md-4"></div> -->
-				<div class="col-md-6 col-xs-12 align_left_district">
+				<div class="col-md-5 col-xs-12 align_left_district">
 					<form name="district_form" id="districts_form">
 						<div class="form-group">
 						  <label for="sel1">Select the State</label>
@@ -88,26 +88,22 @@
 						<!-- <button type="button" class="btn btn-primary align_right clear edit_district_act" name="district">Submit</button>	 -->
 						<input type="submit" class="btn btn-primary align_right clear edit_district_act" name="district" value="Submit">
 					</form>
-					</div><!--tate-content-->
+					</div><!--state-content-->
 			</div><!--state_div-->
-		<!-- pop_up del-->		<div class="delete_div delete_district_div">
-								           <!-- <code class="close_btn cancel_btn"> </code> -->
-								              <div class="del_title">
-								                <span class="del_txt">DELETE</span>
-								              </div>
-								              <div class="del_content">
-								                <span class="del_content_txt">Are you sure want to delete this whole record?</span>
-								                <input type="button" class="btn btn-primary align_right yes_btn" value="Yes">
-								                <input type="button" class="btn btn-primary align_right no_btn" value="No">
-								                <input type="hidden" name="delete_id" value="" id="delete_id"/>
-								              </div><!--del_content-->
-          								</div><!--delete_div-->
-								
-								
-								
-								
-								</td>
-					        </tr>
+				<div class="delete_div delete_district_div">
+			           <!-- <code class="close_btn cancel_btn"> </code> -->
+			              <div class="del_title">
+			                <span class="del_txt">DELETE</span>
+			              </div>
+			              <div class="del_content">
+			                <span class="del_content_txt">Are you sure want to delete this whole record?</span>
+			                <input type="button" class="btn btn-primary align_right yes_btn" value="Yes">
+			                <input type="button" class="btn btn-primary align_right no_btn" value="No">
+			                <input type="hidden" name="delete_id" value="" id="delete_id"/>
+			              </div><!--del_content-->
+				</div><!--delete_div-->
+						</td>
+		        	</tr>
                      <?php $i++; } ?>
 				    </tbody>
 				  </table>

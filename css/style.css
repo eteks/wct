@@ -97,7 +97,7 @@
 @media (min-width: 768px){
     .admin > label {
     color: hsl(0, 0%, 5%);
-    font-size: 30px;
+    font-size: 17px;
     }
 }
 .email_txt,.pwd_txt,.remember_txt {
@@ -118,7 +118,7 @@
 .login_form {
     height: 300px;
     margin: 21px 0 0 66px;
-    width: 560px;
+    width: 350px;
 }
 .forget_txt{
     color: #414141;
@@ -137,7 +137,7 @@
 	float: right;
 }
 .sports{
-  	font-size: 60px;
+  	font-size: 48px;
     font-weight: bold;
     position: relative;
     font-family:  Montserrat;
@@ -482,6 +482,16 @@ select {
     display:none;
     overflow-y: scroll;
 }
+.test_battery{
+    height: 330px;
+    width: 290px;
+    position:absolute;
+    z-index:9999;
+    background:#fff;
+    display:none;
+    margin: 0 0 0 -330px;
+    box-shadow: 0 2px 10px 3px #b8b7b9;
+}
 .range_div{
     height: 450px;
     width: 500px;
@@ -748,7 +758,7 @@ button, input, optgroup, select, textarea {
     border: 1px solid #A0A0A0;
     overflow-y: scroll;
     width: 100%;
-    height: 120px;
+    height: 74px;
 }
 .range_align_popup{
     border-radius: 0 !important;
@@ -1372,7 +1382,7 @@ input[type=radio]:checked + label:before {
     display: block;
 }
 .left_align {
-    left: 40px;
+    left: 30px;
     position: relative;
     text-align: left;
 }
@@ -1446,6 +1456,7 @@ tbody tr {
     font-family: Montserrat;
     line-height: 3;
     text-align: left;
+    margin: 12px 0 0;
 }
 .check_test {
     left: 32px;
@@ -1657,4 +1668,41 @@ tbody tr {
 }
 .edit_item,.save_item,.delete_item {
     font-size: 18px !important;
+}
+.checklist_txt{
+    color: #414141;
+    font-family: Montserrat;
+    font-size: 14px;
+}
+
+
+.login_wrapper {
+ margin:50px 0 0;
+}
+
+.login_form {
+ font-family: Montserrat; 
+}
+.login_form h2 {
+ margin:0px 0px 25px 0px;
+}
+.login_form label {
+ margin:0px 25px 0px 0px;
+} 
+.login_form label:before {
+ border-radius: 10px;
+ top:5px;
+}
+.user-content {
+ margin:25px 0px 0px 0px;
+}
+.login_form .form-error {
+ top:0px;
+ right:0px;
+ position:absolute;
+}
+.box-width {
+    box-shadow: none !important;
+    height: 30px !important;
+    width: 230px !important;
 }

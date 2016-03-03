@@ -3,14 +3,13 @@
 	  require_once 'functions/parameter_unitfunction.php';
 	  $parameterunitFunction = new parameterunitFunction();
 ?>
-<div class="container">
-	<div class="container left_align_parameter align_height">
-		<span class="sports">PARAMETER UNIT</span>
-	</div><!--end container-->
 	<div class="container">
-		<div class="col-xs-12 col-md-8">
+		<div class="container left_align_parameter align_height">
+			<span class="sports">PARAMETER UNIT</span>
+		</div><!--end container-->
+		<div class="container">
 			<!-- <div class="col-md-4 hidden-xs"></div> -->
-			<div class="col-xs-12 col-md-6 align_margin">
+			<div class="col-xs-12 col-md-5 align_margin">
 				<form id="parameter_unit" name="parameter_unit_add">
 					<div class="form-group">
 						  <label for="sel1">Select Parameter Type</label>
@@ -49,7 +48,7 @@
 				  $i=1;
 				  foreach( $data as $eachrecord ) {
 				   ?>
-			      <tr class="delete_color">
+		      	<tr class="delete_color">
 			        <!-- <td><?php // echo $i;?></td> -->
 			        <input value="<?php echo $eachrecord ['parameterunit_id']; ?>" type="hidden">
 			        <td><?php echo $eachrecord ['parametertype_name'];?></td>
@@ -109,7 +108,7 @@
 			    </tbody>
 			  </table>
 			</div>
-		</div>
+		
 	</div><!-- end  container-->
 </div><!-- end  container-->
 

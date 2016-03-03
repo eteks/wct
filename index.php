@@ -29,48 +29,44 @@ if(isset($_SESSION['login'])){
 	}
 }
 ?>
-<form role="form" action="" method="post" name="login_form" id="login_form_id">
-	<div class="select_user_content">
-		<div class="container">
-			<div class="user_txt">
-	  			<span>SELECT USER TYPE</span>
-			</div><!--user_txt-->
-			<div class="user_type  col-md-12">
-			    <div class="radio admin">
-				  	<input id="radio-1" type="radio" name="optradio" value="administrator" checked />
-				  	<label for="radio-1" class="admin_label">
-				    ADMINISTRATOR
-				  	</label>
-				  	<input id="radio-2" type="radio" name="optradio" value="admin" />
-				  	<label for="radio-2" class="admin_label">
-				   	ADMIN
-				  	</label>
-				</div>
-			</div><!--user_type-->
-		</div><!--container-->
-		<div class="login_form">
-			<div class="container">
-				<div class="user-content col-md-5 col-xs-9">
-				    <div class="form-group">
-						<label for="email" class="email_txt">Email Address</label>
-						<input type="email" class="form-control" id="email" placeholder="Enter email" name="email" data-validation-error-msg="Please Enter your Email Address" data-validation="required" data-validation="email">
-				    </div>
-				    <div class="form-group">
-						<label for="pwd" class="pwd_txt">Password</label>
-						<input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password" data-validation-error-msg="Please Enter your Password" data-validation="required" data-validation="valid">
-				    </div>
-				    <div class="checkbox">
-				        <label class="remember_txt"><input type="checkbox"> Remember me</label>
-				    </div>
-				    <div class="form-group admin-login">
-					    <input type="submit" class="btn btn-default login_btn" value="Login"  name="login"/>
-					   <!--  <span class="forget_txt">Forget Password?</span> -->
-				    </div>
-			  	</div><!--user-content-->
-		  	</div><!--login_form-->
-		</div><!--container-->
-	</div><!--select_user_content-->
-</form>
+<div class="login_wrapper">
+	<div class="container">
+		<form role="form" action="" method="post" name="login_form" id="login_form_id" class="login_form">
+			<h2>SELECT USER TYPE</h2>
+					<div class="user_type">
+					    <div class="radio admin">
+						  	<input id="radio-1" type="radio" name="optradio" value="administrator" checked />
+						  	<label for="radio-1" class="admin_label">
+						    ADMINISTRATOR
+						  	</label>
+						  	<input id="radio-2" type="radio" name="optradio" value="admin" />
+						  	<label for="radio-2" class="admin_label">
+						   	ADMIN
+						  	</label>
+						</div>
+					</div>
+					<div class="user-content">
+					    <div class="form-group">
+							<label for="email" class="email_txt">Email Address</label>
+							<input type="email" class="form-control" id="email" placeholder="Enter email" name="email" data-validation-error-msg="Please Enter your Email Address" data-validation="required" data-validation="email">
+					    </div>
+					    <div class="form-group">
+							<label for="pwd" class="pwd_txt">Password</label>
+							<input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password" data-validation-error-msg="Please Enter your Password" data-validation="required" data-validation="valid">
+					    </div>
+					    <div class="checkbox">
+					        <label class="remember_txt"><input type="checkbox"> Remember me</label>
+					    </div>
+					    <div class="form-group admin-login">
+						    <input type="submit" class="btn btn-default login_btn" value="Login"  name="login"/>
+						   <!--  <span class="forget_txt">Forget Password?</span> -->
+					    </div>
+				  	</div><!--user-content-->
+				  	
+			
+		</form>
+	</div><!--container-->
+</div><!--login_wrapper-->
 <div class="popup_fade cancel_btn"></div><!--popup_fade-->
 <div class="container">
     <div class="register_div">

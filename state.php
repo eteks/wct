@@ -7,9 +7,9 @@
 			<span class="sports">STATE</span>
 		</div><!--end container-->
 		<div class="container align_margin" style="width: 85%;">
-			<div class="col-md-8">
+			
 				<!-- <div class="col-md-6"></div> -->
-				<div class="col-md-6 align_margin">
+				<div class="col-md-4 align_margin">
 					<form name="states_form" id="state_form">
 						<div class="align_margin">
 							<label>Enter the State</label><br>
@@ -19,7 +19,7 @@
 						<!-- <button type="button" class="btn btn-primary align_right clear add_states_act" name="states">Submit</button>																							 -->
 						<input type="submit" class="btn btn-primary clear add_states_act" name="states" value="Submit">
 					</form>
-				</div>
+				</div><!--align_margin-->
 				<div class="container table-position">
 				  <table class="table state_table">
 				    <thead>
@@ -43,45 +43,44 @@
 						        	<span class="edit_state" onclick="editfunction(<?php echo $row['states_id'] ?>)"><i class="fa fa-pencil-square-o"></i></span>
 						        	<span class="delete_state" data-value="<?php echo $row['states_id'] ?>"><i class="fa fa-trash-o"></i></span>
 					
-					<!-- edit option --><div class="state_div edit_state_div popup_hidden">
-							          		<code class="close_btn cancel_btn"> </code>
-							          		<div class="edit_title">
-							                	<span class="del_txt">Edit Detail</span>
-							              	</div><!--edit_title-->
-							          			<div class="container state-content col-md-12">
-								          			<form name="edit_states_form" id="edit_state_form">
-														<div class="align_margin">
-															<label>Enter the State</label><br>
-															<input type="hidden" class="statesid" name="edit_states_id">
-															<input type="text" class="edit_states_name" name="edit_states_name" data-validation-error-msg="Please Enter the State" data-validation="required">
-															<span class="edit_states_error"></span>
-														</div>
-														<!-- <button type="button" class="btn btn-primary align_right clear edit_states_act" name="edit_states">Submit</button> -->
-														<input type="submit" class="btn btn-primary align_right clear edit_states_act" value="Save">
-
-													</form>
-												</div><!--state-content-->
-										</div><!--state_div-->
-								<!-- pop_up del-->		<div class="delete_div delete_state_div">
-								            <!-- <code class="close_btn cancel_btn"> </code>  -->
-								              <div class="del_title">
-								                <span class="del_txt">DELETE</span>
-								              </div>
-								              <div class="del_content">
-								                <span class="del_content_txt">Are you sure want to delete this whole record?</span>
-								                <input type="button" class="btn btn-primary align_right yes_btn" value="Yes">
-								                <input type="button" class="btn btn-primary align_right no_btn" value="No">
-								                <input type="hidden" name="delete_id" value="" id="delete_id"/>
-								              </div><!--del_content-->
-          								</div><!--delete_div-->
+									<div class="state_div edit_state_div popup_hidden">
+						          		<code class="close_btn cancel_btn"> </code>
+						          		<div class="edit_title">
+						                	<span class="del_txt">Edit Detail</span>
+						              	</div><!--edit_title-->
+						          			<div class="container state-content col-md-12">
+							          			<form name="edit_states_form" id="edit_state_form">
+													<div class="align_margin">
+														<label>Enter the State</label><br>
+														<input type="hidden" class="statesid" name="edit_states_id">
+														<input type="text" class="edit_states_name" name="edit_states_name" data-validation-error-msg="Please Enter the State" data-validation="required">
+														<span class="edit_states_error"></span>
+													</div>
+													<!-- <button type="button" class="btn btn-primary align_right clear edit_states_act" name="edit_states">Submit</button> -->
+													<input type="submit" class="btn btn-primary align_right clear edit_states_act" value="Save">
+												</form>
+											</div><!--state-content-->
+									</div><!--state_div-->
+									<div class="delete_div delete_state_div">
+							            <!-- <code class="close_btn cancel_btn"> </code>  -->
+							              <div class="del_title">
+							                <span class="del_txt">DELETE</span>
+							              </div>
+							              <div class="del_content">
+							                <span class="del_content_txt">Are you sure want to delete this whole record?</span>
+							                <input type="button" class="btn btn-primary align_right yes_btn" value="Yes">
+							                <input type="button" class="btn btn-primary align_right no_btn" value="No">
+							                <input type="hidden" name="delete_id" value="" id="delete_id"/>
+							              </div><!--del_content-->
+      								</div><!--delete_div-->
 								
-				<div class="edit_states_list">
-					<ul>
-						<?php foreach ($STATES as $key => $value) { ?>
-						    <li><?php echo $value; ?></li>
-						<?php } ?>
-					</ul>
-				</div>
+									<div class="edit_states_list">
+										<ul>
+											<?php foreach ($STATES as $key => $value) { ?>
+											    <li><?php echo $value; ?></li>
+											<?php } ?>
+										</ul>
+									</div>
 		</div><!--container-->
 						        </td>
 					        </tr>
@@ -96,7 +95,7 @@
 						<?php } ?>
 					</ul>
 				</div>
-			</div>
+			
 		</div><!-- end  container-->
 		<!-- <div class="container align_center">
 		  	<ul class="pagination">
