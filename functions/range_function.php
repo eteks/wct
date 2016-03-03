@@ -63,7 +63,7 @@
 			return $res;
 		}
 		public function parameternameSelect(){
-			$res = mysql_query("SELECT * FROM wc_test_attribute WHERE test_id='".$this->rangetestid."' LIMIT 1")or die(mysql_error());
+			$res = mysql_query("SELECT * FROM wc_test_attribute WHERE test_id='".$this->rangetestid."' ORDER BY test_attribute_id ASC LIMIT 1")or die(mysql_error());
 			return $res;
 		}
 		public function parameterSelect(){
