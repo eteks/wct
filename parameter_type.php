@@ -8,12 +8,12 @@
 		<span class="sports">PARAMETER TYPE</span>
 	</div><!--end container-->
 	<div class="container">
-		
+
 		<!--	<div class="col-md-4 hidden-xs"></div> -->
 			<div class="col-xs-12 col-md-5 align_margin">
 				<form id="parameter_type_form" name="parameter_type_form">
 					<div class="form-group">
-						  <label for="sel1">Select Parameter Type</label>
+						  <label for="sel1">Enter Parameter Type</label>
 						  <input type="text" class="form-control adjust_width classic" id="sel1" value='' name="parameter_type" data-validation-error-msg="Please Enter Parameter type" data-validation="required">
 					</div>
 					<div class="col-md-9 schedule_btn">
@@ -42,22 +42,21 @@
 			        <td class="popup-edit">
 			        	<span class="edit_state" onclick="editfunction(<?php echo $row['parametertype_id'] ?>)"><i class="fa fa-pencil-square-o"></i></span>
 		        		<span class="delete_state" data-value="<?php echo $row['parametertype_id'] ?>"><i class="fa fa-trash-o"></i></span>
-			        
+
 						<div class="state_div edit_parametertype_div popup_hidden">
 			          		<code class="close_btn cancel_btn"> </code>
 			          		<div class="edit_title">
 			                	<span class="del_txt">EDIT</span>
 			              	</div><!--edit_title-->
 			          			<div class="container state-content col-md-12">
-			          			<form id="edit_parameter_type" name="parameter_edit">
+			          			<form id="edit_parameter_type" class='edit_parameter_type' name="parameter_edit">
 									<div class="form-group">
 										  <label for="sel1">Enter Parameter Type</label>
 										  <input type="hidden" name="edit_parameter_id" />
 										  <input type="text" class="form-control adjust_width_parameter classic" id="sel1" name="edit_parameter_type" data-validation-error-msg="Please Select the Type of the Parameter" data-validation="required">
-
 									</div>
 									<div class="col-md-12 schedule_btn">
-											<input type="submit" class="btn btn-primary align_right clear" value="Submit">
+											<input type="submit" class="btn btn-primary align_right clear edit_parameter_act" value="Submit">
 									</div>
 								</form>
 								</div><!--tate-content-->

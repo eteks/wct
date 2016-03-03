@@ -9,7 +9,6 @@ $obj = new categoryfunction();
 			<span class="sports">CATEGORY</span>
 		</div><!--end container-->
 		<div class="container align_margin">
-			
 				<!-- <div class="col-md-6"></div> -->
 				<div class="col-md-4 align_margin">
 					<form id="category_form" name="categories_form" role="form">
@@ -102,5 +101,4 @@ $obj = new categoryfunction();
 				</div>--> <!--tate-content-->
 			<!--</div> --><!--state_div-->
 		<!--</div> --> <!--container-->
-
 <?php require_once "footer.php" ?>

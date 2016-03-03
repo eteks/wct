@@ -1,5 +1,5 @@
 <?php
-include($_SERVER["DOCUMENT_ROOT"] . "/wct_v2/common.php");
+include($_SERVER["DOCUMENT_ROOT"] . "/wct/common.php");
 class parameterunitFunction {
     public $parametertypeid;
     public $parameterunitname;
@@ -78,10 +78,14 @@ if(isset($_GET['updateunitdata'])){
     $parameterunitupdate->parameterunitid = $_POST['edit_param_unit_id'];
     $parameterunitupdate->parametertypeid = $_POST['parameter_type'];
     $parameterunitupdate->parameterunitname = $_POST['parameter_unit'];
+    $check_query = "select * from wc_parameterunit where parametertype_id = '".$_POST['parameter_type']."' and parameterunit = '".$_POST['parameter_unit']."' ";
+    if(!mysql_num_rows(mysql_query($check_query))){
     if($parameterunitupdate->parameterupdatefunction()){
         echo "success";
     }else{
         echo "error";
+    }}else{
+        echo 'exist';
     }
 }
 ?>

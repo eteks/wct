@@ -1,5 +1,5 @@
 <?php
-	include($_SERVER["DOCUMENT_ROOT"] . "/wct_v2/common.php");
+	include($_SERVER["DOCUMENT_ROOT"] . "/wct/common.php");
  	class parametertypeFunction {
  		public $parametertypeid;
 	    public $parametertypename;
@@ -90,10 +90,16 @@
         $parametertypeFunction = new parametertypeFunction();
         $parametertypeFunction->parametertypeid = $_POST['edit_parameter_id'];
 		$parametertypeFunction->parametertypename = $_POST['edit_parameter_type'];
-        if($parametertypeFunction->parameterupdatefunction()){
-          echo 'success';
-        }else{
-          echo "error";
-        }
+		$check_query = "select * from wc_parametertype where parametertype_name = '".$_POST['edit_parameter_type']."' ";
+		if(!mysql_num_rows(mysql_query($check_query))){
+	        if($parametertypeFunction->parameterupdatefunction()){
+	          echo 'success';
+	        }else{
+	          echo "error";
+	        }
+		}
+		else{
+			echo 'exist';
+		}
     }
 ?>

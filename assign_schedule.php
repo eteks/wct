@@ -111,17 +111,17 @@ if(isset($_GET['update_success'])){
 			    </thead>
 			    <tbody>
 					<?php
-					//$data = $assignschedule->assignscheduleSelect();
-				//	$i=1;
-					//foreach( $data as $eachrecord ) {
+					$data = $assignschedule->assignscheduleSelect();
+					$i=1;
+					foreach( $data as $eachrecord ) {
 					 ?>
 			      <tr class="delete_color">
 			      	<input value="<?php echo $eachrecord ['assignschedule_id']; ?>" type="hidden">
-			       <!-- <td><?php// echo $i; ?></td> -->
-			        <td> morning <?php //echo $eachrecord ['createschedule_name']; ?></td>
+			       <!-- <td><?php echo $i; ?></td> -->
+			        <td><?php echo $eachrecord ['createschedule_name']; ?></td>
 			        <td>
-			        	<span class="edit_state edit_assign_schedule" data-schedule="<?php //echo $eachrecord ['createschedule_id']; ?>" data-category="<?php// echo $eachrecord ['assigncategory_id']; ?>"><i class="fa fa-pencil-square-o"></i></span>
-		        		<span class="delete_state" data-value="<?php //echo $eachrecord ['assignschedule_id']; ?>"><i class="fa fa-trash-o"></i></span>
+			        	<span class="edit_state edit_assign_schedule" data-schedule="<?php echo $eachrecord ['createschedule_id']; ?>" data-category="<?php echo $eachrecord ['assigncategory_id']; ?>"><i class="fa fa-pencil-square-o"></i></span>
+		        		<span class="delete_state" data-value="<?php echo $eachrecord ['assignschedule_id']; ?>"><i class="fa fa-trash-o"></i></span>
 						<div class="assign-schedule-popup popup_hidden">
 			          		<code class="close_btn cancel_btn"> </code>
 			          		<div class="edit_title">
@@ -186,7 +186,7 @@ if(isset($_GET['update_success'])){
 							</form>
 						</div>
 								</div><!--state-content-->
-						</div><!--range_div-->			       
+						</div><!--range_div-->
 						<div class="delete_div delete_catagory_div">
 				          <!--  <code class="close_btn cancel_btn"> </code> -->
 				              <div class="del_title">
@@ -204,7 +204,7 @@ if(isset($_GET['update_success'])){
 
 				   </td>
 			      </tr>
-				   <?php //$i++;} ?>
+				   <?php $i++;} ?>
 			    </tbody>
 			  </table>
 			</div>
@@ -214,9 +214,9 @@ if(isset($_GET['update_success'])){
 
 <!--<div class="popup_fade cancel_btn"></div><!--popup_fade-->
 		<!--<div class="container">
-            
+
 		</div><!--container-->
-		<!--<script type="text/javascript">
+		<script type="text/javascript">
 		$(document).ready(function() {
 			$("#combobox").combobox({
         		select: function (event, ui) {
@@ -253,5 +253,5 @@ if(isset($_GET['update_success'])){
     		});
 		});
 
-		</script> -->
+		</script>
 <?php require_once "footer.php" ?>

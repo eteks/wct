@@ -1,5 +1,5 @@
 <?php
-    include($_SERVER["DOCUMENT_ROOT"] . "/wct_v2/common.php");
+    include($_SERVER["DOCUMENT_ROOT"] . "/wct/common.php");
  	class createscheduleFunction {
  		public $createscheduleid;
  		public $createschedulename;
@@ -18,7 +18,7 @@
 			$res = mysql_query("insert into wc_createschedule (createschedule_name,createscheduletestbattery_id,createschedule_date,createschedule_time,createschedule_venue,createschedule_status)values('".$this->createschedulename."','".$this->createschedule_testbatteryid."','".$this->createscheduledate."','".$this->createscheduletime."','".$this->createschedulevenue."','1')")or die(mysql_error());
 			$lastinsertid = mysql_insert_id();
 			if($res){ return $lastinsertid; }
-			else{ return false; } 	 
+			else{ return false; }
 		}
 		public function createscheduleUpdate(){
             $res = mysql_query("update wc_createschedule set createschedule_name='".$this->createschedulename."',createscheduletestbattery_id='".$this->createschedule_testbatteryid."',
@@ -69,7 +69,7 @@
 			$createscheduleFunction->createschedule_testbatteryid = $_POST['schedule_testbattery'];
 			$createscheduleFunction->createscheduledate = $_POST['dateyear'].'-'.$_POST['datemonth'].'-'.$_POST['dateday'];
 			$createscheduleFunction->createscheduletime = $_POST['schedule_hour'].':'.$_POST['schedule_minute'].':'.$_POST['schedule_seconds'];
-			$createscheduleFunction->createschedulevenue = $_POST['schedule_venue'];	
+			$createscheduleFunction->createschedulevenue = $_POST['schedule_venue'];
 			$scheduledate = $createscheduleFunction->createscheduledate;
 			$scheduletime = $createscheduleFunction->createscheduletime;
 			$createschedule = $createscheduleFunction->isScheduleExist();

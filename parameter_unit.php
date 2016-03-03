@@ -14,7 +14,7 @@
 					<div class="form-group">
 						  <label for="sel1">Select Parameter Type</label>
 						  <select class="form-control adjust_width classic" id="sel1" name="parametertype"  data-validation-error-msg="Please Select the Type of the Parameter" data-validation="required">
-							
+
 							<option value="">Select Parameter Type</option>
 							  <?php
 			  				$data = $parameterunitFunction->parametertypeSelect();
@@ -27,7 +27,7 @@
 					<div class="form-group">
 						<label>Enter Parameter Unit</label><br>
 						<input type="text" class="adjust_width" name="parameterunit"  data-validation-error-msg="Please Enter the Unit of the Parameter" data-validation="required">
-					</div>		
+					</div>
 					<div class="col-md-9 schedule_btn">
 						<input type="submit" class="btn btn-primary clear parameter-submit" value="Submit">
 					</div>
@@ -56,7 +56,7 @@
 			        <td>
 			        	<span class="edit_state edit_parameter_unit" data-value="<?php echo $eachrecord ['parameterunit_id'];?>"><i class="fa fa-pencil-square-o"></i></span>
 		        		<span class="delete_state" data-value="<?php echo $eachrecord ['parameterunit_id'];?>"><i class="fa fa-trash-o"></i></span>
-			       
+
 						<div class="paramter_div edit_parameterunit_div popup_hidden">
 			          		<code class="close_btn cancel_btn"> </code>
 			          		<div class="edit_title">
@@ -83,7 +83,7 @@
 								</div>
 
 								<div class="col-md-12 schedule_btn">
-									<input type="submit" class="btn btn-primary align_right clear" value="Submit">
+									<input type="submit" class="btn btn-primary align_right clear edit_parameter_unit_act" value="Submit">
 								</div>
 							</form>
 							</div>
@@ -108,12 +108,12 @@
 			    </tbody>
 			  </table>
 			</div>
-		
+
 	</div><!-- end  container-->
 </div><!-- end  container-->
 
 <!-- <div class="popup_fade cancel_btn"></div> --><!--popup_fade-->
 		<!--<div class="container">
-            
+
 		</div> --><!--container-->
 <?php require_once "footer.php" ?>

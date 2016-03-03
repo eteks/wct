@@ -38,7 +38,7 @@ if(isset($_GET['insert_error'])){
 								<input type="text" class="adjust_width parameter_name" name="parameter_name1" data-validation-error-msg="Please Enter the Parameter Name" data-validation="required">
 								<span class="hided param_name_error">Please Enter the parameter name</span>
 							</div>
-							
+
 							<div class="form-group col-md-2">
 									<select class="form-control classic type_align fl parameter_type" id="type" name="type1" data-validation-error-msg="Please Select the Type of the Parameter" data-validation="required">
 										<option value="">
@@ -72,7 +72,7 @@ if(isset($_GET['insert_error'])){
 									</select>
 									<span class="hided param_format_error">Please Select the format</span>
 								</div>
-							
+
 								<div class="form-group parameter__align col-md-1">
 									<!-- <input type="button" class="btn btn-primary align_right parameter_btn"> -->
 									<i class="fa fa-plus parameter_btn parameter_add">
@@ -84,10 +84,10 @@ if(isset($_GET['insert_error'])){
 										<div class="tip_triangle"></div>
 									</i>
 								</div>
-							</div>	
+							</div>
 						</div>
-					</div>	
-							
+					</div>
+
 					<input type="hidden" name="test_add" value="1">
 					<div class="col-md-9 schedule_btn">
 						<input type="reset" value="Clear" class="btn btn-primary clear" maxlength="50">
@@ -218,10 +218,10 @@ if(isset($_GET['insert_error'])){
 					</form>
 
 
-                    
+
 	            </div><!--search_part-->
 				<div class="container table-position col-md-9" style="padding: 0px;">
-				  <table class="table test_table">
+				  <table class="table test_table1">
 				    <thead>
 				      <tr class="row_color">
 						<th class="align_center">Parameter Name</th>
@@ -232,7 +232,7 @@ if(isset($_GET['insert_error'])){
 				      </tr>
 				    </thead>
 				    <tbody>
-				    
+
 					<!-- <?php
 					//$data = $obj->testselectfunction();
 					//$i=1;
@@ -242,18 +242,18 @@ if(isset($_GET['insert_error'])){
 				      <tr class="align_center delete_color">
 				        <!-- <td class="test_id"><?php //echo $i; ?></td> -->
 						<input type="hidden" value="<?php echo $eachrecord ['test_attribute_id']; ?>" id="test_attribute_id">
-						
+
 				       <!--  <td><?php //echo $eachrecord ['test_name']; ?></td>
 				        <td><?php //echo $eachrecord ['test_parameter_name']; ?></td>
 				        <td><?php //echo $eachrecord ['test_parameter_type']; ?></td>
 				        <td><?php //echo $eachrecord ['test_parameter_unit']; ?></td>
 				        <td><?php //echo $eachrecord ['test_parameter_format']; ?></td> -->
-				        
+
 				        <td>Long Jump</td>
 				        <td>Distance</td>
 				        <td>MT</td>
 				        <td>dfdf</td>
-				       
+
 				        <td class="popup-edit">
 				        	<span class="edit_state edit_test" data-value="<?php echo $eachrecord ['test_attribute_id']; ?>" data-test-id="<?php echo $eachrecord ['test_id']; ?>"><i class="fa fa-pencil-square-o"></i></span>
 			        		<span class="delete_state" data-value="<?php echo $eachrecord ['test_attribute_id']; ?>"><i class="fa fa-trash-o"></i></span>
@@ -343,18 +343,18 @@ if(isset($_GET['insert_error'])){
 				      <tr class="align_center delete_color">
 				        <!-- <td class="test_id"><?php //echo $i; ?></td> -->
 						<input type="hidden" value="<?php echo $eachrecord ['test_attribute_id']; ?>" id="test_attribute_id">
-						
+
 				       <!--  <td><?php //echo $eachrecord ['test_name']; ?></td>
 				        <td><?php //echo $eachrecord ['test_parameter_name']; ?></td>
 				        <td><?php //echo $eachrecord ['test_parameter_type']; ?></td>
 				        <td><?php //echo $eachrecord ['test_parameter_unit']; ?></td>
 				        <td><?php //echo $eachrecord ['test_parameter_format']; ?></td> -->
-				        
+
 				        <td>Long Jump</td>
 				        <td>Distance</td>
 				        <td>MT</td>
 				        <td>dfdf</td>
-				       
+
 				        <td class="popup-edit">
 				        	<span class="edit_state edit_test" data-value="<?php echo $eachrecord ['test_attribute_id']; ?>" data-test-id="<?php echo $eachrecord ['test_id']; ?>"><i class="fa fa-pencil-square-o"></i></span>
 			        		<span class="delete_state" data-value="<?php echo $eachrecord ['test_attribute_id']; ?>"><i class="fa fa-trash-o"></i></span>
@@ -443,18 +443,18 @@ if(isset($_GET['insert_error'])){
 				      <tr class="align_center delete_color">
 				        <!-- <td class="test_id"><?php //echo $i; ?></td> -->
 						<input type="hidden" value="<?php echo $eachrecord ['test_attribute_id']; ?>" id="test_attribute_id">
-						
+
 				       <!--  <td><?php //echo $eachrecord ['test_name']; ?></td>
 				        <td><?php //echo $eachrecord ['test_parameter_name']; ?></td>
 				        <td><?php //echo $eachrecord ['test_parameter_type']; ?></td>
 				        <td><?php //echo $eachrecord ['test_parameter_unit']; ?></td>
 				        <td><?php //echo $eachrecord ['test_parameter_format']; ?></td> -->
-				        
+
 				        <td>Long Jump</td>
 				        <td>Distance</td>
 				        <td>MT</td>
 				        <td>dfdf</td>
-				       
+
 				        <td class="popup-edit">
 				        	<span class="edit_state edit_test" data-value="<?php echo $eachrecord ['test_attribute_id']; ?>" data-test-id="<?php echo $eachrecord ['test_id']; ?>"><i class="fa fa-pencil-square-o"></i></span>
 			        		<span class="delete_state" data-value="<?php echo $eachrecord ['test_attribute_id']; ?>"><i class="fa fa-trash-o"></i></span>
@@ -543,18 +543,18 @@ if(isset($_GET['insert_error'])){
 				      <tr class="align_center delete_color">
 				        <!-- <td class="test_id"><?php //echo $i; ?></td> -->
 						<input type="hidden" value="<?php echo $eachrecord ['test_attribute_id']; ?>" id="test_attribute_id">
-						
+
 				       <!--  <td><?php //echo $eachrecord ['test_name']; ?></td>
 				        <td><?php //echo $eachrecord ['test_parameter_name']; ?></td>
 				        <td><?php //echo $eachrecord ['test_parameter_type']; ?></td>
 				        <td><?php //echo $eachrecord ['test_parameter_unit']; ?></td>
 				        <td><?php //echo $eachrecord ['test_parameter_format']; ?></td> -->
-				        
+
 				        <td>Long Jump</td>
 				        <td>Distance</td>
 				        <td>MT</td>
 				        <td>dfdf</td>
-				       
+
 				        <td class="popup-edit">
 				        	<span class="edit_state edit_test" data-value="<?php echo $eachrecord ['test_attribute_id']; ?>" data-test-id="<?php echo $eachrecord ['test_id']; ?>"><i class="fa fa-pencil-square-o"></i></span>
 			        		<span class="delete_state" data-value="<?php echo $eachrecord ['test_attribute_id']; ?>"><i class="fa fa-trash-o"></i></span>
@@ -643,18 +643,18 @@ if(isset($_GET['insert_error'])){
 				      <tr class="align_center delete_color">
 				        <!-- <td class="test_id"><?php //echo $i; ?></td> -->
 						<input type="hidden" value="<?php echo $eachrecord ['test_attribute_id']; ?>" id="test_attribute_id">
-						
+
 				       <!--  <td><?php //echo $eachrecord ['test_name']; ?></td>
 				        <td><?php //echo $eachrecord ['test_parameter_name']; ?></td>
 				        <td><?php //echo $eachrecord ['test_parameter_type']; ?></td>
 				        <td><?php //echo $eachrecord ['test_parameter_unit']; ?></td>
 				        <td><?php //echo $eachrecord ['test_parameter_format']; ?></td> -->
-				        
+
 				        <td>Long Jump</td>
 				        <td>Distance</td>
 				        <td>MT</td>
 				        <td>dfdf</td>
-				       
+
 				        <td class="popup-edit">
 				        	<span class="edit_state edit_test" data-value="<?php echo $eachrecord ['test_attribute_id']; ?>" data-test-id="<?php echo $eachrecord ['test_id']; ?>"><i class="fa fa-pencil-square-o"></i></span>
 			        		<span class="delete_state" data-value="<?php echo $eachrecord ['test_attribute_id']; ?>"><i class="fa fa-trash-o"></i></span>
@@ -743,18 +743,18 @@ if(isset($_GET['insert_error'])){
 				      <tr class="align_center delete_color">
 				        <!-- <td class="test_id"><?php //echo $i; ?></td> -->
 						<input type="hidden" value="<?php echo $eachrecord ['test_attribute_id']; ?>" id="test_attribute_id">
-						
+
 				       <!--  <td><?php //echo $eachrecord ['test_name']; ?></td>
 				        <td><?php //echo $eachrecord ['test_parameter_name']; ?></td>
 				        <td><?php //echo $eachrecord ['test_parameter_type']; ?></td>
 				        <td><?php //echo $eachrecord ['test_parameter_unit']; ?></td>
 				        <td><?php //echo $eachrecord ['test_parameter_format']; ?></td> -->
-				        
+
 				        <td>Long Jump</td>
 				        <td>Distance</td>
 				        <td>MT</td>
 				        <td>dfdf</td>
-				       
+
 				        <td class="popup-edit">
 				        	<span class="edit_state edit_test" data-value="<?php echo $eachrecord ['test_attribute_id']; ?>" data-test-id="<?php echo $eachrecord ['test_id']; ?>"><i class="fa fa-pencil-square-o"></i></span>
 			        		<span class="delete_state" data-value="<?php echo $eachrecord ['test_attribute_id']; ?>"><i class="fa fa-trash-o"></i></span>
@@ -840,7 +840,7 @@ if(isset($_GET['insert_error'])){
 				        </td>
 						<input type="hidden" name="test_attribute_id" id="test_attribute_id" value="<?php echo $eachrecord ['test_attribute_id']; ?>" />
 				      </tr>
-				      
+
 				      <!-- <?php //$i++;} ?> -->
 				    </tbody>
 				  </table>
@@ -850,5 +850,5 @@ if(isset($_GET['insert_error'])){
 	</div><!-- end  container-->
 </div><!-- end  container-->
 <!-- <div class="popup_fade cancel_btn"></div> -->
-		
+
 <?php require_once "footer.php" ?>

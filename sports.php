@@ -27,7 +27,7 @@ $obj = new sportsfunction();
 	<table class="table sports_table" id="sports_table">
 	<thead>
 		<tr class="row_color">
-			<th>Sport Name</th>
+			<th>Sports Name</th>
 			<th style="text-align:right">Action</th>
 		</tr>
 	</thead>
@@ -79,6 +79,6 @@ $obj = new sportsfunction();
 </div>
 <!--<div class="popup_fade cancel_btn"></div> --> <!--popup_fade-->
 <!--<div class="container">
-	
-</div>  -->   <!--container--> 
+
+</div>  -->   <!--container-->
 <?php require_once "footer.php" ?>
