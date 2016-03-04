@@ -706,7 +706,7 @@ select {
     position: relative;
     top: 1px;
 }
-.parameter_remove{
+.parameter_remove,.district_remove{
     background: #006687 none repeat scroll 0 0;
     color: #fff;
     cursor: pointer;
@@ -715,7 +715,7 @@ select {
     position: relative;
     top: 1px;
 }
-.parameter_add{
+.parameter_add,.district_add{
     background: #006687 none repeat scroll 0 0;
     color: #fff;
     cursor: pointer;
@@ -1197,7 +1197,7 @@ input[type=radio]:checked + label:before {
     position: relative !important;
     top: 12px;
     width: 205px;
-    box-shadow: none;   
+    box-shadow: none;
 }
 .combo--align--popup span input {
     position: relative !important;
@@ -1280,16 +1280,16 @@ input[type=radio]:checked + label:before {
     width: 113px;
     z-index: 98;
 }
-.parameter_add:hover .tooltip_parameter{
+.parameter_add:hover .tooltip_parameter,.district_add:hover .tooltip_parameter{
     display: block;
 }
-.parameter_add:hover .tip_triangle{
+.parameter_add:hover .tip_triangle,.district_add:hover .tip_triangle{
     display: block;
 }
-.parameter_remove:hover .tooltip_remove{
+.parameter_remove:hover .tooltip_remove,.district_remove:hover .tooltip_remove{
     display: block;
 }
-.parameter_remove:hover .tip_triangle{
+.parameter_remove:hover .tip_triangle,.district_remove:hover .tip_triangle{
     display: block;
 }
 .plus_align:hover .tooltip_parameter{
@@ -1383,4 +1383,11 @@ input[type=radio]:checked + label:before {
 .form-align-range {
     position: relative;
     right: 30px;
+}
+.district-add {
+    margin: 0 !important;
+    padding: 0 !important;
+    position: relative;
+    top: 24px;
+    left: 20px;
 }

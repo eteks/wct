@@ -868,28 +868,14 @@ $('.reset_form').on('click',function(){
                data: form_data,
                cache: false,
                success: function(html) {
-                    var result_split = html.split('#');
-                     if (result_split[0].indexOf("success") !== -1){
-                       // $('.add_district_error').text(result_split[1]).show();
-                       $('.add_district_error').hide();
-                       alert(result_split[1]);
-                       html ="<tr class='align_center delete_color'>\
-                       <input type='hidden' name='district_id' value="+result_split[2]+">\
-                       <td class='t_district_id'>"+result_split[2]+"</td>\
-                          <td class='t_district_name'>"+result_split[4]+"</td>\
-                          <td>\
-                            <span class='edit_state' onclick='editfunction("+result_split[2]+")'>Edit</span>\
-                            <span class='delete_state' data-value="+result_split[2]+">Delete</span>\
-                          </td></tr> ";
-                       // $('.district_table tr:last').after(html);
-                       document.district_form.reset();
-                       location.reload();
-
-                     }
-                     else{
-                      $('.add_district_error').text(result_split[1]).show();
-                     }
-                   }
+                    if(html){
+                        alert(html+' district already exist!');
+                        location.reload();
+                    }else{
+                        alert('District Updated Successfully!');
+                        location.reload();
+                    }
+                }
           });
         }
     });
@@ -1338,6 +1324,21 @@ $('.reset_form').on('click',function(){
         newElement.appendTo($(".assign_content_holder"));
 
     }
+    var dist_id = 1;
+    $('.district_add').click(function(){
+        nextElement1($('.district_clone_content:last'));
+    })
+
+    function nextElement1(element){
+        var newElement = element.clone();
+        var id = dist_id+1;
+        dist_id = id;
+        //alert(dist_id);
+        newElement.find('.districts').val('');
+        newElement.appendTo($(".district_clone"));
+
+    }
+
 
 
     $(document.body).delegate('.parameter_type','change',function() {
@@ -1905,7 +1906,7 @@ $('.reset_form').on('click',function(){
                                 <td class='result_parameter_name'>"+obj[i].parameter_name+"</td>\
                                 <td><input type='text' class='assign_border enter_result' name='enter_result'><br><span class='enter_result_error'></span></td>\
                                 <td><span class='result_error' name='result_error'>Enter the result in " +obj[i].parameter_unit+ " with "+obj[i].parameter_format+" formats</span></td>\
-                               </tr>";  
+                               </tr>";
                     }
                     else{
                       html = "<tr class='align_center delete_color assign_table'>\
@@ -1919,9 +1920,9 @@ $('.reset_form').on('click',function(){
                                 <td class='result_parameter_name'>"+obj[i].parameter_name+"</td>\
                                 <td><input type='text' class='assign_border enter_result' name='enter_result'><br><span class='enter_result_error'></span></td>\
                                 <td><span class='result_error' name='result_error'>Enter the result in " +obj[i].parameter_unit+ " with "+obj[i].parameter_format+" formats</span></td>\
-                                <td><span class='assign_border enter_points'></span></td></tr>";    
-                    } 
-                    $('.result_table tr:last').before(html);          
+                                <td><span class='assign_border enter_points'></span></td></tr>";
+                    }
+                    $('.result_table tr:last').before(html);
                   });
                     var obj1 = JSON.parse(result_split[1]);  
                     console.log(JSON.stringify(obj1));
@@ -2370,7 +2371,7 @@ $('.reset_form').on('click',function(){
           }
           else{
             alert("Please enter the result");
-          } 
+          }
         }
      });
 
@@ -2440,6 +2441,11 @@ $('.reset_form').on('click',function(){
         $('.assign_clone_content:last').remove();
       }
     });
+    $('.district_remove').click(function(){
+      if($('.district_clone_content').length !=1){
+        $('.district_clone_content:last').remove();
+      }
+    });
 
 
 
@@ -2489,7 +2495,7 @@ $('.reset_form').on('click',function(){
     //   else{
     //     $(this).next().next().next('.hided').removeClass('custom_error').hide();
     //   }
-        
+
     // });
 
     $(document).on('blur','.r_strt,.r_end,.edit_r_strt,.edit_r_end',function(e){

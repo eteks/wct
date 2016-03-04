@@ -9,11 +9,11 @@
 			<span class="sports">DISTRICT</span>
 		</div><!--end container-->
 		<div class="container">
-			<div class="col-md-8">
-				<div class="col-md-4"></div>
+			<div class="col-md-9">
+				<div class="col-md-3"></div>
 				<div class="col-md-8 col-xs-12 align_left">
 					<form name="district_form" id="districts_form">
-						<div class="form-group">
+						<div class="form-group col-md-10">
 						  <label for="sel1">Select the State</label>
 						  <select class="form-control adjust_width classic choose_state" id="sel1" name="district_state" data-validation-error-msg="Please Select the name of the State" data-validation="required">
 						  <option value="">Select the state</option>
@@ -26,15 +26,30 @@
 						  </select>
 						  <!-- <label class="category_text">Please Select the State</label><br> -->
 						</div>
-						<div class="align_margin">
-							<label>District</label><br>
-							<input type="text" class="districts" name="district_name" data-validation-error-msg="Please Enter the name of the District" data-validation="required">
-							<span class="add_district_error"></span>
-							<label class="category_text">Please Enter the District</label>
+						<div class="align_margin district_clone">
+							<div class="district_clone_content form-group col-md-10">
+								<label>District</label><br>
+								<input type="text" class="districts" name="district_name[]" data-validation-error-msg="Please Enter the name of the District" data-validation="required">
+								<span class="add_district_error"></span>
+								<label class="category_text">Please Enter the District</label>
+							</div>
+						</div>
+						<div class="form-group district-add col-md-2">
+							<!-- <input type="button" class="btn btn-primary align_right parameter_btn"> -->
+							<i class="fa fa-plus district_add">
+								<div class="tooltip_parameter">Add District</div>
+								<div class="tip_triangle"></div>
+							</i>
+							<i class="fa fa-minus district_remove">
+								<div class="tooltip_remove">Remove District</div>
+								<div class="tip_triangle"></div>
+							</i>
+						</div>
+						<div class="col-md-11">
+							<!-- <button type="button" class="btn btn-primary align_right clear add_district_act" name="district">Submit</button> -->
+							<input type="submit" class="btn btn-primary align_right clear add_district_act" name="district" value="Submit">
 						</div>
 
-						<!-- <button type="button" class="btn btn-primary align_right clear add_district_act" name="district">Submit</button> -->
-						<input type="submit" class="btn btn-primary align_right clear add_district_act" name="district" value="Submit">
 					</form>
 				</div>
 				<div class="container">

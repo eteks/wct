@@ -10,7 +10,7 @@
 		}
 		// destructor
 		function __destruct() {
-			
+
 		}
 		//To select all record for displaying data in table
 		public function districtSelect(){
@@ -28,9 +28,9 @@
 			if($res){ return true; }
 			else{ return false; }
 		}
-		public function districtDelete(){		
-            $res = mysql_query("delete from wc_district where district_id ='".$this->districtid."' ")or die(mysql_error());          
-			// $res = mysql_query("update wc_district set district_status='0' where district_id ='".$this->districtid."'")or die(mysql_error()); 
+		public function districtDelete(){
+            $res = mysql_query("delete from wc_district where district_id ='".$this->districtid."' ")or die(mysql_error());
+			// $res = mysql_query("update wc_district set district_status='0' where district_id ='".$this->districtid."'")or die(mysql_error());
 			if($res){ return true; }
 			else{ return false; }
 		}
@@ -55,7 +55,7 @@
 		// To select set of record by matching state id
 		public function dsitrictstateselectRecord(){
 			$res = mysql_query("SELECT * FROM wc_district WHERE districtstates_id='".$this->statesid."'")or die(mysql_error());
-			return $res;	
+			return $res;
 		}
 	}
 	if(isset($_POST)){
@@ -65,24 +65,35 @@
 			$districtFunction = new districtFunction();
 			$districtFunction->statesid = $_POST['district_state'];
 			$districtFunction->districtname = $_POST['district_name'];
+			$exist = '';
+			foreach ($_POST['district_name'] as $key => $value) {
+				$check_query = "select * from wc_district where districtstates_id = '".$_POST['district_state']."' and district_name = '".$value."' ";
+				if(!mysql_num_rows(mysql_query($check_query))){
+					mysql_query("insert into wc_district (districtstates_id,district_name,district_status) values('".$_POST['district_state']."','".$value."','1')")or die(mysql_error());
+				}else{
+					$exist .= $value.',';
+				}
+
+			}
+			print $exist;
 			//Multidimensional array looping for district
 			// foreach ($DISTRICT as $element) {
-		 //        if (in_array($_POST['district_name'], $element)){$addstatus = true;}
-	  //       }
+		    //  if (in_array($_POST['district_name'], $element)){$addstatus = true;}
+	        // }
 			// if ($addstatus) {
-				$district = $districtFunction->isdistrictExist();
-				if(!$district){
-					$districtinsert = $districtFunction->districtInsert();
-					if($districtinsert){
-						$states = mysql_fetch_array($districtFunction->statenameSelect());
-						echo "success#District Inserted#".$districtinsert.'#'.$states['states_name'].'#'.$_POST['district_name'];
-					}else{
-						echo "failure#District Not Inserted";
-					}
-				}
-				else {
-					echo "failure#District Already Exist";
-				}
+				// $district = $districtFunction->isdistrictExist();
+				// if(!$district){
+				// 	$districtinsert = $districtFunction->districtInsert();
+				// 	if($districtinsert){
+				// 		$states = mysql_fetch_array($districtFunction->statenameSelect());
+				// 		echo "success#District Inserted#".$districtinsert.'#'.$states['states_name'].'#'.$_POST['district_name'];
+				// 	}else{
+				// 		echo "failure#District Not Inserted";
+				// 	}
+				// }
+				// else {
+				// 	echo "failure#District Already Exist";
+				// }
 				// }
 				// else{
 				// 	echo "failure#No District Present in that Name";
@@ -155,7 +166,7 @@
 					echo json_encode($value);
 				}
 			}
-		} 
+		}
 		// To load district for selected state
 		if(isset($_GET['loaddistrictfromdb'])){
 			$json =array();
@@ -171,6 +182,6 @@
 	    		array_push( $json, $tmp );
 		    }
 		    echo json_encode($json);
-		} 
+		}
 	  }
 ?>
