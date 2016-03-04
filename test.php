@@ -107,21 +107,22 @@ if(isset($_GET['insert_error'])){
 								<i class="fa fa-search font-search"></i>
 							</div><!--search__list-->
 								<div class="test-list">
-									<?php
-									$data = $obj->testselectfunction();
-									foreach( $data as $eachrecord ) {
-									 ?>
-									<span class="test-name">
+									<!-- <?php
+									//$data = $obj->testselectfunction();
+									//print_r($data);
+									//foreach( $data as $eachrecord ) {
+									 ?> -->
+									<!-- <span class="test-name">
 										<input type="checkbox" name="test" value="test" class="check_test" id="check-select">
-										<input type="text" name="test" value="<?php echo $eachrecord ['test_name']; ?>" class="list_edit">
+										<input type="text" name="test" value="<?php //echo $eachrecord ['test_name']; ?>" class="list_edit">
 										<span class="test-alter">
 											<i class="fa fa-floppy-o save_item"></i>
 											<i class="fa fa-pencil-square-o edit_item"></i>
 											<i class="fa fa-trash-o delete_item"></i>
-										</span><!--test-alter-->
-									</span><!--test-name-->
+										</span><!test-alter->
+									</span><!-test-name->
 									<div class="delete_div delete_search">
-							            <!-- <code class="close_btn cancel_btn"> </code>  -->
+							            <!- <code class="close_btn cancel_btn"> </code>  ->
 							              <div class="del_title">
 							                <span class="del_txt">DELETE</span>
 							              </div>
@@ -130,9 +131,9 @@ if(isset($_GET['insert_error'])){
 							                <input type="button" class="btn btn-primary align_right yes_btn" value="Yes">
 							                <input type="button" class="btn btn-primary align_right no_btn" value="No">
 							                <input type="hidden" name="delete_id" value="" id="delete_id"/>
-							              </div><!--del_content-->
-      								</div><!--delete_div-->
-									<?php } ?>
+							              </div><!-del_content->
+      								</div><!-delete_div-> -->
+									<?php //} ?>
 
 								</div><!--test-list-->
 

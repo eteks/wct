@@ -109,12 +109,17 @@ class testfunction{
         print(json_encode($res));
 
     }
-    if(isset($_GET['findtest'])){
+    if(isset($_GET['find_test'])){
         include ("../dbconnect.php");
+        $temp_arr = array();
         $testname = $_POST['id'];
-        $sql = mysql_query("SELECT * FROM wc_test where test_name like '%".$testname."%' ORDER BY skill ASC")or die(mysql_error());
-        $res = mysql_fetch_assoc($sql);
-        print(json_encode($res));
+        if($testname!=''){
+            $sql = mysql_query("SELECT * FROM wc_test where  test_name like '%".$testname."%' ORDER BY test_name ASC")or die(mysql_error());
+            while($row = mysql_fetch_assoc($sql)) {
+                $temp_arr[] =$row;
+            }
+        }
+        print(json_encode($temp_arr));
 
     }
     if(isset($_GET['deletedata'])){

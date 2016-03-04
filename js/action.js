@@ -278,14 +278,44 @@ $(window).resize(function () {
   });
 $(document).ready(function () {
     $('.test_search').keyup(function() {
+        $('.test-list').empty();
+        var testname = $(this).val();
         $.ajax({
              type: "POST",
              url: "functions/test_functions.php?find_test=true",
-             data:{'id':'w'},
+             data:{'id':testname},
              cache: false,
              dataType:'json',
              success: function(data) {
-                 alert(data.test_name);
+                 if(data){
+                     $.each(data, function(i){
+                         //alert(data[i].test_name);
+                         $('.test-list').append(
+                         '<span class="test-name">\
+                             <input type="checkbox" name="test" value="test" class="check_test" id="check-select">\
+                             <input type="text" data-id ="'+data[i].test_id+'" name="test" value="'+data[i].test_name+'" class="list_edit">\
+                             <span class="test-alter">\
+                                 <i class="fa fa-floppy-o save_item"></i>\
+                                 <i class="fa fa-pencil-square-o edit_item"></i>\
+                                 <i class="fa fa-trash-o delete_item"></i>\
+                             </span>\
+                         </span>\
+                         <div class="delete_div delete_search">\
+                               <div class="del_title">\
+                                 <span class="del_txt">DELETE</span>\
+                               </div>\
+                               <div class="del_content">\
+                                 <span class="del_content_txt">Are you sure want to delete this whole record?</span>\
+                                 <input type="button" class="btn btn-primary align_right yes_btn" value="Yes">\
+                                 <input type="button" class="btn btn-primary align_right no_btn" value="No">\
+                                 <input type="hidden" name="delete_id" value="" id="delete_id"/>\
+                               </div>\
+                         </div>');
+                     });
+                 }else{
+                     alert('No Test Found');
+                 }
+
             }
          });
     });
