@@ -66,13 +66,9 @@
     position: relative !important;
 }
 .user_txt {
-    line-height: 2;
+ height: 102px;
 }
-@media (min-width: 768px){
-    .user_txt {
-     height: 220px;
-    }
-}
+
 .user_txt > span {
     font-family: Montserrat;
     font-size: 25px;
@@ -81,13 +77,13 @@
 }
 @media (min-width: 768px){
     .user_txt > span {
-    color: hsl(0, 0%, 5%);
-    font-family: Montserrat;
-    font-size: 73.76px;
-    font-weight: bold;
-    left: -12px;
-    position: relative;
-    line-height: 275px;
+        color: hsl(0, 0%, 5%);
+        font-family: Montserrat;
+        font-size: 47px;
+        font-weight: bold;
+        left: -22px;
+        line-height: 130px;
+        position: relative;
     }
 }
 .admin > label {
@@ -116,9 +112,9 @@
     font-family: Montserrat;
 }
 .login_form {
-    height: 300px;
-    margin: 21px 0 0 66px;
-    width: 350px;
+    height: 282px;
+    margin: 18px 0 0 82px;
+    width: 500px;
 }
 .forget_txt{
     color: #414141;
@@ -146,7 +142,7 @@
 	clear: both;
 }
 .area_width{
-	width: 74%;
+	width: 66%;
 }
 .statesname,.sportsname,.edit_states_name{
     width: 100%;
@@ -486,7 +482,7 @@ select {
     background: #fff none repeat scroll 0 0;
     box-shadow: 0 2px 10px 3px #b8b7b9;
     display: none;
-    height: 363px;
+    height: 372px;
     margin: 0 0 0 -154px;
     position: absolute;
     width: 290px;
@@ -643,7 +639,7 @@ select {
     border-radius: 0 !important;
     box-shadow: none !important;
     height: 34px;
-    margin: 25px 0 10px 2px; /* added by siva */
+    margin: 25px 0 10px -12px; /* added by siva */
     width: 130px !important;
     font-family: Montserrat;
     color: #424242  !important;
@@ -1274,7 +1270,7 @@ input[type=radio]:checked + label:before {
     position: relative;
 }
 .align-time {
-    margin-right: 4px;
+    margin-right: -2px;
     position: relative;
     right: 20%;
 }
@@ -1473,23 +1469,27 @@ tbody tr {
 .test-name {
     cursor: pointer;
     display: block;
-    width: 245px;
+    width: 250px;
     color: #414141;
     font-family: Montserrat;
-    
+    position: relative;
     text-align: left;
     margin: 12px 0 0;
 }
 .check_test {
-    left: 32px;
-    position: relative;
     display: none;
+    left: 10px;
+    position: absolute;
+    top: 2px;
 }
 .test-alter {
     float: right;
+    position: relative;
+    right: 8px;
+    top: 2px;
 }
 .search__list {
-    margin: 0 0 0 40px;
+    margin: 0 0 25px 40px;
 }
 .test-name:hover .check_test{
     display: inline-table;
@@ -1501,7 +1501,7 @@ tbody tr {
 .list_edit {
     border: 0 none;
     height: 24px;
-    left: 35px;
+    left: 45px;
     position: relative;
     background: transparent none repeat scroll 0 0;
 }
@@ -1527,7 +1527,7 @@ tbody tr {
     background:#fff;
     display: none;
     box-shadow: 0 2px 10px 3px #b8b7b9;
-    margin: -8px 0 0 8px;
+    margin: -8px 0 0 -25px;
 }
 .delete_state_div{  /* added by siva */ 
     background: #fff none repeat scroll 0 0;
@@ -1589,7 +1589,7 @@ tbody tr {
     box-shadow: 0 2px 10px 3px #b8b7b9;
     display: none;
     height: 270px;
-    margin: -8px 0 0 170px;
+    margin: -8px 0 0 42px;
     position: absolute;
     width: 360px;
     z-index: 9999;
@@ -1653,15 +1653,15 @@ tbody tr {
     padding: 5px 7px;
     margin: 22px 0 0 17px !important;
 }
-.save_item,.edit_item,.delete_item{
-    display: none !important;
+/*.save_item,.edit_item,.delete_item{
+    display: none;
 }
 .test-name:hover .edit_item{
-    display: inline-block !important;
+    display: inline-block;
 }
 .test-name:hover .delete_item{
-    display: inline-block !important;
-}
+    display: inline-block;
+}*/
 .popup_label{
     float: left;
     font-size: 12px;
@@ -1689,39 +1689,12 @@ tbody tr {
     margin: -45px 0 0 270px;
 }
 .edit_item,.save_item,.delete_item {
-    font-size: 18px !important;
+    font-size: 14px !important;
 }
 .checklist_txt{
     color: #414141;
     font-family: Montserrat;
     font-size: 14px;
-}
-
-
-.login_wrapper {
- margin:50px 0 0;
-}
-
-.login_form {
- font-family: Montserrat; 
-}
-.login_form h2 {
- margin:0px 0px 25px 0px;
-}
-.login_form label {
- margin:0px 25px 0px 0px;
-} 
-.login_form label:before {
- border-radius: 10px;
- top:5px;
-}
-.user-content {
- margin:25px 0px 0px 0px;
-}
-.login_form .form-error {
- top:0px;
- right:0px;
- position:absolute;
 }
 .box-width {
     box-shadow: none !important;
@@ -1737,4 +1710,39 @@ tbody tr {
     max-height: 175px;
     overflow-y: scroll;
 }
-
+.down_font {
+    color: #414141;
+    font-size: 20px !important;
+    left: 10px;
+    position: relative;
+    top: 2px;
+}
+.hover-list{
+    background: #fff none repeat scroll 0 0;
+    border: 1px solid #a0a0a0;
+    height: 180px;
+    overflow-y: scroll;
+    position: absolute;
+    top: 50px;
+    width: 190px;
+    z-index: 9999;
+    text-align: left;
+    display: none;
+}
+.hover_title {
+    color: #000;
+    font-size: 14px;
+    font-family: Montserrat;
+    margin: 0 0 0 15px;
+}
+.hover-content{
+    color: #414141;
+    font-family: Montserrat;
+    font-size: 13px;
+}
+button, input, optgroup, select, textarea {
+    color: inherit;
+    font: inherit;
+    margin: 0;
+    padding: 0 0 0 10px !important;
+}

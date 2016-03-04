@@ -165,9 +165,33 @@ if(isset($_GET['duplicate'])){
 			       	<!-- <td class="testbattery_name"><?php //echo $eachrecord ['testbattery_name']; ?></td> -->
 			        <!-- <td class="sports_name"><?php //echo $eachrecord ['sports_name']; ?></td> -->
 			        <td>Long Jump</td>
-			        <td class="">Categories5</td>
-			        <td>Categories7</td>
-			        <td>
+			        <td class="category-list">Categories5<i class="fa fa-angle-down down_font"></i>
+			        	<div class="hover-list hover-category">
+			        	<span class="hover_title">Selected Categories</span>
+							<?php
+						  $cat_data = $category->categoryselectfunction();
+						  foreach( $cat_data as $eachrecord ) {
+						   ?>
+							<div class="checkbox align_check">
+								<label class="hover-content"><?php echo $eachrecord ['categories_name']; ?></label>
+					    	</div>
+							<?php } ?>
+						</div>
+			        </td>
+			        <td class="test-list">Categories7<i class="fa fa-angle-down down_font"></i>
+			        	<div class="hover-list hover-test">
+			        	<span class="hover_title">Selected Test</span>
+							<?php
+						  $test_data = $test->testbatteryselectfunction();
+						  foreach( $test_data as $eachrecord ) {
+						   ?>
+							<div class="checkbox align_check">
+					      		<label class="hover-content"><?php echo $eachrecord ['test_name']; ?></label>
+					    	</div>
+							<?php } ?>
+						</div>
+			        </td>
+			        <td class="popup-edit">
 			        	<span class="edit_state edit_test_battery " data-value="<?php echo $eachrecord ['testbattery_id']; ?>"><i class="fa fa-pencil-square-o"></i></span>
 		        		<span class="delete_state" data-value="<?php echo $eachrecord ['testbattery_id']; ?>"><i class="fa fa-trash-o"></i></span>
 		        		<div class="test_battery popup_hidden">
@@ -211,7 +235,7 @@ if(isset($_GET['duplicate'])){
 										</div>
 										<div class="">
 											<label class="popup_label">Select Test</label><br>
-											<div class="area_scroll_popup">
+											<div class="area_scroll_popup form-group">
 												<?php
 											  $test_data = $test->testbatteryselectfunction();
 											  foreach( $test_data as $eachrecord ) {
@@ -248,6 +272,7 @@ if(isset($_GET['duplicate'])){
 				  <!-- <?php //$i++; } ?> -->
 			    </tbody>
 			  </table>
+
 			  <div class="testingid">
 
 			  </div>

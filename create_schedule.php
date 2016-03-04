@@ -297,7 +297,7 @@
 					        <td>Distance</td>
 					        <td>MT</td>
 					        <td>dfdf</td>
-							<td>
+							<td class="popup-edit">
 					        	<span class="edit_state" onclick="editfunction(<?php //echo $row['createschedule_id'] ?>)"><i class="fa fa-pencil-square-o"></i></span>
 					        	<span class="delete_state" data-value="<?php// echo $row['createschedule_id'] ?>"><i class="fa fa-trash-o"></i></span>
 					                    <div class="createschedule_div popup_hidden">

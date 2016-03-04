@@ -46,7 +46,7 @@
 						<div class="state_div edit_parametertype_div popup_hidden">
 			          		<code class="close_btn cancel_btn"> </code>
 			          		<div class="edit_title">
-			                	<span class="del_txt">EDIT</span>
+			                	<span class="del_txt">Edit detail</span>
 			              	</div><!--edit_title-->
 			          			<div class="container state-content col-md-12">
 			          			<form id="edit_parameter_type" class='edit_parameter_type' name="parameter_edit">

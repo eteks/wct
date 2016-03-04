@@ -53,14 +53,14 @@
 			        <input value="<?php echo $eachrecord ['parameterunit_id']; ?>" type="hidden">
 			        <td><?php echo $eachrecord ['parametertype_name'];?></td>
 					<td><?php echo $eachrecord ['parameterunit'];?></td>
-			        <td>
+			        <td class="popup-edit">
 			        	<span class="edit_state edit_parameter_unit" data-value="<?php echo $eachrecord ['parameterunit_id'];?>"><i class="fa fa-pencil-square-o"></i></span>
 		        		<span class="delete_state" data-value="<?php echo $eachrecord ['parameterunit_id'];?>"><i class="fa fa-trash-o"></i></span>
 
 						<div class="paramter_div edit_parameterunit_div popup_hidden">
 			          		<code class="close_btn cancel_btn"> </code>
 			          		<div class="edit_title">
-			                	<span class="del_txt">EDIT</span>
+			                	<span class="del_txt">Edit detail</span>
 			              	</div><!--edit_title-->
 			          			<div class="container state-content col-md-12">
 				          			<div class="col-xs-12 col-md-12 align_margin">

@@ -129,7 +129,7 @@
 					     <!--   <td class="t_range_s_id"><?php // echo $i; ?></td> -->
 					        <td class="t_range_testname"><?php echo $row['test_name']; ?></td>
 					        <td class="t_range_paramtername"><?php echo $row['test_parameter_name']; ?></td>
-					        <td>
+					        <td class="popup-edit">
 					        	<span class="edit_state" onclick="editfunction(<?php echo $row['range_id'] ?>)"><i class="fa fa-pencil-square-o"></i></span>
 					        	<span class="delete_state" data-value="<?php echo $row['range_id'] ?>"><i class="fa fa-trash-o"></i></span>
 					        <div class="range_div popup_hidden">

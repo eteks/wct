@@ -41,11 +41,14 @@ $obj = new sportsfunction();
 	   <!-- <td><?php //echo $i; ?></td> -->
 		<input class="sports_id" value="<?php echo $eachrecord ['sports_id']; ?>" type="hidden"/>
 	    <td class="sports_name"><?php echo $eachrecord ['sports_name']; ?></td>
-	    <td>
+	    <td class="popup-edit">
 	    	<span class="edit_state"><i class="fa fa-pencil-square-o"></i></span>
 	    	<span class="delete_state" data-value="<?php echo $eachrecord ['sports_id']; ?>"><i class="fa fa-trash-o"></i></span>
 			<div class="state_div edit_sports_div popup_hidden">
 			<code class="close_btn cancel_btn"> </code>
+			<div class="edit_title">
+            	<span class="del_txt">Edit Detail</span>
+          	</div><!--edit_title-->
 			<div class="container state-content col-md-12">
 			<form name="sports_form" id="sports_update_form">
 				<div class="align_margin">

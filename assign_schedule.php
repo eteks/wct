@@ -119,7 +119,7 @@ if(isset($_GET['update_success'])){
 			      	<input value="<?php echo $eachrecord ['assignschedule_id']; ?>" type="hidden">
 			       <!-- <td><?php echo $i; ?></td> -->
 			        <td><?php echo $eachrecord ['createschedule_name']; ?></td>
-			        <td>
+			        <td class="popup-edit">
 			        	<span class="edit_state edit_assign_schedule" data-schedule="<?php echo $eachrecord ['createschedule_id']; ?>" data-category="<?php echo $eachrecord ['assigncategory_id']; ?>"><i class="fa fa-pencil-square-o"></i></span>
 		        		<span class="delete_state" data-value="<?php echo $eachrecord ['assignschedule_id']; ?>"><i class="fa fa-trash-o"></i></span>
 						<div class="assign-schedule-popup popup_hidden">

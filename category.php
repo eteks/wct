@@ -39,13 +39,13 @@ $obj = new categoryfunction();
 					       <!-- <td><?php //echo $i; ?></td> -->
 							<input class="category_id" value="<?php echo $eachrecord ['categories_id']; ?>" type="hidden">
 					        <td class="category_name"><?php echo $eachrecord ['categories_name']; ?></td>
-					        <td>
+					        <td class="popup-edit">
 					        	<span class="edit_state"><i class="fa fa-pencil-square-o"></i></span>
 					        	<span class="delete_state" data-value="<?php echo $eachrecord ['categories_id']; ?>"><i class="fa fa-trash-o"></i></span>
 					        	<div class="state_div edit_category_div popup_hidden">
 					          		<code class="close_btn cancel_btn"> </code>
 					          		<div class="edit_title">
-					                	<span class="del_txt">EDIT</span>
+					                	<span class="del_txt">Edit detail</span>
 					              	</div><!--edit_title-->
 					      			<div class="container state-content col-md-12">
 										<form name="category_update" id="category_update_form">
