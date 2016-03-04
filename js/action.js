@@ -1886,16 +1886,17 @@ $('.reset_form').on('click',function(){
                url: "functions/result_function.php?loadtestparam=true",
                data: form_data,
                cache: false,
-               dataType:'json',
+               // dataType:'json',
                success: function(html) {
                 $('.result_table tbody tr:not(:last)').remove();
-                // var obj = JSON.parse(html);
-                obj=html;
-                // alert(JSON.stringify(obj));
+                  var result_split = html.split('###');
+                  var obj = JSON.parse(result_split[0]);
+                  // obj=result_split[0];
                   $.each(obj, function(i){
                     ranges = JSON.stringify(obj[i].ranges);
                     if(obj[i].ranges.length == 0){
                        html = "<tr class='align_center delete_color assign_table'>\
+                                <input type='hidden' name='result_id' class='result_id' value=''>\
                                 <input type='hidden' name='result_athleteid' class='result_athleteid' value="+obj[i].athlete_id+">\
                                 <input type='hidden' name='result_parametertype' class='result_parametertype' value="+obj[i].parameter_type+">\
                                 <input type='hidden' name='result_parameterunit' class='result_parameterunit' value="+obj[i].parameter_unit+">\
@@ -1909,6 +1910,7 @@ $('.reset_form').on('click',function(){
                     }
                     else{
                       html = "<tr class='align_center delete_color assign_table'>\
+                                <input type='hidden' name='result_id' class='result_id' value=''>\
                                 <input type='hidden' name='result_athleteid' class='result_athleteid' value="+obj[i].athlete_id+">\
                                 <input type='hidden' name='result_parametertype' class='result_parametertype' value="+obj[i].parameter_type+">\
                                 <input type='hidden' name='result_parameterunit' class='result_parameterunit' value="+obj[i].parameter_unit+">\
@@ -1922,6 +1924,20 @@ $('.reset_form').on('click',function(){
                     }
                     $('.result_table tr:last').before(html);
                   });
+                    var obj1 = JSON.parse(result_split[1]);
+                    console.log(JSON.stringify(obj1));
+                    $.each(obj1, function(i){
+                      $('.result_table').find("td:contains("+obj1[i].resultparameter_name+")").siblings('.result_id').val(obj1[i].result_id);
+                      $('.result_table').find("td:contains("+obj1[i].resultparameter_name+")").parents('tr').find('.enter_result').val(obj1[i].result);
+                      $('.result_table').find("td:contains("+obj1[i].resultparameter_name+")").parents('tr').find('.enter_points').text(obj1[i].points);
+                    });
+
+                     //Points total result
+                      var val=0;
+                      $(".enter_points").each(function() {
+                        val += Number($(this).text());
+                        $('.total_result').text(val);
+                      });
               }
           });
       }
