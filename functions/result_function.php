@@ -59,8 +59,7 @@
 			return $qr;
 		}
 		public function resultUpdate(){
-			// echo "update wc_result set resultcreateschedule_id = '".$this->createscheduleid."', resultathlete_id = '".$this->athleteid."', resulttest_name = '".$this->resulttest_name."', resultparameter_name = '".$this->resultparameter_name."', result = '".$this->result."', points = '".$this->points."' where result_id ='".$this->resultid."'";
-			$res = mysql_query("update wc_result set resultcreateschedule_id = '".$this->createscheduleid."', resultathlete_id = '".$this->athleteid."', resulttest_name = '".$this->resulttest_name."', resultparameter_name = '".$this->resultparameter_name."', result = '".$this->result."', points = '".$this->points."' where result_id ='".$data['result_id']."'")or die(mysql_error());
+			$res = mysql_query("update wc_result set resultcreateschedule_id = '".$this->createscheduleid."', resultathlete_id = '".$this->athleteid."', resulttest_name = '".$this->resulttest_name."', resultparameter_name = '".$this->resultparameter_name."', result = '".$this->result."', points = '".$this->points."' where result_id ='".$this->resultid."'")or die(mysql_error());
 			if($res){ return true; }
 			else{ return false; }
 		}
@@ -140,22 +139,22 @@
 			$Request = json_decode($strRequest);
 			$resultFunction = new resultFunction();
 			foreach($Request as $value){
-				if ($value->result_id){
-					$resultFunction->resultid = $value->result_id;
-				}
 				$resultFunction->createscheduleid = $value->createschedule_id;
 				$resultFunction->athleteid = $value->athlete_id; 
 				$resultFunction->resulttest_name = $value->test_name; 
 				$resultFunction->resultparameter_name = $value->parameter_name; 
 				$resultFunction->result = $value->enter_result; 
-				if($value->enter_points)
+				if($value->enter_points){
 					$resultFunction->points = $value->enter_points; 
-				else 
+				}
+				else {
 					$resultFunction->points = 0;
+				}
 				$result = $resultFunction->isresultExist();
 				if($result){
 					$status = 0;
-					$resultinsert = $resultFunction->resultUpdate();
+					$resultFunction->resultid = $value->result_id;
+					$resultupdate = $resultFunction->resultUpdate();
 				}else{
 					$status = 1;
 					$resultinsert = $resultFunction->resultInsert();

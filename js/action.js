@@ -2329,7 +2329,8 @@ $('.reset_form').on('click',function(){
               parameter_name = $(this).find('.result_parameter_name').text();
               enter_result = $(this).find('.enter_result').val();
               enter_points = $(this).find('.enter_points').text();
-              result_data.push({'createschedule_id':createschedule_id,'athlete_id':athlete_id,'test_name':test_name,
+              result_id = $(this).find('.result_id').val();
+              result_data.push({'result_id':result_id,'createschedule_id':createschedule_id,'athlete_id':athlete_id,'test_name':test_name,
                                 'parameter_name':parameter_name,'enter_result':enter_result,'enter_points':enter_points});
           });
           if((result_data.length != 0)){
