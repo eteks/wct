@@ -54,6 +54,16 @@
 				return false;
 			}
 		}
+		public function isresultExistgetdata(){
+			$qr = mysql_query("SELECT * FROM wc_result WHERE resultcreateschedule_id = '".$this->createscheduleid."' AND resultathlete_id = '".$this->athleteid."' AND resulttest_name = '".$this->resulttest_name."' AND resultparameter_name = '".$this->resultparameter_name."'");
+			return $qr;
+		}
+		public function resultUpdate(){
+			// echo "update wc_result set resultcreateschedule_id = '".$this->createscheduleid."', resultathlete_id = '".$this->athleteid."', resulttest_name = '".$this->resulttest_name."', resultparameter_name = '".$this->resultparameter_name."', result = '".$this->result."', points = '".$this->points."' where result_id ='".$this->resultid."'";
+			$res = mysql_query("update wc_result set resultcreateschedule_id = '".$this->createscheduleid."', resultathlete_id = '".$this->athleteid."', resulttest_name = '".$this->resulttest_name."', resultparameter_name = '".$this->resultparameter_name."', result = '".$this->result."', points = '".$this->points."' where result_id ='".$data['result_id']."'")or die(mysql_error());
+			if($res){ return true; }
+			else{ return false; }
+		}
 	}
 	if(isset($_POST)){
 		//To load athletes based on selected schedule
@@ -76,6 +86,7 @@
 		//To load test name and parameter name for entering reseult based on selected schedule and athelete
 		if(isset($_GET['loadtestparam'])){
 			$json =array();
+			$jsonresult =array();
 			$resultFunction = new resultFunction();
 			$resultFunction->createscheduleid = $_POST['result_createschedule'];
 			$resultFunction->athleteid = $_POST['result_athleteid'];
@@ -85,16 +96,16 @@
 				$select_rangeattribute = mysql_query("SELECT * FROM wc_range_attribute WHERE range_id='$range_id'") or die(mysql_error());
 				$rangejson = array();
 				while ( $result_range = mysql_fetch_array( $select_rangeattribute )){
-					$tmp = array(
+					$tmp1 = array(
 						// 'rangeattribute_id' => $result_range['range_attribute_id'],
 						'range_start' => $result_range['range_start'],
 						'range_end' => $result_range['range_end'],
 						'range_point' => $result_range['range_point'],
 					);
-					array_push( $rangejson, $tmp );
+					array_push( $rangejson, $tmp1 );
 				}
 				// echo json_encode($rangejson);
-				$tmp = array(
+				$tmp2 = array(
 			   'athlete_id' => $_POST['result_athleteid'],
 	           'test_name' => $result['test_name'],
 	           'parameter_name' => $result['test_parameter_name'],
@@ -103,15 +114,35 @@
 	           'parameter_format' => $result['test_parameter_format'],
 	           'ranges' => $rangejson,
 	            );
-    			array_push( $json, $tmp );
+    			array_push( $json, $tmp2 );
+    			
+    			//newly added
+    			$resultFunction->resulttest_name = $result['test_name'];
+    			$resultFunction->resultparameter_name = $result['test_parameter_name'];
+    			$checkresult = $resultFunction->isresultExistgetdata();
+    			if(count($checkresult)!=0){
+    				while ( $result_data = mysql_fetch_array( $checkresult )){
+    					$tmp3 = array(
+						   'result_id' => $result_data['result_id'],
+				           'resulttest_name' => $result['test_name'],
+				           'resultparameter_name' => $result['test_parameter_name'],
+				           'result' => $result_data['result'],
+				           'points' => $result_data['points'],		            
+			            );
+		    			array_push( $jsonresult, $tmp3 );
+    				}
+    			}
 		    }
-		    echo json_encode($json);
+		    echo json_encode($json).'###'.json_encode($jsonresult);
 		}	
 		if(isset($_GET['storeresult'])){
 			$strRequest = file_get_contents('php://input');
 			$Request = json_decode($strRequest);
 			$resultFunction = new resultFunction();
 			foreach($Request as $value){
+				if ($value->result_id){
+					$resultFunction->resultid = $value->result_id;
+				}
 				$resultFunction->createscheduleid = $value->createschedule_id;
 				$resultFunction->athleteid = $value->athlete_id; 
 				$resultFunction->resulttest_name = $value->test_name; 
@@ -122,18 +153,31 @@
 				else 
 					$resultFunction->points = 0;
 				$result = $resultFunction->isresultExist();
-				if(!$result){
+				if($result){
+					$status = 0;
+					$resultinsert = $resultFunction->resultUpdate();
+				}else{
+					$status = 1;
 					$resultinsert = $resultFunction->resultInsert();
-					$status = true;
-				}
-				else{
-					$status = false;
-				}		
+				}	
+				// $result = $resultFunction->isresultExist();
+				
+				// if(!$result){
+				// 	$resultinsert = $resultFunction->resultInsert();
+				// 	$status = true;
+				// }
+				// else{
+				// 	$status = false;
+				// }		
 			}
-			if($status == true)
+			if($status == 1)
 				echo "success#Result Created";
 			else
-				echo "failure#Result Already Created for this athlete with the same parameter name";	
+				echo "success#Result Updated";
+			// if($status == true)
+			// 	echo "success#Result Created";
+			// else
+			// 	echo "failure#Result Already Created for this athlete with the same parameter name";	
 		}
 	}
 ?>
