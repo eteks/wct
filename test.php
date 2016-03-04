@@ -103,7 +103,7 @@ if(isset($_GET['insert_error'])){
 					<form>
 						<div class="search-content">
 							<div class="search__list">
-								<input type="text" class="search_box" placeholder="Search Name">
+								<input type="text" class="search_box test_search" placeholder="Search Name">
 								<i class="fa fa-search font-search"></i>
 							</div><!--search__list-->
 								<div class="test-list">

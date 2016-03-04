@@ -277,19 +277,30 @@ $(window).resize(function () {
     }
   });
 $(document).ready(function () {
+    $('.test_search').keyup(function() {
+        $.ajax({
+             type: "POST",
+             url: "functions/test_functions.php?find_test=true",
+             data:{'id':'w'},
+             cache: false,
+             dataType:'json',
+             success: function(data) {
+                 alert(data.test_name);
+            }
+         });
+    });
 
-
-  $('input:checkbox').change(function(){
-    if($(this).is(":checked")) {
-        $('.list_edit').addClass("list_edit_rollover");
-    } else {
-        $('.list_edit').removeClass("list_edit_rollover");
-    }
-  });
-  $('.delete_item').on('click',function(){
-    $(this).parents('.test-list').find('.delete_div').show();
-    $(this).parents('.test-name').next().siblings('.delete_div').hide();
-  });
+      $('input:checkbox').change(function(){
+        if($(this).is(":checked")) {
+            $('.list_edit').addClass("list_edit_rollover");
+        } else {
+            $('.list_edit').removeClass("list_edit_rollover");
+        }
+      });
+      $('.delete_item').on('click',function(){
+        $(this).parents('.test-list').find('.delete_div').show();
+        $(this).parents('.test-name').next().siblings('.delete_div').hide();
+      });
 
 
   $("input").attr('maxlength','50');

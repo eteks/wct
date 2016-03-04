@@ -109,7 +109,14 @@ class testfunction{
         print(json_encode($res));
 
     }
+    if(isset($_GET['findtest'])){
+        include ("../dbconnect.php");
+        $testname = $_POST['id'];
+        $sql = mysql_query("SELECT * FROM wc_test where test_name like '%".$testname."%' ORDER BY skill ASC")or die(mysql_error());
+        $res = mysql_fetch_assoc($sql);
+        print(json_encode($res));
 
+    }
     if(isset($_GET['deletedata'])){
         include ("../dbconnect.php");
         $test = new testfunction();
