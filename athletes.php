@@ -115,7 +115,7 @@
 			<div class="col-md-12">
 				<div class="col-md-3 search_part" style="padding: 0px;">
 					<div class="test_title">
-						<span>Athelete Name</span>
+						<span>Athlete Name</span>
 					</div><!--test_title-->
 					<form>
 						<div class="search-content">
@@ -124,9 +124,13 @@
 								<i class="fa fa-search font-search"></i>
 							</div><!--search__list-->
 								<div class="test-list">
+									<?php
+				                        $query = $athleteFunction->athletenameSelect();
+				                        while ($row = mysql_fetch_array($query)) {
+			                        ?>
 									<span class="test-name">
 										<input type="checkbox" name="test" value="test" class="check_test" id="check-select">
-										<input type="text" name="test" value="xyz" class="list_edit">
+										<input type="text" name="test" value="<?php echo $row['athlete_name']; ?>" class="list_edit">
 										<span class="test-alter">
 											<i class="fa fa-floppy-o save_item"></i>
 											<i class="fa fa-pencil-square-o edit_item"></i>
@@ -145,27 +149,7 @@
 							                <input type="hidden" name="delete_id" value="" id="delete_id"/>
 							              </div><!--del_content-->
       								</div><!--delete_div-->
-									<span class="test-name">
-										<input type="checkbox" name="test" value="test" class="check_test">
-										<input type="text" name="test" value="xyz" class="list_edit">
-										<span class="test-alter">
-											<i class="fa fa-floppy-o save_item"></i>
-											<i class="fa fa-pencil-square-o edit_item"></i>
-											<i class="fa fa-trash-o delete_item"></i>
-										</span><!--test-alter-->
-									</span><!--test-name-->
-									<div class="delete_div delete_search">
-								            <!-- <code class="close_btn cancel_btn"> </code>  -->
-								              <div class="del_title">
-								                <span class="del_txt">DELETE</span>
-								              </div>
-								              <div class="del_content">
-								                <span class="del_content_txt">Are you sure want to delete this whole record?</span>
-								                <input type="button" class="btn btn-primary align_right yes_btn" value="Yes">
-								                <input type="button" class="btn btn-primary align_right no_btn" value="No">
-								                <input type="hidden" name="delete_id" value="" id="delete_id"/>
-								              </div><!--del_content-->
-          								</div><!--delete_div-->
+      								<?php } ?>
 								</div><!--test-list-->
 						</div><!--search-content-->
 					</form>
@@ -184,11 +168,11 @@
 			      </tr>
 			    </thead>
 			    <tbody>
-			   <!-- <?php
-	               // $query = $athleteFunction->athleteSelect();
-	               // $i=1;
-                   // while ($row = mysql_fetch_array($query)) {
-                        ?> -->
+			    <?php
+	               $query = $athleteFunction->athleteSelect();
+	               $i=1;
+                   while ($row = mysql_fetch_array($query)) {
+                        ?> 
                         <tr class="align_center delete_color">
                         	<input type='hidden' class="t_athlete_id" name='athlete_id' value="<?php echo $row['athlete_id']; ?>">
 					      <!--  <td class="t_athlete_s_id"><?php // echo $i; ?></td> -->
@@ -196,11 +180,11 @@
 					       <td class="t_athlete_gender"><?php // echo $row['athlete_gender']; ?></td>
 					        <td class="t_athlete_dob"><?php // echo date("d/m/Y", strtotime($row['athlete_dob'])); ?></td>
 					        <td class="t_athlete_address"><?php // echo $row['athlete_address']; ?></td> -->
-					        <td>Long Jump</td>
-					        <td>Distance</td>
-					        <td>MT</td>
-					        <td>dfdf</td>
-							<td>
+					        <td><?php echo $row['sports_name']; ?></td>
+					        <td><?php echo $row['athlete_gender']; ?></td>
+					        <td><?php echo $row['athlete_dob']; ?></td>
+					        <td><?php echo $row['athlete_address']; ?></td>
+							<td class="popup-edit">
 					        	<span class="edit_state" onclick="editfunction(<?php //echo $row['athlete_id'] ?>)"><i class="fa fa-pencil-square-o"></i></span>
 				        		<span class="delete_state" data-value="<?php echo $row['athlete_id'] ?>"><i class="fa fa-trash-o"></i></span>
 					            <div class="athletes_div popup_hidden">
@@ -208,10 +192,10 @@
 					          		<div class="edit_title">
 					                	<span class="del_txt">Edit Detail</span>
 					              	</div><!--edit_title-->
-					          			<div class="container state-content col-md-12">
-					          			<div class="col-xs-12 col-md-12 align_margin">
-						          	<form name="edit_athletes_form" id="edit_athletes_form">
-						          		<input type="hidden" class="statesid" name="edit_athlete_id">
+				          			<div class="container state-content col-md-12">
+				          			<div class="col-xs-12 col-md-12 align_margin">
+						          	<form name="edit_athletes_form" class="edit_athletes_form">
+						          		<input type="hidden" class="statesid" name="edit_athlete_id" value="<?php echo $row['athlete_id'] ?>">
 										<!-- <div class="form-group">
 											<label>Athlete Name</label><br>
 											<input type="text" class="adjust_width" name="edit_athlete_name" data-validation-error-msg="Please Enter the name of the Athelete" data-validation="required">
@@ -240,14 +224,14 @@
 										</div>
 										<div class="form-group">
 					      					<label class="popup_label">Mobile Number</label><br>
-					      					<input id="ahtlete_mobile" type="text" class="adjust_width box-width" name="edit_athlete_mobile" data-validation-error-msg="Please Enter the value that must contain 10 numbers" data-validation="length" data-validation-length="10">
+					      					<input id="ahtlete_mobile" type="text" value="<?php echo $row['athlete_mobile'] ?>" class="adjust_width box-width" name="edit_athlete_mobile" data-validation-error-msg="Please Enter the value that must contain 10 numbers" data-validation="length" data-validation-length="10">
 					     				</div>
 										<div class="form-group">
 											  <label for="sel1" class="popup_label">Gender</label>
 											  <select class="form-control adjust_width classic box-width" id="sel1" name="edit_athlete_gender" data-validation-error-msg="Please Select the Gender" data-validation="required">
 											  <option value=""></option>
-											  <option value="Female">Female</option>
-											  <option value="Male">Male</option>
+											  <option <?php if ($row['athlete_gender'] == "Female" ) echo 'selected' ; ?> value="Female">Female</option>
+											  <option <?php if ($row['athlete_gender'] == "Male" ) echo 'selected' ; ?> value="Male">Male</option>
 											  </select>
 										</div>
 										<div class="form-group">
@@ -255,10 +239,10 @@
 											  <select class="form-control adjust_width classic athlete_state_act box-width" id="sel1" name="edit_athlete_state" data-validation-error-msg="Please Select the State" data-validation="required">
 											  <option value="">State</option>
 											   <?php
-						                        $query = $statesFunction->statesSelect();
-						                        while ($row = mysql_fetch_array($query)) {
+						                        $state_query = $statesFunction->statesSelect();
+						                        while ($row1 = mysql_fetch_array($state_query)) {
 						                            ?>
-						                            <option value="<?php echo $row['states_id']; ?>"><?php echo $row['states_name']; ?></option>
+						                            <option <?php if ($row['athletestates_id'] == $row1['states_id'] ) echo 'selected' ; ?> value="<?php echo $row1['states_id']; ?>"><?php echo $row1['states_name']; ?></option>
 						                      <?php } ?>
 											  </select>
 										</div>
@@ -284,8 +268,8 @@
 											  <select class="form-control adjust_width classic box-width" id="sel1" name="edit_athlete_sports" data-validation-error-msg="Please Select the Sport" data-validation="required">
 											  <option value=""> Sports</option>
 											   <?php
-						                        $query = $sportsfunction->sportsSelect();
-						                        while ($row = mysql_fetch_array($query)) {
+						                        $sports_query = $sportsfunction->sportsSelect();
+						                        while ($row = mysql_fetch_array($sports_query)) {
 						                            ?>
 						                            <option value="<?php echo $row['sports_id']; ?>"><?php echo $row['sports_name']; ?></option>
 						                      <?php } ?>
@@ -298,8 +282,8 @@
 											<input type="submit" class="btn btn-primary align_right test-submit clear edit_athletes_act" value="Save">
 										</div>
 									</form>
-						          		</div>
-										</div><!--state-content-->
+				          		  </div>
+								 </div><!--state-content-->
 								</div><!--test_battery_div-->				
 								<div class="delete_div delete_test_div">
 						            <!-- <code class="close_btn cancel_btn"> </code>  -->
@@ -317,7 +301,7 @@
 						<input type="hidden" name="test_attribute_id" id="test_attribute_id" value="<?php echo $eachrecord ['test_attribute_id']; ?>" />
 				      </tr>
 				      
-				      <!-- <?php //$i++;} ?> -->
+				      <?php $i++;} ?> 
 				    </tbody>
 				  </table>
 				</div>

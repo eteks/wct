@@ -66,28 +66,28 @@
 					                	<span class="del_txt">EDIT</span>
 					              	</div><!--edit_title-->
 					          			<div class="container state-content col-md-12">
-						          			<form name="edit_district_form" id="edit_district_form">
-						          			<input type="hidden" class="statesid" name="edit_district_id">
-											<div class="form-group">
-											  <label for="sel1">Select the State</label>
-											  <select class="form-control adjust_width adjust_popup_width classic choose_state" id="sel1" name="edit_district_state" data-validation-error-msg="Please Select the name of the State" data-validation="required">
-											  	<option value="">Select the state</option>
-						  	<?php
-	                        $query = $statesFunction->statesSelect();
-	                        while ($row = mysql_fetch_array($query)) {
-	                            ?>
-	                            <option value="<?php echo $row['states_id']; ?>"><?php echo $row['states_name']; ?></option>
-	                      <?php } ?>
-						  </select>
-						</div>
-						<div class="align_margin">
-							<label>District</label><br>
-							<input type="text" class="districts adjust_popup_width" name="edit_district_name" data-validation-error-msg="Please Enter the name of the District" data-validation="required">
-							<span class="edit_district_error"></span>
-						</div>
-						<!-- <button type="button" class="btn btn-primary align_right clear edit_district_act" name="district">Submit</button>	 -->
-						<input type="submit" class="btn btn-primary align_right clear edit_district_act" name="district" value="Submit">
-					</form>
+						          			<form name="edit_district_form" class="edit_district_form">
+							          			<input type="hidden" class="statesid" name="edit_district_id">
+												<div class="form-group">
+												  <label for="sel1">Select the State</label>
+												  <select class="form-control adjust_width adjust_popup_width classic choose_state" id="sel1" name="edit_district_state" data-validation-error-msg="Please Select the name of the State" data-validation="required">
+												  	<option value="">Select the state</option>
+													  	<?php
+								                        $state_query = $statesFunction->statesSelect();
+								                        while ($row = mysql_fetch_array($state_query)) {
+								                            ?>
+								                            <option value="<?php echo $row['states_id']; ?>"><?php echo $row['states_name']; ?></option>
+								                      <?php } ?>
+													  </select>
+													</div>
+													<div class="align_margin">
+														<label>District</label><br>
+														<input type="text" class="districts adjust_popup_width" name="edit_district_name" data-validation-error-msg="Please Enter the name of the District" data-validation="required">
+														<span class="edit_district_error"></span>
+													</div>
+													<!-- <button type="button" class="btn btn-primary align_right clear edit_district_act" name="district">Submit</button>	 -->
+													<input type="submit" class="btn btn-primary align_right clear edit_district_act" name="district" value="Submit">
+											</form>
 					</div><!--state-content-->
 			</div><!--state_div-->
 				<div class="delete_div delete_district_div">
