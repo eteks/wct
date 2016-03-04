@@ -1890,9 +1890,11 @@ $('.reset_form').on('click',function(){
                 $('.result_table tbody tr:not(:last)').remove();
                 // var obj = JSON.parse(html);
                 obj=html;
+                // alert(JSON.stringify(obj));
                   $.each(obj, function(i){
                     ranges = JSON.stringify(obj[i].ranges);
-                    html = "<tr class='align_center delete_color assign_table'>\
+                    if(obj[i].ranges.length == 0){
+                       html = "<tr class='align_center delete_color assign_table'>\
                                 <input type='hidden' name='result_athleteid' class='result_athleteid' value="+obj[i].athlete_id+">\
                                 <input type='hidden' name='result_parametertype' class='result_parametertype' value="+obj[i].parameter_type+">\
                                 <input type='hidden' name='result_parameterunit' class='result_parameterunit' value="+obj[i].parameter_unit+">\
@@ -1902,8 +1904,22 @@ $('.reset_form').on('click',function(){
                                 <td class='result_parameter_name'>"+obj[i].parameter_name+"</td>\
                                 <td><input type='text' class='assign_border enter_result' name='enter_result'><br><span class='enter_result_error'></span></td>\
                                 <td><span class='result_error' name='result_error'>Enter the result in " +obj[i].parameter_unit+ " with "+obj[i].parameter_format+" formats</span></td>\
-                                <td><span class='assign_border enter_points'></span></td></tr>";
-                    $('.result_table tr:last').before(html);
+                               </tr>";  
+                    }
+                    else{
+                      html = "<tr class='align_center delete_color assign_table'>\
+                                <input type='hidden' name='result_athleteid' class='result_athleteid' value="+obj[i].athlete_id+">\
+                                <input type='hidden' name='result_parametertype' class='result_parametertype' value="+obj[i].parameter_type+">\
+                                <input type='hidden' name='result_parameterunit' class='result_parameterunit' value="+obj[i].parameter_unit+">\
+                                <input type='hidden' name='result_parameterformat' class='result_parameterformat' value="+obj[i].parameter_format+">\
+                                <input type='hidden' name='result_ranges' class='result_ranges' value="+ranges+">\
+                                <td class='result_test_name'>"+obj[i].test_name+"</td>\
+                                <td class='result_parameter_name'>"+obj[i].parameter_name+"</td>\
+                                <td><input type='text' class='assign_border enter_result' name='enter_result'><br><span class='enter_result_error'></span></td>\
+                                <td><span class='result_error' name='result_error'>Enter the result in " +obj[i].parameter_unit+ " with "+obj[i].parameter_format+" formats</span></td>\
+                                <td><span class='assign_border enter_points'></span></td></tr>";    
+                    } 
+                    $('.result_table tr:last').before(html);          
                   });
               }
           });
@@ -2315,25 +2331,30 @@ $('.reset_form').on('click',function(){
               result_data.push({'createschedule_id':createschedule_id,'athlete_id':athlete_id,'test_name':test_name,
                                 'parameter_name':parameter_name,'enter_result':enter_result,'enter_points':enter_points});
           });
-          $.ajax({
-             type: "POST",
-             url: "functions/result_function.php?storeresult=true",
-             data: JSON.stringify(result_data),
-             // dataType: 'json',
-             cache: false,
-             success: function(data) {
-              var result_split = data.split('#');
-               if (result_split[0].indexOf("success") !== -1){
-                alert(result_split[1]);
-                document.result_form.reset();
-                $('.result_table tbody tr:not(:last)').remove();
-                $('.total_result').text('');
-               }
-               else{
-                alert(result_split[1]);
-               }
-              }
-          });
+          if((result_data.length != 0)){
+              $.ajax({
+               type: "POST",
+               url: "functions/result_function.php?storeresult=true",
+               data: JSON.stringify(result_data),
+               // dataType: 'json',
+               cache: false,
+               success: function(data) {
+                var result_split = data.split('#');
+                 if (result_split[0].indexOf("success") !== -1){
+                  alert(result_split[1]);
+                  document.result_form.reset();
+                  $('.result_table tbody tr:not(:last)').remove();
+                  $('.total_result').text('');
+                 }
+                 else{
+                  alert(result_split[1]);
+                 }
+                }
+            });
+          }
+          else{
+            alert("Please enter the result");
+          } 
         }
      });
 

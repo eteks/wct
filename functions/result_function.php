@@ -117,7 +117,10 @@
 				$resultFunction->resulttest_name = $value->test_name; 
 				$resultFunction->resultparameter_name = $value->parameter_name; 
 				$resultFunction->result = $value->enter_result; 
-				$resultFunction->points = $value->enter_points;  
+				if($value->enter_points)
+					$resultFunction->points = $value->enter_points; 
+				else 
+					$resultFunction->points = 0;
 				$result = $resultFunction->isresultExist();
 				if(!$result){
 					$resultinsert = $resultFunction->resultInsert();
