@@ -349,7 +349,7 @@ $(document).ready(function () {
 
   //form reset
 $('.reset_form').on('click',function(){
-  $("#edit_create_schedule_form, #edit_athletes_form,#edit_assign_schedule_form").find("select").each(function (index) {
+  $("#edit_create_schedule_form, .edit_athletes_form,#edit_assign_schedule_form").find("select").each(function (index) {
           var ctrl=$(this);
           $(ctrl.children()).each(function(index) {
               if (index===0) $(this).attr('selected', 'selected');
@@ -469,7 +469,8 @@ $('.reset_form').on('click',function(){
         // $('.popup_fade').show();
         // $('.test_div, .close_btn').show();
         $(this).next().next().show();
-        $(this).parents('tr').siblings().children('.popup-edit').hide();
+        $(this).parents('tr').siblings().find('.popup-edit').hide();
+        $(this).parents('tr').siblings().find('.popup-edit_district').hide();
         document.body.style.overflow = 'hidden';
     });
     $('.edit_state').click(function(){
@@ -800,7 +801,7 @@ $('.reset_form').on('click',function(){
          }
      });
 
-    $('#edit_state_form').submit(function(e){
+    $('.edit_state_form').submit(function(e){
         e.preventDefault();
       var res = true;
       $('input[type="text"]',this).each(function() {
@@ -809,7 +810,7 @@ $('.reset_form').on('click',function(){
         }
       });
       if(res){
-      var form_data = $('[name=edit_states_form]').serializeArray();
+      var form_data = $(this).serializeArray();
         $.ajax({
            type: "POST",
            url: "functions/edit_and_delete_function.php?editdata=true",
@@ -824,6 +825,7 @@ $('.reset_form').on('click',function(){
                  $('.state_div, .close_btn').hide();
                  document.body.style.overflow = 'auto';
                  alert(result_split[1]);
+                 location.reload();
                }
                else{
                 $('.edit_states_error').text(result_split[1]).show();
@@ -886,7 +888,7 @@ $('.reset_form').on('click',function(){
         }
     });
 
-    $('#edit_district_form').submit(function(e){
+    $('.edit_district_form').submit(function(e){
         e.preventDefault();
       var res = true;
       $('input[type="text"], select',this).each(function() {
@@ -895,7 +897,7 @@ $('.reset_form').on('click',function(){
         }
       });
       if(res){
-      var form_data = $('[name=edit_district_form]').serialize();
+      var form_data = $(this).serialize();
         $.ajax({
            type: "POST",
            url: "functions/district_function.php?editdata=true",
@@ -1447,7 +1449,7 @@ $('.reset_form').on('click',function(){
      }
     });
 
-    $('#edit_athletes_form').submit(function(e){
+    $('.edit_athletes_form').submit(function(e){
       e.preventDefault();
       var res = true;
       $('input[type="text"],select',this).each(function() {
@@ -1456,7 +1458,7 @@ $('.reset_form').on('click',function(){
         }
       });
       if(res){
-          var form_data = $('[name=edit_athletes_form]').serialize();
+          var form_data = $(this).serialize();
             $.ajax({
                type: "POST",
                url: "functions/athletes_functions.php?editdata=true",

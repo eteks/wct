@@ -15,10 +15,10 @@
 	    public $athletesportsid;
 	    public $athletesportsname;
 
-		public function athleteSelect(){
-			$res = mysql_query("SELECT * FROM wc_athlete where athlete_status='1' ORDER BY athlete_id DESC")or die(mysql_error());
-			return $res;
-		}
+		// public function athleteSelect(){
+		// 	$res = mysql_query("SELECT * FROM wc_athlete where athlete_status='1' ORDER BY athlete_id DESC")or die(mysql_error());
+		// 	return $res;
+		// }
 
 		public function athleteSelect1(){
             $temp_arr = array();
@@ -66,6 +66,18 @@
 				return false;
 			}
 		}
+
+		// Newly added for v2
+		public function athletenameSelect(){
+			$res = mysql_query("SELECT DISTINCT athlete_name FROM wc_athlete where athlete_status='1' ORDER BY athlete_id DESC")or die(mysql_error());
+			return $res;
+		}
+
+		public function athleteSelect(){
+			$res = mysql_query("SELECT * FROM wc_athlete as a INNER JOIN wc_sports as s ON s.sports_id = a.athletesports_id where a.athlete_status='1' ORDER BY a.athlete_id DESC")or die(mysql_error());
+			return $res;
+		}
+
 
 	}
 	if(isset($_POST)){

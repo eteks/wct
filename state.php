@@ -49,7 +49,7 @@
 						                	<span class="del_txt">Edit Detail</span>
 						              	</div><!--edit_title-->
 						          			<div class="container state-content col-md-12">
-							          			<form name="edit_states_form" id="edit_state_form">
+							          			<form name="edit_states_form" class="edit_state_form">
 													<div class="align_margin">
 														<label>Enter the State</label><br>
 														<input type="hidden" class="statesid" name="edit_states_id">
