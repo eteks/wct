@@ -223,8 +223,8 @@
 				                        while ($row = mysql_fetch_array($query)) {
 			                        ?>
 									<span class="test-name">
-										<input type="checkbox" name="test" value="test" class="check_test check_createschedule check_list" id="check-select">
-										<input type="text" name="check_createschedulename" value="<?php echo $row['createschedule_name']; ?>" class="list_edit check_createschedulename check_data">
+										<input type="checkbox" name="test" value="test" class="check_test check_createschedule check_list input_wrap" id="check-select">
+										<input type="text" name="check_createschedulename" value="<?php echo $row['createschedule_name']; ?>" class="list_edit check_createschedulename check_data input_wrap">
 										<span class="test-alter">
 											<i class="fa fa-floppy-o save_item"></i>
 											<i class="fa fa-pencil-square-o edit_item"></i>
@@ -305,7 +305,7 @@
 												</div> -->
 												<div class="form-group">
 												  <label for="battey_name" class="popup_label">Select Test Battery Name</label>
-												  <select class="form-control classic adjust_width box-width" id="battey_name" name="edit_schedule_testbattery" data-validation-error-msg="Please Select the name of the Test Battery Name" data-validation="required">
+												  <select class="form-control classic adjust_width box-width form-group" id="battey_name" name="edit_schedule_testbattery" data-validation-error-msg="Please Select the name of the Test Battery Name" data-validation="required">
 												  	<option value=""> Test Battery Name</option>
 												   <?php
 								                        $tb_query = $testbattery->testbatterySelect();
