@@ -1746,3 +1746,11 @@ button, input, optgroup, select, textarea {
     margin: 0;
     padding: 0 0 0 10px !important;
 }
+
+.enter_result_error{
+    display: none;
+    color: red;
+    font-size: 11px;
+    /*margin-left: -42px;*/
+    font-weight: normal;
+}

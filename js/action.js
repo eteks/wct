@@ -1953,15 +1953,17 @@ $('.reset_form').on('click',function(){
                url: "functions/result_function.php?loadtestparam=true",
                data: form_data,
                cache: false,
-               dataType:'json',
+               // dataType:'json',
                success: function(html) {
-                console.log(html);
                 $('.result_table tbody tr:not(:last)').remove();
-                // var obj = JSON.parse(html);
-                obj=html;
+                  var result_split = html.split('###');
+                  var obj = JSON.parse(result_split[0]);
+                  // obj=result_split[0];
                   $.each(obj, function(i){
                     ranges = JSON.stringify(obj[i].ranges);
-                    html = "<tr class='align_center delete_color assign_table'>\
+                    if(obj[i].ranges.length == 0){
+                       html = "<tr class='align_center delete_color assign_table'>\
+                                <input type='hidden' name='result_id' class='result_id' value=''>\
                                 <input type='hidden' name='result_athleteid' class='result_athleteid' value="+obj[i].athlete_id+">\
                                 <input type='hidden' name='result_parametertype' class='result_parametertype' value="+obj[i].parameter_type+">\
                                 <input type='hidden' name='result_parameterunit' class='result_parameterunit' value="+obj[i].parameter_unit+">\
@@ -1969,15 +1971,45 @@ $('.reset_form').on('click',function(){
                                 <input type='hidden' name='result_ranges' class='result_ranges' value="+ranges+">\
                                 <td class='result_test_name'>"+obj[i].test_name+"</td>\
                                 <td class='result_parameter_name'>"+obj[i].parameter_name+"</td>\
-                                <td><input type='text' class='assign_border enter_result' name='enter_result'></td>\
+                                <td><input type='text' class='assign_border enter_result' name='enter_result'><br><span class='enter_result_error'></span></td>\
+                                <td><span class='result_error' name='result_error'>Enter the result in " +obj[i].parameter_unit+ " with "+obj[i].parameter_format+" formats</span></td>\
+                               </tr>";
+                    }
+                    else{
+                      html = "<tr class='align_center delete_color assign_table'>\
+                                <input type='hidden' name='result_id' class='result_id' value=''>\
+                                <input type='hidden' name='result_athleteid' class='result_athleteid' value="+obj[i].athlete_id+">\
+                                <input type='hidden' name='result_parametertype' class='result_parametertype' value="+obj[i].parameter_type+">\
+                                <input type='hidden' name='result_parameterunit' class='result_parameterunit' value="+obj[i].parameter_unit+">\
+                                <input type='hidden' name='result_parameterformat' class='result_parameterformat' value="+obj[i].parameter_format+">\
+                                <input type='hidden' name='result_ranges' class='result_ranges' value="+ranges+">\
+                                <td class='result_test_name'>"+obj[i].test_name+"</td>\
+                                <td class='result_parameter_name'>"+obj[i].parameter_name+"</td>\
+                                <td><input type='text' class='assign_border enter_result' name='enter_result'><br><span class='enter_result_error'></span></td>\
                                 <td><span class='result_error' name='result_error'>Enter the result in " +obj[i].parameter_unit+ " with "+obj[i].parameter_format+" formats</span></td>\
                                 <td><span class='assign_border enter_points'></span></td></tr>";
+                    }
                     $('.result_table tr:last').before(html);
                   });
+                    var obj1 = JSON.parse(result_split[1]);
+                    console.log(JSON.stringify(obj1));
+                    $.each(obj1, function(i){
+                      $('.result_table').find("td:contains("+obj1[i].resultparameter_name+")").siblings('.result_id').val(obj1[i].result_id);
+                      $('.result_table').find("td:contains("+obj1[i].resultparameter_name+")").parents('tr').find('.enter_result').val(obj1[i].result);
+                      $('.result_table').find("td:contains("+obj1[i].resultparameter_name+")").parents('tr').find('.enter_points').text(obj1[i].points);
+                    });
+
+                     //Points total result
+                      var val=0;
+                      $(".enter_points").each(function() {
+                        val += Number($(this).text());
+                        $('.total_result').text(val);
+                      });
               }
           });
       }
     });
+
 
  //report
  // $('#report_form').submit(function(e){
@@ -2226,58 +2258,66 @@ $('.reset_form').on('click',function(){
     //       }
     //  });
 
-    $(document).on('blur','.enter_result',function(e){
+     $(document).on('blur','.enter_result',function(e){
         ranges = $(this).parents('tr').find('.result_ranges').val();
         parameter_type = $(this).parents('tr').find('.result_parametertype').val();
         parameter_unit = $(this).parents('tr').find('.result_parameterunit').val();
         parameter_format = $(this).parents('tr').find('.result_parameterformat').val();
         ranges = JSON.parse(ranges);
         value=$(this).val();
-        if((parameter_type == "time") && (value!='')){
-          for (var i = 0; i < ranges.length; i++) {
-            rangestart = ranges[i].range_start;
-            rangeend = ranges[i].range_end;
-            if((parameter_format=="HH:MM:SS")&&(!(/^(?:[0-5][0-9]):(?:[0-5][0-9]):[0-5][0-9]$/).test(value))){
-              alert("check time format");
+        if(((parameter_type == "time") && (value!=''))||((parameter_type == "Time") && (value!=''))){
+          if((parameter_format=="HH:MM:SS")&&(!(/^(?:[0-5][0-9]):(?:[0-5][0-9]):[0-5][0-9]$/).test(value))){
+              $(this).siblings('.enter_result_error').addClass('error').text('Please Check time format').show();
               status=1;
-              break;
+              // break;
             } else if((parameter_format=="HH:MM")&&(!(/^(?:[0-5][0-9]):[0-5][0-9]$/).test(value))){
-              alert("check time format");
+              $(this).siblings('.enter_result_error').addClass('error').text('Please Check time format').show();
               status=1;
-              break;
+              // break;
             }
             else if((parameter_format=="MM:SS")&&(!(/^(?:[0-5][0-9]):[0-5][0-9]$/).test(value))){
-              alert("check time format");
+              $(this).siblings('.enter_result_error').addClass('error').text('Please Check time format').show();
               status=1;
-              break;
+              // break;
             }
             else if((parameter_format=="HH:MM:SS:MSS")&&(!(/^(?:[0-2][0-4]):(?:[0-5][0-9]):(?:[0-5][0-9]):([0-9][0-9]|[0-9][0-9][0-9]|[0-1][0][0][0])$/).test(value))){
-              alert("check time format");
+              $(this).siblings('.enter_result_error').addClass('error').text('Please Check time format').show();
               status=1;
-              break;
+              // break;
             }
             else if((parameter_format=="MM:SS:MSS")&&(!(/^(?:[0-5][0-9]):(?:[0-5][0-9]):([0-9][0-9]|[0-9][0-9][0-9]|[0-1][0][0][0])$/).test(value))){
-              alert("check time format");
+              $(this).siblings('.enter_result_error').addClass('error').text('Please Check time format').show();
               status=1;
-              break;
+              // break;
             }
             else if((parameter_format=="SS:MSS")&&(!(/^(?:[0-5][0-9]):([0-9][0-9]|[0-9][0-9][0-9]|[0-1][0][0][0])$/).test(value))){
-              alert("check time format");
+              $(this).siblings('.enter_result_error').addClass('error').text('Please Check time format').show();
               status=1;
-              break;
+              // break;
             }
             else{
-              // alert("else");
-              if (value >= rangestart && value < rangeend){
-                status = 1;
-                $(this).parents('tr').find('.enter_points').text(ranges[i].range_point);
-                break;
+              if(ranges.length!=0){
+                for (var i = 0; i < ranges.length; i++) {
+                rangestart = ranges[i].range_start;
+                rangeend = ranges[i].range_end;
+                  if (value >= rangestart && value < rangeend){
+                    status = 1;
+                    $(this).parents('tr').find('.enter_points').text(ranges[i].range_point);
+                    $(this).siblings('.enter_result_error').removeClass('error').hide();
+                    break;
+                  }
+                  else{
+                    status = 0;
+                  }
+                }
               }
               else{
-                status = 0;
+                $(this).parents('tr').find('.enter_points').text('0');
+                $(this).siblings('.enter_result_error').removeClass('error').hide();
               }
+
             }
-          }
+
         }
         else{
             //Checking entered Result
@@ -2288,40 +2328,51 @@ $('.reset_form').on('click',function(){
             else{
               decimals = value.toString().split(".")[1].length;
             }
-
-            // status = 0;
-            for (var i = 0; i < ranges.length; i++) {
-              // alert(ranges[i].range_start);
-              rangestart = Number(ranges[i].range_start);
-              rangeend = Number(ranges[i].range_end);
-              // alert(ranges[i].range_end);
-              // alert(value);
-              if (value >= rangestart && value < rangeend){
-                // alert("if");
-                status = 1;
-                if(decimals <= parameter_format){
-                   // alert("yes");
-                   $(this).parents('tr').find('.enter_points').text(ranges[i].range_point);
-                   break;
+            if(ranges.length!=0){
+              // status = 0;
+              for (var i = 0; i < ranges.length; i++) {
+                // alert(ranges[i].range_start);
+                rangestart = Number(ranges[i].range_start);
+                rangeend = Number(ranges[i].range_end);
+                // alert(ranges[i].range_end);
+                // alert(value);
+                if (value >= rangestart && value < rangeend){
+                  // alert("if");
+                  status = 1;
+                  if(decimals <= parameter_format){
+                     // alert("yes");
+                     $(this).siblings('.enter_result_error').removeClass('error').hide();
+                     $(this).parents('tr').find('.enter_points').text(ranges[i].range_point);
+                     break;
+                  }
+                  else{
+                     $(this).siblings('.enter_result_error').addClass('error').text('Please Check decimal points').show();
+                     totalvlaue = $('.total_result').text();
+                     pointvalue = $(this).parents('tr').find('.enter_points').text();
+                     result = totalvlaue - pointvalue;
+                     $('.total_result').text(result);
+                     $(this).parents('tr').find('.enter_points').text('');
+                  }
+                  break;
                 }
                 else{
-                   alert("check decimal points");
-                   totalvlaue = $('.total_result').text();
-                   pointvalue = $(this).parents('tr').find('.enter_points').text();
-                   result = totalvlaue - pointvalue;
-                   $('.total_result').text(result);
-                   $(this).parents('tr').find('.enter_points').text('');
+                  status = 0;
                 }
-                break;
               }
-              else{
-                status = 0;
-              }
+          }
+          else{
+            $(this).parents('tr').find('.enter_points').text('0');
+            if(decimals <= parameter_format){
+               $(this).siblings('.enter_result_error').removeClass('error').hide();
             }
+            else{
+              $(this).siblings('.enter_result_error').addClass('error').text('Please Check decimal points').show();
+            }
+          }
         }
         }
         if(status == 0 && value!=''){
-          alert("Entered value is not in range");
+          $(this).siblings('.enter_result_error').addClass('error').text('Entered value is not in range').show();
           totalvlaue = $('.total_result').text();
           pointvalue = $(this).parents('tr').find('.enter_points').text();
           result = totalvlaue - pointvalue;
@@ -2339,6 +2390,11 @@ $('.reset_form').on('click',function(){
      });
 
      $('.result_submit_act').click(function(){
+        res = true;
+        if($('.enter_result_error').hasClass('error')){
+          res = false;
+        }
+        else{
           var result_data = [];
           createschedule_id = $('.result_createscheduleid').val();
           athlete_id = $('.result_athleteid').val();
@@ -2347,28 +2403,35 @@ $('.reset_form').on('click',function(){
               parameter_name = $(this).find('.result_parameter_name').text();
               enter_result = $(this).find('.enter_result').val();
               enter_points = $(this).find('.enter_points').text();
-              result_data.push({'createschedule_id':createschedule_id,'athlete_id':athlete_id,'test_name':test_name,
+              result_id = $(this).find('.result_id').val();
+              result_data.push({'result_id':result_id,'createschedule_id':createschedule_id,'athlete_id':athlete_id,'test_name':test_name,
                                 'parameter_name':parameter_name,'enter_result':enter_result,'enter_points':enter_points});
           });
-          $.ajax({
-             type: "POST",
-             url: "functions/result_function.php?storeresult=true",
-             data: JSON.stringify(result_data),
-             // dataType: 'json',
-             cache: false,
-             success: function(data) {
-              var result_split = data.split('#');
-               if (result_split[0].indexOf("success") !== -1){
-                alert(result_split[1]);
-                document.result_form.reset();
-                $('.result_table tbody tr:not(:last)').remove();
-                $('.total_result').text('');
-               }
-               else{
-                alert(result_split[1]);
-               }
-              }
-          });
+          if((result_data.length != 0)){
+              $.ajax({
+               type: "POST",
+               url: "functions/result_function.php?storeresult=true",
+               data: JSON.stringify(result_data),
+               // dataType: 'json',
+               cache: false,
+               success: function(data) {
+                var result_split = data.split('#');
+                 if (result_split[0].indexOf("success") !== -1){
+                  alert(result_split[1]);
+                  document.result_form.reset();
+                  $('.result_table tbody tr:not(:last)').remove();
+                  $('.total_result').text('');
+                 }
+                 else{
+                  alert(result_split[1]);
+                 }
+                }
+            });
+          }
+          else{
+            alert("Please enter the result");
+          }
+        }
      });
 
      $('.result_clear_act').click(function(){
