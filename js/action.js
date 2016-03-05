@@ -143,10 +143,10 @@ function editfunction(data_id){
               $('[name=edit_athlete_taluka]').val(obj[i].athlete_taluka);
               $('[name=edit_athlete_sports]').find("option:contains("+obj[i].athletesports_name+")").attr("selected","selected");
             });
-            $('.popup_fade').show();
-            athletes_center_align();
-            $('.athletes_div, .close_btn').show();
-            document.body.style.overflow = 'auto';
+            // $('.popup_fade').show();
+            // athletes_center_align();
+            // $('.athletes_div, .close_btn').show();
+            // document.body.style.overflow = 'auto';
            }
         });
     } else if(window.location.href.indexOf("create_schedule.php") !== -1){
@@ -276,6 +276,8 @@ $(window).resize(function () {
         //alert($(this).parents('.assign_clone_content').find('date_assign dob').val('').html());
     }
   });
+
+
 $(document).ready(function () {
     $('.test_search').keyup(function() {
         $('.test-list').empty();
@@ -320,18 +322,52 @@ $(document).ready(function () {
          });
     });
 
-      $('input:checkbox').change(function(){
-        if($(this).is(":checked")) {
-            $('.list_edit').addClass("list_edit_rollover");
-        } else {
-            $('.list_edit').removeClass("list_edit_rollover");
-        }
-      });
-      $('.delete_item').on('click',function(){
-        $(this).parents('.test-list').find('.delete_div').show();
-        $(this).parents('.test-name').next().siblings('.delete_div').hide();
-      });
 
+  // $('input:checkbox').change(function(){
+  //   if($(this).is(":checked")) {
+  //       $('.list_edit').addClass("list_edit_rollover");
+  //   } else {
+  //       $('.list_edit').removeClass("list_edit_rollover");
+  //   }
+  // });
+
+  $('.save_item,.edit_item,.delete_item').hide();
+  $('.test-name').mouseenter(function(){
+    $(this).children().find('.edit_item,.delete_item').show();
+    $('.save_item').hide();
+  });
+  $('.test-name').mouseleave(function(){
+    $('.edit_item,.delete_item,.save_item').hide();
+  });
+
+
+  $('.edit_item').on('click',function(){
+    $('.edit_item').hide();
+    $(this).prev('.save_item').show();
+    if($('.list_edit').hasClass('list_edit_rollover')){
+      $('.list_edit').removeClass('list_edit_rollover');
+    }
+    $(this).parents('.test-alter').prev('.list_edit').addClass("list_edit_rollover");
+  });
+
+
+  $('.delete_item').on('click',function(){
+    $(this).parents('.test-list').find('.delete_div').show();
+    $(this).parents('.test-name').next().siblings('.delete_div').hide();
+  });  
+  $('.category-list').mouseenter(function(){
+    $('.hover-category').show();
+  });
+  $('.category-list').mouseleave(function(){
+    $('.hover-category').hide();
+  });
+
+  $('.test-list').mouseenter(function(){
+    $('.hover-test').show();
+  });
+  $('.test-list').mouseleave(function(){
+    $('.hover-test').hide();
+  });
 
   $("input").attr('maxlength','50');
   package_menu();
@@ -390,7 +426,7 @@ $(document).ready(function () {
 
   //form reset
 $('.reset_form').on('click',function(){
-  $("#edit_create_schedule_form, .edit_athletes_form,#edit_assign_schedule_form").find("select").each(function (index) {
+  $(".edit_create_schedule_form, .edit_athletes_form,#edit_assign_schedule_form").find("select").each(function (index) {
           var ctrl=$(this);
           $(ctrl.children()).each(function(index) {
               if (index===0) $(this).attr('selected', 'selected');
@@ -404,7 +440,8 @@ $('.reset_form').on('click',function(){
         // $('.popup_fade').show();
         // $('.state_div').hide();
         $(this).next().next().show();
-        $(this).parents('tr').siblings().children('.popup-edit').hide();
+        $(this).parents('tr').siblings().children('.state_div').hide();
+
         // $('.state_div, .close_btn').show();
         document.body.style.overflow = 'auto';
         //alert($(this).parents('tr').find('.sports_id').text());
@@ -510,14 +547,16 @@ $('.reset_form').on('click',function(){
         // $('.popup_fade').show();
         // $('.test_div, .close_btn').show();
         $(this).next().next().show();
-        $(this).parents('tr').siblings().find('.popup-edit').hide();
-        $(this).parents('tr').siblings().find('.popup-edit_district').hide();
+        $(this).parents('tr').siblings().find('.test_div').hide();
+
         document.body.style.overflow = 'hidden';
     });
     $('.edit_state').click(function(){
         // district_center_align();
-        $('.popup_fade').show();
-        $('.district_div, .close_btn').show();
+        // $('.popup_fade').show();
+        // $('.district_div, .close_btn').show();
+        $(this).next().next().show();
+        $(this).parents('tr').siblings().find('.popup-edit_district').hide();
         document.body.style.overflow = 'hidden';
     });
     $('.edit_state').click(function(){
@@ -1525,7 +1564,7 @@ $('.reset_form').on('click',function(){
     });
 
     //Jquery and Ajax Functionality for CreateSchedule Form added by kalai
-    $('#createschedule_form').submit(function(e){
+    $('.createschedule_form').submit(function(e){
       e.preventDefault();
       var res = true;
       $('input[type="text"],select',this).each(function() {
@@ -1535,7 +1574,7 @@ $('.reset_form').on('click',function(){
         }
       });
       if(res){
-         var form_data = $('[name=create_schedule_form]').serialize();
+         var form_data = $(this).serialize();
           $.ajax({
              type: "POST",
              url: "functions/create_schedule_function.php?adddata=true",
@@ -1569,7 +1608,7 @@ $('.reset_form').on('click',function(){
       }
     });
 
-    $('#edit_create_schedule_form').submit(function(e){
+    $('.edit_create_schedule_form').submit(function(e){
         e.preventDefault();
         var res = true;
         $('input[type="text"],textarea,select',this).each(function() {
@@ -1578,7 +1617,7 @@ $('.reset_form').on('click',function(){
           }
         });
         if(res){
-            var form_data = $('[name=edit_createschedule_form]').serialize();
+            var form_data = $(this).serialize();
                 $.ajax({
                    type: "POST",
                    url: "functions/create_schedule_function.php?editdata=true",
@@ -2523,11 +2562,25 @@ $('.reset_form').on('click',function(){
       $('.r_strt,.r_end,.r_point').val('');
     });
 
+    //newly added for v2 by kalai
+    $(document).on('change','.check_list',function () {
+      $('.check_list').not(this).prop('checked', false);
+      if($(this).is(':checked')){
+        check_data = $(this).siblings('.check_data').val();
+        $('.check_table').find("input[value="+check_data+"]").parents('tr').show();
+        $('.check_table').find('.check_name').not("input[value="+check_data+"]").parents('tr').hide();
+      }
+      else{
+        $('.check_table tr').show();
+      }
+    });
 });
-  $(document).mouseup(function (e) {
+
+$(document).bind("click", function(e) {
      var popup = $(".popup_hidden");
      if (!$('.fa-pencil-square-o').is(e.target) && !popup.is(e.target) && popup.has(e.target).length == 0) {
          popup.hide();
+        $('.edit_state').parents('tr').siblings().children('.popup-edit').show();
      }
     var del_popup = $(".delete_div");
      if (!$('.fa-trash-o').is(e.target) && !del_popup.is(e.target) && del_popup.has(e.target).length == 0) {

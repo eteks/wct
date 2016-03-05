@@ -32,8 +32,8 @@ if(isset($_GET['insert_error'])){
 					</div>
 					<div class="parameter_holder1">
 						<div class="clone_content" id="param_counter1">
-							<div class="form-group col-md-12 schedule_test">
-							<div class="form-group col-md-5">
+							<div class="form-group col-md-10 schedule_test">
+							<div class="form-group col-md-6">
 								<label>Enter Parameter Name</label><br>
 								<input type="text" class="adjust_width parameter_name" name="parameter_name1" data-validation-error-msg="Please Enter the Parameter Name" data-validation="required">
 								<span class="hided param_name_error">Please Enter the parameter name</span>
@@ -73,19 +73,20 @@ if(isset($_GET['insert_error'])){
 									<span class="hided param_format_error">Please Select the format</span>
 								</div>
 
-								<div class="form-group parameter__align col-md-1">
-									<!-- <input type="button" class="btn btn-primary align_right parameter_btn"> -->
-									<i class="fa fa-plus parameter_btn parameter_add">
-										<div class="tooltip_parameter">Add Parameter</div>
-										<div class="tip_triangle"></div>
-									</i>
-									<i class="fa fa-minus parameter_remove">
-										<div class="tooltip_remove">Remove Parameter</div>
-										<div class="tip_triangle"></div>
-									</i>
-								</div>
+								
 							</div>
 						</div>
+					</div>
+					<div class="form-group parameter__align col-md-1">
+						<!-- <input type="button" class="btn btn-primary align_right parameter_btn"> -->
+						<i class="fa fa-plus parameter_btn parameter_add">
+							<div class="tooltip_parameter">Add Parameter</div>
+							<div class="tip_triangle"></div>
+						</i>
+						<i class="fa fa-minus parameter_remove">
+							<div class="tooltip_remove">Remove Parameter</div>
+							<div class="tip_triangle"></div>
+						</i>
 					</div>
 
 					<input type="hidden" name="test_add" value="1">

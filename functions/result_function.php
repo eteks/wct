@@ -1,5 +1,5 @@
 <?php
-	include($_SERVER["DOCUMENT_ROOT"] . "/wct_v2/common.php");
+	include($_SERVER["DOCUMENT_ROOT"] . "/wct/common.php");
  	class resultFunction {
  		public $resultid;
  		public $createscheduleid;
@@ -33,9 +33,9 @@
 				 ON tb.testbattery_id = cs.createscheduletestbattery_id INNER JOIN
 				 wc_testbattery_test_attribute as tbta ON tbta.testbattery_id=tb.testbattery_id
 				 INNER JOIN wc_test as t ON t.test_id = tbta.testbattery_test_id INNER JOIN
-				 wc_test_attribute as ta ON ta.test_id = t.test_id INNER JOIN wc_range as r ON 
+				 wc_test_attribute as ta ON ta.test_id = t.test_id INNER JOIN wc_range as r ON
 				 r.rangetestattribute_id = ta.test_attribute_id WHERE cs.createschedule_id='".$this->createscheduleid."'")or die(mysql_error());
-			
+
 			//newly changed
 			// $res = mysql_query("SELECT * FROM wc_createschedule as cs INNER JOIN wc_testbattery tb
 			// 	 ON tb.testbattery_id = cs.createscheduletestbattery_id INNER JOIN
@@ -113,18 +113,18 @@
     			array_push( $json, $tmp );
 		    }
 		    echo json_encode($json);
-		}	
+		}
 		if(isset($_GET['storeresult'])){
 			$strRequest = file_get_contents('php://input');
 			$Request = json_decode($strRequest);
 			$resultFunction = new resultFunction();
 			foreach($Request as $value){
 				$resultFunction->createscheduleid = $value->createschedule_id;
-				$resultFunction->athleteid = $value->athlete_id; 
-				$resultFunction->resulttest_name = $value->test_name; 
-				$resultFunction->resultparameter_name = $value->parameter_name; 
-				$resultFunction->result = $value->enter_result; 
-				$resultFunction->points = $value->enter_points;  
+				$resultFunction->athleteid = $value->athlete_id;
+				$resultFunction->resulttest_name = $value->test_name;
+				$resultFunction->resultparameter_name = $value->parameter_name;
+				$resultFunction->result = $value->enter_result;
+				$resultFunction->points = $value->enter_points;
 				$result = $resultFunction->isresultExist();
 				if(!$result){
 					$resultinsert = $resultFunction->resultInsert();
@@ -132,12 +132,12 @@
 				}
 				else{
 					$status = false;
-				}		
+				}
 			}
 			if($status == true)
 				echo "success#Result Created";
 			else
-				echo "failure#Result Already Created for this athlete with the same parameter name";	
+				echo "failure#Result Already Created for this athlete with the same parameter name";
 		}
 	}
 ?>

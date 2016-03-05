@@ -12,7 +12,7 @@
 		<div class="col-xs-12 col-md-12">
 		<!--	<div class="col-md-4 hidden-xs"></div> -->
 			<div class="col-xs-12 col-md-7 align_margin">
-				<form name="create_schedule_form" id="createschedule_form">
+				<form name="create_schedule_form" class="createschedule_form">
 				<input type="hidden" class="statesid" name="edit_schedule_id">
 					<div class="form-group">
 						<label>Schedule Name</label><br>
@@ -218,9 +218,13 @@
 								<i class="fa fa-search font-search"></i>
 							</div><!--search__list-->
 								<div class="test-list">
+									<?php
+				                        $query = $createscheduleFunction->createschedulenameSelect();
+				                        while ($row = mysql_fetch_array($query)) {
+			                        ?>
 									<span class="test-name">
-										<input type="checkbox" name="test" value="test" class="check_test" id="check-select">
-										<input type="text" name="test" value="xyz" class="list_edit">
+										<input type="checkbox" name="test" value="test" class="check_test check_createschedule check_list" id="check-select">
+										<input type="text" name="check_createschedulename" value="<?php echo $row['createschedule_name']; ?>" class="list_edit check_createschedulename check_data">
 										<span class="test-alter">
 											<i class="fa fa-floppy-o save_item"></i>
 											<i class="fa fa-pencil-square-o edit_item"></i>
@@ -239,34 +243,14 @@
 							                <input type="hidden" name="delete_id" value="" id="delete_id"/>
 							              </div><!--del_content-->
       								</div><!--delete_div-->
-									<span class="test-name">
-										<input type="checkbox" name="test" value="test" class="check_test">
-										<input type="text" name="test" value="xyz" class="list_edit">
-										<span class="test-alter">
-											<i class="fa fa-floppy-o save_item"></i>
-											<i class="fa fa-pencil-square-o edit_item"></i>
-											<i class="fa fa-trash-o delete_item"></i>
-										</span><!--test-alter-->
-									</span><!--test-name-->
-									<div class="delete_div delete_search">
-								            <!-- <code class="close_btn cancel_btn"> </code>  -->
-								              <div class="del_title">
-								                <span class="del_txt">DELETE</span>
-								              </div>
-								              <div class="del_content">
-								                <span class="del_content_txt">Are you sure want to delete this whole record?</span>
-								                <input type="button" class="btn btn-primary align_right yes_btn" value="Yes">
-								                <input type="button" class="btn btn-primary align_right no_btn" value="No">
-								                <input type="hidden" name="delete_id" value="" id="delete_id"/>
-								              </div><!--del_content-->
-          								</div><!--delete_div-->
+      								<?php } ?>						
 								</div><!--test-list-->
 						</div><!--search-content-->
 					</form>
 				</div>
 			
 			<div class="container table-position col-md-9" style="padding: 0px;">
-				<table class="table createschedule_table">
+				<table class="table createschedule_table check_table">
 					 <thead>
 			      <tr class="row_color">
 			        
@@ -278,10 +262,15 @@
 			        <th class="align_center">Action</th>
 			      </tr>
 			    </thead>
-			<tbody>
+				<tbody>
+					<?php
+	                   $query = $createscheduleFunction->createscheduleSelect();
+	                   $i=1;
+	                   while ($row = mysql_fetch_array($query)) {
+                    ?>
 				<tr class="align_center delete_color">
                         <input type="hidden" class="t_createschedule_id" name="createschedule_id" value="<?php echo $row['createschedule_id']; ?>">
-					 
+					 	<input type='hidden' class="t_createschedule_name check_name" name='createschedule_name' value="<?php echo $row['createschedule_name']; ?>">
 			    <!--  <?php
                    // $query = $createscheduleFunction->createscheduleSelect();
                    // $i=1;
@@ -293,13 +282,13 @@
 					        <td class="t_createschedule_date"><?php// echo date("d/m/Y", strtotime($row['createschedule_date'])); ?></td>
 					        <td class="t_createschedule_time"><?php// echo date("H:i:s", strtotime($row['createschedule_time'])); ?></td>
 					        <td class="t_createschedule_venue"><?php// echo $row['createschedule_venue']; ?></td> -->
-					        <td>Long Jump</td>
-					        <td>Distance</td>
-					        <td>MT</td>
-					        <td>dfdf</td>
-							<td>
-					        	<span class="edit_state" onclick="editfunction(<?php //echo $row['createschedule_id'] ?>)"><i class="fa fa-pencil-square-o"></i></span>
-					        	<span class="delete_state" data-value="<?php// echo $row['createschedule_id'] ?>"><i class="fa fa-trash-o"></i></span>
+					        <td><?php echo $row['testbattery_name']; ?></td>
+					        <td><?php echo date("d/m/Y", strtotime($row['createschedule_date'])); ?></td>
+					        <td><?php echo $row['createschedule_time']; ?></td>
+					        <td><?php echo $row['createschedule_venue']; ?></td>
+							<td class="popup-edit">
+					        	<span class="edit_state" onclick="editfunction(<?php echo $row['createschedule_id'] ?>)"><i class="fa fa-pencil-square-o"></i></span>
+					        	<span class="delete_state" data-value="<?php echo $row['createschedule_id'] ?>"><i class="fa fa-trash-o"></i></span>
 					                    <div class="createschedule_div popup_hidden">
 							          		<code class="close_btn cancel_btn"> </code>
 							          		<div class="edit_title">
@@ -307,8 +296,9 @@
 							              	</div><!--edit_title-->
 							          			<div class="container state-content col-md-12">
 							          			<div class="col-xs-12 col-md-12 align_margin">
-								          			<form name="edit_createschedule_form" id="edit_create_schedule_form">
+								          			<form name="edit_createschedule_form" class="edit_create_schedule_form">
 								          			<input type="hidden" class="statesid" name="edit_schedule_id">
+								          			<input type="hidden" class="edit_schedule_name" name="edit_schedule_name" value="">
 								          				<!-- <div class="form-group">
 													<label>Enter the schedule Name</label><br>
 													<input type="text" class="adjust_width" name="edit_schedule_name" data-validation-error-msg="Please Enter the name of the Schedule" data-validation="required">
@@ -318,10 +308,10 @@
 												  <select class="form-control classic adjust_width box-width" id="battey_name" name="edit_schedule_testbattery" data-validation-error-msg="Please Select the name of the Test Battery Name" data-validation="required">
 												  	<option value=""> Test Battery Name</option>
 												   <?php
-								                        $query = $testbattery->testbatterySelect();
-								                        while ($row = mysql_fetch_array($query)) {
+								                        $tb_query = $testbattery->testbatterySelect();
+								                        while ($tb_row = mysql_fetch_array($tb_query)) {
 								                            ?>
-								                            <option value="<?php echo $row['testbattery_id']; ?>"><?php echo $row['testbattery_name']; ?></option>
+								                            <option value="<?php echo $tb_row['testbattery_id']; ?>"><?php echo $tb_row['testbattery_name']; ?></option>
 								                      <?php } ?>
 												  </select>
 												</div>
@@ -541,7 +531,7 @@
   								</div><!--delete_div-->
 							</td>
 			        	</tr>
-                 	<?php //$i++;} ?>
+                 	<?php $i++;} ?>
 		    	</tbody>
 		  	</table>
 			</div>

@@ -1,19 +1,19 @@
 <?php
-	include($_SERVER["DOCUMENT_ROOT"] . "/wct_v2/common.php");
+	include($_SERVER["DOCUMENT_ROOT"] . "/wct/common.php");
  	class rangeFunction {
  		public $rangeid;
  		public $rangetestbatteryid;
  		public $rangetestbatteryname;
 	    public $rangecategoryid;
-	    public $rangecategoryname;	
+	    public $rangecategoryname;
 	    public $rangetestid;
 	    public $rangetestname;
 	    public $rangetestattributeid;
 	    public $rangeparametername;
-	    public $rangeattributeid;							  
-	    public $rangestart;	
-	    public $rangeend;	
-	    public $rangepoint;				
+	    public $rangeattributeid;
+	    public $rangestart;
+	    public $rangeend;
+	    public $rangepoint;
 
 		//To select all record for displaying data in table
 		public function rangeSelect(){
@@ -21,41 +21,41 @@
 			return $res;
 		}
 		public function rangeInsert(){
-			$res = mysql_query("insert into wc_range (rangetestbattery_id,rangecategories_id,rangetest_id,rangetestattribute_id,range_status) values('".$this->rangetestbatteryid."','".$this->rangecategoryid."','".$this->rangetestid."','".$this->rangetestattributeid."','1')")or die(mysql_error());			
+			$res = mysql_query("insert into wc_range (rangetestbattery_id,rangecategories_id,rangetest_id,rangetestattribute_id,range_status) values('".$this->rangetestbatteryid."','".$this->rangecategoryid."','".$this->rangetestid."','".$this->rangetestattributeid."','1')")or die(mysql_error());
 			$lastinsertid = mysql_insert_id();
 			if($res){ return $lastinsertid; }
 			else{ return false; }
 		}
 		public function rangeattributeInsert(){
-			$res = mysql_query("insert into wc_range_attribute (range_id,range_start,range_end,range_point,range_attribute_status) values('".$this->rangeid."','".$this->rangestart."','".$this->rangeend."','".$this->rangepoint."','1')")or die(mysql_error());			
+			$res = mysql_query("insert into wc_range_attribute (range_id,range_start,range_end,range_point,range_attribute_status) values('".$this->rangeid."','".$this->rangestart."','".$this->rangeend."','".$this->rangepoint."','1')")or die(mysql_error());
 			$lastinsertid = mysql_insert_id();
 			if($res){ return $lastinsertid; }
 			else{ return false; }
 		}
-		public function rangeUpdate(){		
-            $res = mysql_query("update wc_range set rangetestbattery_id='".$this->rangetestbatteryid."',rangetest_id='".$this->rangetestid."',rangetestattribute_id='".$this->rangetestattributeid."',rangecategories_id='".$this->rangecategoryid."' where range_id ='".$this->rangeid."'")or die(mysql_error());          
+		public function rangeUpdate(){
+            $res = mysql_query("update wc_range set rangetestbattery_id='".$this->rangetestbatteryid."',rangetest_id='".$this->rangetestid."',rangetestattribute_id='".$this->rangetestattributeid."',rangecategories_id='".$this->rangecategoryid."' where range_id ='".$this->rangeid."'")or die(mysql_error());
 			if($res){ return true; }
-			else{ return false; }		
+			else{ return false; }
 		}
-		public function rangeattributeUpdate(){		
-            $res = mysql_query("update wc_range_attribute set range_start='".$this->rangestart."',range_end='".$this->rangeend."',range_point='".$this->rangepoint."' where range_attribute_id ='".$this->rangeattributeid."' and range_id ='".$this->rangeid."'")or die(mysql_error());          
+		public function rangeattributeUpdate(){
+            $res = mysql_query("update wc_range_attribute set range_start='".$this->rangestart."',range_end='".$this->rangeend."',range_point='".$this->rangepoint."' where range_attribute_id ='".$this->rangeattributeid."' and range_id ='".$this->rangeid."'")or die(mysql_error());
 			if($res){ return true; }
-			else{ return false; }		
+			else{ return false; }
 		}
-		public function rangeDelete(){		
-            $res = mysql_query("delete from wc_range where range_id ='".$this->rangeid."' ")or die(mysql_error());          			
+		public function rangeDelete(){
+            $res = mysql_query("delete from wc_range where range_id ='".$this->rangeid."' ")or die(mysql_error());
 			if($res){ return true; }
-			else{ return false; }		
+			else{ return false; }
 		}
 		// To select particular data by using id
 		public function rangeselectRecord(){
 			$res = mysql_query("SELECT * FROM wc_range as r INNER JOIN wc_testbattery as tb INNER JOIN wc_categories as c INNER JOIN wc_test as t INNER JOiN wc_test_attribute as ta ON tb.testbattery_id = r.rangetestbattery_id and c.categories_id = r.rangecategories_id and t.test_id = r.rangetest_id and ta.test_attribute_id = r.rangetestattribute_id WHERE r.range_id='".$this->rangeid."'")or die(mysql_error());
-			return $res;	
+			return $res;
 		}
 		// To select particular data by using id
 		public function rangeattributeselectRecord(){
 			$res = mysql_query("SELECT * FROM wc_range_attribute WHERE range_id = '".$this->rangeid."'")or die(mysql_error());
-			return $res;	
+			return $res;
 		}
 		//Fetch Test name by selected test id
 		public function testnameSelect(){
@@ -72,13 +72,13 @@
 		}
 		//Fetch Category by selected testbattery id
 		public function categoryselect(){
-			$res = mysql_query("SELECT categories_id, categories_name FROM wc_categories as c INNER JOIN wc_testbattery_category_attribute as tbca ON 
+			$res = mysql_query("SELECT categories_id, categories_name FROM wc_categories as c INNER JOIN wc_testbattery_category_attribute as tbca ON
 				c.categories_id = tbca.testbattery_category_id WHERE tbca.testbattery_id='".$this->rangetestbatteryid."'")or die(mysql_error());
 			return $res;
 		}
 		//Fetch Test by selected testbattery id
 		public function testselect(){
-			$res = mysql_query("SELECT test_id, test_name FROM wc_test as t INNER JOIN wc_testbattery_test_attribute as tbta ON 
+			$res = mysql_query("SELECT test_id, test_name FROM wc_test as t INNER JOIN wc_testbattery_test_attribute as tbta ON
 				t.test_id = tbta.testbattery_test_id WHERE tbta.testbattery_id='".$this->rangetestbatteryid."'")or die(mysql_error());
 			return $res;
 		}
@@ -93,16 +93,16 @@
 				return false;
 			}
 		}
-		
+
 	}
 	//To insert data
 	if(isset($_GET['adddata'])){
 		$counter = (count($_POST)-3)/3;
 		$rangeFunction = new rangeFunction();
-		$rangeFunction->rangetestbatteryid = $_POST['range_testbattery']; 
-		$rangeFunction->rangecategoryid =$_POST['range_category']; 
-		$rangeFunction->rangetestid=$_POST['range_test']; 
-		$rangeFunction->rangetestattributeid=$_POST['range_parameter']; 
+		$rangeFunction->rangetestbatteryid = $_POST['range_testbattery'];
+		$rangeFunction->rangecategoryid =$_POST['range_category'];
+		$rangeFunction->rangetestid=$_POST['range_test'];
+		$rangeFunction->rangetestattributeid=$_POST['range_parameter'];
 		$testname = mysql_fetch_array( $rangeFunction->testnameSelect());
 		$rangeFunction->rangetestname = $testname['test_name'];
 		$paramters = $rangeFunction->isParameterExist();
@@ -120,15 +120,15 @@
 			}
 			else{
 			 	echo "failure#Range Not Inserted";
-			} 
+			}
 		}
 		else{
 			// echo "failure#Already Assigned Range for this parameter";
 			//newly changed
 			echo "failure#Already Range Assigned";
 		}
-	}	
-	// For display edit data 
+	}
+	// For display edit data
 	if(isset($_GET['chooseedit'])){
 		$range_json = array();
 		$rangeattr_json = array();
@@ -164,16 +164,16 @@
     		array_push( $rangeattr_json, $tmp );
 	    }
 	    echo json_encode($range_json).'#####'.json_encode($rangeattr_json);
-	}	
+	}
 	//To store edited data
 	if(isset($_GET['editdata'])){
 		$counter = (count($_POST)-3)/3;
 		$rangeFunction = new rangeFunction();
 		$rangeFunction->rangeid = $_POST['edit_range_id'];
-		$rangeFunction->rangetestbatteryid = $_POST['edit_range_testbattery']; 
-		$rangeFunction->rangecategoryid =$_POST['edit_range_category']; 
-		$rangeFunction->rangetestid=$_POST['edit_range_test']; 
-		$rangeFunction->rangetestattributeid=$_POST['edit_range_parameter']; 
+		$rangeFunction->rangetestbatteryid = $_POST['edit_range_testbattery'];
+		$rangeFunction->rangecategoryid =$_POST['edit_range_category'];
+		$rangeFunction->rangetestid=$_POST['edit_range_test'];
+		$rangeFunction->rangetestattributeid=$_POST['edit_range_parameter'];
 
 		$testname = mysql_fetch_array( $rangeFunction->testnameSelect());
 		$rangeFunction->rangetestname = $testname['test_name'];
@@ -195,7 +195,7 @@
 		// }
 		// else{
 		// 	echo "failure#Already Assigned Range for this parameter";
-		// }	
+		// }
 	}
 	// To delete stored data
 	if(isset($_GET['deletedata'])){
@@ -209,7 +209,7 @@
 			echo "failure#Range not Deleted";
 		}
 	}
-	// To load parameter for selected test 
+	// To load parameter for selected test
 	if(isset($_GET['loadparameter'])){
 		$json =array();
 		$rangeFunction = new rangeFunction();
@@ -248,7 +248,7 @@
 	    }
 
 	    echo json_encode($category_json).'#####'.json_encode($test_json);
-	} 
+	}
 	// To load parameter format and unit using testattribute id
 	if(isset($_GET['paramformat'])){
 		$json =array();

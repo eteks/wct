@@ -1,5 +1,5 @@
 <?php
-	include($_SERVER["DOCUMENT_ROOT"] . "/wct_v2/common.php");
+	include($_SERVER["DOCUMENT_ROOT"] . "/wct/common.php");
  	class districtFunction {
  		public $statesid;
  		public $statesname;
@@ -10,7 +10,7 @@
 		}
 		// destructor
 		function __destruct() {
-			
+
 		}
 		//To select all record for displaying data in table
 		public function districtSelect(){
@@ -28,9 +28,9 @@
 			if($res){ return true; }
 			else{ return false; }
 		}
-		public function districtDelete(){		
-            $res = mysql_query("delete from wc_district where district_id ='".$this->districtid."' ")or die(mysql_error());          
-			// $res = mysql_query("update wc_district set district_status='0' where district_id ='".$this->districtid."'")or die(mysql_error()); 
+		public function districtDelete(){
+            $res = mysql_query("delete from wc_district where district_id ='".$this->districtid."' ")or die(mysql_error());
+			// $res = mysql_query("update wc_district set district_status='0' where district_id ='".$this->districtid."'")or die(mysql_error());
 			if($res){ return true; }
 			else{ return false; }
 		}
@@ -55,7 +55,7 @@
 		// To select set of record by matching state id
 		public function dsitrictstateselectRecord(){
 			$res = mysql_query("SELECT * FROM wc_district WHERE districtstates_id='".$this->statesid."'")or die(mysql_error());
-			return $res;	
+			return $res;
 		}
 	}
 	if(isset($_POST)){
@@ -155,7 +155,7 @@
 					echo json_encode($value);
 				}
 			}
-		} 
+		}
 		// To load district for selected state
 		if(isset($_GET['loaddistrictfromdb'])){
 			$json =array();
@@ -171,6 +171,6 @@
 	    		array_push( $json, $tmp );
 		    }
 		    echo json_encode($json);
-		} 
+		}
 	  }
 ?>

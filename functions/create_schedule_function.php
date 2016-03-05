@@ -60,6 +60,12 @@
 				return false;
 			}
 		}
+
+		// Newly added for v2
+		public function createschedulenameSelect(){
+			$res = mysql_query("SELECT DISTINCT createschedule_name FROM wc_createschedule where createschedule_status='1' ORDER BY createschedule_id DESC")or die(mysql_error());
+			return $res;
+		}
 	}
 	if(isset($_POST)){
 		//To insert data

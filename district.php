@@ -56,14 +56,14 @@
 						       <!-- <td class="t_district_id"><?php // echo $i; ?></td> -->
 						        <!-- <td class="t_states_name"><?php echo $row['states_name']; ?></td> -->
 						        <td class="t_district_name"><?php echo $row['district_name']; ?></td>
-						        <td class="popup-edit_district">
+						        <td class="popup-edit popup-edit_district">
 						        	<span class="edit_state" onclick="editfunction(<?php echo $row['district_id'] ?>)"><i class="fa fa-pencil-square-o"></i></span>
 						        	<span class="delete_state" data-value="<?php echo $row['district_id'] ?>"><i class="fa fa-trash-o"></i></span>
 						        
 								<div class="district_div edit_district_div popup_hidden">
 					          		<code class="close_btn cancel_btn"> </code>
 					          		<div class="edit_title">
-					                	<span class="del_txt">EDIT</span>
+					                	<span class="del_txt">Edit detail</span>
 					              	</div><!--edit_title-->
 					          			<div class="container state-content col-md-12">
 						          			<form name="edit_district_form" class="edit_district_form">

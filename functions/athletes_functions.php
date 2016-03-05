@@ -38,7 +38,7 @@
             $res = mysql_query("update wc_athlete set athlete_name='".$this->athletename."',athlete_dob='".$this->athletedob."',
             			athlete_mobile='".$this->athletemobile."',athlete_gender='".$this->athletegender."',
             			athletestates_id='".$this->athletestatesid."',athletedistrict_id='".$this->athletedistrictid."',
-            			athlete_address='".$this->athleteaddress."' where athlete_id ='".$this->athleteid."'")or die(mysql_error());
+            			athlete_address='".$this->athleteaddress."',athletesports_id='".$this->athletesportsid."' where athlete_id ='".$this->athleteid."'")or die(mysql_error());
 			if($res){ return true; }
 			else{ return false; }
 		}
