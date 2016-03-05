@@ -37,6 +37,7 @@ if(isset($_GET['insert_error'])){
 								<label>Enter Parameter Name</label><br>
 								<input type="text" class="adjust_width parameter_name" name="parameter_name1" data-validation-error-msg="Please Enter the Parameter Name" data-validation="required">
 								<span class="hided param_name_error">Please Enter the parameter name</span>
+								<input type="hidden" class="parameter_count" value="1" />
 							</div>
 
 							<div class="form-group col-md-2">
@@ -73,7 +74,7 @@ if(isset($_GET['insert_error'])){
 									<span class="hided param_format_error">Please Select the format</span>
 								</div>
 
-								
+
 							</div>
 						</div>
 					</div>
@@ -108,22 +109,21 @@ if(isset($_GET['insert_error'])){
 								<i class="fa fa-search font-search"></i>
 							</div><!--search__list-->
 								<div class="test-list">
-									<!-- <?php
-									//$data = $obj->testselectfunction();
-									//print_r($data);
-									//foreach( $data as $eachrecord ) {
-									 ?> -->
-									<!-- <span class="test-name">
+									<?php
+									$data = $obj->testnamefunction();
+									foreach( $data as $eachrecord ) {
+									 ?>
+									<span class="test-name">
 										<input type="checkbox" name="test" value="test" class="check_test" id="check-select">
-										<input type="text" name="test" value="<?php //echo $eachrecord ['test_name']; ?>" class="list_edit">
+										<input type="text" name="test" data-id ="<?php echo $eachrecord ['test_id']; ?>" value="<?php echo $eachrecord ['test_name']; ?>" class="list_edit">
 										<span class="test-alter">
 											<i class="fa fa-floppy-o save_item"></i>
 											<i class="fa fa-pencil-square-o edit_item"></i>
 											<i class="fa fa-trash-o delete_item"></i>
-										</span><!test-alter->
-									</span><!-test-name->
+										</span><!--test-alter-->
+									</span><!--test-name-->
 									<div class="delete_div delete_search">
-							            <!- <code class="close_btn cancel_btn"> </code>  ->
+							            <code class="close_btn cancel_btn"> </code>
 							              <div class="del_title">
 							                <span class="del_txt">DELETE</span>
 							              </div>
@@ -132,21 +132,15 @@ if(isset($_GET['insert_error'])){
 							                <input type="button" class="btn btn-primary align_right yes_btn" value="Yes">
 							                <input type="button" class="btn btn-primary align_right no_btn" value="No">
 							                <input type="hidden" name="delete_id" value="" id="delete_id"/>
-							              </div><!-del_content->
-      								</div><!-delete_div-> -->
-									<?php //} ?>
-
+										</div><!--del_content-->
+      								</div><!--delete_div -->
+									<?php } ?>
 								</div><!--test-list-->
-
-
 						</div><!--search-content-->
 					</form>
-
-
-
 	            </div><!--search_part-->
 				<div class="container table-position col-md-9" style="padding: 0px;">
-				  <table class="table test_table1">
+				  <table class="table test_table1" id="test_table">
 				    <thead>
 				      <tr class="row_color">
 						<th class="align_center">Parameter Name</th>
@@ -157,18 +151,12 @@ if(isset($_GET['insert_error'])){
 				      </tr>
 				    </thead>
 				    <tbody>
-
 					<?php
 					$data = $obj->testselectfunction();
-					//$i=1;
 					foreach( $data as $eachrecord ) {
 					 ?>
-
 				      <tr class="align_center delete_color">
-
 						<input type="hidden" value="<?php echo $eachrecord ['test_attribute_id']; ?>" id="test_attribute_id">
-
-				         <!-- <td><?php //echo $eachrecord ['test_name']; ?></td> -->
 				        <td><?php echo $eachrecord ['test_parameter_name']; ?></td>
 				        <td><?php echo $eachrecord ['test_parameter_type']; ?></td>
 				        <td><?php echo $eachrecord ['test_parameter_unit']; ?></td>
@@ -180,18 +168,15 @@ if(isset($_GET['insert_error'])){
 					          		<code class="close_btn cancel_btn"> </code>
 					          		<div class="edit_title">
 					                	<span class="del_txt">Edit Detail</span>
-					              	</div><!--edit_title-->
+					              	</div>
 					          			<div class="container col-md-12">
 						          			<div class="col-xs-12 col-md-12">
 									<form id="test_updation_form" action="functions/test_functions.php" method="post">
-										<!-- <div class="form-group">
-											<label>Enter Test Name</label><br>
-											<input type="text" class="adjust_width test_name_update" name="test_name" data-validation-error-msg="Please Enter the Test Name" data-validation="required" >
-										</div> -->
 										<div class="parameter_holder">
 											<div class="form-group" style="margin: 0;">
 												<label class="popup_label">Enter Parameter Name</label><br>
 												<input type="text" class="adjust_width test_parameter_name_update" name="parameter_name1" data-validation-error-msg="Please Enter the Parameter Name" data-validation="required" style="width:220px !important;height: 30px;">
+
 											</div>
 											<div class="form-group col-md-8 test_percentage parameter_type_parent">
 												<div class="col-md-12" style="padding: 0;">
@@ -231,20 +216,18 @@ if(isset($_GET['insert_error'])){
 													</select>
 												</div>
 											</div>
-										</div><!-- end parameter_holder -->
+										</div>
 										<input class="parameter_update" type="hidden" name="parameter_update" value="" />
 										<input class="test_update_id" type="hidden" name="test_update_id" value="" />
 										<div class="col-md-12 schedule_btn">
-											<!-- <input type="reset" value="Clear" class="btn btn-primary align_right clear" maxlength="50"> -->
 											<input type="submit" class="btn btn-primary align_right  clear" value="Save">
 										</div>
 									</form>
 								</div>
-							</div><!--state-content-->
-			</div><!--test_div-->
+							</div>
+			</div>
 
 							<div class="delete_div delete_test_div">
-						            <!-- <code class="close_btn cancel_btn"> </code>  -->
 						              <div class="del_title">
 						                <span class="del_txt">DELETE</span>
 						              </div>
@@ -253,12 +236,12 @@ if(isset($_GET['insert_error'])){
 						                <input type="button" class="btn btn-primary align_right yes_btn" value="Yes">
 						                <input type="button" class="btn btn-primary align_right no_btn" value="No">
 						                <input type="hidden" name="delete_id" value="" id="delete_id"/>
-						              </div><!--del_content-->
-  								</div><!--delete_div-->
+						              </div>
+  								</div>
 				        </td>
 						<input type="hidden" name="test_attribute_id" id="test_attribute_id" value="<?php echo $eachrecord ['test_attribute_id']; ?>" />
 				      </tr>
-				      <?php //$i++;
+				      <?php
 				  		} ?>
 				    </tbody>
 				  </table>
