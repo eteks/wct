@@ -23,6 +23,13 @@ if(isset($_GET['duplicate'])){
 	echo "<script>alert('Test Battery already exist!');var url ='".$url."'; window.location = url ;</script>";
 }
  ?>
+ <style type="text/css">
+	thead, tbody tr {
+    display:table;
+    width:100%;
+    table-layout:fixed;
+	}
+</style>
 <div class="container">
 	<div class="container left_align_testbattery align_height">
 		<span class="sports">TEST BATTERY</span>
@@ -153,7 +160,7 @@ if(isset($_GET['duplicate'])){
 			        <th class="align_center">Action</th>
 			      </tr>
 			    </thead>
-			    <tbody>
+			    <tbody style="display:block;height:180px;overflow:auto;">
 					<!-- <?php
 					//$data = $test_battery->testbatteryselectfunction();
 					//$i=1;
@@ -180,7 +187,7 @@ if(isset($_GET['duplicate'])){
 			        </td>
 			        <td class="test-list">Categories7<i class="fa fa-angle-down down_font"></i>
 			        	<div class="hover-list hover-test">
-			        	<span class="hover_title">Selected Test</span>
+			        	<span class="hover_title_test">Selected Test</span>
 							<?php
 						  $test_data = $test->testbatteryselectfunction();
 						  foreach( $test_data as $eachrecord ) {

@@ -279,7 +279,8 @@ $(window).resize(function () {
 
 
 $(document).ready(function () {
-    $('.test_search').keyup(function() {
+  $('.test_search').keyup(function() {
+
         $('.test-list').empty();
         var testname = $(this).val();
         $.ajax({
@@ -313,6 +314,8 @@ $(document).ready(function () {
                                  <input type="hidden" name="delete_id" value="" id="delete_id"/>\
                                </div>\
                          </div>');
+                           $('.edit_item,.save_item,.delete_item').hide();
+
                      });
                  }else{
                      alert('No Test Found');
@@ -331,17 +334,19 @@ $(document).ready(function () {
   //   }
   // });
 
-  $('.save_item,.edit_item,.delete_item').hide();
-  $('.test-name').mouseenter(function(){
+  
+  $(document).delegate('.test-name', 'mouseenter', function(event){
     $(this).children().find('.edit_item,.delete_item').show();
     $('.save_item').hide();
   });
-  $('.test-name').mouseleave(function(){
+
+   $(document).delegate('.test-name','mouseleave',function(event){
     $('.edit_item,.delete_item,.save_item').hide();
+    $('.list_edit').removeClass('list_edit_rollover');
   });
 
 
-  $('.edit_item').on('click',function(){
+  $(document).delegate('.edit_item','click',function(event){
     $('.edit_item').hide();
     $(this).prev('.save_item').show();
     if($('.list_edit').hasClass('list_edit_rollover')){
@@ -349,12 +354,17 @@ $(document).ready(function () {
     }
     $(this).parents('.test-alter').prev('.list_edit').addClass("list_edit_rollover");
   });
+  
+  $(document).delegate('.save_item','click',function(event){
+    $('.list_edit').removeClass('list_edit_rollover');
+  });
 
 
-  $('.delete_item').on('click',function(){
+  $(document).delegate('.delete_item','click',function(){
     $(this).parents('.test-list').find('.delete_div').show();
     $(this).parents('.test-name').next().siblings('.delete_div').hide();
   });  
+
   $('.category-list').mouseenter(function(){
     $('.hover-category').show();
   });
