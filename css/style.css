@@ -469,7 +469,7 @@ select {
 }*/
 .test_battery_div,.athletes_div,.createschedule_div{
     height: 370px;
-    margin: 0 0 0 -160px;
+    margin: 0 0 0 -200px;
     width: 290px;
     position:absolute;
     z-index:9999;
@@ -567,7 +567,7 @@ select {
     font-size: 14px;
     line-height: 2;
     text-align: left;
-    
+
 }
 .states_list,.district_list,.edit_states_list{
     display: none;
@@ -1227,7 +1227,8 @@ input[type=radio]:checked + label:before {
     position: relative !important;
     top: 12px;
     width: 205px;
-    box-shadow: none;   
+    box-shadow: none;
+    height: 35px; 
 }
 .combo--align--popup span input {
     position: relative !important;
@@ -1434,7 +1435,7 @@ tbody tr {
 }
 .schedule_test { /* added by siva */
     padding: 0 !important;
-    margin-left: -16px;   
+    margin-left: -16px;
 }
 .search_part {
     margin: 14px 0 0;
@@ -1529,7 +1530,7 @@ tbody tr {
     box-shadow: 0 2px 10px 3px #b8b7b9;
     margin: -8px 0 0 -25px;
 }
-.delete_state_div{  /* added by siva */ 
+.delete_state_div{  /* added by siva */
     background: #fff none repeat scroll 0 0;
     box-shadow: 0 2px 10px 3px #b8b7b9;
     display: none;
@@ -1572,7 +1573,7 @@ tbody tr {
     z-index: 9999;
     padding: 5px 7px;
     margin: 18px 0 0 95px;
-    
+
 }
 .edit_category_div { /* state div */
     height: 200px;
@@ -1619,7 +1620,7 @@ tbody tr {
     display: none;
     box-shadow: 0 2px 10px 3px #b8b7b9;
     margin: -8px 0 0 5px;
-    
+
 }
 .delete_parametertype_div {
     background: #fff none repeat scroll 0 0;
@@ -1768,4 +1769,3 @@ button, input, optgroup, select, textarea {
 .athlete_list,.createschedule_list{
     display: none;
 }
-

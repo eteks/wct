@@ -41,8 +41,13 @@ class testfunction{
             return false;
           }
     }
-    public function testdeletefunction(){
+    public function testattributedeletefunction(){
         $sql = "delete from wc_test_attribute where test_attribute_id ='".$this->testid."'";
+        mysql_query($sql) or die("delete".mysql_error());
+        return true;
+    }
+    public function testnamedeletefunction(){
+        $sql = "delete from wc_test where test_id ='".$this->testid."'";
         mysql_query($sql) or die("delete".mysql_error());
         return true;
     }
@@ -123,7 +128,7 @@ class testfunction{
         $temp_arr = array();
         $testname = $_POST['id'];
         if($testname!=''){
-            $sql = mysql_query("SELECT * FROM wc_test where  test_name like '%".$testname."%' ORDER BY test_name DESC")or die(mysql_error());
+            $sql = mysql_query("SELECT * FROM wc_test where  test_name like '%".$testname."%' ORDER BY test_id DESC")or die(mysql_error());
             while($row = mysql_fetch_assoc($sql)) {
                 $temp_arr[] =$row;
             }
@@ -135,7 +140,7 @@ class testfunction{
         $temp_arr = array();
         $testname = $_POST['id'];
         if($testname!=''){
-            $sql = mysql_query("SELECT * FROM wc_test ORDER BY test_name DESC")or die(mysql_error());
+            $sql = mysql_query("SELECT * FROM wc_test ORDER BY test_id DESC")or die(mysql_error());
             while($row = mysql_fetch_assoc($sql)) {
                 $temp_arr[] =$row;
             }
@@ -162,14 +167,47 @@ class testfunction{
         $temp_arr['test'] = $test_arr;
         print(json_encode($temp_arr));
     }
-    if(isset($_GET['deletedata'])){
+    if(isset($_GET['delete_test_name'])){
         include ("../dbconnect.php");
         $test = new testfunction();
         $test->testid = $_POST['delete_id'];
-        if($test->testdeletefunction()){
+        if($test->testnamedeletefunction()){
           echo $_POST['delete_id'];
         }else{
           echo "error";
+        }
+    }
+    if(isset($_GET['delete_test_attribute'])){
+        include ("../dbconnect.php");
+        $test = new testfunction();
+        $test->testid = $_POST['delete_id'];
+        $sql = mysql_query("select * from wc_test_attribute where test_attribute_id ='".$_POST['delete_id']."'");
+        $count = mysql_num_rows($sql);
+        if($count >1){
+            if($test->testattributedeletefunction()){
+              echo $_POST['delete_id'];
+            }else{
+              echo "error";
+            }        
+        }else if($count = 1){
+            $res = mysql_fetch_array($sql);
+            $testid = $res['test_id'];
+            $exec=mysql_query("delete from wc_test where test_id ='".$testid."'");
+            if($exec){
+                echo $_POST['delete_id'];
+            }else{
+              echo "error";
+            }
+
+        }
+    }
+    if(isset($_GET['test_name_update'])){
+        include ("../dbconnect.php");
+        $test_id = $_POST['test_id'];
+        $test_name = $_POST['test_name'];
+        if(isset($test_id)&&isset($test_name)){
+            $sql = mysql_query("update wc_test set test_name = '".$test_name."' where test_id = '".$test_id."'");
+            echo "succeed";
         }
     }
  ?>

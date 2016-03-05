@@ -5,6 +5,11 @@
 	  $createscheduleFunction = new createscheduleFunction();
 	  $testbattery = new testbatteryfunction();
 ?>
+<style type="text/css">
+	#ui-id-1{
+		width: 152px !important;
+	}
+</style>
 <div class="container">
 	<div class="container left_align_parameter align_height">
 		<span class="sports">CREATE SCHEDULE</span>

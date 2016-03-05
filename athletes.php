@@ -9,6 +9,11 @@
 	  $sportsfunction = new sportsfunction();
 	  $athleteFunction = new athletesFunction();
 ?>
+<style type="text/css">
+	#ui-id-1{
+		width: 152px !important;
+	}
+</style>
 <div class="container">
 	<div class="container left_align_testbattery align_height">
 		<span class="sports">ADD ATHLETES</span>
@@ -134,7 +139,7 @@
 										<span class="test-alter">
 											<i class="fa fa-floppy-o save_item save_athlete"></i>
 											<i class="fa fa-pencil-square-o edit_item"></i>
-											<i class="fa fa-trash-o delete_item delete_state" data-value="<?php echo $row['athlete_id']; ?>"></i>
+											<i class="fa fa-trash-o delete_item delete_state" data-value="<?php echo $row['athlete_id']; ?>" style="float: none;"></i>
 										</span><!--test-alter-->
 									</span><!--test-name-->
 									<div class="delete_div delete_search">
@@ -153,13 +158,13 @@
 								</div><!--test-list-->
 						</div><!--search-content-->
 				</div>
-					
-					
+
+
 					<div class="container table-position col-md-9" style="padding: 0px;">
 				  <table class="table athletes_table check_table">
 			    <thead>
 			      <tr class="row_color">
-			      <th class="align_center">sports</th> 
+			      <th class="align_center">sports</th>
 			        <th class="align_center">Gender</th>
 			        <th class="align_center">D.O.B</th>
 			        <th class="align_center">Address</th>
@@ -171,7 +176,7 @@
 	               $query = $athleteFunction->athleteSelect();
 	               $i=1;
                    while ($row = mysql_fetch_array($query)) {
-                        ?> 
+                        ?>
                         <tr class="align_center delete_color">
                         	<input type='hidden' class="t_athlete_id check_id" name='athlete_id' value="<?php echo $row['athlete_id']; ?>">
                         	<input type='hidden' class="t_athlete_name check_name" name='athlete_name' value="<?php echo $row['athlete_name']; ?>">
@@ -285,7 +290,7 @@
 									</form>
 				          		  </div>
 								 </div><!--state-content-->
-								</div><!--test_battery_div-->				
+								</div><!--test_battery_div-->
 								<div class="delete_div delete_test_div">
 						            <!-- <code class="close_btn cancel_btn"> </code>  -->
 						              <div class="del_title">
@@ -301,8 +306,8 @@
 				        </td>
 						<input type="hidden" name="test_attribute_id" id="test_attribute_id" value="<?php echo $eachrecord ['test_attribute_id']; ?>" />
 				      </tr>
-				      
-				      <?php $i++;} ?> 
+
+				      <?php $i++;} ?>
 				    </tbody>
 				  </table>
 				</div>
@@ -312,17 +317,17 @@
 					<?php
 		               $at_query = $athleteFunction->athleteSelect();
 	                   while ($row1 = mysql_fetch_array($at_query)) {
-                     ?> 
+                     ?>
                      <li><?php echo $row1['athlete_name'] ?></li>
                      <?php } ?>
 				</ul>
 			</div>
-			
+
 			</div>
 			</div>
 			</div>
-			
-			
+
+
 			<!-- end  container-->
 	<!-- <div class="container align_center">
 	  	<ul class="pagination">
@@ -338,6 +343,6 @@
 <!-- end  container-->
 <!--<div class="popup_fade cancel_btn"></div><!--popup_fade-->
 	<!--	<div class="container">
-            
+
 		</div> --><!--container-->
 <?php require_once "footer.php" ?>

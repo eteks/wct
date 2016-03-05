@@ -69,7 +69,7 @@ if(isset($_GET['insert_error'])){
 									<span class="hided param_type_error">Please Select the type</span>
 								</div>
 								<div class="form-group col-md-2">
-									<select class="form-control classic type_align fl parameter_unit" id="unit" name="unit1" data-validation-error-msg="Please Select the Unit of the Parameter" data-validation="required">
+									<select class="form-control classic type_align fl parameter_unit paremeter_unit_add" id="unit" name="unit1" data-validation-error-msg="Please Select the Unit of the Parameter" data-validation="required">
 									<option value="">Unit</option>
 									</select>
 									<span class="hided param_unit_error">Please Select the unit</span>
@@ -122,7 +122,7 @@ if(isset($_GET['insert_error'])){
 									 ?>
 									<span class="test-name">
 										<input type="checkbox" name="test" value="test" class="check_test" id="check-select">
-										<input type="text" name="test" data-id ="<?php echo $eachrecord ['test_id']; ?>" value="<?php echo $eachrecord ['test_name']; ?>" class="list_edit input_wrap">
+										<input type="text" name="test" data-id ="<?php echo $eachrecord ['test_id']; ?>" value="<?php echo $eachrecord ['test_name']; ?>" class="list_edit input_wrap" disabled>
 										<span class="test-alter">
 											<i class="fa fa-floppy-o save_item edit_save_button"></i>
 											<i class="fa fa-pencil-square-o edit_item "></i>
@@ -136,7 +136,7 @@ if(isset($_GET['insert_error'])){
 							              </div>
 							              <div class="del_content">
 							                <span class="del_content_txt">Are you sure want to delete this whole record?</span>
-							                <input type="button" class="btn btn-primary align_right yes_btn" value="Yes">
+							                <input type="button" class="btn btn-primary align_right yes_btn" data-id ="<?php echo $eachrecord ['test_id']; ?>" value="Yes" data-delete='test_name'>
 							                <input type="button" class="btn btn-primary align_right no_btn" value="No">
 							                <input type="hidden" name="delete_id" value="" id="delete_id"/>
 										</div><!--del_content-->
@@ -232,15 +232,14 @@ if(isset($_GET['insert_error'])){
 									</form>
 								</div>
 							</div>
-			</div>
-
+						</div>
 							<div class="delete_div delete_test_div">
 						              <div class="del_title">
 						                <span class="del_txt">DELETE</span>
 						              </div>
 						              <div class="del_content">
 						                <span class="del_content_txt">Are you sure want to delete this whole record?</span>
-						                <input type="button" class="btn btn-primary align_right yes_btn" value="Yes">
+						                <input type="button" class="btn btn-primary align_right yes_btn" value="Yes" data-delete='test_attribute' data-id ="<?php echo $eachrecord ['test_attribute_id']; ?>">
 						                <input type="button" class="btn btn-primary align_right no_btn" value="No">
 						                <input type="hidden" name="delete_id" value="" id="delete_id"/>
 						              </div>

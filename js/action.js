@@ -279,6 +279,7 @@ $(window).resize(function () {
 
 
 $(document).ready(function () {
+    $('.edit_item,.save_item,.delete_item').hide();
   $('.test_search').keyup(function() {
         $('.test-list').empty();
         var testname = $(this).val();
@@ -298,10 +299,10 @@ $(document).ready(function () {
                              $('.test-list').append(
                              '<span class="test-name">\
                                  <input type="checkbox" name="test" value="test" class="check_test" id="check-select">\
-                                 <input type="text" data-id ="'+data[i].test_id+'" name="test" value="'+data[i].test_name+'" class="list_edit">\
+                                 <input type="text" data-id ="'+data[i].test_id+'" name="test" value="'+data[i].test_name+'" class="list_edit input_wrap" disabled>\
                                  <span class="test-alter">\
-                                     <i class="fa fa-floppy-o save_item"></i>\
-                                     <i class="fa fa-pencil-square-o edit_item"></i>\
+                                     <i class="fa fa-floppy-o save_item edit_save_button"></i>\
+                                     <i class="fa fa-pencil-square-o edit_item "></i>\
                                      <i class="fa fa-trash-o delete_item"></i>\
                                  </span>\
                              </span>\
@@ -311,17 +312,14 @@ $(document).ready(function () {
                                    </div>\
                                    <div class="del_content">\
                                      <span class="del_content_txt">Are you sure want to delete this whole record?</span>\
-                                     <input type="button" class="btn btn-primary align_right yes_btn" value="Yes">\
+                                     <input type="button" class="btn btn-primary align_right yes_btn" value="Yes" data-delete="test_name" data-id ="'+data[i].test_id+'">\
                                      <input type="button" class="btn btn-primary align_right no_btn" value="No">\
                                      <input type="hidden" name="delete_id" value="" id="delete_id"/>\
                                    </div>\
                              </div>');
                               $('.edit_item,.save_item,.delete_item').hide();
                          });
-                     }else {
-                         alert('No test found');
                      }
-
                 }
              });
         }else{
@@ -339,10 +337,10 @@ $(document).ready(function () {
                              $('.test-list').append(
                              '<span class="test-name">\
                                  <input type="checkbox" name="test" value="test" class="check_test" id="check-select">\
-                                 <input type="text" data-id ="'+data[i].test_id+'" name="test" value="'+data[i].test_name+'" class="list_edit input_wrap">\
+                                 <input type="text" data-id ="'+data[i].test_id+'" name="test" value="'+data[i].test_name+'" class="list_edit input_wrap" disabled>\
                                  <span class="test-alter">\
-                                     <i class="fa fa-floppy-o save_item"></i>\
-                                     <i class="fa fa-pencil-square-o edit_item"></i>\
+                                     <i class="fa fa-floppy-o save_item edit_save_button"></i>\
+                                     <i class="fa fa-pencil-square-o edit_item "></i>\
                                      <i class="fa fa-trash-o delete_item"></i>\
                                  </span>\
                              </span>\
@@ -352,17 +350,14 @@ $(document).ready(function () {
                                    </div>\
                                    <div class="del_content">\
                                      <span class="del_content_txt">Are you sure want to delete this whole record?</span>\
-                                     <input type="button" class="btn btn-primary align_right yes_btn" value="Yes">\
+                                     <input type="button" class="btn btn-primary align_right yes_btn" value="Yes" data-delete="test_name" data-id ="'+data[i].test_id+'">\
                                      <input type="button" class="btn btn-primary align_right no_btn" value="No">\
                                      <input type="hidden" name="delete_id" value="" id="delete_id"/>\
                                    </div>\
                              </div>');
                               $('.edit_item,.save_item,.delete_item').hide();
                          });
-                     }else {
-                         alert('No test found');
                      }
-
                 }
              });
         }
@@ -379,6 +374,7 @@ $(document).ready(function () {
              dataType:'json',
              success: function(data) {
                  //alert(JSON.stringify(data.test));
+                 $('#test_table tbody').empty();
                  if(data.test){
                       var param_dynamic = '';
                     $.each(data.param, function(i){
@@ -450,7 +446,7 @@ $(document).ready(function () {
       						              </div>\
       						              <div class="del_content">\
       						                <span class="del_content_txt">Are you sure want to delete this whole record?</span>\
-      						                <input type="button" class="btn btn-primary align_right yes_btn" value="Yes">\
+      						                <input type="button" class="btn btn-primary align_right yes_btn" value="Yes" data-delete="test_attribute" data-id ="'+data.test[i].test_attribute_id+'">\
       						                <input type="button" class="btn btn-primary align_right no_btn" value="No">\
       						                <input type="hidden" name="delete_id" value="" id="delete_id"/>\
       						              </div>\
@@ -472,18 +468,39 @@ $(document).ready(function () {
   //       $('.list_edit').removeClass("list_edit_rollover");
   //   }
   // });
-  $('.edit_save_button').click(function() {
-      alert($(this).parents('.test-name').find('list_edit').val());
-  });
+  $(document).delegate('.edit_save_button','click',function() {
+      var test_id = $(this).parents('.test-name').find('.list_edit').attr('data-id');
+      var test_name = $(this).parents('.test-name').find('.list_edit').val();
+      $.ajax({
+           type: "POST",
+           url: "functions/test_functions.php?test_name_update=true",
+           data:{'test_id':test_id,'test_name':test_name},
+           cache: false,
+           success: function(data) {
+              //alert(data);
+              if(data.trim() == 'succeed'){
+                  alert('Test name updated successfully!');
+                  location.reload();
+              }
+           }
+      });
 
+  });
+  $(document).delegate('.edit_item', 'click', function(event) {
+      $(this).parents('.test-name').find('.list_edit').removeAttr('disabled');
+  });
+  var test_name_for_edit_purpose = '';
   $(document).delegate('.test-name', 'mouseenter', function(event){
     $(this).children().find('.edit_item,.delete_item').show();
     $('.save_item').hide();
+    test_name_for_edit_purpose = $(this).find('.list_edit').val();
   });
 
    $(document).delegate('.test-name','mouseleave',function(event){
     $('.edit_item,.delete_item,.save_item').hide();
     $('.list_edit').removeClass('list_edit_rollover');
+    $(this).find('.list_edit').attr('disabled', 'disabled');
+    $(this).find('.list_edit').val(test_name_for_edit_purpose);
   });
 
 
@@ -590,7 +607,7 @@ $('.reset_form').on('click',function(){
         // $('.popup_fade').show();
         // $('.state_div').hide();
         $(this).next().next().show();
-        $(this).parents('tr').siblings().children('.state_div').hide();
+        $(this).parents('tr').siblings().children('.popup-edit').hide();
 
         // $('.state_div, .close_btn').show();
         document.body.style.overflow = 'auto';
@@ -603,9 +620,10 @@ $('.reset_form').on('click',function(){
     $('.edit_test_sport,.edit_param_type').change(function() {
         $('option:selected', this).attr('selected',true).siblings().removeAttr('selected');
     });
-    $('.edit_test').click(function(){
+    $(document).delegate('.edit_test','click',function(){
         var test_attr_id = $(this).attr("data-value");
         var test_id = $(this).attr("data-test-id");
+        var current_popup = $(this);
         //alert(test_id);
         $.ajax({
              type: "POST",
@@ -614,13 +632,14 @@ $('.reset_form').on('click',function(){
              cache: false,
              dataType:'json',
              success: function(data) {
-                 $('.test_name_update').val(data.test_name);
-                 $('.test_parameter_name_update').val(data.test_parameter_name);
-                 $('.parameter_type_update option[value="'+data.test_parameter_type+'"]').attr('selected','selected');
-                 $('.parameter_unit_update').append('<option value="'+data.test_parameter_unit+'">'+data.test_parameter_unit+'</option>');
-                 $('.parameter_format_update option[value="'+data.test_parameter_format+'"]').attr('selected','selected');
-                 $('.parameter_update').val(test_attr_id);
-                 $('.test_update_id').val(data.test_id);
+                //  $('.test_name_update').val(data.test_name);
+                //alert(current_popup.parents('.popup-edit').html());
+                 current_popup.parents('.popup-edit').find('.test_parameter_name_update').val(data.test_parameter_name);
+                 current_popup.parents('.popup-edit').find('.parameter_type_update option[value="'+data.test_parameter_type+'"]').attr('selected','selected');
+                 current_popup.parents('.popup-edit').find('.parameter_unit_update').append('<option value="'+data.test_parameter_unit+'">'+data.test_parameter_unit+'</option>');
+                 current_popup.parents('.popup-edit').find('.parameter_format_update option[value="'+data.test_parameter_format+'"]').attr('selected','selected');
+                 current_popup.parents('.popup-edit').find('.parameter_update').val(test_attr_id);
+                 current_popup.parents('.popup-edit').find('.test_update_id').val(data.test_id);
             }
          });
     });
@@ -1071,7 +1090,7 @@ $('.reset_form').on('click',function(){
         // $('.delete_div, .close_btn').show();
         $(this).next().next().show();
         // $(this).parents('tr').siblings('.state_div').hide();
-        $(this).parents('tr').siblings().find('.delete_div').hide();
+        $(this).parents('tr').siblings().children('.popup-edit').hide();
         document.body.style.overflow = 'auto';
     });
 
@@ -1191,7 +1210,7 @@ $('.reset_form').on('click',function(){
     });
     $('.yes_btn').click(function() {
         var del_id =$('#delete_id').val();
-        alert(del_id);
+        //alert(del_id);
         if (window.location.href.indexOf("category.php") !== -1){
             var form_data = {'category_del':'1','del_id':del_id};
             $.ajax({
@@ -1301,19 +1320,39 @@ $('.reset_form').on('click',function(){
                  }
              });
        } else if (window.location.href.indexOf("test.php") !== -1){
-            var form_data = {'delete_id':del_id};
-            $.ajax({
-                 type: "POST",
-                 url: "functions/test_functions.php?deletedata=true",
-                 data: form_data,
-                 cache: false,
-                 success: function(html) {
-                  $('.popup_fade').hide();
-                  $('.state_div,.delete_div').hide();
-                  document.body.style.overflow = 'auto';
-                  location.reload();
-                 }
-             });
+           var delete_data = $(this).attr('data-delete');
+           if(delete_data.trim()=='test_name'){
+               var form_data = {'delete_id':$(this).attr('data-id')};
+               //alert(JSON.stringify(form_data));
+               $.ajax({
+                    type: "POST",
+                    url: "functions/test_functions.php?delete_test_name=true",
+                    data: form_data,
+                    cache: false,
+                    success: function(html) {
+                     $('.popup_fade').hide();
+                     $('.state_div,.delete_div').hide();
+                     document.body.style.overflow = 'auto';
+                     location.reload();
+                    }
+                });
+           }else if(delete_data.trim()=='test_attribute'){
+               var form_data = {'delete_id':$(this).attr('data-id')};
+               //alert(JSON.stringify(form_data));
+               $.ajax({
+                    type: "POST",
+                    url: "functions/test_functions.php?delete_test_attribute=true",
+                    data: form_data,
+                    cache: false,
+                    success: function(html) {
+                     $('.popup_fade').hide();
+                     $('.state_div,.delete_div').hide();
+                     document.body.style.overflow = 'auto';
+                     location.reload();
+                    }
+                });
+           }
+
        } else if (window.location.href.indexOf("test_battery.php") !== -1){
            //alert('dsfsdfds');
             var form_data = {'delete_id':del_id};
@@ -1588,7 +1627,7 @@ $('.reset_form').on('click',function(){
        });
         //$(this).attr('value', $(this).val())
     });
-    $(document.body).delegate('.parameter_unit','change',function() {
+    $(document.body).delegate('.paremeter_unit_add','change',function() {
         var param_unit = $(this).val();
         var param_type = $(this).parents('.schedule_test').find('.parameter_type').val();;
         //alert(param_type);
@@ -1599,8 +1638,10 @@ $('.reset_form').on('click',function(){
         }
     });
     $(document.body).delegate('.parameter_unit_update','change',function() {
+        //alert($(this).html());
         var param_unit = $(this).val();
-        var param_type = $('.parameter_type_update').val();
+        var param_type = $('.parameter_type_update').val().trim();
+
         if(param_type.toLowerCase() == 'time'){
             $('.parameter_format').empty().append("<option value="+param_unit+">"+param_unit+"</option>");
         }else{
@@ -2816,13 +2857,13 @@ $('.reset_form').on('click',function(){
       });
     });
 
-    $('.test-name,.delete_search').hide();
+    $('.delete_search').hide();
     $('.search_button').click(function(){
       search_value = $('.search_text').val();
-      $('.test-name').hide();     
-      $('.test-list').find("input[value="+search_value+"]").parents('.test-name').show();     
+      $('.test-name').hide();
+      $('.test-list').find("input[value="+search_value+"]").parents('.test-name').show();
     });
-    
+
     $('.save_athlete').click(function(){
       athlete_id = $(this).parents('.test-name').find('.check_athleteid').val();
       athlete_name = $(this).parents('.test-name').find('.check_athletename').val();
@@ -2844,7 +2885,7 @@ $('.reset_form').on('click',function(){
             }
           }
          });
-    });  
+    });
 
     $('.save_createschedule').click(function(){
       createschedule_id = $(this).parents('.test-name').find('.check_scheduleid').val();
