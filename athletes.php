@@ -122,7 +122,6 @@
 					<div class="test_title">
 						<span>Athlete Name</span>
 					</div><!--test_title-->
-					<form>
 						<div class="search-content">
 							<div class="search__list">
 								<input type="text" class="search_box search_text at_search" placeholder="Search Name">
@@ -138,9 +137,9 @@
 										<input type="hidden" class="check_athleteid check_data" name="check_athleteid" value="<?php echo $row['athlete_id']; ?>">
 										<input type="text" name="check_athletename" value="<?php echo $row['athlete_name']; ?>" class="list_edit check_athletename input_wrap" name="check_athletename">
 										<span class="test-alter">
-											<i class="fa fa-floppy-o save_item"></i>
+											<i class="fa fa-floppy-o save_item save_athlete"></i>
 											<i class="fa fa-pencil-square-o edit_item"></i>
-											<i class="fa fa-trash-o delete_item"></i>
+											<i class="fa fa-trash-o delete_item delete_state" data-value="<?php echo $row['athlete_id']; ?>"></i>
 										</span><!--test-alter-->
 									</span><!--test-name-->
 									<div class="delete_div delete_search">
@@ -158,7 +157,6 @@
       								<?php } ?>
 								</div><!--test-list-->
 						</div><!--search-content-->
-					</form>
 				</div>
 					
 					

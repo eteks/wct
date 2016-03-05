@@ -232,9 +232,9 @@
 										<input type="hidden" class="check_scheduleid check_data" name="check_scheduleid" value="<?php echo $row['createschedule_id']; ?>">
 										<input type="text" name="check_createschedulename" value="<?php echo $row['createschedule_name']; ?>" class="list_edit check_createschedulename input_wrap">
 										<span class="test-alter">
-											<i class="fa fa-floppy-o save_item"></i>
+											<i class="fa fa-floppy-o save_item save_createschedule"></i>
 											<i class="fa fa-pencil-square-o edit_item"></i>
-											<i class="fa fa-trash-o delete_item"></i>
+											<i class="fa fa-trash-o delete_item delete_state" data-value="<?php echo $row['createschedule_id']; ?>"></i>
 										</span><!--test-alter-->
 									</span><!--test-name-->
 									<div class="delete_div delete_search">
