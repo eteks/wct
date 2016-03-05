@@ -1759,4 +1759,7 @@ button, input, optgroup, select, textarea {
     font-family: Montserrat;
     margin: 0 0 0 30px;
 }
+.athlete_list,.createschedule_list{
+    display: none;
+}
 

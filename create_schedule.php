@@ -214,17 +214,18 @@
 					<form>
 						<div class="search-content">
 							<div class="search__list">
-								<input type="text" class="search_box" placeholder="Search Name">
-								<i class="fa fa-search font-search"></i>
+								<input type="text" class="search_box search_text cs_search" placeholder="Search Name">
+								<i class="fa fa-search font-search search_button"></i>
 							</div><!--search__list-->
 								<div class="test-list">
 									<?php
-				                        $query = $createscheduleFunction->createschedulenameSelect();
+				                        $query = $createscheduleFunction->createscheduleSelect();
 				                        while ($row = mysql_fetch_array($query)) {
 			                        ?>
 									<span class="test-name">
 										<input type="checkbox" name="test" value="test" class="check_test check_createschedule check_list" id="check-select">
-										<input type="text" name="check_createschedulename" value="<?php echo $row['createschedule_name']; ?>" class="list_edit check_createschedulename check_data">
+										<input type="hidden" class="check_scheduleid check_data" name="check_scheduleid" value="<?php echo $row['createschedule_id']; ?>">
+										<input type="text" name="check_createschedulename" value="<?php echo $row['createschedule_name']; ?>" class="list_edit check_createschedulename">
 										<span class="test-alter">
 											<i class="fa fa-floppy-o save_item"></i>
 											<i class="fa fa-pencil-square-o edit_item"></i>
@@ -269,7 +270,7 @@
 	                   while ($row = mysql_fetch_array($query)) {
                     ?>
 				<tr class="align_center delete_color">
-                        <input type="hidden" class="t_createschedule_id" name="createschedule_id" value="<?php echo $row['createschedule_id']; ?>">
+                        <input type="hidden" class="t_createschedule_id check_id" name="createschedule_id" value="<?php echo $row['createschedule_id']; ?>">
 					 	<input type='hidden' class="t_createschedule_name check_name" name='createschedule_name' value="<?php echo $row['createschedule_name']; ?>">
 			    <!--  <?php
                    // $query = $createscheduleFunction->createscheduleSelect();
@@ -534,6 +535,16 @@
                  	<?php $i++;} ?>
 		    	</tbody>
 		  	</table>
+			</div>
+			<div class="createschedule_list">
+				<ul>
+					<?php
+		               $cs_query = $createscheduleFunction->createscheduleSelect();
+	                   while ($row1 = mysql_fetch_array($cs_query)) {
+                     ?> 
+                     <li><?php echo $row1['createschedule_name'] ?></li>
+                     <?php } ?>
+				</ul>
 			</div>
 		</div>
 	</div>

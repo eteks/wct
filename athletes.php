@@ -120,18 +120,18 @@
 					<form>
 						<div class="search-content">
 							<div class="search__list">
-								<input type="text" class="search_box search_text" placeholder="Search Name">
+								<input type="text" class="search_box search_text at_search" placeholder="Search Name">
 								<i class="fa fa-search font-search search_button"></i>
 							</div><!--search__list-->
 								<div class="test-list">
 									<?php
-				                        $query = $athleteFunction->athletenameSelect();
+				                        $query = $athleteFunction->athleteSelect();
 				                        while ($row = mysql_fetch_array($query)) {
 			                        ?>
 									<span class="test-name">
 										<input type="checkbox" name="test" value="test" class="check_test check_athlete check_list" id="check-select">
-										<!-- <input type="hidden" class="check_athleteid" name="check_athleteid" value="<?php echo $row['athlete_id']; ?>"> -->
-										<input type="text" name="check_athletename" value="<?php echo $row['athlete_name']; ?>" class="list_edit check_athletename check_data" name="check_athletename">
+										<input type="hidden" class="check_athleteid check_data" name="check_athleteid" value="<?php echo $row['athlete_id']; ?>">
+										<input type="text" name="check_athletename" value="<?php echo $row['athlete_name']; ?>" class="list_edit check_athletename" name="check_athletename">
 										<span class="test-alter">
 											<i class="fa fa-floppy-o save_item"></i>
 											<i class="fa fa-pencil-square-o edit_item"></i>
@@ -175,7 +175,7 @@
                    while ($row = mysql_fetch_array($query)) {
                         ?> 
                         <tr class="align_center delete_color">
-                        	<input type='hidden' class="t_athlete_id" name='athlete_id' value="<?php echo $row['athlete_id']; ?>">
+                        	<input type='hidden' class="t_athlete_id check_id" name='athlete_id' value="<?php echo $row['athlete_id']; ?>">
                         	<input type='hidden' class="t_athlete_name check_name" name='athlete_name' value="<?php echo $row['athlete_name']; ?>">
 					      <!--  <td class="t_athlete_s_id"><?php // echo $i; ?></td> -->
 					      <!--  <td class="t_athlete_name"><?php //echo $row['athlete_name']; ?></td>
@@ -309,12 +309,17 @@
 				  </table>
 				</div>
 			</div>
-
+			<div class="athlete_list">
+				<ul>
+					<?php
+		               $at_query = $athleteFunction->athleteSelect();
+	                   while ($row1 = mysql_fetch_array($at_query)) {
+                     ?> 
+                     <li><?php echo $row1['athlete_name'] ?></li>
+                     <?php } ?>
+				</ul>
+			</div>
 			
-			
-			
-			
-	
 			</div>
 			</div>
 			</div>

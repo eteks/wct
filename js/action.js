@@ -2641,11 +2641,42 @@ $('.reset_form').on('click',function(){
       if($(this).is(':checked')){
         check_data = $(this).siblings('.check_data').val();
         $('.check_table').find("input[value="+check_data+"]").parents('tr').show();
-        $('.check_table').find('.check_name').not("input[value="+check_data+"]").parents('tr').hide();
+        $('.check_table').find('.check_id').not("input[value="+check_data+"]").parents('tr').hide();
       }
       else{
         $('.check_table tr').show();
       }
+    });
+
+    // Autocomplete results for atheletes list while search
+    var at_list = [];
+    $('.athlete_list li').each(function(){
+      at_list.push($(this).text());
+    });
+
+    $('.at_search').focus(function (e) {
+      $(this).autocomplete({
+        source: at_list,
+      });
+    });
+
+    //Autocomplete results for create schedule list while search
+    var cs_list = [];
+    $('.createschedule_list li').each(function(){
+      cs_list.push($(this).text());
+    });
+
+    $('.cs_search').focus(function (e) {
+      $(this).autocomplete({
+        source: cs_list,
+      });
+    });
+
+    $('.test-name,.delete_search').hide();
+    $('.search_button').click(function(){
+      search_value = $('.search_text').val();
+      $('.test-name').hide();     
+      $('.test-list').find("input[value="+search_value+"]").parents('.test-name').show();     
     });
 });
 
