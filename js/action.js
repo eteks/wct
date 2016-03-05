@@ -692,55 +692,55 @@ $('.reset_form').on('click',function(){
         $('.register_div, .close_btn').show();
         document.body.style.overflow = 'hidden';
     });
-    $('.edit_state').click(function(){
-        // test_center_align();
-        // $('.popup_fade').show();
-        // $('.test_div, .close_btn').show();
-        $(this).next().next().show();
-        $(this).parents('tr').siblings().find('.test_div').hide();
+    // $('.edit_state').click(function(){
+    //     // test_center_align();
+    //     // $('.popup_fade').show();
+    //     // $('.test_div, .close_btn').show();
+    //     $(this).next().next().show();
+    //     $(this).parents('tr').siblings().find('.test_div').hide();
 
-        document.body.style.overflow = 'hidden';
-    });
-    $('.edit_state').click(function(){
-        // district_center_align();
-        // $('.popup_fade').show();
-        // $('.district_div, .close_btn').show();
-        $(this).next().next().show();
-        $(this).parents('tr').siblings().find('.popup-edit_district').hide();
-        document.body.style.overflow = 'hidden';
-    });
-    $('.edit_state').click(function(){
-        // test_battery_center_align();
-        $('.popup_fade').show();
-        $('.test_battery_div, .close_btn').show();
-        document.body.style.overflow = 'hidden';
-    });
-    $('.edit_state').click(function(){
-        // athletes_center_align();
-        $('.popup_fade').show();
-        $('.athletes_div, .close_btn').show();
-        document.body.style.overflow = 'hidden';
-    });
-    $('.edit_state').click(function(){
-        // createschedule_center_align();
-        $('.popup_fade').show();
-        $('.createschedule_div, .close_btn').show();
-        document.body.style.overflow = 'hidden';
-    });
-    $('.edit_state').click(function(){
-        // range_center_align();
-        $('.popup_fade').show();
-        $('.range_div, .close_btn').show();
-        document.body.style.overflow = 'hidden';
-    });
-    $('.edit_state').click(function(){
-        // parameter_center_align();
-        // $('.popup_fade').show();
-        // $('.paramter_div, .close_btn').show();
-        $(this).next().next().show();
-        $(this).parents('tr').siblings().children('.popup-edit').hide();
-        document.body.style.overflow = 'hidden';
-    });
+    //     document.body.style.overflow = 'hidden';
+    // });
+    // $('.edit_state').click(function(){
+    //     // district_center_align();
+    //     // $('.popup_fade').show();
+    //     // $('.district_div, .close_btn').show();
+    //     $(this).next().next().show();
+    //     $(this).parents('tr').siblings().find('.popup-edit_district').hide();
+    //     document.body.style.overflow = 'hidden';
+    // });
+    // $('.edit_state').click(function(){
+    //     // test_battery_center_align();
+    //     $('.popup_fade').show();
+    //     $('.test_battery_div, .close_btn').show();
+    //     document.body.style.overflow = 'hidden';
+    // });
+    // $('.edit_state').click(function(){
+    //     // athletes_center_align();
+    //     $('.popup_fade').show();
+    //     $('.athletes_div, .close_btn').show();
+    //     document.body.style.overflow = 'hidden';
+    // });
+    // $('.edit_state').click(function(){
+    //     // createschedule_center_align();
+    //     $('.popup_fade').show();
+    //     $('.createschedule_div, .close_btn').show();
+    //     document.body.style.overflow = 'hidden';
+    // });
+    // $('.edit_state').click(function(){
+    //     // range_center_align();
+    //     $('.popup_fade').show();
+    //     $('.range_div, .close_btn').show();
+    //     document.body.style.overflow = 'hidden';
+    // });
+    // $('.edit_state').click(function(){
+    //     // parameter_center_align();
+    //     // $('.popup_fade').show();
+    //     // $('.paramter_div, .close_btn').show();
+    //     $(this).next().next().show();
+    //     $(this).parents('tr').siblings().children('.popup-edit').hide();
+    //     document.body.style.overflow = 'hidden';
+    // });
     $('.cancel_btn').on('click',function(){
         $('.popup_fade').hide();
         $('.state_div,.delete_div,.login_div,.register_div,.test_div,.district_div,.test_battery_div,.range_div,.paramter_div,.athletes_div,.createschedule_div').hide();
@@ -2873,7 +2873,7 @@ $('.reset_form').on('click',function(){
 
 $(document).bind("click", function(e) {
      var popup = $(".popup_hidden");
-     if (!$('.fa-pencil-square-o').is(e.target) && !popup.is(e.target) && popup.has(e.target).length == 0) {
+     if (!$('.fa-pencil-square-o,.ui-menu-item').is(e.target) && !popup.is(e.target) && popup.has(e.target).length == 0) {
          popup.hide();
         $('.edit_state').parents('tr').siblings().children('.popup-edit').show();
      }

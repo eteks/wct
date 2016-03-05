@@ -103,7 +103,7 @@ if(isset($_GET['duplicate'])){
 								<div class="test-list">
 									<span class="test-name">
 										<input type="checkbox" name="test" value="test" class="check_test" id="check-select">
-										<input type="text" name="test" value="xyz" class="list_edit">
+										<input type="text" name="test" value="xyz" class="list_edit input_wrap">
 										<span class="test-alter">
 											<i class="fa fa-floppy-o save_item"></i>
 											<i class="fa fa-pencil-square-o edit_item"></i>
@@ -124,7 +124,7 @@ if(isset($_GET['duplicate'])){
       								</div><!--delete_div-->
 									<span class="test-name">
 										<input type="checkbox" name="test" value="test" class="check_test">
-										<input type="text" name="test" value="xyz" class="list_edit">
+										<input type="text" name="test" value="xyz" class="list_edit input_wrap">
 										<span class="test-alter">
 											<i class="fa fa-floppy-o save_item"></i>
 											<i class="fa fa-pencil-square-o edit_item"></i>
@@ -179,7 +179,7 @@ if(isset($_GET['duplicate'])){
 						  $cat_data = $category->categoryselectfunction();
 						  foreach( $cat_data as $eachrecord ) {
 						   ?>
-							<div class="checkbox align_check">
+							<div class="checkbox align_check" style="margin:0px;"> 
 								<label class="hover-content"><?php echo $eachrecord ['categories_name']; ?></label>
 					    	</div>
 							<?php } ?>
@@ -192,7 +192,7 @@ if(isset($_GET['duplicate'])){
 						  $test_data = $test->testbatteryselectfunction();
 						  foreach( $test_data as $eachrecord ) {
 						   ?>
-							<div class="checkbox align_check">
+							<div class="checkbox align_check" style="margin:0px;">
 					      		<label class="hover-content"><?php echo $eachrecord ['test_name']; ?></label>
 					    	</div>
 							<?php } ?>

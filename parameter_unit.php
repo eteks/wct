@@ -62,7 +62,7 @@
 			          		<div class="edit_title">
 			                	<span class="del_txt">Edit detail</span>
 			              	</div><!--edit_title-->
-			          			<div class="container state-content col-md-12">
+			          			<div class="container state-content col-md-12" style="padding: 0px;">
 				          			<div class="col-xs-12 col-md-12 align_margin">
 								<form id="edit_parameter_unit" name="edit_parameter_unit_form">
 								<div class="form-group">

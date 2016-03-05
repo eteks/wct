@@ -128,16 +128,14 @@
 				                        while ($row = mysql_fetch_array($query)) {
 			                        ?>
 									<span class="test-name">
-									<!-- <form name="athletename_save" class="athletename_save" method="post"> -->
-										<input type="checkbox" name="test" value="test" class="check_test check_athlete check_list" id="check-select">
+										<input type="checkbox" name="test" value="test" class="check_test check_athlete check_list input_wrap" id="check-select">
 										<input type="hidden" class="check_athleteid check_data" name="check_athleteid" value="<?php echo $row['athlete_id']; ?>">
-										<input type="text" name="check_athletename" value="<?php echo $row['athlete_name']; ?>" class="list_edit check_athletename" name="check_athletename">
+										<input type="text" name="check_athletename" value="<?php echo $row['athlete_name']; ?>" class="list_edit check_athletename input_wrap" name="check_athletename">
 										<span class="test-alter">
 											<i class="fa fa-floppy-o save_item save_athlete"></i>
 											<i class="fa fa-pencil-square-o edit_item"></i>
 											<i class="fa fa-trash-o delete_item delete_state" data-value="<?php echo $row['athlete_id']; ?>"></i>
 										</span><!--test-alter-->
-									<!-- </form> -->
 									</span><!--test-name-->
 									<div class="delete_div delete_search">
 							            <!-- <code class="close_btn cancel_btn"> </code>  -->
@@ -268,7 +266,7 @@
 
 										<div class="form-group">
 											  <label for="sel1" class="popup_label">Sports</label>
-											  <select class="form-control adjust_width classic box-width" id="sel1" name="edit_athlete_sports" data-validation-error-msg="Please Select the Sport" data-validation="required">
+											  <select class="form-control adjust_width classic box-width form-group" id="sel1" name="edit_athlete_sports" data-validation-error-msg="Please Select the Sport" data-validation="required">
 											  <option value=""> Sports</option>
 											   <?php
 						                        $sports_query = $sportsfunction->sportsSelect();

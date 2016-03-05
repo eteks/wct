@@ -1068,7 +1068,7 @@ input[type=radio]:checked + label:before {
     color: #424242  !important;
     font-family: Montserrat;
     height: 34px;
-    margin: 0px 0 10px -36px;
+    margin: 0px 0 0px -36px;
     position: relative;
     right: -10px;
     width: 220px !important;
@@ -1700,6 +1700,7 @@ tbody tr {
     box-shadow: none !important;
     height: 30px !important;
     width: 230px !important;
+    float: left;
 }
 .align-day-popup select {
     left: 2px !important;
@@ -1758,6 +1759,11 @@ button, input, optgroup, select, textarea {
     font-size: 14px;
     font-family: Montserrat;
     margin: 0 0 0 30px;
+}
+.input_wrap{
+    max-width: 145px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .athlete_list,.createschedule_list{
     display: none;
