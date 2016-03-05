@@ -1765,4 +1765,7 @@ button, input, optgroup, select, textarea {
     text-overflow: ellipsis;
     white-space: nowrap;
 }
-    
+.athlete_list,.createschedule_list{
+    display: none;
+}
+

@@ -280,52 +280,191 @@ $(window).resize(function () {
 
 $(document).ready(function () {
   $('.test_search').keyup(function() {
-
         $('.test-list').empty();
         var testname = $(this).val();
+        //alert(testname);
+        if(testname != ''){
+            $.ajax({
+                 type: "POST",
+                 url: "functions/test_functions.php?find_test=true",
+                 data:{'id':testname},
+                 cache: false,
+                 dataType:'json',
+                 success: function(data) {
+                     //alert(data);
+                     if(data !=''){
+                         $.each(data, function(i){
+                             //alert(data[i].test_name);
+                             $('.test-list').append(
+                             '<span class="test-name">\
+                                 <input type="checkbox" name="test" value="test" class="check_test" id="check-select">\
+                                 <input type="text" data-id ="'+data[i].test_id+'" name="test" value="'+data[i].test_name+'" class="list_edit">\
+                                 <span class="test-alter">\
+                                     <i class="fa fa-floppy-o save_item"></i>\
+                                     <i class="fa fa-pencil-square-o edit_item"></i>\
+                                     <i class="fa fa-trash-o delete_item"></i>\
+                                 </span>\
+                             </span>\
+                             <div class="delete_div delete_search">\
+                                   <div class="del_title">\
+                                     <span class="del_txt">DELETE</span>\
+                                   </div>\
+                                   <div class="del_content">\
+                                     <span class="del_content_txt">Are you sure want to delete this whole record?</span>\
+                                     <input type="button" class="btn btn-primary align_right yes_btn" value="Yes">\
+                                     <input type="button" class="btn btn-primary align_right no_btn" value="No">\
+                                     <input type="hidden" name="delete_id" value="" id="delete_id"/>\
+                                   </div>\
+                             </div>');
+                              $('.edit_item,.save_item,.delete_item').hide();
+                         });
+                     }else {
+                         alert('No test found');
+                     }
+
+                }
+             });
+        }else{
+            $.ajax({
+                 type: "POST",
+                 url: "functions/test_functions.php?find_all_test=true",
+                 data:{'id':'all'},
+                 cache: false,
+                 dataType:'json',
+                 success: function(data) {
+                     //alert(data);
+                     if(data !=''){
+                         $.each(data, function(i){
+                             //alert(data[i].test_name);
+                             $('.test-list').append(
+                             '<span class="test-name">\
+                                 <input type="checkbox" name="test" value="test" class="check_test" id="check-select">\
+                                 <input type="text" data-id ="'+data[i].test_id+'" name="test" value="'+data[i].test_name+'" class="list_edit input_wrap">\
+                                 <span class="test-alter">\
+                                     <i class="fa fa-floppy-o save_item"></i>\
+                                     <i class="fa fa-pencil-square-o edit_item"></i>\
+                                     <i class="fa fa-trash-o delete_item"></i>\
+                                 </span>\
+                             </span>\
+                             <div class="delete_div delete_search">\
+                                   <div class="del_title">\
+                                     <span class="del_txt">DELETE</span>\
+                                   </div>\
+                                   <div class="del_content">\
+                                     <span class="del_content_txt">Are you sure want to delete this whole record?</span>\
+                                     <input type="button" class="btn btn-primary align_right yes_btn" value="Yes">\
+                                     <input type="button" class="btn btn-primary align_right no_btn" value="No">\
+                                     <input type="hidden" name="delete_id" value="" id="delete_id"/>\
+                                   </div>\
+                             </div>');
+                              $('.edit_item,.save_item,.delete_item').hide();
+                         });
+                     }else {
+                         alert('No test found');
+                     }
+
+                }
+             });
+        }
+    });
+    $(document).delegate('.list_edit', 'mouseover', function(event) {
+        //alert($(this).attr('data-id'));
+         $('#test_table tbody').empty();
+        var test_id = $(this).attr('data-id');
         $.ajax({
              type: "POST",
-             url: "functions/test_functions.php?find_test=true",
-             data:{'id':testname},
+             url: "functions/test_functions.php?find_test_attribute=true",
+             data:{'id':test_id},
              cache: false,
              dataType:'json',
              success: function(data) {
-                 if(data){
-                     $.each(data, function(i){
-                         //alert(data[i].test_name);
-                         $('.test-list').append(
-                         '<span class="test-name">\
-                             <input type="checkbox" name="test" value="test" class="check_test" id="check-select">\
-                             <input type="text" data-id ="'+data[i].test_id+'" name="test" value="'+data[i].test_name+'" class="list_edit">\
-                             <span class="test-alter">\
-                                 <i class="fa fa-floppy-o save_item"></i>\
-                                 <i class="fa fa-pencil-square-o edit_item"></i>\
-                                 <i class="fa fa-trash-o delete_item"></i>\
-                             </span>\
-                         </span>\
-                         <div class="delete_div delete_search">\
-                               <div class="del_title">\
-                                 <span class="del_txt">DELETE</span>\
-                               </div>\
-                               <div class="del_content">\
-                                 <span class="del_content_txt">Are you sure want to delete this whole record?</span>\
-                                 <input type="button" class="btn btn-primary align_right yes_btn" value="Yes">\
-                                 <input type="button" class="btn btn-primary align_right no_btn" value="No">\
-                                 <input type="hidden" name="delete_id" value="" id="delete_id"/>\
-                               </div>\
-                         </div>');
-                           $('.edit_item,.save_item,.delete_item').hide();
-
+                 //alert(JSON.stringify(data.test));
+                 if(data.test){
+                      var param_dynamic = '';
+                    $.each(data.param, function(i){
+                         param_dynamic += "<option value='"+data.param[i].parametertype_name+"'>"+data.param[i].parametertype_name+"</option>";
                      });
+                      $.each(data.test, function(i){
+                          $('#test_table tbody').append('\
+      				      <tr class="align_center delete_color">\
+      						<input type="hidden" value="'+data.test[i].test_attribute_id+'" id="test_attribute_id">\
+      				        <td>'+data.test[i].test_parameter_name+'</td>\
+      				        <td>'+data.test[i].test_parameter_type+'</td>\
+      				        <td>'+data.test[i].test_parameter_unit+'</td>\
+      				        <td>'+data.test[i].test_parameter_format+'</td>\
+      				        <td class="popup-edit">\
+      				        	<span class="edit_state edit_test" data-value="'+data.test[i].test_attribute_id+'" data-test-id="'+data.test[i].test_id+'"><i class="fa fa-pencil-square-o"></i></span>\
+      			        		<span class="delete_state" data-value="'+data.test[i].test_attribute_id+'"><i class="fa fa-trash-o"></i></span>\
+      			        			<div class="test_div popup_hidden">\
+      					          		<code class="close_btn cancel_btn"> </code>\
+      					          		<div class="edit_title">\
+      					                	<span class="del_txt">Edit Detail</span>\
+      					              	</div>\
+      					          			<div class="container col-md-12">\
+      						          			<div class="col-xs-12 col-md-12">\
+      									<form id="test_updation_form" action="functions/test_functions.php" method="post">\
+      										<div class="parameter_holder">\
+      											<div class="form-group" style="margin: 0;">\
+      												<label class="popup_label">Enter Parameter Name</label><br>\
+      												<input type="text" class="adjust_width test_parameter_name_update" name="parameter_name1" data-validation-error-msg="Please Enter the Parameter Name" data-validation="required" style="width:220px !important;height: 30px;">\
+      											</div>\
+      											<div class="form-group col-md-8 test_percentage parameter_type_parent">\
+      												<div class="col-md-12" style="padding: 0;">\
+      													<label class="popup_label">Type</label>\
+      													<select class="form-control classic type_align_popup fl parameter_type parameter_type_update" id="type1" name="type1" data-validation-error-msg="Please Select the Type" data-validation="required">\
+      														<option value=""></option>\
+                                                            '+param_dynamic+'\
+      													</select>\
+      												</div>\
+      												<div class="col-md-12" style="padding: 0;">\
+      													<label class="popup_label">Unit</label>\
+      													<select class="form-control classic type_align_popup fl parameter_unit parameter_unit_update" id="unit1" name="unit1" data-validation-error-msg="Please Select the Unit" data-validation="required">\
+      													</select>\
+      												</div>\
+      												<div class="col-md-12" style="padding: 0;">\
+      													<label class="popup_label">Format</label>\
+      													<select class="form-control classic type_align_popup fl parameter_format parameter_format_update" id="format1" name="format1" data-validation-error-msg="Please Select the Format" data-validation="required">\
+      														<option value="">Format</option>\
+      														<option value="0">0</option>\
+      														<option value="1">1</option>\
+      														<option value="2">2</option>\
+      														<option value="3">3</option>\
+      														<option value="4">4</option>\
+      														<option value="5">5</option>\
+      													</select>\
+      												</div>\
+      											</div>\
+      										</div>\
+      										<input class="parameter_update" type="hidden" name="parameter_update" value="" />\
+      										<input class="test_update_id" type="hidden" name="test_update_id" value="" />\
+      										<div class="col-md-12 schedule_btn">\
+      											<input type="submit" class="btn btn-primary align_right  clear" value="Save">\
+      										</div>\
+      									</form>\
+      								</div>\
+      							</div>\
+      			                </div>\
+      							<div class="delete_div delete_test_div">\
+      						              <div class="del_title">\
+      						                <span class="del_txt">DELETE</span>\
+      						              </div>\
+      						              <div class="del_content">\
+      						                <span class="del_content_txt">Are you sure want to delete this whole record?</span>\
+      						                <input type="button" class="btn btn-primary align_right yes_btn" value="Yes">\
+      						                <input type="button" class="btn btn-primary align_right no_btn" value="No">\
+      						                <input type="hidden" name="delete_id" value="" id="delete_id"/>\
+      						              </div>\
+        								</div>\
+      				        </td>\
+      						<input type="hidden" name="test_attribute_id" id="test_attribute_id" value="'+data.test[i].test_attribute_id+'" />\
+      				      </tr>');
+                      });
                  }else{
-                     alert('No Test Found');
+                     alert('No Parameter availabel!');
                  }
-
-            }
-         });
+             }
+        });
     });
-
-
   // $('input:checkbox').change(function(){
   //   if($(this).is(":checked")) {
   //       $('.list_edit').addClass("list_edit_rollover");
@@ -333,8 +472,10 @@ $(document).ready(function () {
   //       $('.list_edit').removeClass("list_edit_rollover");
   //   }
   // });
+  $('.edit_save_button').click(function() {
+      alert($(this).parents('.test-name').find('list_edit').val());
+  });
 
-  
   $(document).delegate('.test-name', 'mouseenter', function(event){
     $(this).children().find('.edit_item,.delete_item').show();
     $('.save_item').hide();
@@ -354,7 +495,7 @@ $(document).ready(function () {
     }
     $(this).parents('.test-alter').prev('.list_edit').addClass("list_edit_rollover");
   });
-  
+
   $(document).delegate('.save_item','click',function(event){
     $('.list_edit').removeClass('list_edit_rollover');
   });
@@ -363,8 +504,7 @@ $(document).ready(function () {
   $(document).delegate('.delete_item','click',function(){
     $(this).parents('.test-list').find('.delete_div').show();
     $(this).parents('.test-name').next().siblings('.delete_div').hide();
-  });  
-
+  });
   $('.category-list').mouseenter(function(){
     $('.hover-category').show();
   });
@@ -1368,9 +1508,11 @@ $('.reset_form').on('click',function(){
     })
 
     function nextElement(element){
+        var last_id = parseInt(element.find('.parameter_count').val());
         var newElement = element.clone();
-        var id = current_id+1;
+        var id = last_id+1;
         current_id = id;
+        newElement.find('.parameter_count').val(id);
         newElement.find('.parameter_name').removeAttr('name').attr('name', 'parameter_name'+id).val('');
         newElement.find('#type').removeAttr('name').attr('name', 'type'+id);
         newElement.find('#unit').removeAttr('name').attr('name', 'unit'+id).removeClass('error').removeAttr('style').empty().append("<option value='' selected>UNIT</option>");
@@ -2641,11 +2783,42 @@ $('.reset_form').on('click',function(){
       if($(this).is(':checked')){
         check_data = $(this).siblings('.check_data').val();
         $('.check_table').find("input[value="+check_data+"]").parents('tr').show();
-        $('.check_table').find('.check_name').not("input[value="+check_data+"]").parents('tr').hide();
+        $('.check_table').find('.check_id').not("input[value="+check_data+"]").parents('tr').hide();
       }
       else{
         $('.check_table tr').show();
       }
+    });
+
+    // Autocomplete results for atheletes list while search
+    var at_list = [];
+    $('.athlete_list li').each(function(){
+      at_list.push($(this).text());
+    });
+
+    $('.at_search').focus(function (e) {
+      $(this).autocomplete({
+        source: at_list,
+      });
+    });
+
+    //Autocomplete results for create schedule list while search
+    var cs_list = [];
+    $('.createschedule_list li').each(function(){
+      cs_list.push($(this).text());
+    });
+
+    $('.cs_search').focus(function (e) {
+      $(this).autocomplete({
+        source: cs_list,
+      });
+    });
+
+    $('.test-name,.delete_search').hide();
+    $('.search_button').click(function(){
+      search_value = $('.search_text').val();
+      $('.test-name').hide();     
+      $('.test-list').find("input[value="+search_value+"]").parents('.test-name').show();     
     });
 });
 
