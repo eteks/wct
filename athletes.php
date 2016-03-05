@@ -120,8 +120,8 @@
 					<form>
 						<div class="search-content">
 							<div class="search__list">
-								<input type="text" class="search_box" placeholder="Search Name">
-								<i class="fa fa-search font-search"></i>
+								<input type="text" class="search_box search_text" placeholder="Search Name">
+								<i class="fa fa-search font-search search_button"></i>
 							</div><!--search__list-->
 								<div class="test-list">
 									<?php
@@ -129,8 +129,9 @@
 				                        while ($row = mysql_fetch_array($query)) {
 			                        ?>
 									<span class="test-name">
-										<input type="checkbox" name="test" value="test" class="check_test" id="check-select">
-										<input type="text" name="test" value="<?php echo $row['athlete_name']; ?>" class="list_edit">
+										<input type="checkbox" name="test" value="test" class="check_test check_athlete check_list" id="check-select">
+										<!-- <input type="hidden" class="check_athleteid" name="check_athleteid" value="<?php echo $row['athlete_id']; ?>"> -->
+										<input type="text" name="check_athletename" value="<?php echo $row['athlete_name']; ?>" class="list_edit check_athletename check_data" name="check_athletename">
 										<span class="test-alter">
 											<i class="fa fa-floppy-o save_item"></i>
 											<i class="fa fa-pencil-square-o edit_item"></i>
@@ -157,7 +158,7 @@
 					
 					
 					<div class="container table-position col-md-9" style="padding: 0px;">
-				  <table class="table athletes_table">
+				  <table class="table athletes_table check_table">
 			    <thead>
 			      <tr class="row_color">
 			      <th class="align_center">sports</th> 
@@ -175,6 +176,7 @@
                         ?> 
                         <tr class="align_center delete_color">
                         	<input type='hidden' class="t_athlete_id" name='athlete_id' value="<?php echo $row['athlete_id']; ?>">
+                        	<input type='hidden' class="t_athlete_name check_name" name='athlete_name' value="<?php echo $row['athlete_name']; ?>">
 					      <!--  <td class="t_athlete_s_id"><?php // echo $i; ?></td> -->
 					      <!--  <td class="t_athlete_name"><?php //echo $row['athlete_name']; ?></td>
 					       <td class="t_athlete_gender"><?php // echo $row['athlete_gender']; ?></td>
@@ -185,7 +187,7 @@
 					        <td><?php echo $row['athlete_dob']; ?></td>
 					        <td><?php echo $row['athlete_address']; ?></td>
 							<td class="popup-edit">
-					        	<span class="edit_state" onclick="editfunction(<?php //echo $row['athlete_id'] ?>)"><i class="fa fa-pencil-square-o"></i></span>
+					        	<span class="edit_state" onclick="editfunction(<?php echo $row['athlete_id'] ?>)"><i class="fa fa-pencil-square-o"></i></span>
 				        		<span class="delete_state" data-value="<?php echo $row['athlete_id'] ?>"><i class="fa fa-trash-o"></i></span>
 					            <div class="athletes_div popup_hidden">
 					          		<code class="close_btn cancel_btn"> </code>
@@ -195,7 +197,8 @@
 				          			<div class="container state-content col-md-12">
 				          			<div class="col-xs-12 col-md-12 align_margin">
 						          	<form name="edit_athletes_form" class="edit_athletes_form">
-						          		<input type="hidden" class="statesid" name="edit_athlete_id" value="<?php echo $row['athlete_id'] ?>">
+						          		<input type="hidden" class="statesid" name="edit_athlete_id" value="">
+						          		<input type="hidden" class="edit_athlete_name" name="edit_athlete_name" value="">
 										<!-- <div class="form-group">
 											<label>Athlete Name</label><br>
 											<input type="text" class="adjust_width" name="edit_athlete_name" data-validation-error-msg="Please Enter the name of the Athelete" data-validation="required">
@@ -224,14 +227,14 @@
 										</div>
 										<div class="form-group">
 					      					<label class="popup_label">Mobile Number</label><br>
-					      					<input id="ahtlete_mobile" type="text" value="<?php echo $row['athlete_mobile'] ?>" class="adjust_width box-width" name="edit_athlete_mobile" data-validation-error-msg="Please Enter the value that must contain 10 numbers" data-validation="length" data-validation-length="10">
+					      					<input id="ahtlete_mobile" type="text" value="" class="adjust_width box-width" name="edit_athlete_mobile" data-validation-error-msg="Please Enter the value that must contain 10 numbers" data-validation="length" data-validation-length="10">
 					     				</div>
 										<div class="form-group">
 											  <label for="sel1" class="popup_label">Gender</label>
 											  <select class="form-control adjust_width classic box-width" id="sel1" name="edit_athlete_gender" data-validation-error-msg="Please Select the Gender" data-validation="required">
 											  <option value=""></option>
-											  <option <?php if ($row['athlete_gender'] == "Female" ) echo 'selected' ; ?> value="Female">Female</option>
-											  <option <?php if ($row['athlete_gender'] == "Male" ) echo 'selected' ; ?> value="Male">Male</option>
+											  <option value="Female">Female</option>
+											  <option value="Male">Male</option>
 											  </select>
 										</div>
 										<div class="form-group">

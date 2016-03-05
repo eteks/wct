@@ -143,10 +143,10 @@ function editfunction(data_id){
               $('[name=edit_athlete_taluka]').val(obj[i].athlete_taluka);
               $('[name=edit_athlete_sports]').find("option:contains("+obj[i].athletesports_name+")").attr("selected","selected");
             });
-            $('.popup_fade').show();
-            athletes_center_align();
-            $('.athletes_div, .close_btn').show();
-            document.body.style.overflow = 'auto';
+            // $('.popup_fade').show();
+            // athletes_center_align();
+            // $('.athletes_div, .close_btn').show();
+            // document.body.style.overflow = 'auto';
            }
         });
     } else if(window.location.href.indexOf("create_schedule.php") !== -1){
@@ -386,7 +386,7 @@ $(document).ready(function () {
 
   //form reset
 $('.reset_form').on('click',function(){
-  $("#edit_create_schedule_form, .edit_athletes_form,#edit_assign_schedule_form").find("select").each(function (index) {
+  $(".edit_create_schedule_form, .edit_athletes_form,#edit_assign_schedule_form").find("select").each(function (index) {
           var ctrl=$(this);
           $(ctrl.children()).each(function(index) {
               if (index===0) $(this).attr('selected', 'selected');
@@ -1524,7 +1524,7 @@ $('.reset_form').on('click',function(){
     });
 
     //Jquery and Ajax Functionality for CreateSchedule Form added by kalai
-    $('#createschedule_form').submit(function(e){
+    $('.createschedule_form').submit(function(e){
       e.preventDefault();
       var res = true;
       $('input[type="text"],select',this).each(function() {
@@ -1534,7 +1534,7 @@ $('.reset_form').on('click',function(){
         }
       });
       if(res){
-         var form_data = $('[name=create_schedule_form]').serialize();
+         var form_data = $(this).serialize();
           $.ajax({
              type: "POST",
              url: "functions/create_schedule_function.php?adddata=true",
@@ -1568,7 +1568,7 @@ $('.reset_form').on('click',function(){
       }
     });
 
-    $('#edit_create_schedule_form').submit(function(e){
+    $('.edit_create_schedule_form').submit(function(e){
         e.preventDefault();
         var res = true;
         $('input[type="text"],textarea,select',this).each(function() {
@@ -1577,7 +1577,7 @@ $('.reset_form').on('click',function(){
           }
         });
         if(res){
-            var form_data = $('[name=edit_createschedule_form]').serialize();
+            var form_data = $(this).serialize();
                 $.ajax({
                    type: "POST",
                    url: "functions/create_schedule_function.php?editdata=true",
@@ -2522,6 +2522,18 @@ $('.reset_form').on('click',function(){
       $('.r_strt,.r_end,.r_point').val('');
     });
 
+    //newly added for v2 by kalai
+    $(document).on('change','.check_list',function () {
+      $('.check_list').not(this).prop('checked', false);
+      if($(this).is(':checked')){
+        check_data = $(this).siblings('.check_data').val();
+        $('.check_table').find("input[value="+check_data+"]").parents('tr').show();
+        $('.check_table').find('.check_name').not("input[value="+check_data+"]").parents('tr').hide();
+      }
+      else{
+        $('.check_table tr').show();
+      }
+    });
 });
 
 $(document).bind("click", function(e) {
