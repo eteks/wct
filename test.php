@@ -17,6 +17,13 @@ if(isset($_GET['insert_error'])){
 	echo "<script>alert('Test already exist!');var url ='".$url."'; window.location = url ;</script>";
 }
 ?>
+<style type="text/css">
+	thead, tbody tr {
+    display:table;
+    width:100%;
+    table-layout:fixed;
+	}
+</style>
 <div class="container">
 	<div class="container left_align_parameter align_height">
 		<span class="sports">TEST</span>
@@ -115,10 +122,10 @@ if(isset($_GET['insert_error'])){
 									 ?>
 									<span class="test-name">
 										<input type="checkbox" name="test" value="test" class="check_test" id="check-select">
-										<input type="text" name="test" data-id ="<?php echo $eachrecord ['test_id']; ?>" value="<?php echo $eachrecord ['test_name']; ?>" class="list_edit">
+										<input type="text" name="test" data-id ="<?php echo $eachrecord ['test_id']; ?>" value="<?php echo $eachrecord ['test_name']; ?>" class="list_edit input_wrap">
 										<span class="test-alter">
-											<i class="fa fa-floppy-o save_item"></i>
-											<i class="fa fa-pencil-square-o edit_item"></i>
+											<i class="fa fa-floppy-o save_item edit_save_button"></i>
+											<i class="fa fa-pencil-square-o edit_item "></i>
 											<i class="fa fa-trash-o delete_item"></i>
 										</span><!--test-alter-->
 									</span><!--test-name-->
@@ -138,19 +145,19 @@ if(isset($_GET['insert_error'])){
 								</div><!--test-list-->
 						</div><!--search-content-->
 					</form>
-	            </div><!--search_part-->
+				</div><!--search_part-->
 				<div class="container table-position col-md-9" style="padding: 0px;">
 				  <table class="table test_table1" id="test_table">
-				    <thead>
-				      <tr class="row_color">
-						<th class="align_center">Parameter Name</th>
-				        <th class="align_center">Type</th>
-				        <th class="align_center">Unit</th>
-				        <th class="align_center">Format</th>
-				        <th class="align_center">Action</th>
-				      </tr>
-				    </thead>
-				    <tbody>
+				     <thead>
+			            <tr class="row_color">
+					      		<th class="align_center">Parameter Name</th>
+					        	<th class="align_center">Type</th>
+					        	<th class="align_center">Unit</th>
+					        	<th class="align_center">Format</th>
+					        	<th class="align_center">Action</th>
+				        	</tr>
+			        </thead>
+				    <tbody style="display:block;height:180px;overflow:auto;">
 					<?php
 					$data = $obj->testselectfunction();
 					foreach( $data as $eachrecord ) {
