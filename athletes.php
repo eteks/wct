@@ -117,7 +117,6 @@
 					<div class="test_title">
 						<span>Athlete Name</span>
 					</div><!--test_title-->
-					<form>
 						<div class="search-content">
 							<div class="search__list">
 								<input type="text" class="search_box search_text at_search" placeholder="Search Name">
@@ -129,14 +128,16 @@
 				                        while ($row = mysql_fetch_array($query)) {
 			                        ?>
 									<span class="test-name">
+									<!-- <form name="athletename_save" class="athletename_save" method="post"> -->
 										<input type="checkbox" name="test" value="test" class="check_test check_athlete check_list" id="check-select">
 										<input type="hidden" class="check_athleteid check_data" name="check_athleteid" value="<?php echo $row['athlete_id']; ?>">
 										<input type="text" name="check_athletename" value="<?php echo $row['athlete_name']; ?>" class="list_edit check_athletename" name="check_athletename">
 										<span class="test-alter">
-											<i class="fa fa-floppy-o save_item"></i>
+											<i class="fa fa-floppy-o save_item save_athlete"></i>
 											<i class="fa fa-pencil-square-o edit_item"></i>
-											<i class="fa fa-trash-o delete_item"></i>
+											<i class="fa fa-trash-o delete_item delete_state" data-value="<?php echo $row['athlete_id']; ?>"></i>
 										</span><!--test-alter-->
+									<!-- </form> -->
 									</span><!--test-name-->
 									<div class="delete_div delete_search">
 							            <!-- <code class="close_btn cancel_btn"> </code>  -->
@@ -153,7 +154,6 @@
       								<?php } ?>
 								</div><!--test-list-->
 						</div><!--search-content-->
-					</form>
 				</div>
 					
 					

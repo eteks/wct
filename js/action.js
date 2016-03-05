@@ -1191,6 +1191,7 @@ $('.reset_form').on('click',function(){
     });
     $('.yes_btn').click(function() {
         var del_id =$('#delete_id').val();
+        alert(del_id);
         if (window.location.href.indexOf("category.php") !== -1){
             var form_data = {'category_del':'1','del_id':del_id};
             $.ajax({
@@ -2778,6 +2779,7 @@ $('.reset_form').on('click',function(){
     });
 
     //newly added for v2 by kalai
+    //***********start**********
     $(document).on('change','.check_list',function () {
       $('.check_list').not(this).prop('checked', false);
       if($(this).is(':checked')){
@@ -2820,6 +2822,53 @@ $('.reset_form').on('click',function(){
       $('.test-name').hide();     
       $('.test-list').find("input[value="+search_value+"]").parents('.test-name').show();     
     });
+    
+    $('.save_athlete').click(function(){
+      athlete_id = $(this).parents('.test-name').find('.check_athleteid').val();
+      athlete_name = $(this).parents('.test-name').find('.check_athletename').val();
+      form_data = {'check_athleteid':athlete_id,'check_athletename':athlete_name};
+       $.ajax({
+           type: "POST",
+           url: "functions/athletes_functions.php?athletename_update=true",
+           data: form_data,
+           cache: false,
+           success: function(html) {
+            var result_split = html.split('#');
+            if (result_split[0].indexOf("success") !== -1){
+              alert(result_split[1]);
+              $(this).find('.check_athletename').val(result_split[2]);
+              $('.search_text').val('');
+            }
+            else{
+              alert(result_split[1]);
+            }
+          }
+         });
+    });  
+
+    $('.save_createschedule').click(function(){
+      createschedule_id = $(this).parents('.test-name').find('.check_scheduleid').val();
+      createschedule_name = $(this).parents('.test-name').find('.check_createschedulename').val();
+      form_data = {'check_scheduleid':createschedule_id,'check_createschedulename':createschedule_name};
+      $.ajax({
+           type: "POST",
+           url: "functions/create_schedule_function.php?createschedulename_update=true",
+           data: form_data,
+           cache: false,
+           success: function(html) {
+            var result_split = html.split('#');
+            if (result_split[0].indexOf("success") !== -1){
+              alert(result_split[1]);
+              $(this).find('.check_athletename').val(result_split[2]);
+              $('.search_text').val('');
+            }
+            else{
+              alert(result_split[1]);
+            }
+          }
+         });
+    });
+    //********* end *********
 });
 
 $(document).bind("click", function(e) {

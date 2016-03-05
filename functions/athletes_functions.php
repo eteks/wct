@@ -66,6 +66,12 @@
 				return false;
 			}
 		}
+		//newly added for v2
+		public function athletenameUpdate(){
+			$res = mysql_query("update wc_athlete set athlete_name='".$this->athletename."' where athlete_id ='".$this->athleteid."'")or die(mysql_error());
+			if($res){ return true; }
+			else{ return false; }
+		}
 	}
 	if(isset($_POST)){
 
@@ -186,6 +192,18 @@
 				echo 'error';
 			}
 
+		}
+		//newly added for v2
+		if(isset($_GET['athletename_update'])){
+			$athletesFunction = new athletesFunction();
+			$athletesFunction->athleteid=$_POST['check_athleteid'];
+ 			$athletesFunction->athletename=$_POST['check_athletename'];
+			$athletename_update = $athletesFunction->athletenameUpdate();
+			if($athletename_update){
+				echo "success#Athlete Name Updated#".$_POST['check_athletename'];
+			}else{
+				echo "failure#Athlete Name Not Updated";
+			}
 		}
 	  }
 ?>

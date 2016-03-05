@@ -60,6 +60,12 @@
 				return false;
 			}
 		}
+		//newly added for v2
+		public function createschedulenameUpdate(){
+			$res = mysql_query("update wc_createschedule set createschedule_name='".$this->createschedulename."' where createschedule_id ='".$this->createscheduleid."'")or die(mysql_error());
+			if($res){ return true; }
+			else{ return false; }
+		}
 	}
 	if(isset($_POST)){
 		//To insert data
@@ -135,6 +141,18 @@
 				echo "success#Schedule Updated#".$_POST['edit_schedule_id']."#".$_POST['edit_schedule_name'].'#'.$testbattery['testbattery_name']."#".$createscheduleFunction->createscheduledate."#".$createscheduleFunction->createscheduletime.'#'.$_POST['edit_schedule_venue'];
 			}else{
 				echo "failure#Schedule Not Updated";
+			}
+		}
+		//newly added for v2
+		if(isset($_GET['createschedulename_update'])){
+			$createscheduleFunction = new createscheduleFunction();
+			$createscheduleFunction->createscheduleid=$_POST['check_scheduleid'];
+ 			$createscheduleFunction->createschedulename=$_POST['check_createschedulename'];
+			$createschedulename_update = $createscheduleFunction->createschedulenameUpdate();
+			if($createschedulename_update){
+				echo "success#Schedule Name Updated#".$_POST['check_createschedulename'];
+			}else{
+				echo "failure#Schedule Name Not Updated";
 			}
 		}
 	  }
