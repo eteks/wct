@@ -48,13 +48,22 @@ class testfunction{
     }
     public function testselectfunction(){
       $temp_arr = array();
-      $res = mysql_query("SELECT * FROM wc_test_attribute INNER JOIN wc_test ON wc_test_attribute.test_id = wc_test.test_id ORDER BY test_attribute_id DESC") or die(mysql_error());
+      $res = mysql_query("SELECT * FROM wc_test_attribute INNER JOIN wc_test ON wc_test_attribute.test_id = wc_test.test_id where wc_test.test_id = (SELECT MAX(test_id) FROM wc_test ) ORDER BY test_attribute_id DESC") or die(mysql_error());
       $count=mysql_num_rows($res);
       while($row = mysql_fetch_array($res)) {
           $temp_arr[] =$row;
       }
       return $temp_arr;
       }
+      public function testnamefunction(){
+        $temp_arr = array();
+        $res = mysql_query("SELECT * FROM wc_test ORDER BY test_id DESC") or die(mysql_error());
+        $count=mysql_num_rows($res);
+        while($row = mysql_fetch_array($res)) {
+            $temp_arr[] =$row;
+        }
+        return $temp_arr;
+        }
     public function testbatteryselectfunction(){
       $temp_arr = array();
       $res = mysql_query("SELECT * FROM wc_test_attribute INNER JOIN wc_test ON wc_test_attribute.test_id = wc_test.test_id group by wc_test_attribute.test_id  ") or die(mysql_error());
@@ -114,13 +123,44 @@ class testfunction{
         $temp_arr = array();
         $testname = $_POST['id'];
         if($testname!=''){
-            $sql = mysql_query("SELECT * FROM wc_test where  test_name like '%".$testname."%' ORDER BY test_name ASC")or die(mysql_error());
+            $sql = mysql_query("SELECT * FROM wc_test where  test_name like '%".$testname."%' ORDER BY test_name DESC")or die(mysql_error());
             while($row = mysql_fetch_assoc($sql)) {
                 $temp_arr[] =$row;
             }
         }
         print(json_encode($temp_arr));
-
+    }
+    if(isset($_GET['find_all_test'])){
+        include ("../dbconnect.php");
+        $temp_arr = array();
+        $testname = $_POST['id'];
+        if($testname!=''){
+            $sql = mysql_query("SELECT * FROM wc_test ORDER BY test_name DESC")or die(mysql_error());
+            while($row = mysql_fetch_assoc($sql)) {
+                $temp_arr[] =$row;
+            }
+        }
+        print(json_encode($temp_arr));
+    }
+    if(isset($_GET['find_test_attribute'])){
+        include ("../dbconnect.php");
+        $temp_arr = array();
+        $test_arr = array();
+        $parameter_arr = array();
+        $testid = $_POST['id'];
+        if($testid!=''){
+            $sql = mysql_query("SELECT * FROM  wc_test_attribute where  test_id = '$testid'")or die(mysql_error());
+            while($row = mysql_fetch_assoc($sql)) {
+                $test_arr[] =$row;
+            }
+        }
+        $sql1 = mysql_query("SELECT * FROM  wc_parametertype")or die(mysql_error());
+        while($row1 = mysql_fetch_assoc($sql1)) {
+            $parameter_arr[] =$row1;
+        }
+        $temp_arr['param'] = $parameter_arr;
+        $temp_arr['test'] = $test_arr;
+        print(json_encode($temp_arr));
     }
     if(isset($_GET['deletedata'])){
         include ("../dbconnect.php");
