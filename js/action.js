@@ -1092,6 +1092,8 @@ $('.reset_form').on('click',function(){
         $(this).next().next().show();
         // $(this).parents('tr').siblings('.state_div').hide();
         $(this).parents('tr').siblings().children('.popup-edit').hide();
+        $(this).parents('tr').siblings().children('.range_div').hide();
+        
         document.body.style.overflow = 'auto';
     });
 
@@ -1211,7 +1213,6 @@ $('.reset_form').on('click',function(){
     });
     $('.yes_btn').click(function() {
         var del_id =$('#delete_id').val();
-        alert(del_id);
         if (window.location.href.indexOf("category.php") !== -1){
             var form_data = {'category_del':'1','del_id':del_id};
             $.ajax({

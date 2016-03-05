@@ -135,85 +135,92 @@
 					        <td class="popup-edit">
 					        	<span class="edit_state" onclick="editfunction(<?php echo $row['range_id'] ?>)"><i class="fa fa-pencil-square-o"></i></span>
 					        	<span class="delete_state" data-value="<?php echo $row['range_id'] ?>"><i class="fa fa-trash-o"></i></span>
-					        <div class="range_div popup_hidden">
-			          		<code class="close_btn cancel_btn"> </code>
-			          		<div class="edit_title">
-			                	<span class="del_txt">Edit Detail</span>
-			              	</div><!--edit_title-->
-			          			<div class="container state-content range_popup_scroll col-md-12">
-				          			<div class="col-xs-12 col-md-12 align_margin">
-							<form name="edit_range_form" class="edit_range_form_id">
-							<input type="hidden" name="edit_range_id">
-								<div class="form-group">
-								    <label for="sel1" class="popup_label">Select Test Battery Names</label>
-								  	<select class="form-control adjust_width classic box-width" id="sel1" name="edit_range_testbattery" data-validation-error-msg="Please Select the Name of Test Battery " data-validation="required">
-									  <option value="">Select Test Battery Names</option>
-									  <?php
-				                        $tb_query = $testbatteryfunction->testbatterySelect();
-				                        while ($row1 = mysql_fetch_array($tb_query)) {
-				                            ?>
-				                            <option value="<?php echo $row1['testbattery_id']; ?>"><?php echo $row1['testbattery_name']; ?></option>
-				                      <?php } ?>
-							  		</select>
-								</div>
-								<div class="form-group">
-									  <label for="sel1" class="popup_label">Category</label>
-									  <select class="form-control adjust_width classic range_category box-width" id="sel1" name="edit_range_category" data-validation-error-msg="Please Select the Category of Test Battery " data-validation="required">
-									  <option value="">Select Category</option>
-									  </select>
-								</div>
-								<div class="form-group">
-									  <label for="sel1" class="popup_label">Test Name</label>
-									  <select class="form-control adjust_width classic range_test box-width" id="sel1" name="edit_range_test" data-validation-error-msg="Please Select the Test Name" data-validation="required">
-									  <option value="">Select Test Name</option>
-									  </select>
-								</div>
-								<div class="form-group">
-									  <label for="sel1" class="popup_label">Parameter Name</label>
-									  <select class="form-control adjust_width classic range_parameter box-width" id="sel1" name="edit_range_parameter" data-validation-error-msg="Please Select the name of the Parameter" data-validation="required">
-									  <option value="">Select Parameter Name</option>
-									  </select>
-									  <input type="hidden" class="range_parameter_type">
-									  <input type="hidden" class="range_parameter_unit">
-									  <input type="hidden" class="range_parameter_format">
-								</div>
-								<div class="form-group edit_range_holder">
-								   <div class="edit_clone_content" id="edit_range_counter1">
-								  	  <label for="range" class="fl edit_range_label">Ranges <span class="edit_range_note">(Note:<span class="edit_range_notes"></span>)</span></label><br>
-								  	  <input type="hidden" class="edit_rattr_id" name="edit_rangeattr_id1" value="">
-								  	  <input type="hidden" class="edit_r_id" name="edit_range_id1" value="">
-								      	<div class="form-group col-md-12 ranges_popup">
-									      	<div class="col-md-12">
-									      		<input type="text" class="form-control classic range_align_popup edit_r_strt" id="edit_strt1" name="edit_range_start1" placehoder="Start" data-validation-error-msg="Please Select the Start Range" data-validation="required">
-									       		<span class="hided">Please Enter the start range</span>
-								    			<span class="hided">Please Check the format</span>
-									       	</div>
-									       	<div class="col-md-12">
-									      		<input type="text" class="form-control classic range_align_popup edit_r_end" id="edit_end1" name="edit_range_end1" placehoder="end" data-validation-error-msg="Please Select the End Range" data-validation="required">
-									       		<span class="hided">Please Enter the end range</span>
-								  				<span class="hided">Please Check the format</span>
-									       	</div>
-									       	<div class="col-md-12">
-									      		<input type="text" class="form-control classic range_align_popup edit_r_point" id="edit_point1" name="edit_range_points1" placehoder="points" data-validation-error-msg="Please Select the Point" data-validation="required">
-								  				<span class="hided">Please Enter the points</span>
-								  				<span class="hided">Please Check the format</span>
-								  			</div>
-								  		</div>
-								  </div>
-								</div>
-								<div class="col-md-12 schedule_btn">
-									<!-- <input type="reset" value="Clear" class="btn btn-primary align_right clear" maxlength="50"> -->
-									<input type="submit" class="btn btn-primary align_right test-submit clear edit_range_act" value="Save">
-								</div>
-							</form>
-						</div>
-					</div><!--state-content-->
-			</div><!--range_div-->
-
-							
-							
-							
-							
+								<div class="range_div popup_hidden">
+						          		<code class="close_btn cancel_btn"> </code>
+						          		<div class="edit_title">
+						                	<span class="del_txt">Edit Detail</span>
+						              	</div><!--edit_title-->
+						          			<div class="container state-content range_popup_scroll col-md-12">
+							          			<div class="col-xs-12 col-md-12 align_margin">
+										<form name="edit_range_form" class="edit_range_form_id">
+										<input type="hidden" name="edit_range_id">
+											<div class="form-group">
+											    <label for="sel1" class="popup_label">Select Test Battery Names</label>
+											  	<select class="form-control adjust_width classic box-width" id="sel1" name="edit_range_testbattery" data-validation-error-msg="Please Select the Name of Test Battery " data-validation="required">
+												  <option value="">Select Test Battery Names</option>
+												  <?php
+							                        $tb_query = $testbatteryfunction->testbatterySelect();
+							                        while ($row1 = mysql_fetch_array($tb_query)) {
+							                            ?>
+							                            <option value="<?php echo $row1['testbattery_id']; ?>"><?php echo $row1['testbattery_name']; ?></option>
+							                      <?php } ?>
+										  		</select>
+											</div>
+											<div class="form-group">
+												  <label for="sel1" class="popup_label">Category</label>
+												  <select class="form-control adjust_width classic range_category box-width" id="sel1" name="edit_range_category" data-validation-error-msg="Please Select the Category of Test Battery " data-validation="required">
+												  <option value="">Select Category</option>
+												  </select>
+											</div>
+											<div class="form-group">
+												  <label for="sel1" class="popup_label">Test Name</label>
+												  <select class="form-control adjust_width classic range_test box-width" id="sel1" name="edit_range_test" data-validation-error-msg="Please Select the Test Name" data-validation="required">
+												  <option value="">Select Test Name</option>
+												  </select>
+											</div>
+											<div class="form-group">
+												  <label for="sel1" class="popup_label">Parameter Name</label>
+												  <select class="form-control adjust_width classic range_parameter box-width" id="sel1" name="edit_range_parameter" data-validation-error-msg="Please Select the name of the Parameter" data-validation="required">
+												  <option value="">Select Parameter Name</option>
+												  </select>
+												  <input type="hidden" class="range_parameter_type">
+												  <input type="hidden" class="range_parameter_unit">
+												  <input type="hidden" class="range_parameter_format">
+											</div>
+											<div class="form-group edit_range_holder">
+											   <div class="edit_clone_content" id="edit_range_counter1">
+											  	  <label for="range" class="fl edit_range_label">Ranges <span class="edit_range_note">(Note:<span class="edit_range_notes"></span>)</span></label><br>
+											  	  <input type="hidden" class="edit_rattr_id" name="edit_rangeattr_id1" value="">
+											  	  <input type="hidden" class="edit_r_id" name="edit_range_id1" value="">
+											      	<div class="form-group col-md-12 ranges_popup">
+												      	<div class="col-md-12">
+												      		<input type="text" class="form-control classic range_align_popup edit_r_strt" id="edit_strt1" name="edit_range_start1" placehoder="Start" data-validation-error-msg="Please Select the Start Range" data-validation="required">
+												       		<span class="hided">Please Enter the start range</span>
+											    			<span class="hided">Please Check the format</span>
+												       	</div>
+												       	<div class="col-md-12">
+												      		<input type="text" class="form-control classic range_align_popup edit_r_end" id="edit_end1" name="edit_range_end1" placehoder="end" data-validation-error-msg="Please Select the End Range" data-validation="required">
+												       		<span class="hided">Please Enter the end range</span>
+											  				<span class="hided">Please Check the format</span>
+												       	</div>
+												       	<div class="col-md-12">
+												      		<input type="text" class="form-control classic range_align_popup edit_r_point" id="edit_point1" name="edit_range_points1" placehoder="points" data-validation-error-msg="Please Select the Point" data-validation="required">
+											  				<span class="hided">Please Enter the points</span>
+											  				<span class="hided">Please Check the format</span>
+											  			</div>
+											  		</div>
+											  </div>
+											</div>
+											<div class="col-md-12 schedule_btn">
+												<!-- <input type="reset" value="Clear" class="btn btn-primary align_right clear" maxlength="50"> -->
+												<input type="submit" class="btn btn-primary align_right test-submit clear edit_range_act" value="Save">
+											</div>
+										</form>
+									</div>
+								</div><!--state-content-->
+							</div><!--range_div-->
+							<div class="delete_div delete_test_div">
+					            <!-- <code class="close_btn cancel_btn"> </code>  -->
+					              <div class="del_title">
+					                <span class="del_txt">DELETE</span>
+					              </div>
+					              <div class="del_content">
+					                <span class="del_content_txt">Are you sure want to delete this whole record?</span>
+					                <input type="button" class="btn btn-primary align_right yes_btn" value="Yes">
+					                <input type="button" class="btn btn-primary align_right no_btn" value="No">
+					                <input type="hidden" name="delete_id" value="" id="delete_id"/>
+					              </div><!--del_content-->
+  							</div><!--delete_div-->
 							</td>
 				        </tr>
                     <?php $i++; } ?>
