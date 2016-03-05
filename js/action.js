@@ -590,7 +590,7 @@ $('.reset_form').on('click',function(){
         // $('.popup_fade').show();
         // $('.state_div').hide();
         $(this).next().next().show();
-        $(this).parents('tr').siblings().children('.state_div').hide();
+        $(this).parents('tr').siblings().children('.popup-edit').hide();
 
         // $('.state_div, .close_btn').show();
         document.body.style.overflow = 'auto';
@@ -1071,7 +1071,7 @@ $('.reset_form').on('click',function(){
         // $('.delete_div, .close_btn').show();
         $(this).next().next().show();
         // $(this).parents('tr').siblings('.state_div').hide();
-        $(this).parents('tr').siblings().find('.delete_div').hide();
+        $(this).parents('tr').siblings().children('.popup-edit').hide();
         document.body.style.overflow = 'auto';
     });
 
