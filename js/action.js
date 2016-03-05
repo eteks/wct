@@ -185,18 +185,37 @@ function editfunction(data_id){
            cache: false,
            success: function(data) {
             data =  data.split('#####');
-            var range_obj = JSON.parse(data[0]);
-            var rangeattr_obj = JSON.parse(data[1]);
+            var rangetest_obj = JSON.parse(data[0]);
+            var rangecategory_obj = JSON.parse(data[1]);
+            var range_obj = JSON.parse(data[2]);
+            var rangeattr_obj = JSON.parse(data[3]);
+
+            var rangetest_options = '<option></option>';
+            $.each(rangetest_obj, function(i){
+              rangetest_options += '<option value="'+rangetest_obj[i].test_id+'">'+rangetest_obj[i].test_name+'</option>';
+            });
+            $('[name=edit_range_test]').html(rangetest_options);
+
+            var rangecategory_options = '<option></option>';
+            $.each(rangecategory_obj, function(i){
+              rangecategory_options += '<option value="'+rangecategory_obj[i].categories_id+'">'+rangecategory_obj[i].categories_name+'</option>';
+            });
+            $('[name=edit_range_category]').html(rangecategory_options);
+
             $.each(range_obj, function(i){
               $('[name=edit_range_id').val(range_obj[i].range_id);
               $('[name=edit_range_testbattery]').find("option:contains("+range_obj[i].rangetestbattery_name+")").attr("selected","selected");
-              $('[name=edit_range_category]').html('<option value="'+range_obj[i].rangecategory_id+'" selected>'+range_obj[i].rangecategory_name+'</option>');
-              $('[name=edit_range_test]').html('<option value="'+range_obj[i].rangetest_id+'" selected>'+range_obj[i].rangetest_name+'</option>');
+              $('[name=edit_range_category]').find("option[value="+range_obj[i].rangecategory_id+"]").attr("selected","selected");
+              $('[name=edit_range_test]').find("option[value="+range_obj[i].rangetest_id+"]").attr("selected","selected");
+
               $('[name=edit_range_parameter]').html('<option value="'+range_obj[i].rangetestattribute_id+'" selected>'+range_obj[i].rangeparameter_name+'</option>');
-              if(range_obj[i].rangeparameter_type == "time")
+              if(range_obj[i].rangeparameter_type == "time" || range_obj[i].rangeparameter_type == "Time")
                 $('.edit_range_notes').text("Enter the range in "+range_obj[i].rangeparameter_unit+ " format");
               else
                 $('.edit_range_notes').text("Enter the range in "+range_obj[i].rangeparameter_unit+ " with "+range_obj[i].rangeparameter_format +" format");
+              $('.range_parameter_type').val(range_obj[i].rangeparameter_type);
+              $('.range_parameter_unit').val(range_obj[i].rangeparameter_unit);
+              $('.range_parameter_format').val(range_obj[i].rangeparameter_format);
             });
             $('.edit_range_note').show();
             //Append data to first range part without using for loop
@@ -233,7 +252,7 @@ function editfunction(data_id){
             }
             $('.popup_fade').show();
             $('.range_div, .close_btn').show();
-            document.body.style.overflow = 'auto';
+            document.body.style.overflow = 'hidden';
            }
         });
     }
@@ -607,6 +626,8 @@ $('.reset_form').on('click',function(){
         // $('.popup_fade').show();
         // $('.state_div').hide();
         $(this).next().next().show();
+
+        $(this).parents('tr').siblings().children('.state_div').hide();
         $(this).parents('tr').siblings().children('.popup-edit').hide();
 
         // $('.state_div, .close_btn').show();
@@ -1091,6 +1112,7 @@ $('.reset_form').on('click',function(){
         $(this).next().next().show();
         // $(this).parents('tr').siblings('.state_div').hide();
         $(this).parents('tr').siblings().children('.popup-edit').hide();
+        $(this).parents('tr').siblings().children('.range_div').hide();
         document.body.style.overflow = 'auto';
     });
 
@@ -1210,7 +1232,6 @@ $('.reset_form').on('click',function(){
     });
     $('.yes_btn').click(function() {
         var del_id =$('#delete_id').val();
-        //alert(del_id);
         if (window.location.href.indexOf("category.php") !== -1){
             var form_data = {'category_del':'1','del_id':del_id};
             $.ajax({
@@ -1900,14 +1921,18 @@ $('.reset_form').on('click',function(){
 
 //range
 //Jquery and Ajax Functionality for Range Form added by kalai
-     $('#range_form_id').submit(function(e){
+     $('.range_form_id').submit(function(e){
         e.preventDefault();
         var res = true;
         $('input[type="text"],textarea,select',this).each(function() {
           if($(this).val().trim() == "") {
+            $(this).next('.hided').addClass('custom_error').show();
             res = false;
           }
         });
+        if($(":input").siblings('span').hasClass("custom_error")){
+          res =  false;
+        }
         if(res){
           var form_data = $('[name=range_form]').serialize();
            $.ajax({
@@ -1939,17 +1964,20 @@ $('.reset_form').on('click',function(){
         }
       });
 
-    $('#edit_range_form_id ').submit(function(e){
+    $('.edit_range_form_id ').submit(function(e){
         e.preventDefault();
         var res = true;
         $('input[type="text"],textarea,select',this).each(function() {
           if($(this).val().trim() == "") {
+            $(this).next('.hided').addClass('custom_error').show();
             res = false;
-            // alert('test_updation_form false');
           }
         });
+        if($(this).find(":input").siblings('span').hasClass("custom_error")){
+          res =  false;
+        }
         if(res){
-            var form_data = $('[name=edit_range_form]').serialize();
+            var form_data = $(this).serialize();
             $.ajax({
                    type: "POST",
                    url: "functions/range_function.php?editdata=true",
@@ -2722,7 +2750,7 @@ $('.reset_form').on('click',function(){
               $('.range_parameter_type').val(obj[i].test_parameter_type);
               $('.range_parameter_unit').val(obj[i].test_parameter_unit);
               $('.range_parameter_format').val(obj[i].test_parameter_format);
-              if($('.range_parameter_type').val()=="time")
+              if($('.range_parameter_type').val().toLowerCase()=="time")
                 $('.range_notes').text("Enter the range in "+obj[i].test_parameter_unit);
               else
                 $('.range_notes').text("Enter the range in "+obj[i].test_parameter_unit+ " with "+obj[i].test_parameter_format+" formats");
@@ -2732,59 +2760,78 @@ $('.reset_form').on('click',function(){
        });
     });
 
-    $(document).on('blur','.r_strt,.r_end',function(e){
+    // $(document).on('blur','.r_end,.edit_r_end',function(e){
+    //   value=$(this).val();
+    //   start_value = $(this).parent().prev().children('.r_strt').val();
+    //   if((start_value >= value) && (value!='')){
+    //     $(this).next().next('.hided').addClass('custom_error').hide();
+    //     $(this).next('.hided').addClass('custom_error').hide();
+    //     $(this).next().next().next('.hided').addClass('custom_error').show();
+    //   }
+    //   else{
+    //     $(this).next().next().next('.hided').removeClass('custom_error').hide();
+    //   }
+
+    // });
+
+     $(document).on('blur','.r_strt,.r_end,.edit_r_strt,.edit_r_end',function(e){
         //Checking entered range
         value=$(this).val();
-
-        if(($('.range_parameter_type').val()=="time") && (value!='')){
+        if(value == ''){
+          $(this).next().next('.hided').addClass('custom_error').hide();
+          $(this).next('.hided').addClass('custom_error').show();
+        }
+        else
+          $(this).next('.hided').removeClass('custom_error').hide();
+        if(($('.range_parameter_type').val().toLowerCase()=="time") && (value!='')){
           if($('.range_parameter_format').val()=="HH:MM:SS"){
             // regex=/^(?:(?:([01]?\d|2[0-3]):)?([0-5]?\d):)?([0-5]?\d)$/;
             if(!(/^(?:[0-2][0-4]):(?:[0-5][0-9]):[0-5][0-9]$/).test(value)){
               // alert("check time format");
-              $(this).next('.hided').addClass('custom_error').text('Please Check time format').show();
+              $(this).next().next('.hided').addClass('custom_error').text('Please Check time format').show();
             }
             else{
-              $(this).next('.hided').removeClass('custom_error').text('').hide();
+              $(this).next().next('.hided').removeClass('custom_error').text('').hide();
             }
           }
           else if($('.range_parameter_format').val()=="HH:MM"){
             if(!(/^(?:[0-2][0-4]):[0-5][0-9]$/).test(value)){
-              $(this).next('.hided').addClass('custom_error').text('Please Check time format').show();
+              $(this).next().next('.hided').addClass('custom_error').text('Please Check time format').show();
             }
             else{
-              $(this).next('.hided').removeClass('custom_error').text('').hide();
+              $(this).next().next('.hided').removeClass('custom_error').text('').hide();
             }
           }
           else if($('.range_parameter_format').val()=="MM:SS"){
             if(!(/^(?:[0-5][0-9]):[0-5][0-9]$/).test(value)){
-              $(this).next('.hided').addClass('custom_error').text('Please Check time format').show();
+              $(this).next().next('.hided').addClass('custom_error').text('Please Check time format').show();
             }
             else{
-              $(this).next('.hided').removeClass('custom_error').text('').hide();
+              $(this).next().next('.hided').removeClass('custom_error').text('').hide();
             }
           }
           else if($('.range_parameter_format').val()=="HH:MM:SS:MSS"){
             if(!(/^(?:[0-2][0-4]):(?:[0-5][0-9]):(?:[0-5][0-9]):([0-9][0-9]|[0-9][0-9][0-9]|[0-1][0][0][0])$/).test(value)){
-              $(this).next('.hided').addClass('custom_error').text('Please Check time format').show();
+              $(this).next().next('.hided').addClass('custom_error').text('Please Check time format').show();
             }
             else{
-              $(this).next('.hided').removeClass('custom_error').text('').hide();
+              $(this).next().next('.hided').removeClass('custom_error').text('').hide();
             }
           }
           else if($('.range_parameter_format').val()=="MM:SS:MSS"){
             if(!(/^(?:[0-5][0-9]):(?:[0-5][0-9]):([0-9][0-9]|[0-9][0-9][0-9]|[0-1][0][0][0])$/).test(value)){
-              $(this).next('.hided').addClass('custom_error').text('Please Check time format').show();
+              $(this).next().next('.hided').addClass('custom_error').text('Please Check time format').show();
             }
             else{
-              $(this).next('.hided').removeClass('custom_error').text('').hide();
+              $(this).next().next('.hided').removeClass('custom_error').text('').hide();
             }
           }
           else if($('.range_parameter_format').val()=="SS:MSS"){
             if(!(/^(?:[0-5][0-9]):([0-9][0-9]|[0-9][0-9][0-9]|[0-1][0][0][0])$/).test(value)){
-            $(this).next('.hided').addClass('custom_error').text('Please Check time format').show();
+            $(this).next().next('.hided').addClass('custom_error').text('Please Check time format').show();
             }
             else{
-              $(this).next('.hided').removeClass('custom_error').text('').hide();
+              $(this).next().next('.hided').removeClass('custom_error').text('').hide();
             }
           }
         }
@@ -2799,14 +2846,24 @@ $('.reset_form').on('click',function(){
               paramter_unit = $('.range_parameter_unit').val();
               parameter_format = $('.range_parameter_format').val();
               if(decimals > parameter_format || value.indexOf(":") !== -1){
-                 $(this).next('.hided').addClass('custom_error').text('Please Check range format').show();
+                 $(this).next().next('.hided').addClass('custom_error').text('Please Check range format').show();
               }
               else{
-                 $(this).next('.hided').removeClass('custom_error').text('').hide();
+                 $(this).next().next('.hided').removeClass('custom_error').text('').hide();
               }
           }
         }
      });
+
+    $(document).on('blur','.r_point,.edit_r_point',function(e){
+      value=$(this).val();
+       if(value == ''){
+         $(this).next('.hided').addClass('custom_error').show();
+       }
+       else{
+         $(this).next('.hided').removeClass('custom_error').hide();
+       }
+    });
 
     //To clear selected dropdown values in edit form
     // $('.edit_athlete_clear,').click(function(){
