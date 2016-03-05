@@ -469,7 +469,7 @@ select {
 }*/
 .test_battery_div,.athletes_div,.createschedule_div{
     height: 370px;
-    margin: 0 0 0 -160px;
+    margin: 0 0 0 -200px;
     width: 290px;
     position:absolute;
     z-index:9999;

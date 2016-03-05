@@ -9,6 +9,11 @@
 	  $sportsfunction = new sportsfunction();
 	  $athleteFunction = new athletesFunction();
 ?>
+<style type="text/css">
+	#ui-id-1{
+		width: 152px !important;
+	}
+</style>
 <div class="container">
 	<div class="container left_align_testbattery align_height">
 		<span class="sports">ADD ATHLETES</span>

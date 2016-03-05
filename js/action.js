@@ -1091,7 +1091,7 @@ $('.reset_form').on('click',function(){
         // $('.delete_div, .close_btn').show();
         $(this).next().next().show();
         // $(this).parents('tr').siblings('.state_div').hide();
-        $(this).parents('tr').siblings().find('.delete_div').hide();
+        $(this).parents('tr').siblings().children('.popup-edit').hide();
         document.body.style.overflow = 'auto';
     });
 
