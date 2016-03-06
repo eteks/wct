@@ -2913,7 +2913,7 @@ $('.reset_form').on('click',function(){
       });
     });
 
-    $('.delete_search,.at_namelist').hide();
+    $('.delete_search,.at_namelist,.cs_namelist').hide();
     $('.search_button').click(function(){
       search_value = $('.search_text').val();
       if(search_value == ''){

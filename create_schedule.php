@@ -227,7 +227,7 @@
 				                        $query = $createscheduleFunction->createscheduleSelect();
 				                        while ($row = mysql_fetch_array($query)) {
 			                        ?>
-									<span class="test-name">
+									<span class="test-name cs_namelist">
 										<input type="checkbox" name="test" value="test" class="check_test check_createschedule check_list input_wrap" id="check-select">
 										<input type="hidden" class="check_scheduleid check_data" name="check_scheduleid" value="<?php echo $row['createschedule_id']; ?>">
 										<input type="text" name="check_createschedulename" value="<?php echo $row['createschedule_name']; ?>" class="list_edit check_createschedulename input_wrap">
