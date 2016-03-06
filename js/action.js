@@ -318,7 +318,7 @@ $(document).ready(function () {
                              $('.test-list').append(
                              '<span class="test-name">\
                                  <input type="checkbox" name="test" value="test" class="check_test" id="check-select">\
-                                 <input type="text" data-id ="'+data[i].test_id+'" name="test" value="'+data[i].test_name+'" class="list_edit input_wrap" disabled>\
+                                 <input type="text" data-id ="'+data[i].test_id+'" name="test" value="'+data[i].test_name+'" class="list_edit test_name_hover input_wrap" disabled>\
                                  <span class="test-alter">\
                                      <i class="fa fa-floppy-o save_item edit_save_button"></i>\
                                      <i class="fa fa-pencil-square-o edit_item "></i>\
@@ -356,7 +356,7 @@ $(document).ready(function () {
                              $('.test-list').append(
                              '<span class="test-name">\
                                  <input type="checkbox" name="test" value="test" class="check_test" id="check-select">\
-                                 <input type="text" data-id ="'+data[i].test_id+'" name="test" value="'+data[i].test_name+'" class="list_edit input_wrap" disabled>\
+                                 <input type="text" data-id ="'+data[i].test_id+'" name="test" value="'+data[i].test_name+'" class="list_edit test_name_hover input_wrap" disabled>\
                                  <span class="test-alter">\
                                      <i class="fa fa-floppy-o save_item edit_save_button"></i>\
                                      <i class="fa fa-pencil-square-o edit_item "></i>\
@@ -381,7 +381,7 @@ $(document).ready(function () {
              });
         }
     });
-    $(document).delegate('.list_edit', 'mouseover', function(event) {
+    $(document).delegate('.test_name_hover', 'mouseover', function(event) {
         //alert($(this).attr('data-id'));
          $('#test_table tbody').empty();
         var test_id = $(this).attr('data-id');
@@ -465,7 +465,7 @@ $(document).ready(function () {
       						              </div>\
       						              <div class="del_content">\
       						                <span class="del_content_txt">Are you sure want to delete this whole record?</span>\
-      						                <input type="button" class="btn btn-primary align_right yes_btn" value="Yes" data-delete="test_attribute" data-id ="'+data.test[i].test_attribute_id+'">\
+      						                <input type="button" class="btn btn-primary align_right yes_btn" value="Yes" data-delete="test_attribute" data-id ="'+data.test[i].test_attribute_id+' "data-test-id="'+data.test[i].test_id+'">\
       						                <input type="button" class="btn btn-primary align_right no_btn" value="No">\
       						                <input type="hidden" name="delete_id" value="" id="delete_id"/>\
       						              </div>\
@@ -658,7 +658,12 @@ $('.reset_form').on('click',function(){
                  current_popup.parents('.popup-edit').find('.test_parameter_name_update').val(data.test_parameter_name);
                  current_popup.parents('.popup-edit').find('.parameter_type_update option[value="'+data.test_parameter_type+'"]').attr('selected','selected');
                  current_popup.parents('.popup-edit').find('.parameter_unit_update').append('<option value="'+data.test_parameter_unit+'">'+data.test_parameter_unit+'</option>');
-                 current_popup.parents('.popup-edit').find('.parameter_format_update option[value="'+data.test_parameter_format+'"]').attr('selected','selected');
+                // current_popup.parents('.popup-edit').find('.parameter_format_update option[value="'+data.test_parameter_format+'"]').attr('selected','selected');
+                 if(data.test_parameter_type.toLowerCase() == 'time'){
+                    current_popup.parents('.popup-edit').find('.parameter_format_update').empty().append("<option value='"+data.test_parameter_unit+"'>"+data.test_parameter_unit+"</option>");
+                }else{
+                    current_popup.parents('.popup-edit').find('.parameter_format_update option[value="'+data.test_parameter_format+'"]').attr('selected','selected');
+                }
                  current_popup.parents('.popup-edit').find('.parameter_update').val(test_attr_id);
                  current_popup.parents('.popup-edit').find('.test_update_id').val(data.test_id);
             }
@@ -1351,6 +1356,7 @@ $('.reset_form').on('click',function(){
                     data: form_data,
                     cache: false,
                     success: function(html) {
+                        //alert(html);
                      $('.popup_fade').hide();
                      $('.state_div,.delete_div').hide();
                      document.body.style.overflow = 'auto';
@@ -1358,7 +1364,7 @@ $('.reset_form').on('click',function(){
                     }
                 });
            }else if(delete_data.trim()=='test_attribute'){
-               var form_data = {'delete_id':$(this).attr('data-id')};
+               var form_data = {'delete_test_id':$(this).attr('data-test-id'),'delete_id':$(this).attr('data-id')};
                //alert(JSON.stringify(form_data));
                $.ajax({
                     type: "POST",
@@ -1366,6 +1372,7 @@ $('.reset_form').on('click',function(){
                     data: form_data,
                     cache: false,
                     success: function(html) {
+                     alert('Test parameter deleted successfully');
                      $('.popup_fade').hide();
                      $('.state_div,.delete_div').hide();
                      document.body.style.overflow = 'auto';
@@ -1621,17 +1628,11 @@ $('.reset_form').on('click',function(){
     }
 
 
-    $(document.body).delegate('.parameter_type','change',function() {
+    $(document.body).delegate('.parameter_type_update','change',function() {
+        var current = $(this);
         var param_name = $(this).val();
         var this_content = $(this).attr('name');
-        //alert(this_content);
-        // if(param_name=='time'){
-        //      $('select[name="'+this_content+'"]').parents().find('.parameter_format').attr('disabled', 'disabled');
-        // }
-        // else{
-        //     $('select[name="'+this_content+'"]').parents().find('.parameter_format').removeAttr('disabled');
-        // }
-
+        //alert(current.parents('.parameter_holder').html());
         $.ajax({
            type: "POST",
            url: "common.php?param_name='true'",
@@ -1639,9 +1640,9 @@ $('.reset_form').on('click',function(){
            cache: false,
            success: function(html) {
                if(html !=''){
-                   $('select[name="'+this_content+'"]').parents('.schedule_test').find('.parameter_unit').html(html);
+                   current.parents('.parameter_holder').find('.parameter_unit').html(html);
                }else{
-                    $('select[name="'+this_content+'"]').parents('.schedule_test').find('.parameter_unit').html("<option value=''>UNIT</option>");
+                    current.parents('.parameter_holder').find('.parameter_unit').html("<option value=''>UNIT</option>");
                     alert('No parameter unit found');
                }
            }
@@ -1664,22 +1665,19 @@ $('.reset_form').on('click',function(){
         var param_type = $('.parameter_type_update').val().trim();
 
         if(param_type.toLowerCase() == 'time'){
-            $('.parameter_format').empty().append("<option value="+param_unit+">"+param_unit+"</option>");
+            $(this).parents('.parameter_holder').find('.parameter_format').empty().append("<option value="+param_unit+">"+param_unit+"</option>");
         }else{
-            $('.parameter_format').empty().append("<option value=''>Format</option><option value='0'>0</option><option value='1'>1</option><option value='2'>2</option><option value='3'>3</option><option value='4'>4</option><option value='5'>5</option>");
+            $(this).parents('.parameter_holder').find('.parameter_format').empty().append("<option value=''>Format</option><option value='0'>0</option><option value='1'>1</option><option value='2'>2</option><option value='3'>3</option><option value='4'>4</option><option value='5'>5</option>");
         }
     });
 
-    $('.parameter_type_update').change(function() {
+    $(document.body).delegate('.parameter_type_add','change',function() {
+        //alert($(this).html());
+        var current = $(this);
         var param_name = $(this).val();
         var this_content = $(this).attr('name');
-        // if(param_name=='time'){
-        //      $('select[name="'+this_content+'"]').parents().find('.parameter_format').attr('disabled', 'disabled');
-        // }
-        // else{
-        //     $('select[name="'+this_content+'"]').parents().find('.parameter_format').removeAttr('disabled');
-        // }
 
+        //alert('sdfsdf');
         $.ajax({
            type: "POST",
            url: "common.php?param_name='true'",
@@ -1687,13 +1685,13 @@ $('.reset_form').on('click',function(){
            cache: false,
            success: function(html) {
                if(html !=''){
-                   $('select[name="'+this_content+'"]').parents('.parameter_type_parent').find('.parameter_unit').html(html);
+                   current.parents('.schedule_test').find('.parameter_unit').html(html);
                }else{
-                    $('select[name="'+this_content+'"]').parents('.parameter_type_parent').find('.parameter_unit').html("<option value=''>UNIT</option>");
+                    current.parents('.schedule_test').find('.parameter_unit').html("<option value=''>UNIT</option>");
+                    alert('Parameter Unit Not availabel!');
                }
            }
        });
-        //$(this).attr('value', $(this).val())
     });
 
     // $('.test_submit_act').click(function() {

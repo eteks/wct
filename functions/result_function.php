@@ -1,5 +1,5 @@
 <?php
-	include($_SERVER["DOCUMENT_ROOT"] . "/wct/common.php");
+	include($_SERVER["DOCUMENT_ROOT"] . "/wct_v2/common.php");
  	class resultFunction {
  		public $resultid;
  		public $createscheduleid;
@@ -33,7 +33,7 @@
 				 ON tca.testbattery_category_id = asch.assigncategory_id INNER JOIN
 				 wc_testbattery_test_attribute as tbta ON tbta.testbattery_id=tca.testbattery_id
 				 INNER JOIN wc_test as t ON t.test_id = tbta.testbattery_test_id INNER JOIN
-				 wc_test_attribute as ta ON ta.test_id = t.test_id LEFT JOIN wc_range as r ON 
+				 wc_test_attribute as ta ON ta.test_id = t.test_id LEFT JOIN wc_range as r ON
 				 r.rangetestattribute_id = ta.test_attribute_id WHERE asch.assigncreateschedule_id='".$this->createscheduleid."' AND asch.assignathlete_id='".$this->athleteid."' GROUP BY test_name,test_parameter_name")or die(mysql_error());
 			return $res;
 
@@ -114,7 +114,7 @@
 	           'ranges' => $rangejson,
 	            );
     			array_push( $json, $tmp2 );
-    			
+
     			//newly added
     			$resultFunction->resulttest_name = $result['test_name'];
     			$resultFunction->resultparameter_name = $result['test_parameter_name'];
@@ -126,26 +126,26 @@
 				           'resulttest_name' => $result['test_name'],
 				           'resultparameter_name' => $result['test_parameter_name'],
 				           'result' => $result_data['result'],
-				           'points' => $result_data['points'],		            
+				           'points' => $result_data['points'],
 			            );
 		    			array_push( $jsonresult, $tmp3 );
     				}
     			}
 		    }
 		    echo json_encode($json).'###'.json_encode($jsonresult);
-		}	
+		}
 		if(isset($_GET['storeresult'])){
 			$strRequest = file_get_contents('php://input');
 			$Request = json_decode($strRequest);
 			$resultFunction = new resultFunction();
 			foreach($Request as $value){
 				$resultFunction->createscheduleid = $value->createschedule_id;
-				$resultFunction->athleteid = $value->athlete_id; 
-				$resultFunction->resulttest_name = $value->test_name; 
-				$resultFunction->resultparameter_name = $value->parameter_name; 
-				$resultFunction->result = $value->enter_result; 
+				$resultFunction->athleteid = $value->athlete_id;
+				$resultFunction->resulttest_name = $value->test_name;
+				$resultFunction->resultparameter_name = $value->parameter_name;
+				$resultFunction->result = $value->enter_result;
 				if($value->enter_points){
-					$resultFunction->points = $value->enter_points; 
+					$resultFunction->points = $value->enter_points;
 				}
 				else {
 					$resultFunction->points = 0;
@@ -158,16 +158,16 @@
 				}else{
 					$status = 1;
 					$resultinsert = $resultFunction->resultInsert();
-				}	
+				}
 				// $result = $resultFunction->isresultExist();
-				
+
 				// if(!$result){
 				// 	$resultinsert = $resultFunction->resultInsert();
 				// 	$status = true;
 				// }
 				// else{
 				// 	$status = false;
-				// }		
+				// }
 			}
 			if($status == 1)
 				echo "success#Result Created";
@@ -176,7 +176,7 @@
 			// if($status == true)
 			// 	echo "success#Result Created";
 			// else
-			// 	echo "failure#Result Already Created for this athlete with the same parameter name";	
+			// 	echo "failure#Result Already Created for this athlete with the same parameter name";
 		}
 	}
 ?>

@@ -98,7 +98,17 @@ class testfunction{
             }
             header('Location:../test.php?insert=true');
         }else {
-          header('Location:../test.php?insert_error=true');
+            $row = mysql_fetch_array(mysql_query("select test_id from wc_test where test_name ='$testname'"));
+            for($i=1;$i<=$counter;$i++){
+                $test_id = $row['test_id'];
+                $parameter = $_POST["parameter_name".$i.""];
+                $type = $_POST["type".$i.""];
+                $unit = $_POST["unit".$i.""];
+                $format =  $_POST["format".$i.""];
+                $sql = "insert into wc_test_attribute (test_id,test_parameter_name,test_parameter_type,test_parameter_unit,test_parameter_format,test_attribute_status)values('$test_id','$parameter','$type','$unit','$format','1')";
+                mysql_query($sql) or die(mysql_error());
+            }
+          header('Location:../test.php?insert=true');
         }
     }
     if(isset($_POST['parameter_update'])){
@@ -109,8 +119,8 @@ class testfunction{
         $paramtype = $_POST['type1'];
         $paramunit = $_POST['unit1'];
         $paramformat = $_POST['format1'];
-        $test_name = $_POST['test_name'];
-        mysql_query("update wc_test set test_name ='$test_name' where test_id = $testid ")or die(mysql_error());
+        //$test_name = $_POST['test_name'];
+        //mysql_query("update wc_test set test_name ='$test_name' where test_id = $testid ")or die(mysql_error());
         mysql_query("update wc_test_attribute set test_parameter_name ='$parameter_name',test_parameter_type ='$paramtype',test_parameter_unit='$paramunit',test_parameter_format ='$paramformat' where test_attribute_id = $parameter_id ")or die(mysql_error());
         header('Location:../test.php?update=true');
 
@@ -154,7 +164,7 @@ class testfunction{
         $parameter_arr = array();
         $testid = $_POST['id'];
         if($testid!=''){
-            $sql = mysql_query("SELECT * FROM  wc_test_attribute where  test_id = '$testid'")or die(mysql_error());
+            $sql = mysql_query("SELECT * FROM  wc_test_attribute where  test_id = '$testid' ORDER BY test_attribute_id DESC ")or die(mysql_error());
             while($row = mysql_fetch_assoc($sql)) {
                 $test_arr[] =$row;
             }
@@ -180,21 +190,22 @@ class testfunction{
     if(isset($_GET['delete_test_attribute'])){
         include ("../dbconnect.php");
         $test = new testfunction();
-        $test->testid = $_POST['delete_id'];
-        $sql = mysql_query("select * from wc_test_attribute where test_attribute_id ='".$_POST['delete_id']."'");
+        $sql = mysql_query("select * from wc_test_attribute where test_id ='".$_POST['delete_test_id']."'");
         $count = mysql_num_rows($sql);
+        //echo $count;
         if($count >1){
+            $test->testid = $_POST['delete_id'];
             if($test->testattributedeletefunction()){
-              echo $_POST['delete_id'];
+              echo 'test_attribute';
             }else{
               echo "error";
-            }        
+            }
         }else if($count = 1){
-            $res = mysql_fetch_array($sql);
-            $testid = $res['test_id'];
-            $exec=mysql_query("delete from wc_test where test_id ='".$testid."'");
+            // $res = mysql_fetch_array($sql);
+            // $testid = $res['test_id'];
+            $exec=mysql_query("delete from wc_test where test_id ='".$_POST['delete_test_id']."'");
             if($exec){
-                echo $_POST['delete_id'];
+                echo 'test_attribute_with_name';
             }else{
               echo "error";
             }

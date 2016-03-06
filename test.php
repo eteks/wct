@@ -48,7 +48,7 @@ if(isset($_GET['insert_error'])){
 							</div>
 
 							<div class="form-group col-md-2">
-									<select class="form-control classic type_align fl parameter_type" id="type" name="type1" data-validation-error-msg="Please Select the Type of the Parameter" data-validation="required">
+									<select class="form-control classic type_align fl parameter_type parameter_type_add" id="type" name="type1" data-validation-error-msg="Please Select the Type of the Parameter" data-validation="required">
 										<option value="">
 											Type
 										</option>
@@ -122,7 +122,7 @@ if(isset($_GET['insert_error'])){
 									 ?>
 									<span class="test-name">
 										<input type="checkbox" name="test" value="test" class="check_test" id="check-select">
-										<input type="text" name="test" data-id ="<?php echo $eachrecord ['test_id']; ?>" value="<?php echo $eachrecord ['test_name']; ?>" class="list_edit input_wrap" disabled>
+										<input type="text" name="test" data-id ="<?php echo $eachrecord ['test_id']; ?>" value="<?php echo $eachrecord ['test_name']; ?>" class="list_edit test_name_hover input_wrap" disabled>
 										<span class="test-alter">
 											<i class="fa fa-floppy-o save_item edit_save_button"></i>
 											<i class="fa fa-pencil-square-o edit_item "></i>
@@ -239,7 +239,7 @@ if(isset($_GET['insert_error'])){
 						              </div>
 						              <div class="del_content">
 						                <span class="del_content_txt">Are you sure want to delete this whole record?</span>
-						                <input type="button" class="btn btn-primary align_right yes_btn" value="Yes" data-delete='test_attribute' data-id ="<?php echo $eachrecord ['test_attribute_id']; ?>">
+						                <input type="button" class="btn btn-primary align_right yes_btn" value="Yes" data-delete='test_attribute' data-id ="<?php echo $eachrecord ['test_attribute_id']; ?>" data-test-id="<?php echo $eachrecord ['test_id']; ?>">
 						                <input type="button" class="btn btn-primary align_right no_btn" value="No">
 						                <input type="hidden" name="delete_id" value="" id="delete_id"/>
 						              </div>
