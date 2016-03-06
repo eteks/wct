@@ -98,7 +98,7 @@ if(isset($_GET['update_success'])){
 					</div>
 				</form>
 			</div>
-			<div class="container table-position">
+			<div class="container table-position align_bottom">
 			  <table class="table state_table">
 			    <thead>
 			      <tr class="row_color">
@@ -171,7 +171,7 @@ if(isset($_GET['update_success'])){
 									      		<input type="text" class="form-control schedule-name fl mobile_update mobile" id="name" placeholder="Mobile no" disabled>
 									      	</div>
 									      	<div class="col-md-12">
-									      		<input type="text" class="form-control bib_popup athlete_bib fl bib_update" id="name" placeholder="BIB NO" name="athlete_bib1" data-validation-error-msg="Please Enter the BIBO NO" data-validation="number">
+									      		<input type="text" class="form-control bib_popup athlete_bib popup_bib fl bib_update" id="name" placeholder="BIB NO" name="athlete_bib1" data-validation-error-msg="Please Enter the BIBO NO" data-validation="number">
 											</div>
 											<input type="hidden" class="assing_schedule_update_id" name="assing_schedule_update_id1" value="" />
 									    </div>

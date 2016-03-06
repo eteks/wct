@@ -63,7 +63,12 @@
 /*    text-align: center;
 */    width: 100%;
     bottom: 0;
+    position: absolute !important;
+}
+.bottom_alignment_footer {
     position: relative !important;
+    top:auto !important;
+    bottom:0px !important;
 }
 .user_txt {
  height: 102px;
@@ -894,10 +899,10 @@ button, input, optgroup, select, textarea {
     color: #424242 !important;
     font-family: Montserrat;
     height: 34px;
-    margin: 12px 0 10px 28px;
+    margin: 15px 0 10px 28px;
     position: relative;
     right: 70px;
-    width: 230px !important;
+    width: 226px !important;
 }
 .create-date {
     border-radius: 0 !important;
@@ -948,6 +953,7 @@ input[type=radio]
   bottom: 1px;
   background-color: #fff;
   box-shadow: 0 0 0 2px #e7e7e7 inset;
+  top: 3px;
 }
 
 .radio label:before {
@@ -1231,10 +1237,11 @@ input[type=radio]:checked + label:before {
     height: 35px; 
 }
 .combo--align--popup span input {
-    position: relative !important;
-    top: 12px;
-    width: 195px;
-    left: -40px;
+    height: 30px;
+    left: -43px;
+    position: absolute !important;
+    top: -12px;
+    width: 227px;
 }
 .assign-add-button {
     bottom: 65px;
@@ -1408,6 +1415,7 @@ input[type=radio]:checked + label:before {
 tbody tr {
     border-left: 1px solid #e2e2e2 !important;
     border-right: 1px solid #e2e2e2 !important;
+    /*position: relative;*/
 }
 /*added by siva*/
 .left_align_category { /* added by siva */
@@ -1470,7 +1478,7 @@ tbody tr {
 .test-name {
     cursor: pointer;
     display: block;
-    width: 268px;
+    width: 250px;
     color: #414141;
     font-family: Montserrat;
     position: relative;
@@ -1486,7 +1494,7 @@ tbody tr {
 .test-alter {
     float: right;
     position: relative;
-    right: 8px;
+    right: 15px;
     top: 2px;
 }
 .search__list {
@@ -1666,6 +1674,7 @@ tbody tr {
 .popup_label{
     float: left;
     font-size: 12px;
+    font-weight: bold;
 }
 .delete_test_div{
     background: #fff none repeat scroll 0 0;
@@ -1709,7 +1718,7 @@ tbody tr {
     width: 105% !important;
 }
 .test-list {
-    max-height: 175px;
+    height: 175px;
     overflow: auto;
 }
 .down_font {
@@ -1768,4 +1777,14 @@ button, input, optgroup, select, textarea {
 }
 .athlete_list,.createschedule_list{
     display: none;
+}
+.popup_bib{
+    margin: 4px 0 10px 28px;
+}
+.align_bottom{
+    margin-bottom: 50px;
+}
+.reverse {
+    top:auto;
+    bottom:45px;
 }

@@ -6,7 +6,7 @@
 		<div class="container align_center left_align align_height">
 			<span class="sports">STATE</span>
 		</div><!--end container-->
-		<div class="container align_margin" style="width: 85%;">
+		<div class="container align_margin align_bottom" style="width: 85%;">
 			
 				<!-- <div class="col-md-6"></div> -->
 				<div class="col-md-4 align_margin">

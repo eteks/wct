@@ -8,7 +8,7 @@ $obj = new categoryfunction();
 		<div class="container align_center left_align_category align_height">
 			<span class="sports">CATEGORY</span>
 		</div><!--end container-->
-		<div class="container align_margin">
+		<div class="container align_margin align_bottom">
 				<!-- <div class="col-md-6"></div> -->
 				<div class="col-md-4 align_margin">
 					<form id="category_form" name="categories_form" role="form">

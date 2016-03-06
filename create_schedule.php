@@ -9,8 +9,29 @@
 	#ui-id-1{
 		width: 152px !important;
 	}
+	thead, tbody tr {
+    display:table;
+    width:100%;
+    table-layout:fixed;
+	}
+	.table > tbody tr:last-child{
+		border: 0 none !important;
+	}
+	.table > thead{
+		border-bottom: 0 none !important;
+	}
+	tbody tr {
+    border-left: 0 none !important;
+    border-right: 0 none !important;
+	}
+	.paging-nav {
+    display: none;
+	}
+	.table > tbody td{
+		height: 12px;
+	}
 </style>
-<div class="container">
+<div class="container align_bottom">
 	<div class="container left_align_parameter align_height">
 		<span class="sports">CREATE SCHEDULE</span>
 	</div><!--end container-->
@@ -234,7 +255,7 @@
 										<span class="test-alter">
 											<i class="fa fa-floppy-o save_item save_createschedule"></i>
 											<i class="fa fa-pencil-square-o edit_item"></i>
-											<i class="fa fa-trash-o delete_item delete_state" data-value="<?php echo $row['createschedule_id']; ?>"></i>
+											<i class="fa fa-trash-o delete_item delete_state" data-value="<?php echo $row['createschedule_id']; ?>" style="float: none;"></i>
 										</span><!--test-alter-->
 									</span><!--test-name-->
 									<div class="delete_div delete_search">
@@ -268,7 +289,7 @@
 			        <th class="align_center">Action</th>
 			      </tr>
 			    </thead>
-				<tbody>
+				<tbody style="display:block;height:260px;overflow:auto;">
 					<?php
 	                   $query = $createscheduleFunction->createscheduleSelect();
 	                   $i=1;

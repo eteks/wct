@@ -29,6 +29,22 @@ if(isset($_GET['duplicate'])){
     width:100%;
     table-layout:fixed;
 	}
+	.table > tbody tr:last-child{
+		border: 0 none !important;
+	}
+	.table > thead{
+		border-bottom: 0 none !important;
+	}
+	tbody tr {
+    border-left: 0 none !important;
+    border-right: 0 none !important;
+	}
+	.paging-nav {
+    display: none;
+	}
+	.table > tbody td{
+		height: 12px;
+	}
 </style>
 <div class="container">
 	<div class="container left_align_testbattery align_height">
@@ -89,7 +105,7 @@ if(isset($_GET['duplicate'])){
 					</div>
 				</form>
 			</div>
-			<div class="col-md-12">
+			<div class="col-md-12 align_bottom">
 				<div class="col-md-3 search_part" style="padding: 0px;">
 					<div class="test_title">
 						<span>Test Battery Name</span>
@@ -160,7 +176,7 @@ if(isset($_GET['duplicate'])){
 			        <th class="align_center">Action</th>
 			      </tr>
 			    </thead>
-			    <tbody style="display:block;height:180px;overflow:auto;">
+			    <tbody style="display:block;height:260px;overflow:auto;">
 					<!-- <?php
 					//$data = $test_battery->testbatteryselectfunction();
 					//$i=1;
@@ -185,7 +201,7 @@ if(isset($_GET['duplicate'])){
 							<?php } ?>
 						</div>
 			        </td>
-			        <td class="test-list">Categories7<i class="fa fa-angle-down down_font"></i>
+			        <td class="test-list test-battery">Categories7<i class="fa fa-angle-down down_font"></i>
 			        	<div class="hover-list hover-test">
 			        	<span class="hover_title_test">Selected Test</span>
 							<?php

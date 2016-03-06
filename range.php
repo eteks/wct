@@ -112,7 +112,7 @@
 					</div>
 				</form>
 			</div>
-			<div class="container table-position">
+			<div class="container table-position align_bottom">
 			  <table class="table range_table">
 			    <thead>
 			      <tr class="row_color">

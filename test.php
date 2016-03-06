@@ -23,6 +23,19 @@ if(isset($_GET['insert_error'])){
     width:100%;
     table-layout:fixed;
 	}
+	.table > tbody tr:last-child{
+		border: 0 none !important;
+	}
+	.table > thead{
+		border-bottom: 0 none !important;
+	}
+	tbody tr {
+    border-left: 0 none !important;
+    border-right: 0 none !important;
+	}
+	.paging-nav {
+    display: none;
+	}
 </style>
 <div class="container">
 	<div class="container left_align_parameter align_height">
@@ -104,7 +117,7 @@ if(isset($_GET['insert_error'])){
 					</div>
 				</form>
 			</div>
-			<div class="col-md-12">
+			<div class="col-md-12 align_bottom">
 				<div class="col-md-3 search_part" style="padding: 0px;">
 					<div class="test_title">
 						<span>Test Name</span>
@@ -157,7 +170,7 @@ if(isset($_GET['insert_error'])){
 					        	<th class="align_center">Action</th>
 				        	</tr>
 			        </thead>
-				    <tbody style="display:block;height:180px;overflow:auto;">
+				    <tbody style="display:block;height:260px;overflow:auto;">
 					<?php
 					$data = $obj->testselectfunction();
 					foreach( $data as $eachrecord ) {
@@ -169,7 +182,7 @@ if(isset($_GET['insert_error'])){
 				        <td><?php echo $eachrecord ['test_parameter_unit']; ?></td>
 				        <td><?php echo $eachrecord ['test_parameter_format']; ?></td>
 				        <td class="popup-edit">
-				        	<span class="edit_state edit_test" data-value="<?php echo $eachrecord ['test_attribute_id']; ?>" data-test-id="<?php echo $eachrecord ['test_id']; ?>"><i class="fa fa-pencil-square-o"></i></span>
+				        	<span class="edit_state new_editstate edit_test" data-value="<?php echo $eachrecord ['test_attribute_id']; ?>" data-test-id="<?php echo $eachrecord ['test_id']; ?>"><i class="fa fa-pencil-square-o"></i></span>
 			        		<span class="delete_state" data-value="<?php echo $eachrecord ['test_attribute_id']; ?>"><i class="fa fa-trash-o"></i></span>
 			        			<div class="test_div popup_hidden">
 					          		<code class="close_btn cancel_btn"> </code>

@@ -54,16 +54,28 @@ function register_center_align(){
 //       $('.paramter_div').css({'margin-top': -height / 2 + "px", 'margin-left': -width / 2 + "px"});
 // }
 
-function package_menu() {
-    var wh = window.innerHeight;
-    var smh = wh - 43;
-    if (wh < 150) {
-        $('.footer').css({'top': smh + "px"});
-        $('body').css({'height': wh + "px", 'max-height': "150px"});
-    } else {
-        $('.footer').css('top', '50%');
-        $('body').css('height', "150px", 'max-height', "150px");
+// function package_menu() {
+//     var wh = window.innerHeight;
+//     var smh = wh - 43;
+//     if (wh < 150) {
+//         $('.footer').css({'top': smh + "px"});
+//         $('body').css({'height': wh + "px", 'max-height': "150px"});
+//     } else {
+//         $('.footer').css('top', '50%');
+//         $('body').css('height', "150px", 'max-height', "150px");
+//     }
+// }
+function package_menu(){
+  var dh = $(document).height();
+  var wh = $(window).innerHeight() - 34;
+  if ( dh > wh ) {
+    $('.footer_txt').css('bottom', "0px");
+      $('.footer_txt').addClass('bottom_alignment_footer');
     }
+  else {
+    $('.footer_txt').css({'top': wh + "px"});
+  }
+
 }
 
 function editfunction(data_id){
@@ -172,7 +184,7 @@ function editfunction(data_id){
               $('[name=edit_schedule_venue]').val(obj[i].createschedule_venue);
             });
             $('.popup_fade').show();
-            createschedule_center_align();
+            // createschedule_center_align();
             $('.createschedule_div, .close_btn').show();
             document.body.style.overflow = 'auto';
            }
@@ -252,7 +264,7 @@ function editfunction(data_id){
             }
             $('.popup_fade').show();
             $('.range_div, .close_btn').show();
-            document.body.style.overflow = 'hidden';
+            document.body.style.overflow = 'auto';
            }
         });
     }
@@ -298,6 +310,30 @@ $(window).resize(function () {
 
 
 $(document).ready(function () {
+
+  $(".edit_state").click(function(){
+    // get the scollTop (distance scrolled from top)
+    var scrollTop = $(window).scrollTop();
+    // get the top offset of the dropdown (distance from top of the page)
+    var topOffset = $(".table").offset().top;
+    // calculate the dropdown offset relative to window position
+    var relativeOffset = topOffset-scrollTop;
+    // get the window height
+    var windowHeight = $(window).height();
+    
+    // if the relative offset is greater than half the window height,
+    // reverse the dropdown.
+    if(relativeOffset > windowHeight/2){
+        $(".popup_hidden").addClass("reverse");
+    }
+    else{
+        $(".popup_hidden").removeClass("reverse");
+    }
+});
+  
+
+  package_menu();
+
     $('.edit_item,.save_item,.delete_item').hide();
   $('.test_search').keyup(function() {
         $('.test-list').empty();
@@ -548,15 +584,15 @@ $(document).ready(function () {
     $('.hover-category').hide();
   });
 
-  $('.test-list').mouseenter(function(){
+  $('.test-battery').mouseenter(function(){
     $('.hover-test').show();
   });
-  $('.test-list').mouseleave(function(){
+  $('.test-battery').mouseleave(function(){
     $('.hover-test').hide();
   });
 
   $("input").attr('maxlength','50');
-  package_menu();
+
  	// state_center_align();
   // delete_center_align();
   login_center_align();

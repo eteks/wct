@@ -13,12 +13,33 @@
 	#ui-id-1{
 		width: 152px !important;
 	}
+	thead, tbody tr {
+    display:table;
+    width:100%;
+    table-layout:fixed;
+	}
+	.table > tbody tr:last-child{
+		border: 0 none !important;
+	}
+	.table > thead{
+		border-bottom: 0 none !important;
+	}
+	tbody tr {
+    border-left: 0 none !important;
+    border-right: 0 none !important;
+	}
+	.paging-nav {
+    display: none;
+	}
+	.table > tbody td{
+		height: 12px;
+	}
 </style>
 <div class="container">
 	<div class="container left_align_testbattery align_height">
 		<span class="sports">ADD ATHLETES</span>
 	</div><!--end container-->
-	<div class="container">
+	<div class="container align_bottom">
 		<div class="col-xs-12 col-md-12">
 			<!-- <div class="col-md-4 hidden-xs"></div> -->
 			<div class="col-xs-12 col-md-7 align_margin">
@@ -27,8 +48,8 @@
 						<label>Athlete Name</label><br>
 						<input type="text" class="adjust_width" name="athlete_name" data-validation-error-msg="Please Enter the name of the Athelete" data-validation="required">
 					</div>
-					<div class="form-group" style="">
-					  <label for="date" class="fl" style="">Date Of Birth</label><br>
+					<div class="form-group" style="position: relative; right: 15px;">
+					  <label for="date" class="fl" style="position: relative; left: 15px;">Date Of Birth</label><br>
 					  <input class="athlete_date_pick" type="text">
 					 <!-- <select class="form-control classic dob_align fl" id="date" name="athlete_dobday" data-validation-error-msg="Please Select the Date" data-validation="required">
 					  	<option value="">Date</option>
@@ -171,7 +192,7 @@
 			       	<th class="align_center">Action</th>
 			      </tr>
 			    </thead>
-			    <tbody>
+			    <tbody style="display:block;height:260px;overflow:auto;">
 			    <?php
 	               $query = $athleteFunction->athleteSelect();
 	               $i=1;

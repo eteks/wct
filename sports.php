@@ -23,7 +23,7 @@ $obj = new sportsfunction();
 		</div>
 	</div>
 </div><!-- end  container-->
-<div class="container table-position">
+<div class="container table-position align_bottom">
 	<table class="table sports_table" id="sports_table">
 	<thead>
 		<tr class="row_color">
