@@ -39,6 +39,7 @@ class categoryfunction{
         $data = mysql_fetch_array($row);
         return $data;
     }
+
     public function categoryselectfunction(){
       $temp_arr = array();
       $res = mysql_query("SELECT * FROM wc_categories ORDER BY categories_id DESC") or die(mysql_error());
