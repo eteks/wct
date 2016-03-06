@@ -74,6 +74,7 @@ function package_menu(){
     }
   else {
     $('.footer_txt').css({'top': wh + "px"});
+
   }
 
 }
@@ -267,7 +268,6 @@ function editfunction(data_id,el){
             // $('.popup_fade').show();
             // $('.range_div, .close_btn').show();
             // document.body.style.overflow = 'hidden';
-
            }
         });
     }
@@ -316,7 +316,7 @@ $(document).ready(function () {
 
    $(".edit_state").click(function(){
     // get the scollTop (distance scrolled from top)
-    var scrollTop = $(window).scrollTop();
+    var scrollTop = $("table").scrollTop();
     // get the top offset of the dropdown (distance from top of the page)
     var topOffset = $(".table").offset().top;
     // calculate the dropdown offset relative to window position
@@ -333,8 +333,6 @@ $(document).ready(function () {
         $(".popup_hidden").removeClass("reverse");
     }
 });
-
-
   package_menu();
 
     $('.edit_item,.save_item,.delete_item').hide();

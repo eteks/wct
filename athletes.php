@@ -139,7 +139,7 @@
 				</form>
 				</div>
 			<div class="col-md-12">
-				<div class="col-md-3 search_part" style="padding: 0px;">
+				<div class="col-md-3 search_part" style="padding: 0px;position: relative;">
 					<div class="test_title">
 						<span>Athlete Name</span>
 					</div><!--test_title-->
@@ -211,7 +211,7 @@
 					        <td><?php echo $row['athlete_dob']; ?></td>
 					        <td><?php echo $row['athlete_address']; ?></td>
 							<td class="popup-edit">
-					        	<span class="edit_state" onclick="editfunction(<?php echo $row['athlete_id'] ?>,this)"><i class="fa fa-pencil-square-o"></i></span>
+					        	<span class="edit_state new-edit" onclick="editfunction(<?php echo $row['athlete_id'] ?>,this)"><i class="fa fa-pencil-square-o"></i></span>
 				        		<span class="delete_state" data-value="<?php echo $row['athlete_id'] ?>"><i class="fa fa-trash-o"></i></span>
 					            <div class="athletes_div popup_hidden">
 					          		<code class="close_btn cancel_btn"> </code>
