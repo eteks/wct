@@ -133,7 +133,7 @@
 					        <td class="t_range_testname"><?php echo $row['test_name']; ?></td>
 					        <td class="t_range_paramtername"><?php echo $row['test_parameter_name']; ?></td>
 					        <td class="popup-edit">
-					        	<span class="edit_state" onclick="editfunction(<?php echo $row['range_id'] ?>)"><i class="fa fa-pencil-square-o"></i></span>
+					        	<span class="edit_state" onclick="editfunction(<?php echo $row['range_id'] ?>,this)"><i class="fa fa-pencil-square-o"></i></span>
 					        	<span class="delete_state" data-value="<?php echo $row['range_id'] ?>"><i class="fa fa-trash-o"></i></span>
 								<div class="range_div popup_hidden">
 						          		<code class="close_btn cancel_btn"> </code>
@@ -184,17 +184,17 @@
 											  	  <input type="hidden" class="edit_r_id" name="edit_range_id1" value="">
 											      	<div class="form-group col-md-12 ranges_popup">
 												      	<div class="col-md-12">
-												      		<input type="text" class="form-control classic range_align_popup edit_r_strt" id="edit_strt1" name="edit_range_start1" placehoder="Start" data-validation-error-msg="Please Select the Start Range" data-validation="required">
+												      		<input type="text" class="form-control classic range_align_popup edit_r_strt" id="edit_strt1" name="edit_range_start1" placehoder="Start">
 												       		<span class="hided">Please Enter the start range</span>
 											    			<span class="hided">Please Check the format</span>
 												       	</div>
 												       	<div class="col-md-12">
-												      		<input type="text" class="form-control classic range_align_popup edit_r_end" id="edit_end1" name="edit_range_end1" placehoder="end" data-validation-error-msg="Please Select the End Range" data-validation="required">
+												      		<input type="text" class="form-control classic range_align_popup edit_r_end" id="edit_end1" name="edit_range_end1" placehoder="end">
 												       		<span class="hided">Please Enter the end range</span>
 											  				<span class="hided">Please Check the format</span>
 												       	</div>
 												       	<div class="col-md-12">
-												      		<input type="text" class="form-control classic range_align_popup edit_r_point" id="edit_point1" name="edit_range_points1" placehoder="points" data-validation-error-msg="Please Select the Point" data-validation="required">
+												      		<input type="text" class="form-control classic range_align_popup edit_r_point" id="edit_point1" name="edit_range_points1" placehoder="points">
 											  				<span class="hided">Please Enter the points</span>
 											  				<span class="hided">Please Check the format</span>
 											  			</div>

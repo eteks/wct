@@ -132,7 +132,7 @@
 				                        $query = $athleteFunction->athleteSelect();
 				                        while ($row = mysql_fetch_array($query)) {
 			                        ?>
-									<span class="test-name">
+									<span class="test-name at_namelist">
 										<input type="checkbox" name="test" value="test" class="check_test check_athlete check_list input_wrap" id="check-select">
 										<input type="hidden" class="check_athleteid check_data" name="check_athleteid" value="<?php echo $row['athlete_id']; ?>">
 										<input type="text" name="check_athletename" value="<?php echo $row['athlete_name']; ?>" class="list_edit check_athletename input_wrap" name="check_athletename">
@@ -190,7 +190,7 @@
 					        <td><?php echo $row['athlete_dob']; ?></td>
 					        <td><?php echo $row['athlete_address']; ?></td>
 							<td class="popup-edit">
-					        	<span class="edit_state" onclick="editfunction(<?php echo $row['athlete_id'] ?>)"><i class="fa fa-pencil-square-o"></i></span>
+					        	<span class="edit_state" onclick="editfunction(<?php echo $row['athlete_id'] ?>,this)"><i class="fa fa-pencil-square-o"></i></span>
 				        		<span class="delete_state" data-value="<?php echo $row['athlete_id'] ?>"><i class="fa fa-trash-o"></i></span>
 					            <div class="athletes_div popup_hidden">
 					          		<code class="close_btn cancel_btn"> </code>

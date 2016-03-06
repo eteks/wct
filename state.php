@@ -40,7 +40,7 @@
 						        <!-- <td class="t_s_id"><?php //echo  $i;?></td> -->
 						        <td class="t_states_name"><?php echo $row['states_name']; ?></td>
 						        <td class="popup-edit">
-						        	<span class="edit_state" onclick="editfunction(<?php echo $row['states_id'] ?>)"><i class="fa fa-pencil-square-o"></i></span>
+						        	<span class="edit_state" onclick="editfunction(<?php echo $row['states_id'] ?>,this)"><i class="fa fa-pencil-square-o"></i></span>
 						        	<span class="delete_state" data-value="<?php echo $row['states_id'] ?>"><i class="fa fa-trash-o"></i></span>
 					
 									<div class="state_div edit_state_div popup_hidden">

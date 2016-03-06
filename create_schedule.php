@@ -293,7 +293,7 @@
 					        <td><?php echo $row['createschedule_time']; ?></td>
 					        <td><?php echo $row['createschedule_venue']; ?></td>
 							<td class="popup-edit">
-					        	<span class="edit_state" onclick="editfunction(<?php echo $row['createschedule_id'] ?>)"><i class="fa fa-pencil-square-o"></i></span>
+					        	<span class="edit_state" onclick="editfunction(<?php echo $row['createschedule_id'] ?>,this)"><i class="fa fa-pencil-square-o"></i></span>
 					        	<span class="delete_state" data-value="<?php echo $row['createschedule_id'] ?>"><i class="fa fa-trash-o"></i></span>
 					                    <div class="createschedule_div popup_hidden">
 							          		<code class="close_btn cancel_btn"> </code>
