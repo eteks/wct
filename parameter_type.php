@@ -40,7 +40,7 @@
 			      <!--  <td class="t_pararmeter_id"><?php // echo $i; ?></td> -->
 			        <td class="t_pararmeter_name"><?php echo $row['parametertype_name']; ?></td>
 			        <td class="popup-edit">
-			        	<span class="edit_state" onclick="editfunction(<?php echo $row['parametertype_id'] ?>)"><i class="fa fa-pencil-square-o"></i></span>
+			        	<span class="edit_state" onclick="editfunction(<?php echo $row['parametertype_id'] ?>,this)"><i class="fa fa-pencil-square-o"></i></span>
 		        		<span class="delete_state" data-value="<?php echo $row['parametertype_id'] ?>"><i class="fa fa-trash-o"></i></span>
 
 						<div class="state_div edit_parametertype_div popup_hidden">

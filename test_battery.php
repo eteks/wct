@@ -113,15 +113,19 @@ if(isset($_GET['duplicate'])){
 					<form>
 						<div class="search-content">
 							<div class="search__list">
-								<input type="text" class="search_box" placeholder="Search Name">
+								<input type="text" class="search_box test_battery_search" placeholder="Search Name">
 								<i class="fa fa-search font-search"></i>
 							</div><!--search__list-->
 								<div class="test-list">
+									<?php
+									$data = $test_battery->testbatterynamefunction();
+									foreach( $data as $eachrecord ) {
+									 ?>
 									<span class="test-name">
 										<input type="checkbox" name="test" value="test" class="check_test" id="check-select">
-										<input type="text" name="test" value="xyz" class="list_edit input_wrap">
+										<input type="text" name="test" data-id ="<?php echo $eachrecord ['testbattery_id']; ?>" value="<?php echo $eachrecord ['testbattery_name']; ?>" class="list_edit test_battery_name_hover input_wrap">
 										<span class="test-alter">
-											<i class="fa fa-floppy-o save_item"></i>
+											<i class="fa fa-floppy-o save_item save_test_battery_name"></i>
 											<i class="fa fa-pencil-square-o edit_item"></i>
 											<i class="fa fa-trash-o delete_item"></i>
 										</span><!--test-alter-->
@@ -133,37 +137,17 @@ if(isset($_GET['duplicate'])){
 							              </div>
 							              <div class="del_content">
 							                <span class="del_content_txt">Are you sure want to delete this whole record?</span>
-							                <input type="button" class="btn btn-primary align_right yes_btn" value="Yes">
+							                <input type="button" class="btn btn-primary align_right yes_btn" value="Yes" data-delete="test_battery_name" data-id ="<?php echo $eachrecord ['testbattery_id']; ?>">
 							                <input type="button" class="btn btn-primary align_right no_btn" value="No">
 							                <input type="hidden" name="delete_id" value="" id="delete_id"/>
 							              </div><!--del_content-->
       								</div><!--delete_div-->
-									<span class="test-name">
-										<input type="checkbox" name="test" value="test" class="check_test">
-										<input type="text" name="test" value="xyz" class="list_edit input_wrap">
-										<span class="test-alter">
-											<i class="fa fa-floppy-o save_item"></i>
-											<i class="fa fa-pencil-square-o edit_item"></i>
-											<i class="fa fa-trash-o delete_item"></i>
-										</span><!--test-alter-->
-									</span><!--test-name-->
-									<div class="delete_div delete_search">
-								            <!-- <code class="close_btn cancel_btn"> </code>  -->
-								              <div class="del_title">
-								                <span class="del_txt">DELETE</span>
-								              </div>
-								              <div class="del_content">
-								                <span class="del_content_txt">Are you sure want to delete this whole record?</span>
-								                <input type="button" class="btn btn-primary align_right yes_btn" value="Yes">
-								                <input type="button" class="btn btn-primary align_right no_btn" value="No">
-								                <input type="hidden" name="delete_id" value="" id="delete_id"/>
-								              </div><!--del_content-->
-          								</div><!--delete_div-->
+									<?php } ?>
 								</div><!--test-list-->
 						</div><!--search-content-->
 					</form>
 				</div>
-			
+
 			<div class="container table-position col-md-9" style="padding: 0px;">
 			  <table class="table state_table" id="test_battery_table">
 			    <thead>
@@ -176,47 +160,53 @@ if(isset($_GET['duplicate'])){
 			        <th class="align_center">Action</th>
 			      </tr>
 			    </thead>
-			    <tbody style="display:block;height:260px;overflow:auto;">
 					<!-- <?php
 					//$data = $test_battery->testbatteryselectfunction();
 					//$i=1;
 					//foreach( $data as $eachrecord ) {
 					 ?> -->
+
+			    <tbody style="display:block;height:260px;overflow:auto;">
 			      <tr class="align_center delete_color">
-			        <!-- <td class="testbattery_id"><?php //echo $i; ?></td> -->
-					<!-- <input type="hidden" value="<?php echo $eachrecord ['testbattery_id']; ?>" class="testbattery_edit_id"> -->
-			       	<!-- <td class="testbattery_name"><?php //echo $eachrecord ['testbattery_name']; ?></td> -->
-			        <!-- <td class="sports_name"><?php //echo $eachrecord ['sports_name']; ?></td> -->
-			        <td>Long Jump</td>
-			        <td class="category-list">Categories5<i class="fa fa-angle-down down_font"></i>
+			        <td class="test_battery_sports_name_grid"><?php
+				  $test_battery_sports = $test_battery->testbatterysportslastselectfunction();
+				  $row = mysql_fetch_array($test_battery_sports);
+				  echo $row['sports_name'];
+				  ?></td>
+			        <td class="category-list">Selected Categories<i class="fa fa-angle-down down_font"></i>
 			        	<div class="hover-list hover-category">
-			        	<span class="hover_title">Selected Categories</span>
+			        	<span class="hover_title ">Selected Categories</span>
+						<div class="selected_category">
 							<?php
-						  $cat_data = $category->categoryselectfunction();
-						  foreach( $cat_data as $eachrecord ) {
-						   ?>
-							<div class="checkbox align_check" style="margin:0px;"> 
-								<label class="hover-content"><?php echo $eachrecord ['categories_name']; ?></label>
-					    	</div>
-							<?php } ?>
-						</div>
-			        </td>
-			        <td class="test-list test-battery">Categories7<i class="fa fa-angle-down down_font"></i>
-			        	<div class="hover-list hover-test">
-			        	<span class="hover_title_test">Selected Test</span>
-							<?php
-						  $test_data = $test->testbatteryselectfunction();
-						  foreach( $test_data as $eachrecord ) {
+						  $cat_data = $test_battery->categorylastselectfunction();
+						  while($row = mysql_fetch_array($cat_data)){
 						   ?>
 							<div class="checkbox align_check" style="margin:0px;">
-					      		<label class="hover-content"><?php echo $eachrecord ['test_name']; ?></label>
+								<label class="hover-content"><?php echo $row['categories_name']; ?></label>
 					    	</div>
 							<?php } ?>
 						</div>
+
+						</div>
+			        </td>
+			        <td class="test-list test-battery selected_test">Selected Test<i class="fa fa-angle-down down_font"></i>
+			        	<div class="hover-list hover-test">
+			        	<span class="hover_title_test">Selected Test</span>
+						<div class="selected_test">
+							<?php
+						  $test_data = $test_battery->testbatterytestlastselectfunction();
+						  while($row = mysql_fetch_array($test_data)){
+						   ?>
+							<div class="checkbox align_check" style="margin:0px;">
+					      		<label class="hover-content"><?php echo $row ['test_name']; ?></label>
+					    	</div>
+							<?php } ?>
+						</div>
+					</div>
 			        </td>
 			        <td class="popup-edit">
-			        	<span class="edit_state edit_test_battery " data-value="<?php echo $eachrecord ['testbattery_id']; ?>"><i class="fa fa-pencil-square-o"></i></span>
-		        		<span class="delete_state" data-value="<?php echo $eachrecord ['testbattery_id']; ?>"><i class="fa fa-trash-o"></i></span>
+			        	<span class="edit_state edit_test_battery " data-value="<?php $test_data = $test_battery->testbatterylastidfunction();echo $test_data['MAX(testbattery_id)'];?>"><i class="fa fa-pencil-square-o"></i></span>
+		        		<span class="delete_state"><i class="fa fa-trash-o"></i></span>
 		        		<div class="test_battery popup_hidden">
 			          		<code class="close_btn cancel_btn"> </code>
 			          		<div class="edit_title">
@@ -226,11 +216,11 @@ if(isset($_GET['duplicate'])){
 			          			<div class="col-xs-12 col-md-12">
 										<form  method="post" action="functions/test_battery_functions.php" id="test_battery_update_form">
 										<input type="hidden" name="testbattery_update" value="1" />
-										<!-- <div class="form-group">
-											<label>Enter the name of the Test Battery</label><br>
-											<input type="text" class="adjust_width test_battery_name_update" name="test_battery_name" value="" data-validation-error-msg="please Enter the name of the Test Battery" data-validation="required">
+										<div class="form-group">
+											<!-- <label>Enter the name of the Test Battery</label><br> -->
+											<input type="hidden" class="adjust_width test_battery_name_update" name="test_battery_name" value="" data-validation-error-msg="please Enter the name of the Test Battery" data-validation="required">
 											<input type="hidden" class="test_battery_id_update" name="test_battery_id" value="" />
-										</div> -->
+										</div>
 										<div class="form-group">
 											  <label for="sel1" class="popup_label">Select Sport</label>
 											  <select class="form-control adjust_width box-width classic edit_test_sport" id="sel1" name="Sport" data-validation-error-msg="please Select the Sport" data-validation="required">
@@ -285,11 +275,11 @@ if(isset($_GET['duplicate'])){
 				              </div>
 				              <div class="del_content">
 				                <span class="del_content_txt">Are you sure want to delete this whole record?</span>
-				                <input type="button" class="btn btn-primary align_right yes_btn" value="Yes">
+				                <input type="button" class="btn btn-primary align_right yes_btn test_battery_delete_button" value="Yes" data-delete="test_battery_attribute" data-id="<?php $test_data = $test_battery->testbatterylastidfunction();echo $test_data['MAX(testbattery_id)'];?>">
 				                <input type="button" class="btn btn-primary align_right no_btn" value="No">
 				                <input type="hidden" name="delete_id" value="" id="delete_id"/>
 				              </div><!--del_content-->
-					<	/div><!--delete_div-->
+					<!--delete_div-->
 			        </td>
 			      </tr>
 				  <!-- <?php //$i++; } ?> -->
@@ -305,5 +295,5 @@ if(isset($_GET['duplicate'])){
 	</div><!-- end  container-->
 </div><!-- end  container-->
 <!-- <div class="popup_fade cancel_btn"></div> -->
-		
+
 <?php require_once "footer.php" ?>

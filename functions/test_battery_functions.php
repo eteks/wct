@@ -12,7 +12,15 @@ class testbatteryfunction{
       $res = mysql_query("SELECT * FROM wc_testbattery where testbattery_status='1'")or die(mysql_error());
       return $res;
     }
-
+    public function testbatterynamefunction(){
+      $temp_arr = array();
+      $res = mysql_query("SELECT * FROM wc_testbattery ORDER BY testbattery_id DESC") or die(mysql_error());
+      $count=mysql_num_rows($res);
+      while($row = mysql_fetch_array($res)) {
+          $temp_arr[] =$row;
+      }
+      return $temp_arr;
+      }
     public function testbatteryinsertfunction(){
         $check_query = "select * from wc_testbattery where testbattery_name = '".$this->testbatteryname."' ";
         if(!mysql_num_rows(mysql_query($check_query))){
@@ -38,6 +46,15 @@ class testbatteryfunction{
         mysql_query($sql) or die("delete".mysql_error());
         return true;
     }
+
+    public function testbatterysportslastselectfunction(){
+        $sql = "SELECT * FROM wc_testbattery
+                 INNER JOIN wc_sports ON wc_testbattery.testbatterysports_id = wc_sports.sports_id
+                 where wc_testbattery.testbattery_id = (SELECT MAX(testbattery_id) FROM wc_testbattery)";
+        $res = mysql_query($sql) or die("delete".mysql_error());
+        return $res;
+
+    }
     public function testbatteryselectfunction(){
       $temp_arr = array();
       $res = mysql_query("SELECT * FROM wc_testbattery
@@ -48,6 +65,22 @@ class testbatteryfunction{
       }
       //echo $temp_arr;
       return $temp_arr;
+      }
+      public function categorylastselectfunction(){
+          $sql = "select * from wc_testbattery_category_attribute inner join wc_categories on wc_testbattery_category_attribute.testbattery_category_id =wc_categories.categories_id where wc_testbattery_category_attribute.testbattery_id = (SELECT MAX(testbattery_id) FROM wc_testbattery)";
+          $row = mysql_query($sql) or die(mysql_error());
+          return $row;
+      }
+      public function testbatterytestlastselectfunction(){
+          $sql = "select * from wc_testbattery_test_attribute inner join wc_test on wc_testbattery_test_attribute.testbattery_test_id =wc_test.test_id where wc_testbattery_test_attribute.testbattery_id = (SELECT MAX(testbattery_id) FROM wc_testbattery)";
+          $row = mysql_query($sql) or die(mysql_error());
+          return $row;
+      }
+      public function testbatterylastidfunction(){
+          $sql = "SELECT MAX(testbattery_id) FROM wc_testbattery";
+          $row = mysql_query($sql) or die(mysql_error());
+          $res = mysql_fetch_array($row);
+          return $res;
       }
 }
 if(isset($_POST['testbattery_add'])){
@@ -107,20 +140,11 @@ if(isset($_POST['testbattery_update'])){
 if(isset($_GET['gettestbatdata'])){
     include ("../dbconnect.php");
     $test_battery_id =  $_POST['id'];
-    //echo $test_battery_id;
-    //$sql=mysql_query("SELECT * FROM wc_testbattery
-                // INNER JOIN wc_sports ON wc_testbattery.testbatterysports_id = wc_sports.sports_id
-                 //INNER JOIN wc_testbattery_category_attribute ON wc_testbattery.testbattery_id = wc_testbattery_category_attribute.testbattery_id
-                // INNER JOIN wc_testbattery_test_attribute ON wc_testbattery.testbattery_id = wc_testbattery_test_attribute.testbattery_id
-                 //INNER JOIN wc_test ON wc_testbattery_test_attribute.testbattery_test_id = wc_test.test_id
-                 //INNER JOIN wc_categories ON wc_categories.categories_id = wc_testbattery_category_attribute.testbattery_category_id where wc_testbattery.testbattery_id = '$test_battery_id'") or die(mysql_error());
     $sql=mysql_query("SELECT * FROM wc_testbattery
                              INNER JOIN wc_sports ON wc_testbattery.testbatterysports_id = wc_sports.sports_id
                              where wc_testbattery.testbattery_id = '$test_battery_id'") or die(mysql_error());
-
     $sql1=mysql_query("SELECT * FROM wc_testbattery_category_attribute
                  INNER JOIN wc_categories ON wc_categories.categories_id = wc_testbattery_category_attribute.testbattery_category_id where wc_testbattery_category_attribute.testbattery_id = '$test_battery_id'") or die(mysql_error());
-
     $row = mysql_fetch_assoc($sql);
     print(json_encode($row));
 }
@@ -155,5 +179,80 @@ if(isset($_GET['deletedata'])){
     }else{
       echo "error";
     }
+}
+if(isset($_GET['find_test_battery'])){
+    include ("../dbconnect.php");
+    $temp_arr = array();
+    $testbatteryname = $_POST['id'];
+    if($testbatteryname!=''){
+        $sql = mysql_query("SELECT * FROM wc_testbattery where  testbattery_name like '%".$testbatteryname."%' ORDER BY testbattery_id DESC")or die(mysql_error());
+        while($row = mysql_fetch_assoc($sql)) {
+            $temp_arr[] =$row;
+        }
+    }
+    print(json_encode($temp_arr));
+}
+if(isset($_GET['find_all_test_battery'])){
+    include ("../dbconnect.php");
+    $temp_arr = array();
+    $testbatteryname = $_POST['id'];
+    if($testbatteryname!=''){
+        $sql = mysql_query("SELECT * FROM wc_testbattery ORDER BY testbattery_id DESC")or die(mysql_error());
+        while($row = mysql_fetch_assoc($sql)) {
+            $temp_arr[] =$row;
+        }
+    }
+    print(json_encode($temp_arr));
+}
+if(isset($_GET['testbattery_name_update'])){
+    include ("../dbconnect.php");
+    $testbattery_id = $_POST['test_battery_id'];
+    $testbattery_name = $_POST['test_battery_name'];
+    if(isset($testbattery_id)&&isset($testbattery_name)){
+        $sql = mysql_query("update wc_testbattery set testbattery_name = '".$testbattery_name."' where testbattery_id = '".$testbattery_id."'");
+        echo "succeed";
+    }
+}
+if(isset($_GET['delete_test_battery_name'])){
+    include ("../dbconnect.php");
+    $test = new testbatteryfunction();
+    $test->testbatteryid = $_POST['delete_id'];
+    if($test->testbatterydeletefunction()){
+      echo $_POST['delete_id'];
+    }else{
+      echo "error";
+    }
+}
+if(isset($_GET['find_test_battery_category'])){
+    include ("../dbconnect.php");
+    $test_battery_id =  $_POST['id'];
+    $sql1=mysql_query("SELECT * FROM wc_testbattery_category_attribute
+                 INNER JOIN wc_categories ON wc_categories.categories_id = wc_testbattery_category_attribute.testbattery_category_id where wc_testbattery_category_attribute.testbattery_id = '$test_battery_id'") or die(mysql_error());
+    $rows1 = array();
+    while($r = mysql_fetch_assoc($sql1)) {
+        $row1[] = $r;
+    }
+    print(json_encode($row1));
+}
+if(isset($_GET['find_test_battery_tests'])){
+    include ("../dbconnect.php");
+    $test_battery_id =  $_POST['id'];
+    $sql2=mysql_query("SELECT * FROM wc_testbattery_test_attribute
+                INNER JOIN wc_test ON wc_testbattery_test_attribute.testbattery_test_id = wc_test.test_id where wc_testbattery_test_attribute.testbattery_id = '$test_battery_id'") or die(mysql_error());
+    $rows2 = array();
+    while($r = mysql_fetch_assoc($sql2)) {
+        $row2[] = $r;
+    }
+    print(json_encode($row2));
+}
+if(isset($_GET['find_test_battery_sports'])){
+    include ("../dbconnect.php");
+    $test_battery_id =  $_POST['id'];
+    $sql2=mysql_query("SELECT * FROM wc_testbattery INNER JOIN wc_sports ON wc_testbattery.testbatterysports_id = wc_sports.sports_id   where wc_testbattery.testbattery_id = '$test_battery_id'") or die(mysql_error());
+    $rows2 = array();
+    while($r = mysql_fetch_assoc($sql2)) {
+        $row2[] = $r;
+    }
+    print(json_encode($row2));
 }
  ?>

@@ -78,7 +78,7 @@ function package_menu(){
 
 }
 
-function editfunction(data_id){
+function editfunction(data_id,el){
     if (window.location.href.indexOf("state.php") !== -1){
             $.ajax({
              type: "POST",
@@ -232,7 +232,8 @@ function editfunction(data_id){
             $('.edit_range_note').show();
             //Append data to first range part without using for loop
             data = rangeattr_obj[0];
-            element = $('.edit_clone_content:first');
+            // element = $('.edit_clone_content:first');
+            element = $(el).siblings('.range_div').find('.edit_clone_content:first');
             element.find('[name=edit_rangeattr_id1]').val(data.rangeattribute_id);
             element.find('[name=edit_range_id1]').val(data.range_id);
             element.find('[name=edit_range_start1]').val(data.range_start);
@@ -240,7 +241,7 @@ function editfunction(data_id){
             element.find('[name=edit_range_points1]').val(data.range_point);
 
             // Remove all clone element except first one (this is used when user again and again click edit button)
-            $('.edit_clone_content:not(:first-child)').remove();
+            $(el).siblings('.range_div').find('.edit_clone_content:not(:first-child)').remove();
 
             //Append data to other range part with using for loop
             if(rangeattr_obj.length>=2){
@@ -248,7 +249,7 @@ function editfunction(data_id){
               $.each(rangeattr_obj, function(i) {
                   if (i === 0) return;
                   else{
-                    rangeattr_element = $('.edit_clone_content:last').clone();
+                    rangeattr_element = $(el).siblings('.range_div').find('.edit_clone_content:last').clone();
                     // var rangeattr_element = newelement.clone();
                     rangeattr_element.find('.edit_range_label').remove();
                     rangeattr_element.attr('id','edit_range_counter'+id);
@@ -262,9 +263,11 @@ function editfunction(data_id){
                   }
               });
             }
-            $('.popup_fade').show();
-            $('.range_div, .close_btn').show();
-            document.body.style.overflow = 'auto';
+
+            // $('.popup_fade').show();
+            // $('.range_div, .close_btn').show();
+            // document.body.style.overflow = 'hidden';
+
            }
         });
     }
@@ -311,7 +314,7 @@ $(window).resize(function () {
 
 $(document).ready(function () {
 
-  $(".edit_state").click(function(){
+   $(".edit_state").click(function(){
     // get the scollTop (distance scrolled from top)
     var scrollTop = $(window).scrollTop();
     // get the top offset of the dropdown (distance from top of the page)
@@ -417,6 +420,90 @@ $(document).ready(function () {
              });
         }
     });
+    $('.test_battery_search').keyup(function() {
+          $('.test-list').empty();
+          var testbattreyname = $(this).val();
+          //alert(testname);
+          if(testbattreyname != ''){
+              $.ajax({
+                   type: "POST",
+                   url: "functions/test_battery_functions.php?find_test_battery=true",
+                   data:{'id':testbattreyname},
+                   cache: false,
+                   dataType:'json',
+                   success: function(data) {
+                       //alert(data);
+                       if(data !=''){
+                           $.each(data, function(i){
+                               //alert(data[i].test_name);
+                               $('.test-list').append(
+                               '<span class="test-name">\
+                                   <input type="checkbox" name="test" value="test" class="check_test" id="check-select">\
+                                   <input type="text" name="test" data-id ="'+data[i].testbattery_id+'" value="'+data[i].testbattery_name+'" class="list_edit test_battery_name_hover input_wrap">\
+                                   <span class="test-alter">\
+                                       <i class="fa fa-floppy-o save_item save_test_battery_name"></i>\
+                                       <i class="fa fa-pencil-square-o edit_item"></i>\
+                                       <i class="fa fa-trash-o delete_item"></i>\
+                                   </span>\
+                               </span>\
+                               <div class="delete_div delete_search">\
+                                   <!-- <code class="close_btn cancel_btn"> </code>  -->\
+                                     <div class="del_title">\
+                                       <span class="del_txt">DELETE</span>\
+                                     </div>\
+                                     <div class="del_content">\
+                                       <span class="del_content_txt">Are you sure want to delete this whole record?</span>\
+                                       <input type="button" class="btn btn-primary align_right yes_btn" value="Yes" data-delete="test_battery_name" data-id ="'+data[i].testbattery_id+'">\
+                                       <input type="button" class="btn btn-primary align_right no_btn" value="No">\
+                                       <input type="hidden" name="delete_id" value="" id="delete_id"/>\
+                                     </div>\
+                               </div>');
+                                $('.edit_item,.save_item,.delete_item').hide();
+                           });
+                       }
+                  }
+               });
+          }else{
+              $.ajax({
+                   type: "POST",
+                   url: "functions/test_battery_functions.php?find_all_test_battery=true",
+                   data:{'id':'all'},
+                   cache: false,
+                   dataType:'json',
+                   success: function(data) {
+                       //alert(data);
+                       if(data !=''){
+                           $.each(data, function(i){
+                               //alert(data[i].test_name);
+                               $('.test-list').append(
+                               '<span class="test-name">\
+                                   <input type="checkbox" name="test" value="test" class="check_test" id="check-select">\
+                                   <input type="text" name="test" data-id ="'+data[i].testbattery_id+'" value="'+data[i].testbattery_name+'" class="list_edit test_battery_name_hover input_wrap">\
+                                   <span class="test-alter">\
+                                       <i class="fa fa-floppy-o save_item save_test_battery_name"></i>\
+                                       <i class="fa fa-pencil-square-o edit_item"></i>\
+                                       <i class="fa fa-trash-o delete_item"></i>\
+                                   </span>\
+                               </span>\
+                               <div class="delete_div delete_search">\
+                                   <!-- <code class="close_btn cancel_btn"> </code>  -->\
+                                     <div class="del_title">\
+                                       <span class="del_txt">DELETE</span>\
+                                     </div>\
+                                     <div class="del_content">\
+                                       <span class="del_content_txt">Are you sure want to delete this whole record?</span>\
+                                       <input type="button" class="btn btn-primary align_right yes_btn" value="Yes" data-delete="test_battery_name" data-id ="'+data[i].testbattery_id+'">\
+                                       <input type="button" class="btn btn-primary align_right no_btn" value="No">\
+                                       <input type="hidden" name="delete_id" value="" id="delete_id"/>\
+                                     </div>\
+                               </div>');
+                                $('.edit_item,.save_item,.delete_item').hide();
+                           });
+                       }
+                  }
+               });
+          }
+      });
     $(document).delegate('.test_name_hover', 'mouseover', function(event) {
         //alert($(this).attr('data-id'));
          $('#test_table tbody').empty();
@@ -516,6 +603,54 @@ $(document).ready(function () {
              }
         });
     });
+    $(document).delegate('.test_battery_name_hover', 'mouseover', function(event) {
+        //alert($(this).attr('data-id'));
+         //$('#test_battery_table tbody').empty();
+        var test_battery_id = $(this).attr('data-id');
+        $.ajax({
+             type: "POST",
+             url: "functions/test_battery_functions.php?find_test_battery_sports=true",
+             data:{'id':test_battery_id},
+             cache: false,
+             dataType:'json',
+             success: function(data) {
+                //alert(JSON.stringify(data));
+                $('.test_battery_sports_name_grid').text(data[0].sports_name);
+                $('.test_battery_delete_button').attr('data-id', data[0].testbattery_id).attr('data-delete','test_battery_attribute');
+                $('.edit_test_battery').attr('data-value',data[0].testbattery_id);
+             }
+        });
+        $.ajax({
+             type: "POST",
+             url: "functions/test_battery_functions.php?find_test_battery_tests=true",
+             data:{'id':test_battery_id},
+             cache: false,
+             dataType:'json',
+             success: function(data) {
+                 $.each(data, function(i){
+                     $('.selected_test').empty();
+                     $.each(data, function(i){
+                         $('.selected_test').append('<div class="checkbox align_check" style="margin:0px;"><label class="hover-content">'+data[i].test_name+'</label></div>');
+                     });
+
+                 });
+             }
+        });
+        $.ajax({
+             type: "POST",
+             url: "functions/test_battery_functions.php?find_test_battery_category=true",
+             data:{'id':test_battery_id},
+             cache: false,
+             dataType:'json',
+             success: function(data) {
+                 $('.selected_category').empty();
+                 $.each(data, function(i){
+                     $('.selected_category').append('<div class="checkbox align_check" style="margin:0px;"><label class="hover-content">'+data[i].categories_name+'</label></div>');
+                 });
+
+             }
+        });
+    });
   // $('input:checkbox').change(function(){
   //   if($(this).is(":checked")) {
   //       $('.list_edit').addClass("list_edit_rollover");
@@ -535,6 +670,24 @@ $(document).ready(function () {
               //alert(data);
               if(data.trim() == 'succeed'){
                   alert('Test name updated successfully!');
+                  location.reload();
+              }
+           }
+      });
+
+  });
+  $(document).delegate('.save_test_battery_name','click',function() {
+      var test_battery_id = $(this).parents('.test-name').find('.list_edit').attr('data-id');
+      var test_battery_name = $(this).parents('.test-name').find('.list_edit').val();
+      $.ajax({
+           type: "POST",
+           url: "functions/test_battery_functions.php?testbattery_name_update=true",
+           data:{'test_battery_id':test_battery_id,'test_battery_name':test_battery_name},
+           cache: false,
+           success: function(data) {
+              //alert(data);
+              if(data.trim() == 'succeed'){
+                  alert('Test battery name updated successfully!');
                   location.reload();
               }
            }
@@ -1418,22 +1571,41 @@ $('.reset_form').on('click',function(){
            }
 
        } else if (window.location.href.indexOf("test_battery.php") !== -1){
-           //alert('dsfsdfds');
-            var form_data = {'delete_id':del_id};
-            $.ajax({
-                 type: "POST",
-                 url: "functions/test_battery_functions.php?deletedata=true",
-                 data: form_data,
-                 cache: false,
-                 success: function(html) {
-                     //alert(html);
-                  $('.popup_fade').hide();
-                  $('.state_div,.delete_div').hide();
-                  document.body.style.overflow = 'auto';
-                  location.reload();
-
-                 }
-             });
+           var delete_data = $(this).attr('data-delete');
+           if(delete_data.trim()=='test_battery_name'){
+               var form_data = {'delete_id':$(this).attr('data-id')};
+               //alert(JSON.stringify(form_data));
+               $.ajax({
+                    type: "POST",
+                    url: "functions/test_battery_functions.php?delete_test_battery_name=true",
+                    data: form_data,
+                    cache: false,
+                    success: function(html) {
+                        //alert(html);
+                    alert('Test battery deleted successfully');
+                     $('.popup_fade').hide();
+                     $('.state_div,.delete_div').hide();
+                     document.body.style.overflow = 'auto';
+                     location.reload();
+                    }
+                });
+           }else if(delete_data.trim()=='test_battery_attribute'){
+               var form_data = {'delete_id':$(this).attr('data-id')};
+               //alert(JSON.stringify(form_data));
+               $.ajax({
+                    type: "POST",
+                    url: "functions/test_battery_functions.php?delete_test_battery_name=true",
+                    data: form_data,
+                    cache: false,
+                    success: function(html) {
+                         alert('Test battery deleted successfully');
+                         $('.popup_fade').hide();
+                         $('.state_div,.delete_div').hide();
+                         document.body.style.overflow = 'auto';
+                         location.reload();
+                    }
+                });
+           }
        } else if (window.location.href.indexOf("range.php") !== -1){
             var form_data = {'delete_id':del_id};
             $.ajax({
@@ -2948,14 +3120,18 @@ $('.reset_form').on('click',function(){
       });
     });
 
-    $('.delete_search').hide();
+    $('.delete_search,.at_namelist,.cs_namelist').hide();
     $('.search_button').click(function(){
       search_value = $('.search_text').val();
-      $('.test-name').hide();
-      $('.test-list').find("input[value="+search_value+"]").parents('.test-name').show();
+      if(search_value == ''){
+        $('.test-name').show();
+      }else{
+        $('.test-name').hide();
+        $('.test-list').find("input[value="+search_value+"]").parents('.test-name').show();
+      }
     });
 
-    $('.save_athlete').click(function(){
+    $('.save_athlete').click(function(e){
       athlete_id = $(this).parents('.test-name').find('.check_athleteid').val();
       athlete_name = $(this).parents('.test-name').find('.check_athletename').val();
       form_data = {'check_athleteid':athlete_id,'check_athletename':athlete_name};
@@ -2964,11 +3140,11 @@ $('.reset_form').on('click',function(){
            url: "functions/athletes_functions.php?athletename_update=true",
            data: form_data,
            cache: false,
-           success: function(html) {
-            var result_split = html.split('#');
+           success: function(data) {
+            var result_split = data.split('#');
             if (result_split[0].indexOf("success") !== -1){
               alert(result_split[1]);
-              $(this).find('.check_athletename').val(result_split[2]);
+              $(this).parents('.test-name').find('.check_athletename').val(result_split[2]);
               $('.search_text').val('');
             }
             else{
@@ -2991,7 +3167,8 @@ $('.reset_form').on('click',function(){
             var result_split = html.split('#');
             if (result_split[0].indexOf("success") !== -1){
               alert(result_split[1]);
-              $(this).find('.check_athletename').val(result_split[2]);
+              // $(this).find('.check_athletename').val(result_split[2]);
+              $(this).parents('.test-name').find('.check_createschedulename').val(result_split[2]);
               $('.search_text').val('');
             }
             else{
