@@ -1,5 +1,5 @@
 <?php
-    include($_SERVER["DOCUMENT_ROOT"] . "/wct_v2/common.php");
+    include('configu.php');
  	class createscheduleFunction {
  		public $createscheduleid;
  		public $createschedulename;

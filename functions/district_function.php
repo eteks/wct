@@ -1,5 +1,5 @@
 <?php
-	include($_SERVER["DOCUMENT_ROOT"] . "/wct_v2/common.php");
+include('configu.php');
  	class districtFunction {
  		public $statesid;
  		public $statesname;
@@ -65,28 +65,17 @@
 			$districtFunction = new districtFunction();
 			$districtFunction->statesid = $_POST['district_state'];
 			$districtFunction->districtname = $_POST['district_name'];
-			//Multidimensional array looping for district
-			// foreach ($DISTRICT as $element) {
-		 //        if (in_array($_POST['district_name'], $element)){$addstatus = true;}
-	  //       }
-			// if ($addstatus) {
-				$district = $districtFunction->isdistrictExist();
-				if(!$district){
-					$districtinsert = $districtFunction->districtInsert();
-					if($districtinsert){
-						$states = mysql_fetch_array($districtFunction->statenameSelect());
-						echo "success#District Inserted#".$districtinsert.'#'.$states['states_name'].'#'.$_POST['district_name'];
-					}else{
-						echo "failure#District Not Inserted";
-					}
+            $exist = '';
+			foreach ($_POST['district_name'] as $key => $value) {
+				$check_query = "select * from wc_district where districtstates_id = '".$_POST['district_state']."' and district_name = '".$value."' ";
+				if(!mysql_num_rows(mysql_query($check_query))){
+					mysql_query("insert into wc_district (districtstates_id,district_name,district_status) values('".$_POST['district_state']."','".$value."','1')")or die(mysql_error());
+				}else{
+					$exist .= $value.',';
 				}
-				else {
-					echo "failure#District Already Exist";
-				}
-				// }
-				// else{
-				// 	echo "failure#No District Present in that Name";
-				// }
+			}
+			print $exist;
+
 		}
 		// For display edit data
 		if(isset($_GET['chooseedit'])){

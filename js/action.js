@@ -430,6 +430,7 @@ $(document).ready(function () {
                    cache: false,
                    dataType:'json',
                    success: function(data) {
+                       $('.test-list').empty();
                        //alert(data);
                        if(data !=''){
                            $.each(data, function(i){
@@ -469,6 +470,7 @@ $(document).ready(function () {
                    cache: false,
                    dataType:'json',
                    success: function(data) {
+                       $('.test-list').empty();
                        //alert(data);
                        if(data !=''){
                            $.each(data, function(i){
@@ -844,13 +846,61 @@ $('.reset_form').on('click',function(){
                 //alert(current_popup.parents('.popup-edit').html());
                  current_popup.parents('.popup-edit').find('.test_parameter_name_update').val(data.test_parameter_name);
                  current_popup.parents('.popup-edit').find('.parameter_type_update option[value="'+data.test_parameter_type+'"]').attr('selected','selected');
-                 current_popup.parents('.popup-edit').find('.parameter_unit_update').append('<option value="'+data.test_parameter_unit+'">'+data.test_parameter_unit+'</option>');
                 // current_popup.parents('.popup-edit').find('.parameter_format_update option[value="'+data.test_parameter_format+'"]').attr('selected','selected');
                  if(data.test_parameter_type.toLowerCase() == 'time'){
-                    current_popup.parents('.popup-edit').find('.parameter_format_update').empty().append("<option value='"+data.test_parameter_unit+"'>"+data.test_parameter_unit+"</option>");
+                     var paremeter_unit = data.test_parameter_unit;
+                     $.ajax({
+                          type: "POST",
+                          url: "functions/parameter_unitfunction.php?param_unit_for_test_edit=true",
+                          data:{'type':'time'},
+                          cache: false,
+                          dataType:'json',
+                           success: function(data) {
+                               //alert(JSON.stringify(data));
+                                var parameter_unit = '';
+                                $.each(data, function(i){
+                                    if(data[i].parameterunit == paremeter_unit ){
+                                        parameter_unit += "<option value='"+data[i].parameterunit+"' selected>"+data[i].parameterunit+"</option>";
+                                    }
+                                    else{
+                                        parameter_unit += "<option value='"+data[i].parameterunit+"'>"+data[i].parameterunit+"</option>";
+                                    }
+                                });
+                                current_popup.parents('.popup-edit').find('.parameter_unit_update').append(parameter_unit);
+                           }});
+                           //alert(data.test_parameter_unit);
+
+                           current_popup.parents('.popup-edit').find('.parameter_format_update').empty().append("<option value='"+data.test_parameter_unit+"'>"+data.test_parameter_unit+"</option>");
+
                 }else{
-                    current_popup.parents('.popup-edit').find('.parameter_format_update option[value="'+data.test_parameter_format+'"]').attr('selected','selected');
+                     var paremeter_unit = data.test_parameter_unit;
+                     //alert(paremeter_unit);
+                    $.ajax({
+
+                         type: "POST",
+                         url: "functions/parameter_unitfunction.php?param_unit_for_test_edit=true",
+                         data:{'type':data.test_parameter_type},
+                         cache: false,
+                         dataType:'json',
+                          success: function(data) {
+                              var parameter_unit = '';
+                              $.each(data, function(i){
+                                  if(data[i].parameterunit == paremeter_unit ){
+                                      parameter_unit += "<option value='"+data[i].parameterunit+"' selected>"+data[i].parameterunit+"</option>";
+                                  }
+                                  else{
+                                      parameter_unit += "<option value='"+data[i].parameterunit+"'>"+data[i].parameterunit+"</option>";
+                                  }
+                              });
+                              current_popup.parents('.popup-edit').find('.parameter_unit_update').append(parameter_unit);
+                          }});
+
+                          current_popup.parents('.popup-edit').find('.parameter_format_update').empty().append('<option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>');
+
+                          current_popup.parents('.popup-edit').find('.parameter_format_update option[value="'+data.test_parameter_format+'"]').attr('selected','selected');
+
                 }
+                //current_popup.parents('.popup-edit').find('.parameter_unit_update option[value="'+data.test_parameter_unit+'"]').attr('selected','selected');
                  current_popup.parents('.popup-edit').find('.parameter_update').val(test_attr_id);
                  current_popup.parents('.popup-edit').find('.test_update_id').val(data.test_id);
             }
@@ -973,7 +1023,7 @@ $('.reset_form').on('click',function(){
     //     $(this).parents('tr').siblings().children('.popup-edit').hide();
     //     document.body.style.overflow = 'hidden';
     // });
-    $('.cancel_btn').on('click',function(){
+    $(document).delegate('.cancel_btn','click',function(){
         $('.popup_fade').hide();
         $('.state_div,.delete_div,.login_div,.register_div,.test_div,.district_div,.test_battery_div,.range_div,.paramter_div,.athletes_div,.createschedule_div').hide();
         document.body.style.overflow = 'auto';
@@ -1325,28 +1375,14 @@ $('.reset_form').on('click',function(){
                data: form_data,
                cache: false,
                success: function(html) {
-                    var result_split = html.split('#');
-                     if (result_split[0].indexOf("success") !== -1){
-                       // $('.add_district_error').text(result_split[1]).show();
-                       $('.add_district_error').hide();
-                       alert(result_split[1]);
-                       html ="<tr class='align_center delete_color'>\
-                       <input type='hidden' name='district_id' value="+result_split[2]+">\
-                       <td class='t_district_id'>"+result_split[2]+"</td>\
-                          <td class='t_district_name'>"+result_split[4]+"</td>\
-                          <td>\
-                            <span class='edit_state' onclick='editfunction("+result_split[2]+")'>Edit</span>\
-                            <span class='delete_state' data-value="+result_split[2]+">Delete</span>\
-                          </td></tr> ";
-                       // $('.district_table tr:last').after(html);
-                       document.district_form.reset();
+                   if(html){
+                       alert(html+' district already exist!');
                        location.reload();
-
-                     }
-                     else{
-                      $('.add_district_error').text(result_split[1]).show();
-                     }
-                   }
+                   }else{
+                       alert('District Updated Successfully!');
+                        location.reload();
+                    }
+               }
           });
         }
     });
@@ -1818,8 +1854,10 @@ $('.reset_form').on('click',function(){
                    cache: false,
                    dataType:'json',
                    success: function(html) {
-
-                        newElement.find('.dob').val(html.athlete_dob).attr('disabled', 'disabled');
+                      // alert(html.athlete_dob);
+                      var res = html.athlete_dob.split('-');
+                      var new_date = res[2]+'/'+res[1]+'/'+res[0];
+                        newElement.find('.dob').val(new_date).attr('disabled', 'disabled');
                         //alert(newElement.html());
                         newElement.find('.mobile').val(html.athlete_mobile).attr('disabled', 'disabled');
                         newElement.find('.athlete_bib').val('');
@@ -1832,8 +1870,22 @@ $('.reset_form').on('click',function(){
         newElement.appendTo($(".assign_content_holder"));
 
     }
+    var dist_id = 1;
+    $('.district_add').click(function(){
+        nextElement2($('.district_clone_content:last'));
+    })
 
+    function nextElement2(element){
+        var newElement = element.clone();
+        newElement.find('.districts').val('');
+        newElement.appendTo($(".district_clone"));
 
+    }
+    $('.district_remove').click(function(){
+      if($('.district_clone_content').length !=1){
+        $('.district_clone_content:last').remove();
+      }
+   });
     $(document.body).delegate('.parameter_type_update','change',function() {
         var current = $(this);
         var param_name = $(this).val();
@@ -2582,7 +2634,10 @@ $('.reset_form').on('click',function(){
                                   cache: false,
                                   dataType:'json',
                                   success: function(html) {
-                                       newElement.find('.dob').val(html.athlete_dob);
+                                      //alert(html.athlete_dob);
+                                      var res = html.athlete_dob.split('-');
+                                      var new_date = res[2]+'/'+res[1]+'/'+res[0];
+                                       newElement.find('.dob').val(new_date);
                                        //alert(newElement.html());
                                        newElement.find('.mobile').val(html.athlete_mobile);
                                        newElement.find('.athlete_bib').val('');

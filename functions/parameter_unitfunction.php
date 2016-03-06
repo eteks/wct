@@ -1,5 +1,5 @@
 <?php
-include($_SERVER["DOCUMENT_ROOT"] . "/wct_v2/common.php");
+include('configu.php');
 class parameterunitFunction {
     public $parametertypeid;
     public $parameterunitname;
@@ -87,5 +87,22 @@ if(isset($_GET['updateunitdata'])){
     }}else{
         echo 'exist';
     }
+}
+if(isset($_GET['param_unit_for_test_edit'])){
+    $param_type = $_POST['type'];
+    $temp = array();
+    if($param_type == 'time'){
+
+        $sql = mysql_query("select * from wc_parameterunit inner join wc_parametertype on wc_parameterunit.parametertype_id =wc_parametertype.parametertype_id where wc_parametertype.parametertype_name = 'time'");
+        while($output = mysql_fetch_assoc($sql)){
+            $temp[] = $output;
+        }
+    }else{
+        $sql = mysql_query("select * from wc_parameterunit inner join wc_parametertype on wc_parameterunit.parametertype_id =wc_parametertype.parametertype_id where wc_parametertype.parametertype_name = '$param_type'");
+        while($output = mysql_fetch_assoc($sql)){
+            $temp[] = $output;
+        }
+    }
+    print(json_encode($temp));
 }
 ?>

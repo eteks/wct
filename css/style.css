@@ -744,7 +744,7 @@ select {
     position: relative;
     top: 1px;
 }
-.parameter_remove{
+.parameter_remove,.district_remove{
     background: #006687 none repeat scroll 0 0;
     color: #fff;
     cursor: pointer;
@@ -752,7 +752,7 @@ select {
     padding: 10px;
     position: absolute;
 }
-.parameter_add{
+.parameter_add,.district_add{
     background: #006687 none repeat scroll 0 0;
     color: #fff;
     cursor: pointer;
@@ -1235,7 +1235,7 @@ input[type=radio]:checked + label:before {
     top: 12px;
     width: 205px;
     box-shadow: none;
-    height: 35px; 
+    height: 35px;
 }
 .combo--align--popup span input {
     height: 30px;
@@ -1318,16 +1318,16 @@ input[type=radio]:checked + label:before {
     width: 113px;
     z-index: 98;
 }
-.parameter_add:hover .tooltip_parameter{
+.parameter_add:hover .tooltip_parameter,.district_add:hover .tooltip_parameter{
     display: block;
 }
-.parameter_add:hover .tip_triangle{
+.parameter_add:hover .tip_triangle,.district_add:hover .tip_triangle{
     display: block;
 }
-.parameter_remove:hover .tooltip_remove{
+.parameter_remove:hover .tooltip_remove,.district_remove:hover .tooltip_remove{
     display: block;
 }
-.parameter_remove:hover .tip_triangle{
+.parameter_remove:hover .tip_triangle,.district_remove:hover .tip_triangle{
     display: block;
 }
 .plus_align:hover .tooltip_parameter{
@@ -1788,4 +1788,10 @@ button, input, optgroup, select, textarea {
 .reverse {
     top:auto;
     bottom:45px;
+}
+.padding_zero{
+    padding: 0 !important;
+}
+.district-add {
+  margin: 24px 0 0;
 }

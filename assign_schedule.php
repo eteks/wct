@@ -103,8 +103,8 @@ if(isset($_GET['update_success'])){
 			    <thead>
 			      <tr class="row_color">
 			        <th>Schedule Name</th>
-			        <!-- <th class="align_center">Category Name</th>
-			        <th class="align_center">Athletes Name</th>
+			        <th>Category Name</th>
+			        <!--th class="align_center">Athletes Name</th>
 			        <th class="align_center">BIB NO</th> -->
 			        <th style="text-align:right;">Action</th>
 			      </tr>
@@ -117,8 +117,8 @@ if(isset($_GET['update_success'])){
 					 ?>
 			      <tr class="delete_color">
 			      	<input value="<?php echo $eachrecord ['assignschedule_id']; ?>" type="hidden">
-			       <!-- <td><?php echo $i; ?></td> -->
 			        <td><?php echo $eachrecord ['createschedule_name']; ?></td>
+					<td><?php echo $eachrecord ['categories_name']; ?></td>
 			        <td class="popup-edit">
 			        	<span class="edit_state edit_assign_schedule" data-schedule="<?php echo $eachrecord ['createschedule_id']; ?>" data-category="<?php echo $eachrecord ['assigncategory_id']; ?>"><i class="fa fa-pencil-square-o"></i></span>
 		        		<span class="delete_state" data-value="<?php echo $eachrecord ['assignschedule_id']; ?>"><i class="fa fa-trash-o"></i></span>
@@ -228,7 +228,9 @@ if(isset($_GET['update_success'])){
 			           cache: false,
 					   dataType:'json',
 			           success: function(html) {
-							$('.assign_content_holder .assign_clone_content:first').find('.dob').val(html.athlete_dob).attr('disabled', 'disabled');
+						   var res = html.athlete_dob.split('-');
+						   var new_date = res[2]+'/'+res[1]+'/'+res[0];
+							$('.assign_content_holder .assign_clone_content:first').find('.dob').val(new_date).attr('disabled', 'disabled');
 							$('.assign_content_holder .assign_clone_content:first').find('.mobile').val(html.athlete_mobile).attr('disabled', 'disabled');
 			           }
 			       });
@@ -244,7 +246,8 @@ if(isset($_GET['update_success'])){
 			           cache: false,
 					   dataType:'json',
 			           success: function(html) {
-
+						   var res = html.athlete_dob.split('-');
+						   var new_date = res[2]+'/'+res[1]+'/'+res[0];
 							$('.clone_schedule_update_content .clone_schedule_update:first').find('.dob').val(html.athlete_dob);
 							$('.clone_schedule_update_content .clone_schedule_update:first').find('.mobile').val(html.athlete_mobile);
 			           }

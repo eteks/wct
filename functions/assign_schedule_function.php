@@ -8,7 +8,7 @@ class assignscheduleFunction {
     public $assignschedule_status;
    public function assignscheduleSelect(){
        $temp_arr = array();
-       $res = mysql_query("SELECT * from wc_assignschedule INNER JOIN wc_createschedule ON wc_assignschedule.assigncreateschedule_id=wc_createschedule.createschedule_id where wc_assignschedule.assignschedule_status='1' group by wc_assignschedule.assigncreateschedule_id,wc_assignschedule.assigncategory_id ORDER BY wc_assignschedule.assignschedule_id DESC")or die(mysql_error());
+       $res = mysql_query("SELECT * from wc_assignschedule INNER JOIN wc_createschedule ON wc_assignschedule.assigncreateschedule_id=wc_createschedule.createschedule_id inner join wc_categories on wc_assignschedule.assigncategory_id = wc_categories.categories_id where wc_assignschedule.assignschedule_status='1' group by wc_assignschedule.assigncreateschedule_id,wc_assignschedule.assigncategory_id ORDER BY wc_assignschedule.assignschedule_id DESC")or die(mysql_error());
        $count=mysql_num_rows($res);
        while($row = mysql_fetch_array($res)) {
            $temp_arr[] =$row;
