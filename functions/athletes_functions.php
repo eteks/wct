@@ -1,5 +1,5 @@
 <?php
-	include($_SERVER["DOCUMENT_ROOT"] . "/wct/common.php");
+	include($_SERVER["DOCUMENT_ROOT"] . "/wct_v2/common.php");
  	class athletesFunction {
  		public $athleteid;
  		public $athletename;
@@ -185,7 +185,7 @@
 			$category = $_POST['cate'];
 			$schedule = $_POST['sche'];
 			$athelete = $_POST['athe'];
-			$query = mysql_query("select * from wc_assignschedule where assigncreateschedule_id = '$schedule' and assigncategory_id = '$category' and assignathlete_id = '$athelete'");
+			$query = mysql_query("select * from wc_assignschedule where assigncreateschedule_id = '$schedule' and assignathlete_id = '$athelete'");
 			if(mysql_num_rows($query) == 0){
 				echo 'success';
 			}else{

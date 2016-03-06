@@ -88,7 +88,7 @@
 							    <option value="21">21</option>
 							    <option value="22">22</option>
 							    <option value="23">23</option>
-							    <option value="24">24</option>							  
+							    <option value="24">24</option>
 							</select>
 						</div>
 						<div class="form-group align-time col-md-3">
@@ -227,7 +227,7 @@
 						<textarea class="area_width" name="schedule_venue" data-validation-error-msg="please Enter the name of the Venue" data-validation="required"></textarea>
 					</div>
 					<div class="col-md-9 schedule_btn">
-						<input type="reset" class="btn btn-primary clear" value="Clear">
+						<input type="reset" class="btn btn-primary clear" value="Cancel">
 						<input type="submit" class="btn btn-primary test-submit clear add_createschedule_act" value="Submit">
 					</div>
 				</form>
@@ -270,18 +270,18 @@
 							                <input type="hidden" name="delete_id" value="" id="delete_id"/>
 							              </div><!--del_content-->
       								</div><!--delete_div-->
-      								<?php } ?>						
+      								<?php } ?>
 								</div><!--test-list-->
 						</div><!--search-content-->
 					</form>
 				</div>
-			
+
 			<div class="container table-position col-md-9" style="padding: 0px;">
 				<table class="table createschedule_table check_table">
 					 <thead>
 			      <tr class="row_color">
-			        
-			        
+
+
 			        <th class="align_center">Test Battery Name</th>
 			        <th class="align_center">Date</th>
 			        <th class="align_center">Time</th>
@@ -394,7 +394,7 @@
 														    <option value="21">21</option>
 														    <option value="22">22</option>
 														    <option value="23">23</option>
-														    <option value="24">24</option>	
+														    <option value="24">24</option>
 														</select>
 													</div>
 													<div class="col-md-12">
@@ -543,7 +543,7 @@
 								          		</div>
 										</div><!--state-content-->
 								</div><!--test_battery_div-->
-							
+
 								<div class="delete_div delete_test_div">
 						            <!-- <code class="close_btn cancel_btn"> </code>  -->
 						              <div class="del_title">
@@ -567,7 +567,7 @@
 					<?php
 		               $cs_query = $createscheduleFunction->createscheduleSelect();
 	                   while ($row1 = mysql_fetch_array($cs_query)) {
-                     ?> 
+                     ?>
                      <li><?php echo $row1['createschedule_name'] ?></li>
                      <?php } ?>
 				</ul>
@@ -589,6 +589,6 @@
 
 <!-- <div class="popup_fade cancel_btn"></div><!--popup_fade-->
 		<!-- <div class="container">
-            
+
 		</div><!--container-->
 <?php require_once "footer.php" ?>

@@ -112,7 +112,7 @@ if(isset($_GET['insert_error'])){
 
 					<input type="hidden" name="test_add" value="1">
 					<div class="col-md-9 schedule_btn">
-						<input type="reset" value="Clear" class="btn btn-primary clear" maxlength="50">
+						<input type="reset" value="Cancel" class="btn btn-primary clear" maxlength="50">
 						<input type="submit" class="btn btn-primary clear test-submit test_submit_act" value="Submit">
 					</div>
 				</form>

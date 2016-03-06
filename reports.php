@@ -28,7 +28,7 @@ $createschedule = new createscheduleFunction();
 						</div>
 					</div>
 				<!--	<div class="col-md-9"> -->
-						<input type="reset" class="btn btn-primary clear" value="Clear">
+						<input type="reset" class="btn btn-primary clear" value="Cancel">
 						<input type="submit" class="btn btn-primary test-submit clear" name="submit" value="Submit">
 				<!--	</div> -->
 				</form>

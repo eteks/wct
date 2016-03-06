@@ -51,11 +51,11 @@
 				    	</div>
 					</div>
 				    <div class="form-group">
-				    	<input type="reset" class="btn btn-primary clear result_clear" value="Clear">
+				    	<input type="reset" class="btn btn-primary clear result_clear" value="Cancel">
 						<input type="submit" class="btn btn-primary test-submit clear" value="Submit">
 				    </div>
 				<!--	<div class="col-md-9">
-						
+
 					</div> -->
 				<input type="hidden" name="result_createscheduleid" class="result_createscheduleid">
 				<input type="hidden" name="result_athleteid" class="result_athleteid">
@@ -84,7 +84,7 @@
 				</tbody>
 			  </table>
 			  	<div class="col-md-12 btn_div">
-			  		<input type="reset" class="btn btn-primary align_right clear result_clear_act" value="Clear">
+			  		<input type="reset" class="btn btn-primary align_right clear result_clear_act" value="Cancel">
 					<input type="submit" class="btn btn-primary align_right test-submit clear result_submit_act" value="Save">
 				</div>
 			</div>

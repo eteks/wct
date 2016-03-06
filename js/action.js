@@ -286,7 +286,7 @@ $(window).resize(function () {
       $.ajax({
            type: "POST",
            url: "functions/athletes_functions.php?athelete_check=true",
-           data:{'sche':1,'cate':category,'athe':athe_id},
+           data:{'sche':schedule,'cate':category,'athe':athe_id},
            cache: false,
            success: function(data) {
                 if(data == 'error'){
@@ -323,7 +323,7 @@ $(document).ready(function () {
     var relativeOffset = topOffset-scrollTop;
     // get the window height
     var windowHeight = $(window).height();
-    
+
     // if the relative offset is greater than half the window height,
     // reverse the dropdown.
     if(relativeOffset > windowHeight/2){
@@ -333,7 +333,7 @@ $(document).ready(function () {
         $(".popup_hidden").removeClass("reverse");
     }
 });
-  
+
 
   package_menu();
 
