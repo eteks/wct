@@ -57,7 +57,7 @@
 						        <!-- <td class="t_states_name"><?php echo $row['states_name']; ?></td> -->
 						        <td class="t_district_name"><?php echo $row['district_name']; ?></td>
 						        <td class="popup-edit popup-edit_district">
-						        	<span class="edit_state" onclick="editfunction(<?php echo $row['district_id'] ?>)"><i class="fa fa-pencil-square-o"></i></span>
+						        	<span class="edit_state" onclick="editfunction(<?php echo $row['district_id'] ?>,this)"><i class="fa fa-pencil-square-o"></i></span>
 						        	<span class="delete_state" data-value="<?php echo $row['district_id'] ?>"><i class="fa fa-trash-o"></i></span>
 						        
 								<div class="district_div edit_district_div popup_hidden">

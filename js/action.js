@@ -66,7 +66,7 @@ function package_menu() {
     }
 }
 
-function editfunction(data_id){
+function editfunction(data_id,el){
     if (window.location.href.indexOf("state.php") !== -1){
             $.ajax({
              type: "POST",
@@ -172,7 +172,7 @@ function editfunction(data_id){
               $('[name=edit_schedule_venue]').val(obj[i].createschedule_venue);
             });
             $('.popup_fade').show();
-            createschedule_center_align();
+            // createschedule_center_align();
             $('.createschedule_div, .close_btn').show();
             document.body.style.overflow = 'auto';
            }
@@ -220,7 +220,8 @@ function editfunction(data_id){
             $('.edit_range_note').show();
             //Append data to first range part without using for loop
             data = rangeattr_obj[0];
-            element = $('.edit_clone_content:first');
+            // element = $('.edit_clone_content:first');
+            element = $(el).siblings('.range_div').find('.edit_clone_content:first');
             element.find('[name=edit_rangeattr_id1]').val(data.rangeattribute_id);
             element.find('[name=edit_range_id1]').val(data.range_id);
             element.find('[name=edit_range_start1]').val(data.range_start);
@@ -228,7 +229,7 @@ function editfunction(data_id){
             element.find('[name=edit_range_points1]').val(data.range_point);
 
             // Remove all clone element except first one (this is used when user again and again click edit button)
-            $('.edit_clone_content:not(:first-child)').remove();
+            $(el).siblings('.range_div').find('.edit_clone_content:not(:first-child)').remove();
 
             //Append data to other range part with using for loop
             if(rangeattr_obj.length>=2){
@@ -236,7 +237,7 @@ function editfunction(data_id){
               $.each(rangeattr_obj, function(i) {
                   if (i === 0) return;
                   else{
-                    rangeattr_element = $('.edit_clone_content:last').clone();
+                    rangeattr_element = $(el).siblings('.range_div').find('.edit_clone_content:last').clone();
                     // var rangeattr_element = newelement.clone();
                     rangeattr_element.find('.edit_range_label').remove();
                     rangeattr_element.attr('id','edit_range_counter'+id);
@@ -250,9 +251,9 @@ function editfunction(data_id){
                   }
               });
             }
-            $('.popup_fade').show();
-            $('.range_div, .close_btn').show();
-            document.body.style.overflow = 'hidden';
+            // $('.popup_fade').show();
+            // $('.range_div, .close_btn').show();
+            // document.body.style.overflow = 'hidden';
            }
         });
     }
@@ -3081,14 +3082,18 @@ $('.reset_form').on('click',function(){
       });
     });
 
-    $('.delete_search').hide();
+    $('.delete_search,.at_namelist,.cs_namelist').hide();
     $('.search_button').click(function(){
       search_value = $('.search_text').val();
-      $('.test-name').hide();
-      $('.test-list').find("input[value="+search_value+"]").parents('.test-name').show();
+      if(search_value == ''){
+        $('.test-name').show();
+      }else{
+        $('.test-name').hide();
+        $('.test-list').find("input[value="+search_value+"]").parents('.test-name').show();
+      }
     });
 
-    $('.save_athlete').click(function(){
+    $('.save_athlete').click(function(e){
       athlete_id = $(this).parents('.test-name').find('.check_athleteid').val();
       athlete_name = $(this).parents('.test-name').find('.check_athletename').val();
       form_data = {'check_athleteid':athlete_id,'check_athletename':athlete_name};
@@ -3097,11 +3102,11 @@ $('.reset_form').on('click',function(){
            url: "functions/athletes_functions.php?athletename_update=true",
            data: form_data,
            cache: false,
-           success: function(html) {
-            var result_split = html.split('#');
+           success: function(data) {
+            var result_split = data.split('#');
             if (result_split[0].indexOf("success") !== -1){
               alert(result_split[1]);
-              $(this).find('.check_athletename').val(result_split[2]);
+              $(this).parents('.test-name').find('.check_athletename').val(result_split[2]);
               $('.search_text').val('');
             }
             else{
@@ -3124,7 +3129,8 @@ $('.reset_form').on('click',function(){
             var result_split = html.split('#');
             if (result_split[0].indexOf("success") !== -1){
               alert(result_split[1]);
-              $(this).find('.check_athletename').val(result_split[2]);
+              // $(this).find('.check_athletename').val(result_split[2]);
+              $(this).parents('.test-name').find('.check_createschedulename').val(result_split[2]);
               $('.search_text').val('');
             }
             else{
