@@ -29,6 +29,11 @@ if(isset($_SESSION['login'])){
 	}
 }
 ?>
+<style type="text/css">
+	.footer_txt{
+		position: absolute !important;
+	}
+</style>
 <form role="form" action="" method="post" name="login_form" id="login_form_id">
 	<div class="select_user_content">
 		<div class="container">
