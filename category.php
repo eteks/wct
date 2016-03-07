@@ -48,7 +48,7 @@ $obj = new categoryfunction();
 					                	<span class="del_txt">Edit detail</span>
 					              	</div><!--edit_title-->
 					      			<div class="container state-content col-md-12">
-										<form name="category_update" id="category_update_form">
+										<form name="category_update" class="category_update_form">
 											<div class="align_margin">
 												<label>Enter the Category Name</label><br>
 												<input type="text" class="sportsname category_update_name" name="category_name" data-validation-error-msg="Please enter the category name" data-validation="required">

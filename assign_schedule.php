@@ -184,7 +184,7 @@ if(isset($_GET['update_success'])){
 									<!-- <input type="submit" class="btn btn-primary align_right adds_btn add_athelete" value="Add"> -->
 									<!-- <i class="fa fa-plus add_align"></i> -->
 									<i class="fa fa-plus plus_align edit_assign_schedule_add_btn">
-										<div class="tooltip_parameter edit-popup-add">Add</div>
+										<div class="tooltip_parameter edit-popup-add assign_schedule_add">Add</div>
 										<div class="tip_triangle"></div>
 									</i>
 									<i class="fa fa-minus assign_remove assign_remove_edit">

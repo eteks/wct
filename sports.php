@@ -11,7 +11,7 @@ $obj = new sportsfunction();
 	<div class="col-md-8">
 		<!-- <div class="col-md-6"></div> -->
 		<div class="col-md-6 align_margin_sports">
-			<form  id="sports_form" name="sport_form" role="form">
+			<form  class="sports_form" name="sport_form" role="form">
 				<div class="align_margin">
 					<label>Enter the name of the Sports</label><br>
 					<input type="text" class="sportsname" name="sports_name" data-validation-error-msg="Please Enter the name of the Sports" data-validation="required">
@@ -50,7 +50,7 @@ $obj = new sportsfunction();
             	<span class="del_txt">Edit Detail</span>
           	</div><!--edit_title-->
 			<div class="container state-content col-md-12">
-			<form name="sports_form" id="sports_update_form">
+			<form name="sports_form" class="sports_update_form">
 				<div class="align_margin">
 					<label>Enter the name of the Sports</label><br>
 					<input type="text" class="sportsname sports_update_name" name="sports_name" data-validation-error-msg="Please Enter the name of the Sports" data-validation="required">

@@ -126,8 +126,10 @@ function editfunction(data_id,el){
          success: function(data) {
           var obj = JSON.parse(data);
           $.each(obj, function(i){
-            $('[value='+data_id+']').parents('.delete_color').find('[name=edit_parameter_id]').val(obj[i].parametertype_id);
-            $('[value='+data_id+']').parents('.delete_color').find('[name=edit_parameter_type]').val(obj[i].parametertype_name);
+            $('[name=edit_parameter_id]').val(obj[i].parametertype_id);
+            $('[name=edit_parameter_type]').val(obj[i].parametertype_name);
+            // $('[value='+data_id+']').parents('.delete_color').find('[name=edit_parameter_id]').val(obj[i].parametertype_id);
+            // $('[value='+data_id+']').parents('.delete_color').find('[name=edit_parameter_type]').val(obj[i].parametertype_name);
           });
           $('.popup_fade').show();
           $('.state_div, .close_btn').show();
@@ -1292,13 +1294,13 @@ $('.reset_form').on('click',function(){
          });
    });
 
-  $('.districts').focus(function () {
+  $(document).on('focus','.districts',function(e){
       $(this).autocomplete({
       source: district_list,
       });
   });
 
-    $('#sports_form').submit(function(e) {
+    $('.sports_form').submit(function(e) {
       e.preventDefault();
       var res = true;
       $('input[type="text"]',this).each(function() {
@@ -1307,7 +1309,7 @@ $('.reset_form').on('click',function(){
         }
       });
      if(res){
-          var form_data = $('#sports_form').serialize();
+          var form_data = $(this).serialize();
            // $('form[name="sport_form"]').submit();
            // alert(form_data);
           $.ajax({
@@ -1465,7 +1467,7 @@ $('.reset_form').on('click',function(){
     });
 
     // Jquery and ajax functionality for district
-    $('#districts_form').submit(function(e){
+    $('.districts_form').submit(function(e){
         e.preventDefault();
         var res = true;
         $('input[type="text"]',this).each(function() {
@@ -1474,7 +1476,7 @@ $('.reset_form').on('click',function(){
           }
         });
         if(res){
-          var form_data = $('[name=district_form]').serialize();
+          var form_data = $(this).serialize();
           $.ajax({
                type: "POST",
                url: "functions/district_function.php?adddata=true",
@@ -1485,7 +1487,7 @@ $('.reset_form').on('click',function(){
                        alert(html+' district already exist!');
                        location.reload();
                    }else{
-                       alert('District Updated Successfully!');
+                       alert('District Inserted Successfully!');
                         location.reload();
                     }
                }
@@ -1529,7 +1531,7 @@ $('.reset_form').on('click',function(){
 
     // end (added by kalai)
 
-    $('#sports_update_form').submit(function(e) {
+    $('.sports_update_form').submit(function(e) {
       e.preventDefault();
       var res = true;
       $('input[type="text"]',this).each(function() {
@@ -1538,7 +1540,7 @@ $('.reset_form').on('click',function(){
         }
       });
       if(res){
-        var form_data = $('#sports_update_form').serialize();
+        var form_data = $(this).serialize();
         $.ajax({
            type: "POST",
            url: "functions/sports_function.php",
@@ -1860,7 +1862,7 @@ $('.reset_form').on('click',function(){
       }
     });
 
-    $('#category_update_form').submit(function(e) {
+    $('.category_update_form').submit(function(e) {
       e.preventDefault();
       var res = true;
       $('input[type="text"]',this).each(function() {
@@ -1869,7 +1871,7 @@ $('.reset_form').on('click',function(){
         }
       });
       if(res){
-        var form_data = $('#category_update_form').serialize();
+        var form_data = $(this).serialize();
        //alert(form_data);
         $.ajax({
            type: "POST",
@@ -2501,7 +2503,7 @@ $('.reset_form').on('click',function(){
     $('.edit_parameter_act ').click(function(e){
           e.preventDefault();
           var res = true;
-          $(this).parents('#edit_parameter_type').find('input[type="text"],textarea,select').each(function() {
+          $(this).parents('.edit_parameter_type').find('input[type="text"],textarea,select').each(function() {
             if($(this).val().trim() == "") {
               res = false;
               //alert(res);
@@ -2511,7 +2513,7 @@ $('.reset_form').on('click',function(){
 
           if(res){
               //alert($(this).parents('edit_parameter_type').html());
-              var form_data = $(this).parents('#edit_parameter_type').serialize();
+              var form_data = $(this).parents('.edit_parameter_type').serialize();
               //alert(form_data);
               $.ajax({
                     type: "POST",
@@ -2646,6 +2648,7 @@ $('.reset_form').on('click',function(){
         }
       });
       if(res){
+          var test_ar = [];
           var form_data = $('[name=result_form]').serialize();
           $('.result_createscheduleid').val($('.resultcreateschedule_act option:selected').val());
           $.ajax({
@@ -2655,13 +2658,14 @@ $('.reset_form').on('click',function(){
                cache: false,
                // dataType:'json',
                success: function(html) {
-                alert(html);
+                // alert(html);
                 $('.result_table tbody tr:not(:last)').remove();
                   var result_split = html.split('###');
                   var obj = JSON.parse(result_split[0]);
                   // obj=result_split[0];
                   $.each(obj, function(i){
                     ranges = JSON.stringify(obj[i].ranges);
+                    test_ar.push(obj[i].test_name);
                     if(obj[i].ranges.length == 0){
                        html = "<tr class='align_center delete_color assign_table'>\
                                 <input type='hidden' name='result_id' class='result_id' value=''>\
@@ -2693,15 +2697,19 @@ $('.reset_form').on('click',function(){
                     $('.result_table tr:last').before(html);
                   });
 
-                    // //newly added for result test and parameter restriction
-                    // $('.result_test_name',this).each(function(){
-                    //   alert("yes");
-                    //   test_name = $(this).text();
-                    //   parameter_name = $(this).next().text();
-                    //   ranges = $(this).siblings('.result_ranges').val();
-                    //   alert(test_name+parameter_name+ranges);
-                    // });
-
+                    test_data = $.unique(test_ar);
+                    $.each(test_data, function(i,val){
+                      select_element = $('.result_table').find(".result_test_name:contains("+val+"):first");
+                      select_ranges = select_element.prev('.result_ranges').val();
+                      select_test = select_element.text();
+                      select_parameter = select_element.next('.result_parameter_name').text();
+                      if(select_ranges == '[]'){
+                        error_html = "<span class='result_table_error custom_error'>Please assign range for test " +select_test+ " and parameter " +select_parameter+ "</span><br>";
+                        $('.result_error_content').append(error_html);
+                        $('.result_error_content').show();
+                      }
+                    });
+                  
                     var obj1 = JSON.parse(result_split[1]);
                     console.log(JSON.stringify(obj1));
                     $.each(obj1, function(i){
@@ -3116,6 +3124,8 @@ $('.reset_form').on('click',function(){
         res = true;
         if($('.enter_result_error').hasClass('error')){
           res = false;
+        } else if($('.result_error_content span').hasClass('custom_error')){
+          res = false;
         }
         else{
           var result_data = [];
@@ -3447,13 +3457,14 @@ $('.reset_form').on('click',function(){
         $('.test-name').show();
       }else{
         $('.test-name').hide();
-        $('.test-list').find("input[value="+search_value+"]").parents('.test-name').show();
+        $('.test-list').find("input[value='"+search_value+"']").parents('.test-name').show();
       }
     });
 
     $('.save_athlete').click(function(e){
       athlete_id = $(this).parents('.test-name').find('.check_athleteid').val();
       athlete_name = $(this).parents('.test-name').find('.check_athletename').val();
+      athlete_element = $(this).parents('.test-name').find('.check_athletename');
       form_data = {'check_athleteid':athlete_id,'check_athletename':athlete_name};
        $.ajax({
            type: "POST",
@@ -3464,7 +3475,7 @@ $('.reset_form').on('click',function(){
             var result_split = data.split('#');
             if (result_split[0].indexOf("success") !== -1){
               alert(result_split[1]);
-              $(this).parents('.test-name').find('.check_athletename').val(result_split[2]);
+              athlete_element.val(result_split[2]);
               $('.search_text').val('');
             }
             else{
@@ -3477,6 +3488,7 @@ $('.reset_form').on('click',function(){
     $('.save_createschedule').click(function(){
       createschedule_id = $(this).parents('.test-name').find('.check_scheduleid').val();
       createschedule_name = $(this).parents('.test-name').find('.check_createschedulename').val();
+      schedule_element = $(this).parents('.test-name').find('.check_createschedulename');
       form_data = {'check_scheduleid':createschedule_id,'check_createschedulename':createschedule_name};
       $.ajax({
            type: "POST",
@@ -3488,7 +3500,7 @@ $('.reset_form').on('click',function(){
             if (result_split[0].indexOf("success") !== -1){
               alert(result_split[1]);
               // $(this).find('.check_athletename').val(result_split[2]);
-              $(this).parents('.test-name').find('.check_createschedulename').val(result_split[2]);
+              schedule_element.val(result_split[2]);
               $('.search_text').val('');
             }
             else{
@@ -3497,6 +3509,32 @@ $('.reset_form').on('click',function(){
           }
          });
     });
+
+    $('.save_state').click(function(){
+      state_id = $(this).parents('.test-name').find('.check_stateid').val();
+      state_name = $(this).parents('.test-name').find('.check_statename').val();
+      state_element = $(this).parents('.test-name').find('.check_statename');
+      form_data = {'edit_states_id':state_id,'edit_states_name':state_name};
+      $.ajax({
+           type: "POST",
+           url: "functions/edit_and_delete_function.php?editdata=true",
+           data: form_data,
+           cache: false,
+           success: function(html) {
+            var result_split = html.split('#');
+            if (result_split[0].indexOf("success") !== -1){
+              alert(result_split[1]);
+              // $(this).find('.check_athletename').val(result_split[2]);
+              state_element.val(result_split[3]);
+              $('.search_text').val('');
+            }
+            else{
+              alert(result_split[1]);
+            }
+          }
+         });
+    });
+
 
     $('.edit_range_points').click(function(){
         element = $(this).parents('.add-ranges-button').siblings('.edit_range_holder').find('.edit_clone_content:last');

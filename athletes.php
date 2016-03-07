@@ -227,7 +227,7 @@
 											<label>Athlete Name</label><br>
 											<input type="text" class="adjust_width" name="edit_athlete_name" data-validation-error-msg="Please Enter the name of the Athelete" data-validation="required">
 										</div> -->
-										<div class="form-group align-day align-day-popup">
+										<div class="form-group align-day align-day-popup" style=" white-space: normal;">
 										  <label for="date" class="popup_label" style="text-align:center;">Date Of Birth</label><br>
 										  <input class="popup_athlete_datepick" type="text">
 										 <!--  <select class="form-control classic dob_align1 fl" id="date1" name="edit_athlete_dobday" data-validation-error-msg="Please Select the Date" data-validation="required">

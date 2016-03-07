@@ -462,6 +462,7 @@ select {
     position: absolute;
     width: 275px;
     z-index: 9999;
+    white-space: normal;
 }
 /*.district_div{
     height: 300px;
@@ -1090,7 +1091,8 @@ input[type=radio]:checked + label:before {
     width: 220px !important;
 }
 .area_width_create{
-    width: 102%;
+    float: left;
+    width: 115%;
 }
 .dob_align1{
     border-radius: 0 !important;
@@ -1288,9 +1290,9 @@ input[type=radio]:checked + label:before {
     position: relative;
 }
 .align-time {
-    margin-right: -2px;
+    margin-right: -5px;
     position: relative;
-    right: 20%;
+    right: 19%;
 }
 .align-day {
     width: 100%;
@@ -1547,7 +1549,7 @@ tbody tr {
     z-index:9999;
     background:#fff;
     display: none;
-    box-shadow: 0 2px 10px 3px #b8b7b9;
+    box-shadow:  0 1px 10px 0 #d7d6d8;
     margin: -8px 0 0 10px;
 }
 .delete_state_div{  /* added by siva */
@@ -1560,6 +1562,7 @@ tbody tr {
     z-index: 9999;
     padding: 5px 7px;
     margin: 18px 0 0 168px;
+    white-space: normal;
 }
 
 .edit_sports_div {  /* state div */
@@ -1581,7 +1584,8 @@ tbody tr {
     width: 200px;
     z-index: 9999;
     padding: 5px 7px;
-     margin: 18px 0 0 206px;
+    margin: 18px 0 0 206px;
+    white-space: normal;
 }
 .delete_catagory_div {
     background: #fff none repeat scroll 0 0;
@@ -1592,8 +1596,8 @@ tbody tr {
     width: 200px;
     z-index: 9999;
     padding: 5px 7px;
-    margin: 18px 0 0 95px;
-
+    margin: 18px 0 0 140px;
+    white-space: normal;
 }
 .edit_category_div { /* state div */
     height: 200px;
@@ -1603,11 +1607,11 @@ tbody tr {
     background:#fff;
     display: none;
     box-shadow: 0 2px 10px 3px #b8b7b9;
-    margin: -8px 0 0 -67px;
+    margin: -8px 0 0 6px;
 }
 .edit_district_div{ /* district div */
     background: #fff none repeat scroll 0 0;
-    box-shadow: 0 2px 10px 3px #b8b7b9;
+    box-shadow:  0 1px 10px 0 #d7d6d8;
     display: none;
     height: 275px;
     margin: -8px 0 0 45px;
@@ -1626,6 +1630,7 @@ tbody tr {
     z-index: 9999;
     padding: 5px 7px;
     margin: 18px 0 0 206px;
+    white-space: normal;
 }
 .adjust_popup_width{
     box-shadow: none !important;
@@ -1633,14 +1638,14 @@ tbody tr {
     width: 326px !important;
 }
 .edit_parametertype_div {
-    height: 200px;
-    width: 360px;
-    position:absolute;
-    z-index:9999;
-    background:#fff;
+    background: #fff none repeat scroll 0 0;
+    box-shadow: 0 1px 10px 0 #d7d6d8;
     display: none;
-    box-shadow: 0 2px 10px 3px #b8b7b9;
-    margin: -8px 0 0 5px;
+    height: 200px;
+    margin: -8px 0 0 4px;
+    position: absolute;
+    width: 360px;
+    z-index: 9999;
 
 }
 .delete_parametertype_div {
@@ -1653,6 +1658,7 @@ tbody tr {
     z-index: 9999;
     padding: 5px 7px;
     margin: 18px 0 0 165px;
+    white-space: normal;
 }
 .edit_parameterunit_div{
     background: #fff none repeat scroll 0 0;
@@ -1674,6 +1680,7 @@ tbody tr {
     z-index: 9999;
     padding: 5px 7px;
     margin: 22px 0 0 207px !important;
+    white-space: normal;
 }
 /*.save_item,.edit_item,.delete_item{
     display: none;
@@ -1699,6 +1706,7 @@ tbody tr {
     z-index: 9999;
     padding: 5px 7px;
     margin: 18px 0 0 -50px;
+    white-space: normal;
 }
 .delete_search{
     background: #fff none repeat scroll 0 0;
@@ -1810,21 +1818,21 @@ button, input, optgroup, select, textarea {
 .popup_add_range {
     bottom: 0 !important;
     float: right !important;
-    left: 15px !important;
+    left: 0px !important;
     top: 0;
     width: 99px !important;
 }
 .popup-remove{
     left: 25%;
-    width: 45px;
-    height: 30px;
-    font-size: 9px;
+    width:63px;
+    height: 25px;
+    font-size: 8px;
 }
 .popup-add{
     font-size: 9px;
-    height: 30px;
-    left: 22%;
-    width: 40px;
+    height: 25px;
+    left: 20%;
+    width: 53px;
 }
 .popup-add-district {
     float: right !important;
@@ -1852,4 +1860,22 @@ button, input, optgroup, select, textarea {
     left: 30px;
     margin: 0 20px 0 0;
     position: relative;
+}
+.result_table_error{
+    font-size: 14px;
+    color: red;
+}
+.result_error_content{
+    display: none;
+    text-align: center;
+    margin-bottom: 20px;
+}
+/*td {
+    max-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}*/
+.assign_schedule_add{
+    width: 50px;
 }
