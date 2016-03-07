@@ -4,12 +4,7 @@ require_once "header.php";
 require_once "functions/create_schedule_function.php";
 $createschedule = new createscheduleFunction();
 ?>
-<style type="text/css">
-	.footer_txt{
-		position: absolute !important;
-	}
-</style>
-<div class="container">
+<div class="container align_bottom">
 	<div class="container left_align_testbattery align_height">
 		<span class="sports">REPORTS</span>
 	</div><!--end container-->
