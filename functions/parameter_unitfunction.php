@@ -154,4 +154,18 @@ if(isset($_GET['paramstype_name_update'])){
             echo "succeed";
         }
 }
+if(isset($_GET['find_params_units'])){
+        //include ("../dbconnect.php");
+        $temp_arr = array();
+        $test_arr = array();
+        $paramstypeid = $_POST['id'];
+        if($paramstypeid!=''){
+            $sql = mysql_query("select * from wc_parameterunit inner join wc_parametertype on wc_parameterunit.parametertype_id =wc_parametertype.parametertype_id where wc_parametertype.parametertype_id = '".$paramstypeid."'")or die(mysql_error());
+            while($row = mysql_fetch_assoc($sql)) {
+                $test_arr[] =$row;
+            }
+        }
+        $temp_arr['test'] = $test_arr;
+        print(json_encode($temp_arr));
+    }
 ?>

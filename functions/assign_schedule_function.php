@@ -54,17 +54,22 @@ class assignscheduleFunction {
     }
     if(isset($_POST['assing_schedule_update'])){
         include ("../dbconnect.php");
-        print_r($_POST);
-        $counter = (count($_POST)-2)/3;
+        //print_r($_POST);
+        $counter = (count($_POST)-2)/4;
+
+        mysql_query("delete from wc_assignschedule where assigncreateschedule_id ='".$_POST["create_schedule_update_id1"]."' ");
+
         for($i=1;$i<=$counter;$i++){
             $category_id = $_POST['category'];
             $assign_schedule_id = $_POST["assing_schedule_update_id".$i.""];
+            $create_schedule_update_id = $_POST["create_schedule_update_id".$i.""];
             $athlete_id = $_POST["athlete_name".$i.""];
             $athlete_bib = $_POST["athlete_bib".$i.""];
-            $sql = "update wc_assignschedule set assigncategory_id='$category_id',assignathlete_id='$athlete_id',assignbib_number='$athlete_bib' where assignschedule_id='$assign_schedule_id'";
+            $sql = "insert into wc_assignschedule (assigncreateschedule_id,assigncategory_id,assignathlete_id,assignbib_number,assignschedule_status)values('$create_schedule_update_id','$category_id','$athlete_id','$athlete_bib','1')";
+            //$sql = "update wc_assignschedule set assigncategory_id='$category_id',assignathlete_id='$athlete_id',assignbib_number='$athlete_bib' where assignschedule_id='$assign_schedule_id'";
             mysql_query($sql) or die(mysql_error());
         }
-        header('Location:../assign_schedule.php?update_success=true');
+        //header('Location:../assign_schedule.php?update_success=true');
     }
     if(isset($_GET['deletedata'])){
         include ("../dbconnect.php");

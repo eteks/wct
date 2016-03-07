@@ -1805,7 +1805,7 @@ $('.reset_form').on('click',function(){
        }
        else if (window.location.href.indexOf("parameter_unit.php") !== -1){
            //alert('dsfsdfds');
-            var form_data = {'delete_id':del_id};
+            var form_data = {'delete_id':$(this).attr('data-id')};
             $.ajax({
                  type: "POST",
                  url: "functions/parameter_typefunction.php?deletedata=true",
@@ -1943,9 +1943,11 @@ $('.reset_form').on('click',function(){
     });
 
     function nextElement1(element){
+        var current_id = parseInt(element.find('.assign_athelete_count_add').val());
         var newElement = element.clone();
-        var id = test_id+1;
+        var id = current_id+1;
         test_id = id;
+        newElement.find('.assign_athelete_count_add').val(id);
         newElement.find('.athlete_name').removeAttr('name').attr('name', 'athlete_name'+id).removeClass('class name');
         newElement.find('.athlete_bib').removeAttr('name').attr('name', 'athlete_bib'+id).val('');
         newElement.find('.dob').val('');
@@ -1982,14 +1984,17 @@ $('.reset_form').on('click',function(){
     });
 
     function nextElement4(element){
+        var last_id = parseInt(element.find('.assign_athelete_count_edit').val());
+        //alert(last_id);
         var newElement = element.clone();
-        var id = test_id+1;
+        var id = last_id+1;
         test_id = id;
+        newElement.find('.assign_athelete_count_edit').val(id);
         newElement.find('.athlete_name').removeAttr('name').attr('name', 'athlete_name'+id).removeClass('class name');
         newElement.find('.athlete_bib').removeAttr('name').attr('name', 'athlete_bib'+id).val('');
         newElement.find('.dob').val('');
         newElement.find('.mobile').val('');
-        newElement.find('#combobox2').combobox({
+        newElement.find('#combobox1').combobox({
             select: function (event, ui) {
                 var ath_id = $(this).val();
                 $.ajax({
@@ -2222,6 +2227,124 @@ $('.reset_form').on('click',function(){
              }
          });
       }
+    });
+    $(document).delegate('.parametertype_name_hover', 'mouseover', function(event) {
+       //alert($(this).attr('data-id'));
+        $('#test_table tbody').empty();
+       var params_id = $(this).attr('data-id');
+       $.ajax({
+            type: "POST",
+            url: "functions/parameter_unitfunction.php?find_params_units=true",
+            data:{'id':params_id},
+            cache: false,
+            dataType:'json',
+            success: function(data) {
+                //alert(JSON.stringify(data.test));
+                $('#test_table tbody').empty();
+                if(data.test){
+                     var param_dynamic = '';
+//                    $.each(data.param, function(i){
+//                         param_dynamic += "<option value='"+data.param[i].parametertype_name+"'>"+data.param[i].parametertype_name+"</option>";
+//                     });
+                     $.each(data.test, function(i){
+                         $('#test_table tbody').append('\
+               <tr class="align_center delete_color">\
+           <input type="hidden" value="'+data.test[i].parameterunit_id+'" id="parameterunit_id">\
+                 <td>'+data.test[i].parameterunit+'</td>\
+                 <td class="popup-edit">\
+                  <span class="edit_state edit_test" data-value="'+data.test[i].parameterunit_id+'" data-test-id="'+data.test[i].parameterunit_id+'"><i class="fa fa-pencil-square-o"></i></span>\
+                  <span class="delete_state" data-value="'+data.test[i].parameterunit_id+'"><i class="fa fa-trash-o"></i></span>\
+                   <div class="test_div popup_hidden">\
+                      <code class="close_btn cancel_btn"> </code>\
+                      <div class="edit_title">\
+                           <span class="del_txt">Edit Detail</span>\
+                         </div>\
+                       <div class="container col-md-12">\
+                        <div class="col-xs-12 col-md-12">\
+              <form id="test_updation_form" action="functions/test_functions.php" method="post">\
+               <div class="parameter_holder">\
+                <div class="form-group" style="margin: 0;">\
+                 <label class="popup_label">Enter Parameter Name</label><br>\
+                 <input type="text" class="adjust_width test_parameter_name_update" name="parameter_name1" data-validation-error-msg="Please Enter the Parameter Name" data-validation="required" style="width:220px !important;height: 30px;">\
+                </div>\
+                <div class="form-group col-md-8 test_percentage parameter_type_parent">\
+                 <div class="col-md-12" style="padding: 0;">\
+                  <label class="popup_label">Type</label>\
+                  <select class="form-control classic type_align_popup fl parameter_type parameter_type_update" id="type1" name="type1" data-validation-error-msg="Please Select the Type" data-validation="required">\
+                   <option value=""></option>\
+                                                           '+param_dynamic+'\
+                  </select>\
+                 </div>\
+                 <div class="col-md-12" style="padding: 0;">\
+                  <label class="popup_label">Unit</label>\
+                  <select class="form-control classic type_align_popup fl parameter_unit parameter_unit_update" id="unit1" name="unit1" data-validation-error-msg="Please Select the Unit" data-validation="required">\
+                  </select>\
+                 </div>\
+                 <div class="col-md-12" style="padding: 0;">\
+                  <label class="popup_label">Format</label>\
+                  <select class="form-control classic type_align_popup fl parameter_format parameter_format_update" id="format1" name="format1" data-validation-error-msg="Please Select the Format" data-validation="required">\
+                   <option value="">Format</option>\
+                   <option value="0">0</option>\
+                   <option value="1">1</option>\
+                   <option value="2">2</option>\
+                   <option value="3">3</option>\
+                   <option value="4">4</option>\
+                   <option value="5">5</option>\
+                  </select>\
+                 </div>\
+                </div>\
+               </div>\
+               <input class="parameter_update" type="hidden" name="parameter_update" value="" />\
+               <input class="test_update_id" type="hidden" name="test_update_id" value="" />\
+               <div class="col-md-12 schedule_btn">\
+                <input type="submit" class="btn btn-primary align_right  clear" value="Save">\
+               </div>\
+              </form>\
+             </div>\
+            </div>\
+                        </div>\
+            <div class="delete_div delete_test_div">\
+                         <div class="del_title">\
+                           <span class="del_txt">DELETE</span>\
+                         </div>\
+                         <div class="del_content">\
+                           <span class="del_content_txt">Are you sure want to delete this whole record?</span>\
+                           <input type="button" class="btn btn-primary align_right yes_btn" value="Yes" data-delete="test_attribute" data-id ="'+data.test[i].parameterunit_id+' "data-test-id="'+data.test[i].parameterunit_id+'">\
+                           <input type="button" class="btn btn-primary align_right no_btn" value="No">\
+                           <input type="hidden" name="delete_id" value="" id="delete_id"/>\
+                         </div>\
+               </div>\
+                 </td>\
+           <input type="hidden" name="test_attribute_id" id="test_attribute_id" value="'+data.test[i].parameterunit_id+'" />\
+               </tr>');
+                     });
+                }else{
+                    alert('No Parameter availabel!');
+                }
+            }
+       });
+   });
+   // / Edit the Parameter Unit module - Start /
+     $(document).delegate('.edit_parameter_unit','click',function(){
+        var test_attr_id = $(this).attr("data-value");
+        var test_id = $(this).attr("data-test-id");
+        var current_popup = $(this);
+        //alert(test_id);
+        $.ajax({
+             type: "POST",
+             url: "functions/parameter_unitfunction.php?getunitdata=true",
+             data:{'id':test_attr_id,},
+             cache: false,
+             dataType:'json',
+             success: function(data) {
+                alert(JSON.stringify(data));
+                //  $('.test_name_update').val(data.test_name);
+                //alert(current_popup.parents('.popup-edit').html());
+                 current_popup.parents('.popup-edit').find('.params_typeoption option[value="'+data.parametertype_name+'"]').attr('selected','selected');
+                 current_popup.parents('.popup-edit').find('.params_unit').val(data.parameterunit);
+
+            }
+         });
     });
 
     $('.edit_create_schedule_form').submit(function(e){
@@ -2761,24 +2884,32 @@ $('.reset_form').on('click',function(){
            cache: false,
            dataType:'json',
            success: function(data) {
+               //alert(JSON.stringify(data));
                $('.schedule_update').val(data[0].createschedule_name);
                $('.category_update option[value="'+data[0].assigncategory_id+'"]').attr('selected','selected');
                $('.clone_schedule_update:first .athlete_name1 option[value="'+data[0].assignathlete_id+'"]').attr('selected','selected');
                $('.clone_schedule_update:first .dob_update').val(data[0].athlete_dob);
+               //$('.clone_schedule_update:first .assign_athelete_count_edit').val(1);
                $('.clone_schedule_update:first .custom-combobox-input').val(data[0].athlete_name);
                $('.clone_schedule_update:first .mobile_update').val(data[0].athlete_mobile);
                $('.clone_schedule_update:first .athlete_bib').val(data[0].assignbib_number);
                $('.clone_schedule_update:first .assing_schedule_update_id').val(data[0].assignschedule_id);
+               $('.clone_schedule_update:first .create_schedule_update_id').val(data[0].createschedule_id);
+
                var cnt = 0;
                $.each(data, function(i){
                    if(cnt!=i){
                        //alert(data[i].athlete_name);
+                       var last_id = parseInt($('.clone_schedule_update:first .assign_athelete_count_edit').val());
                        var newElement = $('.clone_schedule_update:first').clone();
                        var id = i+1;
+
                        test_id = id;
+                       newElement.find('.assign_athelete_count_edit').val(id);
                        newElement.find('.athlete_name option[value="'+data[i].assignathlete_id+'"]').attr('selected','selected');
                        newElement.find('.athlete_name').removeAttr('name').attr('name', 'athlete_name'+id);
                        newElement.find('.assing_schedule_update_id').removeAttr('name').attr('name', 'assing_schedule_update_id'+id).val(data[i].assignschedule_id);
+                       newElement.find('.create_schedule_update_id').removeAttr('name').attr('name', 'create_schedule_update_id'+id).val(data[i].createschedule_id);
                        newElement.find('.athlete_bib').removeAttr('name').attr('name', 'athlete_bib'+id).val(data[i].assignbib_number);
                        newElement.find('.dob_update').val(data[i].athlete_dob);
                        newElement.find('.mobile_update').val(data[i].athlete_mobile);
@@ -2805,6 +2936,7 @@ $('.reset_form').on('click',function(){
                        });
                        newElement.find('.custom-combobox:nth-child(3)').remove();
                        newElement.appendTo($(".clone_schedule_update_content"));
+                       id++;
                    }
                    //cnt++;
                });

@@ -53,6 +53,7 @@ if(isset($_GET['update_success'])){
 					<label for="athlete">Add Athletes</label><br>
 					<div class="assign_content_holder col-md-11">
 						<div class="assign_clone_content">
+							<input type="hidden" class="assign_athelete_count_add" value="1" />
 							<div class="form-group col-md-12">
 								<div class="col-md-6 form-group combo--align">
 									<select class="form-control name_align  athlete_name athlete_name1" placeholder="Name" name="athlete_name1" id="combobox" data-validation-error-msg="Please Select Athlete" data-validation="required">
@@ -149,9 +150,10 @@ if(isset($_GET['update_success'])){
 								<label for="athlete" class="email_txt popup_label">Add Athletes</label><br>
 								<div class=" clone_schedule_update_content assign_clone_content_edit_holder col-md-12">
 									<div class="assign_clone_content_edit clone_schedule_update">
+										<input type="hidden" class="assign_athelete_count_edit" value="1" />
 										<div class="form-group col-md-12">
 											<div class="col-md-12 combo--align--popup align_atheletes_schedules">
-												<select class="form-control name_align_popup fl box-width athlete_name athlete_name_update athlete_name1" id="combobox2" placeholder="Name" name="athlete_name1" id="combobox" data-validation-error-msg="Please Select Athlete" data-validation="required">
+												<select class="form-control name_align_popup fl box-width athlete_name athlete_name_update athlete_name1" placeholder="Name" name="athlete_name1" id="combobox1" data-validation-error-msg="Please Select Athlete" data-validation="required">
 													<option value="">Athletes</option>
 													<?php
 														$data = $athlete->athleteSelect1();
@@ -174,6 +176,7 @@ if(isset($_GET['update_success'])){
 									      		<input type="text" class="form-control bib_popup athlete_bib popup_bib fl bib_update" id="name" placeholder="BIB NO" name="athlete_bib1" data-validation-error-msg="Please Enter the BIBO NO" data-validation="number">
 											</div>
 											<input type="hidden" class="assing_schedule_update_id" name="assing_schedule_update_id1" value="" />
+											<input type="hidden" class="create_schedule_update_id" name="create_schedule_update_id1" value="" />
 									    </div>
 									</div>
 								</div>
