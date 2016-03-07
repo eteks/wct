@@ -52,15 +52,15 @@ if(isset($_GET['insert_error'])){
 					</div>
 					<div class="parameter_holder1">
 						<div class="clone_content" id="param_counter1">
-							<div class="form-group col-md-10 schedule_test">
-							<div class="form-group col-md-6">
+							<div class="form-group col-md-11 schedule_test">
+							<div class="form-group col-md-5">
 								<label>Enter Parameter Name</label><br>
 								<input type="text" class="adjust_width parameter_name" name="parameter_name1" data-validation-error-msg="Please Enter the Parameter Name" data-validation="required">
 								<span class="hided param_name_error">Please Enter the parameter name</span>
 								<input type="hidden" class="parameter_count" value="1" />
 							</div>
 
-							<div class="form-group col-md-2">
+							<div class="form-group col-md-2 align-area">
 									<select class="form-control classic type_align fl parameter_type parameter_type_add" id="type" name="type1" data-validation-error-msg="Please Select the Type of the Parameter" data-validation="required">
 										<option value="">
 											Type
@@ -81,13 +81,13 @@ if(isset($_GET['insert_error'])){
 									</select>
 									<span class="hided param_type_error">Please Select the type</span>
 								</div>
-								<div class="form-group col-md-2">
+								<div class="form-group col-md-2 align-area">
 									<select class="form-control classic type_align fl parameter_unit paremeter_unit_add" id="unit" name="unit1" data-validation-error-msg="Please Select the Unit of the Parameter" data-validation="required">
 									<option value="">Unit</option>
 									</select>
 									<span class="hided param_unit_error">Please Select the unit</span>
 								</div>
-								<div class="form-group col-md-2">
+								<div class="form-group col-md-2 align-area">
 									<select class="form-control classic type_align fl parameter_format" id="format" name="format1" data-validation-error-msg="Please Select the Format of the Parameter" data-validation="required">
 										<option value="">Format</option>
 									</select>

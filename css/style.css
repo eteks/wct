@@ -64,12 +64,14 @@
 */    width: 100%;
     bottom: 0;
     position: absolute !important;
+    display: none;
 }
 
 .bottom_alignment_footer {
     position: relative !important;
     top:auto !important;
     bottom:0px !important;
+    display: block;
 }
 .user_txt {
  height: 102px;
@@ -119,7 +121,7 @@
 }
 .login_form {
     height: 282px;
-    margin: 18px 0 0 82px;
+    margin: 18px 0 0 72px !important;
     width: 500px;
 }
 .forget_txt{
@@ -644,11 +646,15 @@ select {
 .type_align{
     border-radius: 0 !important;
     box-shadow: none !important;
-    height: 34px;
-    margin: 25px 0 10px -12px; /* added by siva */
-    width: 130px !important;
+    color: #424242 !important;
     font-family: Montserrat;
-    color: #424242  !important;
+    height: 34px;
+    margin: 25px 0 10px -12px;
+    max-width: 170px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 170px !important;
+    padding: 0.5em 2.5em 0.5em 0.5em !important;
 }
 .area_scroll{
     border: 1px solid #a0a0a0;
@@ -772,9 +778,12 @@ button, input, optgroup, select, textarea {
     font-family: Montserrat;
     height: 30px !important;
     margin: 0 0 4px 30px;
-    padding: 2px 5px !important;
+    max-width: 217px;
+    padding: 0.4em 2.5em 0.5em 0.5em !important;
     position: relative;
     right: 27px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     width: 219px !important;
 }
 .area_scroll_popup{
@@ -1826,4 +1835,9 @@ button, input, optgroup, select, textarea {
 }
 .delete-range{
     margin: 18px 0 0 30px;
+}
+.align-area {
+    left: 30px;
+    margin: 0 20px 0 0;
+    position: relative;
 }

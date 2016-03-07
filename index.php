@@ -53,8 +53,8 @@ if(isset($_SESSION['login'])){
 				</div>
 			</div><!--user_type-->
 		</div><!--container-->
-		<div class="login_form">
-				<div class="user-content col-md-10 col-xs-9">
+		<div class="login_form container">
+				<div class="user-content col-md-5 col-xs-9">
 				    <div class="form-group">
 						<label for="email" class="email_txt">Email Address</label>
 						<input type="email" class="form-control" id="email" placeholder="Enter email" name="email" data-validation-error-msg="Please Enter your Email Address" data-validation="required" data-validation="email">

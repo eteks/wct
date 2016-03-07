@@ -69,11 +69,13 @@ function package_menu(){
   var dh = $(document).height();
   var wh = $(window).innerHeight() - 34;
   if ( dh > wh ) {
-    $('.footer_txt').css('bottom', "0px");
+      $('.footer_txt').css('bottom', "0px");
       $('.footer_txt').addClass('bottom_alignment_footer');
+      $('.footer_txt').fadeIn();
     }
   else {
     $('.footer_txt').css({'top': wh + "px"});
+    $('.footer_txt').fadeIn();
 
   }
 
