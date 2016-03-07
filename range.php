@@ -199,51 +199,17 @@
 											  				<span class="hided">Please Check the format</span>
 											  			</div>
 											  			
-											  		</div><!--ranges_popup--><div class="form-group col-md-12 ranges_popup">
-												      	<div class="col-md-12">
-												      		<input type="text" class="form-control classic range_align_popup edit_r_strt" id="edit_strt1" name="edit_range_start1" placehoder="Start">
-												       		<span class="hided">Please Enter the start range</span>
-											    			<span class="hided">Please Check the format</span>
-												       	</div>
-												       	<div class="col-md-12">
-												      		<input type="text" class="form-control classic range_align_popup edit_r_end" id="edit_end1" name="edit_range_end1" placehoder="end">
-												       		<span class="hided">Please Enter the end range</span>
-											  				<span class="hided">Please Check the format</span>
-												       	</div>
-												       	<div class="col-md-12">
-												      		<input type="text" class="form-control classic range_align_popup edit_r_point" id="edit_point1" name="edit_range_points1" placehoder="points">
-											  				<span class="hided">Please Enter the points</span>
-											  				<span class="hided">Please Check the format</span>
-											  			</div>
-											  			
-											  		</div><!--ranges_popup--><div class="form-group col-md-12 ranges_popup">
-												      	<div class="col-md-12">
-												      		<input type="text" class="form-control classic range_align_popup edit_r_strt" id="edit_strt1" name="edit_range_start1" placehoder="Start">
-												       		<span class="hided">Please Enter the start range</span>
-											    			<span class="hided">Please Check the format</span>
-												       	</div>
-												       	<div class="col-md-12">
-												      		<input type="text" class="form-control classic range_align_popup edit_r_end" id="edit_end1" name="edit_range_end1" placehoder="end">
-												       		<span class="hided">Please Enter the end range</span>
-											  				<span class="hided">Please Check the format</span>
-												       	</div>
-												       	<div class="col-md-12">
-												      		<input type="text" class="form-control classic range_align_popup edit_r_point" id="edit_point1" name="edit_range_points1" placehoder="points">
-											  				<span class="hided">Please Enter the points</span>
-											  				<span class="hided">Please Check the format</span>
-											  			</div>
-											  			
 											  		</div><!--ranges_popup-->
 											  </div>
 											</div>
 											<div class="add-ranges-button popup_add_range col-md-12 form-group">
 												<!-- <input type="button" class="btn btn-primary ranges_btn add_range_points" value="Add Ranges"> -->
 												<!-- <i class="fa fa-plus plus_align add_range_points"></i> -->
-												<i class="fa fa-plus plus_align add_range_points">
+												<i class="fa fa-plus plus_align edit_range_points">
 													<div class="tooltip_parameter popup-add">Add Range</div>
 													<div class="tip_triangle"></div>
 												</i>
-												<i class="fa fa-minus range_remove">
+												<i class="fa fa-minus range_remove edit_range_remove">
 													<div class="tooltip_remove popup-remove">Remove Range</div>
 													<div class="tip_triangle"></div>
 												</i>

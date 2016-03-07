@@ -110,7 +110,8 @@ include('configu.php');
 	}
 	//To insert data
 	if(isset($_GET['adddata'])){
-		$counter = (count($_POST)-3)/3;
+		// $counter = (count($_POST)-3)/3;
+		$counter = $_POST['counter'];
 		$rangeFunction = new rangeFunction();
 		$rangeFunction->rangetestbatteryid = $_POST['range_testbattery'];
 		$rangeFunction->rangecategoryid =$_POST['range_category'];
@@ -202,7 +203,9 @@ include('configu.php');
 	}
 	//To store edited data
 	if(isset($_GET['editdata'])){
-		$counter = (count($_POST)-3)/3;
+		// $counter = (count($_POST)-3)/3;
+		// echo "counter",$counter;
+		$counter = $_POST['counter'];
 		$rangeFunction = new rangeFunction();
 		$rangeFunction->rangeid = $_POST['edit_range_id'];
 		$rangeFunction->rangetestbatteryid = $_POST['edit_range_testbattery'];
@@ -221,9 +224,12 @@ include('configu.php');
 	                $rangeFunction->rangestart = $_POST["edit_range_start".$i.""];
 	                $rangeFunction->rangeend = $_POST["edit_range_end".$i.""];
 	                $rangeFunction->rangepoint = $_POST["edit_range_points".$i.""];
-	                $rangeattrupdate = $rangeFunction->rangeattributeUpdate();
+	                if($_POST["edit_rangeattr_id".$i.""])
+	                	$rangeattrupdate = $rangeFunction->rangeattributeUpdate();
+	                else
+	                	$rangeattrinsert = $rangeFunction->rangeattributeInsert();
 	            }
-				echo "success#Record Updated#".$_POST['edit_range_id']."#".$rangeFunction->rangetestname;
+				echo "success#Range Updated#".$_POST['edit_range_id']."#".$rangeFunction->rangetestname;
 			}else{
 				echo "failure#Range Not Updated";
 			}
