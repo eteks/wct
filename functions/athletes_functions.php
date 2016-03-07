@@ -58,7 +58,8 @@
 		}
 		//Check whether the athlete already exists
 		public function isAthleteExist(){
-			$qr = mysql_query("SELECT * FROM wc_athlete WHERE athlete_name = '".$this->athletename."' AND athlete_dob = '".$this->athletedob."' AND athlete_gender = '".$this->athletegender."' AND athlete_mobile = '".$this->athletemobile."'");
+			// $qr = mysql_query("SELECT * FROM wc_athlete WHERE athlete_name = '".$this->athletename."' AND athlete_dob = '".$this->athletedob."' AND athlete_gender = '".$this->athletegender."' AND athlete_mobile = '".$this->athletemobile."'");
+			$qr = mysql_query("SELECT * FROM wc_athlete WHERE athlete_dob = '".$this->athletedob."' AND athlete_mobile = '".$this->athletemobile."'");
 			$row = mysql_num_rows($qr);
 			if($row > 0){
 				return true;

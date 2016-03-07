@@ -256,9 +256,9 @@ function editfunction(data_id,el){
                     rangeattr_element.attr('id','edit_range_counter'+id);
                     rangeattr_element.find('.edit_rattr_id').attr("name","edit_rangeattr_id"+id).val(rangeattr_obj[i].rangeattribute_id);
                     rangeattr_element.find('.edit_r_id').attr("name","edit_range_id"+id).val(rangeattr_obj[i].range_id);
-                    rangeattr_element.find('.edit_r_strt').attr("id","strt"+id).attr("name","edit_range_start"+id).val(rangeattr_obj[i].range_start);
-                    rangeattr_element.find('.edit_r_end').attr("id","end"+id).attr("name","edit_range_end"+id).val(rangeattr_obj[i].range_end);
-                    rangeattr_element.find('.edit_r_point').attr("id","point"+id).attr("name","edit_range_points"+id).val(rangeattr_obj[i].range_point);
+                    rangeattr_element.find('.edit_r_strt').attr("id","edit_strt"+id).attr("name","edit_range_start"+id).val(rangeattr_obj[i].range_start);
+                    rangeattr_element.find('.edit_r_end').attr("id","edit_end"+id).attr("name","edit_range_end"+id).val(rangeattr_obj[i].range_end);
+                    rangeattr_element.find('.edit_r_point').attr("id","edit_point"+id).attr("name","edit_range_points"+id).val(rangeattr_obj[i].range_point);
                     rangeattr_element.appendTo($(".edit_range_holder"));
                     id=id+1;
                   }
@@ -2190,11 +2190,12 @@ $('.reset_form').on('click',function(){
           res =  false;
         }
         if(res){
-          var form_data = $('[name=range_form]').serialize();
+          clone_length = $(this).find('.clone_content').length;
+          var form_data = $(this).serialize();
            $.ajax({
              type: "POST",
              url: "functions/range_function.php?adddata=true",
-             data: form_data,
+             data: form_data + '&counter=' + clone_length,
              cache: false,
              success: function(html) {
                 var result_split = html.split('#');
@@ -2233,11 +2234,12 @@ $('.reset_form').on('click',function(){
           res =  false;
         }
         if(res){
+            edit_clone_length = $(this).find('.edit_clone_content').length;
             var form_data = $(this).serialize();
             $.ajax({
                    type: "POST",
                    url: "functions/range_function.php?editdata=true",
-                   data: form_data,
+                   data: form_data + '&counter=' + edit_clone_length,
                    cache: false,
                    success: function(html) {
                        var result_split = html.split('#');
@@ -2976,6 +2978,14 @@ $('.reset_form').on('click',function(){
         current_id -=1;
       }
     });
+
+    $('.edit_range_remove').click(function(){
+      clone_content = $(this).parents('.add-ranges-button').siblings('.edit_range_holder').find('.edit_clone_content').length;
+      if(clone_content!=1){
+        $(this).parents('.add-ranges-button').siblings('.edit_range_holder').find('.edit_clone_content:last').remove();
+      }
+    });
+
     $('.assign_remove').click(function(){
       if($('.assign_clone_content').length !=1){
         $('.assign_clone_content:last').remove();
@@ -3173,7 +3183,7 @@ $('.reset_form').on('click',function(){
       });
     });
 
-    $('.delete_search,.at_namelist,.cs_namelist').hide();
+    // $('.delete_search,.at_namelist,.cs_namelist').hide();
     $('.search_button').click(function(){
       search_value = $('.search_text').val();
       if(search_value == ''){
@@ -3230,6 +3240,33 @@ $('.reset_form').on('click',function(){
           }
          });
     });
+    
+    $('.edit_range_points').click(function(){ 
+        element = $(this).parents('.add-ranges-button').siblings('.edit_range_holder').find('.edit_clone_content:last');
+        if((element.children().find('.edit_r_strt').val() == '') || (element.children().find('.edit_r_end').val() == '') || (element.children().find('.edit_r_point').val() == '') || (element.children().find('.edit_r_strt').val() == '') || (element.children().find('.edit_r_end').val() == '') || (element.children().find('.edit_r_point').val() == ''))
+        {
+          element.children().find('input[type="text"]').next().addClass('custom_error');
+          e.preventDefault();
+        }
+        else{
+        element.children().find('input[type="text"]').next().removeClass('custom_error');
+        length = $(this).parents('.add-ranges-button').siblings('.edit_range_holder').find('.edit_clone_content').length;
+        var id = length+1;
+        newElement = $(this).parents('.add-ranges-button').siblings('.edit_range_holder').find('.edit_clone_content:last').clone();
+        newElement.find('.edit_range_label').remove();
+        newElement.find('.edit_rattr_id').removeAttr('name').attr('name', 'edit_rangeattr_id'+id).val('');
+        newElement.find('.edit_r_id').removeAttr('name').attr('name', 'edit_range_id'+id).val('');
+        newElement.find('.edit_r_strt').removeAttr('name').attr('name', 'edit_range_start'+id).val($('#edit_end'+(id-1)).val());
+        newElement.find('.edit_r_end').removeAttr('name').attr('name', 'edit_range_end'+id).val('');
+        newElement.find('.edit_r_point').removeAttr('name').attr('name', 'edit_range_points'+id).val('');
+        newElement.find('.edit_r_strt').removeAttr('id').attr('id','edit_strt'+id);
+        newElement.find('.edit_r_end').removeAttr('id').attr('id','edit_end'+id);
+        newElement.find('.edit_r_point').removeAttr('id').attr('id','edit_point'+id);
+        newElement.appendTo($(".edit_range_holder"));
+        $(this).parents('.add-ranges-button').siblings('.edit_range_holder').find('.edit_clone_content:last').attr('id','edit_range_counter'+id);
+       }
+    });
+
     //********* end *********
 });
 
