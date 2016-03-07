@@ -148,7 +148,7 @@ if(isset($_GET['update_success'])){
 								</div>
 								<label for="athlete" class="email_txt popup_label">Add Athletes</label><br>
 								<div class=" clone_schedule_update_content assign_clone_content_edit_holder col-md-12">
-									<div class="assign_clone_content_edit">
+									<div class="assign_clone_content_edit clone_schedule_update">
 										<div class="form-group col-md-12">
 											<div class="col-md-12 combo--align--popup align_atheletes_schedules">
 												<select class="form-control name_align_popup fl box-width athlete_name athlete_name_update athlete_name1" id="combobox2" placeholder="Name" name="athlete_name1" id="combobox" data-validation-error-msg="Please Select Athlete" data-validation="required">

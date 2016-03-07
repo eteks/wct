@@ -506,6 +506,108 @@ $(document).ready(function () {
                });
           }
       });
+      // Parametertype - Unit for Auto Search  //
+
+  $('.parametertype_search').keyup(function() {
+        $('.test-list').empty();
+        var typename = $(this).val();
+        if(typename != ''){
+            $.ajax({
+                 type: "POST",
+                 url: "functions/parameter_unitfunction.php?find_type=true",
+                 data:{'id':typename},
+                 cache: false,
+                 dataType:'json',
+                 success: function(data) {
+                     if(data !=''){
+                         $.each(data, function(i){
+                             //alert(data[i].typename);
+                             $('.test-list').append(
+                             '<span class="test-name">\
+                                 <input type="checkbox" name="test" value="test" class="check_test" id="check-select">\
+                                 <input type="text" data-id ="'+data[i].parametertype_id+'" name="test" value="'+data[i].parametertype_name+'" class="list_edit parametertype_name_hover input_wrap" disabled>\
+                                 <span class="test-alter">\
+                                     <i class="fa fa-floppy-o save_item edit_save_button"></i>\
+                                     <i class="fa fa-pencil-square-o edit_item "></i>\
+                                     <i class="fa fa-trash-o delete_item"></i>\
+                                 </span>\
+                             </span>\
+                             <div class="delete_div delete_search">\
+                                   <div class="del_title">\
+                                     <span class="del_txt">DELETE</span>\
+                                   </div>\
+                                   <div class="del_content">\
+                                     <span class="del_content_txt">Are you sure want to delete this whole record?</span>\
+                                     <input type="button" class="btn btn-primary align_right yes_btn" value="Yes" data-delete="parametertype_name" data-id ="'+data[i].parametertype_id+'">\
+                                     <input type="button" class="btn btn-primary align_right no_btn" value="No">\
+                                     <input type="hidden" name="delete_id" value="" id="delete_id"/>\
+                                   </div>\
+                             </div>');
+                            $('.edit_item,.save_item,.delete_item').hide();
+                         });
+                     }
+                }
+             });
+        }else{
+            $.ajax({
+                 type: "POST",
+                 url: "functions/parameter_unitfunction.php?find_all_type=true",
+                 data:{'id':'all'},
+                 cache: false,
+                 dataType:'json',
+                 success: function(data) {
+                     //alert(data);
+                     if(data !=''){
+                         $.each(data, function(i){
+                             //alert(data[i].test_name);
+                             $('.test-list').append(
+                             '<span class="test-name">\
+                                 <input type="checkbox" name="test" value="test" class="check_test" id="check-select">\
+                                 <input type="text" data-id ="'+data[i].parametertype_id+'" name="test" value="'+data[i].parametertype_name+'" class="list_edit test_name_hover input_wrap" disabled>\
+                                 <span class="test-alter">\
+                                     <i class="fa fa-floppy-o save_item edit_save_button"></i>\
+                                     <i class="fa fa-pencil-square-o edit_item "></i>\
+                                     <i class="fa fa-trash-o delete_item"></i>\
+                                 </span>\
+                             </span>\
+                             <div class="delete_div delete_search">\
+                                   <div class="del_title">\
+                                     <span class="del_txt">DELETE</span>\
+                                   </div>\
+                                   <div class="del_content">\
+                                     <span class="del_content_txt">Are you sure want to delete this whole record?</span>\
+                                     <input type="button" class="btn btn-primary align_right yes_btn" value="Yes" data-delete="parametertype_name" data-id ="'+data[i].parametertype_id+'">\
+                                     <input type="button" class="btn btn-primary align_right no_btn" value="No">\
+                                     <input type="hidden" name="delete_id" value="" id="delete_id"/>\
+                                   </div>\
+                             </div>');
+                            $('.edit_item,.save_item,.delete_item').hide();
+                         });
+                     }
+                }
+             });
+        }
+    });
+// Parameter type Edit Option in Parameter unit Module //
+
+    $(document).delegate('.paramsedit_save_button','click',function() {
+      var params_id = $(this).parents('.test-name').find('.list_edit').attr('data-id');
+      var params_name = $(this).parents('.test-name').find('.list_edit').val();
+      $.ajax({
+           type: "POST",
+           url: "functions/parameter_unitfunction.php?paramstype_name_update=true",
+           data:{'params_id':params_id,'params_name':params_name},
+           cache: false,
+           success: function(data) {
+              //alert(data);
+              if(data.trim() == 'succeed'){
+                  alert('Paramstype name updated successfully!');
+                  location.reload();
+              }
+           }
+      });
+
+  });
     $(document).delegate('.test_name_hover', 'mouseover', function(event) {
         //alert($(this).attr('data-id'));
          $('#test_table tbody').empty();
@@ -1706,7 +1808,7 @@ $('.reset_form').on('click',function(){
             var form_data = {'delete_id':del_id};
             $.ajax({
                  type: "POST",
-                 url: "functions/parameter_unitfunction.php?deletedata=true",
+                 url: "functions/parameter_typefunction.php?deletedata=true",
                  data: form_data,
                  cache: false,
                  success: function(html) {
@@ -3359,7 +3461,7 @@ $('.reset_form').on('click',function(){
     //   newElement.find('.bib_update').removeAttr('name').attr('name','athlete_bib'+id).val('');dob_update
     //   newElement.appendTo($(".clone_schedule_update_content"));
     // });
-    
+
 
     var st_list = [];
     $('.check_statename').each(function(){

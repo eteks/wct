@@ -64,16 +64,20 @@
 					<form>
 						<div class="search-content">
 							<div class="search__list">
-								<input type="text" class="search_box" placeholder="Search Name">
+								<input type="text" class="search_box parametertype_search" placeholder="Search Name">
 								<i class="fa fa-search font-search"></i>
 							</div><!--search__list-->
 								<div class="test-list">
+									<?php
+									$data = $parameterunitFunction->parametertypefunction();
+									foreach( $data as $eachrecord ) {
+									 ?>
 									<span class="test-name">
 										<input type="checkbox" name="test" value="test" class="check_test" id="check-select">
-										<input type="text" name="test" value="xyz" class="list_edit input_wrap">
+										<input type="text" name="test" data-id ="<?php echo $eachrecord ['parametertype_id']; ?>" value="<?php echo $eachrecord ['parametertype_name']; ?>" class="list_edit parametertype_name_hover input_wrap" disabled>
 										<span class="test-alter">
-											<i class="fa fa-floppy-o save_item"></i>
-											<i class="fa fa-pencil-square-o edit_item"></i>
+											<i class="fa fa-floppy-o save_item paramsedit_save_button"></i>
+											<i class="fa fa-pencil-square-o edit_item "></i>
 											<i class="fa fa-trash-o delete_item"></i>
 										</span><!--test-alter-->
 									</span><!--test-name-->
@@ -84,74 +88,12 @@
 							              </div>
 							              <div class="del_content">
 							                <span class="del_content_txt">Are you sure want to delete this whole record?</span>
-							                <input type="button" class="btn btn-primary align_right yes_btn" value="Yes">
+							                <input type="button" class="btn btn-primary align_right yes_btn" data-id ="<?php echo $eachrecord ['parametertype_id']; ?>" value="Yes" data-delete='parametertype_name'>
 							                <input type="button" class="btn btn-primary align_right no_btn" value="No">
 							                <input type="hidden" name="delete_id" value="" id="delete_id"/>
 							              </div><!--del_content-->
       								</div><!--delete_div-->
-									<span class="test-name">
-										<input type="checkbox" name="test" value="test" class="check_test">
-										<input type="text" name="test" value="xyz" class="list_edit input_wrap">
-										<span class="test-alter">
-											<i class="fa fa-floppy-o save_item"></i>
-											<i class="fa fa-pencil-square-o edit_item"></i>
-											<i class="fa fa-trash-o delete_item"></i>
-										</span><!--test-alter-->
-									</span><!--test-name-->
-									<div class="delete_div delete_search">
-								            <!-- <code class="close_btn cancel_btn"> </code>  -->
-								              <div class="del_title">
-								                <span class="del_txt">DELETE</span>
-								              </div>
-								              <div class="del_content">
-								                <span class="del_content_txt">Are you sure want to delete this whole record?</span>
-								                <input type="button" class="btn btn-primary align_right yes_btn" value="Yes">
-								                <input type="button" class="btn btn-primary align_right no_btn" value="No">
-								                <input type="hidden" name="delete_id" value="" id="delete_id"/>
-								              </div><!--del_content-->
-          								</div><!--delete_div-->
-          								<span class="test-name">
-										<input type="checkbox" name="test" value="test" class="check_test" id="check-select">
-										<input type="text" name="test" value="xyz" class="list_edit input_wrap">
-										<span class="test-alter">
-											<i class="fa fa-floppy-o save_item"></i>
-											<i class="fa fa-pencil-square-o edit_item"></i>
-											<i class="fa fa-trash-o delete_item"></i>
-										</span><!--test-alter-->
-									</span><!--test-name-->
-									<div class="delete_div delete_search">
-							            <!-- <code class="close_btn cancel_btn"> </code>  -->
-							              <div class="del_title">
-							                <span class="del_txt">DELETE</span>
-							              </div>
-							              <div class="del_content">
-							                <span class="del_content_txt">Are you sure want to delete this whole record?</span>
-							                <input type="button" class="btn btn-primary align_right yes_btn" value="Yes">
-							                <input type="button" class="btn btn-primary align_right no_btn" value="No">
-							                <input type="hidden" name="delete_id" value="" id="delete_id"/>
-							              </div><!--del_content-->
-      								</div><!--delete_div-->
-      								<span class="test-name">
-										<input type="checkbox" name="test" value="test" class="check_test" id="check-select">
-										<input type="text" name="test" value="xyz" class="list_edit input_wrap">
-										<span class="test-alter">
-											<i class="fa fa-floppy-o save_item"></i>
-											<i class="fa fa-pencil-square-o edit_item"></i>
-											<i class="fa fa-trash-o delete_item"></i>
-										</span><!--test-alter-->
-									</span><!--test-name-->
-									<div class="delete_div delete_search">
-							            <!-- <code class="close_btn cancel_btn"> </code>  -->
-							              <div class="del_title">
-							                <span class="del_txt">DELETE</span>
-							              </div>
-							              <div class="del_content">
-							                <span class="del_content_txt">Are you sure want to delete this whole record?</span>
-							                <input type="button" class="btn btn-primary align_right yes_btn" value="Yes">
-							                <input type="button" class="btn btn-primary align_right no_btn" value="No">
-							                <input type="hidden" name="delete_id" value="" id="delete_id"/>
-							              </div><!--del_content-->
-      								</div><!--delete_div-->
+      								<?php } ?>
 								</div><!--test-list-->
 						</div><!--search-content-->
 					</form>
@@ -229,7 +171,7 @@
 					  <?php $i++; } ?>
 				    </tbody>
 				  </table>
-				</div>	
+				</div>
 			</div><!--col-md-12-->
 
 	</div><!-- end  container-->
