@@ -45,6 +45,15 @@ class parameterunitFunction {
         mysql_query($sql) or die("delete".mysql_error());
         return true;
     }
+    public function parametertypefunction(){
+        $temp_arr = array();
+        $res = mysql_query("SELECT * FROM wc_parametertype ORDER BY parametertype_id DESC") or die(mysql_error());
+        $count=mysql_num_rows($res);
+        while($row = mysql_fetch_array($res)) {
+            $temp_arr[] =$row;
+        }
+        return $temp_arr;
+    }
 }
 if(isset($_GET['adddata'])){
     $parametertype_id= $_POST['parametertype'];
@@ -88,6 +97,7 @@ if(isset($_GET['updateunitdata'])){
         echo 'exist';
     }
 }
+
 if(isset($_GET['param_unit_for_test_edit'])){
     $param_type = $_POST['type'];
     $temp = array();
@@ -104,5 +114,44 @@ if(isset($_GET['param_unit_for_test_edit'])){
         }
     }
     print(json_encode($temp));
+}
+/** Parameter type in auto search for Parameter Unit model **/
+if(isset($_GET['find_type'])){
+    //include ("../dbconnect.php");
+    $temp_arr = array();
+    $typename = $_POST['id'];
+    if($typename!=''){
+        $sql = mysql_query("SELECT * FROM wc_parametertype where parametertype_name like '%".$typename."%' ORDER BY parametertype_id DESC")or die(mysql_error());
+        while($row = mysql_fetch_assoc($sql)) {
+            $temp_arr[] =$row;
+        }
+    }
+    print(json_encode($temp_arr));
+}
+
+/** Parameter type in auto search for Parameter Unit model **/
+if(isset($_GET['find_all_type'])){
+    //include ("../dbconnect.php");
+    $temp_arr = array();
+    $typename = $_POST['id'];
+    if($typename!=''){
+        $sql = mysql_query("SELECT * FROM wc_parametertype ORDER BY parametertype_id DESC")or die(mysql_error());
+        while($row = mysql_fetch_assoc($sql)) {
+            $temp_arr[] =$row;
+        }
+    }
+    print(json_encode($temp_arr));
+}
+
+// Parameter type Edit Option in Parameter unit Module //
+
+if(isset($_GET['paramstype_name_update'])){
+        //include ("../dbconnect.php");
+        $params_id = $_POST['params_id'];
+        $params_name = $_POST['params_name'];
+        if(isset($params_id)&&isset($params_name)){
+            $sql = mysql_query("update wc_parametertype set parametertype_name = '".$params_name."' where parametertype_id = '".$params_id."'");
+            echo "succeed";
+        }
 }
 ?>

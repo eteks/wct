@@ -147,11 +147,11 @@ if(isset($_GET['update_success'])){
 									  </select>
 								</div>
 								<label for="athlete" class="email_txt popup_label">Add Athletes</label><br>
-								<div class="clone_schedule_update_content col-md-12">
-									<div class="clone_schedule_update">
+								<div class=" clone_schedule_update_content assign_clone_content_edit_holder col-md-12">
+									<div class="assign_clone_content_edit clone_schedule_update">
 										<div class="form-group col-md-12">
 											<div class="col-md-12 combo--align--popup align_atheletes_schedules">
-												<select class="form-control name_align_popup fl box-width athlete_name athlete_name_update athlete_name1" id="combobox1" placeholder="Name" name="athlete_name1" id="combobox" data-validation-error-msg="Please Select Athlete" data-validation="required">
+												<select class="form-control name_align_popup fl box-width athlete_name athlete_name_update athlete_name1" id="combobox2" placeholder="Name" name="athlete_name1" id="combobox" data-validation-error-msg="Please Select Athlete" data-validation="required">
 													<option value="">Athletes</option>
 													<?php
 														$data = $athlete->athleteSelect1();
@@ -180,11 +180,11 @@ if(isset($_GET['update_success'])){
 								<div class="form-group assign-add-button popup-add-assign col-md-6">
 									<!-- <input type="submit" class="btn btn-primary align_right adds_btn add_athelete" value="Add"> -->
 									<!-- <i class="fa fa-plus add_align"></i> -->
-									<i class="fa fa-plus plus_align">
+									<i class="fa fa-plus plus_align edit_assign_schedule_add_btn">
 										<div class="tooltip_parameter edit-popup-add assign_schedule_add">Add</div>
 										<div class="tip_triangle"></div>
 									</i>
-									<i class="fa fa-minus assign_remove">
+									<i class="fa fa-minus assign_remove assign_remove_edit">
 										<div class="tooltip_remove popup-remove-assign">Remove</div>
 										<div class="tip_triangle"></div>
 									</i>
@@ -211,9 +211,6 @@ if(isset($_GET['update_success'])){
 				                <input type="hidden" name="delete_id" value="" id="delete_id"/>
 				              </div><!--del_content-->
 						</div><!--delete_div-->
-
-
-
 				   </td>
 			      </tr>
 				   <?php $i++;} ?>
