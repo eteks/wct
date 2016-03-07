@@ -2254,55 +2254,7 @@ $('.reset_form').on('click',function(){
                  <td class="popup-edit">\
                   <span class="edit_state edit_test" data-value="'+data.test[i].parameterunit_id+'" data-test-id="'+data.test[i].parameterunit_id+'"><i class="fa fa-pencil-square-o"></i></span>\
                   <span class="delete_state" data-value="'+data.test[i].parameterunit_id+'"><i class="fa fa-trash-o"></i></span>\
-                   <div class="test_div popup_hidden">\
-                      <code class="close_btn cancel_btn"> </code>\
-                      <div class="edit_title">\
-                           <span class="del_txt">Edit Detail</span>\
-                         </div>\
-                       <div class="container col-md-12">\
-                        <div class="col-xs-12 col-md-12">\
-              <form id="test_updation_form" action="functions/test_functions.php" method="post">\
-               <div class="parameter_holder">\
-                <div class="form-group" style="margin: 0;">\
-                 <label class="popup_label">Enter Parameter Name</label><br>\
-                 <input type="text" class="adjust_width test_parameter_name_update" name="parameter_name1" data-validation-error-msg="Please Enter the Parameter Name" data-validation="required" style="width:220px !important;height: 30px;">\
-                </div>\
-                <div class="form-group col-md-8 test_percentage parameter_type_parent">\
-                 <div class="col-md-12" style="padding: 0;">\
-                  <label class="popup_label">Type</label>\
-                  <select class="form-control classic type_align_popup fl parameter_type parameter_type_update" id="type1" name="type1" data-validation-error-msg="Please Select the Type" data-validation="required">\
-                   <option value=""></option>\
-                                                           '+param_dynamic+'\
-                  </select>\
-                 </div>\
-                 <div class="col-md-12" style="padding: 0;">\
-                  <label class="popup_label">Unit</label>\
-                  <select class="form-control classic type_align_popup fl parameter_unit parameter_unit_update" id="unit1" name="unit1" data-validation-error-msg="Please Select the Unit" data-validation="required">\
-                  </select>\
-                 </div>\
-                 <div class="col-md-12" style="padding: 0;">\
-                  <label class="popup_label">Format</label>\
-                  <select class="form-control classic type_align_popup fl parameter_format parameter_format_update" id="format1" name="format1" data-validation-error-msg="Please Select the Format" data-validation="required">\
-                   <option value="">Format</option>\
-                   <option value="0">0</option>\
-                   <option value="1">1</option>\
-                   <option value="2">2</option>\
-                   <option value="3">3</option>\
-                   <option value="4">4</option>\
-                   <option value="5">5</option>\
-                  </select>\
-                 </div>\
-                </div>\
-               </div>\
-               <input class="parameter_update" type="hidden" name="parameter_update" value="" />\
-               <input class="test_update_id" type="hidden" name="test_update_id" value="" />\
-               <div class="col-md-12 schedule_btn">\
-                <input type="submit" class="btn btn-primary align_right  clear" value="Save">\
-               </div>\
-              </form>\
-             </div>\
-            </div>\
-                        </div>\
+
             <div class="delete_div delete_test_div">\
                          <div class="del_title">\
                            <span class="del_txt">DELETE</span>\
@@ -2337,7 +2289,7 @@ $('.reset_form').on('click',function(){
              cache: false,
              dataType:'json',
              success: function(data) {
-                alert(JSON.stringify(data));
+                //alert(JSON.stringify(data));
                 //  $('.test_name_update').val(data.test_name);
                 //alert(current_popup.parents('.popup-edit').html());
                  current_popup.parents('.popup-edit').find('.params_typeoption option[value="'+data.parametertype_name+'"]').attr('selected','selected');
