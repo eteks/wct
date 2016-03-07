@@ -35,7 +35,7 @@ include('configu.php');
 			else{ return false; }
 		}
 		public function isDistrictExist(){
-				$qr = mysql_query("SELECT * FROM wc_district WHERE district_name = '".$this->districtname."'");
+				$qr = mysql_query("SELECT * FROM wc_district WHERE districtstates_id = '".$this->statesid."' AND district_name = '".$this->districtname."'");
 				$row = mysql_num_rows($qr);
 				if($row > 0){
 					return true;
@@ -55,6 +55,10 @@ include('configu.php');
 		// To select set of record by matching state id
 		public function dsitrictstateselectRecord(){
 			$res = mysql_query("SELECT * FROM wc_district WHERE districtstates_id='".$this->statesid."'")or die(mysql_error());
+			return $res;
+		}
+		public function districtsearchSelect(){
+			$res = mysql_query("select * from wc_district as d INNER JOIN wc_states as s ON s.states_id=d.districtstates_id group by states_id")or die(mysql_error());
 			return $res;
 		}
 	}

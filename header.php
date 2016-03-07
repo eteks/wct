@@ -1,4 +1,6 @@
-<?php require_once "common.php";?>
+<?php require_once "common.php";
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,9 +17,6 @@
     <script type="text/javascript" src="js/combobox.js"></script>
     <script type="text/javascript" src="js/bootstrap.js"></script>
     <script src="js/jquery.date-dropdowns.js"></script>
-    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/js/foundation.min.js"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
-    <script type="text/javascript" src="js/jquery.dateselector.min.js"></script>-->
     <script type="text/javascript" src="form-validator/jquery.form-validator.min.js"></script>
     <script src="js/custom_form_validate.js"></script>
     <script type="text/javascript" src="js/action.js"></script>
@@ -94,5 +93,5 @@
       </nav>
     </div><!--menu_list-->
     <!-- <div class="popup_fade cancel_btn"></div> -->
-     
+
 <?php } ?>
