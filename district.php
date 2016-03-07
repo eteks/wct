@@ -98,28 +98,50 @@
 								                      <?php } ?>
 													  </select>
 													</div>
-													<div class="align_margin">
+													<div class="form-group">
 														<label>District</label><br>
 														<input type="text" class="districts adjust_popup_width" name="edit_district_name" data-validation-error-msg="Please Enter the name of the District" data-validation="required">
 														<span class="edit_district_error"></span>
 													</div>
+													<div class="form-group">
+														<label>District</label><br>
+														<input type="text" class="districts adjust_popup_width" name="edit_district_name" data-validation-error-msg="Please Enter the name of the District" data-validation="required">
+														<span class="edit_district_error"></span>
+													</div>
+													<div class="form-group">
+														<label>District</label><br>
+														<input type="text" class="districts adjust_popup_width" name="edit_district_name" data-validation-error-msg="Please Enter the name of the District" data-validation="required">
+														<span class="edit_district_error"></span>
+													</div>
+													<div class="form-group district-add popup-add-district col-md-4 padding_zero">
+														<i class="fa fa-plus district_add">
+															<div class="tooltip_parameter popup-add">Add District</div>
+															<div class="tip_triangle"></div>
+														</i>
+														<i class="fa fa-minus district_remove">
+															<div class="tooltip_remove popup-remove">Remove District</div>
+															<div class="tip_triangle"></div>
+														</i>
+													</div>
 													<!-- <button type="button" class="btn btn-primary align_right clear edit_district_act" name="district">Submit</button>	 -->
-													<input type="submit" class="btn btn-primary align_right clear edit_district_act" name="district" value="Submit">
+													<div class="col-md-12 form-group">
+														<input type="submit" class="btn btn-primary align_right clear edit_district_act" name="district" value="Submit">		
+													</div>
 											</form>
-					</div><!--state-content-->
-			</div><!--state_div-->
-				<div class="delete_div delete_district_div">
-			           <!-- <code class="close_btn cancel_btn"> </code> -->
-			              <div class="del_title">
-			                <span class="del_txt">DELETE</span>
-			              </div>
-			              <div class="del_content">
-			                <span class="del_content_txt">Are you sure want to delete this whole record?</span>
-			                <input type="button" class="btn btn-primary align_right yes_btn" value="Yes">
-			                <input type="button" class="btn btn-primary align_right no_btn" value="No">
-			                <input type="hidden" name="delete_id" value="" id="delete_id"/>
-			              </div><!--del_content-->
-				</div><!--delete_div-->
+										</div><!--state-content-->
+								</div><!--state_div-->
+								<div class="delete_div delete_district_div">
+						           <!-- <code class="close_btn cancel_btn"> </code> -->
+						              <div class="del_title">
+						                <span class="del_txt">DELETE</span>
+						              </div>
+						              <div class="del_content">
+						                <span class="del_content_txt">Are you sure want to delete this whole record?</span>
+						                <input type="button" class="btn btn-primary align_right yes_btn" value="Yes">
+						                <input type="button" class="btn btn-primary align_right no_btn" value="No">
+						                <input type="hidden" name="delete_id" value="" id="delete_id"/>
+						              </div><!--del_content-->
+								</div><!--delete_div-->
 						</td>
 		        	</tr>
                      <?php $i++; } ?>

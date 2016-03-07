@@ -509,7 +509,7 @@ select {
     box-shadow: 0 2px 10px 3px #b8b7b9;
     display: none;
     height: 425px;
-    margin: 0 0 0 75px;
+    margin: 0 0 0 -80px;
     position: absolute;
     width: 290px;
     z-index: 9999;
@@ -1457,6 +1457,8 @@ tbody tr {
     color: #006687;
     font-family: Montserrat;
     font-weight: bold;
+    position: relative;
+    top: -5px;
 }
 .test_title {
     height: 22px;
@@ -1595,14 +1597,15 @@ tbody tr {
     margin: -8px 0 0 -67px;
 }
 .edit_district_div{ /* district div */
-      background: #fff none repeat scroll 0 0;
+    background: #fff none repeat scroll 0 0;
     box-shadow: 0 2px 10px 3px #b8b7b9;
     display: none;
-    height: 270px;
-    margin: -8px 0 0 42px;
+    height: 315px;
+    margin: -8px 0 0 -138px;
     position: absolute;
     width: 360px;
     z-index: 9999;
+    overflow: auto;
 }
 .delete_district_div {
     background: #fff none repeat scroll 0 0;
@@ -1647,7 +1650,7 @@ tbody tr {
     box-shadow: 0 2px 10px 3px #b8b7b9;
     display: none;
     height: 270px;
-    margin: -8px 0 0 -142px;
+    margin: -8px 0 0 45px;
     position: absolute;
     width: 360px;
     z-index: 9999;
@@ -1661,7 +1664,7 @@ tbody tr {
     width: 200px;
     z-index: 9999;
     padding: 5px 7px;
-    margin: 22px 0 0 17px !important;
+    margin: 22px 0 0 207px !important;
 }
 /*.save_item,.edit_item,.delete_item{
     display: none;
@@ -1794,4 +1797,27 @@ button, input, optgroup, select, textarea {
 }
 .district-add {
   margin: 24px 0 0;
+}
+.popup_add_range {
+    bottom: 0 !important;
+    float: right !important;
+    left: 15px !important;
+    top: 0;
+    width: 99px !important;
+}
+.popup-remove{
+    left: 25%;
+    width: 45px;
+    height: 30px;
+    font-size: 9px;
+}
+.popup-add{
+    font-size: 9px;
+    height: 30px;
+    left: 22%;
+    width: 40px;
+}
+.popup-add-district {
+    float: right !important;
+    margin: 0 0 10px;
 }

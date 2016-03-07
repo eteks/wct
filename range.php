@@ -198,9 +198,22 @@
 											  				<span class="hided">Please Enter the points</span>
 											  				<span class="hided">Please Check the format</span>
 											  			</div>
-											  		</div>
+											  			
+											  		</div><!--ranges_popup-->
 											  </div>
 											</div>
+											<div class="add-ranges-button popup_add_range col-md-12 form-group">
+												<!-- <input type="button" class="btn btn-primary ranges_btn add_range_points" value="Add Ranges"> -->
+												<!-- <i class="fa fa-plus plus_align add_range_points"></i> -->
+												<i class="fa fa-plus plus_align edit_range_points">
+													<div class="tooltip_parameter popup-add">Add Range</div>
+													<div class="tip_triangle"></div>
+												</i>
+												<i class="fa fa-minus range_remove edit_range_remove">
+													<div class="tooltip_remove popup-remove">Remove Range</div>
+													<div class="tip_triangle"></div>
+												</i>
+											</div><!--add-ranges-button-->
 											<div class="col-md-12 schedule_btn">
 												<!-- <input type="reset" value="Clear" class="btn btn-primary align_right clear" maxlength="50"> -->
 												<input type="submit" class="btn btn-primary align_right test-submit clear edit_range_act" value="Save">
