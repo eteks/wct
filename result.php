@@ -61,7 +61,8 @@
 				<input type="hidden" name="result_athleteid" class="result_athleteid">
 				</form>
 			</div>
-
+			<div class="result_error_content">
+			</div>
 			<div class="container table-position align_bottom">
 			  <table class="table result_table">
 			    <thead>

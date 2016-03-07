@@ -1853,3 +1853,12 @@ button, input, optgroup, select, textarea {
     margin: 0 20px 0 0;
     position: relative;
 }
+.result_table_error{
+    font-size: 14px;
+    color: red;
+}
+.result_error_content{
+    display: none;
+    text-align: center;
+    margin-bottom: 20px;
+}

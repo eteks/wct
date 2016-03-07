@@ -1196,7 +1196,7 @@ $('.reset_form').on('click',function(){
       });
   });
 
-    $('#sports_form').submit(function(e) {
+    $('.sports_form').submit(function(e) {
       e.preventDefault();
       var res = true;
       $('input[type="text"]',this).each(function() {
@@ -1205,7 +1205,7 @@ $('.reset_form').on('click',function(){
         }
       });
      if(res){
-          var form_data = $('#sports_form').serialize();
+          var form_data = $(this).serialize();
            // $('form[name="sport_form"]').submit();
            // alert(form_data);
           $.ajax({
@@ -1427,7 +1427,7 @@ $('.reset_form').on('click',function(){
 
     // end (added by kalai)
 
-    $('#sports_update_form').submit(function(e) {
+    $('.sports_update_form').submit(function(e) {
       e.preventDefault();
       var res = true;
       $('input[type="text"]',this).each(function() {
@@ -1436,7 +1436,7 @@ $('.reset_form').on('click',function(){
         }
       });
       if(res){
-        var form_data = $('#sports_update_form').serialize();
+        var form_data = $(this).serialize();
         $.ajax({
            type: "POST",
            url: "functions/sports_function.php",
@@ -2430,6 +2430,7 @@ $('.reset_form').on('click',function(){
         }
       });
       if(res){
+          var test_ar = [];
           var form_data = $('[name=result_form]').serialize();
           $('.result_createscheduleid').val($('.resultcreateschedule_act option:selected').val());
           $.ajax({
@@ -2439,13 +2440,14 @@ $('.reset_form').on('click',function(){
                cache: false,
                // dataType:'json',
                success: function(html) {
-                alert(html);
+                // alert(html);
                 $('.result_table tbody tr:not(:last)').remove();
                   var result_split = html.split('###');
                   var obj = JSON.parse(result_split[0]);
                   // obj=result_split[0];
                   $.each(obj, function(i){
                     ranges = JSON.stringify(obj[i].ranges);
+                    test_ar.push(obj[i].test_name);
                     if(obj[i].ranges.length == 0){
                        html = "<tr class='align_center delete_color assign_table'>\
                                 <input type='hidden' name='result_id' class='result_id' value=''>\
@@ -2477,15 +2479,19 @@ $('.reset_form').on('click',function(){
                     $('.result_table tr:last').before(html);
                   });
 
-                    // //newly added for result test and parameter restriction
-                    // $('.result_test_name',this).each(function(){
-                    //   alert("yes");
-                    //   test_name = $(this).text();
-                    //   parameter_name = $(this).next().text();
-                    //   ranges = $(this).siblings('.result_ranges').val();
-                    //   alert(test_name+parameter_name+ranges);
-                    // });
-
+                    test_data = $.unique(test_ar);
+                    $.each(test_data, function(i,val){
+                      select_element = $('.result_table').find(".result_test_name:contains("+val+"):first");
+                      select_ranges = select_element.prev('.result_ranges').val();
+                      select_test = select_element.text();
+                      select_parameter = select_element.next('.result_parameter_name').text();
+                      if(select_ranges == '[]'){
+                        error_html = "<span class='result_table_error custom_error'>Please assign range for test " +select_test+ " and parameter " +select_parameter+ "</span><br>";
+                        $('.result_error_content').append(error_html);
+                        $('.result_error_content').show();
+                      }
+                    });
+                  
                     var obj1 = JSON.parse(result_split[1]);
                     console.log(JSON.stringify(obj1));
                     $.each(obj1, function(i){
@@ -2890,6 +2896,8 @@ $('.reset_form').on('click',function(){
      $('.result_submit_act').click(function(){
         res = true;
         if($('.enter_result_error').hasClass('error')){
+          res = false;
+        } else if($('.result_error_content span').hasClass('custom_error')){
           res = false;
         }
         else{
