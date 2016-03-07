@@ -2,8 +2,8 @@
 class dbConnect {
     public $DB_HOST='localhost';
     public $DB_USER='root';
-    public $DB_PASSWORD='root';
-    public $DB_DATABASE='wellocity';
+    public $DB_PASSWORD='';
+    public $DB_DATABASE='wellcity';
     // public $DB_HOST='103.15.74.116';
     // public $DB_USER='atomicka_Etecusr';
     // public $DB_DATABASE='atomicka_Etecdb';

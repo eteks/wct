@@ -32,7 +32,7 @@
 			<span class="sports">DISTRICT</span>
 		</div><!--end container-->
 		<div class="container">
-		
+
 				<!-- <div class="col-md-4"></div> -->
 				<div class="col-md-7 col-xs-12 align_left_district">
 					<form name="district_form" id="districts_form">
@@ -171,7 +171,7 @@
 														</div>
 														<!-- <button type="button" class="btn btn-primary align_right clear edit_district_act" name="district">Submit</button>	 -->
 														<div class="col-md-12 form-group">
-															<input type="submit" class="btn btn-primary align_right clear edit_district_act" name="district" value="Submit">		
+															<input type="submit" class="btn btn-primary align_right clear edit_district_act" name="district" value="Submit">
 														</div>
 												</form>
 											</div><!--state-content-->
