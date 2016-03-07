@@ -69,11 +69,13 @@ function package_menu(){
   var dh = $(document).height();
   var wh = $(window).innerHeight() - 34;
   if ( dh > wh ) {
-    $('.footer_txt').css('bottom', "0px");
+      $('.footer_txt').css('bottom', "0px");
       $('.footer_txt').addClass('bottom_alignment_footer');
+      $('.footer_txt').fadeIn();
     }
   else {
     $('.footer_txt').css({'top': wh + "px"});
+    $('.footer_txt').fadeIn();
 
   }
 
@@ -2476,6 +2478,7 @@ $('.reset_form').on('click',function(){
                cache: false,
                // dataType:'json',
                success: function(html) {
+                alert(html);
                 $('.result_table tbody tr:not(:last)').remove();
                   var result_split = html.split('###');
                   var obj = JSON.parse(result_split[0]);
@@ -2512,6 +2515,16 @@ $('.reset_form').on('click',function(){
                     }
                     $('.result_table tr:last').before(html);
                   });
+
+                    // //newly added for result test and parameter restriction
+                    // $('.result_test_name',this).each(function(){
+                    //   alert("yes");
+                    //   test_name = $(this).text();
+                    //   parameter_name = $(this).next().text();
+                    //   ranges = $(this).siblings('.result_ranges').val();
+                    //   alert(test_name+parameter_name+ranges);
+                    // });
+
                     var obj1 = JSON.parse(result_split[1]);
                     console.log(JSON.stringify(obj1));
                     $.each(obj1, function(i){
@@ -3205,6 +3218,18 @@ $('.reset_form').on('click',function(){
       }
     });
 
+    $(document).on('change','.check_state',function () {
+      $('.check_state').not(this).prop('checked', false);
+      if($(this).is(':checked')){
+        check_data = $(this).next('.check_stateid').val();
+        $('.check_table').find('.districtstates_id').find("input[value="+check_data+"]").parents('tr').show();
+        $('.check_table').find('.districtstates_id').not("input[value="+check_data+"]").parents('tr').hide();
+      }
+      else{
+        $('.check_table tr').show();
+      }
+    });
+
     // Autocomplete results for atheletes list while search
     var at_list = [];
     $('.athlete_list li').each(function(){
@@ -3334,6 +3359,17 @@ $('.reset_form').on('click',function(){
     //   newElement.find('.bib_update').removeAttr('name').attr('name','athlete_bib'+id).val('');dob_update
     //   newElement.appendTo($(".clone_schedule_update_content"));
     // });
+    
+
+    var st_list = [];
+    $('.check_statename').each(function(){
+      st_list.push($(this).val());
+    })
+    $('.dt_search').focus(function (e) {
+      $(this).autocomplete({
+        source: st_list,
+      });
+    });
 
     //********* end *********
 });

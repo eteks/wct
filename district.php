@@ -24,6 +24,9 @@
 	.paging-nav {
     display: none;
 	}
+	#ui-id-1{
+		width: 152px !important;
+	}
 </style>
 		<div class="container align_center left_align align_height">
 			<span class="sports">DISTRICT</span>
@@ -82,13 +85,18 @@
 						<form>
 						<div class="search-content">
 							<div class="search__list">
-								<input type="text" class="search_box" placeholder="Search Name">
-								<i class="fa fa-search font-search"></i>
+								<input type="text" class="search_box search_text dt_search" placeholder="Search Name">
+								<i class="fa fa-search font-search search_button"></i>
 							</div><!--search__list-->
 								<div class="test-list">
-									<span class="test-name">
-										<input type="checkbox" name="test" value="test" class="check_test" id="check-select">
-										<input type="text" name="test" value="xyz" class="list_edit input_wrap">
+									<?php
+				                        $query = $districtFunction->districtsearchSelect();
+				                        while ($row = mysql_fetch_array($query)) {
+			                        ?>
+									<span class="test-name dt_namelist">
+										<input type="checkbox" name="test" value="test" class="check_test check_state check_list" id="check-select">
+										<input type="hidden" class="check_stateid check_data" name="check_stateid" value="<?php echo $row['states_id']; ?>">
+										<input type="text" name="check_statename" value="<?php echo $row['states_name']; ?>" class="list_edit check_statename input_wrap">
 										<span class="test-alter">
 											<i class="fa fa-floppy-o save_item"></i>
 											<i class="fa fa-pencil-square-o edit_item"></i>
@@ -107,75 +115,13 @@
 							                <input type="hidden" name="delete_id" value="" id="delete_id"/>
 							              </div><!--del_content-->
       								</div><!--delete_div-->
-									<span class="test-name">
-										<input type="checkbox" name="test" value="test" class="check_test">
-										<input type="text" name="test" value="xyz" class="list_edit input_wrap">
-										<span class="test-alter">
-											<i class="fa fa-floppy-o save_item"></i>
-											<i class="fa fa-pencil-square-o edit_item"></i>
-											<i class="fa fa-trash-o delete_item"></i>
-										</span><!--test-alter-->
-									</span><!--test-name-->
-									<div class="delete_div delete_search">
-								            <!-- <code class="close_btn cancel_btn"> </code>  -->
-								              <div class="del_title">
-								                <span class="del_txt">DELETE</span>
-								              </div>
-								              <div class="del_content">
-								                <span class="del_content_txt">Are you sure want to delete this whole record?</span>
-								                <input type="button" class="btn btn-primary align_right yes_btn" value="Yes">
-								                <input type="button" class="btn btn-primary align_right no_btn" value="No">
-								                <input type="hidden" name="delete_id" value="" id="delete_id"/>
-								              </div><!--del_content-->
-          								</div><!--delete_div-->
-          								<span class="test-name">
-										<input type="checkbox" name="test" value="test" class="check_test" id="check-select">
-										<input type="text" name="test" value="xyz" class="list_edit input_wrap">
-										<span class="test-alter">
-											<i class="fa fa-floppy-o save_item"></i>
-											<i class="fa fa-pencil-square-o edit_item"></i>
-											<i class="fa fa-trash-o delete_item"></i>
-										</span><!--test-alter-->
-									</span><!--test-name-->
-									<div class="delete_div delete_search">
-							            <!-- <code class="close_btn cancel_btn"> </code>  -->
-							              <div class="del_title">
-							                <span class="del_txt">DELETE</span>
-							              </div>
-							              <div class="del_content">
-							                <span class="del_content_txt">Are you sure want to delete this whole record?</span>
-							                <input type="button" class="btn btn-primary align_right yes_btn" value="Yes">
-							                <input type="button" class="btn btn-primary align_right no_btn" value="No">
-							                <input type="hidden" name="delete_id" value="" id="delete_id"/>
-							              </div><!--del_content-->
-      								</div><!--delete_div-->
-      								<span class="test-name">
-										<input type="checkbox" name="test" value="test" class="check_test" id="check-select">
-										<input type="text" name="test" value="xyz" class="list_edit input_wrap">
-										<span class="test-alter">
-											<i class="fa fa-floppy-o save_item"></i>
-											<i class="fa fa-pencil-square-o edit_item"></i>
-											<i class="fa fa-trash-o delete_item"></i>
-										</span><!--test-alter-->
-									</span><!--test-name-->
-									<div class="delete_div delete_search">
-							            <!-- <code class="close_btn cancel_btn"> </code>  -->
-							              <div class="del_title">
-							                <span class="del_txt">DELETE</span>
-							              </div>
-							              <div class="del_content">
-							                <span class="del_content_txt">Are you sure want to delete this whole record?</span>
-							                <input type="button" class="btn btn-primary align_right yes_btn" value="Yes">
-							                <input type="button" class="btn btn-primary align_right no_btn" value="No">
-							                <input type="hidden" name="delete_id" value="" id="delete_id"/>
-							              </div><!--del_content-->
-      								</div><!--delete_div-->
+      							<?php } ?>
 								</div><!--test-list-->
 						</div><!--search-content-->
 					</form>
 					</div><!--search_part-->
 					<div class="container col-md-9 align_bottom" style="padding: 0px;">
-					  <table class="table district_table" style="left: 0;">
+					  <table class="table district_table check_table" style="left: 0;">
 					    <thead>
 					      <tr class="row_color">
 					        <!-- <th>State</th> -->
@@ -190,6 +136,7 @@
 	                        while ($row = mysql_fetch_array($query)) {
 	                            ?>
 	                            <tr class="delete_color">
+	                            <input type="hidden" class ="districtstates_id" name="districtstates_id" value="<?php echo $row['districtstates_id']; ?>">
 	                            <input type="hidden" name="district_id" value="<?php echo $row['district_id']; ?>">
 							       <!-- <td class="t_district_id"><?php // echo $i; ?></td> -->
 							        <!-- <td class="t_states_name"><?php //echo $row['states_name']; ?></td> -->
@@ -205,7 +152,7 @@
 						          			<div class="container state-content col-md-12">
 							          			<form name="edit_district_form" class="edit_district_form">
 								          			<input type="hidden" class="statesid" name="edit_district_id">
-													<!-- <div class="form-group">
+													 <div class="form-group">
 													  <label for="sel1">Select the State</label>
 													  <select class="form-control adjust_width adjust_popup_width classic choose_state" id="sel1" name="edit_district_state" data-validation-error-msg="Please Select the name of the State" data-validation="required">
 													  	<option value="">Select the state</option>
@@ -216,7 +163,7 @@
 									                            <option value="<?php echo $row['states_id']; ?>"><?php echo $row['states_name']; ?></option>
 									                      <?php } ?>
 														  </select>
-														</div> -->
+														</div> 
 														<div class="form-group">
 															<label>District</label><br>
 															<input type="text" class="districts adjust_popup_width" name="edit_district_name" data-validation-error-msg="Please Enter the name of the District" data-validation="required">
@@ -249,6 +196,13 @@
 					</div>
 				<div class="district_list">
 					<ul></ul>
+				</div>
+				<div class="states_list">
+					<ul>
+						<?php foreach ($STATES as $key => $value) { ?>
+						    <li><?php echo $value; ?></li>
+						<?php } ?>
+					</ul>
 				</div>
 			</div>
 		</div>
