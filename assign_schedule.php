@@ -199,7 +199,7 @@ if(isset($_GET['update_success'])){
 						</div>
 								</div><!--state-content-->
 						</div><!--range_div-->
-						<div class="delete_div delete_catagory_div">
+						<div class="delete_div delete_catagory_div delete-assign">
 				          <!--  <code class="close_btn cancel_btn"> </code> -->
 				              <div class="del_title">
 				                <span class="del_txt">DELETE</span>
