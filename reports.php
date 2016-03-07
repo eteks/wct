@@ -41,9 +41,11 @@ $createschedule = new createscheduleFunction();
 			<div class="container table-position" id="dvData">
 			  <table class="table">
 
-			      <tr class="row_color" style="border: 1px solid;">
-			        <td class="align_center report_head">Athletes Names</td>
+
+			        <!-- <td class="align_center report_head">Athletes Names</td>
 			        <td class="align_center report_head">D.O.B</td>
+					<td class="align_center report_head">Mobile</td>
+					<td class="align_center report_head">Gender</td> -->
 			        <!-- <td class="align_center report_head">Age</td> -->
 					<?php
 					// if(isset($_POST)){
@@ -58,9 +60,9 @@ $createschedule = new createscheduleFunction();
 					// 	while($res = mysql_fetch_array($query)){
 							?>
 							<!-- <td class="align_center report_head"><?php //echo $res['resultparameter_name']; ?></td> -->
-							<td class="align_center report_head">Parameter</td>
+							<!-- <td class="align_center report_head">Parameter</td>
 							<td class="align_center report_head">Result</td>
-					        <td class="align_center report_head">Point</td>
+					        <td class="align_center report_head">Point</td> -->
 						<?php //}
 					//
 					//
@@ -68,24 +70,44 @@ $createschedule = new createscheduleFunction();
 					?>
 
 
-			      </tr>
+
 					<?php
 					if(isset($_POST['submit'])){
 					if(!empty($_POST['schedul_ids'])) {
-					    foreach($_POST['schedul_ids'] as $check) {
-							$query = mysql_query("select * from wc_result inner join wc_athlete on  wc_athlete.athlete_id = wc_result.resultathlete_id where wc_result.resultcreateschedule_id ='$check' order by wc_athlete.athlete_name asc");
-							while($res = mysql_fetch_array($query)){
-								?>
+						foreach($_POST['schedul_ids'] as $check) {
+						$id = $check;
+						$sql = "select wc_result.result_id,wc_result.resultcreateschedule_id,wc_result.resultathlete_id,wc_result.resulttest_name,GROUP_CONCAT(CONCAT(wc_result.resultparameter_name,'#',wc_result.result,'#',wc_result.points)) results  from wc_result join wc_athlete on wc_athlete.athlete_id =wc_result.resultathlete_id where wc_result.resultcreateschedule_id ='$id' ";
+						//print($sql);
+						$res = mysql_fetch_assoc(mysql_query($sql));
+						//print_r($res);
+						$sql1 = "select * from wc_athlete  where athlete_id ='".$res['resultathlete_id']."'";
+						$athelete = mysql_fetch_assoc(mysql_query($sql1)); ?>
+						 <tr class="row_color" style="border: 1px solid;">
+						<td class="align_center report_head">Athletes Names</td>
+					  	<td class="align_center report_head">D.O.B</td>
+					  	<td class="align_center report_head">Mobile</td>
+					  	<td class="align_center report_head">Gender</td>
+						<?php $pararms = explode(",",$res['results']);
+							foreach($pararms as $single_param){
+								echo '<td class="align_center report_head">Parameter Name</td><td class="align_center report_head"> Parameter Result</td><td class="align_center report_head">Parameter Points</td>';
+							}?>
+						 </tr>
 							  <tr class="align_center delete_color">
-								<td><?php echo $res['athlete_name']; ?></td>
-								<td><?php echo date("d/m/Y", strtotime($res['athlete_dob'])); ?></td>
-								<td><?php echo $res['resultparameter_name']; ?></td>
-								<td><?php echo $res['result']; ?></td>
-								<td><?php echo $res['points']; ?></td>
+								<td><?php echo $athelete['athlete_name']; ?></td>
+								<td><?php echo date("d/m/Y", strtotime($athelete['athlete_dob'])); ?></td>
+								<td><?php echo $athelete['athlete_mobile']; ?></td>
+								<td><?php echo $athelete['athlete_gender']; ?></td>
+								<?php $pararms = explode(",",$res['results']);
+								 	foreach($pararms as $single_param){
+										$param_split = explode("#",$single_param);
+											echo '<td>'.$param_split[0].'</td><td>'.$param_split[1].'</td>,<td>'.$param_split[2].'</td>';
+									}
+								?>
+									<!-- <td><?php //echo $res['points']; ?></td> -->
 							  </tr>
 							  <?php
-							}
-					    }
+
+						  }
 					}}
 					?>
 
