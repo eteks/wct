@@ -1872,6 +1872,45 @@ $('.reset_form').on('click',function(){
         newElement.appendTo($(".assign_content_holder"));
 
     }
+    var test_id = 1;
+    $('.edit_assign_schedule_add_btn').click(function(){
+        nextElement4($('.assign_clone_content_edit:last'));
+    });
+
+    function nextElement4(element){
+        var newElement = element.clone();
+        var id = test_id+1;
+        test_id = id;
+        newElement.find('.athlete_name').removeAttr('name').attr('name', 'athlete_name'+id).removeClass('class name');
+        newElement.find('.athlete_bib').removeAttr('name').attr('name', 'athlete_bib'+id).val('');
+        newElement.find('.dob').val('');
+        newElement.find('.mobile').val('');
+        newElement.find('#combobox2').combobox({
+            select: function (event, ui) {
+                var ath_id = $(this).val();
+                $.ajax({
+                   type: "POST",
+                   url: "functions/athletes_functions.php?get_ath=true",
+                   data: {'ath_id':ath_id},
+                   cache: false,
+                   dataType:'json',
+                   success: function(html) {
+                      // alert(html.athlete_dob);
+                      var res = html.athlete_dob.split('-');
+                      var new_date = res[2]+'/'+res[1]+'/'+res[0];
+                        newElement.find('.dob').val(new_date).attr('disabled', 'disabled');
+                        //alert(newElement.html());
+                        newElement.find('.mobile').val(html.athlete_mobile).attr('disabled', 'disabled');
+                        newElement.find('.athlete_bib').val('');
+
+                   }
+               });
+            }
+        });
+        newElement.find('.custom-combobox:nth-child(3)').remove();
+        newElement.appendTo($(".assign_clone_content_edit_holder"));
+
+    }
     var dist_id = 1;
     $('.district_add').click(function(){
         nextElement2($('.district_clone_content:last'));
@@ -2993,6 +3032,11 @@ $('.reset_form').on('click',function(){
         $('.assign_clone_content:last').remove();
       }
     });
+    $('.assign_remove_edit').click(function(){
+      if($('.assign_clone_content_edit').length !=1){
+        $('.assign_clone_content_edit:last').remove();
+      }
+    });
 
 
 
@@ -3242,8 +3286,8 @@ $('.reset_form').on('click',function(){
           }
          });
     });
-    
-    $('.edit_range_points').click(function(){ 
+
+    $('.edit_range_points').click(function(){
         element = $(this).parents('.add-ranges-button').siblings('.edit_range_holder').find('.edit_clone_content:last');
         if((element.children().find('.edit_r_strt').val() == '') || (element.children().find('.edit_r_end').val() == '') || (element.children().find('.edit_r_point').val() == '') || (element.children().find('.edit_r_strt').val() == '') || (element.children().find('.edit_r_end').val() == '') || (element.children().find('.edit_r_point').val() == ''))
         {
