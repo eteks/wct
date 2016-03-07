@@ -1595,14 +1595,15 @@ tbody tr {
     margin: -8px 0 0 -67px;
 }
 .edit_district_div{ /* district div */
-      background: #fff none repeat scroll 0 0;
+    background: #fff none repeat scroll 0 0;
     box-shadow: 0 2px 10px 3px #b8b7b9;
     display: none;
-    height: 270px;
+    height: 315px;
     margin: -8px 0 0 -138px;
     position: absolute;
     width: 360px;
     z-index: 9999;
+    overflow: auto;
 }
 .delete_district_div {
     background: #fff none repeat scroll 0 0;
@@ -1813,4 +1814,8 @@ button, input, optgroup, select, textarea {
     height: 30px;
     left: 22%;
     width: 40px;
+}
+.popup-add-district {
+    float: right !important;
+    margin: 0 0 10px;
 }
