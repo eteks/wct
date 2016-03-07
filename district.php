@@ -29,7 +29,7 @@
 			<span class="sports">DISTRICT</span>
 		</div><!--end container-->
 		<div class="container">
-		<div class="col-md-12">
+		
 				<!-- <div class="col-md-4"></div> -->
 				<div class="col-md-7 col-xs-12 align_left_district">
 					<form name="district_form" id="districts_form">
@@ -249,7 +249,7 @@
 					    </tbody>
 					  </table>
 					</div>
-				</div><!--col-md-12-->
+				
 				<div class="district_list">
 					<ul></ul>
 				</div>
