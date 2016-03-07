@@ -73,15 +73,7 @@
 							                <input type="hidden" name="delete_id" value="" id="delete_id"/>
 							              </div><!--del_content-->
       								</div><!--delete_div-->
-								
-									<div class="edit_states_list">
-										<ul>
-											<?php foreach ($STATES as $key => $value) { ?>
-											    <li><?php echo $value; ?></li>
-											<?php } ?>
-										</ul>
-									</div>
-		</div><!--container-->
+								</div><!--container-->
 						        </td>
 					        </tr>
                      <?php $i++;  } ?>
@@ -89,6 +81,13 @@
 				  </table>
 				</div>
 				<div class="states_list">
+					<ul>
+						<?php foreach ($STATES as $key => $value) { ?>
+						    <li><?php echo $value; ?></li>
+						<?php } ?>
+					</ul>
+				</div>
+				<div class="edit_states_list">
 					<ul>
 						<?php foreach ($STATES as $key => $value) { ?>
 						    <li><?php echo $value; ?></li>

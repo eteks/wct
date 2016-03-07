@@ -49,7 +49,7 @@
 			                	<span class="del_txt">Edit detail</span>
 			              	</div><!--edit_title-->
 			          			<div class="container state-content col-md-12">
-			          			<form id="edit_parameter_type" class='edit_parameter_type' name="parameter_edit">
+			          			<form class='edit_parameter_type' name="parameter_edit">
 									<div class="form-group">
 										  <label for="sel1">Enter Parameter Type</label>
 										  <input type="hidden" name="edit_parameter_id" />

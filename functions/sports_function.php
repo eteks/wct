@@ -33,7 +33,7 @@ class sportsfunction{
           }
     }
     public function sportsdeletefunction(){
-        $sql = "delete from wc_sports where sports_id ='".$this->sportsid."' ";
+        $sql = "delete from wc_sports where sports_id ='".$this->sportsid."'";
         mysql_query($sql) or die("delete".mysql_error());
         return true;
     }
