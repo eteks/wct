@@ -103,7 +103,7 @@
 														<input type="text" class="districts adjust_popup_width" name="edit_district_name" data-validation-error-msg="Please Enter the name of the District" data-validation="required">
 														<span class="edit_district_error"></span>
 													</div>
-													<div class="form-group">
+													<!-- <div class="form-group">
 														<label>District</label><br>
 														<input type="text" class="districts adjust_popup_width" name="edit_district_name" data-validation-error-msg="Please Enter the name of the District" data-validation="required">
 														<span class="edit_district_error"></span>
@@ -112,7 +112,7 @@
 														<label>District</label><br>
 														<input type="text" class="districts adjust_popup_width" name="edit_district_name" data-validation-error-msg="Please Enter the name of the District" data-validation="required">
 														<span class="edit_district_error"></span>
-													</div>
+													</div> -->
 													<div class="form-group district-add popup-add-district col-md-4 padding_zero">
 														<i class="fa fa-plus district_add">
 															<div class="tooltip_parameter popup-add">Add District</div>
@@ -125,7 +125,7 @@
 													</div>
 													<!-- <button type="button" class="btn btn-primary align_right clear edit_district_act" name="district">Submit</button>	 -->
 													<div class="col-md-12 form-group">
-														<input type="submit" class="btn btn-primary align_right clear edit_district_act" name="district" value="Submit">		
+														<input type="submit" class="btn btn-primary align_right clear edit_district_act" name="district" value="Submit">
 													</div>
 											</form>
 										</div><!--state-content-->
