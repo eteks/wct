@@ -814,10 +814,11 @@ $('.reset_form').on('click',function(){
         // state_center_align();
         // $('.popup_fade').show();
         // $('.state_div').hide();
-        $(this).next().next().show();
-
-        $(this).parents('tr').siblings().children('.state_div').hide();
-        $(this).parents('tr').siblings().children('.popup-edit').hide();
+        // $(this).next().next().show();
+        // $(this).parents('tr').siblings().children('.state_div').hide();
+        // $(this).parents('tr').siblings().children('.popup-edit').hide();
+          $(this).parents('tr').find('.popup_hidden').show();
+          $(this).parents('tr').siblings('tr').find('.popup_hidden').hide();
 
         // $('.state_div, .close_btn').show();
         document.body.style.overflow = 'auto';
@@ -1347,13 +1348,14 @@ $('.reset_form').on('click',function(){
       }
     });
 
-    $(document).on('click','.delete_state',function(){
+    $('.delete_state').on('click',function(){
         $('#delete_id').val($(this).attr("data-value"));
-        // $('.popup_fade').show();
-        // $('.delete_div, .close_btn').show();
-        $(this).next().next().show();
-        // $(this).parents('tr').siblings('.state_div').hide();
-        $(this).parents('tr').siblings().children('.popup-edit').hide();
+        // // $('.popup_fade').show();
+        // // $('.delete_div, .close_btn').show();
+        // $(this).parents('td').children('.delete_div').show();
+        // // $(this).parents('tr').siblings('.state_div').hide();
+        $(this).parents('tr').find('.delete_div').show();
+        $(this).parents('tr').siblings('tr').find('.delete_div').hide();
         $(this).parents('tr').siblings().children('.range_div').hide();
         document.body.style.overflow = 'auto';
     });
@@ -1834,7 +1836,7 @@ $('.reset_form').on('click',function(){
     var test_id = 1;
     $('.add_athelete').click(function(){
         nextElement1($('.assign_clone_content:last'));
-    })
+    });
 
     function nextElement1(element){
         var newElement = element.clone();
@@ -3266,6 +3268,28 @@ $('.reset_form').on('click',function(){
         $(this).parents('.add-ranges-button').siblings('.edit_range_holder').find('.edit_clone_content:last').attr('id','edit_range_counter'+id);
        }
     });
+
+    $('.edit_district_add').click(function(){
+        length = $(this).parents('.popup-add-district').siblings('.edit_clone_district').find('.edit_form_district').length;
+        var id = length+1;
+        newElement = $(this).parents('.popup-add-district').siblings('.edit_clone_district').find('.edit_form_district:last').clone();
+        newElement.find('.edit_district_label').remove();
+        newElement.find('.edit_district_input').removeAttr('name').attr('name', 'edit_district_name'+id).val('');
+        newElement.find('.edit_district_input').removeAttr('id').attr('id','edit_d'+id);
+        newElement.appendTo($(".edit_clone_district"));
+        $(this).parents('.popup-add-district').siblings('.edit_clone_district').find('.edit_form_district:last').attr('id','edit_district_counter'+id);
+    });
+
+    // $('.edit_add_assign').click(function(){
+    //   length = $(this).parents('.assign-add-button').siblings('.clone_schedule_update_content').find('.clone_schedule_update').length;
+    //   var id = length+1;
+    //   newElement = $(this).parents('.assign-add-button').siblings('.clone_schedule_update_content').find('.clone_schedule_update:last').clone();
+    //   newElement.find('.athlete_name_update').removeAttr('name').attr('name','athlete_name'+id);
+    //   newElement.find('.athlete_name_update option:selected').removeAttr('selected');
+    //   newElement.find('.bib_update').removeAttr('name').attr('name','athlete_bib'+id).val('');
+    //   newElement.find('.bib_update').removeAttr('name').attr('name','athlete_bib'+id).val('');dob_update
+    //   newElement.appendTo($(".clone_schedule_update_content"));
+    // });
 
     //********* end *********
 });

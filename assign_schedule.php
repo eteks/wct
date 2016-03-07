@@ -177,6 +177,18 @@ if(isset($_GET['update_success'])){
 									    </div>
 									</div>
 								</div>
+								<div class="form-group assign-add-button popup-add-assign col-md-6">
+									<!-- <input type="submit" class="btn btn-primary align_right adds_btn add_athelete" value="Add"> -->
+									<!-- <i class="fa fa-plus add_align"></i> -->
+									<i class="fa fa-plus plus_align">
+										<div class="tooltip_parameter edit-popup-add">Add</div>
+										<div class="tip_triangle"></div>
+									</i>
+									<i class="fa fa-minus assign_remove">
+										<div class="tooltip_remove popup-remove-assign">Remove</div>
+										<div class="tip_triangle"></div>
+									</i>
+								</div>
 								<input type="hidden" name="assing_schedule_update" value="1" />
 
 								<div class="col-md-10 schedule_btn">
@@ -187,7 +199,7 @@ if(isset($_GET['update_success'])){
 						</div>
 								</div><!--state-content-->
 						</div><!--range_div-->
-						<div class="delete_div delete_catagory_div">
+						<div class="delete_div delete_catagory_div delete-assign">
 				          <!--  <code class="close_btn cancel_btn"> </code> -->
 				              <div class="del_title">
 				                <span class="del_txt">DELETE</span>

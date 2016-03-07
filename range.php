@@ -222,7 +222,7 @@
 									</div>
 								</div><!--state-content-->
 							</div><!--range_div-->
-							<div class="delete_div delete_test_div">
+							<div class="delete_div delete_test_div delete-range">
 					            <!-- <code class="close_btn cancel_btn"> </code>  -->
 					              <div class="del_title">
 					                <span class="del_txt">DELETE</span>

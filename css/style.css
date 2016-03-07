@@ -475,7 +475,7 @@ select {
 }*/
 .test_battery_div,.athletes_div,.createschedule_div{
     height: 370px;
-    margin: 0 0 0 -200px;
+    margin: 0 0 0 -122px;
     width: 290px;
     position:absolute;
     z-index:9999;
@@ -488,8 +488,8 @@ select {
     background: #fff none repeat scroll 0 0;
     box-shadow: 0 2px 10px 3px #b8b7b9;
     display: none;
-    height: 372px;
-    margin: 0 0 0 -154px;
+    height: 390px;
+    margin: 0 0 0 -95px;
     position: absolute;
     width: 290px;
     z-index: 9999;
@@ -499,7 +499,7 @@ select {
     box-shadow: 0 2px 10px 3px #b8b7b9;
     display: none;
     height: 425px;
-    margin: 0 0 0 -154px;
+    margin: 0 0 0 -58px;
     position: absolute;
     width: 290px;
     z-index: 9999;
@@ -900,7 +900,7 @@ button, input, optgroup, select, textarea {
     color: #424242 !important;
     font-family: Montserrat;
     height: 34px;
-    margin: 15px 0 10px 28px;
+    margin: 30px 0 10px 28px;
     position: relative;
     right: 70px;
     width: 226px !important;
@@ -1241,7 +1241,7 @@ input[type=radio]:checked + label:before {
     height: 30px;
     left: -43px;
     position: absolute !important;
-    top: -12px;
+    top: -6px;
     width: 227px;
 }
 .assign-add-button {
@@ -1539,7 +1539,7 @@ tbody tr {
     background:#fff;
     display: none;
     box-shadow: 0 2px 10px 3px #b8b7b9;
-    margin: -8px 0 0 -25px;
+    margin: -8px 0 0 10px;
 }
 .delete_state_div{  /* added by siva */
     background: #fff none repeat scroll 0 0;
@@ -1550,7 +1550,7 @@ tbody tr {
     width: 200px;
     z-index: 9999;
     padding: 5px 7px;
-    margin: 18px 0 0 135px;
+    margin: 18px 0 0 168px;
 }
 
 .edit_sports_div {  /* state div */
@@ -1561,7 +1561,7 @@ tbody tr {
     background:#fff;
     display: none;
     box-shadow: 0 2px 10px 3px #b8b7b9;
-    margin: -8px 0 0 -22px;
+    margin: -8px 0 0 50px;
 }
 .delete_sports_div {
     background: #fff none repeat scroll 0 0;
@@ -1572,7 +1572,7 @@ tbody tr {
     width: 200px;
     z-index: 9999;
     padding: 5px 7px;
-     margin: 18px 0 0 135px;
+     margin: 18px 0 0 206px;
 }
 .delete_catagory_div {
     background: #fff none repeat scroll 0 0;
@@ -1600,8 +1600,8 @@ tbody tr {
     background: #fff none repeat scroll 0 0;
     box-shadow: 0 2px 10px 3px #b8b7b9;
     display: none;
-    height: 315px;
-    margin: -8px 0 0 -138px;
+    height: 200px;
+    margin: -8px 0 0 45px;
     position: absolute;
     width: 360px;
     z-index: 9999;
@@ -1616,7 +1616,7 @@ tbody tr {
     width: 200px;
     z-index: 9999;
     padding: 5px 7px;
-    margin: 18px 0 0 213px;
+    margin: 18px 0 0 206px;
 }
 .adjust_popup_width{
     box-shadow: none !important;
@@ -1820,4 +1820,22 @@ button, input, optgroup, select, textarea {
 .popup-add-district {
     float: right !important;
     margin: 0 0 10px;
+}
+.popup-add-assign {
+    bottom: 15px;
+    float: right !important;
+    left: 30px;
+    position: relative;
+}
+.popup-remove-assign {
+    font-size: 9px;
+    height: 30px;
+    left: 22%;
+    width: 42px;
+}
+.delete-assign{
+    margin: 18px 0 0 15px;
+}
+.delete-range{
+    margin: 18px 0 0 30px;
 }
