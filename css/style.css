@@ -1600,12 +1600,12 @@ tbody tr {
     background: #fff none repeat scroll 0 0;
     box-shadow: 0 2px 10px 3px #b8b7b9;
     display: none;
-    height: 200px;
+    height: 275px;
     margin: -8px 0 0 45px;
     position: absolute;
     width: 360px;
     z-index: 9999;
-    overflow: auto;
+    /*overflow: auto;*/
 }
 .delete_district_div {
     background: #fff none repeat scroll 0 0;
