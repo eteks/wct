@@ -1834,7 +1834,7 @@ $('.reset_form').on('click',function(){
     var test_id = 1;
     $('.add_athelete').click(function(){
         nextElement1($('.assign_clone_content:last'));
-    })
+    });
 
     function nextElement1(element){
         var newElement = element.clone();
@@ -3266,6 +3266,28 @@ $('.reset_form').on('click',function(){
         $(this).parents('.add-ranges-button').siblings('.edit_range_holder').find('.edit_clone_content:last').attr('id','edit_range_counter'+id);
        }
     });
+
+    $('.edit_district_add').click(function(){
+        length = $(this).parents('.popup-add-district').siblings('.edit_clone_district').find('.edit_form_district').length;
+        var id = length+1;
+        newElement = $(this).parents('.popup-add-district').siblings('.edit_clone_district').find('.edit_form_district:last').clone();
+        newElement.find('.edit_district_label').remove();
+        newElement.find('.edit_district_input').removeAttr('name').attr('name', 'edit_district_name'+id).val('');
+        newElement.find('.edit_district_input').removeAttr('id').attr('id','edit_d'+id);
+        newElement.appendTo($(".edit_clone_district"));
+        $(this).parents('.popup-add-district').siblings('.edit_clone_district').find('.edit_form_district:last').attr('id','edit_district_counter'+id);
+    });
+
+    // $('.edit_add_assign').click(function(){
+    //   length = $(this).parents('.assign-add-button').siblings('.clone_schedule_update_content').find('.clone_schedule_update').length;
+    //   var id = length+1;
+    //   newElement = $(this).parents('.assign-add-button').siblings('.clone_schedule_update_content').find('.clone_schedule_update:last').clone();
+    //   newElement.find('.athlete_name_update').removeAttr('name').attr('name','athlete_name'+id);
+    //   newElement.find('.athlete_name_update option:selected').removeAttr('selected');
+    //   newElement.find('.bib_update').removeAttr('name').attr('name','athlete_bib'+id).val('');
+    //   newElement.find('.bib_update').removeAttr('name').attr('name','athlete_bib'+id).val('');dob_update
+    //   newElement.appendTo($(".clone_schedule_update_content"));
+    // });
 
     //********* end *********
 });

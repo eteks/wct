@@ -1821,3 +1821,15 @@ button, input, optgroup, select, textarea {
     float: right !important;
     margin: 0 0 10px;
 }
+.popup-add-assign {
+    bottom: 15px;
+    float: right !important;
+    left: 30px;
+    position: relative;
+}
+.popup-remove-assign {
+    font-size: 9px;
+    height: 30px;
+    left: 22%;
+    width: 42px;
+}

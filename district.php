@@ -98,31 +98,30 @@
 								                      <?php } ?>
 													  </select>
 													</div>
-													<div class="form-group">
-														<label>District</label><br>
-														<input type="text" class="districts adjust_popup_width" name="edit_district_name" data-validation-error-msg="Please Enter the name of the District" data-validation="required">
-														<span class="edit_district_error"></span>
-													</div>
-													<div class="form-group">
-														<label>District</label><br>
-														<input type="text" class="districts adjust_popup_width" name="edit_district_name" data-validation-error-msg="Please Enter the name of the District" data-validation="required">
-														<span class="edit_district_error"></span>
-													</div>
-													<div class="form-group">
-														<label>District</label><br>
-														<input type="text" class="districts adjust_popup_width" name="edit_district_name" data-validation-error-msg="Please Enter the name of the District" data-validation="required">
-														<span class="edit_district_error"></span>
-													</div>
-													<div class="form-group district-add popup-add-district col-md-4 padding_zero">
-														<i class="fa fa-plus district_add">
+
+													<div class="edit_clone_district">
+														<!-- <div class="form-group" id="edit_district_counter1">
+															<label>District</label><br>
+															<input type="text" class="districts adjust_popup_width" name="edit_district_name" data-validation-error-msg="Please Enter the name of the District" data-validation="required">
+															<span class="edit_district_error"></span>
+														</div> -->
+														<div class="form-group" id="edit_district_counter1">
+															<label>District</label><br>
+															<input type="text" class="districts adjust_popup_width" name="edit_district_name" data-validation-error-msg="Please Enter the name of the District" data-validation="required">
+															<span class="edit_district_error"></span>
+														</div>
+														
+													</div><!--edit_clone_district-->
+													<!-- <div class="form-group district-add popup-add-district col-md-4 padding_zero">
+														<i class="fa fa-plus edit_district_add">
 															<div class="tooltip_parameter popup-add">Add District</div>
 															<div class="tip_triangle"></div>
 														</i>
-														<i class="fa fa-minus district_remove">
+														<i class="fa fa-minus edit_district_remove">
 															<div class="tooltip_remove popup-remove">Remove District</div>
 															<div class="tip_triangle"></div>
 														</i>
-													</div>
+													</div> -->
 													<!-- <button type="button" class="btn btn-primary align_right clear edit_district_act" name="district">Submit</button>	 -->
 													<div class="col-md-12 form-group">
 														<input type="submit" class="btn btn-primary align_right clear edit_district_act" name="district" value="Submit">		
