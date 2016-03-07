@@ -814,10 +814,11 @@ $('.reset_form').on('click',function(){
         // state_center_align();
         // $('.popup_fade').show();
         // $('.state_div').hide();
-        $(this).next().next().show();
-
-        $(this).parents('tr').siblings().children('.state_div').hide();
-        $(this).parents('tr').siblings().children('.popup-edit').hide();
+        // $(this).next().next().show();
+        // $(this).parents('tr').siblings().children('.state_div').hide();
+        // $(this).parents('tr').siblings().children('.popup-edit').hide();
+          $(this).parents('tr').find('.popup_hidden').show();
+          $(this).parents('tr').siblings('tr').find('.popup_hidden').hide();
 
         // $('.state_div, .close_btn').show();
         document.body.style.overflow = 'auto';
@@ -1347,13 +1348,14 @@ $('.reset_form').on('click',function(){
       }
     });
 
-    $(document).on('click','.delete_state',function(){
+    $('.delete_state').on('click',function(){
         $('#delete_id').val($(this).attr("data-value"));
-        // $('.popup_fade').show();
-        // $('.delete_div, .close_btn').show();
-        $(this).next().next().show();
-        // $(this).parents('tr').siblings('.state_div').hide();
-        $(this).parents('tr').siblings().children('.popup-edit').hide();
+        // // $('.popup_fade').show();
+        // // $('.delete_div, .close_btn').show();
+        // $(this).parents('td').children('.delete_div').show();
+        // // $(this).parents('tr').siblings('.state_div').hide();
+        $(this).parents('tr').find('.delete_div').show();
+        $(this).parents('tr').siblings('tr').find('.delete_div').hide();
         $(this).parents('tr').siblings().children('.range_div').hide();
         document.body.style.overflow = 'auto';
     });
