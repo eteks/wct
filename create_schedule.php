@@ -343,7 +343,7 @@
 												  </select>
 												</div>
 
-												<div class="form-group align-day align-day-popup">
+												<div class="form-group align-day align-day-popup" style=" white-space: normal;">
 												  <label for="date" class="popup_label">Select date</label><br>
 												  <input class="popup_date_pick" type="text">
 												 <!--  <select class="form-control classic create-date1 fl" id="date" name="edit_schedule_day" data-validation-error-msg="Please Select the Date" data-validation="required">
@@ -529,7 +529,7 @@
 											  	</div>
 											</div>
 
-												<div class="align_height align_margin">
+												<div class="align_height align_margin col-md-12">
 													<label class="popup_label">Venue</label><br>
 													<textarea class="area_width_create" name="edit_schedule_venue" data-validation-error-msg="Please Enter the Venue" data-validation="required"></textarea>
 												</div>
