@@ -807,14 +807,14 @@ $(document).ready(function () {
   $(document).delegate('.test-name', 'mouseenter', function(event){
     $(this).children().find('.edit_item,.delete_item').show();
     $('.save_item').hide();
-    test_name_for_edit_purpose = $(this).find('.list_edit').val();
+    test_name_for_edit_purpose = $(this).find('.test_name_value').val();
   });
 
    $(document).delegate('.test-name','mouseleave',function(event){
     $('.edit_item,.delete_item,.save_item').hide();
     $('.list_edit').removeClass('list_edit_rollover');
     $(this).find('.list_edit').attr('disabled', 'disabled');
-    $(this).find('.list_edit').val(test_name_for_edit_purpose);
+    $(this).find('.test_name_value').val(test_name_for_edit_purpose);
   });
 
 
@@ -2256,7 +2256,6 @@ $('.reset_form').on('click',function(){
                  <td class="popup-edit">\
                   <span class="edit_state edit_test" data-value="'+data.test[i].parameterunit_id+'" data-test-id="'+data.test[i].parameterunit_id+'"><i class="fa fa-pencil-square-o"></i></span>\
                   <span class="delete_state" data-value="'+data.test[i].parameterunit_id+'"><i class="fa fa-trash-o"></i></span>\
-
             <div class="delete_div delete_test_div">\
                          <div class="del_title">\
                            <span class="del_txt">DELETE</span>\
@@ -2709,7 +2708,7 @@ $('.reset_form').on('click',function(){
                         $('.result_error_content').show();
                       }
                     });
-                  
+
                     var obj1 = JSON.parse(result_split[1]);
                     console.log(JSON.stringify(obj1));
                     $.each(obj1, function(i){

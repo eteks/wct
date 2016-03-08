@@ -135,7 +135,7 @@ if(isset($_GET['insert_error'])){
 									 ?>
 									<span class="test-name">
 										<input type="checkbox" name="test" value="test" class="check_test" id="check-select">
-										<input type="text" name="test" data-id ="<?php echo $eachrecord ['test_id']; ?>" value="<?php echo $eachrecord ['test_name']; ?>" class="list_edit test_name_hover input_wrap" disabled>
+										<input type="text" name="test" data-id ="<?php echo $eachrecord ['test_id']; ?>" value="<?php echo $eachrecord ['test_name']; ?>" class="list_edit test_name_hover test_name_value input_wrap" disabled>
 										<span class="test-alter">
 											<i class="fa fa-floppy-o save_item edit_save_button"></i>
 											<i class="fa fa-pencil-square-o edit_item "></i>
