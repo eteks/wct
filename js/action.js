@@ -884,7 +884,7 @@ $(document).ready(function () {
     $('.hover-test').hide();
   });
 
-  $("input").attr('maxlength','50');
+  $("input").attr('maxlength','50').attr('autocomplete', 'off');;
 
  	// state_center_align();
   // delete_center_align();
@@ -1488,7 +1488,7 @@ $('.reset_form').on('click',function(){
       }
     });
 
-    $('.delete_state').on('click',function(){
+    $(document).delegate('.delete_state','click',function(){
         $('#delete_id').val($(this).attr("data-value"));
         // // $('.popup_fade').show();
         // // $('.delete_div, .close_btn').show();

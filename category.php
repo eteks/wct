@@ -14,7 +14,7 @@ $obj = new categoryfunction();
 					<form id="category_form" name="categories_form" role="form">
 						<div class="align_margin">
 							<label>Enter the Category Name</label><br>
-							<input type="text" class="sportsname" name="category_name" data-validation-error-msg="Please enter the category name" data-validation="required">
+							<input type="text" class="sportsname" name="category_name" data-validation-error-msg="Please enter the category name" data-validation="required" autocomplete="off" autofocus>
 							<input type="hidden" name="category_add" value="1">
 						</div><!--align_margin-->
 						<!-- <button type="button" class="btn btn-primary align_right clear category_submit_act">Submit</button> -->
@@ -51,7 +51,7 @@ $obj = new categoryfunction();
 										<form name="category_update" class="category_update_form">
 											<div class="align_margin">
 												<label>Enter the Category Name</label><br>
-												<input type="text" class="sportsname category_update_name" name="category_name" data-validation-error-msg="Please enter the category name" data-validation="required">
+												<input type="text" class="sportsname category_update_name" name="category_name" data-validation-error-msg="Please enter the category name" data-validation="required" autocomplete="off">
 												<input type="hidden" class="category_update_id" name="category_id">
 												<input type="hidden" name="category_update" value="1">
 											</div><!--align_margin-->

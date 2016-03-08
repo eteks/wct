@@ -48,14 +48,14 @@ if(isset($_GET['insert_error'])){
 				<form id="test_form" action="functions/test_functions.php" method="post">
 					<div class="form-group">
 						<label>Enter Test Name</label><br>
-						<input type="text" class="adjust_width" name="test_name" data-validation-error-msg="Please Enter the Test Name" data-validation="required">
+						<input type="text" class="adjust_width" name="test_name" data-validation-error-msg="Please Enter the Test Name" data-validation="required" autocomplete="off">
 					</div>
 					<div class="parameter_holder1">
 						<div class="clone_content" id="param_counter1">
 							<div class="form-group col-md-11 schedule_test">
 							<div class="form-group col-md-5">
 								<label>Enter Parameter Name</label><br>
-								<input type="text" class="adjust_width parameter_name" name="parameter_name1" data-validation-error-msg="Please Enter the Parameter Name" data-validation="required">
+								<input type="text" class="adjust_width parameter_name" name="parameter_name1" data-validation-error-msg="Please Enter the Parameter Name" data-validation="required" autocomplete="off">
 								<span class="hided param_name_error">Please Enter the parameter name</span>
 								<input type="hidden" class="parameter_count" value="1" />
 							</div>

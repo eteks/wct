@@ -7,13 +7,13 @@
 			<span class="sports">STATE</span>
 		</div><!--end container-->
 		<div class="container align_margin align_bottom" style="width: 85%;">
-			
+
 				<!-- <div class="col-md-6"></div> -->
 				<div class="col-md-4 align_margin">
 					<form name="states_form" id="state_form">
 						<div class="align_margin">
 							<label>Enter the State</label><br>
-							<input type="text" class="statesname" name="states_name" data-validation-error-msg="Please Enter the State" data-validation="required">
+							<input type="text" class="statesname" name="states_name" data-validation-error-msg="Please Enter the State" data-validation="required" autocomplete="off" autofocus>
 							<span class="add_states_error"></span>
 						</div>
 						<!-- <button type="button" class="btn btn-primary align_right clear add_states_act" name="states">Submit</button>																							 -->
@@ -42,7 +42,7 @@
 						        <td class="popup-edit">
 						        	<span class="edit_state" onclick="editfunction(<?php echo $row['states_id'] ?>,this)"><i class="fa fa-pencil-square-o"></i></span>
 						        	<span class="delete_state" data-value="<?php echo $row['states_id'] ?>"><i class="fa fa-trash-o"></i></span>
-					
+
 									<div class="state_div edit_state_div popup_hidden">
 						          		<code class="close_btn cancel_btn"> </code>
 						          		<div class="edit_title">
@@ -53,7 +53,7 @@
 													<div class="align_margin">
 														<label>Enter the State</label><br>
 														<input type="hidden" class="statesid" name="edit_states_id">
-														<input type="text" class="edit_states_name" name="edit_states_name" data-validation-error-msg="Please Enter the State" data-validation="required">
+														<input type="text" class="edit_states_name" name="edit_states_name" data-validation-error-msg="Please Enter the State" data-validation="required" autocomplete="off">
 														<span class="edit_states_error"></span>
 													</div>
 													<!-- <button type="button" class="btn btn-primary align_right clear edit_states_act" name="edit_states">Submit</button> -->
@@ -94,7 +94,7 @@
 						<?php } ?>
 					</ul>
 				</div>
-			
+
 		</div><!-- end  container-->
 		<!-- <div class="container align_center">
 		  	<ul class="pagination">
@@ -109,5 +109,5 @@
 		</div> --><!-- end  container-->
 	</div>
 		<!-- <div class="popup_fade cancel_btn"></div> -->
-		
+
 <?php require_once "footer.php" ?>
