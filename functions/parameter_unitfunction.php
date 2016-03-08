@@ -54,6 +54,15 @@ class parameterunitFunction {
         }
         return $temp_arr;
     }
+    public function parameterunitsearchSelect(){
+        $temp_arr = array();
+        $res = mysql_query("select * from wc_parameterunit as pu INNER JOIN wc_parametertype as pt ON pt.parametertype_id=pu.parametertype_id group by pt.parametertype_id")or die(mysql_error());
+        $count=mysql_num_rows($res);
+        while($row = mysql_fetch_array($res)) {
+            $temp_arr[] =$row;
+        }
+        return $temp_arr;
+    }
 }
 if(isset($_GET['adddata'])){
     $parametertype_id= $_POST['parametertype'];

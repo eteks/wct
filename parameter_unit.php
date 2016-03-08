@@ -69,11 +69,11 @@
 							</div><!--search__list-->
 								<div class="test-list">
 									<?php
-									$data = $parameterunitFunction->parametertypefunction();
+									$data = $parameterunitFunction->parameterunitsearchSelect();
 									foreach( $data as $eachrecord ) {
 									 ?>
 									<span class="test-name">
-										<input type="checkbox" name="test" value="test" class="check_test" id="check-select">
+										<input type="checkbox" name="test" value="test" class="check_test check_parametertype" id="check-select">
 										<input type="text" name="test" data-id ="<?php echo $eachrecord ['parametertype_id']; ?>" value="<?php echo $eachrecord ['parametertype_name']; ?>" class="list_edit parametertype_name_hover input_wrap" disabled>
 										<span class="test-alter">
 											<i class="fa fa-floppy-o save_item paramsedit_save_button"></i>
@@ -116,6 +116,7 @@
 					   ?>
 			      	<tr class="delete_color">
 				        <!-- <td><?php // echo $i;?></td> -->
+				        <input class="parametertype_id" value="<?php echo $eachrecord ['parametertype_id']; ?>" type="hidden" name="parametertype_id">
 				        <input value="<?php echo $eachrecord ['parameterunit_id']; ?>" type="hidden">
 				        <!-- <td><?php //echo $eachrecord ['parametertype_name'];?></td> -->
 						<td><?php echo $eachrecord ['parameterunit'];?></td>

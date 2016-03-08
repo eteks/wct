@@ -58,7 +58,7 @@ include('configu.php');
 			return $res;
 		}
 		public function districtsearchSelect(){
-			$res = mysql_query("select * from wc_district as d INNER JOIN wc_states as s ON s.states_id=d.districtstates_id group by states_id")or die(mysql_error());
+			$res = mysql_query("select * from wc_district as d INNER JOIN wc_states as s ON s.states_id=d.districtstates_id group by s.states_id")or die(mysql_error());
 			return $res;
 		}
 	}
