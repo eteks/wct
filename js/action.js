@@ -3426,6 +3426,18 @@ $('.reset_form').on('click',function(){
       }
     });
 
+    $(document).on('change','.check_parametertype',function () {
+      $('.check_parametertype').not(this).prop('checked', false);
+      if($(this).is(':checked')){
+        check_data = $(this).next().attr('data-id');
+        $('.state_table').find('.parametertype_id').find("input[value="+check_data+"]").parents('tr').show();
+        $('.state_table').find('.parametertype_id').not("input[value="+check_data+"]").parents('tr').hide();
+      }
+      else{
+        $('.state_table tr').show();
+      }
+    });
+
     // Autocomplete results for atheletes list while search
     var at_list = [];
     $('.athlete_list li').each(function(){
