@@ -163,7 +163,7 @@ if(isset($_GET['update_success'])){
 													<?php } ?>
 												</select>
 											</div>
-											<div class="col-md-12">
+											<div class="col-md-12" style="position: relative; top: 20px;">
 									      		<!-- <input type="text" class="form-control schedule-name fl" id="name" placeholder="Name" name="name" data-validation-error-msg="Please Enter the name of the Athelete" data-validation="required"> -->
 									      		<input type="text" class="form-control bib_popup fl dob_update dob" id="name" placeholder="Date" disabled>
 									    	</div>

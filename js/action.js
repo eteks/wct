@@ -1147,25 +1147,7 @@ $('.reset_form').on('click',function(){
 	//    $(this).siblings('li').toggleClass('active');
 	// });
 
-  $(".submenu_list li").hide();
-    // $('.master-holder').click(function(){
-    //   $(".master-list li").show();
-    //   $(".transaction-list li").hide();
-    // });
-    // $('.transaction-holder').click(function(){
-    //   $(".transaction-list li").show();
-    //   $(".master-list li").hide();
-    // });
-    // $('.report-holder').click(function(){
-    //   $(".master-list li").hide();
-    //   $(".transaction-list li").hide();
-    // });
-    // $('.master-list').mouseleave(function(){
-    //  $(".master-list li").fadeOut(1000);
-    // });
-    // $('.transaction-list').mouseleave(function(){
-    //  $(".transaction-list li").fadeOut(1000);
-    // });
+    $('.submenu_list li').hide();
     $('.master-list li').click(function(e){
       e.stopPropagation();
     });
@@ -1193,9 +1175,8 @@ $('.reset_form').on('click',function(){
     });
 
 
-    $('master-list li a').click(function(){
-      $(this).addClass('clr');
-    });
+
+
 
 	// Autocomplete results for states list while add
 	var states_list = [];
@@ -1294,11 +1275,11 @@ $('.reset_form').on('click',function(){
          });
    });
 
-  $(document).on('focus','.districts',function(e){
-      $(this).autocomplete({
-      source: district_list,
-      });
-  });
+  // $(document).on('focus','.districts',function(e){
+  //     $(this).autocomplete({
+  //     source: district_list,
+  //     });
+  // });
 
     $('.sports_form').submit(function(e) {
       e.preventDefault();
@@ -2647,6 +2628,7 @@ $('.reset_form').on('click',function(){
         }
       });
       if(res){
+          $('.result_error_holder').html('');
           var test_ar = [];
           var form_data = $('[name=result_form]').serialize();
           $('.result_createscheduleid').val($('.resultcreateschedule_act option:selected').val());
@@ -2673,10 +2655,12 @@ $('.reset_form').on('click',function(){
                                 <input type='hidden' name='result_parameterunit' class='result_parameterunit' value="+obj[i].parameter_unit+">\
                                 <input type='hidden' name='result_parameterformat' class='result_parameterformat' value="+obj[i].parameter_format+">\
                                 <input type='hidden' name='result_ranges' class='result_ranges' value="+ranges+">\
+                                <td class='error_icon'></td>\
                                 <td class='result_test_name'>"+obj[i].test_name+"</td>\
                                 <td class='result_parameter_name'>"+obj[i].parameter_name+"</td>\
                                 <td><input type='text' class='assign_border enter_result' name='enter_result'><br><span class='enter_result_error'></span></td>\
                                 <td><span class='result_error' name='result_error'>Enter the result in " +obj[i].parameter_unit+ " with "+obj[i].parameter_format+" formats</span></td>\
+                                <td></td>\
                                </tr>";
                     }
                     else{
@@ -2687,6 +2671,7 @@ $('.reset_form').on('click',function(){
                                 <input type='hidden' name='result_parameterunit' class='result_parameterunit' value="+obj[i].parameter_unit+">\
                                 <input type='hidden' name='result_parameterformat' class='result_parameterformat' value="+obj[i].parameter_format+">\
                                 <input type='hidden' name='result_ranges' class='result_ranges' value="+ranges+">\
+                                <td class='error_icon'></td>\
                                 <td class='result_test_name'>"+obj[i].test_name+"</td>\
                                 <td class='result_parameter_name'>"+obj[i].parameter_name+"</td>\
                                 <td><input type='text' class='assign_border enter_result' name='enter_result'><br><span class='enter_result_error'></span></td>\
@@ -2699,13 +2684,19 @@ $('.reset_form').on('click',function(){
                     test_data = $.unique(test_ar);
                     $.each(test_data, function(i,val){
                       select_element = $('.result_table').find(".result_test_name:contains("+val+"):first");
-                      select_ranges = select_element.prev('.result_ranges').val();
+                      select_ranges = select_element.siblings('.result_ranges').val();
                       select_test = select_element.text();
+                      select_parameter_element = select_element.next('.result_parameter_name');
                       select_parameter = select_element.next('.result_parameter_name').text();
                       if(select_ranges == '[]'){
-                        error_html = "<span class='result_table_error custom_error'>Please assign range for test " +select_test+ " and parameter " +select_parameter+ "</span><br>";
-                        $('.result_error_content').append(error_html);
-                        $('.result_error_content').show();
+                        $('.note_range').show();
+                        // error_html = "<span class='result_table_error custom_error'>Please assign range for test " +select_test+ " and parameter " +select_parameter+ "</span><br>";
+                        // $('.result_error_holder').append(error_html);
+                        // $('.result_error_content').show();
+                        select_element.addClass('error_range');
+                        select_parameter_element.addClass('error_range');
+                        select_element.prev('.error_icon').html("<i class='fa fa-exclamation-circle error-font'></i>");
+                       
                       }
                     });
 
@@ -2930,6 +2921,7 @@ $('.reset_form').on('click',function(){
                     // options += '<option value="'+obj[i].athlete_id+'">'+obj[i].athlete_name+'</option>';
                     $('.result_athletename,.result_athletedate,.result_athletemobile,.result_athletebib').val('');
                     $('.result_table tbody tr:not(:last)').remove();
+                    $('.note_range').hide();
                   });
                   // $('.result_athletename').html(options);
                   // alert(JSON.stringify(athlete_json));
@@ -3123,7 +3115,7 @@ $('.reset_form').on('click',function(){
         res = true;
         if($('.enter_result_error').hasClass('error')){
           res = false;
-        } else if($('.result_error_content span').hasClass('custom_error')){
+        } else if($(this).parents().siblings('.result_table').find('td').hasClass('error_range')){
           res = false;
         }
         else{
@@ -3404,6 +3396,7 @@ $('.reset_form').on('click',function(){
     $(document).on('change','.check_list',function () {
       $('.check_list').not(this).prop('checked', false);
       if($(this).is(':checked')){
+        $('.test-name').addClass('list_active');
         check_data = $(this).siblings('.check_data').val();
         $('.check_table').find("input[value="+check_data+"]").parents('tr').show();
         $('.check_table').find('.check_id').not("input[value="+check_data+"]").parents('tr').hide();
@@ -3416,6 +3409,7 @@ $('.reset_form').on('click',function(){
     $(document).on('change','.check_state',function () {
       $('.check_state').not(this).prop('checked', false);
       if($(this).is(':checked')){
+        $('.test-name').addClass('list_active');
         check_data = $(this).next('.check_stateid').val();
         $('.check_table').find('.districtstates_id').find("input[value="+check_data+"]").parents('tr').show();
         $('.check_table').find('.districtstates_id').not("input[value="+check_data+"]").parents('tr').hide();
