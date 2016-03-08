@@ -1807,7 +1807,7 @@ $('.reset_form').on('click',function(){
        }
        else if (window.location.href.indexOf("parameter_unit.php") !== -1){
            //alert('dsfsdfds');
-            var form_data = {'delete_id':$(this).attr('data-id')};
+            var form_data = {'delete_id':del_id};
             $.ajax({
                  type: "POST",
                  url: "functions/parameter_typefunction.php?deletedata=true",
@@ -2647,6 +2647,7 @@ $('.reset_form').on('click',function(){
         }
       });
       if(res){
+          $('.result_error_content').html('');
           var test_ar = [];
           var form_data = $('[name=result_form]').serialize();
           $('.result_createscheduleid').val($('.resultcreateschedule_act option:selected').val());
@@ -2996,11 +2997,11 @@ $('.reset_form').on('click',function(){
         ranges = JSON.parse(ranges);
         value=$(this).val();
         if(((parameter_type == "time") && (value!=''))||((parameter_type == "Time") && (value!=''))){
-          if((parameter_format=="HH:MM:SS")&&(!(/^(?:[0-5][0-9]):(?:[0-5][0-9]):[0-5][0-9]$/).test(value))){
+          if((parameter_format=="HH:MM:SS")&&(!(/^(?:[0-2][0-4]|[0-1][0-9]):(?:[0-5][0-9]):[0-5][0-9]$/).test(value))){
               $(this).siblings('.enter_result_error').addClass('error').text('Please Check time format').show();
               status=1;
               // break;
-            } else if((parameter_format=="HH:MM")&&(!(/^(?:[0-5][0-9]):[0-5][0-9]$/).test(value))){
+            } else if((parameter_format=="HH:MM")&&(!(/^(?:[0-2][0-4]|[0-1][0-9]):[0-5][0-9]$/).test(value))){
               $(this).siblings('.enter_result_error').addClass('error').text('Please Check time format').show();
               status=1;
               // break;
@@ -3010,7 +3011,7 @@ $('.reset_form').on('click',function(){
               status=1;
               // break;
             }
-            else if((parameter_format=="HH:MM:SS:MSS")&&(!(/^(?:[0-2][0-4]):(?:[0-5][0-9]):(?:[0-5][0-9]):([0-9][0-9]|[0-9][0-9][0-9]|[0-1][0][0][0])$/).test(value))){
+            else if((parameter_format=="HH:MM:SS:MSS")&&(!(/^(?:[0-2][0-4]|[0-1][0-9]):(?:[0-5][0-9]):(?:[0-5][0-9]):([0-9][0-9]|[0-9][0-9][0-9]|[0-1][0][0][0])$/).test(value))){
               $(this).siblings('.enter_result_error').addClass('error').text('Please Check time format').show();
               status=1;
               // break;
@@ -3309,7 +3310,7 @@ $('.reset_form').on('click',function(){
         if(($('.range_parameter_type').val().toLowerCase()=="time") && (value!='')){
           if($('.range_parameter_format').val()=="HH:MM:SS"){
             // regex=/^(?:(?:([01]?\d|2[0-3]):)?([0-5]?\d):)?([0-5]?\d)$/;
-            if(!(/^(?:[0-2][0-4]):(?:[0-5][0-9]):[0-5][0-9]$/).test(value)){
+            if(!(/^(?:[0-2][0-4]|[0-1][0-9]):(?:[0-5][0-9]):[0-5][0-9]$/).test(value)){
               // alert("check time format");
               $(this).next().next('.hided').addClass('custom_error').text('Please Check time format').show();
             }
@@ -3318,7 +3319,7 @@ $('.reset_form').on('click',function(){
             }
           }
           else if($('.range_parameter_format').val()=="HH:MM"){
-            if(!(/^(?:[0-2][0-4]):[0-5][0-9]$/).test(value)){
+            if(!(/^(?:[0-2][0-4]|[0-1][0-9]):[0-5][0-9]$/).test(value)){
               $(this).next().next('.hided').addClass('custom_error').text('Please Check time format').show();
             }
             else{
@@ -3334,7 +3335,7 @@ $('.reset_form').on('click',function(){
             }
           }
           else if($('.range_parameter_format').val()=="HH:MM:SS:MSS"){
-            if(!(/^(?:[0-2][0-4]):(?:[0-5][0-9]):(?:[0-5][0-9]):([0-9][0-9]|[0-9][0-9][0-9]|[0-1][0][0][0])$/).test(value)){
+            if(!(/^(?:[0-2][0-4]|[0-1][0-9]):(?:[0-5][0-9]):(?:[0-5][0-9]):([0-9][0-9]|[0-9][0-9][0-9]|[0-1][0][0][0])$/).test(value)){
               $(this).next().next('.hided').addClass('custom_error').text('Please Check time format').show();
             }
             else{
