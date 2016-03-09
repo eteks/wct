@@ -227,8 +227,8 @@
 						<textarea class="area_width" name="schedule_venue" data-validation-error-msg="please Enter the name of the Venue" data-validation="required"></textarea>
 					</div>
 					<div class="col-md-9 schedule_btn">
-						<input type="reset" class="btn btn-primary clear" value="Cancel">
 						<input type="submit" class="btn btn-primary test-submit clear add_createschedule_act" value="Submit">
+						<input type="reset" class="btn btn-primary clear" value="Cancel">
 					</div>
 				</form>
 			</div>
