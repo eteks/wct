@@ -936,7 +936,7 @@ $(document).ready(function () {
           var key = theEvent.keyCode || theEvent.which;
           key = String.fromCharCode(key);
           if (key.length == 0) return;
-          var regex = /^[0-9.:\b]+$/;
+          var regex = /^[0-9.:\b\t]+$/;
           if (!regex.test(key)) {
               theEvent.returnValue = false;
               if (theEvent.preventDefault) theEvent.preventDefault();
@@ -1322,11 +1322,11 @@ $('.reset_form').on('click',function(){
          });
    });
 
-  // $(document).on('focus','.districts',function(e){
-  //     $(this).autocomplete({
-  //     source: district_list,
-  //     });
-  // });
+    $(document).on('focus','.districts',function(e){
+        $(this).autocomplete({
+        source: district_list,
+        });
+    });
 
     $('.sports_form').submit(function(e) {
       e.preventDefault();
@@ -3510,7 +3510,7 @@ $('.reset_form').on('click',function(){
     $(document).on('change','.check_list',function () {
       $('.check_list').not(this).prop('checked', false);
       if($(this).is(':checked')){
-        $('.test-name').addClass('list_active');
+        //$('.test-name').addClass('list_active');
         check_data = $(this).siblings('.check_data').val();
         $('.check_table').find("input[value="+check_data+"]").parents('tr').show();
         $('.check_table').find('.check_id').not("input[value="+check_data+"]").parents('tr').hide();
@@ -3523,7 +3523,7 @@ $('.reset_form').on('click',function(){
     $(document).on('change','.check_state',function () {
       $('.check_state').not(this).prop('checked', false);
       if($(this).is(':checked')){
-        $('.test-name').addClass('list_active');
+        //$('.test-name').addClass('list_active');
         check_data = $(this).next('.check_stateid').val();
         $('.check_table').find('.districtstates_id').find("input[value="+check_data+"]").parents('tr').show();
         $('.check_table').find('.districtstates_id').not("input[value="+check_data+"]").parents('tr').hide();
@@ -3702,7 +3702,9 @@ $('.reset_form').on('click',function(){
     //   newElement.find('.bib_update').removeAttr('name').attr('name','athlete_bib'+id).val('');dob_update
     //   newElement.appendTo($(".clone_schedule_update_content"));
     // });
-
+    
+    $('.check_table tbody tr').not(':first').hide();
+    // $('.athletes_table tbody tr').not(':first').hide();
 
     var st_list = [];
     $('.check_statename').each(function(){

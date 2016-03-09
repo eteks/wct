@@ -28,9 +28,9 @@ if(isset($_GET['update_success'])){
 		<span class="sports">ASSIGN SCHEDULE</span>
 	</div><!--end container-->
 	<div class="container">
-		<div class="col-xs-12 col-md-11">
+		<div class="col-xs-12 col-md-12">
 		<!--	<div class="col-md-4 hidden-xs"></div> -->
-			<div class="col-xs-12 col-md-7 align_margin">
+			<div class="col-xs-12 col-md-12 align_margin">
 				<form method="post" id="assignschedule_form">
 					<div class="form-group">
 						  <label for="sel1">Select Schedule Name</label>
@@ -51,10 +51,10 @@ if(isset($_GET['update_success'])){
 						  </select>
 					</div>
 					<label for="athlete">Add Athletes</label><br>
-					<div class="assign_content_holder col-md-11">
-						<div class="assign_clone_content">
+					<div class="assign_content_holder col-md-12">
+						<div class="assign_clone_content col-md-12">
 							<input type="hidden" class="assign_athelete_count_add" value="1" />
-							<div class="form-group col-md-12">
+							<div class="form-group col-md-6 padding_zero">
 								<div class="col-md-6 form-group combo--align">
 									<select class="form-control name_align  athlete_name athlete_name1" placeholder="Name" name="athlete_name1" id="combobox" data-validation-error-msg="Please Select Athlete" data-validation="required">
 										<option value="">Athletes</option>
@@ -67,21 +67,21 @@ if(isset($_GET['update_success'])){
 									</select>
 								</div>
 						      	<!-- <input type="text" class="form-control name_align fl athlete_name" id="name" placeholder="Name" name="athlete_name1" required> -->
-						      	<div class="form-group col-md-6">
+						      	<div class="form-group col-md-5">
 						      		<input type="text" class="form-control date_assign dob" id="dob" placeholder="Date" name="athlete_date1" disabled>
 						   		</div>
 						    </div>
-						    <div class="form-group col-md-12">
+						    <div class="form-group col-md-6 padding_zero">
 						    	<div class="form-group col-md-6">
 						      		<input type="text" class="form-control name_align athlete_mobile mobile" id="mobile" placeholder="Mobile no" name="athlete_mobile1" disabled>
 						      	</div>
-						      	<div class="form-group col-md-6">
+						      	<div class="form-group col-md-5">
 						      		<input type="text" class="form-control date_assign athlete_bib" id="bib" placeholder="BIB NO" name="athlete_bib1" data-validation-error-msg="Please Enter the BIB NO" data-validation="number">
 								</div>
 						    </div>
 						</div>
 					</div>
-					<div class="form-group assign-add-button col-md-3">
+					<div class="form-group assign-add-button col-md-2">
 						<!-- <input type="submit" class="btn btn-primary align_right adds_btn add_athelete" value="Add"> -->
 						<!-- <i class="fa fa-plus add_align"></i> -->
 						<i class="fa fa-plus plus_align add_athelete">
