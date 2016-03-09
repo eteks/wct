@@ -31,6 +31,13 @@
 		height: 12px;
 	}
 </style>
+<script type="text/javascript">	
+	// $(document).ready(function () {
+	// 	$('.add_createschedule_act, .edit_createschedule_act').on('click', function(){
+	// 		$('.day, .month, .year').attr('data-validation', 'required');
+	// 	});
+	// });
+</script>
 <div class="container align_bottom">
 	<div class="container left_align_parameter align_height">
 		<span class="sports">CREATE SCHEDULE</span>

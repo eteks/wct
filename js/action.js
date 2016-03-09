@@ -372,6 +372,10 @@ $(document).ready(function () {
     }
 });
   package_menu();
+  
+  $('.add_createschedule_act,.edit_createschedule_act,.add_athletes_act,.edit_athletes_act').on('click', function(){
+     $('.day, .month, .year').attr('data-validation', 'required');
+    });
 
     $('.edit_item,.save_item,.delete_item').hide();
   $('.test_search').keyup(function() {

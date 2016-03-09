@@ -19,7 +19,7 @@
             daySuffixes: false,
             monthSuffixes: false,
             monthFormat: "long",
-            required: true
+            // required: true
         };
 
     // The actual plugin constructor
