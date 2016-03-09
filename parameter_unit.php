@@ -36,7 +36,7 @@
 				<form id="parameter_unit" name="parameter_unit_add">
 					<div class="form-group">
 						  <label for="sel1">Select Parameter Type</label>
-						  <select class="form-control adjust_width classic" id="sel1" name="parametertype"  data-validation-error-msg="Please Select the Type of the Parameter" data-validation="required">
+						  <select class="form-control adjust_width classic" id="sel1" name="parametertype"  data-validation-error-msg="Please Select the Type of the Parameter" data-validation="required" autofocus="">
 
 							<option value="">Select Parameter Type</option>
 							  <?php
@@ -49,7 +49,7 @@
 					</div>
 					<div class="form-group">
 						<label>Enter Parameter Unit</label><br>
-						<input type="text" class="adjust_width" name="parameterunit"  data-validation-error-msg="Please Enter the Unit of the Parameter" data-validation="required">
+						<input type="text" class="adjust_width" name="parameterunit"  data-validation-error-msg="Please Enter the Unit of the Parameter" data-validation="required" autocomplete="off">
 					</div>
 					<div class="col-md-9 schedule_btn">
 						<input type="submit" class="btn btn-primary clear parameter-submit" value="Submit">
@@ -146,7 +146,7 @@
 											</div>
 											<div class="form-group">
 												<label>Enter Parameter Unit</label><br>
-												<input type="text" class="adjust_width adjust_popup_width edit_param_unit" name="parameter_unit" data-validation-error-msg="Please Enter the Unit of the Parameter" data-validation="required">
+												<input type="text" class="adjust_width adjust_popup_width edit_param_unit" name="parameter_unit" data-validation-error-msg="Please Enter the Unit of the Parameter" data-validation="required" autocomplete="off">
 											</div>
 											<div class="col-md-12 schedule_btn">
 												<input type="submit" class="btn btn-primary align_right clear edit_parameter_unit_act" value="Submit">

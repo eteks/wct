@@ -38,7 +38,7 @@
 					<form name="district_form" class="districts_form">
 						<div class="form-group col-md-8 padding_zero">
 						  <label for="sel1">Select the State</label>
-						  <select class="form-control adjust_width classic choose_state" id="sel1" name="district_state" data-validation-error-msg="Please Select the name of the State" data-validation="required">
+						  <select class="form-control adjust_width classic choose_state" id="sel1" name="district_state" data-validation-error-msg="Please Select the name of the State" data-validation="required" autofocus>
 						  <option value="">Select the state</option>
 						  <?php
 	                        $query = $statesFunction->statesSelect();
@@ -55,7 +55,7 @@
 						<div class="align_margin district_clone">
 							<div class="district_clone_content form-group col-md-8 padding_zero">
 								<label>District</label><br>
-								<input type="text" class="districts" name="district_name[]" data-validation-error-msg="Please Enter the name of the District" data-validation="required">
+								<input type="text" class="districts" name="district_name[]" data-validation-error-msg="Please Enter the name of the District" data-validation="required" autocomplete="off">
 								<input type="hidden" class="district_add_for_clone" value="1"/>
 								<span class="add_district_error"></span>
 								<label class="category_text">Please Enter the District</label>
@@ -96,7 +96,7 @@
 									<span class="test-name dt_namelist">
 										<input type="checkbox" name="test" value="test" class="check_test check_state check_list" id="check-select">
 										<input type="hidden" class="check_stateid check_data" name="check_stateid" value="<?php echo $row['states_id']; ?>">
-										<input type="text" name="check_statename" value="<?php echo $row['states_name']; ?>" class="list_edit check_statename input_wrap">
+										<input type="text" name="check_statename" value="<?php echo $row['states_name']; ?>" class="list_edit check_statename input_wrap" autocomplete="off">
 										<span class="test-alter">
 											<i class="fa fa-floppy-o save_item save_state"></i>
 											<i class="fa fa-pencil-square-o edit_item"></i>
@@ -163,7 +163,7 @@
 									                            <option value="<?php echo $row['states_id']; ?>"><?php echo $row['states_name']; ?></option>
 									                      <?php } ?>
 														  </select>
-														</div> 
+														</div>
 														<div class="form-group">
 															<label>District</label><br>
 															<input type="text" class="districts adjust_popup_width" name="edit_district_name" data-validation-error-msg="Please Enter the name of the District" data-validation="required">
