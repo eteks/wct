@@ -3561,6 +3561,7 @@ $('.reset_form').on('click',function(){
       }else{
         $('.test-name').hide();
         $('.test-list').find("input[value='"+search_value+"']").parents('.test-name').show();
+        $('#ui-id-1').addClass('width_search');
       }
     });
 

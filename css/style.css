@@ -1908,3 +1908,6 @@ td {
     color: #424242;
     display: none;
 }
+.width_search{
+        width: 152px !important;
+    }
