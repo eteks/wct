@@ -9,13 +9,19 @@
 	#ui-id-1{
     	width: 204px !important;
 	}
+	td {
+	    max-width: 370px;
+	    overflow: visible;
+	    text-overflow: unset;
+	    white-space: normal;
+	}
 </style>
 <div class="container">
 	<div class="container left_align_parameter align_height">
 		<span class="sports">RESULT</span>
 	</div><!--end container-->
 	<div class="container">
-		<div class="col-xs-12 col-md-11">
+		<div class="col-xs-12 col-md-12">
 		<!--	<div class="col-md-4 hidden-xs"></div> -->
 			<div class="col-xs-12 col-md-12 align_margin">
 				<form id="result_form" name="result_form">
@@ -61,12 +67,19 @@
 				<input type="hidden" name="result_athleteid" class="result_athleteid">
 				</form>
 			</div>
-			<div class="result_error_content">
-			</div>
-			<div class="container table-position align_bottom">
+			<!-- <div class="result_error_content container col-md-6 padding_zero">
+				<i class="fa fa-exclamation-circle error-font col-md-3 padding_zero"></i>
+				<div class="result_error_holder col-md-9 padding_zero">	
+				</div>
+			</div> -->
+			<div class="note_range col-md-5">
+			  	<span><i class="fa fa-exclamation-circle error-font" style=" padding: 0 12px 0 0;"></i>Please assign range for the selected test and paramter</span>
+			  </div><!--note_range-->
+			<div class="container table-position align_bottom col-md-12">
 			  <table class="table result_table">
 			    <thead>
 			      <tr class="row_color">
+			      	<th class="align_center"></th>
 			        <th class="align_center">Test</th>
 			        <th class="align_center">Parameter</th>
 			        <th class="align_center">Result</th>
@@ -76,6 +89,7 @@
 			    </thead>
 			    <tbody class="assign_content">
 			      <tr class="align_center delete_color assign_table total_div">
+			      	<td></td>
 			      	<td></td>
 			      	<td></td>
 			      	<td></td>

@@ -61,7 +61,7 @@
       </ul>
     </div><!--menu_list-->
     <div class="container-fluid menu_list">
-      <nav id="submenu">
+      <div id="submenu">
         <ul class="nav nav-justified submenu-align">
           <li>
             <ul class="nav nav-justified submenu_list master-list" id="one">
@@ -90,7 +90,7 @@
               </ul>
             </li>
         </ul>
-      </nav>
+      </div>
     </div><!--menu_list-->
     <!-- <div class="popup_fade cancel_btn"></div> -->
 
