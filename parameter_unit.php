@@ -2,6 +2,7 @@
 	  require_once 'header.php';
 	  require_once 'functions/parameter_unitfunction.php';
 	  $parameterunitFunction = new parameterunitFunction();
+
 ?>
 <style type="text/css">
 	thead, tbody tr {
@@ -73,14 +74,14 @@
 									foreach( $data as $eachrecord ) {
 									 ?>
 									<span class="test-name">
-										<input type="checkbox" name="test" value="test" class="check_test check_parametertype" id="check-select">
+										<input type="checkbox" name="test" value="test" class="check_test check_parametertype" id="check-select" data-id ="<?php echo $eachrecord ['parametertype_id']; ?>">
 										<input type="text" name="test" data-id ="<?php echo $eachrecord ['parametertype_id']; ?>" value="<?php echo $eachrecord ['parametertype_name']; ?>" class="list_edit parametertype_name_hover input_wrap" disabled>
 										<span class="test-alter">
 											<i class="fa fa-floppy-o save_item"></i>
 											<i class="fa fa-pencil-square-o edit_item"></i>
 											<i class="fa fa-trash-o delete_item"></i>
 										</span><!--test-alter-->
-									</span><!--test-name-->									
+									</span><!--test-name-->
 									<div class="delete_div delete_search">
 							            <!-- <code class="close_btn cancel_btn"> </code>  -->
 							              <div class="del_title">
@@ -100,7 +101,7 @@
 				</div>
 
 				<div class="container table-position col-md-9 align_bottom" style="padding: 0px;">
-				  <table class="table state_table">
+				  <table class="table state_table" id="param_unit_table">
 				    <thead>
 				      <tr class="row_color">
 				        <!-- <th>Parameter Type</th> -->
@@ -112,6 +113,7 @@
 						<?php
 					  $data = $parameterunitFunction->parameterunitSelect();
 					  $i=1;
+
 					  foreach( $data as $eachrecord ) {
 					   ?>
 			      	<tr class="delete_color">
@@ -138,9 +140,9 @@
 												  <select class="form-control adjust_width adjust_popup_width classic edit_param_type" id="sel1" name="parameter_type" data-validation-error-msg="Please Select the Type of the Parameter" data-validation="required">
 													<option value="">Select Parameter Type</option>  <?php
 													$data = $parameterunitFunction->parametertypeSelect();
-													foreach( $data as $eachrecord ) {
+													foreach( $data as $eachrecord1 ) {
 													 ?>
-													 <option value="<?php echo $eachrecord ['parametertype_id']; ?>"><?php echo $eachrecord ['parametertype_name']; ?></option>
+													 <option value="<?php echo $eachrecord1['parametertype_id']; ?>"><?php echo $eachrecord1['parametertype_name']; ?></option>
 													 <?php } ?>
 												  </select>
 											</div>
@@ -162,7 +164,7 @@
 					          </div>
 					          <div class="del_content">
 					            <span class="del_content_txt">Are you sure want to delete this whole record?</span>
-					            <input type="button" class="btn btn-primary align_right yes_btn" value="Yes">
+					            <input type="button" class="btn btn-primary align_right yes_btn" data-delete = "parameter_unit_name" data-id = "<?php echo $eachrecord ['parameterunit_id']; ?>" value="Yes">
 					            <input type="button" class="btn btn-primary align_right no_btn" value="No">
 					            <input type="hidden" name="delete_id" value="" id="delete_id"/>
 					          </div><!--del_content-->
@@ -172,7 +174,7 @@
 					  <?php $i++; } ?>
 				    </tbody>
 				  </table>
-				</div>	
+				</div>
 			</div><!--col-md-12-->
 
 	</div><!-- end  container-->

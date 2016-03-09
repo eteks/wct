@@ -560,12 +560,13 @@ $(document).ready(function () {
                  cache: false,
                  dataType:'json',
                  success: function(data) {
+                     $('.test-list').empty();
                      if(data !=''){
                          $.each(data, function(i){
                              //alert(data[i].typename);
                              $('.test-list').append(
                              '<span class="test-name">\
-                                 <input type="checkbox" name="test" value="test" class="check_test" id="check-select">\
+                                 <input type="checkbox" name="test " value="test" class="check_test check_parametertype" id="check-select" data-id ="'+data[i].parametertype_id+'">\
                                  <input type="text" data-id ="'+data[i].parametertype_id+'" name="test" value="'+data[i].parametertype_name+'" class="list_edit parametertype_name_hover input_wrap" disabled>\
                                  <span class="test-alter">\
                                      <i class="fa fa-floppy-o save_item edit_save_button"></i>\
@@ -597,13 +598,14 @@ $(document).ready(function () {
                  cache: false,
                  dataType:'json',
                  success: function(data) {
+                     $('.test-list').empty();
                      //alert(data);
                      if(data !=''){
                          $.each(data, function(i){
                              //alert(data[i].test_name);
                              $('.test-list').append(
                              '<span class="test-name">\
-                                 <input type="checkbox" name="test" value="test" class="check_test" id="check-select">\
+                                 <input type="checkbox" name="test" value="test" class="check_test check_parametertype" id="check-select" data-id ="'+data[i].parametertype_id+'">\
                                  <input type="text" data-id ="'+data[i].parametertype_id+'" name="test" value="'+data[i].parametertype_name+'" class="list_edit test_name_hover input_wrap" disabled>\
                                  <span class="test-alter">\
                                      <i class="fa fa-floppy-o save_item edit_save_button"></i>\
@@ -1843,7 +1845,9 @@ $('.reset_form').on('click',function(){
        }
        else if (window.location.href.indexOf("parameter_unit.php") !== -1){
            //alert('dsfsdfds');
-            var form_data = {'delete_id':del_id};
+            var delete_name = $(this).attr('data-delete');
+            if(delete_name == 'parametertype_name'){
+            var form_data = {'delete_id':$(this).attr('data-id')};
             $.ajax({
                  type: "POST",
                  url: "functions/parameter_typefunction.php?deletedata=true",
@@ -1859,7 +1863,26 @@ $('.reset_form').on('click',function(){
 
                  }
              });
-       }
+         }else{
+             var form_data = {'delete_id':$(this).attr('data-id')};
+             $.ajax({
+                  type: "POST",
+                  url: "functions/parameter_unitfunction.php?deletedata=true",
+                  data: form_data,
+                  cache: false,
+                  success: function(html) {
+                      //alert(html);
+                   alert('Parameter unit deleted Successfully! ');
+                   $('.popup_fade').hide();
+                   $('.state_div,.delete_div').hide();
+                   document.body.style.overflow = 'auto';
+                   location.reload();
+
+                  }
+              });
+         }
+
+         }
     });
 
     $('.no_btn').click(function(event) {
@@ -2333,9 +2356,10 @@ $('.reset_form').on('click',function(){
          });
       }
     });
-    $(document).delegate('.parametertype_name_hover', 'mouseover', function(event) {
+    $(document).on('change','.check_parametertype', function(event) {
        //alert($(this).attr('data-id'));
-        $('#test_table tbody').empty();
+       if(this.checked){
+        $('#param_unit_table tbody').empty();
        var params_id = $(this).attr('data-id');
        $.ajax({
             type: "POST",
@@ -2348,12 +2372,12 @@ $('.reset_form').on('click',function(){
                 $('#test_table tbody').empty();
                 if(data.test){
                      var param_dynamic = '';
-//                    $.each(data.param, function(i){
-//                         param_dynamic += "<option value='"+data.param[i].parametertype_name+"'>"+data.param[i].parametertype_name+"</option>";
-//                     });
+                //    $.each(data.param, function(i){
+                //         param_dynamic += "<option value='"+data.param[i].parametertype_name+"'>"+data.param[i].parametertype_name+"</option>";
+                //     });
                      $.each(data.test, function(i){
-                         $('#test_table tbody').append('\
-               <tr class="align_center delete_color">\
+                         $('#param_unit_table tbody').append('\
+               <tr class=" delete_color">\
            <input type="hidden" value="'+data.test[i].parameterunit_id+'" id="parameterunit_id">\
                  <td>'+data.test[i].parameterunit+'</td>\
                  <td class="popup-edit">\
@@ -2365,7 +2389,7 @@ $('.reset_form').on('click',function(){
                          </div>\
                          <div class="del_content">\
                            <span class="del_content_txt">Are you sure want to delete this whole record?</span>\
-                           <input type="button" class="btn btn-primary align_right yes_btn" value="Yes" data-delete="test_attribute" data-id ="'+data.test[i].parameterunit_id+' "data-test-id="'+data.test[i].parameterunit_id+'">\
+                           <input type="button" class="btn btn-primary align_right yes_btn" value="Yes" data-delete="parameter_unit_name" data-id ="'+data.test[i].parameterunit_id+' ">\
                            <input type="button" class="btn btn-primary align_right no_btn" value="No">\
                            <input type="hidden" name="delete_id" value="" id="delete_id"/>\
                          </div>\
@@ -2379,6 +2403,7 @@ $('.reset_form').on('click',function(){
                 }
             }
        });
+   }
    });
    // / Edit the Parameter Unit module - Start /
      $(document).delegate('.edit_parameter_unit','click',function(){
@@ -3557,9 +3582,9 @@ $('.reset_form').on('click',function(){
     $(document).on('change','.check_parametertype',function () {
       $('.check_parametertype').not(this).prop('checked', false);
       if($(this).is(':checked')){
-        check_data = $(this).next().attr('data-id');
-        $('.state_table').find('.parametertype_id').find("input[value="+check_data+"]").parents('tr').show();
-        $('.state_table').find('.parametertype_id').not("input[value="+check_data+"]").parents('tr').hide();
+        // check_data = $(this).next().attr('data-id');
+        // $('.state_table').find('.parametertype_id').find("input[value="+check_data+"]").parents('tr').show();
+        // $('.state_table').find('.parametertype_id').not("input[value="+check_data+"]").parents('tr').hide();
       }
       else{
         $('.state_table tr').show();
