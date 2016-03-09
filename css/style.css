@@ -1196,7 +1196,9 @@ input[type=radio]:checked + label:before {
     border-radius: 3px;
     margin: 0 3px;
 }
-
+.hider{
+    display: none !important;
+}
 
 /* end */
 
@@ -1259,7 +1261,7 @@ input[type=radio]:checked + label:before {
 .assign-add-button {
     bottom: 65px;
     float: right !important;
-    left: 10px;
+    left: 52px;
     position: relative;
 }
 .assign-scroll {
@@ -1405,10 +1407,13 @@ input[type=radio]:checked + label:before {
     font-size: 11px;
     margin-left: -42px;
 }
+
 .custom_error{
     display: block;
     color: red;
     font-size: 11px;
+   /* left: 40px;
+    position: relative;*/
 }
 .footer_txt > span {
     padding: 10px 0 0;

@@ -76,17 +76,17 @@
 						  <label for="range" class="range_label">Ranges <span class="range_note">(Note:<span class="range_notes"></span>)</span></label><br>
 						  	<div class="form-group col-md-10">
 								  <div class="col-md-4">
-								  	<input type="text" class="form-control classic range_align  r_strt" id="strt1" name="range_start1" placeholder="Start">
+								  	<input type="text" class="form-control classic range_align  r_strt" id="strt1" name="range_start1" autocomplete="off" placeholder="Start">
 								    <span class="hided">Please Enter the start range</span>
 								    <span class="hided">Please Check the format</span>
 								  </div>
 								  <div class="col-md-4">
-								  	<input type="text" class="form-control classic range_align  r_end" id="end1" name="range_end1" placeholder="End">
+								  	<input type="text" class="form-control classic range_align  r_end" id="end1" name="range_end1" autocomplete="off" placeholder="End">
 								  	<span class="hided">Please Enter the end range</span>
 								  	<span class="hided">Please Check the format</span>
 								  </div>
 								  <div class="col-md-4">
-								  	<input type="text" class="form-control classic range_align  r_point" id="point1" name="range_points1" placeholder="Points">
+								  	<input type="text" class="form-control classic range_align  r_point" id="point1" name="range_points1" autocomplete="off" placeholder="Points">
 								  	<span class="hided">Please Enter the points</span>
 								  	<span class="hided">Please Check the format</span>
 								  </div>
@@ -107,8 +107,8 @@
 					</div>
 					<!-- <button type="button" class="btn btn-primary align_right ranges_btn add_range_points">Add Ranges</button><i class="fa fa-plus plus_align"></i> -->
 					<div class="col-md-9 schedule_btn">
-						<input type="reset" value="Cancel" class="btn btn-primary clear" maxlength="50">
 						<input type="submit" class="btn btn-primary test-submit clear add_range_act" value="Submit">
+						<input type="reset" value="Cancel" class="btn btn-primary clear" maxlength="50">
 					</div>
 				</form>
 			</div>
@@ -184,17 +184,17 @@
 											  	  <input type="hidden" class="edit_r_id" name="edit_range_id1" value="">
 											      	<div class="form-group col-md-12 ranges_popup">
 												      	<div class="col-md-12">
-												      		<input type="text" class="form-control classic range_align_popup edit_r_strt" id="edit_strt1" name="edit_range_start1" placehoder="Start">
+												      		<input type="text" class="form-control classic range_align_popup edit_r_strt" id="edit_strt1" name="edit_range_start1" autocomplete="off" placehoder="Start">
 												       		<span class="hided">Please Enter the start range</span>
 											    			<span class="hided">Please Check the format</span>
 												       	</div>
 												       	<div class="col-md-12">
-												      		<input type="text" class="form-control classic range_align_popup edit_r_end" id="edit_end1" name="edit_range_end1" placehoder="end">
+												      		<input type="text" class="form-control classic range_align_popup edit_r_end" id="edit_end1" name="edit_range_end1" autocomplete="off" placehoder="end">
 												       		<span class="hided">Please Enter the end range</span>
 											  				<span class="hided">Please Check the format</span>
 												       	</div>
 												       	<div class="col-md-12">
-												      		<input type="text" class="form-control classic range_align_popup edit_r_point" id="edit_point1" name="edit_range_points1" placehoder="points">
+												      		<input type="text" class="form-control classic range_align_popup edit_r_point" id="edit_point1" name="edit_range_points1" autocomplete="off" placehoder="points">
 											  				<span class="hided">Please Enter the points</span>
 											  				<span class="hided">Please Check the format</span>
 											  			</div>

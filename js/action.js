@@ -373,6 +373,10 @@ $(document).ready(function () {
     }
 });
   package_menu();
+  
+  $('.add_createschedule_act,.edit_createschedule_act,.add_athletes_act,.edit_athletes_act').on('click', function(){
+     $('.day, .month, .year').attr('data-validation', 'required');
+    });
 
     $('.edit_item,.save_item,.delete_item').hide();
   $('.test_search').keyup(function() {
@@ -933,7 +937,7 @@ $(document).ready(function () {
           var key = theEvent.keyCode || theEvent.which;
           key = String.fromCharCode(key);
           if (key.length == 0) return;
-          var regex = /^[0-9.:\b]+$/;
+          var regex = /^[0-9.:\b\t]+$/;
           if (!regex.test(key)) {
               theEvent.returnValue = false;
               if (theEvent.preventDefault) theEvent.preventDefault();
@@ -942,11 +946,20 @@ $(document).ready(function () {
 
   //form reset
 $('.reset_form').on('click',function(){
-  $(".edit_create_schedule_form, .edit_athletes_form,#edit_assign_schedule_form").find("select").each(function (index) {
-          var ctrl=$(this);
+  $(".edit_create_schedule_form, .edit_athletes_form,#edit_assign_schedule_form,#cs_form").find("select").each(function (index) {
+         var ctrl=$(this);
           $(ctrl.children()).each(function(index) {
               if (index===0) $(this).attr('selected', 'selected');
               else $(this).removeAttr('selected');
+          });
+  });
+});
+$('.reset_form').on('click',function(){
+  $("#cs_form").find("select").each(function (index) {
+         var ctrl=$(this);
+          $(ctrl.children()).each(function(index) {
+              if (index===0) $(this).attr('required', 'required');
+              else $(this).removeAttr('required');
           });
   });
 });
@@ -1310,11 +1323,11 @@ $('.reset_form').on('click',function(){
          });
    });
 
-  // $(document).on('focus','.districts',function(e){
-  //     $(this).autocomplete({
-  //     source: district_list,
-  //     });
-  // });
+    $(document).on('focus','.districts',function(e){
+        $(this).autocomplete({
+        source: district_list,
+        });
+    });
 
     $('.sports_form').submit(function(e) {
       e.preventDefault();
@@ -1916,32 +1929,96 @@ $('.reset_form').on('click',function(){
        });
       }
     });
+  
+    // var current_id = 1;
+    // $('.parameter_btn').click(function(){   
+          
+    //     if($('.clone_content:last').find('.parameter_name').val() == ''){
+    //         $('.clone_content:last .param_name_error').addClass('custom_error');
+    //         $('.clone_content:last .param_name_error').next().next().remove();                  
+    //     }
+    //     else{
+    //         $('.clone_content:last .param_name_error').removeClass('custom_error');
+    //     }
+    //     if($('.clone_content:last').find('.parameter_type').val() == ''){
+    //         $('.clone_content:last .param_type_error').addClass('custom_error');
+    //         $('.clone_content:last .param_type_error').next().remove();
+    //     }
+    //     else{
+    //         $('.clone_content:last .param_type_error').removeClass('custom_error');
+    //     }
+    //     if($('.clone_content:last').find('.parameter_unit').val() == ''){
+    //         $('.clone_content:last .param_unit_error').addClass('custom_error');
+    //         $('.clone_content:last .param_unit_error').next().remove();
+    //     }
+    //     else{
+    //         $('.clone_content:last .param_unit_error').removeClass('custom_error');
+    //     }
+    //     if($('.clone_content:last').find('.parameter_format').val() == ''){
+    //         $('.clone_content:last .param_format_error').addClass('custom_error');
+    //         $('.clone_content:last .param_format_error').next().remove();
+    //         return false;
+    //     }
+    //     else{
+    //         $('.clone_content:last .param_format_error').removeClass('custom_error');
+    //         nextElement($('.clone_content:last'));
+    //     }
+    // })
 
     var current_id = 1;
-    $('.parameter_btn').click(function(){
-        if($('.clone_content:last').find('.parameter_name').val() == ''){
-            $('.clone_content:last .param_name_error').addClass('custom_error');
-        }else{
-            $('.clone_content:last .param_name_error').removeClass('custom_error');
+    $(document).on('click','.parameter_btn',function(e){
+        if(($('.clone_content:last').children().find('.parameter_name').val() == '') || ($('.clone_content:last').children().find('.parameter_type').val() == '') || ($('.clone_content:last').children().find('.parameter_unit').val() == '') || ($('.clone_content:last').children().find('.parameter_format').val() == '') || ($('.clone_content').children().find('.parameter_name').val() == '') || ($('.clone_content').children().find('.parameter_type').val() == '') || ($('.clone_content').children().find('.parameter_unit').val() == '') || ($('.clone_content').children().find('.parameter_format').val() == ''))
+        {
+          $('.clone_content:last').children().find('select, input[type="text"]').next().addClass('custom_error');
+          $('.clone_content:last select').next().next().remove();
+          $('.clone_content:last input').next().next().next().remove();   
+          e.preventDefault();
+          if($('.clone_content:last').children().find('select, input[type="text"]').hasClass('custom_error')){
+            $("span .custom_error").hide();
+            $(".custom_error").removeClass("custom_error");
+          }
         }
-        if($('.clone_content:last').find('.parameter_type').val() == ''){
-            $('.clone_content:last .param_type_error').addClass('custom_error');
-        }else{
-            $('.clone_content:last .param_type_error').removeClass('custom_error');
-        }
-        if($('.clone_content:last').find('.parameter_unit').val() == ''){
-            $('.clone_content:last .param_unit_error').addClass('custom_error');
-        }else{
-            $('.clone_content:last .param_unit_error').removeClass('custom_error');
-        }
-        if($('.clone_content:last').find('.parameter_format').val() == ''){
-            $('.clone_content:last .param_format_error').addClass('custom_error');
-        }else{
-            $('.clone_content:last .param_format_error').removeClass('custom_error');
-            nextElement($('.clone_content:last'));
-        }
-    })
+        else{
+        $('.clone_content:last').children().find('select, input[type="text"]').next().removeClass('custom_error');
+        var id = current_id+1;
+        nextElement($('.clone_content:last'));
+        $('.clone_content:last').attr('id','parameter_count'+id);
+       }
+    });
+        
+    $(".reset_form,.test_submit_act").on('click', function() {
+      $("span .custom_error").hide();
+      $(".custom_error").removeClass("custom_error");
+    });
 
+    $('#test_form .test_submit_act').click(function(e) {
+      e.preventDefault();  // don't submit it
+      var submitOK = true;
+      $('#test_form').find("select").each(function() {
+            if ($(this).val() == "") {
+                  $('.clone_content:last').children().find('select, input[type="text"]').next().addClass('custom_error'); 
+                  submitOK = false;
+                  return false;  // breaks out of the each
+           }
+      });
+      if (submitOK) {
+            $('.clone_content:last').children().find('select, input[type="text"]').next().removeClass('custom_error');
+            $('#test_form').submit();
+      }
+    });
+
+    $(".reset_form").on('click', function() {
+       $(".parameter_count").each(function() {
+          if($('.clone_content').length !=1){
+            $('.clone_content:last').remove();
+          }
+        });
+    });
+
+    $('.add_createschedule_act,.edit_createschedule_act,.add_athletes_act,.edit_athletes_act').on('click', function(){
+     $('.day, .month, .year').attr('data-validation', 'required');
+    });
+ 
     function nextElement(element){
         var last_id = parseInt(element.find('.parameter_count').val());
         var newElement = element.clone();
@@ -3628,7 +3705,9 @@ $('.reset_form').on('click',function(){
     //   newElement.find('.bib_update').removeAttr('name').attr('name','athlete_bib'+id).val('');dob_update
     //   newElement.appendTo($(".clone_schedule_update_content"));
     // });
-
+    
+    $('.check_table tbody tr').not(':first').hide();
+    // $('.athletes_table tbody tr').not(':first').hide();
 
     var st_list = [];
     $('.check_statename').each(function(){

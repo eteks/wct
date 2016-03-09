@@ -46,7 +46,7 @@
 				<form name="athletes_form" id="athlete_form">
 					<div class="form-group">
 						<label>Athlete Name</label><br>
-						<input type="text" class="adjust_width" name="athlete_name" data-validation-error-msg="Please Enter the name of the Athelete" data-validation="required">
+						<input type="text" class="adjust_width" name="athlete_name" autocomplete="off" data-validation-error-msg="Please Enter the name of the Athelete" data-validation="required">
 					</div>
 					<div class="form-group" style="position: relative; right: 15px;">
 					  <label for="date" class="fl" style="position: relative; left: 15px;">Date Of Birth</label><br>
@@ -74,7 +74,7 @@
 					</div>
 					<div class="form-group">
       					<label>Mobile Number</label><br>
-      					<input type="text" id="athletes_mobile1" class="adjust_width" name="athlete_mobile" data-validation-error-msg="Please Enter the value that must contain 10 numbers" data-validation="length" data-validation-length="10">
+      					<input type="text" id="athletes_mobile1" class="adjust_width" name="athlete_mobile" autocomplete="off" data-validation-error-msg="Please Enter the value that must contain 10 numbers" data-validation="length" data-validation-length="10">
      				</div>
 					<div class="form-group">
 						  <label for="sel1">Gender</label>
@@ -116,7 +116,7 @@
 
 					<div class="form-group">
 						<label>Taluka</label><br>
-						<input type="text" class="adjust_width" name="athlete_taluka" data-validation-error-msg="Please Enter the name of the Taluka" data-validation="required">
+						<input type="text" class="adjust_width" name="athlete_taluka" autocomplete="off" data-validation-error-msg="Please Enter the name of the Taluka" data-validation="required">
 					</div>
 
 					<div class="form-group">
@@ -132,9 +132,9 @@
 						  </select>
 					</div>
 					<div class="col-md-9 schedule_btn">
-						<!-- <button type="button" class="btn btn-primary align_right clear add_athletes_act">Submit</button> -->
-						<input type="reset" class="btn btn-primary clear" value="Cancel">
+						<!-- <button type="button" class="btn btn-primary align_right clear add_athletes_act">Submit</button> -->			
 						<input type="submit" class="btn btn-primary test-submit clear add_athletes_act" value="Submit">
+						<input type="reset" class="btn btn-primary clear" value="Cancel">
 					</div>
 				</form>
 				</div>
@@ -208,7 +208,7 @@
 					        <td class="t_athlete_address"><?php // echo $row['athlete_address']; ?></td> -->
 					        <td><?php echo $row['sports_name']; ?></td>
 					        <td><?php echo $row['athlete_gender']; ?></td>
-					        <td><?php echo $row['athlete_dob']; ?></td>
+					        <td><?php echo date("d/m/Y", strtotime($row['athlete_dob'])); ?></td>
 					        <td><?php echo $row['athlete_address']; ?></td>
 							<td class="popup-edit">
 					        	<span class="edit_state new-edit" onclick="editfunction(<?php echo $row['athlete_id'] ?>,this)"><i class="fa fa-pencil-square-o"></i></span>
@@ -251,7 +251,7 @@
 										</div>
 										<div class="form-group">
 					      					<label class="popup_label">Mobile Number</label><br>
-					      					<input id="ahtlete_mobile" type="text" value="" class="adjust_width box-width" name="edit_athlete_mobile" data-validation-error-msg="Please Enter the value that must contain 10 numbers" data-validation="length" data-validation-length="10">
+					      					<input id="ahtlete_mobile" type="text" value="" class="adjust_width box-width" name="edit_athlete_mobile" autocomplete="off" data-validation-error-msg="Please Enter the value that must contain 10 numbers" data-validation="length" data-validation-length="10">
 					     				</div>
 										<div class="form-group">
 											  <label for="sel1" class="popup_label">Gender</label>
@@ -287,7 +287,7 @@
 
 										<div class="form-group">
 											<label class="popup_label">Taluka</label><br>
-											<input type="text" class="adjust_width box-width" name="edit_athlete_taluka" data-validation-error-msg="Please Enter the Taluka" data-validation="required">
+											<input type="text" class="adjust_width box-width" name="edit_athlete_taluka" autocomplete="off" data-validation-error-msg="Please Enter the Taluka" data-validation="required">
 										</div>
 
 										<div class="form-group">

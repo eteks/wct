@@ -14,7 +14,7 @@ $obj = new sportsfunction();
 			<form  class="sports_form" name="sport_form" role="form">
 				<div class="align_margin">
 					<label>Enter the name of the Sports</label><br>
-					<input type="text" class="sportsname" name="sports_name" data-validation-error-msg="Please Enter the name of the Sports" data-validation="required" autocomplete="off" autofocus>
+					<input type="text" class="sportsname" name="sports_name" autocomplete="off" data-validation-error-msg="Please Enter the name of the Sports" data-validation="required">
 					<input type="hidden" name="sports_add" value="1">
 				</div>
 				<!-- <button type="button" id="submmit" class="btn btn-primary align_right clear sports_submit_act">Submit</button> -->
@@ -53,7 +53,7 @@ $obj = new sportsfunction();
 			<form name="sports_form" class="sports_update_form">
 				<div class="align_margin">
 					<label>Enter the name of the Sports</label><br>
-					<input type="text" class="sportsname sports_update_name" name="sports_name" data-validation-error-msg="Please Enter the name of the Sports" data-validation="required" autocomplete="off" autocomplete="off" autofocus>
+					<input type="text" class="sportsname sports_update_name" name="sports_name" autocomplete="off" data-validation-error-msg="Please Enter the name of the Sports" data-validation="required">
 					<input type="hidden" class="sports_update_id" name="sports_id">
 					<input type="hidden" name="sportd_update" value="1">
 				</div><!--align_margin-->
