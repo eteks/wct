@@ -3494,7 +3494,7 @@ $('.reset_form').on('click',function(){
     $(document).on('change','.check_list',function () {
       $('.check_list').not(this).prop('checked', false);
       if($(this).is(':checked')){
-        $('.test-name').addClass('list_active');
+        //$('.test-name').addClass('list_active');
         check_data = $(this).siblings('.check_data').val();
         $('.check_table').find("input[value="+check_data+"]").parents('tr').show();
         $('.check_table').find('.check_id').not("input[value="+check_data+"]").parents('tr').hide();
@@ -3507,7 +3507,7 @@ $('.reset_form').on('click',function(){
     $(document).on('change','.check_state',function () {
       $('.check_state').not(this).prop('checked', false);
       if($(this).is(':checked')){
-        $('.test-name').addClass('list_active');
+        //$('.test-name').addClass('list_active');
         check_data = $(this).next('.check_stateid').val();
         $('.check_table').find('.districtstates_id').find("input[value="+check_data+"]").parents('tr').show();
         $('.check_table').find('.districtstates_id').not("input[value="+check_data+"]").parents('tr').hide();
