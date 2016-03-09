@@ -936,7 +936,7 @@ $(document).ready(function () {
           var key = theEvent.keyCode || theEvent.which;
           key = String.fromCharCode(key);
           if (key.length == 0) return;
-          var regex = /^[0-9.:\b]+$/;
+          var regex = /^[0-9.:\b\t]+$/;
           if (!regex.test(key)) {
               theEvent.returnValue = false;
               if (theEvent.preventDefault) theEvent.preventDefault();
@@ -1971,7 +1971,10 @@ $('.reset_form').on('click',function(){
           $('.clone_content:last select').next().next().remove();
           $('.clone_content:last input').next().next().next().remove();   
           e.preventDefault();
-          // alert('please fill all the fields');
+          if($('.clone_content:last').children().find('select, input[type="text"]').hasClass('custom_error')){
+            $("span .custom_error").hide();
+            $(".custom_error").removeClass("custom_error");
+          }
         }
         else{
         $('.clone_content:last').children().find('select, input[type="text"]').next().removeClass('custom_error');
@@ -1979,8 +1982,8 @@ $('.reset_form').on('click',function(){
         nextElement($('.clone_content:last'));
         $('.clone_content:last').attr('id','parameter_count'+id);
        }
-    }); 
-
+    });    
+    
     $(".reset_form,.test_submit_act").on('click', function() {
       $("span .custom_error").hide();
       $(".custom_error").removeClass("custom_error");
@@ -3683,7 +3686,9 @@ $('.reset_form').on('click',function(){
     //   newElement.find('.bib_update').removeAttr('name').attr('name','athlete_bib'+id).val('');dob_update
     //   newElement.appendTo($(".clone_schedule_update_content"));
     // });
-
+    
+    $('.check_table tbody tr').not(':first').hide();
+    // $('.athletes_table tbody tr').not(':first').hide();
 
     var st_list = [];
     $('.check_statename').each(function(){

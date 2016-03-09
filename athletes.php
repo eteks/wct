@@ -132,8 +132,7 @@
 						  </select>
 					</div>
 					<div class="col-md-9 schedule_btn">
-						<!-- <button type="button" class="btn btn-primary align_right clear add_athletes_act">Submit</button> -->
-						
+						<!-- <button type="button" class="btn btn-primary align_right clear add_athletes_act">Submit</button> -->			
 						<input type="submit" class="btn btn-primary test-submit clear add_athletes_act" value="Submit">
 						<input type="reset" class="btn btn-primary clear" value="Cancel">
 					</div>
@@ -209,7 +208,7 @@
 					        <td class="t_athlete_address"><?php // echo $row['athlete_address']; ?></td> -->
 					        <td><?php echo $row['sports_name']; ?></td>
 					        <td><?php echo $row['athlete_gender']; ?></td>
-					        <td><?php echo $row['athlete_dob']; ?></td>
+					        <td><?php echo date("d/m/Y", strtotime($row['athlete_dob'])); ?></td>
 					        <td><?php echo $row['athlete_address']; ?></td>
 							<td class="popup-edit">
 					        	<span class="edit_state new-edit" onclick="editfunction(<?php echo $row['athlete_id'] ?>,this)"><i class="fa fa-pencil-square-o"></i></span>

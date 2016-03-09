@@ -45,7 +45,7 @@ if(isset($_GET['insert_error'])){
 		<div class="col-xs-12 col-md-12">
 		<!--	<div class="col-md-4 hidden-xs"></div> -->
 			<div class="col-xs-12 col-md-12 align_margin">
-				<form id="test_form" action="functions/test_functions.php" method="post">
+				<form id="test_form" name="test_form_act" action="functions/test_functions.php" method="post">
 					<div class="form-group">
 						<label>Enter Test Name</label><br>
 						<input type="text" class="adjust_width" name="test_name" autocomplete="off" data-validation-error-msg="Please Enter the Test Name" data-validation="required">
