@@ -316,10 +316,10 @@ $(window).resize(function () {
   });
   $(document).delegate('.assign_clone_content_edit .athlete_name','change',function(){
       var j = 0;
-      var main =  $(this);
+      var main_content =  $(this).parents('.assign_clone_content_edit');
       var schedule = $('.create_schedule_update_id').val();
       var category = $('.category_update').val();
-      var athe_id = main.find('.athlete_name').val();
+      var athe_id = $(this).val();
       var currentInput  = $(this).val();
       $.ajax({
            type: "POST",
@@ -329,9 +329,10 @@ $(window).resize(function () {
            success: function(data) {
                 if(data == 'error'){
                     alert('This athelete already assigned another category!');
-                    $('option:selected',main).removeAttr('selected');
-                    main.find('.dob').val('');
-                    main.find('.mobile').val('');
+                    $('option:selected',main_content).removeAttr('selected');
+
+                    main_content.find('.dob').val('');
+                    main_content.find('.mobile').val('');
                 }
           }
        });
@@ -1425,6 +1426,7 @@ $('.reset_form').on('click',function(){
                      </td></tr> ";
                   //$('.parameter_type_table tr:first').after(html);
                   document.parameter_type_form.reset();
+                  alert('Parameter Type Inserted Successfully!');
                   location.reload();
                 }
                 else{
@@ -2733,7 +2735,7 @@ $('.reset_form').on('click',function(){
                         select_element.addClass('error_range');
                         select_parameter_element.addClass('error_range');
                         select_element.prev('.error_icon').html("<i class='fa fa-exclamation-circle error-font'></i>");
-                       
+
                       }
                     });
 
@@ -2859,7 +2861,7 @@ $('.reset_form').on('click',function(){
     //     }
     // });
 
-    $('.edit_assign_schedule').click(function() {
+    $(document).delegate('.edit_assign_schedule', 'click', function(event) {
         var assign_schedule_id = $(this).attr('data-schedule');
         var assign_category_id = $(this).attr('data-category');
 
@@ -2873,16 +2875,17 @@ $('.reset_form').on('click',function(){
            success: function(data) {
                //alert(JSON.stringify(data));
                $('.schedule_update').val(data[0].createschedule_name);
+               $('.schedule_update_id').val(data[0].createschedule_id);
                $('.category_update option[value="'+data[0].assigncategory_id+'"]').attr('selected','selected');
-               $('.clone_schedule_update:first .athlete_name1 option[value="'+data[0].assignathlete_id+'"]').attr('selected','selected');
-               $('.clone_schedule_update:first .dob_update').val(data[0].athlete_dob);
+              //alert($('.clone_schedule_update:first').html());
+               $('.clone_schedule_update .athlete_name1 option[value="'+data[0].assignathlete_id+'"]').attr('selected','selected');
+               $('.clone_schedule_update .dob_update').val(data[0].athlete_dob);
                //$('.clone_schedule_update:first .assign_athelete_count_edit').val(1);
-               $('.clone_schedule_update:first .custom-combobox-input').val(data[0].athlete_name);
-               $('.clone_schedule_update:first .mobile_update').val(data[0].athlete_mobile);
-               $('.clone_schedule_update:first .athlete_bib').val(data[0].assignbib_number);
+               $('.clone_schedule_update .custom-combobox-input').val(data[0].athlete_name);
+               $('.clone_schedule_update .mobile_update').val(data[0].athlete_mobile);
+               $('.clone_schedule_update .athlete_bib').val(data[0].assignbib_number);
                //$('.clone_schedule_update:first .assing_schedule_update_id').val(data[0].assignschedule_id);
-               $('.clone_schedule_update:first .create_schedule_update_id').val(data[0].createschedule_id);
-
+               $('.clone_schedule_update .create_schedule_update_id').val(data[0].createschedule_id);
                var cnt = 0;
                $.each(data, function(i){
                    if(cnt!=i){
@@ -2890,7 +2893,6 @@ $('.reset_form').on('click',function(){
                        var last_id = parseInt($('.clone_schedule_update:first .assign_athelete_count_edit').val());
                        var newElement = $('.clone_schedule_update:first').clone();
                        var id = i+1;
-
                        test_id = id;
                        newElement.find('.assign_athelete_count_edit').val(id);
                        newElement.find('.athlete_name option:selected').removeAttr('selected');
@@ -2903,7 +2905,7 @@ $('.reset_form').on('click',function(){
                        newElement.find('.mobile_update').val(data[i].athlete_mobile);
                        newElement.find('.custom-combobox:nth-child(3)').remove();
                        newElement.appendTo($(".clone_schedule_update_content"));
-                       id++;
+                       //id++;
                    }
                    //cnt++;
                });
@@ -3433,7 +3435,7 @@ $('.reset_form').on('click',function(){
     $(document).on('change','.check_list',function () {
       $('.check_list').not(this).prop('checked', false);
       if($(this).is(':checked')){
-        $('.test-name').addClass('list_active');
+        //$('.test-name').addClass('list_active');
         check_data = $(this).siblings('.check_data').val();
         $('.check_table').find("input[value="+check_data+"]").parents('tr').show();
         $('.check_table').find('.check_id').not("input[value="+check_data+"]").parents('tr').hide();
@@ -3441,12 +3443,13 @@ $('.reset_form').on('click',function(){
       else{
         $('.check_table tr').show();
       }
+
     });
 
     $(document).on('change','.check_state',function () {
       $('.check_state').not(this).prop('checked', false);
       if($(this).is(':checked')){
-        $('.test-name').addClass('list_active');
+        //$('.test-name').addClass('list_active');
         check_data = $(this).next('.check_stateid').val();
         $('.check_table').find('.districtstates_id').find("input[value="+check_data+"]").parents('tr').show();
         $('.check_table').find('.districtstates_id').not("input[value="+check_data+"]").parents('tr').hide();

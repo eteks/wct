@@ -134,6 +134,7 @@ if(isset($_GET['update_success'])){
 								<div class="form-group">
 									  <label for="sel1" class="popup_label">Select Schedule Name</label>
 									  <input type="text" class="form-control adjust_width classic schedule_update box-width" name="Schedule" data-validation-error-msg="Please Select Name of the Schedule" data-validation="required" disabled />
+									  <input type="hidden" class="schedule_update_id" value="" />
 								</div>
 								<div class="form-group">
 									  <label for="sel1" class="popup_label">Select Category Name</label>
