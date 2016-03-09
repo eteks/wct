@@ -936,7 +936,7 @@ $(document).ready(function () {
           var key = theEvent.keyCode || theEvent.which;
           key = String.fromCharCode(key);
           if (key.length == 0) return;
-          var regex = /^[0-9.:\b]+$/;
+          var regex = /^[0-9.:\b\t]+$/;
           if (!regex.test(key)) {
               theEvent.returnValue = false;
               if (theEvent.preventDefault) theEvent.preventDefault();
@@ -3683,7 +3683,9 @@ $('.reset_form').on('click',function(){
     //   newElement.find('.bib_update').removeAttr('name').attr('name','athlete_bib'+id).val('');dob_update
     //   newElement.appendTo($(".clone_schedule_update_content"));
     // });
-
+    
+    $('.check_table tbody tr').not(':first').hide();
+    // $('.athletes_table tbody tr').not(':first').hide();
 
     var st_list = [];
     $('.check_statename').each(function(){
