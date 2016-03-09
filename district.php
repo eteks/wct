@@ -71,7 +71,7 @@
 								<div class="tip_triangle"></div>
 							</i>
 						</div>
-						<div class="col-md-12 padding_zero">
+						<div class="form-group col-md-12 padding_zero">
 							<input type="submit" class="btn btn-primary clear add_district_act" name="district" value="Submit">
 						</div>
 						<!-- <button type="button" class="btn btn-primary align_right clear add_district_act" name="district">Submit</button> -->
