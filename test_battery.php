@@ -122,8 +122,8 @@ if(isset($_GET['duplicate'])){
 									foreach( $data as $eachrecord ) {
 									 ?>
 									<span class="test-name">
-										<input type="checkbox" name="test" value="test" class="check_test" id="check-select">
-										<input type="text" name="test" data-id ="<?php echo $eachrecord ['testbattery_id']; ?>" value="<?php echo $eachrecord ['testbattery_name']; ?>" class="list_edit test_battery_name_hover input_wrap">
+										<input type="checkbox" name="test" value="test" class="check_test test_battery_name_hover_check" id="check-select" data-id ="<?php echo $eachrecord ['testbattery_id']; ?>" >
+										<input type="text" name="test" value="<?php echo $eachrecord ['testbattery_name']; ?>" class="list_edit test_battery_name_hover input_wrap">
 										<span class="test-alter">
 											<i class="fa fa-floppy-o save_item save_test_battery_name"></i>
 											<i class="fa fa-pencil-square-o edit_item"></i>

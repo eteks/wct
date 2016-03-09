@@ -373,7 +373,7 @@ $(document).ready(function () {
     }
 });
   package_menu();
-  
+
   $('.add_createschedule_act,.edit_createschedule_act,.add_athletes_act,.edit_athletes_act').on('click', function(){
      $('.day, .month, .year').attr('data-validation', 'required');
     });
@@ -397,8 +397,8 @@ $(document).ready(function () {
                              //alert(data[i].test_name);
                              $('.test-list').append(
                              '<span class="test-name">\
-                                 <input type="checkbox" name="test" value="test" class="check_test" id="check-select">\
-                                 <input type="text" data-id ="'+data[i].test_id+'" name="test" value="'+data[i].test_name+'" class="list_edit test_name_hover input_wrap" disabled>\
+                                 <input type="checkbox" name="test" value="test" class="check_test test_name_hover_check" id="check-select" data-id ="'+data[i].test_id+'" >\
+                                 <input type="text" name="test" value="'+data[i].test_name+'" class="list_edit test_name_hover input_wrap" disabled>\
                                  <span class="test-alter">\
                                      <i class="fa fa-floppy-o save_item edit_save_button"></i>\
                                      <i class="fa fa-pencil-square-o edit_item "></i>\
@@ -435,8 +435,8 @@ $(document).ready(function () {
                              //alert(data[i].test_name);
                              $('.test-list').append(
                              '<span class="test-name">\
-                                 <input type="checkbox" name="test" value="test" class="check_test" id="check-select">\
-                                 <input type="text" data-id ="'+data[i].test_id+'" name="test" value="'+data[i].test_name+'" class="list_edit test_name_hover input_wrap" disabled>\
+                                 <input type="checkbox" name="test" value="test" class="check_test test_name_hover_check" id="check-select"  data-id ="'+data[i].test_id+'">\
+                                 <input type="text" name="test" value="'+data[i].test_name+'" class="list_edit test_name_hover input_wrap" disabled>\
                                  <span class="test-alter">\
                                      <i class="fa fa-floppy-o save_item edit_save_button"></i>\
                                      <i class="fa fa-pencil-square-o edit_item "></i>\
@@ -480,8 +480,8 @@ $(document).ready(function () {
                                //alert(data[i].test_name);
                                $('.test-list').append(
                                '<span class="test-name">\
-                                   <input type="checkbox" name="test" value="test" class="check_test" id="check-select">\
-                                   <input type="text" name="test" data-id ="'+data[i].testbattery_id+'" value="'+data[i].testbattery_name+'" class="list_edit test_battery_name_hover input_wrap">\
+                                   <input type="checkbox" name="test" value="test" class="check_test test_battery_name_hover_check" id="check-select"  data-id ="'+data[i].testbattery_id+'">\
+                                   <input type="text" name="test" value="'+data[i].testbattery_name+'" class="list_edit test_battery_name_hover input_wrap">\
                                    <span class="test-alter">\
                                        <i class="fa fa-floppy-o save_item save_test_battery_name"></i>\
                                        <i class="fa fa-pencil-square-o edit_item"></i>\
@@ -520,8 +520,8 @@ $(document).ready(function () {
                                //alert(data[i].test_name);
                                $('.test-list').append(
                                '<span class="test-name">\
-                                   <input type="checkbox" name="test" value="test" class="check_test" id="check-select">\
-                                   <input type="text" name="test" data-id ="'+data[i].testbattery_id+'" value="'+data[i].testbattery_name+'" class="list_edit test_battery_name_hover input_wrap">\
+                                   <input type="checkbox" name="test" value="test" class="check_test test_battery_name_hover_check" id="check-select" data-id ="'+data[i].testbattery_id+'">\
+                                   <input type="text" name="test"  value="'+data[i].testbattery_name+'" class="list_edit test_battery_name_hover input_wrap">\
                                    <span class="test-alter">\
                                        <i class="fa fa-floppy-o save_item save_test_battery_name"></i>\
                                        <i class="fa fa-pencil-square-o edit_item"></i>\
@@ -649,7 +649,10 @@ $(document).ready(function () {
       });
 
   });
-    $(document).delegate('.test_name_hover', 'mouseover', function(event) {
+    $(document).on('change','.test_name_hover_check',function(event) {
+        //alert($(this).attr('data-id'));
+
+      if(this.checked) {
         //alert($(this).attr('data-id'));
          $('#test_table tbody').empty();
         var test_id = $(this).attr('data-id');
@@ -747,10 +750,12 @@ $(document).ready(function () {
                  }
              }
         });
+    }
     });
-    $(document).delegate('.test_battery_name_hover', 'mouseover', function(event) {
+    $(document).on('change','.test_battery_name_hover_check', function(event) {
         //alert($(this).attr('data-id'));
          //$('#test_battery_table tbody').empty();
+         if(this.checked){
         var test_battery_id = $(this).attr('data-id');
         $.ajax({
              type: "POST",
@@ -795,6 +800,7 @@ $(document).ready(function () {
 
              }
         });
+    }
     });
   // $('input:checkbox').change(function(){
   //   if($(this).is(":checked")) {
@@ -1929,13 +1935,13 @@ $('.reset_form').on('click',function(){
        });
       }
     });
-  
+
     // var current_id = 1;
-    // $('.parameter_btn').click(function(){   
-          
+    // $('.parameter_btn').click(function(){
+
     //     if($('.clone_content:last').find('.parameter_name').val() == ''){
     //         $('.clone_content:last .param_name_error').addClass('custom_error');
-    //         $('.clone_content:last .param_name_error').next().next().remove();                  
+    //         $('.clone_content:last .param_name_error').next().next().remove();
     //     }
     //     else{
     //         $('.clone_content:last .param_name_error').removeClass('custom_error');
@@ -1971,7 +1977,7 @@ $('.reset_form').on('click',function(){
         {
           $('.clone_content:last').children().find('select, input[type="text"]').next().addClass('custom_error');
           $('.clone_content:last select').next().next().remove();
-          $('.clone_content:last input').next().next().next().remove();   
+          $('.clone_content:last input').next().next().next().remove();
           e.preventDefault();
           if($('.clone_content:last').children().find('select, input[type="text"]').hasClass('custom_error')){
             $("span .custom_error").hide();
@@ -1985,7 +1991,7 @@ $('.reset_form').on('click',function(){
         $('.clone_content:last').attr('id','parameter_count'+id);
        }
     });
-        
+
     $(".reset_form,.test_submit_act").on('click', function() {
       $("span .custom_error").hide();
       $(".custom_error").removeClass("custom_error");
@@ -1996,7 +2002,7 @@ $('.reset_form').on('click',function(){
       var submitOK = true;
       $('#test_form').find("select").each(function() {
             if ($(this).val() == "") {
-                  $('.clone_content:last').children().find('select, input[type="text"]').next().addClass('custom_error'); 
+                  $('.clone_content:last').children().find('select, input[type="text"]').next().addClass('custom_error');
                   submitOK = false;
                   return false;  // breaks out of the each
            }
@@ -2018,7 +2024,7 @@ $('.reset_form').on('click',function(){
     $('.add_createschedule_act,.edit_createschedule_act,.add_athletes_act,.edit_athletes_act').on('click', function(){
      $('.day, .month, .year').attr('data-validation', 'required');
     });
- 
+
     function nextElement(element){
         var last_id = parseInt(element.find('.parameter_count').val());
         var newElement = element.clone();
@@ -2951,9 +2957,19 @@ $('.reset_form').on('click',function(){
            dataType:'json',
            success: function(data) {
                //alert(JSON.stringify(data));
+               var assign_id = data[0].assigncategory_id;
                $('.schedule_update').val(data[0].createschedule_name);
                $('.schedule_update_id').val(data[0].createschedule_id);
-               $('.category_update option[value="'+data[0].assigncategory_id+'"]').attr('selected','selected');
+               $.ajax({
+                    type: "POST",
+                    url: "functions/assign_schedule_function.php?cate_list=true",
+                    data:{'id':data[0].createschedule_id,'assign_id':data[0].assigncategory_id},
+                    cache: false,
+                    success: function(data) {
+                        $('.category_update').empty().append("<option value=''>Select Category Name</option>"+data);
+                   }
+                });
+                //alert(data[0].assigncategory_id);
               //alert($('.clone_schedule_update:first').html());
                $('.clone_schedule_update .athlete_name1 option[value="'+data[0].assignathlete_id+'"]').attr('selected','selected');
                $('.clone_schedule_update .dob_update').val(data[0].athlete_dob);
@@ -2963,6 +2979,8 @@ $('.reset_form').on('click',function(){
                $('.clone_schedule_update .athlete_bib').val(data[0].assignbib_number);
                //$('.clone_schedule_update:first .assing_schedule_update_id').val(data[0].assignschedule_id);
                $('.clone_schedule_update .create_schedule_update_id').val(data[0].createschedule_id);
+               //$('.category_update option[value="'+data[0].assigncategory_id+'"]').attr('selected','selected');
+
                var cnt = 0;
                $.each(data, function(i){
                    if(cnt!=i){
@@ -3705,7 +3723,7 @@ $('.reset_form').on('click',function(){
     //   newElement.find('.bib_update').removeAttr('name').attr('name','athlete_bib'+id).val('');dob_update
     //   newElement.appendTo($(".clone_schedule_update_content"));
     // });
-    
+
     $('.check_table tbody tr').not(':first').hide();
     // $('.athletes_table tbody tr').not(':first').hide();
 
