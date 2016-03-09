@@ -1971,7 +1971,10 @@ $('.reset_form').on('click',function(){
           $('.clone_content:last select').next().next().remove();
           $('.clone_content:last input').next().next().next().remove();   
           e.preventDefault();
-          // alert('please fill all the fields');
+          if($('.clone_content:last').children().find('select, input[type="text"]').hasClass('custom_error')){
+            $("span .custom_error").hide();
+            $(".custom_error").removeClass("custom_error");
+          }
         }
         else{
         $('.clone_content:last').children().find('select, input[type="text"]').next().removeClass('custom_error');
@@ -1979,8 +1982,8 @@ $('.reset_form').on('click',function(){
         nextElement($('.clone_content:last'));
         $('.clone_content:last').attr('id','parameter_count'+id);
        }
-    }); 
-
+    });    
+    
     $(".reset_form,.test_submit_act").on('click', function() {
       $("span .custom_error").hide();
       $(".custom_error").removeClass("custom_error");
