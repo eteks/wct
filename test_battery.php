@@ -189,7 +189,7 @@ if(isset($_GET['duplicate'])){
 
 						</div>
 			        </td>
-			        <td class="test-list test-battery selected_test">Selected Test<i class="fa fa-angle-down down_font"></i>
+			        <td class="test-list test-battery">Selected Test<i class="fa fa-angle-down down_font"></i>
 			        	<div class="hover-list hover-test">
 			        	<span class="hover_title_test">Selected Test</span>
 						<div class="selected_test">

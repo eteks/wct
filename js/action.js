@@ -314,7 +314,41 @@ $(window).resize(function () {
         //alert($(this).parents('.assign_clone_content').find('date_assign dob').val('').html());
     }
   });
-
+  $(document).delegate('.assign_clone_content_edit .athlete_name','change',function(){
+      var j = 0;
+      var main =  $(this);
+      var schedule = $('.create_schedule_update_id').val();
+      var category = $('.category_update').val();
+      var athe_id = main.find('.athlete_name').val();
+      var currentInput  = $(this).val();
+      $.ajax({
+           type: "POST",
+           url: "functions/athletes_functions.php?athelete_check=true",
+           data:{'sche':schedule,'cate':category,'athe':athe_id},
+           cache: false,
+           success: function(data) {
+                if(data == 'error'){
+                    alert('This athelete already assigned another category!');
+                    $('option:selected',main).removeAttr('selected');
+                    main.find('.dob').val('');
+                    main.find('.mobile').val('');
+                }
+          }
+       });
+    $(".assign_clone_content_edit .athlete_name").each(function(index) {
+      if(currentInput === $(this).val()) {
+          j++;
+      }
+    });
+    if(j=='2'){
+        alert('Already Exists!');
+        //$(this).val('');
+        $('option:selected',this).removeAttr('selected');
+        $(this).parents('.assign_clone_content').find('.dob').val('');
+        $(this).parents('.assign_clone_content').find('.mobile').val('');
+        //alert($(this).parents('.assign_clone_content').find('date_assign dob').val('').html());
+    }
+  });
 
 $(document).ready(function () {
 
@@ -1156,25 +1190,7 @@ $('.reset_form').on('click',function(){
 	//    $(this).siblings('li').toggleClass('active');
 	// });
 
-  $(".submenu_list li").hide();
-    // $('.master-holder').click(function(){
-    //   $(".master-list li").show();
-    //   $(".transaction-list li").hide();
-    // });
-    // $('.transaction-holder').click(function(){
-    //   $(".transaction-list li").show();
-    //   $(".master-list li").hide();
-    // });
-    // $('.report-holder').click(function(){
-    //   $(".master-list li").hide();
-    //   $(".transaction-list li").hide();
-    // });
-    // $('.master-list').mouseleave(function(){
-    //  $(".master-list li").fadeOut(1000);
-    // });
-    // $('.transaction-list').mouseleave(function(){
-    //  $(".transaction-list li").fadeOut(1000);
-    // });
+    $('.submenu_list li').hide();
     $('.master-list li').click(function(e){
       e.stopPropagation();
     });
@@ -1202,9 +1218,8 @@ $('.reset_form').on('click',function(){
     });
 
 
-    $('master-list li a').click(function(){
-      $(this).addClass('clr');
-    });
+
+
 
 	// Autocomplete results for states list while add
 	var states_list = [];
@@ -1303,11 +1318,11 @@ $('.reset_form').on('click',function(){
          });
    });
 
-  $(document).on('focus','.districts',function(e){
-      $(this).autocomplete({
-      source: district_list,
-      });
-  });
+  // $(document).on('focus','.districts',function(e){
+  //     $(this).autocomplete({
+  //     source: district_list,
+  //     });
+  // });
 
     $('.sports_form').submit(function(e) {
       e.preventDefault();
@@ -1816,7 +1831,7 @@ $('.reset_form').on('click',function(){
        }
        else if (window.location.href.indexOf("parameter_unit.php") !== -1){
            //alert('dsfsdfds');
-            var form_data = {'delete_id':$(this).attr('data-id')};
+            var form_data = {'delete_id':del_id};
             $.ajax({
                  type: "POST",
                  url: "functions/parameter_typefunction.php?deletedata=true",
@@ -2053,46 +2068,49 @@ $('.reset_form').on('click',function(){
     }
     var test_id = 1;
     $('.edit_assign_schedule_add_btn').click(function(){
-        nextElement4($('.assign_clone_content_edit:last'));
-    });
-
-    function nextElement4(element){
+        var element = $('.assign_clone_content_edit:last');
         var last_id = parseInt(element.find('.assign_athelete_count_edit').val());
         //alert(last_id);
         var newElement = element.clone();
         var id = last_id+1;
         test_id = id;
+        //alert(newElement.find('.athlete_name option:selected').html());
         newElement.find('.assign_athelete_count_edit').val(id);
-        newElement.find('.athlete_name').removeAttr('name').attr('name', 'athlete_name'+id).removeClass('class name');
+        newElement.find('.athlete_name').removeAttr('name').attr('name', 'athlete_name'+id);
+        newElement.find('.athlete_name option:selected').removeAttr('selected');
         newElement.find('.athlete_bib').removeAttr('name').attr('name', 'athlete_bib'+id).val('');
         newElement.find('.dob').val('');
+        newElement.find('.create_schedule_update_id').removeAttr('name').attr('name', 'create_schedule_update_id'+id);
         newElement.find('.mobile').val('');
-        newElement.find('#combobox1').combobox({
-            select: function (event, ui) {
-                var ath_id = $(this).val();
-                $.ajax({
-                   type: "POST",
-                   url: "functions/athletes_functions.php?get_ath=true",
-                   data: {'ath_id':ath_id},
-                   cache: false,
-                   dataType:'json',
-                   success: function(html) {
-                      // alert(html.athlete_dob);
-                      var res = html.athlete_dob.split('-');
-                      var new_date = res[2]+'/'+res[1]+'/'+res[0];
-                        newElement.find('.dob').val(new_date).attr('disabled', 'disabled');
-                        //alert(newElement.html());
-                        newElement.find('.mobile').val(html.athlete_mobile).attr('disabled', 'disabled');
-                        newElement.find('.athlete_bib').val('');
-
-                   }
-               });
-            }
-        });
+        // newElement.find('#combobox1').combobox({
+        //     select: function (event, ui) {
+        //
+        //         var ath_id = $(this).val();
+        //         //alert(ath_id);
+        //         $.ajax({
+        //            type: "POST",
+        //            url: "functions/athletes_functions.php?get_ath=true",
+        //            data: {'ath_id':ath_id},
+        //            cache: false,
+        //            dataType:'json',
+        //            success: function(html) {
+        //               //alert(html.athlete_dob);
+        //               var res = html.athlete_dob.split('-');
+        //               var new_date = res[2]+'/'+res[1]+'/'+res[0];
+        //                 newElement.find('.dob_update').val(new_date);
+        //                 //alert(new_date);
+        //                 //alert(newElement.html());
+        //                 newElement.find('.mobile_update').val(html.athlete_mobile).attr('disabled', 'disabled');
+        //                 newElement.find('.athlete_bib').val('');
+        //
+        //            }
+        //        });
+        //     }
+        // });
         newElement.find('.custom-combobox:nth-child(3)').remove();
         newElement.appendTo($(".assign_clone_content_edit_holder"));
 
-    }
+    });
     var dist_id = 1;
     $('.district_add').click(function(){
         nextElement2($('.district_clone_content:last'));
@@ -2718,6 +2736,7 @@ $('.reset_form').on('click',function(){
         }
       });
       if(res){
+           $('.result_error_content').html('');
           var test_ar = [];
           var form_data = $('[name=result_form]').serialize();
           $('.result_createscheduleid').val($('.resultcreateschedule_act option:selected').val());
@@ -2744,10 +2763,12 @@ $('.reset_form').on('click',function(){
                                 <input type='hidden' name='result_parameterunit' class='result_parameterunit' value="+obj[i].parameter_unit+">\
                                 <input type='hidden' name='result_parameterformat' class='result_parameterformat' value="+obj[i].parameter_format+">\
                                 <input type='hidden' name='result_ranges' class='result_ranges' value="+ranges+">\
+                                <td class='error_icon'></td>\
                                 <td class='result_test_name'>"+obj[i].test_name+"</td>\
                                 <td class='result_parameter_name'>"+obj[i].parameter_name+"</td>\
                                 <td><input type='text' class='assign_border enter_result' name='enter_result'><br><span class='enter_result_error'></span></td>\
                                 <td><span class='result_error' name='result_error'>Enter the result in " +obj[i].parameter_unit+ " with "+obj[i].parameter_format+" formats</span></td>\
+                                <td></td>\
                                </tr>";
                     }
                     else{
@@ -2758,6 +2779,7 @@ $('.reset_form').on('click',function(){
                                 <input type='hidden' name='result_parameterunit' class='result_parameterunit' value="+obj[i].parameter_unit+">\
                                 <input type='hidden' name='result_parameterformat' class='result_parameterformat' value="+obj[i].parameter_format+">\
                                 <input type='hidden' name='result_ranges' class='result_ranges' value="+ranges+">\
+                                <td class='error_icon'></td>\
                                 <td class='result_test_name'>"+obj[i].test_name+"</td>\
                                 <td class='result_parameter_name'>"+obj[i].parameter_name+"</td>\
                                 <td><input type='text' class='assign_border enter_result' name='enter_result'><br><span class='enter_result_error'></span></td>\
@@ -2770,13 +2792,19 @@ $('.reset_form').on('click',function(){
                     test_data = $.unique(test_ar);
                     $.each(test_data, function(i,val){
                       select_element = $('.result_table').find(".result_test_name:contains("+val+"):first");
-                      select_ranges = select_element.prev('.result_ranges').val();
+                      select_ranges = select_element.siblings('.result_ranges').val();
                       select_test = select_element.text();
+                      select_parameter_element = select_element.next('.result_parameter_name');
                       select_parameter = select_element.next('.result_parameter_name').text();
                       if(select_ranges == '[]'){
-                        error_html = "<span class='result_table_error custom_error'>Please assign range for test " +select_test+ " and parameter " +select_parameter+ "</span><br>";
-                        $('.result_error_content').append(error_html);
-                        $('.result_error_content').show();
+                        $('.note_range').show();
+                        // error_html = "<span class='result_table_error custom_error'>Please assign range for test " +select_test+ " and parameter " +select_parameter+ "</span><br>";
+                        // $('.result_error_holder').append(error_html);
+                        // $('.result_error_content').show();
+                        select_element.addClass('error_range');
+                        select_parameter_element.addClass('error_range');
+                        select_element.prev('.error_icon').html("<i class='fa fa-exclamation-circle error-font'></i>");
+                       
                       }
                     });
 
@@ -2923,7 +2951,7 @@ $('.reset_form').on('click',function(){
                $('.clone_schedule_update:first .custom-combobox-input').val(data[0].athlete_name);
                $('.clone_schedule_update:first .mobile_update').val(data[0].athlete_mobile);
                $('.clone_schedule_update:first .athlete_bib').val(data[0].assignbib_number);
-               $('.clone_schedule_update:first .assing_schedule_update_id').val(data[0].assignschedule_id);
+               //$('.clone_schedule_update:first .assing_schedule_update_id').val(data[0].assignschedule_id);
                $('.clone_schedule_update:first .create_schedule_update_id').val(data[0].createschedule_id);
 
                var cnt = 0;
@@ -2936,34 +2964,14 @@ $('.reset_form').on('click',function(){
 
                        test_id = id;
                        newElement.find('.assign_athelete_count_edit').val(id);
+                       newElement.find('.athlete_name option:selected').removeAttr('selected');
                        newElement.find('.athlete_name option[value="'+data[i].assignathlete_id+'"]').attr('selected','selected');
                        newElement.find('.athlete_name').removeAttr('name').attr('name', 'athlete_name'+id);
-                       newElement.find('.assing_schedule_update_id').removeAttr('name').attr('name', 'assing_schedule_update_id'+id).val(data[i].assignschedule_id);
+                      // newElement.find('.assing_schedule_update_id').removeAttr('name').attr('name', 'assing_schedule_update_id'+id).val(data[i].assignschedule_id);
                        newElement.find('.create_schedule_update_id').removeAttr('name').attr('name', 'create_schedule_update_id'+id).val(data[i].createschedule_id);
                        newElement.find('.athlete_bib').removeAttr('name').attr('name', 'athlete_bib'+id).val(data[i].assignbib_number);
                        newElement.find('.dob_update').val(data[i].athlete_dob);
                        newElement.find('.mobile_update').val(data[i].athlete_mobile);
-                       newElement.find('#combobox1').combobox({
-                           select: function (event, ui) {
-                               var ath_id = $(this).val();
-                               $.ajax({
-                                  type: "POST",
-                                  url: "functions/athletes_functions.php?get_ath=true",
-                                  data: {'ath_id':ath_id},
-                                  cache: false,
-                                  dataType:'json',
-                                  success: function(html) {
-                                      //alert(html.athlete_dob);
-                                      var res = html.athlete_dob.split('-');
-                                      var new_date = res[2]+'/'+res[1]+'/'+res[0];
-                                       newElement.find('.dob').val(new_date);
-                                       //alert(newElement.html());
-                                       newElement.find('.mobile').val(html.athlete_mobile);
-                                       newElement.find('.athlete_bib').val('');
-                                  }
-                              });
-                           }
-                       });
                        newElement.find('.custom-combobox:nth-child(3)').remove();
                        newElement.appendTo($(".clone_schedule_update_content"));
                        id++;
@@ -2974,7 +2982,27 @@ $('.reset_form').on('click',function(){
            }
        });
     });
-
+    $(document).delegate('.athlete_name_update', 'change', function(event) {
+        var newElement= $(this).parents('.assign_clone_content_edit');
+        var ath_id = $(this).val();
+        //alert(ath_id);
+        $.ajax({
+           type: "POST",
+           url: "functions/athletes_functions.php?get_ath=true",
+           data: {'ath_id':ath_id},
+           cache: false,
+           dataType:'json',
+           success: function(html) {
+               //alert(html.athlete_dob);
+               var res = html.athlete_dob.split('-');
+               var new_date = res[2]+'/'+res[1]+'/'+res[0];
+                newElement.find('.dob').val(new_date);
+                //alert(newElement.html());
+                newElement.find('.mobile').val(html.athlete_mobile);
+                newElement.find('.athlete_bib').val('');
+           }
+       });
+    });
     //Jquery and Ajax functionality for Result form
     var athletes_list = [];
     var athlete_json = [];
@@ -3001,6 +3029,7 @@ $('.reset_form').on('click',function(){
                     // options += '<option value="'+obj[i].athlete_id+'">'+obj[i].athlete_name+'</option>';
                     $('.result_athletename,.result_athletedate,.result_athletemobile,.result_athletebib').val('');
                     $('.result_table tbody tr:not(:last)').remove();
+                    $('.note_range').hide();
                   });
                   // $('.result_athletename').html(options);
                   // alert(JSON.stringify(athlete_json));
@@ -3067,11 +3096,11 @@ $('.reset_form').on('click',function(){
         ranges = JSON.parse(ranges);
         value=$(this).val();
         if(((parameter_type == "time") && (value!=''))||((parameter_type == "Time") && (value!=''))){
-          if((parameter_format=="HH:MM:SS")&&(!(/^(?:[0-5][0-9]):(?:[0-5][0-9]):[0-5][0-9]$/).test(value))){
+          if((parameter_format=="HH:MM:SS")&&(!(/^(?:[0-2][0-4]|[0-1][0-9]):(?:[0-5][0-9]):[0-5][0-9]$/).test(value))){
               $(this).siblings('.enter_result_error').addClass('error').text('Please Check time format').show();
               status=1;
               // break;
-            } else if((parameter_format=="HH:MM")&&(!(/^(?:[0-5][0-9]):[0-5][0-9]$/).test(value))){
+            } else if((parameter_format=="HH:MM")&&(!(/^(?:[0-2][0-4]|[0-1][0-9]):[0-5][0-9]$/).test(value))){
               $(this).siblings('.enter_result_error').addClass('error').text('Please Check time format').show();
               status=1;
               // break;
@@ -3081,7 +3110,7 @@ $('.reset_form').on('click',function(){
               status=1;
               // break;
             }
-            else if((parameter_format=="HH:MM:SS:MSS")&&(!(/^(?:[0-2][0-4]):(?:[0-5][0-9]):(?:[0-5][0-9]):([0-9][0-9]|[0-9][0-9][0-9]|[0-1][0][0][0])$/).test(value))){
+            else if((parameter_format=="HH:MM:SS:MSS")&&(!(/^(?:[0-2][0-4]|[0-1][0-9]):(?:[0-5][0-9]):(?:[0-5][0-9]):([0-9][0-9]|[0-9][0-9][0-9]|[0-1][0][0][0])$/).test(value))){
               $(this).siblings('.enter_result_error').addClass('error').text('Please Check time format').show();
               status=1;
               // break;
@@ -3194,7 +3223,7 @@ $('.reset_form').on('click',function(){
         res = true;
         if($('.enter_result_error').hasClass('error')){
           res = false;
-        } else if($('.result_error_content span').hasClass('custom_error')){
+        } else if($(this).parents().siblings('.result_table').find('td').hasClass('error_range')){
           res = false;
         }
         else{
@@ -3380,7 +3409,7 @@ $('.reset_form').on('click',function(){
         if(($('.range_parameter_type').val().toLowerCase()=="time") && (value!='')){
           if($('.range_parameter_format').val()=="HH:MM:SS"){
             // regex=/^(?:(?:([01]?\d|2[0-3]):)?([0-5]?\d):)?([0-5]?\d)$/;
-            if(!(/^(?:[0-2][0-4]):(?:[0-5][0-9]):[0-5][0-9]$/).test(value)){
+            if(!(/^(?:[0-2][0-4]|[0-1][0-9]):(?:[0-5][0-9]):[0-5][0-9]$/).test(value)){
               // alert("check time format");
               $(this).next().next('.hided').addClass('custom_error').text('Please Check time format').show();
             }
@@ -3389,7 +3418,7 @@ $('.reset_form').on('click',function(){
             }
           }
           else if($('.range_parameter_format').val()=="HH:MM"){
-            if(!(/^(?:[0-2][0-4]):[0-5][0-9]$/).test(value)){
+            if(!(/^(?:[0-2][0-4]|[0-1][0-9]):[0-5][0-9]$/).test(value)){
               $(this).next().next('.hided').addClass('custom_error').text('Please Check time format').show();
             }
             else{
@@ -3405,7 +3434,7 @@ $('.reset_form').on('click',function(){
             }
           }
           else if($('.range_parameter_format').val()=="HH:MM:SS:MSS"){
-            if(!(/^(?:[0-2][0-4]):(?:[0-5][0-9]):(?:[0-5][0-9]):([0-9][0-9]|[0-9][0-9][0-9]|[0-1][0][0][0])$/).test(value)){
+            if(!(/^(?:[0-2][0-4]|[0-1][0-9]):(?:[0-5][0-9]):(?:[0-5][0-9]):([0-9][0-9]|[0-9][0-9][0-9]|[0-1][0][0][0])$/).test(value)){
               $(this).next().next('.hided').addClass('custom_error').text('Please Check time format').show();
             }
             else{
@@ -3475,6 +3504,7 @@ $('.reset_form').on('click',function(){
     $(document).on('change','.check_list',function () {
       $('.check_list').not(this).prop('checked', false);
       if($(this).is(':checked')){
+        $('.test-name').addClass('list_active');
         check_data = $(this).siblings('.check_data').val();
         $('.check_table').find("input[value="+check_data+"]").parents('tr').show();
         $('.check_table').find('.check_id').not("input[value="+check_data+"]").parents('tr').hide();
@@ -3487,12 +3517,25 @@ $('.reset_form').on('click',function(){
     $(document).on('change','.check_state',function () {
       $('.check_state').not(this).prop('checked', false);
       if($(this).is(':checked')){
+        $('.test-name').addClass('list_active');
         check_data = $(this).next('.check_stateid').val();
         $('.check_table').find('.districtstates_id').find("input[value="+check_data+"]").parents('tr').show();
         $('.check_table').find('.districtstates_id').not("input[value="+check_data+"]").parents('tr').hide();
       }
       else{
         $('.check_table tr').show();
+      }
+    });
+
+    $(document).on('change','.check_parametertype',function () {
+      $('.check_parametertype').not(this).prop('checked', false);
+      if($(this).is(':checked')){
+        check_data = $(this).next().attr('data-id');
+        $('.state_table').find('.parametertype_id').find("input[value="+check_data+"]").parents('tr').show();
+        $('.state_table').find('.parametertype_id').not("input[value="+check_data+"]").parents('tr').hide();
+      }
+      else{
+        $('.state_table tr').show();
       }
     });
 

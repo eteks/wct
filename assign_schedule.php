@@ -153,7 +153,7 @@ if(isset($_GET['update_success'])){
 										<input type="hidden" class="assign_athelete_count_edit" value="1" />
 										<div class="form-group col-md-12">
 											<div class="col-md-12 combo--align--popup align_atheletes_schedules">
-												<select class="form-control name_align_popup fl box-width athlete_name athlete_name_update athlete_name1" placeholder="Name" name="athlete_name1" id="combobox1" data-validation-error-msg="Please Select Athlete" data-validation="required">
+														<select class="form-control name_align_popup fl box-width athlete_name athlete_name_update athlete_name1" placeholder="Name" name="athlete_name1"  data-validation-error-msg="Please Select Athlete" data-validation="required"><!--id="combobox1"-->
 													<option value="">Athletes</option>
 													<?php
 														$data = $athlete->athleteSelect1();
@@ -163,19 +163,19 @@ if(isset($_GET['update_success'])){
 													<?php } ?>
 												</select>
 											</div>
-											<div class="col-md-12">
+											<div class="col-md-12" style="position: relative; top: 20px;">
 									      		<!-- <input type="text" class="form-control schedule-name fl" id="name" placeholder="Name" name="name" data-validation-error-msg="Please Enter the name of the Athelete" data-validation="required"> -->
-									      		<input type="text" class="form-control bib_popup fl dob_update dob" id="name" placeholder="Date" disabled>
+									      		<input type="text" class="form-control bib_popup fl dob_update dob"  placeholder="Date" value="" disabled>
 									    	</div>
 									    </div>
 									    <div class="form-group col-md-12">
 									    	<div class="col-md-12">
-									      		<input type="text" class="form-control schedule-name fl mobile_update mobile" id="name" placeholder="Mobile no" disabled>
+									      		<input type="text" class="form-control schedule-name fl mobile_update mobile" placeholder="Mobile no" value="" disabled>
 									      	</div>
 									      	<div class="col-md-12">
-									      		<input type="text" class="form-control bib_popup athlete_bib popup_bib fl bib_update" id="name" placeholder="BIB NO" name="athlete_bib1" autocomplete="off" data-validation-error-msg="Please Enter the BIBO NO" data-validation="number">
+									      		<input type="text" class="form-control bib_popup athlete_bib popup_bib fl bib_update"  placeholder="BIB NO" name="athlete_bib1" autocomplete="off" data-validation-error-msg="Please Enter the BIBO NO" data-validation="number">
 											</div>
-											<input type="hidden" class="assing_schedule_update_id" name="assing_schedule_update_id1" value="" />
+											<!-- <input type="hidden" class="assing_schedule_update_id" name="assing_schedule_update_id1" value="" /> -->
 											<input type="hidden" class="create_schedule_update_id" name="create_schedule_update_id1" value="" />
 									    </div>
 									</div>
@@ -260,7 +260,7 @@ if(isset($_GET['update_success'])){
 			           success: function(html) {
 						   var res = html.athlete_dob.split('-');
 						   var new_date = res[2]+'/'+res[1]+'/'+res[0];
-							$('.clone_schedule_update_content .clone_schedule_update:first').find('.dob').val(html.athlete_dob);
+							$('.clone_schedule_update_content .clone_schedule_update:first').find('.dob').val(new_date);
 							$('.clone_schedule_update_content .clone_schedule_update:first').find('.mobile').val(html.athlete_mobile);
 			           }
 			       });
