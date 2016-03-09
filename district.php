@@ -24,10 +24,11 @@
 	.paging-nav {
     display: none;
 	}
-	#ui-id-1{
+	/*#ui-id-1{
 		width: 152px !important;
-	}
+	}*/
 </style>
+
 		<div class="container align_center left_align align_height">
 			<span class="sports">DISTRICT</span>
 		</div><!--end container-->
