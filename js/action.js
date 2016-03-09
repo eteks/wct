@@ -1322,11 +1322,11 @@ $('.reset_form').on('click',function(){
          });
    });
 
-  // $(document).on('focus','.districts',function(e){
-  //     $(this).autocomplete({
-  //     source: district_list,
-  //     });
-  // });
+    $(document).on('focus','.districts',function(e){
+        $(this).autocomplete({
+        source: district_list,
+        });
+    });
 
     $('.sports_form').submit(function(e) {
       e.preventDefault();

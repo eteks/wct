@@ -1261,7 +1261,7 @@ input[type=radio]:checked + label:before {
 .assign-add-button {
     bottom: 65px;
     float: right !important;
-    left: 10px;
+    left: 52px;
     position: relative;
 }
 .assign-scroll {
