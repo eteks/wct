@@ -58,7 +58,7 @@
 					</div>
 				    <div class="form-group">
 				    	<input type="submit" class="btn btn-primary test-submit clear" value="Submit">
-				    	<input type="reset" class="btn btn-primary clear result_clear" value="Cancel">						
+						<input type="reset" class="btn btn-primary clear result_clear" value="Cancel">
 				    </div>
 				<!--	<div class="col-md-9">
 

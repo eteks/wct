@@ -88,7 +88,7 @@ $createschedule = new createscheduleFunction();
 								</div>
 							</div>
 							<input type="submit" class="btn btn-primary test-submit clear report_sumbit" name="submit" value="Submit">
-							<input type="reset" class="btn btn-primary clear" value="Cancel">							
+							<input type="reset" class="btn btn-primary clear" value="Cancel">
 						</form>
 					</div>
 				</div>

@@ -132,9 +132,9 @@
 						  </select>
 					</div>
 					<div class="col-md-9 schedule_btn">
-						<!-- <button type="button" class="btn btn-primary align_right clear add_athletes_act">Submit</button> -->
+						<!-- <button type="button" class="btn btn-primary align_right clear add_athletes_act">Submit</button> -->			
 						<input type="submit" class="btn btn-primary test-submit clear add_athletes_act" value="Submit">
-						<input type="reset" class="btn btn-primary clear" value="Cancel">						
+						<input type="reset" class="btn btn-primary clear" value="Cancel">
 					</div>
 				</form>
 				</div>

@@ -235,7 +235,7 @@
 					</div>
 					<div class="col-md-9 schedule_btn">
 						<input type="submit" class="btn btn-primary test-submit clear add_createschedule_act" value="Submit">
-						<input type="reset" class="btn btn-primary clear reset_form" value="Cancel">						
+						<input type="reset" class="btn btn-primary clear reset_form" value="Cancel">
 					</div>
 				</form>
 			</div>
