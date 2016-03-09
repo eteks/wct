@@ -38,7 +38,7 @@
 		<div class="col-xs-12 col-md-12">
 		<!--	<div class="col-md-4 hidden-xs"></div> -->
 			<div class="col-xs-12 col-md-7 align_margin">
-				<form name="create_schedule_form" class="createschedule_form">
+				<form name="create_schedule_form" class="createschedule_form" id="cs_form">
 				<input type="hidden" class="statesid" name="edit_schedule_id">
 					<div class="form-group">
 						<label>Schedule Name</label><br>
@@ -46,7 +46,7 @@
 					</div>
 					<div class="form-group">
 					  <label for="battey_name">Select Test Battery Name</label>
-					  <select class="form-control classic adjust_width" id="battey_name" name="schedule_testbattery" data-validation-error-msg="Please Select the name of the Test Battery Name" data-validation="required">
+					  <select class="form-control classic adjust_width" id="battey_name" name="schedule_testbattery" autocomplete="off" data-validation-error-msg="Please Select the name of the Test Battery Name" data-validation="required">
 					  	<option value="">Select Test Battery Name</option>
 					    <?php
 	                        $query = $testbattery->testbatterySelect();
@@ -227,7 +227,7 @@
 						<textarea class="area_width" name="schedule_venue" data-validation-error-msg="please Enter the name of the Venue" data-validation="required"></textarea>
 					</div>
 					<div class="col-md-9 schedule_btn">
-						<input type="reset" class="btn btn-primary clear" value="Cancel">
+						<input type="reset" class="btn btn-primary clear reset_form" value="Cancel">
 						<input type="submit" class="btn btn-primary test-submit clear add_createschedule_act" value="Submit">
 					</div>
 				</form>

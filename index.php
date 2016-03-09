@@ -57,7 +57,7 @@ if(isset($_SESSION['login'])){
 				<div class="user-content col-md-5 col-xs-9">
 				    <div class="form-group">
 						<label for="email" class="email_txt">Email Address</label>
-						<input type="email" class="form-control" id="email" placeholder="Enter email" name="email" data-validation-error-msg="Please Enter your Email Address" data-validation="required" data-validation="email">
+						<input type="email" class="form-control" id="email" placeholder="Enter email" name="email" autocomplete="off" data-validation-error-msg="Please Enter your Email Address" data-validation="required" data-validation="email">
 				    </div>
 				    <div class="form-group">
 						<label for="pwd" class="pwd_txt">Password</label>
