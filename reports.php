@@ -28,7 +28,7 @@ $createschedule = new createscheduleFunction();
 				foreach($test1 as $testvalue){
 					fputcsv($output, array('Schedule Name',$testvalue['createschedule_name']));
 					fputcsv($output, array('Test Battery name',$testvalue['testbattery_name']));
-					fputcsv($output, array('Date',$testvalue['createschedule_date']));
+					fputcsv($output, array('Date',date("d/m/Y", strtotime($testvalue['createschedule_date']))));
 					fputcsv($output, array('Time',$testvalue['createschedule_time']));
 					fputcsv($output, array('Vanue',$testvalue['createschedule_venue']));
 					break;

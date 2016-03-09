@@ -1982,11 +1982,27 @@ $('.reset_form').on('click',function(){
         nextElement($('.clone_content:last'));
         $('.clone_content:last').attr('id','parameter_count'+id);
        }
-    });    
-    
+    });
+        
     $(".reset_form,.test_submit_act").on('click', function() {
       $("span .custom_error").hide();
       $(".custom_error").removeClass("custom_error");
+    });
+
+    $('#test_form .test_submit_act').click(function(e) {
+      e.preventDefault();  // don't submit it
+      var submitOK = true;
+      $('#test_form').find("select").each(function() {
+            if ($(this).val() == "") {
+                  $('.clone_content:last').children().find('select, input[type="text"]').next().addClass('custom_error'); 
+                  submitOK = false;
+                  return false;  // breaks out of the each
+           }
+      });
+      if (submitOK) {
+            $('.clone_content:last').children().find('select, input[type="text"]').next().removeClass('custom_error');
+            $('#test_form').submit();
+      }
     });
 
     $(".reset_form").on('click', function() {
