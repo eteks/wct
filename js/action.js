@@ -316,10 +316,10 @@ $(window).resize(function () {
   });
   $(document).delegate('.assign_clone_content_edit .athlete_name','change',function(){
       var j = 0;
-      var main =  $(this);
+      var main_content =  $(this).parents('.assign_clone_content_edit');
       var schedule = $('.create_schedule_update_id').val();
       var category = $('.category_update').val();
-      var athe_id = main.find('.athlete_name').val();
+      var athe_id = $(this).val();
       var currentInput  = $(this).val();
       $.ajax({
            type: "POST",
@@ -329,9 +329,10 @@ $(window).resize(function () {
            success: function(data) {
                 if(data == 'error'){
                     alert('This athelete already assigned another category!');
-                    $('option:selected',main).removeAttr('selected');
-                    main.find('.dob').val('');
-                    main.find('.mobile').val('');
+                    $('option:selected',main_content).removeAttr('selected');
+
+                    main_content.find('.dob').val('');
+                    main_content.find('.mobile').val('');
                 }
           }
        });
@@ -888,7 +889,7 @@ $(document).ready(function () {
     $('.hover-test').hide();
   });
 
-  $("input").attr('maxlength','50');
+  $("input").attr('maxlength','50').attr('autocomplete', 'off');;
 
  	// state_center_align();
   // delete_center_align();
@@ -1438,6 +1439,7 @@ $('.reset_form').on('click',function(){
                      </td></tr> ";
                   //$('.parameter_type_table tr:first').after(html);
                   document.parameter_type_form.reset();
+                  alert('Parameter Type Inserted Successfully!');
                   location.reload();
                 }
                 else{
@@ -1482,7 +1484,7 @@ $('.reset_form').on('click',function(){
       }
     });
 
-    $('.delete_state').on('click',function(){
+    $(document).delegate('.delete_state','click',function(){
         $('#delete_id').val($(this).attr("data-value"));
         // // $('.popup_fade').show();
         // // $('.delete_div, .close_btn').show();
@@ -1982,11 +1984,27 @@ $('.reset_form').on('click',function(){
         nextElement($('.clone_content:last'));
         $('.clone_content:last').attr('id','parameter_count'+id);
        }
-    });    
-    
+    });
+        
     $(".reset_form,.test_submit_act").on('click', function() {
       $("span .custom_error").hide();
       $(".custom_error").removeClass("custom_error");
+    });
+
+    $('#test_form .test_submit_act').click(function(e) {
+      e.preventDefault();  // don't submit it
+      var submitOK = true;
+      $('#test_form').find("select").each(function() {
+            if ($(this).val() == "") {
+                  $('.clone_content:last').children().find('select, input[type="text"]').next().addClass('custom_error'); 
+                  submitOK = false;
+                  return false;  // breaks out of the each
+           }
+      });
+      if (submitOK) {
+            $('.clone_content:last').children().find('select, input[type="text"]').next().removeClass('custom_error');
+            $('#test_form').submit();
+      }
     });
 
     $(".reset_form").on('click', function() {
@@ -2794,7 +2812,7 @@ $('.reset_form').on('click',function(){
                         select_element.addClass('error_range');
                         select_parameter_element.addClass('error_range');
                         select_element.prev('.error_icon').html("<i class='fa fa-exclamation-circle error-font'></i>");
-                       
+
                       }
                     });
 
@@ -2920,7 +2938,7 @@ $('.reset_form').on('click',function(){
     //     }
     // });
 
-    $('.edit_assign_schedule').click(function() {
+    $(document).delegate('.edit_assign_schedule', 'click', function(event) {
         var assign_schedule_id = $(this).attr('data-schedule');
         var assign_category_id = $(this).attr('data-category');
 
@@ -2934,16 +2952,17 @@ $('.reset_form').on('click',function(){
            success: function(data) {
                //alert(JSON.stringify(data));
                $('.schedule_update').val(data[0].createschedule_name);
+               $('.schedule_update_id').val(data[0].createschedule_id);
                $('.category_update option[value="'+data[0].assigncategory_id+'"]').attr('selected','selected');
-               $('.clone_schedule_update:first .athlete_name1 option[value="'+data[0].assignathlete_id+'"]').attr('selected','selected');
-               $('.clone_schedule_update:first .dob_update').val(data[0].athlete_dob);
+              //alert($('.clone_schedule_update:first').html());
+               $('.clone_schedule_update .athlete_name1 option[value="'+data[0].assignathlete_id+'"]').attr('selected','selected');
+               $('.clone_schedule_update .dob_update').val(data[0].athlete_dob);
                //$('.clone_schedule_update:first .assign_athelete_count_edit').val(1);
-               $('.clone_schedule_update:first .custom-combobox-input').val(data[0].athlete_name);
-               $('.clone_schedule_update:first .mobile_update').val(data[0].athlete_mobile);
-               $('.clone_schedule_update:first .athlete_bib').val(data[0].assignbib_number);
+               $('.clone_schedule_update .custom-combobox-input').val(data[0].athlete_name);
+               $('.clone_schedule_update .mobile_update').val(data[0].athlete_mobile);
+               $('.clone_schedule_update .athlete_bib').val(data[0].assignbib_number);
                //$('.clone_schedule_update:first .assing_schedule_update_id').val(data[0].assignschedule_id);
-               $('.clone_schedule_update:first .create_schedule_update_id').val(data[0].createschedule_id);
-
+               $('.clone_schedule_update .create_schedule_update_id').val(data[0].createschedule_id);
                var cnt = 0;
                $.each(data, function(i){
                    if(cnt!=i){
@@ -2951,7 +2970,6 @@ $('.reset_form').on('click',function(){
                        var last_id = parseInt($('.clone_schedule_update:first .assign_athelete_count_edit').val());
                        var newElement = $('.clone_schedule_update:first').clone();
                        var id = i+1;
-
                        test_id = id;
                        newElement.find('.assign_athelete_count_edit').val(id);
                        newElement.find('.athlete_name option:selected').removeAttr('selected');
@@ -2964,7 +2982,7 @@ $('.reset_form').on('click',function(){
                        newElement.find('.mobile_update').val(data[i].athlete_mobile);
                        newElement.find('.custom-combobox:nth-child(3)').remove();
                        newElement.appendTo($(".clone_schedule_update_content"));
-                       id++;
+                       //id++;
                    }
                    //cnt++;
                });
@@ -3502,6 +3520,7 @@ $('.reset_form').on('click',function(){
       else{
         $('.check_table tr').show();
       }
+
     });
 
     $(document).on('change','.check_state',function () {
