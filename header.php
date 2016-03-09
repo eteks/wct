@@ -22,7 +22,7 @@
     <script type="text/javascript" src="js/action.js"></script>
 </head>
 <body>
-  <nav class="navbar navbar-inverse header_bg">
+  <div class="navbar navbar-inverse header_bg">
       <div class="container header_content">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -43,7 +43,7 @@
             </ul>
         </div><!--collapse-->
       </div><!--header_content-->
-  </nav>
+  </div>
 <?php if(isset($_SESSION['login'])) { ?>
     <div class="container-fluid menu_list">
       <ul class="nav nav-justified navbar-default nav_holder">

@@ -24,7 +24,7 @@
           minLength: 0,
           source: $.proxy( this, "_source" )
         })
-        .attr("required","true")
+        .attr("data-validation","required")
         .tooltip({
           tooltipClass: "ui-state-highlight"
         });

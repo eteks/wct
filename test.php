@@ -48,20 +48,20 @@ if(isset($_GET['insert_error'])){
 				<form id="test_form" action="functions/test_functions.php" method="post">
 					<div class="form-group">
 						<label>Enter Test Name</label><br>
-						<input type="text" class="adjust_width" name="test_name" data-validation-error-msg="Please Enter the Test Name" data-validation="required">
+						<input type="text" class="adjust_width" name="test_name" autocomplete="off" data-validation-error-msg="Please Enter the Test Name" data-validation="required">
 					</div>
 					<div class="parameter_holder1">
 						<div class="clone_content" id="param_counter1">
 							<div class="form-group col-md-11 schedule_test">
 							<div class="form-group col-md-5">
 								<label>Enter Parameter Name</label><br>
-								<input type="text" class="adjust_width parameter_name" name="parameter_name1" data-validation-error-msg="Please Enter the Parameter Name" data-validation="required">
+								<input type="text" class="adjust_width parameter_name" name="parameter_name1" autocomplete="off" data-validation-error-msg="Please Enter the Parameter Name" data-validation="required">
 								<span class="hided param_name_error">Please Enter the parameter name</span>
 								<input type="hidden" class="parameter_count" value="1" />
 							</div>
 
 							<div class="form-group col-md-2 align-area">
-									<select class="form-control classic type_align fl parameter_type parameter_type_add" id="type" name="type1" data-validation-error-msg="Please Select the Type of the Parameter" data-validation="required">
+									<select class="form-control classic type_align fl parameter_type parameter_type_add" id="type" name="type1" data-validation-error-msg="Please Enter the parameter Type" data-validation="required">
 										<option value="">
 											Type
 										</option>
@@ -82,13 +82,13 @@ if(isset($_GET['insert_error'])){
 									<span class="hided param_type_error">Please Select the type</span>
 								</div>
 								<div class="form-group col-md-2 align-area">
-									<select class="form-control classic type_align fl parameter_unit paremeter_unit_add" id="unit" name="unit1" data-validation-error-msg="Please Select the Unit of the Parameter" data-validation="required">
+									<select class="form-control classic type_align fl parameter_unit paremeter_unit_add" id="unit" name="unit1" data-validation-error-msg="Please Enter the Parameter Unit" data-validation="required">
 									<option value="">Unit</option>
 									</select>
 									<span class="hided param_unit_error">Please Select the unit</span>
 								</div>
 								<div class="form-group col-md-2 align-area">
-									<select class="form-control classic type_align fl parameter_format" id="format" name="format1" data-validation-error-msg="Please Select the Format of the Parameter" data-validation="required">
+									<select class="form-control classic type_align fl parameter_format" id="format" name="format1" data-validation-error-msg="Please Enter the Parameter Format" data-validation="required">
 										<option value="">Format</option>
 									</select>
 									<span class="hided param_format_error">Please Select the format</span>
@@ -112,9 +112,8 @@ if(isset($_GET['insert_error'])){
 
 					<input type="hidden" name="test_add" value="1">
 					<div class="col-md-9 schedule_btn">
-						
 						<input type="submit" class="btn btn-primary clear test-submit test_submit_act" value="Submit">
-						<input type="reset" value="Cancel" class="btn btn-primary clear" maxlength="50">
+						<input type="reset" value="Cancel" class="btn btn-primary clear reset_form" maxlength="50">
 					</div>
 				</form>
 			</div>

@@ -76,11 +76,11 @@
 										<input type="checkbox" name="test" value="test" class="check_test check_parametertype" id="check-select">
 										<input type="text" name="test" data-id ="<?php echo $eachrecord ['parametertype_id']; ?>" value="<?php echo $eachrecord ['parametertype_name']; ?>" class="list_edit parametertype_name_hover input_wrap" disabled>
 										<span class="test-alter">
-											<i class="fa fa-floppy-o save_item paramsedit_save_button"></i>
-											<i class="fa fa-pencil-square-o edit_item "></i>
+											<i class="fa fa-floppy-o save_item"></i>
+											<i class="fa fa-pencil-square-o edit_item"></i>
 											<i class="fa fa-trash-o delete_item"></i>
 										</span><!--test-alter-->
-									</span><!--test-name-->
+									</span><!--test-name-->									
 									<div class="delete_div delete_search">
 							            <!-- <code class="close_btn cancel_btn"> </code>  -->
 							              <div class="del_title">
@@ -172,7 +172,7 @@
 					  <?php $i++; } ?>
 				    </tbody>
 				  </table>
-				</div>
+				</div>	
 			</div><!--col-md-12-->
 
 	</div><!-- end  container-->

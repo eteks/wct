@@ -57,7 +57,7 @@ if(isset($_GET['duplicate'])){
 				<form method="post" action="functions/test_battery_functions.php" id="test_battery_form">
 					<div class="form-group">
 						<label>Enter the name of the Test Battery</label><br>
-						<input type="text" class="adjust_width" name="test_battery_name" data-validation-error-msg="please Enter the name of the Test Battery" data-validation="required">
+						<input type="text" class="adjust_width" name="test_battery_name" autocomplete="off" data-validation-error-msg="please Enter the name of the Test Battery" data-validation="required">
 					</div>
 					<div class="form-group">
 						  <label for="sel1">Select Sport</label>
