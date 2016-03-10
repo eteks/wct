@@ -659,6 +659,7 @@ $(document).ready(function () {
         //alert($(this).attr('data-id'));
 
       if(this.checked) {
+        $('.test_name_hover_check').not(this).prop('checked', false);
         //alert($(this).attr('data-id'));
          $('#test_table tbody').empty();
         var test_id = $(this).attr('data-id');
@@ -762,20 +763,21 @@ $(document).ready(function () {
         //alert($(this).attr('data-id'));
          //$('#test_battery_table tbody').empty();
          if(this.checked){
-        var test_battery_id = $(this).attr('data-id');
-        $.ajax({
-             type: "POST",
-             url: "functions/test_battery_functions.php?find_test_battery_sports=true",
-             data:{'id':test_battery_id},
-             cache: false,
-             dataType:'json',
-             success: function(data) {
-                //alert(JSON.stringify(data));
-                $('.test_battery_sports_name_grid').text(data[0].sports_name);
-                $('.test_battery_delete_button').attr('data-id', data[0].testbattery_id).attr('data-delete','test_battery_attribute');
-                $('.edit_test_battery').attr('data-value',data[0].testbattery_id);
-             }
-        });
+          $('.test_battery_name_hover_check').not(this).prop('checked', false);
+          var test_battery_id = $(this).attr('data-id');
+          $.ajax({
+               type: "POST",
+               url: "functions/test_battery_functions.php?find_test_battery_sports=true",
+               data:{'id':test_battery_id},
+               cache: false,
+               dataType:'json',
+               success: function(data) {
+                  //alert(JSON.stringify(data));
+                  $('.test_battery_sports_name_grid').text(data[0].sports_name);
+                  $('.test_battery_delete_button').attr('data-id', data[0].testbattery_id).attr('data-delete','test_battery_attribute');
+                  $('.edit_test_battery').attr('data-value',data[0].testbattery_id);
+               }
+          });
         $.ajax({
              type: "POST",
              url: "functions/test_battery_functions.php?find_test_battery_tests=true",
