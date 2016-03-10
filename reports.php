@@ -30,7 +30,7 @@ $createschedule = new createscheduleFunction();
 					fputcsv($output, array('Test Battery name',$testvalue['testbattery_name']));
 					fputcsv($output, array('Date',date("d/m/Y", strtotime($testvalue['createschedule_date']))));
 					fputcsv($output, array('Time',$testvalue['createschedule_time']));
-					fputcsv($output, array('Vanue',$testvalue['createschedule_venue']));
+					fputcsv($output, array('Venue',$testvalue['createschedule_venue']));
 					break;
 				}
 				fputcsv($output, array('Athlete Name','Athelete DOB','Athlete Mobile Number','Gender','State','District','Taluka','Address','Sports','Category','BIB number','Parameter name','Parameter Result','Paremeter Points','Parameter name','Parameter Result','Paremeter Points','Parameter name','Parameter Result','Paremeter Points','Parameter name','Parameter Result','ParemeterPoints','Parameter name','Parameter Result'));
