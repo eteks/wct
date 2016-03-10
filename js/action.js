@@ -924,9 +924,8 @@ $(document).ready(function () {
     $('.hover-test').hide();
   });
 
-  $("input").attr('maxlength','50').attr('autocomplete', 'off');;
-
- 	// state_center_align();
+  $("input").not('#athletes_mobile1').attr('maxlength','50').attr('autocomplete', 'off');;
+	// state_center_align();
   // delete_center_align();
   login_center_align();
   register_center_align();
@@ -962,7 +961,7 @@ $(document).ready(function () {
 
   // $(document).on('keypress','#mobile,#result_athletemobile,#bib,#result_athletebib,.r_strt,.r_end,.r_point',function(e){
    $(document).on('keypress','#mobile,#result_athletemobile,#bib,#result_athletebib',function(e){
-     if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+     if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)){
                return false;
     }
    });
