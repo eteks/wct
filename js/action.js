@@ -1272,10 +1272,12 @@ $('.reset_form').on('click',function(){
              data: form_data,
              cache: false,
              success: function(data) {
-              var obj = JSON.parse(data);
+              if(data){
+                var obj = JSON.parse(data);
                 $.each(obj, function(i){
                   district_list.push(obj[i]);
                 });
+              }  
              }
          });
    });
@@ -3143,45 +3145,57 @@ $('.reset_form').on('click',function(){
     //       }
     //  });
 
-     $(document).on('blur','.enter_result',function(e){
+ $(document).on('blur','.enter_result',function(e){
         ranges = $(this).parents('tr').find('.result_ranges').val();
         parameter_type = $(this).parents('tr').find('.result_parametertype').val().toLowerCase();
         parameter_unit = $(this).parents('tr').find('.result_parameterunit').val().toLowerCase();
         parameter_format = $(this).parents('tr').find('.result_parameterformat').val().toLowerCase();
         ranges = JSON.parse(ranges);
         value=$(this).val();
+        if (value == ''){
+          $(this).parents('tr').find('.enter_points').text('0');
+        }
         if(((parameter_type == "time") && (value!=''))||((parameter_type == "Time") && (value!=''))){
+          // alert("time");
           if((parameter_format=="hh:mm:ss")&&(!(/^(?:[0-2][0-4]|[0-1][0-9]):(?:[0-5][0-9]):[0-5][0-9]$/).test(value))){
+              // alert("if1");
               $(this).siblings('.enter_result_error').addClass('error').text('Please Check time format').show();
               status=1;
               // break;
             } else if((parameter_format=="hh:mm")&&(!(/^(?:[0-2][0-4]|[0-1][0-9]):[0-5][0-9]$/).test(value))){
+              // alert("if2");
               $(this).siblings('.enter_result_error').addClass('error').text('Please Check time format').show();
               status=1;
               // break;
             }
             else if((parameter_format=="mm:ss")&&(!(/^(?:[0-5][0-9]):[0-5][0-9]$/).test(value))){
+              // alert("if3");
               $(this).siblings('.enter_result_error').addClass('error').text('Please Check time format').show();
               status=1;
               // break;
             }
             else if((parameter_format=="hh:mm:ss:mss")&&(!(/^(?:[0-2][0-4]|[0-1][0-9]):(?:[0-5][0-9]):(?:[0-5][0-9]):([0-9][0-9]|[0-9][0-9][0-9]|[0-1][0][0][0])$/).test(value))){
+              // alert("if4");
               $(this).siblings('.enter_result_error').addClass('error').text('Please Check time format').show();
               status=1;
               // break;
             }
             else if((parameter_format=="mm:ss:mss")&&(!(/^(?:[0-5][0-9]):(?:[0-5][0-9]):([0-9][0-9]|[0-9][0-9][0-9]|[0-1][0][0][0])$/).test(value))){
+              // alert("if5");
               $(this).siblings('.enter_result_error').addClass('error').text('Please Check time format').show();
               status=1;
               // break;
             }
             else if((parameter_format=="ss:mss")&&(!(/^(?:[0-5][0-9]):([0-9][0-9]|[0-9][0-9][0-9]|[0-1][0][0][0])$/).test(value))){
+              // alert("if6");
               $(this).siblings('.enter_result_error').addClass('error').text('Please Check time format').show();
               status=1;
               // break;
             }
             else{
+              // alert("else time");
               if(ranges.length!=0){
+                // alert("if");
                 for (var i = 0; i < ranges.length; i++) {
                 rangestart = ranges[i].range_start;
                 rangeend = ranges[i].range_end;
@@ -3197,6 +3211,7 @@ $('.reset_form').on('click',function(){
                 }
               }
               else{
+                // alert("else");
                 $(this).parents('tr').find('.enter_points').text('0');
                 $(this).siblings('.enter_result_error').removeClass('error').hide();
               }
@@ -3205,6 +3220,7 @@ $('.reset_form').on('click',function(){
 
         }
         else{
+          // alert("else number");
               //Checking entered Result
               if(value!=''){
                 if(value.indexOf(".")==-1){
@@ -3214,6 +3230,7 @@ $('.reset_form').on('click',function(){
                 decimals = value.toString().split(".")[1].length;
               }
               if(ranges.length!=0){
+                // alert("ranges not empty");
                 // status = 0;
                 for (var i = 0; i < ranges.length; i++) {
                   // alert(ranges[i].range_start);
@@ -3241,11 +3258,19 @@ $('.reset_form').on('click',function(){
                     break;
                   }
                   else{
-                    status = 0;
+                    // alert("status");
+                    if(decimals <= parameter_format){
+                       status = 0;
+                       $(this).siblings('.enter_result_error').removeClass('error').hide();
+                    }
+                    else{
+                      $(this).siblings('.enter_result_error').addClass('error').text('Please Check decimal points').show();
+                    }
                   }
                 }
             }
             else{
+              // alert("range empty");
               $(this).parents('tr').find('.enter_points').text('0');
               if(decimals <= parameter_format){
                  $(this).siblings('.enter_result_error').removeClass('error').hide();
@@ -3254,17 +3279,19 @@ $('.reset_form').on('click',function(){
                 $(this).siblings('.enter_result_error').addClass('error').text('Please Check decimal points').show();
               }
             }
-          }
-          // if (parameter_format == 0 || parameter_format == 1){
-          //   if (value.indexOf(".") !== -1 && decimals == 0){
-          //     $(this).siblings('.enter_result_error').addClass('error').text('Please Check decimal points').show();
-          //   }
-          //   else{
-          //     $(this).siblings('.enter_result_error').removeClass('error').hide();
-          //   }
+          // if (value.indexOf(".") !== -1 && decimals == 0){
+          //   $(this).siblings('.enter_result_error').addClass('error').text('Please Check decimal points').show();
           // }
+          // else{
+          //   $(this).siblings('.enter_result_error').removeClass('error').hide();
+          // }
+          }
         }
-        if(status == 0 && value!=''){
+        // if(status == 0 && value!=''){
+        if(status == 0 && status !='' && value != '' && ranges.length!=0){
+          // alert(status);
+          // alert(value);
+          // alert(JSON.stringify(ranges));
           $(this).siblings('.enter_result_error').addClass('error').text('Entered value is not in range').show();
           totalvlaue = $('.total_result').text();
           pointvalue = $(this).parents('tr').find('.enter_points').text();
