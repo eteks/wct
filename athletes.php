@@ -74,7 +74,7 @@
 					</div>
 					<div class="form-group">
       					<label>Mobile Number</label><br>
-      					<input type="text" id="athletes_mobile1" class="adjust_width" name="athlete_mobile" autocomplete="off" data-validation-error-msg="Please Enter the value that must contain 10 numbers" data-validation="length" data-validation-length="10">
+      					<input type="text" id="athletes_mobile1" class="adjust_width" name="athlete_mobile" autocomplete="off" maxlength="10" data-validation="length" data-validation-length="10" data-validation-error-msg="Please Enter the value that must contain 10 numbers">
      				</div>
 					<div class="form-group">
 						  <label for="sel1">Gender</label>

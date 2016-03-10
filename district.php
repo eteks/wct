@@ -39,7 +39,7 @@
 					<form name="district_form" class="districts_form">
 						<div class="form-group col-md-8 padding_zero">
 						  <label for="sel1">Select the State</label>
-						  <select class="form-control adjust_width classic choose_state" id="sel1" name="district_state" data-validation-error-msg="Please Select the name of the State" data-validation="required" autofocus>
+						  <select class="form-control adjust_width classic choose_state" id="sel1" name="district_state">
 						  <option value="">Select the state</option>
 						  <?php
 	                        $query = $statesFunction->statesSelect();
@@ -48,7 +48,7 @@
 	                            <option value="<?php echo $row['states_id']; ?>"><?php echo $row['states_name']; ?></option>
 	                      <?php } ?>
 						  </select>
-						  <!-- <label class="category_text">Please Select the State</label><br> -->
+						  <span class="category_text">Please Select the State</span><br>
 						</div>
 						<div class="col-md-4">
 
@@ -56,10 +56,12 @@
 						<div class="align_margin district_clone">
 							<div class="district_clone_content form-group col-md-8 padding_zero">
 								<label>District</label><br>
+
 								<input type="text" class="districts district_select" name="district_name[]" data-validation-error-msg="Please Enter the name of the District" data-validation="required" autocomplete="off">
+
 								<input type="hidden" class="district_add_for_clone" value="1"/>
 								<span class="add_district_error"></span>
-								<label class="category_text">Please Enter the District</label>
+								<span class="category_text">Please Enter the District</span>
 							</div>
 						</div>
 						<div class="form-group district-add col-md-4 padding_zero">
@@ -74,6 +76,7 @@
 						</div>
 						<div class="form-group col-md-12 padding_zero">
 							<input type="submit" class="btn btn-primary clear add_district_act" name="district" value="Submit">
+							<input type="reset" class="btn btn-primary clear reset_form" value="Cancel">
 						</div>
 						<!-- <button type="button" class="btn btn-primary align_right clear add_district_act" name="district">Submit</button> -->
 					</form>
@@ -167,7 +170,7 @@
 														</div>
 														<div class="form-group">
 															<label>District</label><br>
-															<input type="text" class="districts adjust_popup_width" name="edit_district_name" data-validation-error-msg="Please Enter the name of the District" data-validation="required">
+															<input type="text" class="districts edit_districts adjust_popup_width" name="edit_district_name" data-validation-error-msg="Please Enter the name of the District" data-validation="required">
 															<span class="edit_district_error"></span>
 														</div>
 														<!-- <button type="button" class="btn btn-primary align_right clear edit_district_act" name="district">Submit</button>	 -->

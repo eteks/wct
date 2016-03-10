@@ -1280,7 +1280,7 @@ input[type=radio]:checked + label:before {
     color: #009acc !important;
 }
 .add_district_act{
-    margin-right: 45px !important;
+    margin-right: 2px !important;
 }
 .parameter-submit,.test-submit{
     margin-right: 10px !important;

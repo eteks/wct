@@ -37,7 +37,7 @@
 				<form id="parameter_unit" name="parameter_unit_add">
 					<div class="form-group">
 						  <label for="sel1">Select Parameter Type</label>
-						  <select class="form-control adjust_width classic" id="sel1" name="parametertype"  data-validation-error-msg="Please Select the Type of the Parameter" data-validation="required" autofocus="">
+						  <select class="form-control adjust_width classic" id="sel1" name="parametertype"  data-validation-error-msg="Please Select the Type of the Parameter" data-validation="required">
 
 							<option value="">Select Parameter Type</option>
 							  <?php
@@ -77,7 +77,7 @@
 										<input type="checkbox" name="test" value="test" class="check_test check_parametertype" id="check-select" data-id ="<?php echo $eachrecord ['parametertype_id']; ?>">
 										<input type="text" name="test" data-id ="<?php echo $eachrecord ['parametertype_id']; ?>" value="<?php echo $eachrecord ['parametertype_name']; ?>" class="list_edit parametertype_name_hover input_wrap" disabled>
 										<span class="test-alter">
-											<i class="fa fa-floppy-o save_item"></i>
+											<i class="fa fa-floppy-o save_item paremeter_unit_type_save_btn"></i>
 											<i class="fa fa-pencil-square-o edit_item"></i>
 											<i class="fa fa-trash-o delete_item"></i>
 										</span><!--test-alter-->

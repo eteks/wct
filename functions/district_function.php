@@ -149,6 +149,16 @@ include('configu.php');
 				}
 			}
 		}
+		if(isset($_GET['loaddistrictbystate'])){
+			$search=$_POST['states_name'];
+			$json = array();
+			foreach($DISTRICT as $key => $value) {
+				if($key == $search){
+					array_push($json, $value);
+				}
+			}
+			echo json_encode($json[0]);
+		}
 		// To load district for selected state
 		if(isset($_GET['loaddistrictfromdb'])){
 			$json =array();
