@@ -20,7 +20,7 @@
 						<input type="submit" class="btn btn-primary clear add_states_act" name="states" value="Submit">
 					</form>
 				</div><!--align_margin-->
-				<div class="container table-position">
+				<div class="container table-position col-md-12">
 				  <table class="table state_table">
 				    <thead>
 				      <tr class="row_color">

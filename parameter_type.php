@@ -21,7 +21,7 @@
 					</div>
 				</form>
 			</div>
-			<div class="container table-position align_bottom">
+			<div class="container table-position align_bottom col-md-12">
 			  <table class="table state_table parameter_type_table">
 			    <thead>
 			      <tr class="row_color">

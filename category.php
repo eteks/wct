@@ -20,7 +20,7 @@ $obj = new categoryfunction();
 						<input type="submit" class="btn btn-primary clear category_submit_act" value="Submit">
 					</form>
 				</div>
-				<div class="container table-position">
+				<div class="container table-position col-md-12">
 				  <table class="table" id="category_table">
 				    <thead>
 				      <tr class="row_color">
