@@ -221,4 +221,16 @@ class testfunction{
             echo "succeed";
         }
     }
+    if(isset($_GET['check_parameter'])){
+        include ("../dbconnect.php");
+        $test_id = $_POST['testid'];
+        $paramname = $_POST['param_name'];
+        $sql = mysql_query("select * from wc_test_attribute where test_parameter_type ='".$paramname."'and test_id='".$test_id."'");
+        $count = mysql_num_rows($sql);
+        if($count>0){
+            echo 'error';
+        }else{
+            echo "succeed";
+        }
+    }
  ?>
