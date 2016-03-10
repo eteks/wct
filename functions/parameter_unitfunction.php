@@ -56,7 +56,7 @@ class parameterunitFunction {
     }
     public function parameterunitsearchSelect(){
         $temp_arr = array();
-        $res = mysql_query("select * from wc_parameterunit as pu INNER JOIN wc_parametertype as pt ON pt.parametertype_id=pu.parametertype_id group by pt.parametertype_id")or die(mysql_error());
+        $res = mysql_query("select * from wc_parametertype ORDER BY parametertype_id DESC")or die(mysql_error());
         $count=mysql_num_rows($res);
         while($row = mysql_fetch_array($res)) {
             $temp_arr[] =$row;
@@ -167,14 +167,20 @@ if(isset($_GET['find_params_units'])){
         //include ("../dbconnect.php");
         $temp_arr = array();
         $test_arr = array();
+        $param_arr = array();
         $paramstypeid = $_POST['id'];
         if($paramstypeid!=''){
             $sql = mysql_query("select * from wc_parameterunit inner join wc_parametertype on wc_parameterunit.parametertype_id =wc_parametertype.parametertype_id where wc_parametertype.parametertype_id = '".$paramstypeid."'")or die(mysql_error());
             while($row = mysql_fetch_assoc($sql)) {
                 $test_arr[] =$row;
             }
+            $sql1 = mysql_query("select * from wc_parametertype")or die(mysql_error());
+            while($row1 = mysql_fetch_assoc($sql1)) {
+                $param_arr[] =$row1;
+            }
         }
         $temp_arr['test'] = $test_arr;
+        $temp_arr['param'] = $param_arr;
         print(json_encode($temp_arr));
     }
     if(isset($_GET['deletedata'])){

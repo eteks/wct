@@ -68,7 +68,7 @@ function register_center_align(){
 function package_menu(){
   var dh = $(document).height();
   var wh = $(window).innerHeight() - 34;
-  if ( dh > wh ) {
+  if ( dh >= wh ) {
       $('.footer_txt').css('bottom', "0px");
       $('.footer_txt').addClass('bottom_alignment_footer');
       $('.footer_txt').fadeIn();
@@ -391,6 +391,7 @@ $(document).ready(function () {
                  cache: false,
                  dataType:'json',
                  success: function(data) {
+                     $('.test-list').empty();
                      //alert(data);
                      if(data !=''){
                          $.each(data, function(i){
@@ -480,7 +481,7 @@ $(document).ready(function () {
                                //alert(data[i].test_name);
                                $('.test-list').append(
                                '<span class="test-name">\
-                                   <input type="checkbox" name="test" value="test" class="check_test test_battery_name_hover_check" id="check-select"  data-id ="'+data[i].testbattery_id+'">\
+                                   <input type="checkbox" name="test" value="test" class="check_test tedit_save_button_check" id="check-select"  data-id ="'+data[i].testbattery_id+'">\
                                    <input type="text" name="test" value="'+data[i].testbattery_name+'" class="list_edit test_battery_name_hover input_wrap">\
                                    <span class="test-alter">\
                                        <i class="fa fa-floppy-o save_item save_test_battery_name"></i>\
@@ -694,7 +695,7 @@ $(document).ready(function () {
       										<div class="parameter_holder">\
       											<div class="form-group" style="margin: 0;">\
       												<label class="popup_label">Enter Parameter Name</label><br>\
-      												<input type="text" class="adjust_width test_parameter_name_update" name="parameter_name1" data-validation-error-msg="Please Enter the Parameter Name" data-validation="required" style="width:220px !important;height: 30px;">\
+      												<input type="text" class="adjust_width test_parameter_name_update" name="parameter_name1" data-validation-error-msg="Please Enter the Parameter Name" data-validation="required" style="width:220px !important;height: 30px;" required>\
       											</div>\
       											<div class="form-group col-md-8 test_percentage parameter_type_parent">\
       												<div class="col-md-12" style="padding: 0;">\
@@ -812,8 +813,9 @@ $(document).ready(function () {
   //   }
   // });
   $(document).delegate('.edit_save_button','click',function() {
-      var test_id = $(this).parents('.test-name').find('.list_edit').attr('data-id');
+      var test_id = $(this).parents('.test-name').find('.test_name_hover_check').attr('data-id');
       var test_name = $(this).parents('.test-name').find('.list_edit').val();
+      //alert(test_id);
       $.ajax({
            type: "POST",
            url: "functions/test_functions.php?test_name_update=true",
@@ -829,8 +831,27 @@ $(document).ready(function () {
       });
 
   });
+  $(document).delegate('.paremeter_unit_type_save_btn','click',function() {
+      var test_id = $(this).parents('.test-name').find('.check_parametertype').attr('data-id');
+      var test_name = $(this).parents('.test-name').find('.list_edit').val();
+      //alert(test_id);
+      $.ajax({
+           type: "POST",
+           url: "functions/parameter_unitfunction.php?paramstype_name_update=true",
+           data:{'params_id':test_id,'params_name':test_name},
+           cache: false,
+           success: function(data) {
+              //alert(data);
+              if(data.trim() == 'succeed'){
+                  alert('Parameter updated successfully!');
+                  location.reload();
+              }
+           }
+      });
+
+  });
   $(document).delegate('.save_test_battery_name','click',function() {
-      var test_battery_id = $(this).parents('.test-name').find('.list_edit').attr('data-id');
+      var test_battery_id = $(this).parents('.test-name').find('.test_battery_name_hover_check').attr('data-id');
       var test_battery_name = $(this).parents('.test-name').find('.list_edit').val();
       $.ajax({
            type: "POST",
@@ -972,7 +993,7 @@ $('.reset_form').on('click',function(){
   });
 });
    //Edit popup
-  	$(document.body).delegate('.edit_state','click',function() {
+  	$(document.body).on('click','.edit_state',function() {
         // state_center_align();
         // $('.popup_fade').show();
         // $('.state_div').hide();
@@ -1007,7 +1028,7 @@ $('.reset_form').on('click',function(){
              success: function(data) {
                 //  $('.test_name_update').val(data.test_name);
                 //alert(current_popup.parents('.popup-edit').html());
-                 current_popup.parents('.popup-edit').find('.test_parameter_name_update').val(data.test_parameter_name);
+                 current_popup.parents('.popup-edit').find('.test_parameter_name_update').val(data.test_parameter_name).attr('data-validation-error-msg', 'Please Enter the Parameter Name').attr('data-validation', 'required');
                  current_popup.parents('.popup-edit').find('.parameter_type_update option[value="'+data.test_parameter_type+'"]').attr('selected','selected');
                 // current_popup.parents('.popup-edit').find('.parameter_format_update option[value="'+data.test_parameter_format+'"]').attr('selected','selected');
                  if(data.test_parameter_type.toLowerCase() == 'time'){
@@ -1039,7 +1060,6 @@ $('.reset_form').on('click',function(){
                      var paremeter_unit = data.test_parameter_unit;
                      //alert(paremeter_unit);
                     $.ajax({
-
                          type: "POST",
                          url: "functions/parameter_unitfunction.php?param_unit_for_test_edit=true",
                          data:{'type':data.test_parameter_type},
@@ -1604,7 +1624,7 @@ $('.reset_form').on('click',function(){
        });
       }
     });
-    $('.yes_btn').click(function() {
+    $(document).on('click','.yes_btn',function() {
         var del_id =$('#delete_id').val();
         if (window.location.href.indexOf("category.php") !== -1){
             var form_data = {'category_del':'1','del_id':del_id};
@@ -2368,21 +2388,52 @@ $('.reset_form').on('click',function(){
             cache: false,
             dataType:'json',
             success: function(data) {
-                //alert(JSON.stringify(data.test));
+                //alert(JSON.stringify(data.test[0].parametertype_name));
                 $('#test_table tbody').empty();
-                if(data.test){
+                if(data.test[0]){
                      var param_dynamic = '';
-                //    $.each(data.param, function(i){
-                //         param_dynamic += "<option value='"+data.param[i].parametertype_name+"'>"+data.param[i].parametertype_name+"</option>";
-                //     });
+                   $.each(data.param, function(i){
+                       if(data.test[0].parametertype_name == data.param[i].parametertype_name ){
+                           param_dynamic += "<option value='"+data.param[i].parametertype_id+"' selected>"+data.param[i].parametertype_name+"</option>";
+                       }else{
+                           param_dynamic += "<option value='"+data.param[i].parametertype_id+"'>"+data.param[i].parametertype_name+"</option>";
+                       }
+                    });
                      $.each(data.test, function(i){
                          $('#param_unit_table tbody').append('\
                <tr class=" delete_color">\
            <input type="hidden" value="'+data.test[i].parameterunit_id+'" id="parameterunit_id">\
                  <td>'+data.test[i].parameterunit+'</td>\
                  <td class="popup-edit">\
-                  <span class="edit_state edit_test" data-value="'+data.test[i].parameterunit_id+'" data-test-id="'+data.test[i].parameterunit_id+'"><i class="fa fa-pencil-square-o"></i></span>\
+                  <span class="edit_state edit_parameter_unit" data-value="'+data.test[i].parameterunit_id+'" data-test-id="'+data.test[i].parameterunit_id+'"><i class="fa fa-pencil-square-o"></i></span>\
                   <span class="delete_state" data-value="'+data.test[i].parameterunit_id+'"><i class="fa fa-trash-o"></i></span>\
+                  <div class="paramter_div edit_parameterunit_div popup_hidden">\
+                      <code class="close_btn cancel_btn"> </code>\
+                      <div class="edit_title">\
+                          <span class="del_txt">Edit detail</span>\
+                      </div><!--edit_title-->\
+                      <div class="container state-content col-md-12" style="padding: 0px;">\
+                          <div class="col-xs-12 col-md-12 align_margin">\
+                              <form id="edit_parameter_unit" name="edit_parameter_unit_form">\
+                                  <div class="form-group">\
+                                        <label for="sel1">Select Parameter Type</label>\
+                                        <input type="hidden" class="edit_param_unit_id" name="edit_param_unit_id"  value=""/>\
+                                        <select class="form-control adjust_width adjust_popup_width classic edit_param_type" id="sel1" name="parameter_type" data-validation-error-msg="Please Select the Type of the Parameter" data-validation="required">\
+                                          <option value="">Select Parameter Type</option> \
+                                           '+param_dynamic+' \
+                                        </select>\
+                                  </div>\
+                                  <div class="form-group">\
+                                      <label>Enter Parameter Unit</label><br>\
+                                      <input type="text" class="adjust_width adjust_popup_width edit_param_unit" name="parameter_unit" data-validation-error-msg="Please Enter the Unit of the Parameter" data-validation="required" autocomplete="off">\
+                                  </div>\
+                                  <div class="col-md-12 schedule_btn">\
+                                      <input type="submit" class="btn btn-primary align_right clear edit_parameter_unit_act" value="Submit">\
+                                  </div>\
+                              </form>\
+                          </div>\
+                      </div>\
+                  </div><!--paramter_div-->\
             <div class="delete_div delete_test_div">\
                          <div class="del_title">\
                            <span class="del_txt">DELETE</span>\
@@ -2406,7 +2457,7 @@ $('.reset_form').on('click',function(){
    }
    });
    // / Edit the Parameter Unit module - Start /
-     $(document).delegate('.edit_parameter_unit','click',function(){
+     $(document).on('click','.edit_parameter_unit',function(){
         var test_attr_id = $(this).attr("data-value");
         var test_id = $(this).attr("data-test-id");
         var current_popup = $(this);
@@ -2689,7 +2740,8 @@ $('.reset_form').on('click',function(){
                      });
               }
             });
-    $('.edit_parameter_unit_act').click(function(e){
+    $(document).on('click','.edit_parameter_unit_act',function(e){
+        //alert('dsfdsf');
           e.preventDefault();
           var res = true;
           $(this).parents('#edit_parameter_unit').find('input[type="text"],textarea,select',this).each(function() {
@@ -2987,7 +3039,7 @@ $('.reset_form').on('click',function(){
                $('.schedule_update_id').val(data[0].createschedule_id);
                $.ajax({
                     type: "POST",
-                    url: "functions/assign_schedule_function.php?cate_list=true",
+                    url: "functions/assign_schedule_function.php?cate_list_edit=true",
                     data:{'id':data[0].createschedule_id,'assign_id':data[0].assigncategory_id},
                     cache: false,
                     success: function(data) {
@@ -2997,7 +3049,9 @@ $('.reset_form').on('click',function(){
                 //alert(data[0].assigncategory_id);
               //alert($('.clone_schedule_update:first').html());
                $('.clone_schedule_update .athlete_name1 option[value="'+data[0].assignathlete_id+'"]').attr('selected','selected');
-               $('.clone_schedule_update .dob_update').val(data[0].athlete_dob);
+               var res =data[0].athlete_dob.split('-');
+               var new_date = res[2]+'/'+res[1]+'/'+res[0];
+               $('.clone_schedule_update .dob_update').val(new_date);
                //$('.clone_schedule_update:first .assign_athelete_count_edit').val(1);
                $('.clone_schedule_update .custom-combobox-input').val(data[0].athlete_name);
                $('.clone_schedule_update .mobile_update').val(data[0].athlete_mobile);
@@ -3021,7 +3075,9 @@ $('.reset_form').on('click',function(){
                       // newElement.find('.assing_schedule_update_id').removeAttr('name').attr('name', 'assing_schedule_update_id'+id).val(data[i].assignschedule_id);
                        newElement.find('.create_schedule_update_id').removeAttr('name').attr('name', 'create_schedule_update_id'+id).val(data[i].createschedule_id);
                        newElement.find('.athlete_bib').removeAttr('name').attr('name', 'athlete_bib'+id).val(data[i].assignbib_number);
-                       newElement.find('.dob_update').val(data[i].athlete_dob);
+                       var res =data[i].athlete_dob.split('-');
+                       var new_date = res[2]+'/'+res[1]+'/'+res[0];
+                       newElement.find('.dob_update').val(new_date);
                        newElement.find('.mobile_update').val(data[i].athlete_mobile);
                        newElement.find('.custom-combobox:nth-child(3)').remove();
                        newElement.appendTo($(".clone_schedule_update_content"));
@@ -3329,8 +3385,9 @@ $('.reset_form').on('click',function(){
       $('.total_result').text('');
      });
 
-     $('.edit_parameter_unit').click(function(event) {
+     $(document).on('click','.edit_parameter_unit',function(event) {
          var parameterunit_id = $(this).attr('data-value');
+         //alert('parameterunit_id');
          $.ajax({
               type: "POST",
               url: "functions/parameter_unitfunction.php?getunitdata=true",
