@@ -810,7 +810,7 @@ button, input, optgroup, select, textarea {
 }
 .ui-menu{
     background: hsl(0, 0%, 100%) none repeat scroll 0 0;
-    height: auto;
+    height: 75px;
     left: 499.5px;
     list-style: outside none none;
     overflow-y: scroll;

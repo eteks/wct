@@ -167,7 +167,7 @@
 														</div>
 														<div class="form-group">
 															<label>District</label><br>
-															<input type="text" class="districts adjust_popup_width" name="edit_district_name" data-validation-error-msg="Please Enter the name of the District" data-validation="required">
+															<input type="text" class="districts edit_districts adjust_popup_width" name="edit_district_name" data-validation-error-msg="Please Enter the name of the District" data-validation="required">
 															<span class="edit_district_error"></span>
 														</div>
 														<!-- <button type="button" class="btn btn-primary align_right clear edit_district_act" name="district">Submit</button>	 -->

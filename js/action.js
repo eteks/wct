@@ -8,6 +8,7 @@
 //       var width=$('.delete_div').width();
 //       $('.delete_div').css({'margin-top': -height / 2 + "px", 'margin-left': -width / 2 + "px"});
 // }
+
 function login_center_align(){
       var height=$('.login_div').height();
       var width=$('.login_div').width();
@@ -80,7 +81,7 @@ function package_menu(){
   }
 
 }
-
+var d1_list = [];
 function editfunction(data_id,el){
     if (window.location.href.indexOf("state.php") !== -1){
             $.ajax({
@@ -111,6 +112,19 @@ function editfunction(data_id,el){
               $('[name=edit_district_id]').val(obj[i].district_id);
               $('[name=edit_district_state]').find("option:contains("+obj[i].states_name+")").attr("selected","selected");
               $('[name=edit_district_name]').val(obj[i].district_name);
+               $.ajax({
+                 type: "POST",
+                 url: "functions/district_function.php?loaddistrictbystate=true",
+                 data: {'states_name':obj[i].states_name},
+                 cache: false,
+                 success: function(data) {
+                  d1_list = [];
+                  var data1 = JSON.parse(data);
+                  $.each(data1, function(i){
+                    d1_list.push(data1[i]);
+                  });       
+                 }
+              });
             });
             $('.popup_fade').show();
             $('.district_div, .close_btn').show();
@@ -356,7 +370,6 @@ $(window).load(function() {
 });
 
 $(document).ready(function () {
-
    $(".edit_state").click(function(){
     // get the scollTop (distance scrolled from top)
     var scrollTop = $("table").scrollTop();
@@ -1256,8 +1269,12 @@ $('.reset_form').on('click',function(){
         $('.transaction-list li').hide();
     });
 
-
-
+   // $.makeArray(d1_list);
+  $('.edit_districts').focus(function (e) {
+    $(this).autocomplete({
+      source: d1_list,
+    });
+  });
 
 
 	// Autocomplete results for states list while add
@@ -1283,11 +1300,12 @@ $('.reset_form').on('click',function(){
   });
 
   // Autocomplete results for district list
-  var district_list = [];
-  $('.choose_state').on('change',function () {
-      selected_state = $('.choose_state option:selected').text();
+  // var district_list = [];
+  $('.choose_state,.edit_choose_state').on('change',function () {
+      selected_state = $('option:selected',this).text();
       form_data = {'states_name':selected_state};
-      district_list.length = 0;
+      // district_list.length = 0;
+      d1_list.length = 0;
        $.ajax({
              type: "POST",
              url: "functions/district_function.php?loaddistrict=true",
@@ -1297,7 +1315,8 @@ $('.reset_form').on('click',function(){
               if(data){
                 var obj = JSON.parse(data);
                 $.each(obj, function(i){
-                  district_list.push(obj[i]);
+                  // district_list.push(obj[i]);
+                  d1_list.push(obj[i]);
                 });
               }  
              }
@@ -1361,7 +1380,8 @@ $('.reset_form').on('click',function(){
 
     $(document).on('focus','.districts',function(e){
         $(this).autocomplete({
-        source: district_list,
+        // source: district_list,
+        source: d1_list,
         });
     });
 
@@ -3169,8 +3189,10 @@ $('.reset_form').on('click',function(){
       var obj = athlete_json;
       $.each(obj, function(i){
         if(obj[i].athlete_name == select_name){
+          var res =obj[i].athlete_dob.split('-');
+          var new_date = res[2]+'/'+res[1]+'/'+res[0];
           $('.result_athleteid').val(obj[i].athlete_id).prop("readonly", true);
-          $('.result_athletedate').val(obj[i].athlete_dob).prop("readonly", true);
+          $('.result_athletedate').val(new_date).prop("readonly", true);
           $('.result_athletemobile').val(obj[i].athlete_mobile).prop("readonly", true);
           $('.result_athletebib').val(obj[i].athlete_bibno).prop("readonly", true);
         }
