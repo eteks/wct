@@ -39,7 +39,7 @@
 					<form name="district_form" class="districts_form">
 						<div class="form-group col-md-8 padding_zero">
 						  <label for="sel1">Select the State</label>
-						  <select class="form-control adjust_width classic choose_state" id="sel1" name="district_state" data-validation-error-msg="Please Select the name of the State" data-validation="required" autofocus>
+						  <select class="form-control adjust_width classic choose_state" id="sel1" name="district_state" data-validation-error-msg="Please Select the name of the State" data-validation="required">
 						  <option value="">Select the state</option>
 						  <?php
 	                        $query = $statesFunction->statesSelect();

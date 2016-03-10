@@ -37,7 +37,7 @@
 				<form id="parameter_unit" name="parameter_unit_add">
 					<div class="form-group">
 						  <label for="sel1">Select Parameter Type</label>
-						  <select class="form-control adjust_width classic" id="sel1" name="parametertype"  data-validation-error-msg="Please Select the Type of the Parameter" data-validation="required" autofocus="">
+						  <select class="form-control adjust_width classic" id="sel1" name="parametertype"  data-validation-error-msg="Please Select the Type of the Parameter" data-validation="required">
 
 							<option value="">Select Parameter Type</option>
 							  <?php
