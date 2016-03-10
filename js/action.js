@@ -3431,8 +3431,9 @@ $('.reset_form').on('click',function(){
       }
     });
     $('.assign_remove_edit').click(function(){
-      if($('.assign_clone_content_edit').length !=1){
-        $('.assign_clone_content_edit:last').remove();
+      if($(this).parents('.assign-schedule-popup').find('.assign_clone_content_edit').length !=1){
+        $(this).parents('.assign-schedule-popup').find('.assign_clone_content_edit:last').remove();
+
       }
     });
 
@@ -3662,9 +3663,20 @@ $('.reset_form').on('click',function(){
       }else{
         $('.test-name').hide();
         $('.test-list').find("input[value='"+search_value+"']").parents('.test-name').show();
-        $('#ui-id-1').addClass('width_search');
       }
     });
+
+    $('.ui-district').keyup(function(){
+      $('#ui-id-1').addClass('width_search');
+      // $('#ui-id-1').removeAttr('style');
+      // alert('test');
+    });
+
+    //  $('.district_select').keyup(function(){
+    //   $('#ui-id-1').addClass('width_select');
+    //   $('#ui-id-1').removeAttr('style');
+    //   // alert('test');
+    // });
 
     $('.save_athlete').click(function(e){
       athlete_id = $(this).parents('.test-name').find('.check_athleteid').val();

@@ -312,7 +312,7 @@
 				          		  </div>
 								 </div><!--state-content-->
 								</div><!--test_battery_div-->
-								<div class="delete_div delete_test_div">
+								<div class="delete_div delete_test_div athlete-div-delete">
 						            <!-- <code class="close_btn cancel_btn"> </code>  -->
 						              <div class="del_title">
 						                <span class="del_txt">DELETE</span>

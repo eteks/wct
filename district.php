@@ -56,7 +56,7 @@
 						<div class="align_margin district_clone">
 							<div class="district_clone_content form-group col-md-8 padding_zero">
 								<label>District</label><br>
-								<input type="text" class="districts" name="district_name[]" data-validation-error-msg="Please Enter the name of the District" data-validation="required" autocomplete="off">
+								<input type="text" class="districts district_select" name="district_name[]" data-validation-error-msg="Please Enter the name of the District" data-validation="required" autocomplete="off">
 								<input type="hidden" class="district_add_for_clone" value="1"/>
 								<span class="add_district_error"></span>
 								<label class="category_text">Please Enter the District</label>
@@ -86,7 +86,7 @@
 						<form>
 						<div class="search-content">
 							<div class="search__list">
-								<input type="text" class="search_box search_text dt_search" placeholder="Search Name">
+								<input type="text" class="search_box search_text dt_search ui-district" placeholder="Search Name">
 								<i class="fa fa-search font-search search_button"></i>
 							</div><!--search__list-->
 								<div class="test-list">
