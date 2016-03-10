@@ -13,12 +13,12 @@ class parameterunitFunction {
         return $temp_arr;
     }
     public function parameterunitSelect(){
-        $temp_arr = array();
-        $res = mysql_query("select * from wc_parameterunit inner join wc_parametertype on wc_parameterunit.parametertype_id=wc_parametertype.parametertype_id  where parametertype_status ='1' ORDER BY parameterunit_id DESC")or die(mysql_error());
-        while($row = mysql_fetch_array($res)) {
-            $temp_arr[] =$row;
+        $temp_arr1 = array();
+        $res1 = mysql_query("select * from wc_parameterunit inner join wc_parametertype on wc_parameterunit.parametertype_id=wc_parametertype.parametertype_id  where wc_parametertype.parametertype_id = (select MAX(parametertype_id) from wc_parametertype)  ORDER BY parameterunit_id DESC")or die(mysql_error());
+        while($row = mysql_fetch_array($res1)) {
+            $temp_arr1[] =$row;
         }
-        return $temp_arr;
+        return $temp_arr1;
     }
     public function parameterunitSelectsingle(){
         $res = mysql_query("select * from wc_parameterunit inner join wc_parametertype on wc_parameterunit.parametertype_id=wc_parametertype.parametertype_id  where parametertype_status ='1' and wc_parameterunit.parameterunit_id = '".$this->parameterunitid."' ")or die(mysql_error());
@@ -176,5 +176,14 @@ if(isset($_GET['find_params_units'])){
         }
         $temp_arr['test'] = $test_arr;
         print(json_encode($temp_arr));
+    }
+    if(isset($_GET['deletedata'])){
+        $parameterunitupdate = new parameterunitFunction();
+        $parameterunitupdate->parameterunitid = $_POST['delete_id'];
+        if($parameterunitupdate->parameterdeletefunction()){
+          echo $_POST['delete_id'];
+        }else{
+          echo "error";
+        }
     }
 ?>

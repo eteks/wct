@@ -351,6 +351,10 @@ $(window).resize(function () {
     }
   });
 
+$(window).load(function() {
+    $('.check_table').find('tbody tr').not(':first').hide();
+});
+
 $(document).ready(function () {
 
    $(".edit_state").click(function(){
@@ -373,7 +377,7 @@ $(document).ready(function () {
     }
 });
   package_menu();
-  
+
   $('.add_createschedule_act,.edit_createschedule_act,.add_athletes_act,.edit_athletes_act').on('click', function(){
      $('.day, .month, .year').attr('data-validation', 'required');
     });
@@ -397,8 +401,8 @@ $(document).ready(function () {
                              //alert(data[i].test_name);
                              $('.test-list').append(
                              '<span class="test-name">\
-                                 <input type="checkbox" name="test" value="test" class="check_test" id="check-select">\
-                                 <input type="text" data-id ="'+data[i].test_id+'" name="test" value="'+data[i].test_name+'" class="list_edit test_name_hover input_wrap" disabled>\
+                                 <input type="checkbox" name="test" value="test" class="check_test test_name_hover_check" id="check-select" data-id ="'+data[i].test_id+'" >\
+                                 <input type="text" name="test" value="'+data[i].test_name+'" class="list_edit test_name_hover input_wrap" disabled>\
                                  <span class="test-alter">\
                                      <i class="fa fa-floppy-o save_item edit_save_button"></i>\
                                      <i class="fa fa-pencil-square-o edit_item "></i>\
@@ -435,8 +439,8 @@ $(document).ready(function () {
                              //alert(data[i].test_name);
                              $('.test-list').append(
                              '<span class="test-name">\
-                                 <input type="checkbox" name="test" value="test" class="check_test" id="check-select">\
-                                 <input type="text" data-id ="'+data[i].test_id+'" name="test" value="'+data[i].test_name+'" class="list_edit test_name_hover input_wrap" disabled>\
+                                 <input type="checkbox" name="test" value="test" class="check_test test_name_hover_check" id="check-select"  data-id ="'+data[i].test_id+'">\
+                                 <input type="text" name="test" value="'+data[i].test_name+'" class="list_edit test_name_hover input_wrap" disabled>\
                                  <span class="test-alter">\
                                      <i class="fa fa-floppy-o save_item edit_save_button"></i>\
                                      <i class="fa fa-pencil-square-o edit_item "></i>\
@@ -480,8 +484,8 @@ $(document).ready(function () {
                                //alert(data[i].test_name);
                                $('.test-list').append(
                                '<span class="test-name">\
-                                   <input type="checkbox" name="test" value="test" class="check_test" id="check-select">\
-                                   <input type="text" name="test" data-id ="'+data[i].testbattery_id+'" value="'+data[i].testbattery_name+'" class="list_edit test_battery_name_hover input_wrap">\
+                                   <input type="checkbox" name="test" value="test" class="check_test test_battery_name_hover_check" id="check-select"  data-id ="'+data[i].testbattery_id+'">\
+                                   <input type="text" name="test" value="'+data[i].testbattery_name+'" class="list_edit test_battery_name_hover input_wrap">\
                                    <span class="test-alter">\
                                        <i class="fa fa-floppy-o save_item save_test_battery_name"></i>\
                                        <i class="fa fa-pencil-square-o edit_item"></i>\
@@ -520,8 +524,8 @@ $(document).ready(function () {
                                //alert(data[i].test_name);
                                $('.test-list').append(
                                '<span class="test-name">\
-                                   <input type="checkbox" name="test" value="test" class="check_test" id="check-select">\
-                                   <input type="text" name="test" data-id ="'+data[i].testbattery_id+'" value="'+data[i].testbattery_name+'" class="list_edit test_battery_name_hover input_wrap">\
+                                   <input type="checkbox" name="test" value="test" class="check_test test_battery_name_hover_check" id="check-select" data-id ="'+data[i].testbattery_id+'">\
+                                   <input type="text" name="test"  value="'+data[i].testbattery_name+'" class="list_edit test_battery_name_hover input_wrap">\
                                    <span class="test-alter">\
                                        <i class="fa fa-floppy-o save_item save_test_battery_name"></i>\
                                        <i class="fa fa-pencil-square-o edit_item"></i>\
@@ -560,12 +564,13 @@ $(document).ready(function () {
                  cache: false,
                  dataType:'json',
                  success: function(data) {
+                     $('.test-list').empty();
                      if(data !=''){
                          $.each(data, function(i){
                              //alert(data[i].typename);
                              $('.test-list').append(
                              '<span class="test-name">\
-                                 <input type="checkbox" name="test" value="test" class="check_test" id="check-select">\
+                                 <input type="checkbox" name="test " value="test" class="check_test check_parametertype" id="check-select" data-id ="'+data[i].parametertype_id+'">\
                                  <input type="text" data-id ="'+data[i].parametertype_id+'" name="test" value="'+data[i].parametertype_name+'" class="list_edit parametertype_name_hover input_wrap" disabled>\
                                  <span class="test-alter">\
                                      <i class="fa fa-floppy-o save_item edit_save_button"></i>\
@@ -597,13 +602,14 @@ $(document).ready(function () {
                  cache: false,
                  dataType:'json',
                  success: function(data) {
+                     $('.test-list').empty();
                      //alert(data);
                      if(data !=''){
                          $.each(data, function(i){
                              //alert(data[i].test_name);
                              $('.test-list').append(
                              '<span class="test-name">\
-                                 <input type="checkbox" name="test" value="test" class="check_test" id="check-select">\
+                                 <input type="checkbox" name="test" value="test" class="check_test check_parametertype" id="check-select" data-id ="'+data[i].parametertype_id+'">\
                                  <input type="text" data-id ="'+data[i].parametertype_id+'" name="test" value="'+data[i].parametertype_name+'" class="list_edit test_name_hover input_wrap" disabled>\
                                  <span class="test-alter">\
                                      <i class="fa fa-floppy-o save_item edit_save_button"></i>\
@@ -649,7 +655,10 @@ $(document).ready(function () {
       });
 
   });
-    $(document).delegate('.test_name_hover', 'mouseover', function(event) {
+    $(document).on('change','.test_name_hover_check',function(event) {
+        //alert($(this).attr('data-id'));
+
+      if(this.checked) {
         //alert($(this).attr('data-id'));
          $('#test_table tbody').empty();
         var test_id = $(this).attr('data-id');
@@ -747,10 +756,12 @@ $(document).ready(function () {
                  }
              }
         });
+    }
     });
-    $(document).delegate('.test_battery_name_hover', 'mouseover', function(event) {
+    $(document).on('change','.test_battery_name_hover_check', function(event) {
         //alert($(this).attr('data-id'));
          //$('#test_battery_table tbody').empty();
+         if(this.checked){
         var test_battery_id = $(this).attr('data-id');
         $.ajax({
              type: "POST",
@@ -795,6 +806,7 @@ $(document).ready(function () {
 
              }
         });
+    }
     });
   // $('input:checkbox').change(function(){
   //   if($(this).is(":checked")) {
@@ -1260,10 +1272,12 @@ $('.reset_form').on('click',function(){
              data: form_data,
              cache: false,
              success: function(data) {
-              var obj = JSON.parse(data);
+              if(data){
+                var obj = JSON.parse(data);
                 $.each(obj, function(i){
                   district_list.push(obj[i]);
                 });
+              }  
              }
          });
    });
@@ -1837,7 +1851,9 @@ $('.reset_form').on('click',function(){
        }
        else if (window.location.href.indexOf("parameter_unit.php") !== -1){
            //alert('dsfsdfds');
-            var form_data = {'delete_id':del_id};
+            var delete_name = $(this).attr('data-delete');
+            if(delete_name == 'parametertype_name'){
+            var form_data = {'delete_id':$(this).attr('data-id')};
             $.ajax({
                  type: "POST",
                  url: "functions/parameter_typefunction.php?deletedata=true",
@@ -1853,7 +1869,26 @@ $('.reset_form').on('click',function(){
 
                  }
              });
-       }
+         }else{
+             var form_data = {'delete_id':$(this).attr('data-id')};
+             $.ajax({
+                  type: "POST",
+                  url: "functions/parameter_unitfunction.php?deletedata=true",
+                  data: form_data,
+                  cache: false,
+                  success: function(html) {
+                      //alert(html);
+                   alert('Parameter unit deleted Successfully! ');
+                   $('.popup_fade').hide();
+                   $('.state_div,.delete_div').hide();
+                   document.body.style.overflow = 'auto';
+                   location.reload();
+
+                  }
+              });
+         }
+
+         }
     });
 
     $('.no_btn').click(function(event) {
@@ -1929,13 +1964,13 @@ $('.reset_form').on('click',function(){
        });
       }
     });
-  
+
     // var current_id = 1;
-    // $('.parameter_btn').click(function(){   
-          
+    // $('.parameter_btn').click(function(){
+
     //     if($('.clone_content:last').find('.parameter_name').val() == ''){
     //         $('.clone_content:last .param_name_error').addClass('custom_error');
-    //         $('.clone_content:last .param_name_error').next().next().remove();                  
+    //         $('.clone_content:last .param_name_error').next().next().remove();
     //     }
     //     else{
     //         $('.clone_content:last .param_name_error').removeClass('custom_error');
@@ -1971,7 +2006,7 @@ $('.reset_form').on('click',function(){
         {
           $('.clone_content:last').children().find('select, input[type="text"]').next().addClass('custom_error');
           $('.clone_content:last select').next().next().remove();
-          $('.clone_content:last input').next().next().next().remove();   
+          $('.clone_content:last input').next().next().next().remove();
           e.preventDefault();
           if($('.clone_content:last').children().find('select, input[type="text"]').hasClass('custom_error')){
             $("span .custom_error").hide();
@@ -1985,7 +2020,7 @@ $('.reset_form').on('click',function(){
         $('.clone_content:last').attr('id','parameter_count'+id);
        }
     });
-        
+
     $(".reset_form,.test_submit_act").on('click', function() {
       $("span .custom_error").hide();
       $(".custom_error").removeClass("custom_error");
@@ -1996,7 +2031,7 @@ $('.reset_form').on('click',function(){
       var submitOK = true;
       $('#test_form').find("select").each(function() {
             if ($(this).val() == "") {
-                  $('.clone_content:last').children().find('select, input[type="text"]').next().addClass('custom_error'); 
+                  $('.clone_content:last').children().find('select, input[type="text"]').next().addClass('custom_error');
                   submitOK = false;
                   return false;  // breaks out of the each
            }
@@ -2018,7 +2053,7 @@ $('.reset_form').on('click',function(){
     $('.add_createschedule_act,.edit_createschedule_act,.add_athletes_act,.edit_athletes_act').on('click', function(){
      $('.day, .month, .year').attr('data-validation', 'required');
     });
- 
+
     function nextElement(element){
         var last_id = parseInt(element.find('.parameter_count').val());
         var newElement = element.clone();
@@ -2327,9 +2362,10 @@ $('.reset_form').on('click',function(){
          });
       }
     });
-    $(document).delegate('.parametertype_name_hover', 'mouseover', function(event) {
+    $(document).on('change','.check_parametertype', function(event) {
        //alert($(this).attr('data-id'));
-        $('#test_table tbody').empty();
+       if(this.checked){
+        $('#param_unit_table tbody').empty();
        var params_id = $(this).attr('data-id');
        $.ajax({
             type: "POST",
@@ -2342,12 +2378,12 @@ $('.reset_form').on('click',function(){
                 $('#test_table tbody').empty();
                 if(data.test){
                      var param_dynamic = '';
-//                    $.each(data.param, function(i){
-//                         param_dynamic += "<option value='"+data.param[i].parametertype_name+"'>"+data.param[i].parametertype_name+"</option>";
-//                     });
+                //    $.each(data.param, function(i){
+                //         param_dynamic += "<option value='"+data.param[i].parametertype_name+"'>"+data.param[i].parametertype_name+"</option>";
+                //     });
                      $.each(data.test, function(i){
-                         $('#test_table tbody').append('\
-               <tr class="align_center delete_color">\
+                         $('#param_unit_table tbody').append('\
+               <tr class=" delete_color">\
            <input type="hidden" value="'+data.test[i].parameterunit_id+'" id="parameterunit_id">\
                  <td>'+data.test[i].parameterunit+'</td>\
                  <td class="popup-edit">\
@@ -2359,7 +2395,7 @@ $('.reset_form').on('click',function(){
                          </div>\
                          <div class="del_content">\
                            <span class="del_content_txt">Are you sure want to delete this whole record?</span>\
-                           <input type="button" class="btn btn-primary align_right yes_btn" value="Yes" data-delete="test_attribute" data-id ="'+data.test[i].parameterunit_id+' "data-test-id="'+data.test[i].parameterunit_id+'">\
+                           <input type="button" class="btn btn-primary align_right yes_btn" value="Yes" data-delete="parameter_unit_name" data-id ="'+data.test[i].parameterunit_id+' ">\
                            <input type="button" class="btn btn-primary align_right no_btn" value="No">\
                            <input type="hidden" name="delete_id" value="" id="delete_id"/>\
                          </div>\
@@ -2373,6 +2409,7 @@ $('.reset_form').on('click',function(){
                 }
             }
        });
+   }
    });
    // / Edit the Parameter Unit module - Start /
      $(document).delegate('.edit_parameter_unit','click',function(){
@@ -2951,9 +2988,19 @@ $('.reset_form').on('click',function(){
            dataType:'json',
            success: function(data) {
                //alert(JSON.stringify(data));
+               var assign_id = data[0].assigncategory_id;
                $('.schedule_update').val(data[0].createschedule_name);
                $('.schedule_update_id').val(data[0].createschedule_id);
-               $('.category_update option[value="'+data[0].assigncategory_id+'"]').attr('selected','selected');
+               $.ajax({
+                    type: "POST",
+                    url: "functions/assign_schedule_function.php?cate_list=true",
+                    data:{'id':data[0].createschedule_id,'assign_id':data[0].assigncategory_id},
+                    cache: false,
+                    success: function(data) {
+                        $('.category_update').empty().append("<option value=''>Select Category Name</option>"+data);
+                   }
+                });
+                //alert(data[0].assigncategory_id);
               //alert($('.clone_schedule_update:first').html());
                $('.clone_schedule_update .athlete_name1 option[value="'+data[0].assignathlete_id+'"]').attr('selected','selected');
                $('.clone_schedule_update .dob_update').val(data[0].athlete_dob);
@@ -2963,6 +3010,8 @@ $('.reset_form').on('click',function(){
                $('.clone_schedule_update .athlete_bib').val(data[0].assignbib_number);
                //$('.clone_schedule_update:first .assing_schedule_update_id').val(data[0].assignschedule_id);
                $('.clone_schedule_update .create_schedule_update_id').val(data[0].createschedule_id);
+               //$('.category_update option[value="'+data[0].assigncategory_id+'"]').attr('selected','selected');
+
                var cnt = 0;
                $.each(data, function(i){
                    if(cnt!=i){
@@ -3096,45 +3145,57 @@ $('.reset_form').on('click',function(){
     //       }
     //  });
 
-     $(document).on('blur','.enter_result',function(e){
+ $(document).on('blur','.enter_result',function(e){
         ranges = $(this).parents('tr').find('.result_ranges').val();
-        parameter_type = $(this).parents('tr').find('.result_parametertype').val();
-        parameter_unit = $(this).parents('tr').find('.result_parameterunit').val();
-        parameter_format = $(this).parents('tr').find('.result_parameterformat').val();
+        parameter_type = $(this).parents('tr').find('.result_parametertype').val().toLowerCase();
+        parameter_unit = $(this).parents('tr').find('.result_parameterunit').val().toLowerCase();
+        parameter_format = $(this).parents('tr').find('.result_parameterformat').val().toLowerCase();
         ranges = JSON.parse(ranges);
         value=$(this).val();
+        if (value == ''){
+          $(this).parents('tr').find('.enter_points').text('0');
+        }
         if(((parameter_type == "time") && (value!=''))||((parameter_type == "Time") && (value!=''))){
-          if((parameter_format=="HH:MM:SS")&&(!(/^(?:[0-2][0-4]|[0-1][0-9]):(?:[0-5][0-9]):[0-5][0-9]$/).test(value))){
+          // alert("time");
+          if((parameter_format=="hh:mm:ss")&&(!(/^(?:[0-2][0-4]|[0-1][0-9]):(?:[0-5][0-9]):[0-5][0-9]$/).test(value))){
+              // alert("if1");
               $(this).siblings('.enter_result_error').addClass('error').text('Please Check time format').show();
               status=1;
               // break;
-            } else if((parameter_format=="HH:MM")&&(!(/^(?:[0-2][0-4]|[0-1][0-9]):[0-5][0-9]$/).test(value))){
-              $(this).siblings('.enter_result_error').addClass('error').text('Please Check time format').show();
-              status=1;
-              // break;
-            }
-            else if((parameter_format=="MM:SS")&&(!(/^(?:[0-5][0-9]):[0-5][0-9]$/).test(value))){
-              $(this).siblings('.enter_result_error').addClass('error').text('Please Check time format').show();
-              status=1;
-              // break;
-            }
-            else if((parameter_format=="HH:MM:SS:MSS")&&(!(/^(?:[0-2][0-4]|[0-1][0-9]):(?:[0-5][0-9]):(?:[0-5][0-9]):([0-9][0-9]|[0-9][0-9][0-9]|[0-1][0][0][0])$/).test(value))){
+            } else if((parameter_format=="hh:mm")&&(!(/^(?:[0-2][0-4]|[0-1][0-9]):[0-5][0-9]$/).test(value))){
+              // alert("if2");
               $(this).siblings('.enter_result_error').addClass('error').text('Please Check time format').show();
               status=1;
               // break;
             }
-            else if((parameter_format=="MM:SS:MSS")&&(!(/^(?:[0-5][0-9]):(?:[0-5][0-9]):([0-9][0-9]|[0-9][0-9][0-9]|[0-1][0][0][0])$/).test(value))){
+            else if((parameter_format=="mm:ss")&&(!(/^(?:[0-5][0-9]):[0-5][0-9]$/).test(value))){
+              // alert("if3");
               $(this).siblings('.enter_result_error').addClass('error').text('Please Check time format').show();
               status=1;
               // break;
             }
-            else if((parameter_format=="SS:MSS")&&(!(/^(?:[0-5][0-9]):([0-9][0-9]|[0-9][0-9][0-9]|[0-1][0][0][0])$/).test(value))){
+            else if((parameter_format=="hh:mm:ss:mss")&&(!(/^(?:[0-2][0-4]|[0-1][0-9]):(?:[0-5][0-9]):(?:[0-5][0-9]):([0-9][0-9]|[0-9][0-9][0-9]|[0-1][0][0][0])$/).test(value))){
+              // alert("if4");
+              $(this).siblings('.enter_result_error').addClass('error').text('Please Check time format').show();
+              status=1;
+              // break;
+            }
+            else if((parameter_format=="mm:ss:mss")&&(!(/^(?:[0-5][0-9]):(?:[0-5][0-9]):([0-9][0-9]|[0-9][0-9][0-9]|[0-1][0][0][0])$/).test(value))){
+              // alert("if5");
+              $(this).siblings('.enter_result_error').addClass('error').text('Please Check time format').show();
+              status=1;
+              // break;
+            }
+            else if((parameter_format=="ss:mss")&&(!(/^(?:[0-5][0-9]):([0-9][0-9]|[0-9][0-9][0-9]|[0-1][0][0][0])$/).test(value))){
+              // alert("if6");
               $(this).siblings('.enter_result_error').addClass('error').text('Please Check time format').show();
               status=1;
               // break;
             }
             else{
+              // alert("else time");
               if(ranges.length!=0){
+                // alert("if");
                 for (var i = 0; i < ranges.length; i++) {
                 rangestart = ranges[i].range_start;
                 rangeend = ranges[i].range_end;
@@ -3150,6 +3211,7 @@ $('.reset_form').on('click',function(){
                 }
               }
               else{
+                // alert("else");
                 $(this).parents('tr').find('.enter_points').text('0');
                 $(this).siblings('.enter_result_error').removeClass('error').hide();
               }
@@ -3158,58 +3220,78 @@ $('.reset_form').on('click',function(){
 
         }
         else{
-            //Checking entered Result
-            if(value!=''){
-              if(value.indexOf(".")==-1){
-              decimals = 0;
-            }
-            else{
-              decimals = value.toString().split(".")[1].length;
-            }
-            if(ranges.length!=0){
-              // status = 0;
-              for (var i = 0; i < ranges.length; i++) {
-                // alert(ranges[i].range_start);
-                rangestart = Number(ranges[i].range_start);
-                rangeend = Number(ranges[i].range_end);
-                // alert(ranges[i].range_end);
-                // alert(value);
-                if (value >= rangestart && value < rangeend){
-                  // alert("if");
-                  status = 1;
-                  if(decimals <= parameter_format){
-                     // alert("yes");
-                     $(this).siblings('.enter_result_error').removeClass('error').hide();
-                     $(this).parents('tr').find('.enter_points').text(ranges[i].range_point);
-                     break;
+          // alert("else number");
+              //Checking entered Result
+              if(value!=''){
+                if(value.indexOf(".")==-1){
+                decimals = 0;
+              }
+              else{
+                decimals = value.toString().split(".")[1].length;
+              }
+              if(ranges.length!=0){
+                // alert("ranges not empty");
+                // status = 0;
+                for (var i = 0; i < ranges.length; i++) {
+                  // alert(ranges[i].range_start);
+                  rangestart = Number(ranges[i].range_start);
+                  rangeend = Number(ranges[i].range_end);
+                  // alert(ranges[i].range_end);
+                  // alert(value);
+                  if (value >= rangestart && value < rangeend){
+                    // alert("if");
+                    status = 1;
+                    if(decimals <= parameter_format){
+                       // alert("yes");
+                       $(this).siblings('.enter_result_error').removeClass('error').hide();
+                       $(this).parents('tr').find('.enter_points').text(ranges[i].range_point);
+                       break;
+                    }
+                    else{
+                       $(this).siblings('.enter_result_error').addClass('error').text('Please Check decimal points').show();
+                       totalvlaue = $('.total_result').text();
+                       pointvalue = $(this).parents('tr').find('.enter_points').text();
+                       result = totalvlaue - pointvalue;
+                       $('.total_result').text(result);
+                       $(this).parents('tr').find('.enter_points').text('');
+                    }
+                    break;
                   }
                   else{
-                     $(this).siblings('.enter_result_error').addClass('error').text('Please Check decimal points').show();
-                     totalvlaue = $('.total_result').text();
-                     pointvalue = $(this).parents('tr').find('.enter_points').text();
-                     result = totalvlaue - pointvalue;
-                     $('.total_result').text(result);
-                     $(this).parents('tr').find('.enter_points').text('');
+                    // alert("status");
+                    if(decimals <= parameter_format){
+                       status = 0;
+                       $(this).siblings('.enter_result_error').removeClass('error').hide();
+                    }
+                    else{
+                      $(this).siblings('.enter_result_error').addClass('error').text('Please Check decimal points').show();
+                    }
                   }
-                  break;
                 }
-                else{
-                  status = 0;
-                }
-              }
-          }
-          else{
-            $(this).parents('tr').find('.enter_points').text('0');
-            if(decimals <= parameter_format){
-               $(this).siblings('.enter_result_error').removeClass('error').hide();
             }
             else{
-              $(this).siblings('.enter_result_error').addClass('error').text('Please Check decimal points').show();
+              // alert("range empty");
+              $(this).parents('tr').find('.enter_points').text('0');
+              if(decimals <= parameter_format){
+                 $(this).siblings('.enter_result_error').removeClass('error').hide();
+              }
+              else{
+                $(this).siblings('.enter_result_error').addClass('error').text('Please Check decimal points').show();
+              }
             }
+          // if (value.indexOf(".") !== -1 && decimals == 0){
+          //   $(this).siblings('.enter_result_error').addClass('error').text('Please Check decimal points').show();
+          // }
+          // else{
+          //   $(this).siblings('.enter_result_error').removeClass('error').hide();
+          // }
           }
         }
-        }
-        if(status == 0 && value!=''){
+        // if(status == 0 && value!=''){
+        if(status == 0 && status !='' && value != '' && ranges.length!=0){
+          // alert(status);
+          // alert(value);
+          // alert(JSON.stringify(ranges));
           $(this).siblings('.enter_result_error').addClass('error').text('Entered value is not in range').show();
           totalvlaue = $('.total_result').text();
           pointvalue = $(this).parents('tr').find('.enter_points').text();
@@ -3415,7 +3497,7 @@ $('.reset_form').on('click',function(){
         else
           $(this).next('.hided').removeClass('custom_error').hide();
         if(($('.range_parameter_type').val().toLowerCase()=="time") && (value!='')){
-          if($('.range_parameter_format').val()=="HH:MM:SS"){
+          if($('.range_parameter_format').val().toLowerCase()=="hh:mm:ss"){
             // regex=/^(?:(?:([01]?\d|2[0-3]):)?([0-5]?\d):)?([0-5]?\d)$/;
             if(!(/^(?:[0-2][0-4]|[0-1][0-9]):(?:[0-5][0-9]):[0-5][0-9]$/).test(value)){
               // alert("check time format");
@@ -3425,7 +3507,7 @@ $('.reset_form').on('click',function(){
               $(this).next().next('.hided').removeClass('custom_error').text('').hide();
             }
           }
-          else if($('.range_parameter_format').val()=="HH:MM"){
+          else if($('.range_parameter_format').val().toLowerCase()=="hh:mm"){
             if(!(/^(?:[0-2][0-4]|[0-1][0-9]):[0-5][0-9]$/).test(value)){
               $(this).next().next('.hided').addClass('custom_error').text('Please Check time format').show();
             }
@@ -3433,7 +3515,7 @@ $('.reset_form').on('click',function(){
               $(this).next().next('.hided').removeClass('custom_error').text('').hide();
             }
           }
-          else if($('.range_parameter_format').val()=="MM:SS"){
+          else if($('.range_parameter_format').val().toLowerCase()=="mm:ss"){
             if(!(/^(?:[0-5][0-9]):[0-5][0-9]$/).test(value)){
               $(this).next().next('.hided').addClass('custom_error').text('Please Check time format').show();
             }
@@ -3441,7 +3523,7 @@ $('.reset_form').on('click',function(){
               $(this).next().next('.hided').removeClass('custom_error').text('').hide();
             }
           }
-          else if($('.range_parameter_format').val()=="HH:MM:SS:MSS"){
+          else if($('.range_parameter_format').val().toLowerCase()=="hh:mm:ss:mss"){
             if(!(/^(?:[0-2][0-4]|[0-1][0-9]):(?:[0-5][0-9]):(?:[0-5][0-9]):([0-9][0-9]|[0-9][0-9][0-9]|[0-1][0][0][0])$/).test(value)){
               $(this).next().next('.hided').addClass('custom_error').text('Please Check time format').show();
             }
@@ -3449,7 +3531,7 @@ $('.reset_form').on('click',function(){
               $(this).next().next('.hided').removeClass('custom_error').text('').hide();
             }
           }
-          else if($('.range_parameter_format').val()=="MM:SS:MSS"){
+          else if($('.range_parameter_format').val().toLowerCase()=="mm:ss:mss"){
             if(!(/^(?:[0-5][0-9]):(?:[0-5][0-9]):([0-9][0-9]|[0-9][0-9][0-9]|[0-1][0][0][0])$/).test(value)){
               $(this).next().next('.hided').addClass('custom_error').text('Please Check time format').show();
             }
@@ -3457,7 +3539,7 @@ $('.reset_form').on('click',function(){
               $(this).next().next('.hided').removeClass('custom_error').text('').hide();
             }
           }
-          else if($('.range_parameter_format').val()=="SS:MSS"){
+          else if($('.range_parameter_format').val().toLowerCase()=="ss:mss"){
             if(!(/^(?:[0-5][0-9]):([0-9][0-9]|[0-9][0-9][0-9]|[0-1][0][0][0])$/).test(value)){
             $(this).next().next('.hided').addClass('custom_error').text('Please Check time format').show();
             }
@@ -3539,9 +3621,9 @@ $('.reset_form').on('click',function(){
     $(document).on('change','.check_parametertype',function () {
       $('.check_parametertype').not(this).prop('checked', false);
       if($(this).is(':checked')){
-        check_data = $(this).next().attr('data-id');
-        $('.state_table').find('.parametertype_id').find("input[value="+check_data+"]").parents('tr').show();
-        $('.state_table').find('.parametertype_id').not("input[value="+check_data+"]").parents('tr').hide();
+        // check_data = $(this).next().attr('data-id');
+        // $('.state_table').find('.parametertype_id').find("input[value="+check_data+"]").parents('tr').show();
+        // $('.state_table').find('.parametertype_id').not("input[value="+check_data+"]").parents('tr').hide();
       }
       else{
         $('.state_table tr').show();
@@ -3580,6 +3662,7 @@ $('.reset_form').on('click',function(){
       }else{
         $('.test-name').hide();
         $('.test-list').find("input[value='"+search_value+"']").parents('.test-name').show();
+        $('#ui-id-1').addClass('width_search');
       }
     });
 
@@ -3705,9 +3788,6 @@ $('.reset_form').on('click',function(){
     //   newElement.find('.bib_update').removeAttr('name').attr('name','athlete_bib'+id).val('');dob_update
     //   newElement.appendTo($(".clone_schedule_update_content"));
     // });
-    
-    $('.check_table tbody tr').not(':first').hide();
-    // $('.athletes_table tbody tr').not(':first').hide();
 
     var st_list = [];
     $('.check_statename').each(function(){
