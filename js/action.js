@@ -351,6 +351,10 @@ $(window).resize(function () {
     }
   });
 
+$(window).load(function() {
+    $('.check_table').find('tbody tr').not(':first').hide();
+});
+
 $(document).ready(function () {
 
    $(".edit_state").click(function(){
@@ -3141,37 +3145,37 @@ $('.reset_form').on('click',function(){
 
      $(document).on('blur','.enter_result',function(e){
         ranges = $(this).parents('tr').find('.result_ranges').val();
-        parameter_type = $(this).parents('tr').find('.result_parametertype').val();
-        parameter_unit = $(this).parents('tr').find('.result_parameterunit').val();
-        parameter_format = $(this).parents('tr').find('.result_parameterformat').val();
+        parameter_type = $(this).parents('tr').find('.result_parametertype').val().toLowerCase();
+        parameter_unit = $(this).parents('tr').find('.result_parameterunit').val().toLowerCase();
+        parameter_format = $(this).parents('tr').find('.result_parameterformat').val().toLowerCase();
         ranges = JSON.parse(ranges);
         value=$(this).val();
         if(((parameter_type == "time") && (value!=''))||((parameter_type == "Time") && (value!=''))){
-          if((parameter_format=="HH:MM:SS")&&(!(/^(?:[0-2][0-4]|[0-1][0-9]):(?:[0-5][0-9]):[0-5][0-9]$/).test(value))){
+          if((parameter_format=="hh:mm:ss")&&(!(/^(?:[0-2][0-4]|[0-1][0-9]):(?:[0-5][0-9]):[0-5][0-9]$/).test(value))){
               $(this).siblings('.enter_result_error').addClass('error').text('Please Check time format').show();
               status=1;
               // break;
-            } else if((parameter_format=="HH:MM")&&(!(/^(?:[0-2][0-4]|[0-1][0-9]):[0-5][0-9]$/).test(value))){
-              $(this).siblings('.enter_result_error').addClass('error').text('Please Check time format').show();
-              status=1;
-              // break;
-            }
-            else if((parameter_format=="MM:SS")&&(!(/^(?:[0-5][0-9]):[0-5][0-9]$/).test(value))){
+            } else if((parameter_format=="hh:mm")&&(!(/^(?:[0-2][0-4]|[0-1][0-9]):[0-5][0-9]$/).test(value))){
               $(this).siblings('.enter_result_error').addClass('error').text('Please Check time format').show();
               status=1;
               // break;
             }
-            else if((parameter_format=="HH:MM:SS:MSS")&&(!(/^(?:[0-2][0-4]|[0-1][0-9]):(?:[0-5][0-9]):(?:[0-5][0-9]):([0-9][0-9]|[0-9][0-9][0-9]|[0-1][0][0][0])$/).test(value))){
+            else if((parameter_format=="mm:ss")&&(!(/^(?:[0-5][0-9]):[0-5][0-9]$/).test(value))){
               $(this).siblings('.enter_result_error').addClass('error').text('Please Check time format').show();
               status=1;
               // break;
             }
-            else if((parameter_format=="MM:SS:MSS")&&(!(/^(?:[0-5][0-9]):(?:[0-5][0-9]):([0-9][0-9]|[0-9][0-9][0-9]|[0-1][0][0][0])$/).test(value))){
+            else if((parameter_format=="hh:mm:ss:mss")&&(!(/^(?:[0-2][0-4]|[0-1][0-9]):(?:[0-5][0-9]):(?:[0-5][0-9]):([0-9][0-9]|[0-9][0-9][0-9]|[0-1][0][0][0])$/).test(value))){
               $(this).siblings('.enter_result_error').addClass('error').text('Please Check time format').show();
               status=1;
               // break;
             }
-            else if((parameter_format=="SS:MSS")&&(!(/^(?:[0-5][0-9]):([0-9][0-9]|[0-9][0-9][0-9]|[0-1][0][0][0])$/).test(value))){
+            else if((parameter_format=="mm:ss:mss")&&(!(/^(?:[0-5][0-9]):(?:[0-5][0-9]):([0-9][0-9]|[0-9][0-9][0-9]|[0-1][0][0][0])$/).test(value))){
+              $(this).siblings('.enter_result_error').addClass('error').text('Please Check time format').show();
+              status=1;
+              // break;
+            }
+            else if((parameter_format=="ss:mss")&&(!(/^(?:[0-5][0-9]):([0-9][0-9]|[0-9][0-9][0-9]|[0-1][0][0][0])$/).test(value))){
               $(this).siblings('.enter_result_error').addClass('error').text('Please Check time format').show();
               status=1;
               // break;
@@ -3201,56 +3205,64 @@ $('.reset_form').on('click',function(){
 
         }
         else{
-            //Checking entered Result
-            if(value!=''){
-              if(value.indexOf(".")==-1){
-              decimals = 0;
-            }
-            else{
-              decimals = value.toString().split(".")[1].length;
-            }
-            if(ranges.length!=0){
-              // status = 0;
-              for (var i = 0; i < ranges.length; i++) {
-                // alert(ranges[i].range_start);
-                rangestart = Number(ranges[i].range_start);
-                rangeend = Number(ranges[i].range_end);
-                // alert(ranges[i].range_end);
-                // alert(value);
-                if (value >= rangestart && value < rangeend){
-                  // alert("if");
-                  status = 1;
-                  if(decimals <= parameter_format){
-                     // alert("yes");
-                     $(this).siblings('.enter_result_error').removeClass('error').hide();
-                     $(this).parents('tr').find('.enter_points').text(ranges[i].range_point);
-                     break;
+              //Checking entered Result
+              if(value!=''){
+                if(value.indexOf(".")==-1){
+                decimals = 0;
+              }
+              else{
+                decimals = value.toString().split(".")[1].length;
+              }
+              if(ranges.length!=0){
+                // status = 0;
+                for (var i = 0; i < ranges.length; i++) {
+                  // alert(ranges[i].range_start);
+                  rangestart = Number(ranges[i].range_start);
+                  rangeend = Number(ranges[i].range_end);
+                  // alert(ranges[i].range_end);
+                  // alert(value);
+                  if (value >= rangestart && value < rangeend){
+                    // alert("if");
+                    status = 1;
+                    if(decimals <= parameter_format){
+                       // alert("yes");
+                       $(this).siblings('.enter_result_error').removeClass('error').hide();
+                       $(this).parents('tr').find('.enter_points').text(ranges[i].range_point);
+                       break;
+                    }
+                    else{
+                       $(this).siblings('.enter_result_error').addClass('error').text('Please Check decimal points').show();
+                       totalvlaue = $('.total_result').text();
+                       pointvalue = $(this).parents('tr').find('.enter_points').text();
+                       result = totalvlaue - pointvalue;
+                       $('.total_result').text(result);
+                       $(this).parents('tr').find('.enter_points').text('');
+                    }
+                    break;
                   }
                   else{
-                     $(this).siblings('.enter_result_error').addClass('error').text('Please Check decimal points').show();
-                     totalvlaue = $('.total_result').text();
-                     pointvalue = $(this).parents('tr').find('.enter_points').text();
-                     result = totalvlaue - pointvalue;
-                     $('.total_result').text(result);
-                     $(this).parents('tr').find('.enter_points').text('');
+                    status = 0;
                   }
-                  break;
                 }
-                else{
-                  status = 0;
-                }
-              }
-          }
-          else{
-            $(this).parents('tr').find('.enter_points').text('0');
-            if(decimals <= parameter_format){
-               $(this).siblings('.enter_result_error').removeClass('error').hide();
             }
             else{
-              $(this).siblings('.enter_result_error').addClass('error').text('Please Check decimal points').show();
+              $(this).parents('tr').find('.enter_points').text('0');
+              if(decimals <= parameter_format){
+                 $(this).siblings('.enter_result_error').removeClass('error').hide();
+              }
+              else{
+                $(this).siblings('.enter_result_error').addClass('error').text('Please Check decimal points').show();
+              }
             }
           }
-        }
+          // if (parameter_format == 0 || parameter_format == 1){
+          //   if (value.indexOf(".") !== -1 && decimals == 0){
+          //     $(this).siblings('.enter_result_error').addClass('error').text('Please Check decimal points').show();
+          //   }
+          //   else{
+          //     $(this).siblings('.enter_result_error').removeClass('error').hide();
+          //   }
+          // }
         }
         if(status == 0 && value!=''){
           $(this).siblings('.enter_result_error').addClass('error').text('Entered value is not in range').show();
@@ -3458,7 +3470,7 @@ $('.reset_form').on('click',function(){
         else
           $(this).next('.hided').removeClass('custom_error').hide();
         if(($('.range_parameter_type').val().toLowerCase()=="time") && (value!='')){
-          if($('.range_parameter_format').val()=="HH:MM:SS"){
+          if($('.range_parameter_format').val().toLowerCase()=="hh:mm:ss"){
             // regex=/^(?:(?:([01]?\d|2[0-3]):)?([0-5]?\d):)?([0-5]?\d)$/;
             if(!(/^(?:[0-2][0-4]|[0-1][0-9]):(?:[0-5][0-9]):[0-5][0-9]$/).test(value)){
               // alert("check time format");
@@ -3468,7 +3480,7 @@ $('.reset_form').on('click',function(){
               $(this).next().next('.hided').removeClass('custom_error').text('').hide();
             }
           }
-          else if($('.range_parameter_format').val()=="HH:MM"){
+          else if($('.range_parameter_format').val().toLowerCase()=="hh:mm"){
             if(!(/^(?:[0-2][0-4]|[0-1][0-9]):[0-5][0-9]$/).test(value)){
               $(this).next().next('.hided').addClass('custom_error').text('Please Check time format').show();
             }
@@ -3476,7 +3488,7 @@ $('.reset_form').on('click',function(){
               $(this).next().next('.hided').removeClass('custom_error').text('').hide();
             }
           }
-          else if($('.range_parameter_format').val()=="MM:SS"){
+          else if($('.range_parameter_format').val().toLowerCase()=="mm:ss"){
             if(!(/^(?:[0-5][0-9]):[0-5][0-9]$/).test(value)){
               $(this).next().next('.hided').addClass('custom_error').text('Please Check time format').show();
             }
@@ -3484,7 +3496,7 @@ $('.reset_form').on('click',function(){
               $(this).next().next('.hided').removeClass('custom_error').text('').hide();
             }
           }
-          else if($('.range_parameter_format').val()=="HH:MM:SS:MSS"){
+          else if($('.range_parameter_format').val().toLowerCase()=="hh:mm:ss:mss"){
             if(!(/^(?:[0-2][0-4]|[0-1][0-9]):(?:[0-5][0-9]):(?:[0-5][0-9]):([0-9][0-9]|[0-9][0-9][0-9]|[0-1][0][0][0])$/).test(value)){
               $(this).next().next('.hided').addClass('custom_error').text('Please Check time format').show();
             }
@@ -3492,7 +3504,7 @@ $('.reset_form').on('click',function(){
               $(this).next().next('.hided').removeClass('custom_error').text('').hide();
             }
           }
-          else if($('.range_parameter_format').val()=="MM:SS:MSS"){
+          else if($('.range_parameter_format').val().toLowerCase()=="mm:ss:mss"){
             if(!(/^(?:[0-5][0-9]):(?:[0-5][0-9]):([0-9][0-9]|[0-9][0-9][0-9]|[0-1][0][0][0])$/).test(value)){
               $(this).next().next('.hided').addClass('custom_error').text('Please Check time format').show();
             }
@@ -3500,7 +3512,7 @@ $('.reset_form').on('click',function(){
               $(this).next().next('.hided').removeClass('custom_error').text('').hide();
             }
           }
-          else if($('.range_parameter_format').val()=="SS:MSS"){
+          else if($('.range_parameter_format').val().toLowerCase()=="ss:mss"){
             if(!(/^(?:[0-5][0-9]):([0-9][0-9]|[0-9][0-9][0-9]|[0-1][0][0][0])$/).test(value)){
             $(this).next().next('.hided').addClass('custom_error').text('Please Check time format').show();
             }
@@ -3749,9 +3761,6 @@ $('.reset_form').on('click',function(){
     //   newElement.find('.bib_update').removeAttr('name').attr('name','athlete_bib'+id).val('');dob_update
     //   newElement.appendTo($(".clone_schedule_update_content"));
     // });
-
-    $('.check_table tbody tr').not(':first').hide();
-    // $('.athletes_table tbody tr').not(':first').hide();
 
     var st_list = [];
     $('.check_statename').each(function(){
