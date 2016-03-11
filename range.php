@@ -14,7 +14,7 @@
 		<span class="sports">RANGE</span>
 	</div><!--end container-->
 	<div class="container">
-		<div class="col-xs-12 col-md-11">
+		<div class="col-xs-12 col-md-12">
 			<!-- <div class="col-md-4 hidden-xs"></div> -->
 			<div class="col-xs-12 col-md-7 align_margin">
 				<form name="range_form" class="range_form_id">
@@ -116,6 +116,8 @@
 			  <table class="table range_table">
 			    <thead>
 			      <tr class="row_color">
+			      	<th class="align_center">Test Battery Name</th>
+			      	<th class="align_center">Category</th>
 			        <th class="align_center">Test Name</th>
 			        <th class="align_center">Parameter Name</th>
 			        <th style="text-align:right;">Action</th>
@@ -130,6 +132,8 @@
                         <tr class="align_center delete_color">
                         <input type="hidden" name="range_id" class="t_range_id" value="<?php echo $row['range_id']; ?>">
 					     <!--   <td class="t_range_s_id"><?php // echo $i; ?></td> -->
+					        <td class="t_range_testbatteryname"><?php echo $row['testbattery_name']; ?></td>
+					        <td class="t_range_categoryname"><?php echo $row['categories_name']; ?></td>
 					        <td class="t_range_testname"><?php echo $row['test_name']; ?></td>
 					        <td class="t_range_paramtername"><?php echo $row['test_parameter_name']; ?></td>
 					        <td class="popup-edit">
