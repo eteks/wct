@@ -441,7 +441,7 @@
                                    //alert(data[i].test_name);
                                    $('.test-list').append(
                                    '<span class="test-name">\
-                                       <input type="checkbox" name="test" value="test" class="check_test tedit_save_button_check" id="check-select"  data-id ="'+data[i].testbattery_id+'">\
+                                       <input type="checkbox" name="test" value="test" class="check_test test_battery_name_hover_check id="check-select"  data-id ="'+data[i].testbattery_id+'">\
                                        <input type="text" name="test" value="'+data[i].testbattery_name+'" class="list_edit test_battery_name_hover input_wrap">\
                                        <span class="test-alter">\
                                            <i class="fa fa-floppy-o save_item save_test_battery_name"></i>\
@@ -771,20 +771,24 @@
       $(document).delegate('.edit_save_button','click',function() {
           var test_id = $(this).parents('.test-name').find('.test_name_hover_check').attr('data-id');
           var test_name = $(this).parents('.test-name').find('.list_edit').val();
-          //alert(test_id);
-          $.ajax({
-               type: "POST",
-               url: "functions/test_functions.php?test_name_update=true",
-               data:{'test_id':test_id,'test_name':test_name},
-               cache: false,
-               success: function(data) {
-                  //alert(data);
-                  if(data.trim() == 'succeed'){
-                      alert('Test name updated successfully!');
-                      location.reload();
-                  }
-               }
-          });
+          if(test_name != ''){
+              $.ajax({
+                   type: "POST",
+                   url: "functions/test_functions.php?test_name_update=true",
+                   data:{'test_id':test_id,'test_name':test_name},
+                   cache: false,
+                   success: function(data) {
+                      //alert(data);
+                      if(data.trim() == 'succeed'){
+                          alert('Test name updated successfully!');
+                          location.reload();
+                      }
+                   }
+              });
+          }else{
+              alert('Invalid test name');
+          }
+
 
       });
       $(document).delegate('.paremeter_unit_type_save_btn','click',function() {
@@ -809,29 +813,36 @@
       $(document).delegate('.save_test_battery_name','click',function() {
           var test_battery_id = $(this).parents('.test-name').find('.test_battery_name_hover_check').attr('data-id');
           var test_battery_name = $(this).parents('.test-name').find('.list_edit').val();
-          $.ajax({
-               type: "POST",
-               url: "functions/test_battery_functions.php?testbattery_name_update=true",
-               data:{'test_battery_id':test_battery_id,'test_battery_name':test_battery_name},
-               cache: false,
-               success: function(data) {
-                  //alert(data);
-                  if(data.trim() == 'succeed'){
-                      alert('Test battery name updated successfully!');
-                      location.reload();
-                  }
-               }
-          });
+          if(test_battery_name !=''){
+              $.ajax({
+                   type: "POST",
+                   url: "functions/test_battery_functions.php?testbattery_name_update=true",
+                   data:{'test_battery_id':test_battery_id,'test_battery_name':test_battery_name},
+                   cache: false,
+                   success: function(data) {
+                      //alert(data);
+                      if(data.trim() == 'succeed'){
+                          alert('Test battery name updated successfully!');
+                          location.reload();
+                      }
+                   }
+              });
+          }
+          else{
+              alert('Invalid Test Battery Name');
+          }
 
       });
       $(document).delegate('.edit_item', 'click', function(event) {
           $(this).parents('.test-name').find('.list_edit').removeAttr('disabled');
       });
+      var test_battery_name_for_edit_purpose = '';
       var test_name_for_edit_purpose = '';
       $(document).delegate('.test-name', 'mouseenter', function(event){
         $(this).children().find('.edit_item,.delete_item').show();
         $('.save_item').hide();
         test_name_for_edit_purpose = $(this).find('.test_name_value').val();
+        test_battery_name_for_edit_purpose = $(this).find('.test_battery_name_hover').val();
       });
 
        $(document).delegate('.test-name','mouseleave',function(event){
@@ -839,6 +850,7 @@
         $('.list_edit').removeClass('list_edit_rollover');
         $(this).find('.list_edit').attr('disabled', 'disabled');
         $(this).find('.test_name_value').val(test_name_for_edit_purpose);
+        $(this).find('.test_battery_name_hover').val(test_battery_name_for_edit_purpose);
       });
 
 
@@ -939,7 +951,7 @@
               });
       });
     });
-    $('.reset_form').on('click',function(){
+    $('#cs_form .reset_form').on('click',function(){
       $("#cs_form").find("select").each(function (index) {
              var ctrl=$(this);
               $(ctrl.children()).each(function(index) {
@@ -988,7 +1000,7 @@
                      current_popup.parents('.popup-edit').find('.parameter_type_update option[value="'+data.test_parameter_type+'"]').attr('selected','selected');
                     // current_popup.parents('.popup-edit').find('.parameter_format_update option[value="'+data.test_parameter_format+'"]').attr('selected','selected');
                      if(data.test_parameter_type.toLowerCase() == 'time'){
-                         alert('time');
+                         //alert('time');
                          var paremeter_unit = data.test_parameter_unit;
                          $.ajax({
                               type: "POST",
@@ -1007,7 +1019,7 @@
                                             parameter_unit += "<option value='"+data[i].parameterunit+"'>"+data[i].parameterunit+"</option>";
                                         }
                                     });
-                                    current_popup.parents('.popup-edit').find('.parameter_unit_update').append(parameter_unit);
+                                    current_popup.parents('.popup-edit').find('.parameter_unit_update').empty().append(parameter_unit);
                                }});
                                //alert(data.test_parameter_unit);
 
@@ -1944,14 +1956,16 @@
         $('#test_form .test_submit_act').click(function(e) {
           e.preventDefault();  // don't submit it
           var submitOK = true;
-          $('#test_form').find("select").each(function() {
+          $('#test_form').find('input[type="text"], select').each(function() {
                 if ($(this).val() == "") {
+                      $('input[name="test_name"]').next().addClass('custom_error');
                       $('.clone_content:last').children().find('select, input[type="text"]').next().addClass('custom_error');
                       submitOK = false;
                       return false;  // breaks out of the each
                }
           });
           if (submitOK) {
+                $('input[name="test_name"]').next().removeClass('custom_error');
                 $('.clone_content:last').children().find('select, input[type="text"]').next().removeClass('custom_error');
                 $('#test_form').submit();
           }
@@ -1967,6 +1981,15 @@
 
         $('.add_createschedule_act,.edit_createschedule_act,.add_athletes_act,.edit_athletes_act').on('click', function(){
          $('.day, .month, .year').attr('data-validation', 'required');
+          var x = document.getElementById('athletes_mobile1').value;
+          if($("#athletes_mobile1").siblings('span').hasClass("help-block form-error")){
+            return false;
+          }
+          if (x.value.length == 10) {
+            $('#athletes_mobile1').next('span').hide();
+            return true;
+          }
+
         });
 
         function nextElement(element){
@@ -2089,15 +2112,15 @@
 
        });
 
-       $('.reset_form').click(function(){
-         $("span .help-block form-error").hide();
-         $(".help-block,.form-error").removeClass("help-block form-error");
-         $('.choose_state').next('span').addClass('category_text');
-         $(".district_clone_content").each(function() {
-           if($('.district_clone_content').length !=1){
-             $('.district_clone_content:last').remove();
-           }
-         });
+       $('.reset_form_dist').click(function(){
+           $("span .help-block form-error").hide();
+           $(".help-block,.form-error").removeClass("help-block form-error");
+           $('.choose_state').next('span').addClass('category_text');
+           $(".district_clone_content").each(function() {
+               if($('.district_clone_content').length !=1){
+                   $('.district_clone_content:last').remove();
+               }
+           });
        });
         $(document.body).delegate('.parameter_type_update','change',function() {
             var current = $(this);
@@ -2836,6 +2859,7 @@
         // });
 
         $(document).delegate('.edit_assign_schedule', 'click', function(event) {
+            var main_content_assign_popup = $(this).parents('.assignschedule_popup_open');
             var assign_schedule_id = $(this).attr('data-schedule');
             var assign_category_id = $(this).attr('data-category');
             $.ajax({
@@ -2846,27 +2870,27 @@
                dataType:'json',
                success: function(data) {
                    var assign_id = data[0].assigncategory_id;
-                   $('.schedule_update').val(data[0].createschedule_name);
-                   $('.schedule_update_id').val(data[0].createschedule_id);
+                   main_content_assign_popup.find('.schedule_update').val(data[0].createschedule_name);
+                   main_content_assign_popup.find('.schedule_update_id').val(data[0].createschedule_id);
                    $.ajax({
                         type: "POST",
                         url: "functions/assign_schedule_function.php?cate_list_edit=true",
                         data:{'id':data[0].createschedule_id,'assign_id':data[0].assigncategory_id},
                         cache: false,
                         success: function(data) {
-                            $('.category_update').empty().append("<option value=''>Select Category Name</option>"+data);
+                            main_content_assign_popup.find('.category_update').empty().append("<option value=''>Select Category Name</option>"+data);
                        }
                     });
-                   $('.clone_schedule_update .athlete_name1 option[value="'+data[0].assignathlete_id+'"]').attr('selected','selected');
+                   main_content_assign_popup.find('.clone_schedule_update .athlete_name1 option[value="'+data[0].assignathlete_id+'"]').attr('selected','selected');
                    var res =data[0].athlete_dob.split('-');
                    var new_date = res[2]+'/'+res[1]+'/'+res[0];
-                   $('.clone_schedule_update .dob_update').val(new_date);
+                   main_content_assign_popup.find('.clone_schedule_update .dob_update').val(new_date);
                    //$('.clone_schedule_update:first .assign_athelete_count_edit').val(1);
-                   $('.clone_schedule_update .custom-combobox-input').val(data[0].athlete_name);
-                   $('.clone_schedule_update .mobile_update').val(data[0].athlete_mobile);
-                   $('.clone_schedule_update .athlete_bib').val(data[0].assignbib_number);
+                   main_content_assign_popup.find('.clone_schedule_update .custom-combobox-input').val(data[0].athlete_name);
+                   main_content_assign_popup.find('.clone_schedule_update .mobile_update').val(data[0].athlete_mobile);
+                   main_content_assign_popup.find('.clone_schedule_update .athlete_bib').val(data[0].assignbib_number);
                    //$('.clone_schedule_update:first .assing_schedule_update_id').val(data[0].assignschedule_id);
-                   $('.clone_schedule_update .create_schedule_update_id').val(data[0].createschedule_id);
+                   main_content_assign_popup.find('.clone_schedule_update .create_schedule_update_id').val(data[0].createschedule_id);
                    //$('.category_update option[value="'+data[0].assigncategory_id+'"]').attr('selected','selected');
 
                    var cnt = 0;

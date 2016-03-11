@@ -74,7 +74,7 @@
 					</div>
 					<div class="form-group">
       					<label>Mobile Number</label><br>
-      					<input type="text" id="athletes_mobile1" class="adjust_width" name="athlete_mobile" autocomplete="off" data-validation-error-msg="Please Enter the value that must contain 10 numbers" data-validation="length" data-validation-length="10">
+      					<input type="text" id="athletes_mobile1" class="adjust_width" name="athlete_mobile" autocomplete="off" data-validation-error-msg="Please Enter the value that must contain 10 numbers" data-validation="length" data-validation-length="10"  maxlength="10">
      				</div>
 					<div class="form-group">
 						  <label for="sel1">Gender</label>
@@ -132,7 +132,7 @@
 						  </select>
 					</div>
 					<div class="col-md-9 schedule_btn">
-						<!-- <button type="button" class="btn btn-primary align_right clear add_athletes_act">Submit</button> -->			
+						<!-- <button type="button" class="btn btn-primary align_right clear add_athletes_act">Submit</button> -->
 						<input type="submit" class="btn btn-primary test-submit clear add_athletes_act" value="Submit">
 						<input type="reset" class="btn btn-primary clear" value="Cancel">
 					</div>

@@ -62,7 +62,8 @@
 
 								<input type="hidden" class="district_add_for_clone" value="1"/>
 								<span class="add_district_error"></span>
-								<label class="category_text">Please Enter the District</label>
+								<!-- <label class="category_text">Please Enter the District</label> -->
+								<span class="category_text">Please Enter the District</span>
 							</div>
 						</div>
 						<div class="form-group district-add col-md-4 padding_zero">
@@ -77,6 +78,7 @@
 						</div>
 						<div class="form-group col-md-12 padding_zero">
 							<input type="submit" class="btn btn-primary clear add_district_act" name="district" value="Submit">
+							<input type="reset" class="btn btn-primary clear reset_form_dist" value="Cancel">
 						</div>
 						<!-- <button type="button" class="btn btn-primary align_right clear add_district_act" name="district">Submit</button> -->
 					</form>
