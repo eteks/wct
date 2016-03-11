@@ -77,6 +77,7 @@
 						</div>
 						<div class="form-group col-md-12 padding_zero">
 							<input type="submit" class="btn btn-primary clear add_district_act" name="district" value="Submit">
+							<input type="reset" class="btn btn-primary clear reset_form_dist" value="Cancel">
 						</div>
 						<!-- <button type="button" class="btn btn-primary align_right clear add_district_act" name="district">Submit</button> -->
 					</form>
