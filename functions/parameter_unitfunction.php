@@ -56,7 +56,7 @@ class parameterunitFunction {
     }
     public function parameterunitsearchSelect(){
         $temp_arr = array();
-        $res = mysql_query("select * from wc_parametertype ORDER BY parametertype_id DESC")or die(mysql_error());
+        $res = mysql_query("select * from wc_parametertype inner join wc_parameterunit on wc_parameterunit.parametertype_id = wc_parametertype.parametertype_id GROUP BY wc_parametertype.parametertype_name ORDER BY wc_parametertype.parametertype_id DESC")or die(mysql_error());
         $count=mysql_num_rows($res);
         while($row = mysql_fetch_array($res)) {
             $temp_arr[] =$row;
@@ -130,7 +130,7 @@ if(isset($_GET['find_type'])){
     $temp_arr = array();
     $typename = $_POST['id'];
     if($typename!=''){
-        $sql = mysql_query("SELECT * FROM wc_parametertype where parametertype_name like '%".$typename."%' ORDER BY parametertype_id DESC")or die(mysql_error());
+        $sql = mysql_query("select * from wc_parametertype inner join wc_parameterunit on wc_parameterunit.parametertype_id = wc_parametertype.parametertype_id where parametertype_name like '%".$typename."%' GROUP BY wc_parametertype.parametertype_name ORDER BY parametertype_id DESC")or die(mysql_error());
         while($row = mysql_fetch_assoc($sql)) {
             $temp_arr[] =$row;
         }
@@ -144,7 +144,7 @@ if(isset($_GET['find_all_type'])){
     $temp_arr = array();
     $typename = $_POST['id'];
     if($typename!=''){
-        $sql = mysql_query("SELECT * FROM wc_parametertype ORDER BY parametertype_id DESC")or die(mysql_error());
+        $sql = mysql_query("select * from wc_parametertype inner join wc_parameterunit on wc_parameterunit.parametertype_id = wc_parametertype.parametertype_id GROUP BY wc_parametertype.parametertype_name ORDER BY wc_parametertype.parametertype_id DESC")or die(mysql_error());
         while($row = mysql_fetch_assoc($sql)) {
             $temp_arr[] =$row;
         }

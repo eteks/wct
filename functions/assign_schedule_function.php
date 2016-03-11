@@ -57,13 +57,13 @@ class assignscheduleFunction {
         //print_r(count($_POST));
         $counter = (count($_POST)-2)/3;
 
-        mysql_query("delete from wc_assignschedule where assigncreateschedule_id ='".$_POST["create_schedule_update_id1"]."' ");
+        mysql_query("delete from wc_assignschedule where assigncreateschedule_id ='".$_POST["create_schedule_update_id1"]."' and assigncategory_id ='".$_POST['category']."' ");
 
         for($i=1;$i<=$counter;$i++){
             //echo $i;
             $category_id = $_POST['category'];
             //$assign_schedule_id = $_POST["assing_schedule_update_id".$i.""];
-            $create_schedule_update_id = $_POST["create_schedule_update_id".$i.""];
+            $create_schedule_update_id = $_POST["create_schedule_update_id1"];
             $athlete_id = $_POST["athlete_name".$i.""];
             $athlete_bib = $_POST["athlete_bib".$i.""];
             $sql = "insert into wc_assignschedule (assigncreateschedule_id,assigncategory_id,assignathlete_id,assignbib_number,assignschedule_status)values('$create_schedule_update_id','$category_id','$athlete_id','$athlete_bib','1')";
@@ -85,7 +85,7 @@ class assignscheduleFunction {
     if(isset($_GET['cate_list_edit'])){
         include ("../dbconnect.php");
         $id = $_POST['id'];
-        $query = mysql_query("select * from wc_createschedule inner join wc_testbattery_category_attribute on wc_createschedule.createscheduletestbattery_id = wc_testbattery_category_attribute.testbattery_id inner join wc_categories on wc_categories.categories_id = wc_testbattery_category_attribute.testbattery_category_id inner join wc_range on wc_range.rangecategories_id =  wc_testbattery_category_attribute.testbattery_category_id where wc_createschedule.createschedule_id = '$id' group by wc_categories.categories_name ");
+        $query = mysql_query("select * from wc_createschedule inner join wc_range on wc_createschedule.createscheduletestbattery_id = wc_range.rangetestbattery_id inner join wc_categories on wc_categories.categories_id = wc_range.rangecategories_id where wc_createschedule.createschedule_id = '$id' group by wc_categories.categories_name ");
         while($row = mysql_fetch_array($query)){
             if($_POST['assign_id'] == $row['categories_id']){
                 echo "<option value=".$row['categories_id']." selected>".$row['categories_name']."</option>";
@@ -99,7 +99,7 @@ class assignscheduleFunction {
     if(isset($_GET['cate_list'])){
         include ("../dbconnect.php");
         $id = $_POST['id'];
-        $query = mysql_query("select * from wc_createschedule inner join wc_testbattery_category_attribute on wc_createschedule.createscheduletestbattery_id = wc_testbattery_category_attribute.testbattery_id inner join wc_categories on wc_categories.categories_id = wc_testbattery_category_attribute.testbattery_category_id inner join wc_range on wc_range.rangecategories_id =  wc_testbattery_category_attribute.testbattery_category_id where wc_createschedule.createschedule_id = '$id' group by wc_categories.categories_name ");
+        $query = mysql_query("select * from wc_createschedule inner join wc_range on wc_createschedule.createscheduletestbattery_id = wc_range.rangetestbattery_id inner join wc_categories on wc_categories.categories_id = wc_range.rangecategories_id where wc_createschedule.createschedule_id = '$id' group by wc_categories.categories_name ");
         while($row = mysql_fetch_array($query)){
 
                 echo "<option value=".$row['categories_id'].">".$row['categories_name']."</option>";
