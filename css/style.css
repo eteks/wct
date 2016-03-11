@@ -814,7 +814,7 @@ button, input, optgroup, select, textarea {
 }
 .ui-menu{
     background: hsl(0, 0%, 100%) none repeat scroll 0 0;
-    height: auto;
+    height: 75px;
     left: 499.5px;
     list-style: outside none none;
     overflow-y: scroll;
@@ -1280,7 +1280,7 @@ input[type=radio]:checked + label:before {
     color: #009acc !important;
 }
 .add_district_act{
-    margin-right: 45px !important;
+    margin-right: 2px !important;
 }
 .parameter-submit,.test-submit{
     margin-right: 10px !important;
