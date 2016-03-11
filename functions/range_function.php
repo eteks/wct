@@ -17,7 +17,9 @@ include('configu.php');
 
 		//To select all record for displaying data in table
 		public function rangeSelect(){
-			$res = mysql_query("select * from wc_range as r INNER JOIN wc_test as t ON r.rangetest_id=t.test_id INNER JOIN wc_test_attribute as ta ON ta.test_attribute_id = r.rangetestattribute_id where r.range_status='1' ORDER BY r.range_id DESC")or die(mysql_error());
+			// $res = mysql_query("select * from wc_range as r INNER JOIN wc_test as t ON r.rangetest_id=t.test_id INNER JOIN wc_test_attribute as ta ON ta.test_attribute_id = r.rangetestattribute_id where r.range_status='1' ORDER BY r.range_id DESC")or die(mysql_error());
+			$res = mysql_query("select * from wc_range as r INNER JOIN wc_test as t ON r.rangetest_id=t.test_id INNER JOIN wc_test_attribute as ta ON ta.test_attribute_id = r.rangetestattribute_id 
+				INNER JOIN wc_testbattery as tb ON tb.testbattery_id = r.rangetestbattery_id INNER JOIN wc_categories as c ON c.categories_id = r.rangecategories_id where r.range_status='1' ORDER BY r.range_id DESC")or die(mysql_error());
 			return $res;
 		}
 		public function rangeInsert(){
@@ -173,6 +175,8 @@ include('configu.php');
     		array_push( $rangecategory_json, $tmp );
 	    }
 	    while ( $result = mysql_fetch_array( $range_edit_data )){
+	    	setcookie("range_id",'');
+	    	setcookie("range_id", $result['range_id'],time() + (86400 * 30), "/");
 	    	$tmp = array(
            'range_id' => $result['range_id'],
            'rangetestbattery_id' => $result['rangetestbattery_id'],
@@ -217,22 +221,30 @@ include('configu.php');
 		$rangeFunction->rangetestname = $testname['test_name'];
 		// $paramters = $rangeFunction->isParameterExist();
 		// if(!$paramters){
-			$rangeupdate = $rangeFunction->rangeUpdate();
-			if($rangeupdate){
-				for($i=1;$i<=$counter;$i++){
-	                $rangeFunction->rangeattributeid = $_POST["edit_rangeattr_id".$i.""];
-	                $rangeFunction->rangestart = $_POST["edit_range_start".$i.""];
-	                $rangeFunction->rangeend = $_POST["edit_range_end".$i.""];
-	                $rangeFunction->rangepoint = $_POST["edit_range_points".$i.""];
-	                if($_POST["edit_rangeattr_id".$i.""])
-	                	$rangeattrupdate = $rangeFunction->rangeattributeUpdate();
-	                else
-	                	$rangeattrinsert = $rangeFunction->rangeattributeInsert();
-	            }
-				echo "success#Range Updated#".$_POST['edit_range_id']."#".$rangeFunction->rangetestname;
-			}else{
-				echo "failure#Range Not Updated";
-			}
+			// check for exclude that particular id
+			$sel_res = mysql_query("select * from wc_range where rangetestbattery_id='".$rangeFunction->rangetestbatteryid."' AND rangetest_id='".$rangeFunction->rangetestid."' AND rangetestattribute_id='".$rangeFunction->rangetestattributeid."' AND rangecategories_id='".$rangeFunction->rangecategoryid."' AND range_id NOT IN ('$_COOKIE[range_id]')");
+			$count_sel_res = mysql_num_rows($sel_res);
+			if($count_sel_res > 0){
+				echo "failure#Range Already Assigned";
+			} 
+			else {	
+				$rangeupdate = $rangeFunction->rangeUpdate();
+				if($rangeupdate){
+					for($i=1;$i<=$counter;$i++){
+		                $rangeFunction->rangeattributeid = $_POST["edit_rangeattr_id".$i.""];
+		                $rangeFunction->rangestart = $_POST["edit_range_start".$i.""];
+		                $rangeFunction->rangeend = $_POST["edit_range_end".$i.""];
+		                $rangeFunction->rangepoint = $_POST["edit_range_points".$i.""];
+		                if($_POST["edit_rangeattr_id".$i.""])
+		                	$rangeattrupdate = $rangeFunction->rangeattributeUpdate();
+		                else
+		                	$rangeattrinsert = $rangeFunction->rangeattributeInsert();
+		            }
+					echo "success#Range Updated#".$_POST['edit_range_id']."#".$rangeFunction->rangetestname;
+				}else{
+					echo "failure#Range Not Updated";
+				}
+		   }
 		// }
 		// else{
 		// 	echo "failure#Already Assigned Range for this parameter";
