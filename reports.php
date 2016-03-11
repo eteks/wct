@@ -16,7 +16,6 @@ $createschedule = new createscheduleFunction();
 ?>
 <?php
 	if(isset($_POST['submit'])){
-
 		$output = fopen('php://output', 'w');
 		if(!empty($_POST['schedul_ids'])) {
 			foreach($_POST['schedul_ids'] as $check) {
@@ -35,7 +34,7 @@ $createschedule = new createscheduleFunction();
 				}
 				fputcsv($output, array('Athlete Name','Athelete DOB','Athlete Mobile Number','Gender','State','District','Taluka','Address','Sports','Category','BIB number','Parameter name','Parameter Result','Paremeter Points','Parameter name','Parameter Result','Paremeter Points','Parameter name','Parameter Result','Paremeter Points','Parameter name','Parameter Result','ParemeterPoints','Parameter name','Parameter Result'));
 				foreach($test1 as $testvalue){
-					$sql2 = "select wc_result.result_id,wc_result.resultcreateschedule_id,wc_result.resultathlete_id,wc_result.resulttest_name,GROUP_CONCAT(CONCAT(wc_result.resultparameter_name,'#',wc_result.result,'#',wc_result.points)) results  from wc_result where wc_result.resultcreateschedule_id ='$id' and wc_result.resultathlete_id = '".$testvalue['athlete_id']."' ";
+					$sql2 = "select wc_result.result_id,wc_result.resultcreateschedule_id,wc_result.resultathlete_id,wc_result.resulttest_name,SUM(wc_result.points) as totalpoints,GROUP_CONCAT(CONCAT(wc_result.resultparameter_name,'#',wc_result.result,'#',wc_result.points)) results  from wc_result where wc_result.resultcreateschedule_id ='$id' and wc_result.resultathlete_id ='".$testvalue['athlete_id']."'";
 					$res = mysql_fetch_assoc(mysql_query($sql2));
 					$csv_record = array($testvalue['athlete_name'],date("d/m/Y", strtotime($testvalue['athlete_dob'])),$testvalue['athlete_mobile'],$testvalue['athlete_gender'],$testvalue['states_name'],$testvalue['district_name'],$testvalue['athlete_taluka'],$testvalue['athlete_address'],$testvalue['sports_name'],$testvalue['categories_name'],$testvalue['assignbib_number']);
 					$pararms = explode(",",$res['results']);
@@ -53,6 +52,7 @@ $createschedule = new createscheduleFunction();
 							array_push($csv_record,'-');
 						}
 					}
+					array_push($csv_record,$res['totalpoints']);
 					fputcsv($output, $csv_record);
 				}
 			}

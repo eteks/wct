@@ -988,7 +988,7 @@
                      current_popup.parents('.popup-edit').find('.parameter_type_update option[value="'+data.test_parameter_type+'"]').attr('selected','selected');
                     // current_popup.parents('.popup-edit').find('.parameter_format_update option[value="'+data.test_parameter_format+'"]').attr('selected','selected');
                      if(data.test_parameter_type.toLowerCase() == 'time'){
-                         alert('time');
+                         //alert('time');
                          var paremeter_unit = data.test_parameter_unit;
                          $.ajax({
                               type: "POST",
@@ -1007,7 +1007,7 @@
                                             parameter_unit += "<option value='"+data[i].parameterunit+"'>"+data[i].parameterunit+"</option>";
                                         }
                                     });
-                                    current_popup.parents('.popup-edit').find('.parameter_unit_update').append(parameter_unit);
+                                    current_popup.parents('.popup-edit').find('.parameter_unit_update').empty().append(parameter_unit);
                                }});
                                //alert(data.test_parameter_unit);
 
