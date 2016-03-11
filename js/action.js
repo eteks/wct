@@ -2897,7 +2897,7 @@
                    $.each(data, function(i){
                        if(cnt!=i){
                            var last_id = parseInt($('.clone_schedule_update:first .assign_athelete_count_edit').val());
-                           var newElement = $('.clone_schedule_update:first').clone();
+                           var newElement = main_content_assign_popup.find('.clone_schedule_update:first').clone();
                            var id = i+1;
                            test_id = id;
                            newElement.find('.assign_athelete_count_edit').val(id);
