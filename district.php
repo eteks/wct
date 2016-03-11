@@ -62,7 +62,8 @@
 
 								<input type="hidden" class="district_add_for_clone" value="1"/>
 								<span class="add_district_error"></span>
-								<label class="category_text">Please Enter the District</label>
+								<!-- <label class="category_text">Please Enter the District</label> -->
+								<span class="category_text">Please Enter the District</span>
 							</div>
 						</div>
 						<div class="form-group district-add col-md-4 padding_zero">

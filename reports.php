@@ -32,7 +32,21 @@ $createschedule = new createscheduleFunction();
 					fputcsv($output, array('Venue',$testvalue['createschedule_venue']));
 					break;
 				}
-				fputcsv($output, array('Athlete Name','Athelete DOB','Athlete Mobile Number','Gender','State','District','Taluka','Address','Sports','Category','BIB number','Parameter name','Parameter Result','Paremeter Points','Parameter name','Parameter Result','Paremeter Points','Parameter name','Parameter Result','Paremeter Points','Parameter name','Parameter Result','ParemeterPoints','Parameter name','Parameter Result'));
+				foreach($test1 as $testvalue){
+					$sql3 = "select wc_result.result_id,wc_result.resultcreateschedule_id,wc_result.resultathlete_id,wc_result.resulttest_name,SUM(wc_result.points) as totalpoints,GROUP_CONCAT(CONCAT(wc_result.resultparameter_name,'#',wc_result.result,'#',wc_result.points)) results  from wc_result where wc_result.resultcreateschedule_id ='$id' and wc_result.resultathlete_id ='".$testvalue['athlete_id']."'";
+					$res1 = mysql_fetch_assoc(mysql_query($sql3));
+					$pararms = explode(",",$res1['results']);
+					$heading =  array('Athlete Name','Athelete DOB','Athlete Mobile Number','Gender','State','District','Taluka','Address','Sports','Category','BIB number');
+					foreach($pararms as $single_param){
+						$param_split = explode("#",$single_param);
+						array_push($heading,'Parameter Name');
+						array_push($heading,'Parameter Result');
+						array_push($heading,'Parameter Point');
+					}
+					array_push($heading,'Total points');
+					fputcsv($output, $heading);
+					break;
+				}
 				foreach($test1 as $testvalue){
 					$sql2 = "select wc_result.result_id,wc_result.resultcreateschedule_id,wc_result.resultathlete_id,wc_result.resulttest_name,SUM(wc_result.points) as totalpoints,GROUP_CONCAT(CONCAT(wc_result.resultparameter_name,'#',wc_result.result,'#',wc_result.points)) results  from wc_result where wc_result.resultcreateschedule_id ='$id' and wc_result.resultathlete_id ='".$testvalue['athlete_id']."'";
 					$res = mysql_fetch_assoc(mysql_query($sql2));
