@@ -116,7 +116,7 @@ if(isset($_GET['update_success'])){
 					$i=1;
 					foreach( $data as $eachrecord ) {
 					 ?>
-			      <tr class="delete_color">
+			      <tr class="delete_color assignschedule_popup_open">
 			      	<input value="<?php echo $eachrecord ['assignschedule_id']; ?>" type="hidden">
 			        <td><?php echo $eachrecord ['createschedule_name']; ?></td>
 					<td><?php echo $eachrecord ['categories_name']; ?></td>

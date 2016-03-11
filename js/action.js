@@ -2859,6 +2859,7 @@
         // });
 
         $(document).delegate('.edit_assign_schedule', 'click', function(event) {
+            var main_content_assign_popup = $(this).parents('.assignschedule_popup_open');
             var assign_schedule_id = $(this).attr('data-schedule');
             var assign_category_id = $(this).attr('data-category');
             $.ajax({
@@ -2869,27 +2870,27 @@
                dataType:'json',
                success: function(data) {
                    var assign_id = data[0].assigncategory_id;
-                   $('.schedule_update').val(data[0].createschedule_name);
-                   $('.schedule_update_id').val(data[0].createschedule_id);
+                   main_content_assign_popup.find('.schedule_update').val(data[0].createschedule_name);
+                   main_content_assign_popup.find('.schedule_update_id').val(data[0].createschedule_id);
                    $.ajax({
                         type: "POST",
                         url: "functions/assign_schedule_function.php?cate_list_edit=true",
                         data:{'id':data[0].createschedule_id,'assign_id':data[0].assigncategory_id},
                         cache: false,
                         success: function(data) {
-                            $('.category_update').empty().append("<option value=''>Select Category Name</option>"+data);
+                            main_content_assign_popup.find('.category_update').empty().append("<option value=''>Select Category Name</option>"+data);
                        }
                     });
-                   $('.clone_schedule_update .athlete_name1 option[value="'+data[0].assignathlete_id+'"]').attr('selected','selected');
+                   main_content_assign_popup.find('.clone_schedule_update .athlete_name1 option[value="'+data[0].assignathlete_id+'"]').attr('selected','selected');
                    var res =data[0].athlete_dob.split('-');
                    var new_date = res[2]+'/'+res[1]+'/'+res[0];
-                   $('.clone_schedule_update .dob_update').val(new_date);
+                   main_content_assign_popup.find('.clone_schedule_update .dob_update').val(new_date);
                    //$('.clone_schedule_update:first .assign_athelete_count_edit').val(1);
-                   $('.clone_schedule_update .custom-combobox-input').val(data[0].athlete_name);
-                   $('.clone_schedule_update .mobile_update').val(data[0].athlete_mobile);
-                   $('.clone_schedule_update .athlete_bib').val(data[0].assignbib_number);
+                   main_content_assign_popup.find('.clone_schedule_update .custom-combobox-input').val(data[0].athlete_name);
+                   main_content_assign_popup.find('.clone_schedule_update .mobile_update').val(data[0].athlete_mobile);
+                   main_content_assign_popup.find('.clone_schedule_update .athlete_bib').val(data[0].assignbib_number);
                    //$('.clone_schedule_update:first .assing_schedule_update_id').val(data[0].assignschedule_id);
-                   $('.clone_schedule_update .create_schedule_update_id').val(data[0].createschedule_id);
+                   main_content_assign_popup.find('.clone_schedule_update .create_schedule_update_id').val(data[0].createschedule_id);
                    //$('.category_update option[value="'+data[0].assigncategory_id+'"]').attr('selected','selected');
 
                    var cnt = 0;
