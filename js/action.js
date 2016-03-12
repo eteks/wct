@@ -3011,8 +3011,10 @@
           var obj = athlete_json;
           $.each(obj, function(i){
             if(obj[i].athlete_name == select_name){
+              var res = obj[i].athlete_dob.split('-');
+              var new_date = res[2]+'/'+res[1]+'/'+res[0];
               $('.result_athleteid').val(obj[i].athlete_id).prop("readonly", true);
-              $('.result_athletedate').val(obj[i].athlete_dob).prop("readonly", true);
+              $('.result_athletedate').val(new_date).prop("readonly", true);
               $('.result_athletemobile').val(obj[i].athlete_mobile).prop("readonly", true);
               $('.result_athletebib').val(obj[i].athlete_bibno).prop("readonly", true);
             }
