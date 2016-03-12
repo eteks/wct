@@ -23,7 +23,10 @@ $createschedule = new createscheduleFunction();
 				$i=1;
 				$sql1 = "select * from wc_athlete inner join wc_assignschedule on wc_assignschedule.assignathlete_id= wc_athlete.athlete_id inner join wc_categories on wc_categories.categories_id = wc_assignschedule.assigncategory_id inner join wc_createschedule on wc_createschedule.createschedule_id = wc_assignschedule.assigncreateschedule_id inner join wc_states on wc_states.states_id = wc_athlete.athletestates_id inner join wc_district on wc_district.district_id = wc_athlete.athletedistrict_id inner join wc_sports on wc_sports.sports_id = wc_athlete.athletesports_id inner join wc_testbattery on wc_testbattery.testbattery_id = wc_createschedule.createscheduletestbattery_id where wc_assignschedule.assigncreateschedule_id = '$id'";
 				$test = mysql_query($sql1);
-				$test1[] = mysql_fetch_assoc($test);
+				$test1 = array();
+				while($row = mysql_fetch_assoc($test)){
+					$test1[] = $row;
+				}
 				foreach($test1 as $testvalue){
 					fputcsv($output, array('Schedule Name',$testvalue['createschedule_name']));
 					fputcsv($output, array('Test Battery name',$testvalue['testbattery_name']));
@@ -46,7 +49,7 @@ $createschedule = new createscheduleFunction();
 					array_push($heading,'Total points');
 					fputcsv($output, $heading);
 					break;
-				}
+				}				
 				foreach($test1 as $testvalue){
 					$sql2 = "select wc_result.result_id,wc_result.resultcreateschedule_id,wc_result.resultathlete_id,wc_result.resulttest_name,SUM(wc_result.points) as totalpoints,GROUP_CONCAT(CONCAT(wc_result.resultparameter_name,'#',wc_result.result,'#',wc_result.points)) results  from wc_result where wc_result.resultcreateschedule_id ='$id' and wc_result.resultathlete_id ='".$testvalue['athlete_id']."'";
 					$res = mysql_fetch_assoc(mysql_query($sql2));
@@ -68,6 +71,7 @@ $createschedule = new createscheduleFunction();
 					}
 					array_push($csv_record,$res['totalpoints']);
 					fputcsv($output, $csv_record);
+					
 				}
 			}
 			exit;

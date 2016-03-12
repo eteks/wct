@@ -130,7 +130,7 @@ if(isset($_GET['find_type'])){
     $temp_arr = array();
     $typename = $_POST['id'];
     if($typename!=''){
-        $sql = mysql_query("select * from wc_parametertype inner join wc_parameterunit on wc_parameterunit.parametertype_id = wc_parametertype.parametertype_id where parametertype_name like '%".$typename."%' GROUP BY wc_parametertype.parametertype_name ORDER BY parametertype_id DESC")or die(mysql_error());
+        $sql = mysql_query("select * from wc_parametertype inner join wc_parameterunit on wc_parameterunit.parametertype_id = wc_parametertype.parametertype_id where wc_parametertype.parametertype_name like '%".$typename."%' GROUP BY wc_parametertype.parametertype_name ORDER BY wc_parametertype.parametertype_id DESC")or die(mysql_error());
         while($row = mysql_fetch_assoc($sql)) {
             $temp_arr[] =$row;
         }
