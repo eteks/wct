@@ -81,9 +81,10 @@
 								    <span class="hided">Please Check the format</span>
 								  </div>
 								  <div class="col-md-4">
-								  	<input type="text" class="form-control classic range_align  r_end" id="end1" name="range_end1" autocomplete="off" placeholder="End">
+								  	<input type="text" class="form-control classic range_align  r_end check_end_range" id="end1" name="range_end1" autocomplete="off" placeholder="End">
 								  	<span class="hided">Please Enter the end range</span>
 								  	<span class="hided">Please Check the format</span>
+								  	<span class="hided">Enter greater than start value</span>
 								  </div>
 								  <div class="col-md-4">
 								  	<input type="text" class="form-control classic range_align  r_point" id="point1" name="range_points1" autocomplete="off" placeholder="Points">
@@ -193,7 +194,7 @@
 											    			<span class="hided">Please Check the format</span>
 												       	</div>
 												       	<div class="col-md-12">
-												      		<input type="text" class="form-control classic range_align_popup edit_r_end" id="edit_end1" name="edit_range_end1" autocomplete="off" placehoder="end">
+												      		<input type="text" class="form-control classic range_align_popup edit_r_end check_end_range" id="edit_end1" name="edit_range_end1" autocomplete="off" placehoder="end">
 												       		<span class="hided">Please Enter the end range</span>
 											  				<span class="hided">Please Check the format</span>
 												       	</div>

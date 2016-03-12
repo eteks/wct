@@ -795,7 +795,7 @@
       $(document).delegate('.paremeter_unit_type_save_btn','click',function() {
           var test_id = $(this).parents('.test-name').find('.check_parametertype').attr('data-id');
           var test_name = $(this).parents('.test-name').find('.list_edit').val();
-          //alert(test_id);
+         if(test_name!=''){
           $.ajax({
                type: "POST",
                url: "functions/parameter_unitfunction.php?paramstype_name_update=true",
@@ -809,7 +809,9 @@
                   }
                }
           });
-
+        }else{
+          alert('Invalid Parameter Type');
+        }
       });
       $(document).delegate('.save_test_battery_name','click',function() {
           var test_battery_id = $(this).parents('.test-name').find('.test_battery_name_hover_check').attr('data-id');
@@ -840,12 +842,18 @@
       var test_battery_name_for_edit_purpose = '';
       var test_name_for_edit_purpose = '';
       var state_for_edit_purpose = '';
+      var athlete_for_edit_purpose = '';
+      var schedule_for_edit_purpose = '';
+      var parametertype_for_edit_purpose = '';
       $(document).delegate('.test-name', 'mouseenter', function(event){
         $(this).children().find('.edit_item,.delete_item').show();
         $('.save_item').hide();
         test_name_for_edit_purpose = $(this).find('.test_name_value').val();
         test_battery_name_for_edit_purpose = $(this).find('.test_battery_name_hover').val();
         state_for_edit_purpose = $(this).find('.check_statename').val();
+        athlete_for_edit_purpose = $(this).find('.check_athletename').val();
+        schedule_for_edit_purpose = $(this).find('.check_createschedulename').val();
+        parametertype_for_edit_purpose = $(this).find('.test').val();
       });
 
        $(document).delegate('.test-name','mouseleave',function(event){
@@ -855,6 +863,9 @@
         $(this).find('.test_name_value').val(test_name_for_edit_purpose);
         $(this).find('.test_battery_name_hover').val(test_battery_name_for_edit_purpose);
         $(this).find('.check_statename').val(state_for_edit_purpose);
+        $(this).find('.check_athletename').val(athlete_for_edit_purpose);
+        $(this).find('.check_createschedulename').val(schedule_for_edit_purpose);
+        $(this).find('.test').val(parametertype_for_edit_purpose);
       });
 
 
@@ -2723,6 +2734,7 @@
                                     <td><input type='text' class='assign_border enter_result' name='enter_result'><br><span class='enter_result_error'></span></td>\
                                     <td><span class='result_error' name='result_error'>Enter the result in " +obj[i].parameter_unit+ " with "+obj[i].parameter_format+" formats</span></td>\
                                     <td></td>\
+                                    <td><input type='checkbox' name='status_incomplete' class='status_incomplete'></td>\
                                    </tr>";
                         }
                         else{
@@ -2738,7 +2750,8 @@
                                     <td class='result_parameter_name'>"+obj[i].parameter_name+"</td>\
                                     <td><input type='text' class='assign_border enter_result' name='enter_result'><br><span class='enter_result_error'></span></td>\
                                     <td><span class='result_error' name='result_error'>Enter the result in " +obj[i].parameter_unit+ " with "+obj[i].parameter_format+" formats</span></td>\
-                                    <td><span class='assign_border enter_points'></span></td></tr>";
+                                    <td><span class='assign_border enter_points'></span></td>\
+                                    <td><input type='checkbox' name='status_incomplete' class='status_incomplete'></td></tr>";
                         }
                         $('.result_table tr:last').before(html);
                       });
@@ -2773,8 +2786,15 @@
                         //changed the above code to below new one because of incorrect result placed issues
                         $.each(obj1, function(i){
                           $('.result_table').find("td:contains("+obj1[i].resulttest_name+")").siblings(".result_parameter_name:contains("+obj1[i].resultparameter_name+")").siblings('.result_id').val(obj1[i].result_id);
-                          $('.result_table').find("td:contains("+obj1[i].resulttest_name+")").siblings(".result_parameter_name:contains("+obj1[i].resultparameter_name+")").parents('tr').find('.enter_result').val(obj1[i].result);
+                          // $('.result_table').find("td:contains("+obj1[i].resulttest_name+")").siblings(".result_parameter_name:contains("+obj1[i].resultparameter_name+")").parents('tr').find('.enter_result').val(obj1[i].result);
                           $('.result_table').find("td:contains("+obj1[i].resulttest_name+")").siblings(".result_parameter_name:contains("+obj1[i].resultparameter_name+")").parents('tr').find('.enter_points').text(obj1[i].points);
+                          if (obj1[i].result_status == 0){
+                            $('.result_table').find("td:contains("+obj1[i].resulttest_name+")").siblings(".result_parameter_name:contains("+obj1[i].resultparameter_name+")").parents('tr').find('.enter_result').val('').addClass('result_restrict').attr('disabled',true);
+                            $('.result_table').find("td:contains("+obj1[i].resulttest_name+")").siblings(".result_parameter_name:contains("+obj1[i].resultparameter_name+")").parents('tr').find('.status_incomplete').attr('checked','checked');
+                          }
+                          else{
+                            $('.result_table').find("td:contains("+obj1[i].resulttest_name+")").siblings(".result_parameter_name:contains("+obj1[i].resultparameter_name+")").parents('tr').find('.enter_result').val(obj1[i].result);
+                          }
                         });
 
                          //Points total result
@@ -2805,11 +2825,14 @@
               e.preventDefault();
               // alert('please fill all the fields');
             }
+            else if($('.range_holder').find('.hided').hasClass('custom_error')){
+                e.preventDefault();
+            }
             else{
-            $('.clone_content:last').children().find('input[type="text"]').next().removeClass('custom_error');
-            var id = current_id+1;
-            nextrangeElement($('.clone_content:last'));
-            $('.clone_content:last').attr('id','range_counter'+id);
+              $('.clone_content:last').children().find('input[type="text"]').next().removeClass('custom_error');
+              var id = current_id+1;
+              nextrangeElement($('.clone_content:last'));
+              $('.clone_content:last').attr('id','range_counter'+id);
            }
         });
 
@@ -3248,8 +3271,14 @@
                   enter_result = $(this).find('.enter_result').val();
                   enter_points = $(this).find('.enter_points').text();
                   result_id = $(this).find('.result_id').val();
+                  if($(this).find('.status_incomplete').is(':checked'))
+                    result_incomplete = 0;
+                  else
+                    result_incomplete = 1;
+                  // alert(result_incomplete);
                   result_data.push({'result_id':result_id,'createschedule_id':createschedule_id,'athlete_id':athlete_id,'test_name':test_name,
-                                    'parameter_name':parameter_name,'enter_result':enter_result,'enter_points':enter_points});
+                                    'parameter_name':parameter_name,'enter_result':enter_result,
+                                    'enter_points':enter_points,'result_incomplete':result_incomplete});
               });
               if((result_data.length != 0)){
                   $.ajax({
@@ -3414,16 +3443,28 @@
             //Checking entered range
             value=$(this).val();
             if(value == ''){
+              $(this).next().next().next('.hided').removeClass('custom_error').hide();
               $(this).next().next('.hided').addClass('custom_error').hide();
               $(this).next('.hided').addClass('custom_error').show();
             }
-            else
+            else{
               $(this).next('.hided').removeClass('custom_error').hide();
+            }
             if(($('.range_parameter_type').val().toLowerCase()=="time") && (value!='')){
+              if($(this).hasClass('check_end_range')){
+                  start_value = $(this).parents('.form-group').find('.r_strt').val();
+                  if (value <= start_value){
+                    $(this).next().next().next('.hided').addClass('custom_error').show();
+                  }
+                  else{
+                    $(this).next().next().next('.hided').removeClass('custom_error').hide();
+                  }
+              }
               if($('.range_parameter_format').val().toLowerCase()=="hh:mm:ss"){
                 // regex=/^(?:(?:([01]?\d|2[0-3]):)?([0-5]?\d):)?([0-5]?\d)$/;
                 if(!(/^(?:[0-2][0-4]|[0-1][0-9]):(?:[0-5][0-9]):[0-5][0-9]$/).test(value)){
                   // alert("check time format");
+                  $(this).next().next().next('.hided').removeClass('custom_error').hide();
                   $(this).next().next('.hided').addClass('custom_error').text('Please Check time format').show();
                 }
                 else{
@@ -3432,6 +3473,7 @@
               }
               else if($('.range_parameter_format').val().toLowerCase()=="hh:mm"){
                 if(!(/^(?:[0-2][0-4]|[0-1][0-9]):[0-5][0-9]$/).test(value)){
+                  $(this).next().next().next('.hided').removeClass('custom_error').hide();
                   $(this).next().next('.hided').addClass('custom_error').text('Please Check time format').show();
                 }
                 else{
@@ -3440,6 +3482,7 @@
               }
               else if($('.range_parameter_format').val().toLowerCase()=="mm:ss"){
                 if(!(/^(?:[0-5][0-9]):[0-5][0-9]$/).test(value)){
+                  $(this).next().next().next('.hided').removeClass('custom_error').hide();
                   $(this).next().next('.hided').addClass('custom_error').text('Please Check time format').show();
                 }
                 else{
@@ -3448,6 +3491,7 @@
               }
               else if($('.range_parameter_format').val().toLowerCase()=="hh:mm:ss:mss"){
                 if(!(/^(?:[0-2][0-4]|[0-1][0-9]):(?:[0-5][0-9]):(?:[0-5][0-9]):([0-9][0-9]|[0-9][0-9][0-9]|[0-1][0][0][0])$/).test(value)){
+                  $(this).next().next().next('.hided').removeClass('custom_error').hide();
                   $(this).next().next('.hided').addClass('custom_error').text('Please Check time format').show();
                 }
                 else{
@@ -3456,6 +3500,7 @@
               }
               else if($('.range_parameter_format').val().toLowerCase()=="mm:ss:mss"){
                 if(!(/^(?:[0-5][0-9]):(?:[0-5][0-9]):([0-9][0-9]|[0-9][0-9][0-9]|[0-1][0][0][0])$/).test(value)){
+                  $(this).next().next().next('.hided').removeClass('custom_error').hide();
                   $(this).next().next('.hided').addClass('custom_error').text('Please Check time format').show();
                 }
                 else{
@@ -3464,7 +3509,8 @@
               }
               else if($('.range_parameter_format').val().toLowerCase()=="ss:mss"){
                 if(!(/^(?:[0-5][0-9]):([0-9][0-9]|[0-9][0-9][0-9]|[0-1][0][0][0])$/).test(value)){
-                $(this).next().next('.hided').addClass('custom_error').text('Please Check time format').show();
+                  $(this).next().next().next('.hided').removeClass('custom_error').hide();
+                  $(this).next().next('.hided').addClass('custom_error').text('Please Check time format').show();
                 }
                 else{
                   $(this).next().next('.hided').removeClass('custom_error').text('').hide();
@@ -3472,6 +3518,18 @@
               }
             }
             else{
+              if($(this).hasClass('check_end_range')){
+                  start_value = $(this).parents('.clone_content').find('.r_strt').val();
+                  // alert(start_value);
+                  if(value!=''){
+                    if (Number(value) <= Number(start_value)){
+                      $(this).next().next().next('.hided').addClass('custom_error').show();
+                    }
+                    else{
+                      $(this).next().next().next('.hided').removeClass('custom_error').hide();
+                    }
+                   }
+              }
               if(value!=''){
                   if(value.indexOf(".")==-1){
                   decimals = 0;
@@ -3482,9 +3540,11 @@
                   paramter_unit = $('.range_parameter_unit').val();
                   parameter_format = $('.range_parameter_format').val();
                   if(decimals > parameter_format || value.indexOf(":") !== -1){
+                     $(this).next().next().next('.hided').removeClass('custom_error').hide();
                      $(this).next().next('.hided').addClass('custom_error').text('Please Check range format').show();
                   }
                   else{
+                     // $(this).next().next().next('.hided').removeClass('custom_error').hide();
                      $(this).next().next('.hided').removeClass('custom_error').text('').hide();
                   }
               }
@@ -3599,6 +3659,7 @@
           athlete_name = $(this).parents('.test-name').find('.check_athletename').val();
           athlete_element = $(this).parents('.test-name').find('.check_athletename');
           form_data = {'check_athleteid':athlete_id,'check_athletename':athlete_name};
+          if(athlete_name!=''){
            $.ajax({
                type: "POST",
                url: "functions/athletes_functions.php?athletename_update=true",
@@ -3616,6 +3677,9 @@
                 }
               }
              });
+           }else{
+              alert('Invalid Athlete Name!');
+          }
         });
 
         $('.save_createschedule').click(function(){
@@ -3623,6 +3687,7 @@
           createschedule_name = $(this).parents('.test-name').find('.check_createschedulename').val();
           schedule_element = $(this).parents('.test-name').find('.check_createschedulename');
           form_data = {'check_scheduleid':createschedule_id,'check_createschedulename':createschedule_name};
+          if(createschedule_name!=''){
           $.ajax({
                type: "POST",
                url: "functions/create_schedule_function.php?createschedulename_update=true",
@@ -3641,6 +3706,9 @@
                 }
               }
              });
+          }else{
+              alert('Invalid Schedule Name!');
+            }
         });
 
         $('.save_state').click(function(){
@@ -3733,7 +3801,17 @@
             source: st_list,
           });
         });
-
+        //newly added for result to handle incomplete results
+        $(document).on('change','.status_incomplete',function () {
+          if($(this).is(':checked')){
+           $(this).parents('tr').find('.enter_result').val('').addClass('result_restrict').attr('disabled',true);
+           $(this).parents('tr').find('.enter_points').text('0');
+          }
+          else{
+           $(this).parents('tr').find('.enter_result').removeClass('result_restrict').attr('disabled',false);
+           $(this).parents('tr').find('.enter_points').text('');
+          }
+        });
         //********* end *********
     });
 
