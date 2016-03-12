@@ -3447,8 +3447,7 @@
               $(this).next('.hided').addClass('custom_error').show();
             }
             else{
-              // alert("else for clear");
-              // $(this).next('.hided').removeClass('custom_error').hide();
+              $(this).next('.hided').removeClass('custom_error').hide();
             }
             if(($('.range_parameter_type').val().toLowerCase()=="time") && (value!='')){
               if($(this).hasClass('check_end_range')){
@@ -3521,12 +3520,14 @@
               if($(this).hasClass('check_end_range')){
                   start_value = $(this).parents('.clone_content').find('.r_strt').val();
                   // alert(start_value);
-                  if (Number(value) <= Number(start_value)){
-                    $(this).next().next().next('.hided').addClass('custom_error').show();
-                  }
-                  else{
-                    $(this).next().next().next('.hided').removeClass('custom_error').hide();
-                  }
+                  if(value!=''){
+                    if (Number(value) <= Number(start_value)){
+                      $(this).next().next().next('.hided').addClass('custom_error').show();
+                    }
+                    else{
+                      $(this).next().next().next('.hided').removeClass('custom_error').hide();
+                    }
+                   }
               }
               if(value!=''){
                   if(value.indexOf(".")==-1){
