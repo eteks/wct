@@ -292,7 +292,8 @@
                     }
               }
            });
-        $(".assign_clone_content_edit .athlete_name").each(function(index) {
+           
+        $(this).parents('.clone_schedule_update_content').find(".athlete_name").each(function(index) {
           if(currentInput === $(this).val()) {
               j++;
           }
@@ -2169,8 +2170,8 @@
         $(document.body).delegate('.parameter_unit_update','change',function() {
             //alert($(this).html());
             var param_unit = $(this).val();
-            var param_type = $('.parameter_type_update').val().trim();
-
+            var param_type = $(this).parents('#test_updation_form').find('.parameter_type_update').val().trim();
+			//alert(param_type);
             if(param_type.toLowerCase() == 'time'){
                 $(this).parents('.parameter_holder').find('.parameter_format').empty().append("<option value="+param_unit+">"+param_unit+"</option>");
             }else{
