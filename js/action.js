@@ -661,19 +661,19 @@
           											<div class="form-group col-md-8 test_percentage parameter_type_parent">\
           												<div class="col-md-12" style="padding: 0;">\
           													<label class="popup_label">Type</label>\
-          													<select class="form-control classic type_align_popup fl parameter_type parameter_type_update" id="type1" name="type1" data-validation-error-msg="Please Select the Type" data-validation="required">\
+          													<select class="form-control classic type_align_popup fl parameter_type parameter_type_update" id="type1" name="type1" data-validation-error-msg="Please Select the Type" data-validation="required" required>\
           														<option value=""></option>\
                                                                 '+param_dynamic+'\
           													</select>\
           												</div>\
           												<div class="col-md-12" style="padding: 0;">\
           													<label class="popup_label">Unit</label>\
-          													<select class="form-control classic type_align_popup fl parameter_unit parameter_unit_update" id="unit1" name="unit1" data-validation-error-msg="Please Select the Unit" data-validation="required">\
+          													<select class="form-control classic type_align_popup fl parameter_unit parameter_unit_update" id="unit1" name="unit1" data-validation-error-msg="Please Select the Unit" data-validation="required" required>\
           													</select>\
           												</div>\
           												<div class="col-md-12" style="padding: 0;">\
           													<label class="popup_label">Format</label>\
-          													<select class="form-control classic type_align_popup fl parameter_format parameter_format_update" id="format1" name="format1" data-validation-error-msg="Please Select the Format" data-validation="required">\
+          													<select class="form-control classic type_align_popup fl parameter_format parameter_format_update" id="format1" name="format1" data-validation-error-msg="Please Select the Format" data-validation="required" required>\
           														<option value="">Format</option>\
           														<option value="0">0</option>\
           														<option value="1">1</option>\
@@ -1866,9 +1866,8 @@
 
              }
         });
-
-        $('.no_btn').click(function(event) {
-            $('.popup_fade').hide();
+        $(document).on('click','.no_btn',function(){
+        	 $('.popup_fade').hide();
             $('.state_div,.delete_div').hide();
             document.body.style.overflow = 'auto';
         });

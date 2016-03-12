@@ -13,8 +13,13 @@ if(isset($_GET['insert'])){
 if(isset($_GET['update'])){
 	echo "<script>alert('Test updated successfully!');var url ='".$url."'; window.location = url ;</script>";
 }
-if(isset($_GET['insert_error'])){
-	echo "<script>alert('Test already exist!');var url ='".$url."'; window.location = url ;</script>";
+if(isset($_GET['insert_new'])){
+	if($_GET['params'] != ''){
+		echo "<script>alert('".$_GET['params']."Parameter already exist!');var url ='".$url."'; window.location = url ;</script>";
+	}else{
+		echo "<script>alert('Parameter updated successfully!');var url ='".$url."'; window.location = url ;</script>";
+	}
+	
 }
 ?>
 <style type="text/css">
