@@ -8,6 +8,7 @@
  		public $resultparameter_name;
  		public $result;
  		public $points;
+ 		public $resultstatus;
 		public function resultathleteRecord(){
 			$res = mysql_query("SELECT * FROM wc_assignschedule as ash INNER JOIN wc_athlete as at ON ash.assignathlete_id=at.athlete_id WHERE ash.assigncreateschedule_id='".$this->createscheduleid."'")or die(mysql_error());
 			return $res;
@@ -46,7 +47,7 @@
   		}
 		public function resultInsert(){
 			$res = mysql_query("insert into wc_result (resultcreateschedule_id,resultathlete_id,resulttest_name,resultparameter_name,result,points,result_status)
-				values('".$this->createscheduleid."','".$this->athleteid."','".$this->resulttest_name."','".$this->resultparameter_name."','".$this->result."','".$this->points."','1')")or die(mysql_error());
+				values('".$this->createscheduleid."','".$this->athleteid."','".$this->resulttest_name."','".$this->resultparameter_name."','".$this->result."','".$this->points."','".$this->resultstatus."')")or die(mysql_error());
 			$lastinsertid = mysql_insert_id();
 			if($res){ return $lastinsertid; }
 			else{ return false; }
@@ -65,7 +66,7 @@
 			return $qr;
 		}
 		public function resultUpdate(){
-			$res = mysql_query("update wc_result set resultcreateschedule_id = '".$this->createscheduleid."', resultathlete_id = '".$this->athleteid."', resulttest_name = '".$this->resulttest_name."', resultparameter_name = '".$this->resultparameter_name."', result = '".$this->result."', points = '".$this->points."' where result_id ='".$this->resultid."'")or die(mysql_error());
+			$res = mysql_query("update wc_result set resultcreateschedule_id = '".$this->createscheduleid."', resultathlete_id = '".$this->athleteid."', resulttest_name = '".$this->resulttest_name."', resultparameter_name = '".$this->resultparameter_name."', result = '".$this->result."', points = '".$this->points."',result_status = '".$this->resultstatus."' where result_id ='".$this->resultid."'")or die(mysql_error());
 			if($res){ return true; }
 			else{ return false; }
 		}
@@ -133,6 +134,7 @@
 				           'resultparameter_name' => $result['test_parameter_name'],
 				           'result' => $result_data['result'],
 				           'points' => $result_data['points'],
+				           'result_status' => $result_data['result_status'],
 			            );
 		    			array_push( $jsonresult, $tmp3 );
     				}
@@ -150,6 +152,9 @@
 				$resultFunction->resulttest_name = $value->test_name;
 				$resultFunction->resultparameter_name = $value->parameter_name;
 				$resultFunction->result = $value->enter_result;
+
+				$resultFunction->resultstatus = $value->result_incomplete;
+
 				if($value->enter_points){
 					$resultFunction->points = $value->enter_points;
 				}
