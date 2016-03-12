@@ -2673,6 +2673,12 @@
         }
       });
 
+      //contains with exact match
+      $.expr[':'].textEquals = $.expr.createPseudo(function(arg) {
+        return function( elem ) {
+            return $(elem).text().match("^" + arg + "$");
+        };
+      });
 
     //result
      $('#result_form').submit(function(e){
@@ -2695,7 +2701,7 @@
                    cache: false,
                    // dataType:'json',
                    success: function(html) {
-                    // alert(html);
+                    // console.log(html);
                     $('.result_table tbody tr:not(:last)').remove();
                       var result_split = html.split('###');
                       var obj = JSON.parse(result_split[0]);
@@ -2758,10 +2764,17 @@
 
                         var obj1 = JSON.parse(result_split[1]);
                         console.log(JSON.stringify(obj1));
+                        // $.each(obj1, function(i){
+                        //   $('.result_table').find("td:contains("+obj1[i].resultparameter_name+")").siblings('.result_id').val(obj1[i].result_id);
+                        //   $('.result_table').find("td:contains("+obj1[i].resultparameter_name+")").parents('tr').find('.enter_result').val(obj1[i].result);
+                        //   $('.result_table').find("td:contains("+obj1[i].resultparameter_name+")").parents('tr').find('.enter_points').text(obj1[i].points);
+                        // });
+
+                        //changed the above code to below new one because of incorrect result placed issues
                         $.each(obj1, function(i){
-                          $('.result_table').find("td:contains("+obj1[i].resultparameter_name+")").siblings('.result_id').val(obj1[i].result_id);
-                          $('.result_table').find("td:contains("+obj1[i].resultparameter_name+")").parents('tr').find('.enter_result').val(obj1[i].result);
-                          $('.result_table').find("td:contains("+obj1[i].resultparameter_name+")").parents('tr').find('.enter_points').text(obj1[i].points);
+                          $('.result_table').find("td:contains("+obj1[i].resulttest_name+")").siblings(".result_parameter_name:contains("+obj1[i].resultparameter_name+")").siblings('.result_id').val(obj1[i].result_id);
+                          $('.result_table').find("td:contains("+obj1[i].resulttest_name+")").siblings(".result_parameter_name:contains("+obj1[i].resultparameter_name+")").parents('tr').find('.enter_result').val(obj1[i].result);
+                          $('.result_table').find("td:contains("+obj1[i].resulttest_name+")").siblings(".result_parameter_name:contains("+obj1[i].resultparameter_name+")").parents('tr').find('.enter_points').text(obj1[i].points);
                         });
 
                          //Points total result
@@ -3084,9 +3097,21 @@
                   if(ranges.length!=0){
                     // alert("if");
                     for (var i = 0; i < ranges.length; i++) {
+                      // alert(i);
                     rangestart = ranges[i].range_start;
                     rangeend = ranges[i].range_end;
+                    // if(i==ranges.length-1){
+                    //   alert("if");
+                    //   condition = value+" >= "+rangestart+" && "+value+" <= "+rangeend;
+                    // }
+                    // else{
+                    //   alert("else");
+                    //   condition = value+" >= "+rangestart+" && "+value+" < "+rangeend;
+                    // }   
                       if (value >= rangestart && value < rangeend){
+                      // alert(condition);
+                      // if (condition){
+                      //   alert("if after condition");
                         status = 1;
                         $(this).parents('tr').find('.enter_points').text(ranges[i].range_point);
                         $(this).siblings('.enter_result_error').removeClass('error').hide();
@@ -3104,75 +3129,83 @@
                   }
 
                 }
-
             }
             else{
               // alert("else number");
                   //Checking entered Result
                   if(value!=''){
                     if(value.indexOf(".")==-1){
-                    decimals = 0;
+                      decimals = 0;
+                    }
+                    else{
+                    decimals = value.toString().split(".")[1].length;
+                    }
+                    if(value.indexOf(":")==-1){
+                      $(this).siblings('.enter_result_error').removeClass('error').hide();
+                      if(ranges.length!=0){
+                        // alert("ranges not empty");
+                        // status = 0;
+                        for (var i = 0; i < ranges.length; i++) {
+                          // alert(ranges[i].range_start);
+                          rangestart = Number(ranges[i].range_start);
+                          rangeend = Number(ranges[i].range_end);
+                          // alert(ranges[i].range_end);
+                          // alert(value);
+                          if (value >= rangestart && value < rangeend){
+                            // alert("if");
+                            status = 1;
+                            if(decimals <= parameter_format){
+                               // alert("yes");
+                               $(this).siblings('.enter_result_error').removeClass('error').hide();
+                               $(this).parents('tr').find('.enter_points').text(ranges[i].range_point);
+                               break;
+                            }
+                            else{
+                               $(this).siblings('.enter_result_error').addClass('error').text('Please Check decimal points').show();
+                               totalvlaue = $('.total_result').text();
+                               pointvalue = $(this).parents('tr').find('.enter_points').text();
+                               result = totalvlaue - pointvalue;
+                               $('.total_result').text(result);
+                               $(this).parents('tr').find('.enter_points').text('');
+                            }
+                            break;
+                          }
+                          else{
+                            // alert("status");
+                            if(decimals <= parameter_format){
+                               status = 0;
+                               $(this).siblings('.enter_result_error').removeClass('error').hide();
+                            }
+                            else{
+                              $(this).siblings('.enter_result_error').addClass('error').text('Please Check decimal points').show();
+                            }
+                          }
+                        }
                   }
                   else{
-                    decimals = value.toString().split(".")[1].length;
-                  }
-                  if(ranges.length!=0){
-                    // alert("ranges not empty");
-                    // status = 0;
-                    for (var i = 0; i < ranges.length; i++) {
-                      // alert(ranges[i].range_start);
-                      rangestart = Number(ranges[i].range_start);
-                      rangeend = Number(ranges[i].range_end);
-                      // alert(ranges[i].range_end);
-                      // alert(value);
-                      if (value >= rangestart && value < rangeend){
-                        // alert("if");
-                        status = 1;
-                        if(decimals <= parameter_format){
-                           // alert("yes");
-                           $(this).siblings('.enter_result_error').removeClass('error').hide();
-                           $(this).parents('tr').find('.enter_points').text(ranges[i].range_point);
-                           break;
-                        }
-                        else{
-                           $(this).siblings('.enter_result_error').addClass('error').text('Please Check decimal points').show();
-                           totalvlaue = $('.total_result').text();
-                           pointvalue = $(this).parents('tr').find('.enter_points').text();
-                           result = totalvlaue - pointvalue;
-                           $('.total_result').text(result);
-                           $(this).parents('tr').find('.enter_points').text('');
-                        }
-                        break;
-                      }
-                      else{
-                        // alert("status");
-                        if(decimals <= parameter_format){
-                           status = 0;
-                           $(this).siblings('.enter_result_error').removeClass('error').hide();
-                        }
-                        else{
-                          $(this).siblings('.enter_result_error').addClass('error').text('Please Check decimal points').show();
-                        }
-                      }
+                    // alert("range empty");
+                    $(this).parents('tr').find('.enter_points').text('0');
+                    if(decimals <= parameter_format){
+                       $(this).siblings('.enter_result_error').removeClass('error').hide();
                     }
+                    else{
+                      $(this).siblings('.enter_result_error').addClass('error').text('Please Check decimal points').show();
+                    }
+                  }
                 }
                 else{
-                  // alert("range empty");
-                  $(this).parents('tr').find('.enter_points').text('0');
-                  if(decimals <= parameter_format){
-                     $(this).siblings('.enter_result_error').removeClass('error').hide();
-                  }
-                  else{
+                  status = 1;
+                  $(this).siblings('.enter_result_error').addClass('error').text('Please check format').show();
+                }
+                  //newly added to check for single dot without values after decimals
+                  if (value.indexOf(".") !== -1 && decimals == 0){
+                    status = 1;
                     $(this).siblings('.enter_result_error').addClass('error').text('Please Check decimal points').show();
                   }
+                  else{
+                    $(this).siblings('.enter_result_error').removeClass('error').hide();
+                  }
                 }
-              // if (value.indexOf(".") !== -1 && decimals == 0){
-              //   $(this).siblings('.enter_result_error').addClass('error').text('Please Check decimal points').show();
-              // }
-              // else{
-              //   $(this).siblings('.enter_result_error').removeClass('error').hide();
-              // }
-              }
             }
             // if(status == 0 && value!=''){
             if(status == 0 && status !='' && value != '' && ranges.length!=0){
@@ -3647,21 +3680,23 @@
               e.preventDefault();
             }
             else{
-            element.children().find('input[type="text"]').next().removeClass('custom_error');
-            length = $(this).parents('.add-ranges-button').siblings('.edit_range_holder').find('.edit_clone_content').length;
-            var id = length+1;
-            newElement = $(this).parents('.add-ranges-button').siblings('.edit_range_holder').find('.edit_clone_content:last').clone();
-            newElement.find('.edit_range_label').remove();
-            newElement.find('.edit_rattr_id').removeAttr('name').attr('name', 'edit_rangeattr_id'+id).val('');
-            newElement.find('.edit_r_id').removeAttr('name').attr('name', 'edit_range_id'+id).val('');
-            newElement.find('.edit_r_strt').removeAttr('name').attr('name', 'edit_range_start'+id).val($('#edit_end'+(id-1)).val());
-            newElement.find('.edit_r_end').removeAttr('name').attr('name', 'edit_range_end'+id).val('');
-            newElement.find('.edit_r_point').removeAttr('name').attr('name', 'edit_range_points'+id).val('');
-            newElement.find('.edit_r_strt').removeAttr('id').attr('id','edit_strt'+id);
-            newElement.find('.edit_r_end').removeAttr('id').attr('id','edit_end'+id);
-            newElement.find('.edit_r_point').removeAttr('id').attr('id','edit_point'+id);
-            newElement.appendTo($(".edit_range_holder"));
-            $(this).parents('.add-ranges-button').siblings('.edit_range_holder').find('.edit_clone_content:last').attr('id','edit_range_counter'+id);
+              element.children().find('input[type="text"]').next().removeClass('custom_error');
+              length = $(this).parents('.add-ranges-button').siblings('.edit_range_holder').find('.edit_clone_content').length;
+              var id = length+1;
+              newElement = $(this).parents('.add-ranges-button').siblings('.edit_range_holder').find('.edit_clone_content:last').clone();
+              previous_end_value = newElement.find('#edit_end'+(id-1)).val();
+              newElement.find('.edit_range_label').remove();
+              newElement.find('.edit_rattr_id').removeAttr('name').attr('name', 'edit_rangeattr_id'+id).val('');
+              newElement.find('.edit_r_id').removeAttr('name').attr('name', 'edit_range_id'+id).val('');
+              // newElement.find('.edit_r_strt').removeAttr('name').attr('name', 'edit_range_start'+id).val($('#edit_end'+(id-1)).val());
+              newElement.find('.edit_r_strt').removeAttr('name').attr('name', 'edit_range_start'+id).val(previous_end_value);
+              newElement.find('.edit_r_end').removeAttr('name').attr('name', 'edit_range_end'+id).val('');
+              newElement.find('.edit_r_point').removeAttr('name').attr('name', 'edit_range_points'+id).val('');
+              newElement.find('.edit_r_strt').removeAttr('id').attr('id','edit_strt'+id);
+              newElement.find('.edit_r_end').removeAttr('id').attr('id','edit_end'+id);
+              newElement.find('.edit_r_point').removeAttr('id').attr('id','edit_point'+id);
+              newElement.appendTo($(".edit_range_holder"));
+              $(this).parents('.add-ranges-button').siblings('.edit_range_holder').find('.edit_clone_content:last').attr('id','edit_range_counter'+id);
            }
         });
 
