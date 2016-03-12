@@ -3520,7 +3520,7 @@
             else{
               if($(this).hasClass('check_end_range')){
                   start_value = $(this).parents('.clone_content').find('.r_strt').val();
-                  alert(start_value);
+                  // alert(start_value);
                   if (Number(value) <= Number(start_value)){
                     $(this).next().next().next('.hided').addClass('custom_error').show();
                   }
