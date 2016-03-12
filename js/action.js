@@ -3070,7 +3070,7 @@
         //       }
         //  });
 
-     $(document).on('blur','.enter_result',function(e){
+$(document).on('blur','.enter_result',function(e){
             ranges = $(this).parents('tr').find('.result_ranges').val();
             parameter_type = $(this).parents('tr').find('.result_parametertype').val().toLowerCase();
             parameter_unit = $(this).parents('tr').find('.result_parameterunit').val().toLowerCase();
@@ -3122,21 +3122,9 @@
                   if(ranges.length!=0){
                     // alert("if");
                     for (var i = 0; i < ranges.length; i++) {
-                      // alert(i);
                     rangestart = ranges[i].range_start;
                     rangeend = ranges[i].range_end;
-                    // if(i==ranges.length-1){
-                    //   alert("if");
-                    //   condition = value+" >= "+rangestart+" && "+value+" <= "+rangeend;
-                    // }
-                    // else{
-                    //   alert("else");
-                    //   condition = value+" >= "+rangestart+" && "+value+" < "+rangeend;
-                    // }   
                       if (value >= rangestart && value < rangeend){
-                      // alert(condition);
-                      // if (condition){
-                      //   alert("if after condition");
                         status = 1;
                         $(this).parents('tr').find('.enter_points').text(ranges[i].range_point);
                         $(this).siblings('.enter_result_error').removeClass('error').hide();
@@ -3165,6 +3153,7 @@
                     else{
                     decimals = value.toString().split(".")[1].length;
                     }
+                    // alert(decimals);
                     if(value.indexOf(":")==-1){
                       $(this).siblings('.enter_result_error').removeClass('error').hide();
                       if(ranges.length!=0){
@@ -3198,10 +3187,13 @@
                           else{
                             // alert("status");
                             if(decimals <= parameter_format){
+                              // alert("if");
                                status = 0;
                                $(this).siblings('.enter_result_error').removeClass('error').hide();
                             }
                             else{
+                              // alert("else");
+                              status = 1;
                               $(this).siblings('.enter_result_error').addClass('error').text('Please Check decimal points').show();
                             }
                           }
@@ -3222,14 +3214,13 @@
                   status = 1;
                   $(this).siblings('.enter_result_error').addClass('error').text('Please check format').show();
                 }
-                  //newly added to check for single dot without values after decimals
+                 
                   if (value.indexOf(".") !== -1 && decimals == 0){
-                    status = 1;
                     $(this).siblings('.enter_result_error').addClass('error').text('Please Check decimal points').show();
                   }
-                  else{
-                    $(this).siblings('.enter_result_error').removeClass('error').hide();
-                  }
+                  // else{
+                  //   $(this).siblings('.enter_result_error').removeClass('error').hide();
+                  // }
                 }
             }
             // if(status == 0 && value!=''){
@@ -3811,6 +3802,25 @@
            $(this).parents('tr').find('.enter_result').removeClass('result_restrict').attr('disabled',false);
            $(this).parents('tr').find('.enter_points').text('');
           }
+        });
+
+        $(document).on('click','.yes_btn_dt',function() {
+          var del_id =$('#delete_id').val();
+          var form_data = {'delete_id':del_id};
+          $.ajax({
+               type: "POST",
+               url: "functions/district_function.php?deletestate=true",
+               data: form_data,
+               cache: false,
+               success: function(html) {
+               var result_split = html.split('#');
+               if (result_split[0].indexOf("success") !== -1){
+                alert(result_split[1]);
+                location.reload();
+                }
+               }
+           });
+
         });
         //********* end *********
     });

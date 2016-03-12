@@ -61,6 +61,11 @@ include('configu.php');
 			$res = mysql_query("select * from wc_district as d INNER JOIN wc_states as s ON s.states_id=d.districtstates_id group by s.states_id")or die(mysql_error());
 			return $res;
 		}
+		public function statenameDelete(){
+			$res = mysql_query("delete from wc_states where states_id ='".$this->statesid."' ")or die(mysql_error());
+			if($res){ return true; }
+			else{ return false; }
+		}
 	}
 	if(isset($_POST)){
 		//To insert data
@@ -174,6 +179,17 @@ include('configu.php');
 	    		array_push( $json, $tmp );
 		    }
 		    echo json_encode($json);
+		}
+		if(isset($_GET['deletestate'])){
+			$districtFunction = new districtFunction();
+			$districtFunction->statesid = $_POST['delete_id'];
+			$statenamedelete = $districtFunction->statenameDelete();
+			if($statenamedelete){
+				echo "success#State Deleted#".$_POST['delete_id'];
+			}
+			else{
+				echo "failure#Record not found";
+			}
 		}
 	  }
 ?>
