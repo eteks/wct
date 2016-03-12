@@ -3803,6 +3803,25 @@ $(document).on('blur','.enter_result',function(e){
            $(this).parents('tr').find('.enter_points').text('');
           }
         });
+
+        $(document).on('click','.yes_btn_dt',function() {
+          var del_id =$('#delete_id').val();
+          var form_data = {'delete_id':del_id};
+          $.ajax({
+               type: "POST",
+               url: "functions/district_function.php?deletestate=true",
+               data: form_data,
+               cache: false,
+               success: function(html) {
+               var result_split = html.split('#');
+               if (result_split[0].indexOf("success") !== -1){
+                alert(result_split[1]);
+                location.reload();
+                }
+               }
+           });
+
+        });
         //********* end *********
     });
 
