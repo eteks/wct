@@ -55,7 +55,7 @@ if(isset($_GET['update_success'])){
 						<div class="assign_clone_content col-md-12">
 							<input type="hidden" class="assign_athelete_count_add" value="1" />
 							<div class="form-group col-md-6 padding_zero">
-								<div class="col-md-6 form-group combo--align">
+								<div class="col-md-6 form-group combo--align" style="position: relative; top: 10px;">
 									<select class="form-control name_align  athlete_name athlete_name1" placeholder="Name" name="athlete_name1" id="combobox" data-validation-error-msg="Please Select Athlete" data-validation="required">
 										<option value="">Athletes</option>
 										<?php
@@ -152,7 +152,7 @@ if(isset($_GET['update_success'])){
 								<div class=" clone_schedule_update_content assign_clone_content_edit_holder col-md-12">
 									<div class="assign_clone_content_edit clone_schedule_update">
 										<input type="hidden" class="assign_athelete_count_edit" value="1" />
-										<div class="form-group col-md-12">
+										<div class="form-group col-md-1">
 											<div class="col-md-12 combo--align--popup align_atheletes_schedules">
 														<select class="form-control name_align_popup fl box-width athlete_name athlete_name_update athlete_name1" placeholder="Name" name="athlete_name1"  data-validation-error-msg="Please Select Athlete" data-validation="required"><!--id="combobox1"-->
 													<option value="">Athletes</option>
@@ -170,7 +170,7 @@ if(isset($_GET['update_success'])){
 									    	</div>
 									    </div>
 									    <div class="form-group col-md-12">
-									    	<div class="col-md-12">
+									    	<div class="col-md-2">
 									      		<input type="text" class="form-control schedule-name fl mobile_update mobile" placeholder="Mobile no" value="" disabled>
 									      	</div>
 									      	<div class="col-md-12">

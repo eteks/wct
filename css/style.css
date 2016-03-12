@@ -904,7 +904,7 @@ button, input, optgroup, select, textarea {
     color: #424242 !important;
     font-family: Montserrat;
     height: 34px;
-    margin: 0 0 10px 16px;
+    margin: 18px 0 10px 16px;
     position: relative;
     right: 56px;
     width: 225px !important;
@@ -1154,8 +1154,8 @@ input[type=radio]:checked + label:before {
 
 .help-block, .form-error{
     color: red !important;
-  /*  float: right;*/
-    font-size: 11px;
+    font-family: sans-serif !important;
+    font-size: 11px !important;
 }
 .help-block{
     margin-bottom: 0 !important;
@@ -1250,11 +1250,11 @@ input[type=radio]:checked + label:before {
     right: 45px;
 }
 .combo--align span input {
-    position: relative !important;
-    top: 12px;
-    width: 205px;
     box-shadow: none;
     height: 35px;
+    position: relative !important;
+    top: 2px;
+    width: 205px;
 }
 .combo--align--popup span input {
     height: 30px;
