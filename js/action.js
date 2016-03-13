@@ -2504,7 +2504,7 @@
             }
           });
 
-        $('.edit_range_form_id ').submit(function(e){
+        $('.edit_range_form_id').submit(function(e){
             e.preventDefault();
             var res = true;
             $('input[type="text"],textarea,select',this).each(function() {
@@ -2519,6 +2519,7 @@
             if(res){
                 edit_clone_length = $(this).find('.edit_clone_content').length;
                 var form_data = $(this).serialize();
+                // alert(JSON.stringify(form_data));
                 $.ajax({
                        type: "POST",
                        url: "functions/range_function.php?editdata=true",
@@ -3118,6 +3119,12 @@ $(document).on('blur','.enter_result',function(e){
                   status=1;
                   // break;
                 }
+                else if((parameter_format=="mss")&&(!(/^(?:[0-9][0-9]|[0-9][0-9][0-9]|[0-1][0][0][0])$/).test(value))){
+                  // alert("if6");
+                  $(this).siblings('.enter_result_error').addClass('error').text('Please Check time format').show();
+                  status=1;
+                  // break;
+                }
                 else{
                   // alert("else time");
                   if(ranges.length!=0){
@@ -3362,10 +3369,14 @@ $(document).on('blur','.enter_result',function(e){
           }
         });
 
+        var remove_rattr_id = [];
         $('.edit_range_remove').click(function(){
           clone_content = $(this).parents('.add-ranges-button').siblings('.edit_range_holder').find('.edit_clone_content').length;
           if(clone_content!=1){
-            $(this).parents('.add-ranges-button').siblings('.edit_range_holder').find('.edit_clone_content:last').remove();
+            remove_element = $(this).parents('.add-ranges-button').siblings('.edit_range_holder').find('.edit_clone_content:last');
+            remove_rattr_id.push(remove_element.find('.edit_rattr_id').val());
+            remove_element.remove();
+            $('.edit_remove_rattr_id').val(remove_rattr_id);
           }
         });
 
@@ -3444,8 +3455,12 @@ $(document).on('blur','.enter_result',function(e){
             }
             if(($('.range_parameter_type').val().toLowerCase()=="time") && (value!='')){
               if($(this).hasClass('check_end_range')){
+                if($(this).hasClass('r_end'))
                   start_value = $(this).parents('.form-group').find('.r_strt').val();
+                if($(this).hasClass('edit_r_end'))
+                  start_value = $(this).parents('.form-group').find('.edit_r_strt').val();
                   if (value <= start_value){
+                    $(this).next().next('.hided').addClass('custom_error').show();
                     $(this).next().next().next('.hided').addClass('custom_error').show();
                   }
                   else{
@@ -3508,10 +3523,24 @@ $(document).on('blur','.enter_result',function(e){
                   $(this).next().next('.hided').removeClass('custom_error').text('').hide();
                 }
               }
+              else if($('.range_parameter_format').val().toLowerCase()=="mss"){
+                if(!(/^(?:[0-9][0-9]|[0-9][0-9][0-9]|[0-1][0][0][0])$/).test(value)){
+                  $(this).next().next().next('.hided').removeClass('custom_error').hide();
+                  $(this).next().next('.hided').addClass('custom_error').text('Please Check time format').show();
+                }
+                else{
+                  $(this).next().next('.hided').removeClass('custom_error').text('').hide();
+                }
+              }
             }
             else{
+              // alert("else");
               if($(this).hasClass('check_end_range')){
-                  start_value = $(this).parents('.clone_content').find('.r_strt').val();
+                // alert("check_end_range");
+                  if($(this).hasClass('r_end'))
+                    start_value = $(this).parents('.clone_content').find('.r_strt').val();
+                  if($(this).hasClass('edit_r_end'))
+                    start_value = $(this).parents('.edit_clone_content').find('.edit_r_strt').val();
                   // alert(start_value);
                   if(value!=''){
                     if (Number(value) <= Number(start_value)){
@@ -3538,6 +3567,10 @@ $(document).on('blur','.enter_result',function(e){
                   else{
                      // $(this).next().next().next('.hided').removeClass('custom_error').hide();
                      $(this).next().next('.hided').removeClass('custom_error').text('').hide();
+                  }
+                  if (value.indexOf(".") !== -1 && decimals == 0){
+                    $(this).next().next().next('.hided').removeClass('custom_error').hide();
+                    $(this).next().next('.hided').addClass('custom_error').text('Please Check range format').show();
                   }
               }
             }
@@ -3734,12 +3767,15 @@ $(document).on('blur','.enter_result',function(e){
         });
 
 
-        $('.edit_range_points').click(function(){
+        $(document).on('click','.edit_range_points',function(e){
             element = $(this).parents('.add-ranges-button').siblings('.edit_range_holder').find('.edit_clone_content:last');
             if((element.children().find('.edit_r_strt').val() == '') || (element.children().find('.edit_r_end').val() == '') || (element.children().find('.edit_r_point').val() == '') || (element.children().find('.edit_r_strt').val() == '') || (element.children().find('.edit_r_end').val() == '') || (element.children().find('.edit_r_point').val() == ''))
             {
               element.children().find('input[type="text"]').next().addClass('custom_error');
               e.preventDefault();
+            }
+            else if($('.edit_range_holder').find('.hided').hasClass('custom_error')){
+                e.preventDefault();
             }
             else{
               element.children().find('input[type="text"]').next().removeClass('custom_error');
@@ -3798,6 +3834,12 @@ $(document).on('blur','.enter_result',function(e){
           if($(this).is(':checked')){
            $(this).parents('tr').find('.enter_result').val('').addClass('result_restrict').attr('disabled',true);
            $(this).parents('tr').find('.enter_points').text('0');
+           //Points total result
+            var val=0;
+            $(".enter_points").each(function() {
+              val += Number($(this).text());
+              $('.total_result').text(val);
+            });
           }
           else{
            $(this).parents('tr').find('.enter_result').removeClass('result_restrict').attr('disabled',false);

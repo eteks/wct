@@ -219,6 +219,16 @@ include('configu.php');
 
 		$testname = mysql_fetch_array( $rangeFunction->testnameSelect());
 		$rangeFunction->rangetestname = $testname['test_name'];
+
+		//delete removed range attributes
+		if(isset($_POST['edit_remove_rattr_id'])!=''){
+			$rattr_delete_id = explode(",", $_POST['edit_remove_rattr_id']);
+			foreach($rattr_delete_id as $value) {
+			    // $value = trim($value);
+			    if($value!='')
+			    	$res = mysql_query("delete from wc_range_attribute where range_attribute_id ='".$value."' ")or die(mysql_error());
+			} 
+		}
 		// $paramters = $rangeFunction->isParameterExist();
 		// if(!$paramters){
 			// check for exclude that particular id

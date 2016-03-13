@@ -1938,3 +1938,6 @@ td {
 .result_restrict{
     background: #eee;
 }
+.delete_state {
+    padding: 3px;
+}

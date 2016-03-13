@@ -149,6 +149,7 @@
 							          			<div class="col-xs-12 col-md-12 align_margin">
 										<form name="edit_range_form" class="edit_range_form_id">
 										<input type="hidden" name="edit_range_id">
+										<input type="hidden" class="edit_remove_rattr_id" name="edit_remove_rattr_id" value="">
 											<div class="form-group">
 											    <label for="sel1" class="popup_label">Select Test Battery Names</label>
 											  	<select class="form-control adjust_width classic box-width" id="sel1" name="edit_range_testbattery" data-validation-error-msg="Please Select the Name of Test Battery " data-validation="required">
@@ -197,6 +198,7 @@
 												      		<input type="text" class="form-control classic range_align_popup edit_r_end check_end_range" id="edit_end1" name="edit_range_end1" autocomplete="off" placehoder="end">
 												       		<span class="hided">Please Enter the end range</span>
 											  				<span class="hided">Please Check the format</span>
+											  				<span class="hided">Enter greater than start value</span>
 												       	</div>
 												       	<div class="col-md-12">
 												      		<input type="text" class="form-control classic range_align_popup edit_r_point" id="edit_point1" name="edit_range_points1" autocomplete="off" placehoder="points">
