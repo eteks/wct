@@ -3797,6 +3797,12 @@ $(document).on('blur','.enter_result',function(e){
           if($(this).is(':checked')){
            $(this).parents('tr').find('.enter_result').val('').addClass('result_restrict').attr('disabled',true);
            $(this).parents('tr').find('.enter_points').text('0');
+           //Points total result
+            var val=0;
+            $(".enter_points").each(function() {
+              val += Number($(this).text());
+              $('.total_result').text(val);
+            });
           }
           else{
            $(this).parents('tr').find('.enter_result').removeClass('result_restrict').attr('disabled',false);
