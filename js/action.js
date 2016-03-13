@@ -3117,6 +3117,12 @@ $(document).on('blur','.enter_result',function(e){
                   status=1;
                   // break;
                 }
+                else if((parameter_format=="mss")&&(!(/^(?:[0-9][0-9]|[0-9][0-9][0-9]|[0-1][0][0][0])$/).test(value))){
+                  // alert("if6");
+                  $(this).siblings('.enter_result_error').addClass('error').text('Please Check time format').show();
+                  status=1;
+                  // break;
+                }
                 else{
                   // alert("else time");
                   if(ranges.length!=0){
@@ -3500,6 +3506,15 @@ $(document).on('blur','.enter_result',function(e){
               }
               else if($('.range_parameter_format').val().toLowerCase()=="ss:mss"){
                 if(!(/^(?:[0-5][0-9]):([0-9][0-9]|[0-9][0-9][0-9]|[0-1][0][0][0])$/).test(value)){
+                  $(this).next().next().next('.hided').removeClass('custom_error').hide();
+                  $(this).next().next('.hided').addClass('custom_error').text('Please Check time format').show();
+                }
+                else{
+                  $(this).next().next('.hided').removeClass('custom_error').text('').hide();
+                }
+              }
+              else if($('.range_parameter_format').val().toLowerCase()=="mss"){
+                if(!(/^(?:[0-9][0-9]|[0-9][0-9][0-9]|[0-1][0][0][0])$/).test(value)){
                   $(this).next().next().next('.hided').removeClass('custom_error').hide();
                   $(this).next().next('.hided').addClass('custom_error').text('Please Check time format').show();
                 }
