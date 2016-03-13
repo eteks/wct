@@ -44,7 +44,7 @@ $createschedule = new createscheduleFunction();
 						$param_split = explode("#",$single_param);
 						array_push($test,$res['resulttest_name']);
 						array_push($test,'');
-						array_push($test,'');
+						//array_push($test,'');
 					}
 					fputcsv($output, $test);
 					break;
@@ -56,9 +56,10 @@ $createschedule = new createscheduleFunction();
 					$heading =  array('Athlete Name','Athelete DOB','Athlete Mobile Number','Gender','State','District','Taluka','Address','Sports','Category','BIB number');
 					
 					foreach($pararms as $single_param){
-						array_push($heading,'Parameter Name');
-						array_push($heading,'Parameter Result');
-						array_push($heading,'Parameter Point');
+						$param_split = explode("#",$single_param);
+						//array_push($heading,'Parameter Name');
+						array_push($heading,$param_split[0].' Result');
+						array_push($heading,$param_split[0].' Point');
 					}
 					array_push($heading,'Total points');
 					fputcsv($output, $heading);
@@ -72,7 +73,7 @@ $createschedule = new createscheduleFunction();
 					$pararms = explode(",",$res['results']);
 					foreach($pararms as $single_param){
 						$param_split = explode("#",$single_param);
-						array_push($csv_record,$param_split[0]);
+						//array_push($csv_record,$param_split[0]);
 						if(isset($param_split[1])){
 							array_push($csv_record,$param_split[1]);
 						}else{

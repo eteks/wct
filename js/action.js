@@ -270,13 +270,14 @@
             //alert($(this).parents('.assign_clone_content').find('date_assign dob').val('').html());
         }
       });
-      $(document).delegate('.assign_clone_content_edit .athlete_name','change',function(){
+      $(document).delegate('.assign_clone_content_edit .athlete_name_update','change',function(){
           var j = 0;
           var main_content =  $(this).parents('.assign_clone_content_edit');
-          var schedule = $('.create_schedule_update_id').val();
+          var schedule = $(this).parents('.clone_schedule_update_content').find('.assign_clone_content_edit:first').find('.create_schedule_update_id').val();
           var category = $('.category_update').val();
           var athe_id = $(this).val();
           var currentInput  = $(this).val();
+          
           $.ajax({
                type: "POST",
                url: "functions/athletes_functions.php?athelete_check=true",
@@ -2932,7 +2933,7 @@
                    //$('.clone_schedule_update:first .assing_schedule_update_id').val(data[0].assignschedule_id);
                    main_content_assign_popup.find('.clone_schedule_update .create_schedule_update_id').val(data[0].createschedule_id);
                    //$('.category_update option[value="'+data[0].assigncategory_id+'"]').attr('selected','selected');
-
+				   
                    var cnt = 0;
                    $.each(data, function(i){
                        if(cnt!=i){
