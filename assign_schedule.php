@@ -142,9 +142,9 @@ if(isset($_GET['update_success'])){
 										<option value="">Select Category Name</option>
 										<?php
 			   							 $data = $category->categoryselectfunction();
-			   							 foreach( $data as $eachrecord ) {
+			   							 foreach( $data as $eachrecord1 ) {
 			   						   ?>
-			   							 <option value="<?php echo $eachrecord ['categories_id']; ?>"><?php echo $eachrecord ['categories_name']; ?></option>
+			   							 <option value="<?php echo $eachrecord1 ['categories_id']; ?>"><?php echo $eachrecord1 ['categories_name']; ?></option>
 			   						   <?php } ?>
 									  </select>
 								</div>
@@ -158,9 +158,9 @@ if(isset($_GET['update_success'])){
 													<option value="">Athletes</option>
 													<?php
 														$data = $athlete->athleteSelect1();
-														foreach( $data as $eachrecord ) {
+														foreach( $data as $eachrecord2 ) {
 													?>
-														<option value="<?php echo $eachrecord ['athlete_id']; ?>"><?php echo $eachrecord ['athlete_name']; ?></option>
+														<option value="<?php echo $eachrecord2 ['athlete_id']; ?>"><?php echo $eachrecord2 ['athlete_name']; ?></option>
 													<?php } ?>
 												</select>
 											</div>
@@ -210,7 +210,7 @@ if(isset($_GET['update_success'])){
 				              </div>
 				              <div class="del_content">
 				                <span class="del_content_txt">Are you sure want to delete this whole record?</span>
-				                <input type="button" class="btn btn-primary align_right yes_btn" value="Yes">
+				                <input type="button" class="btn btn-primary align_right yes_btn" value="Yes" data-schedule="<?php echo $eachrecord ['createschedule_id']; ?>" data-category="<?php echo $eachrecord ['assigncategory_id']; ?>">
 				                <input type="button" class="btn btn-primary align_right no_btn" value="No">
 				                <input type="hidden" name="delete_id" value="" id="delete_id"/>
 				              </div><!--del_content-->

@@ -16,7 +16,7 @@ class assignscheduleFunction {
        return $temp_arr;
    }
    public function assignscheduleDelete(){
-       $res = mysql_query("delete from wc_assignschedule where assignschedule_id ='".$this->assignscheduleid."' ")or die(mysql_error());
+       $res = mysql_query("delete from wc_assignschedule where assigncreateschedule_id ='".$this->scheduleid."' and assigncategory_id = '".$this->categoryid."' ")or die(mysql_error());
        if($res){ return true; }
        else{ return false; }
    }
@@ -75,7 +75,8 @@ class assignscheduleFunction {
     if(isset($_GET['deletedata'])){
         include ("../dbconnect.php");
         $assign = new assignscheduleFunction();
-        $assign->assignscheduleid = $_POST['delete_id'];
+        $assign->scheduleid = $_POST['delete_id'];
+		$assign->categoryid = $_POST['del_cate'];
         if($assign->assignscheduleDelete()){
           echo $_POST['delete_id'];
         }else{

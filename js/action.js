@@ -1775,7 +1775,8 @@
            }
            else if (window.location.href.indexOf("assign_schedule.php") !== -1){
                //alert('dsfsdfds');
-                var form_data = {'delete_id':del_id};
+                var form_data = {'delete_id':$(this).attr('data-schedule'),'del_cate':$(this).attr('data-category')};
+                //alert(JSON.stringify(form_data));
                 $.ajax({
                      type: "POST",
                      url: "functions/assign_schedule_function.php?deletedata=true",
@@ -1783,6 +1784,7 @@
                      cache: false,
                      success: function(html) {
                       //alert(html);
+                      //alert('Assign schedule successfully deleted');
                       $('.popup_fade').hide();
                       $('.state_div,.delete_div').hide();
                       document.body.style.overflow = 'auto';
@@ -2047,7 +2049,7 @@
         }
 
         $('.edit_assign_schedule_add_btn').click(function(){
-            var element = $('.assign_clone_content_edit:last');
+            var element = $(this).parents('#edit_assign_schedule_form').find('.assign_clone_content_edit:last');
             var last_id = parseInt(element.find('.assign_athelete_count_edit').val());
             //alert(last_id);
             var newElement = element.clone();
