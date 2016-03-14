@@ -3638,7 +3638,7 @@ $(document).on('blur','.enter_result',function(e){
         //   });
         // });
 
-      $(document).on('keyup','.at_search,.cs_search',function(e){
+      $(document).on('keyup','.at_search,.cs_search,.dt_search',function(e){
         search_value = $('.search_text').val();
           if(search_value == ''){
             $('.test-name').show();
@@ -3824,15 +3824,15 @@ $(document).on('blur','.enter_result',function(e){
         //   newElement.appendTo($(".clone_schedule_update_content"));
         // });
 
-        var st_list = [];
-        $('.check_statename').each(function(){
-          st_list.push($(this).val());
-        })
-        $('.dt_search').focus(function (e) {
-          $(this).autocomplete({
-            source: st_list,
-          });
-        });
+        // var st_list = [];
+        // $('.check_statename').each(function(){
+        //   st_list.push($(this).val());
+        // })
+        // $('.dt_search').focus(function (e) {
+        //   $(this).autocomplete({
+        //     source: st_list,
+        //   });
+        // });
         //newly added for result to handle incomplete results
         $(document).on('change','.status_incomplete',function () {
           if($(this).is(':checked')){
