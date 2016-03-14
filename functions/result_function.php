@@ -37,12 +37,22 @@
 		   //   wc_test_attribute as ta ON ta.test_id = t.test_id LEFT JOIN wc_range as r ON
 		   //   r.rangetestattribute_id = ta.test_attribute_id WHERE asch.assigncreateschedule_id='".$this->createscheduleid."' AND asch.assignathlete_id='".$this->athleteid."' GROUP BY test_name,test_parameter_name")or die(mysql_error());
 
+		   // $res = mysql_query("SELECT * FROM wc_assignschedule as asch INNER JOIN wc_createschedule as cs ON cs.createschedule_id = asch.assigncreateschedule_id INNER JOIN
+		   //   wc_testbattery_test_attribute as tbta ON tbta.testbattery_id=cs.createscheduletestbattery_id
+		   //   INNER JOIN wc_test as t ON t.test_id = tbta.testbattery_test_id INNER JOIN
+		   //   wc_test_attribute as ta ON ta.test_id = t.test_id LEFT JOIN wc_range as r ON
+		   //   r.rangetestattribute_id = ta.test_attribute_id WHERE asch.assigncreateschedule_id='".$this->createscheduleid."' AND
+		   //   asch.assignathlete_id='".$this->athleteid."' GROUP BY test_attribute_id")or die(mysql_error());
+		   
 		   $res = mysql_query("SELECT * FROM wc_assignschedule as asch INNER JOIN wc_createschedule as cs ON cs.createschedule_id = asch.assigncreateschedule_id INNER JOIN
 		     wc_testbattery_test_attribute as tbta ON tbta.testbattery_id=cs.createscheduletestbattery_id
 		     INNER JOIN wc_test as t ON t.test_id = tbta.testbattery_test_id INNER JOIN
 		     wc_test_attribute as ta ON ta.test_id = t.test_id LEFT JOIN wc_range as r ON
-		     r.rangetestattribute_id = ta.test_attribute_id WHERE asch.assigncreateschedule_id='".$this->createscheduleid."' AND
+		     r.rangetestattribute_id = ta.test_attribute_id AND r.rangecategories_id = asch.assigncategory_id 
+		     AND r.rangetestbattery_id = cs.createscheduletestbattery_id AND r.rangetest_id = ta.test_id 
+		     WHERE asch.assigncreateschedule_id='".$this->createscheduleid."' AND
 		     asch.assignathlete_id='".$this->athleteid."' GROUP BY test_attribute_id")or die(mysql_error());
+
 		   return $res;
   		}
 		public function resultInsert(){
