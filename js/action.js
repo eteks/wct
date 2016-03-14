@@ -3757,6 +3757,7 @@ $(document).on('blur','.enter_result',function(e){
                     else{
                       alert(result_split[1]);
                     }
+                    location.reload();
                   }
                  });
           }else{
