@@ -42,7 +42,7 @@ $createschedule = new createscheduleFunction();
 					$pararms = explode(",",$res['results']);
 					foreach($pararms as $single_param){
 						$param_split = explode("#",$single_param);
-						array_push($test,$res['resulttest_name']);
+						array_push($test,$param_split[0]);
 						array_push($test,'');
 						//array_push($test,'');
 					}
