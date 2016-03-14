@@ -3638,39 +3638,55 @@ $(document).on('blur','.enter_result',function(e){
         });
 
         // Autocomplete results for atheletes list while search
-        var at_list = [];
-        $('.athlete_list li').each(function(){
-          at_list.push($(this).text());
-        });
+        // var at_list = [];
+        // $('.athlete_list li').each(function(){
+        //   at_list.push($(this).text());
+        // });
 
-        $('.at_search').focus(function (e) {
-          $(this).autocomplete({
-            source: at_list,
-          });
-        });
+        // alert(at_list);
+        // $('.at_search').focus(function (e) {
+        //   $(this).autocomplete({
+        //     source: at_list,
+        //   });
+        // });
 
-        //Autocomplete results for create schedule list while search
-        var cs_list = [];
-        $('.createschedule_list li').each(function(){
-          cs_list.push($(this).text());
-        });
-
-        $('.cs_search').focus(function (e) {
-          $(this).autocomplete({
-            source: cs_list,
-          });
-        });
-
-        // $('.delete_search,.at_namelist,.cs_namelist').hide();
-        $('.search_button').click(function(){
-          search_value = $('.search_text').val();
+      $(document).on('keyup','.at_search,.cs_search',function(e){
+        search_value = $('.search_text').val();
           if(search_value == ''){
             $('.test-name').show();
           }else{
             $('.test-name').hide();
-            $('.test-list').find("input[value='"+search_value+"']").parents('.test-name').show();
+            $('.test-list input').each(function(){
+                if($(this).val().toLowerCase().indexOf(search_value) !== -1){
+                  $(this).parents('.test-name').show();
+                }
+            });
           }
-        });
+       });
+
+        //Autocomplete results for create schedule list while search
+        // var cs_list = [];
+        // $('.createschedule_list li').each(function(){
+        //   cs_list.push($(this).text());
+        // });
+
+        // $('.cs_search').focus(function (e) {
+        //   $(this).autocomplete({
+        //     source: cs_list,
+        //   });
+        // });
+
+        // $('.delete_search,.at_namelist,.cs_namelist').hide();
+        // $('.search_button').click(function(){
+        //   search_value = $('.search_text').val();
+        //   if(search_value == ''){
+        //     $('.test-name').show();
+        //   }else{
+        //     $('.test-name').hide();
+        //     $('.test-list').find("input[value='"+search_value+"']").parents('.test-name').show();
+        //   }
+        // });
+        
         $('.ui-district').keyup(function(){
           $('#ui-id-1').addClass('width_search');
           // $('#ui-id-1').removeAttr('style');
