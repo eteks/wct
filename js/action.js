@@ -860,6 +860,18 @@
         $(this).find('.list_edit').attr('disabled', 'disabled');
       });
       
+      $(document).delegate('.dt_namelist,.at_namelist,.cs_namelist','mouseenter',function(event){
+        state_for_edit_purpose = $(this).find('.check_statename').val();
+        athlete_for_edit_purpose = $(this).find('.check_athletename').val();
+        schedule_for_edit_purpose = $(this).find('.check_createschedulename').val();
+      });
+
+      $(document).delegate('.dt_namelist,.at_namelist,.cs_namelist','mouseleave',function(event){
+        $(this).find('.check_statename').val(state_for_edit_purpose);
+        $(this).find('.check_athletename').val(athlete_for_edit_purpose);
+        $(this).find('.check_createschedulename').val(schedule_for_edit_purpose);
+      });
+      
 
 
       $(document).delegate('.edit_item','click',function(event){
