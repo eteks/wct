@@ -312,28 +312,11 @@
     $(window).load(function() {
         $('.check_table').find('tbody tr').not(':first').hide();
     });
+    
+    
 
     $(document).ready(function () {
 
-       $(".edit_state").click(function(){
-        // get the scollTop (distance scrolled from top)
-        var scrollTop = $("table").scrollTop();
-        // get the top offset of the dropdown (distance from top of the page)
-        var topOffset = $(".table").offset().top;
-        // calculate the dropdown offset relative to window position
-        var relativeOffset = topOffset-scrollTop;
-        // get the window height
-        var windowHeight = $(window).height();
-
-        // if the relative offset is greater than half the window height,
-        // reverse the dropdown.
-        if(relativeOffset > windowHeight/2){
-            $(".popup_hidden").addClass("reverse");
-        }
-        else{
-            $(".popup_hidden").removeClass("reverse");
-        }
-    });
       package_menu();
 
       $('.add_createschedule_act,.edit_createschedule_act,.add_athletes_act,.edit_athletes_act').on('click', function(){
@@ -3896,3 +3879,23 @@ $(document).on('blur','.enter_result',function(e){
              del_popup.hide();
         }
      });
+     
+     $(document).on("click",".edit_state",function(){
+        // get the scollTop (distance scrolled from top)
+        var scrollTop = $("table").scrollTop();
+        // get the top offset of the dropdown (distance from top of the page)
+        var topOffset = $(".table").offset().top;
+        // calculate the dropdown offset relative to window position
+        var relativeOffset = topOffset-scrollTop;
+        // get the window height
+        var windowHeight = $(window).height();
+
+        // if the relative offset is greater than half the window height,
+        // reverse the dropdown.
+        if(relativeOffset > windowHeight/2){
+            $(".popup_hidden").addClass("reverse");
+        }
+        else{
+            $(".popup_hidden").removeClass("reverse");
+        }
+    });
