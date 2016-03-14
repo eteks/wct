@@ -846,10 +846,13 @@
         $(this).find('.list_edit').attr('disabled', 'disabled');
         $(this).find('.test_name_value').val(test_name_for_edit_purpose);
         $(this).find('.test_battery_name_hover').val(test_battery_name_for_edit_purpose);
+        $(this).find('.test').val(parametertype_for_edit_purpose);
+      });
+
+      $(document).delegate('.dt_namelist,.at_namelist,.cs_namelist','mouseleave',function(event){
         $(this).find('.check_statename').val(state_for_edit_purpose);
         $(this).find('.check_athletename').val(athlete_for_edit_purpose);
         $(this).find('.check_createschedulename').val(schedule_for_edit_purpose);
-        $(this).find('.test').val(parametertype_for_edit_purpose);
       });
 
 
