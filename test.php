@@ -139,7 +139,7 @@ if(isset($_GET['insert_new'])){
 									$data = $obj->testnamefunction();
 									foreach( $data as $eachrecord ) {
 									 ?>
-									<span class="test-name">
+									<span class="test-name test-test-name">
 										<input type="checkbox" name="test " value="test" class="check_test test_name_hover_check" id="check-select" data-id ="<?php echo $eachrecord ['test_id']; ?>">
 										<input type="text" name="test"  value="<?php echo $eachrecord ['test_name']; ?>" class="list_edit test_name_hover test_name_value input_wrap" disabled>
 										<span class="test-alter">

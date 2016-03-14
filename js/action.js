@@ -829,28 +829,37 @@
       var athlete_for_edit_purpose = '';
       var schedule_for_edit_purpose = '';
       var parametertype_for_edit_purpose = '';
+      $(document).delegate('.test-test-name', 'mouseenter', function(event){
+      	test_name_for_edit_purpose = $(this).find('.test_name_value').val();
+      });
+      $(document).delegate('.test-test-name','mouseleave',function(event){
+      	$(this).find('.test_name_value').val(test_name_for_edit_purpose);
+      });
+      $(document).delegate('.test-battery-test-name', 'mouseenter', function(event){
+      	test_battery_name_for_edit_purpose = $(this).find('.test_battery_name_hover').val();
+      });
+      $(document).delegate('.test-battery-test-name','mouseleave',function(event){
+      	$(this).find('.test_battery_name_hover').val(test_battery_name_for_edit_purpose);
+      });
+      $(document).delegate('.parameter-test-name', 'mouseenter', function(event){
+      	test_battery_name_for_edit_purpose = $(this).find('.test').val();
+      });
+      $(document).delegate('.parameter-test-name','mouseleave',function(event){
+      	$(this).find('.test').val(test_battery_name_for_edit_purpose);
+      });
+      
       $(document).delegate('.test-name', 'mouseenter', function(event){
         $(this).children().find('.edit_item,.delete_item').show();
         $('.save_item').hide();
-        test_name_for_edit_purpose = $(this).find('.test_name_value').val();
-        test_battery_name_for_edit_purpose = $(this).find('.test_battery_name_hover').val();
-        state_for_edit_purpose = $(this).find('.check_statename').val();
-        athlete_for_edit_purpose = $(this).find('.check_athletename').val();
-        schedule_for_edit_purpose = $(this).find('.check_createschedulename').val();
-        parametertype_for_edit_purpose = $(this).find('.test').val();
+     
       });
 
        $(document).delegate('.test-name','mouseleave',function(event){
         $('.edit_item,.delete_item,.save_item').hide();
         $('.list_edit').removeClass('list_edit_rollover');
         $(this).find('.list_edit').attr('disabled', 'disabled');
-        $(this).find('.test_name_value').val(test_name_for_edit_purpose);
-        $(this).find('.test_battery_name_hover').val(test_battery_name_for_edit_purpose);
-        $(this).find('.check_statename').val(state_for_edit_purpose);
-        $(this).find('.check_athletename').val(athlete_for_edit_purpose);
-        $(this).find('.check_createschedulename').val(schedule_for_edit_purpose);
-        $(this).find('.test').val(parametertype_for_edit_purpose);
       });
+      
 
 
       $(document).delegate('.edit_item','click',function(event){

@@ -73,7 +73,7 @@
 									$data = $parameterunitFunction->parameterunitsearchSelect();
 									foreach( $data as $eachrecord ) {
 									 ?>
-									<span class="test-name">
+									<span class="test-name parameter-test-name">
 										<input type="checkbox" name="test" value="test" class="check_test check_parametertype" id="check-select" data-id ="<?php echo $eachrecord ['parametertype_id']; ?>">
 										<input type="text" name="test" data-id ="<?php echo $eachrecord ['parametertype_id']; ?>" value="<?php echo $eachrecord ['parametertype_name']; ?>" class="list_edit test parametertype_name_hover input_wrap" disabled>
 										<span class="test-alter">
