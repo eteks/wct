@@ -2797,7 +2797,7 @@
                           // $('.result_table').find("td:contains("+obj1[i].resulttest_name+")").siblings(".result_parameter_name:contains("+obj1[i].resultparameter_name+")").parents('tr').find('.enter_result').val(obj1[i].result);
                           $('.result_table').find("td:contains("+obj1[i].resulttest_name+")").siblings(".result_parameter_name:contains("+obj1[i].resultparameter_name+")").parents('tr').find('.enter_points').text(obj1[i].points);
                           if (obj1[i].result_status == 0){
-                            $('.result_table').find("td:contains("+obj1[i].resulttest_name+")").siblings(".result_parameter_name:contains("+obj1[i].resultparameter_name+")").parents('tr').find('.enter_result').val('').addClass('result_restrict').attr('disabled',true);
+                            $('.result_table').find("td:contains("+obj1[i].resulttest_name+")").siblings(".result_parameter_name:contains("+obj1[i].resultparameter_name+")").parents('tr').find('.enter_result').val('0').addClass('result_restrict').attr('disabled',true);
                             $('.result_table').find("td:contains("+obj1[i].resulttest_name+")").siblings(".result_parameter_name:contains("+obj1[i].resultparameter_name+")").parents('tr').find('.status_incomplete').attr('checked','checked');
                           }
                           else{
@@ -3086,6 +3086,7 @@ $(document).on('blur','.enter_result',function(e){
             ranges = JSON.parse(ranges);
             value=$(this).val();
             if (value == ''){
+              $(this).siblings('.enter_result_error').removeClass('error').hide();
               $(this).parents('tr').find('.enter_points').text('0');
             }
             if(((parameter_type == "time") && (value!=''))||((parameter_type == "Time") && (value!=''))){
@@ -3248,6 +3249,33 @@ $(document).on('blur','.enter_result',function(e){
               result = totalvlaue - pointvalue;
               $('.total_result').text(result);
               $(this).parents('tr').find('.enter_points').text('');
+            }
+
+            if(($(this).siblings('.enter_result_error').is(':not(.error)')) && (parameter_type!="time")){
+              // alert("no error");
+              // alert(parameter_format);
+              // alert(decimals);
+              result_data = '0';
+              if(parameter_format != decimals){
+                // alert($(this).val());
+                if( decimals == 0 ){
+                  for(i=1;i<parameter_format;i++){
+                    result_data = result_data + '0';
+                  }
+                  // alert(result_data);
+                }  
+                else{
+                  calc = parameter_format - decimals;
+                  // alert(calc);
+                  for(i=1;i<calc;i++){
+                    result_data = result_data + '0';
+                  }
+                }  
+                if ($(this).val().indexOf(".") !== -1)
+                    $(this).val(value + result_data);
+                else
+                    $(this).val(value + '.' + result_data); 
+              }
             }
 
             //Points total result
@@ -3859,7 +3887,8 @@ $(document).on('blur','.enter_result',function(e){
         //newly added for result to handle incomplete results
         $(document).on('change','.status_incomplete',function () {
           if($(this).is(':checked')){
-           $(this).parents('tr').find('.enter_result').val('').addClass('result_restrict').attr('disabled',true);
+           // $(this).parents('tr').find('.enter_result').val('').addClass('result_restrict').attr('disabled',true);
+           $(this).parents('tr').find('.enter_result').val('0').addClass('result_restrict').attr('disabled',true);
            $(this).parents('tr').find('.enter_points').text('0');
            //Points total result
             var val=0;
@@ -3869,7 +3898,8 @@ $(document).on('blur','.enter_result',function(e){
             });
           }
           else{
-           $(this).parents('tr').find('.enter_result').removeClass('result_restrict').attr('disabled',false);
+           // $(this).parents('tr').find('.enter_result').removeClass('result_restrict').attr('disabled',false);
+           $(this).parents('tr').find('.enter_result').val('-').removeClass('result_restrict').attr('disabled',false);
            $(this).parents('tr').find('.enter_points').text('');
           }
         });

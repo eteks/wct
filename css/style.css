@@ -1975,4 +1975,6 @@ td {
     font-size: 14px;
     float: right;
     width: 32px;
+.enter_result{
+    text-align: center;
 }
