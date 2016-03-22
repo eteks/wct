@@ -85,7 +85,7 @@
 			        <th class="align_center">Result</th>
 			        <th class="align_center"></th>
 			        <th class="align_center">Points</th>
-			        <th class="align_center">Incomplete?</th>
+			        <th class="align_center">DNF?</th>
 			      </tr>
 			    </thead>
 			    <tbody class="assign_content">

@@ -161,7 +161,11 @@
 				$resultFunction->athleteid = $value->athlete_id;
 				$resultFunction->resulttest_name = $value->test_name;
 				$resultFunction->resultparameter_name = $value->parameter_name;
-				$resultFunction->result = $value->enter_result;
+				// $resultFunction->result = $value->enter_result;
+				if($value->enter_result == '')
+					$resultFunction->result = '-';
+				else
+					$resultFunction->result = $value->enter_result;
 
 				$resultFunction->resultstatus = $value->result_incomplete;
 

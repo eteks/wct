@@ -1941,3 +1941,6 @@ td {
 .delete_state {
     padding: 3px;
 }
+.enter_result{
+    text-align: center;
+}
