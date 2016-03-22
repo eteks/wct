@@ -954,7 +954,10 @@
               var key = theEvent.keyCode || theEvent.which;
               key = String.fromCharCode(key);
               if (key.length == 0) return;
-              var regex = /^[0-9.:\b\t]+$/;
+              if($(this).hasClass('enter_result'))
+                var regex = /^[0-9.-:\-\b\t]+$/;
+              else
+                var regex = /^[0-9.:\b\t]+$/;
               if (!regex.test(key)) {
                   theEvent.returnValue = false;
                   if (theEvent.preventDefault) theEvent.preventDefault();
@@ -3088,8 +3091,9 @@ $(document).on('blur','.enter_result',function(e){
             if (value == ''){
               $(this).siblings('.enter_result_error').removeClass('error').hide();
               $(this).parents('tr').find('.enter_points').text('0');
+              $(this).val('-');
             }
-            if(((parameter_type == "time") && (value!=''))||((parameter_type == "Time") && (value!=''))){
+            if(((parameter_type == "time") && (value!='') && (value!='-'))||((parameter_type == "Time") && (value!=''))){
               // alert("time");
               if((parameter_format=="hh:mm:ss")&&(!(/^(?:[0-2][0-4]|[0-1][0-9]):(?:[0-5][0-9]):[0-5][0-9]$/).test(value))){
                   // alert("if1");
@@ -3161,7 +3165,7 @@ $(document).on('blur','.enter_result',function(e){
             else{
               // alert("else number");
                   //Checking entered Result
-                  if(value!=''){
+                  if((value!='') && (value!='-')){
                     if(value.indexOf(".")==-1){
                       decimals = 0;
                     }
