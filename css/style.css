@@ -536,7 +536,7 @@ select {
 .state-content{
     margin: 25px 0px 0px 0px;
 }
-.yes_btn,.yes_btn_dt{
+.yes_btn,.yes_btn_dt,.yes_btn_tb{
     background-color: #ffffff !important;
     border-radius: 0 !important;
     color: #006687 !important;
@@ -1975,6 +1975,7 @@ td {
     font-size: 14px;
     float: right;
     width: 32px;
+}
 .enter_result{
     text-align: center;
 }

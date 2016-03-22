@@ -145,17 +145,22 @@
 					<form>
 						<div class="search-content">
 							<div class="search__list">
-								<input type="text" class="search_box" placeholder="Search Name">
-								<i class="fa fa-search font-search"></i>
+								<input type="text" class="search_box search_text tb_search" placeholder="Search Name">
+								<i class="fa fa-search font-search search_button"></i>
 							</div><!--search__list-->
 								<div class="test-list">
+									<?php
+				                        $query = $rangeFunction->rangetestbatterysearchSelect();
+				                        while ($row = mysql_fetch_array($query)) {
+			                        ?>
 									<span class="test-name">
-										<input type="checkbox" name="test" value="test" class="check_test" id="check-select">
-										<input type="text" name="test" value="xyz" class="list_edit input_wrap">
+										<input type="checkbox" name="test" value="" class="check_test check_list check_testbattery" id="check-select">
+										<input type="hidden" class="check_testbatteryid check_data" name="check_testbatteryid" value="<?php echo $row['testbattery_id']; ?>">
+										<input type="text" name="check_testbattery" value="<?php echo $row['testbattery_name']; ?>" class="list_edit input_wrap check_testbatteryname" autocomplete="off">
 										<span class="test-alter">
-											<i class="fa fa-floppy-o save_item"></i>
+											<i class="fa fa-floppy-o save_item save-testbattery"></i>
 											<i class="fa fa-pencil-square-o edit_item"></i>
-											<i class="fa fa-trash-o delete_item"></i>
+											<i class="fa fa-trash-o delete_item delete_state" data-value="<?php echo $row['testbattery_id']; ?>"></i>
 										</span><!--test-alter-->
 									</span><!--test-name-->
 									<div class="delete_div delete_search">
@@ -165,38 +170,18 @@
 							              </div>
 							              <div class="del_content">
 							                <span class="del_content_txt">Are you sure want to delete this whole record?</span>
-							                <input type="button" class="btn btn-primary align_right yes_btn" value="Yes">
+							                <input type="button" class="btn btn-primary align_right yes_btn_tb" value="Yes">
 							                <input type="button" class="btn btn-primary align_right no_btn" value="No">
 							                <input type="hidden" name="delete_id" value="" id="delete_id"/>
 							              </div><!--del_content-->
       								</div><!--delete_div-->
-									<span class="test-name">
-										<input type="checkbox" name="test" value="test" class="check_test">
-										<input type="text" name="test" value="xyz" class="list_edit input_wrap">
-										<span class="test-alter">
-											<i class="fa fa-floppy-o save_item"></i>
-											<i class="fa fa-pencil-square-o edit_item"></i>
-											<i class="fa fa-trash-o delete_item"></i>
-										</span><!--test-alter-->
-									</span><!--test-name-->
-									<div class="delete_div delete_search">
-								            <!-- <code class="close_btn cancel_btn"> </code>  -->
-								              <div class="del_title">
-								                <span class="del_txt">DELETE</span>
-								              </div>
-								              <div class="del_content">
-								                <span class="del_content_txt">Are you sure want to delete this whole record?</span>
-								                <input type="button" class="btn btn-primary align_right yes_btn" value="Yes">
-								                <input type="button" class="btn btn-primary align_right no_btn" value="No">
-								                <input type="hidden" name="delete_id" value="" id="delete_id"/>
-								              </div><!--del_content-->
-          								</div><!--delete_div-->
+          							<?php } ?>
 								</div><!--test-list-->
 						</div><!--search-content-->
 					</form>
 				</div>
 			<div class="container table-position align_bottom col-md-9" style="padding: 0px;">
-			  <table class="table range_table">
+			  <table class="table range_table check_table">
 			    <thead>
 			      <tr class="row_color">
 			      	<!-- <th class="align_center">Test Battery Name</th> -->
@@ -214,6 +199,7 @@
                         ?>
                         <tr class="align_center delete_color">
                         <input type="hidden" name="range_id" class="t_range_id" value="<?php echo $row['range_id']; ?>">
+					    <input type="hidden" class ="rangetestbattery_id hidden_value" name="rangetestbattery_id" value="<?php echo $row['rangetestbattery_id']; ?>">
 					     <!--   <td class="t_range_s_id"><?php // echo $i; ?></td> -->
 					         <!-- <td class="t_range_testbatteryname"><?php echo $row['testbattery_name']; ?></td> -->
 					        <td class="t_range_categoryname"><?php echo $row['categories_name']; ?></td>

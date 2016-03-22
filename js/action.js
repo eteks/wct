@@ -310,7 +310,11 @@
       });
 
     $(window).load(function() {
-        $('.check_table').find('tbody tr').not(':first').hide();
+         // $('.check_table').find('tbody tr').not(':first').hide();
+         //newly added when change grid structure in range
+         hidden_value = $('.check_table').find('.hidden_value:first').val();
+         $('.check_table').find("input[value="+hidden_value+"]").parents('tr').show();
+         $('.check_table').find('.hidden_value').not("input[value="+hidden_value+"]").parents('tr').hide();
     });
     
     
@@ -961,7 +965,10 @@
               var key = theEvent.keyCode || theEvent.which;
               key = String.fromCharCode(key);
               if (key.length == 0) return;
-              var regex = /^[0-9.:\b\t]+$/;
+              if($(this).hasClass('enter_result'))
+                var regex = /^[0-9.-:\-\b\t]+$/;
+              else
+                var regex = /^[0-9.:\b\t]+$/;
               if (!regex.test(key)) {
                   theEvent.returnValue = false;
                   if (theEvent.preventDefault) theEvent.preventDefault();
@@ -3114,8 +3121,9 @@ $(document).on('blur','.enter_result',function(e){
             if (value == ''){
               $(this).siblings('.enter_result_error').removeClass('error').hide();
               $(this).parents('tr').find('.enter_points').text('0');
+              $(this).val('-');
             }
-            if(((parameter_type == "time") && (value!=''))||((parameter_type == "Time") && (value!=''))){
+            if(((parameter_type == "time") && (value!='') && (value!='-'))||((parameter_type == "Time") && (value!=''))){
               // alert("time");
               if((parameter_format=="hh:mm:ss")&&(!(/^(?:[0-2][0-4]|[0-1][0-9]):(?:[0-5][0-9]):[0-5][0-9]$/).test(value))){
                   // alert("if1");
@@ -3187,7 +3195,7 @@ $(document).on('blur','.enter_result',function(e){
             else{
               // alert("else number");
                   //Checking entered Result
-                  if(value!=''){
+                  if((value!='') && (value!='-')){
                     if(value.indexOf(".")==-1){
                       decimals = 0;
                     }
@@ -3690,6 +3698,20 @@ $(document).on('blur','.enter_result',function(e){
           }
         });
 
+        //newly added when change grid structure in range
+        $(document).on('change','.check_testbattery',function () {
+          $('.check_testbattery').not(this).prop('checked', false);
+          if($(this).is(':checked')){
+            //$('.test-name').addClass('list_active');
+            check_data = $(this).next('.check_testbatteryid').val();
+            $('.check_table').find('.rangetestbattery_id').find("input[value="+check_data+"]").parents('tr').show();
+            $('.check_table').find('.rangetestbattery_id').not("input[value="+check_data+"]").parents('tr').hide();
+          }
+          else{
+            $('.check_table tr').show();
+          }
+        });
+
         $(document).on('change','.check_parametertype',function () {
           $('.check_parametertype').not(this).prop('checked', false);
           if($(this).is(':checked')){
@@ -3715,7 +3737,7 @@ $(document).on('blur','.enter_result',function(e){
         //   });
         // });
 
-      $(document).on('keyup','.at_search,.cs_search,.dt_search',function(e){
+      $(document).on('keyup','.at_search,.cs_search,.dt_search,.tb_search',function(e){
         search_value = $('.search_text').val();
           if(search_value == ''){
             $('.test-name').show();
@@ -3844,7 +3866,38 @@ $(document).on('blur','.enter_result',function(e){
           }else{
               alert('Invalid State Name!');
           }
-
+        });
+        //newly added when change grid structure in range
+        $('.save-testbattery').click(function(){
+          testbattery_id = $(this).parents('.test-name').find('.check_testbatteryid').val();
+          testbattery_name = $(this).parents('.test-name').find('.check_testbatteryname').val();
+          testbattery_element = $(this).parents('.test-name').find('.check_testbatteryname');
+          form_data = {'edit_testbattery_id':testbattery_id,'edit_testbattery_name':testbattery_name};
+          // alert(JSON.stringify(form_data));
+          if(testbattery_name!=''){
+              $.ajax({
+                   type: "POST",
+                   url: "functions/test_battery_functions.php?testbatteryname_edit=true",
+                   data: form_data,
+                   cache: false,
+                   success: function(html) {
+                    // alert(html);
+                    var result_split = html.split('#');
+                    if (result_split[0].indexOf("success") !== -1){
+                      alert(result_split[1]);
+                      // $(this).find('.check_athletename').val(result_split[2]);
+                      testbattery_element.val(result_split[3]);
+                      $('.search_text').val('');
+                    }
+                    else{
+                      alert(result_split[1]);
+                    }
+                    location.reload();
+                  }
+                 });
+          }else{
+              alert('Invalid Testbattery Name!');
+          }
         });
 
 
@@ -3946,7 +3999,20 @@ $(document).on('blur','.enter_result',function(e){
                 }
                }
            });
-
+        });
+        $(document).on('click','.yes_btn_tb',function() {
+          var del_id =$('#delete_id').val();
+          var form_data = {'delete_id':del_id};
+          $.ajax({
+               type: "POST",
+               url: "functions/test_battery_functions.php?delete_test_battery_name=true",
+               data: form_data,
+               cache: false,
+               success: function(html) {
+                alert("Testbattery Deleted");
+                location.reload();
+               }
+           });
         });
         $('.assign_schedule_search').keyup(function() {
               $('.test-list').empty();

@@ -141,7 +141,7 @@
 	                        while ($row = mysql_fetch_array($query)) {
 	                            ?>
 	                            <tr class="delete_color">
-	                            <input type="hidden" class ="districtstates_id" name="districtstates_id" value="<?php echo $row['districtstates_id']; ?>">
+	                            <input type="hidden" class ="districtstates_id hidden_value" name="districtstates_id" value="<?php echo $row['districtstates_id']; ?>">
 	                            <input type="hidden" name="district_id" value="<?php echo $row['district_id']; ?>">
 							       <!-- <td class="t_district_id"><?php // echo $i; ?></td> -->
 							        <!-- <td class="t_states_name"><?php //echo $row['states_name']; ?></td> -->
