@@ -128,15 +128,19 @@ if(isset($_GET['update_success'])){
 					<form>
 						<div class="search-content">
 							<div class="search__list">
-								<input type="text" class="search_box" placeholder="Search Name">
+								<input type="text" class="search_box assign_schedule_search" placeholder="Search Name">
 								<i class="fa fa-search font-search"></i>
 							</div><!--search__list-->
 								<div class="test-list">
-									<span class="test-name">
-										<input type="checkbox" name="test" value="test" class="check_test" id="check-select">
-										<input type="text" name="test" value="xyz" class="list_edit input_wrap">
-										<span class="test-alter">
-											<i class="fa fa-floppy-o save_item"></i>
+									<?php
+									$data = $assignschedule->assignschedulenamefunction();
+									foreach( $data as $eachrecord ) {
+									 ?>
+									<span class="test-name assign-test_name">
+										<input type="checkbox" name="test" value="test" class="check_test check_list assign_schedule_name_hover" id="check-select" data-id ="<?php echo $eachrecord ['createschedule_id'];?>" >
+										<input type="text" name="test" value="<?php echo $eachrecord ['createschedule_name']; ?>" class="list_edit input_wrap assing_name_hover">
+										<span class="test-alter ">
+											<i class="fa fa-floppy-o save_item save_assign_schdule_name"></i>
 											<i class="fa fa-pencil-square-o edit_item"></i>
 											<i class="fa fa-trash-o delete_item"></i>
 										</span><!--test-alter-->
@@ -148,38 +152,18 @@ if(isset($_GET['update_success'])){
 							              </div>
 							              <div class="del_content">
 							                <span class="del_content_txt">Are you sure want to delete this whole record?</span>
-							                <input type="button" class="btn btn-primary align_right yes_btn" value="Yes">
+							                <input type="button" class="btn btn-primary align_right yes_btn" value="Yes" data-delete="assign_schedule_name" data-id ="<?php echo $eachrecord ['createschedule_id']; ?>">
 							                <input type="button" class="btn btn-primary align_right no_btn" value="No">
 							                <input type="hidden" name="delete_id" value="" id="delete_id"/>
 							              </div><!--del_content-->
       								</div><!--delete_div-->
-									<span class="test-name">
-										<input type="checkbox" name="test" value="test" class="check_test">
-										<input type="text" name="test" value="xyz" class="list_edit input_wrap">
-										<span class="test-alter">
-											<i class="fa fa-floppy-o save_item"></i>
-											<i class="fa fa-pencil-square-o edit_item"></i>
-											<i class="fa fa-trash-o delete_item"></i>
-										</span><!--test-alter-->
-									</span><!--test-name-->
-									<div class="delete_div delete_search">
-								            <!-- <code class="close_btn cancel_btn"> </code>  -->
-								              <div class="del_title">
-								                <span class="del_txt">DELETE</span>
-								              </div>
-								              <div class="del_content">
-								                <span class="del_content_txt">Are you sure want to delete this whole record?</span>
-								                <input type="button" class="btn btn-primary align_right yes_btn" value="Yes">
-								                <input type="button" class="btn btn-primary align_right no_btn" value="No">
-								                <input type="hidden" name="delete_id" value="" id="delete_id"/>
-								              </div><!--del_content-->
-          								</div><!--delete_div-->
+      								<?php } ?>
 								</div><!--test-list-->
 						</div><!--search-content-->
 					</form>
 				</div>
 			<div class="container table-position col-md-9 align_bottom" style="padding: 0px;">
-			  <table class="table state_table">
+			  <table class="table state_table" id="assign_schedule_table">
 			    <thead>
 			      <tr class="row_color">
 			        <!-- <th>Schedule Name</th> -->
@@ -197,7 +181,6 @@ if(isset($_GET['update_success'])){
 					 ?>
 			      <tr class="delete_color assignschedule_popup_open">
 			      	<input value="<?php echo $eachrecord ['assignschedule_id']; ?>" type="hidden">
-			        <!-- <td><?php echo $eachrecord ['createschedule_name']; ?></td> -->
 					<td><?php echo $eachrecord ['categories_name']; ?></td>
 			        <td class="popup-edit">
 			        	<span class="edit_state edit_assign_schedule" data-schedule="<?php echo $eachrecord ['createschedule_id']; ?>" data-category="<?php echo $eachrecord ['assigncategory_id']; ?>"><i class="fa fa-pencil-square-o"></i></span>
@@ -210,11 +193,10 @@ if(isset($_GET['update_success'])){
 			          			<div class="container state-content col-md-12 assign-scroll">
 				          			<div class="col-xs-12 col-md-12 align_margin">
 							<form id="edit_assign_schedule_form" action="functions/assign_schedule_function.php" method="post">
-								<!-- <div class="form-group">
-									  <label for="sel1" class="popup_label">Select Schedule Name</label>
-									  <input type="text" class="form-control adjust_width classic schedule_update box-width" name="Schedule" data-validation-error-msg="Please Select Name of the Schedule" data-validation="required" disabled />
+								<div class="form-group">
 									  <input type="hidden" class="schedule_update_id" value="" />
-								</div> -->
+									  <input type="hidden" class="create_schedule_update_id" name="create_schedule_update_id" value="" />
+								</div>
 								<div class="form-group">
 									  <label for="sel1" class="popup_label">Select Category Name</label>
 									  <select class="form-control adjust_width classic category_update box-width" id="sel1" name="category" data-validation-error-msg="Please Select Category of the Schedule" data-validation="required">
@@ -230,58 +212,50 @@ if(isset($_GET['update_success'])){
 								<label for="athlete" class="email_txt popup_label">Add Athletes</label><br>
 								<div class=" clone_schedule_update_content assign_clone_content_edit_holder col-md-12">
 									<div class="assign_clone_content_edit clone_schedule_update">
-										<input type="hidden" class="assign_athelete_count_edit" value="1" />
-										<div class="form-group col-md-1">
-											<div class="col-md-12 combo--align--popup align_atheletes_schedules">
-														<select class="form-control name_align_popup fl box-width athlete_name athlete_name_update athlete_name1" placeholder="Name" name="athlete_name1"  data-validation-error-msg="Please Select Athlete" data-validation="required"><!--id="combobox1"-->
-													<option value="">Athletes</option>
-													<?php
-														$data = $athlete->athleteSelect1();
-														foreach( $data as $eachrecord2 ) {
-													?>
-														<option value="<?php echo $eachrecord2 ['athlete_id']; ?>"><?php echo $eachrecord2 ['athlete_name']; ?></option>
-													<?php } ?>
-												</select>
+										
+											<input type="hidden" class="assign_athelete_count_edit" value="1" />
+											<div class="form-group col-md-1">
+												<div class="col-md-12 combo--align--popup align_atheletes_schedules">
+															<select class="form-control name_align_popup fl box-width athlete_name athlete_name_update athlete_name1" placeholder="Name" name="athlete_name[]"  data-validation-error-msg="Please Select Athlete" data-validation="required"><!--id="combobox1"-->
+														<option value="">Athletes</option>
+														<?php
+															$data = $athlete->athleteSelect1();
+															foreach( $data as $eachrecord2 ) {
+														?>
+															<option value="<?php echo $eachrecord2 ['athlete_id']; ?>"><?php echo $eachrecord2 ['athlete_name']; ?></option>
+														<?php } ?>
+													</select>
+												</div>
+												<div class="col-md-12" style="position: relative; top: 20px;">
+										      		
+										      		<input type="text" class="form-control bib_popup fl dob_update dob"  placeholder="Date" value="" disabled>
+										    	</div>
+										    </div>
+										    <div class="form-group col-md-12">
+										    	<div class="col-md-2">
+										      		<input type="text" class="form-control schedule-name fl mobile_update mobile" placeholder="Mobile no" value="" disabled>
+										      	</div>
+										      	<div class="col-md-12">
+										      		<input type="text" class="form-control bib_popup athlete_bib popup_bib fl bib_update"  placeholder="BIB NO" name="athlete_bib[]" autocomplete="off" data-validation-error-msg="Please Enter the BIBO NO" data-validation="number">
+												</div>
+												
+												
+										    </div>
+										    <div class="assign-delete col-md-12 ">
+												<span class="edit_assign_schedule_delete"><i class="fa fa-trash-o"></i>Delete</span>
 											</div>
-											<div class="col-md-12" style="position: relative; top: 20px;">
-									      		<!-- <input type="text" class="form-control schedule-name fl" id="name" placeholder="Name" name="name" data-validation-error-msg="Please Enter the name of the Athelete" data-validation="required"> -->
-									      		<input type="text" class="form-control bib_popup fl dob_update dob"  placeholder="Date" value="" disabled>
-									    	</div>
-									    </div>
-									    <div class="form-group col-md-12">
-									    	<div class="col-md-2">
-									      		<input type="text" class="form-control schedule-name fl mobile_update mobile" placeholder="Mobile no" value="" disabled>
-									      	</div>
-									      	<div class="col-md-12">
-									      		<input type="text" class="form-control bib_popup athlete_bib popup_bib fl bib_update"  placeholder="BIB NO" name="athlete_bib1" autocomplete="off" data-validation-error-msg="Please Enter the BIBO NO" data-validation="number">
-											</div>
-											<!-- <input type="hidden" class="assing_schedule_update_id" name="assing_schedule_update_id1" value="" /> -->
-											<input type="hidden" class="create_schedule_update_id" name="create_schedule_update_id1" value="" />
-									    </div>
-									    <div class="assign-delete col-md-12">
-											<span><i class="fa fa-trash-o"></i>Delete</span>
-										</div><!--assign-delete-->
-									</div>
+										</div>
+									
 								</div>
 								<div class="form-group assign-add-button popup-add-assign col-md-6">
-									<!-- <input type="submit" class="btn btn-primary align_right adds_btn add_athelete" value="Add"> -->
-									<!-- <i class="fa fa-plus add_align"></i> -->
-									
 									<div class="add-assign">
-										<span class="edit_assign_schedule_add_btn">Add<i class="fa fa-plus plus_align_assign edit_assign_schedule_add_btn"></i></span>
+										<span class="edit_assign_schedule_add_btn">Add<i class="fa fa-plus plus_align_assign"></i></span>
 									</div><!--add-assign-->
-										<!-- <div class="tooltip_parameter edit-popup-add assign_schedule_add">Add</div>
-										<div class="tip_triangle"></div> -->
-									
-									<!-- <i class="fa fa-minus assign_remove assign_remove_edit">
-										<div class="tooltip_remove popup-remove-assign">Remove</div>
-										<div class="tip_triangle"></div>
-									</i> -->
 								</div>
 								<input type="hidden" name="assing_schedule_update" value="1" />
 
 								<div class="col-md-10 schedule_btn">
-									<!-- <input type="reset" value="Clear" class="btn btn-primary align_right clear reset_form"> -->
+						
 			  					<input type="submit" value="Save" class="btn btn-primary align_right test-submit clear">
 								</div>
 							</form>
@@ -289,13 +263,13 @@ if(isset($_GET['update_success'])){
 								</div><!--state-content-->
 						</div><!--range_div-->
 						<div class="delete_div delete_catagory_div delete-assign">
-				          <!--  <code class="close_btn cancel_btn"> </code> -->
+				         
 				              <div class="del_title">
 				                <span class="del_txt">DELETE</span>
 				              </div>
 				              <div class="del_content">
 				                <span class="del_content_txt">Are you sure want to delete this whole record?</span>
-				                <input type="button" class="btn btn-primary align_right yes_btn" value="Yes" data-schedule="<?php echo $eachrecord ['createschedule_id']; ?>" data-category="<?php echo $eachrecord ['assigncategory_id']; ?>">
+				                <input type="button" class="btn btn-primary align_right yes_btn" value="Yes" data-delete = 'assign_schedule_attribute' data-schedule="<?php echo $eachrecord ['createschedule_id']; ?>" data-category="<?php echo $eachrecord ['assigncategory_id']; ?>">
 				                <input type="button" class="btn btn-primary align_right no_btn" value="No">
 				                <input type="hidden" name="delete_id" value="" id="delete_id"/>
 				              </div><!--del_content-->
@@ -351,6 +325,20 @@ if(isset($_GET['update_success'])){
 			           }
 			       });
         		}
+    		});
+    		
+    		$("body").mouseup(function(e){
+        		var subject = $(".assign-schedule-popup"); 
+				var delete_pop = $(".delete_div");
+        		if(e.target.id != subject.attr('class') && !subject.has(e.target).length)
+		        {
+		            subject.hide();
+		        }
+		        if(e.target.id != delete_pop.attr('class') && !delete_pop.has(e.target).length)
+		        {
+		            
+		            delete_pop.hide();
+		        }
     		});
 		});
 

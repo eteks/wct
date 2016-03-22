@@ -426,7 +426,7 @@
                                    //alert(data[i].test_name);
                                    $('.test-list').append(
                                    '<span class="test-name">\
-                                       <input type="checkbox" name="test" value="test" class="check_test test_battery_name_hover_check id="check-select"  data-id ="'+data[i].testbattery_id+'">\
+                                       <input type="checkbox" name="test" value="test" class="check_test test_battery_name_hover_check" id="check-select"  data-id ="'+data[i].testbattery_id+'">\
                                        <input type="text" name="test" value="'+data[i].testbattery_name+'" class="list_edit test_battery_name_hover input_wrap">\
                                        <span class="test-alter">\
                                            <i class="fa fa-floppy-o save_item save_test_battery_name"></i>\
@@ -829,6 +829,7 @@
       var athlete_for_edit_purpose = '';
       var schedule_for_edit_purpose = '';
       var parametertype_for_edit_purpose = '';
+      var assign_for_edit_purpose = '';
       $(document).delegate('.test-test-name', 'mouseenter', function(event){
       	test_name_for_edit_purpose = $(this).find('.test_name_value').val();
       });
@@ -846,6 +847,12 @@
       });
       $(document).delegate('.parameter-test-name','mouseleave',function(event){
       	$(this).find('.test').val(test_battery_name_for_edit_purpose);
+      });
+       $(document).delegate('.assign-test_name', 'mouseenter', function(event){
+      	assign_for_edit_purpose = $(this).find('.assing_name_hover').val();
+      });
+      $(document).delegate('.assign-test_name','mouseleave',function(event){
+      	$(this).find('.assing_name_hover').val(assign_for_edit_purpose);
       });
       
       $(document).delegate('.test-name', 'mouseenter', function(event){
@@ -1794,26 +1801,6 @@
                      }
                  });
            }
-           else if (window.location.href.indexOf("assign_schedule.php") !== -1){
-               //alert('dsfsdfds');
-                var form_data = {'delete_id':$(this).attr('data-schedule'),'del_cate':$(this).attr('data-category')};
-                //alert(JSON.stringify(form_data));
-                $.ajax({
-                     type: "POST",
-                     url: "functions/assign_schedule_function.php?deletedata=true",
-                     data: form_data,
-                     cache: false,
-                     success: function(html) {
-                      //alert(html);
-                      //alert('Assign schedule successfully deleted');
-                      $('.popup_fade').hide();
-                      $('.state_div,.delete_div').hide();
-                      document.body.style.overflow = 'auto';
-                      location.reload();
-
-                     }
-                 });
-           }
            else if (window.location.href.indexOf("parameter_type.php") !== -1){
                //alert('dsfsdfds');
                 var form_data = {'delete_id':del_id};
@@ -1832,7 +1819,43 @@
 
                      }
                  });
-           }
+           }else if (window.location.href.indexOf("assign_schedule.php") !== -1){
+               var delete_data = $(this).attr('data-delete');
+               if(delete_data.trim()=='assign_schedule_name'){
+                   var form_data = {'delete_id':$(this).attr('data-id')};
+                   //alert(JSON.stringify(form_data));
+                   $.ajax({
+                        type: "POST",
+                        url: "functions/assign_schedule_function.php?delete_assign_create_schedule=true",
+                        data: form_data,
+                        cache: false,
+                        success: function(html) {
+                            //alert(html);
+                        alert('Assign Schedule deleted successfully');
+                         $('.popup_fade').hide();
+                         $('.state_div,.delete_div').hide();
+                         document.body.style.overflow = 'auto';
+                         location.reload();
+                        }
+                    });
+               }else if(delete_data.trim()=='assign_schedule_attribute'){
+                   var form_data = {'cate_id':$(this).attr('data-category'),'sche_id':$(this).attr('data-schedule')};
+                   //alert(JSON.stringify(form_data));
+                   $.ajax({
+                        type: "POST",
+                        url: "functions/assign_schedule_function.php?delete_assign_create_schedule_and_cate=true",
+                        data: form_data,
+                        cache: false,
+                        success: function(html) {
+                             alert('Assign Schedule deleted successfully');
+                             $('.popup_fade').hide();
+                             $('.state_div,.delete_div').hide();
+                             document.body.style.overflow = 'auto';
+                             location.reload();
+                        }
+                    });
+               }
+           }    
            else if (window.location.href.indexOf("parameter_unit.php") !== -1){
                //alert('dsfsdfds');
                 var delete_name = $(this).attr('data-delete');
@@ -1853,7 +1876,8 @@
 
                      }
                  });
-             }else{
+             }
+             else{
                  var form_data = {'delete_id':$(this).attr('data-id')};
                  $.ajax({
                       type: "POST",
@@ -2069,7 +2093,7 @@
 
         }
 
-        $('.edit_assign_schedule_add_btn').click(function(){
+        $(document).on('click','.edit_assign_schedule_add_btn',function(){
             var element = $(this).parents('#edit_assign_schedule_form').find('.assign_clone_content_edit:last');
             var last_id = parseInt(element.find('.assign_athelete_count_edit').val());
             //alert(last_id);
@@ -2078,11 +2102,12 @@
             test_id = id;
             //alert(newElement.find('.athlete_name option:selected').html());
             newElement.find('.assign_athelete_count_edit').val(id);
-            newElement.find('.athlete_name').removeAttr('name').attr('name', 'athlete_name'+id);
+            //newElement.find('.athlete_name').removeAttr('name').attr('name', 'athlete_name'+id);
             newElement.find('.athlete_name option:selected').removeAttr('selected');
-            newElement.find('.athlete_bib').removeAttr('name').attr('name', 'athlete_bib'+id).val('');
+            //newElement.find('.athlete_bib').removeAttr('name').attr('name', 'athlete_bib'+id).val('');
             newElement.find('.dob').val('');
-            newElement.find('.create_schedule_update_id').removeAttr('name').attr('name', 'create_schedule_update_id'+id);
+            newElement.find('.athlete_bib').val('');
+            //newElement.find('.create_schedule_update_id').removeAttr('name').attr('name', 'create_schedule_update_id'+id);
             newElement.find('.mobile').val('');
             newElement.find('.custom-combobox:nth-child(3)').remove();
             newElement.appendTo($(".assign_clone_content_edit_holder"));
@@ -2929,7 +2954,7 @@
                             main_content_assign_popup.find('.category_update').empty().append("<option value=''>Select Category Name</option>"+data);
                        }
                     });
-                   main_content_assign_popup.find('.clone_schedule_update .athlete_name1 option[value="'+data[0].assignathlete_id+'"]').attr('selected','selected');
+                   main_content_assign_popup.find('.clone_schedule_update .athlete_name option[value="'+data[0].assignathlete_id+'"]').attr('selected','selected');
                    var res =data[0].athlete_dob.split('-');
                    var new_date = res[2]+'/'+res[1]+'/'+res[0];
                    main_content_assign_popup.find('.clone_schedule_update .dob_update').val(new_date);
@@ -2938,7 +2963,7 @@
                    main_content_assign_popup.find('.clone_schedule_update .mobile_update').val(data[0].athlete_mobile);
                    main_content_assign_popup.find('.clone_schedule_update .athlete_bib').val(data[0].assignbib_number);
                    //$('.clone_schedule_update:first .assing_schedule_update_id').val(data[0].assignschedule_id);
-                   main_content_assign_popup.find('.clone_schedule_update .create_schedule_update_id').val(data[0].createschedule_id);
+                   main_content_assign_popup.find('.create_schedule_update_id').val(data[0].createschedule_id);
                    //$('.category_update option[value="'+data[0].assigncategory_id+'"]').attr('selected','selected');
 				   
                    var cnt = 0;
@@ -2952,10 +2977,11 @@
                            newElement.find('.assign_athelete_count_edit').val(id);
                            newElement.find('.athlete_name option:selected').removeAttr('selected');
                            newElement.find('.athlete_name option[value="'+data[i].assignathlete_id+'"]').attr('selected','selected');
-                           newElement.find('.athlete_name').removeAttr('name').attr('name', 'athlete_name'+id);
+                           //newElement.find('.athlete_name').removeAttr('name').attr('name', 'athlete_name'+id);
                           // newElement.find('.assing_schedule_update_id').removeAttr('name').attr('name', 'assing_schedule_update_id'+id).val(data[i].assignschedule_id);
-                           newElement.find('.create_schedule_update_id').removeAttr('name').attr('name', 'create_schedule_update_id'+id).val(data[i].createschedule_id);
-                           newElement.find('.athlete_bib').removeAttr('name').attr('name', 'athlete_bib'+id).val(data[i].assignbib_number);
+                           newElement.find('.create_schedule_update_id').val(data[i].createschedule_id);
+                           //newElement.find('.athlete_bib').removeAttr('name').attr('name', 'athlete_bib'+id).val(data[i].assignbib_number);
+                           newElement.find('.athlete_bib').val(data[i].assignbib_number);
                            var res =data[i].athlete_dob.split('-');
                            var new_date = res[2]+'/'+res[1]+'/'+res[0];
                            newElement.find('.dob_update').val(new_date);
@@ -3922,22 +3948,226 @@ $(document).on('blur','.enter_result',function(e){
            });
 
         });
+        $('.assign_schedule_search').keyup(function() {
+              $('.test-list').empty();
+              var assign_sch_name = $(this).val();
+              //alert(testname);
+              if(assign_sch_name != ''){
+                  $.ajax({
+                       type: "POST",
+                       url: "functions/assign_schedule_function.php?find_create_schedule=true",
+                       data:{'id':assign_sch_name},
+                       cache: false,
+                       dataType:'json',
+                       success: function(data) {
+                           $('.test-list').empty();
+                           //alert(data);
+                           if(data !=''){
+                               $.each(data, function(i){
+                                   //alert(data[i].test_name);
+                                   $('.test-list').append(
+                                   '<span class="test-name assign-test_name">\
+                                       <input type="checkbox" name="test" value="test" class="check_test check_list assign_schedule_name_hover" id="check-select"  data-id ="'+data[i].createschedule_id+'">\
+                                       <input type="text" name="test" value="'+data[i].createschedule_name+'" class="list_edit assing_name_hover input_wrap">\
+                                       <span class="test-alter">\
+                                           <i class="fa fa-floppy-o save_item save_assign_schdule_name"></i>\
+                                           <i class="fa fa-pencil-square-o edit_item"></i>\
+                                           <i class="fa fa-trash-o delete_item"></i>\
+                                       </span>\
+                                   </span>\
+                                   <div class="delete_div delete_search">\
+                                       <!-- <code class="close_btn cancel_btn"> </code>  -->\
+                                         <div class="del_title">\
+                                           <span class="del_txt">DELETE</span>\
+                                         </div>\
+                                         <div class="del_content">\
+                                           <span class="del_content_txt">Are you sure want to delete this whole record?</span>\
+                                           <input type="button" class="btn btn-primary align_right yes_btn" value="Yes" data-delete="assign_schedule_name" data-id ="'+data[i].createschedule_id+'">\
+                                           <input type="button" class="btn btn-primary align_right no_btn" value="No">\
+                                           <input type="hidden" name="delete_id" value="" id="delete_id"/>\
+                                         </div>\
+                                   </div>');
+                                    $('.edit_item,.save_item,.delete_item').hide();
+                               });
+                           }
+                      }
+                   });
+              }else{
+                  $.ajax({
+                       type: "POST",
+                       url: "functions/assign_schedule_function.php?find_all_create_schedule=true",
+                       data:{'id':'all'},
+                       cache: false,
+                       dataType:'json',
+                       success: function(data) {
+                           $('.test-list').empty();
+                           //alert(data);
+                           if(data !=''){
+                               $.each(data, function(i){
+                                   //alert(data[i].test_name);
+                                   $('.test-list').append(
+                                   '<span class="test-name assign-test_name">\
+                                       <input type="checkbox" name="test" value="test" class="check_test check_list assign_schedule_name_hover" id="check-select"  data-id ="'+data[i].createschedule_id+'">\
+                                       <input type="text" name="test" value="'+data[i].createschedule_name+'" class="list_edit input_wrap assing_name_hover">\
+                                       <span class="test-alter">\
+                                           <i class="fa fa-floppy-o save_item save_assign_schdule_name"></i>\
+                                           <i class="fa fa-pencil-square-o edit_item"></i>\
+                                           <i class="fa fa-trash-o delete_item"></i>\
+                                       </span>\
+                                   </span>\
+                                   <div class="delete_div delete_search">\
+                                       <!-- <code class="close_btn cancel_btn"> </code>  -->\
+                                         <div class="del_title">\
+                                           <span class="del_txt">DELETE</span>\
+                                         </div>\
+                                         <div class="del_content">\
+                                           <span class="del_content_txt">Are you sure want to delete this whole record?</span>\
+                                           <input type="button" class="btn btn-primary align_right yes_btn" value="Yes" data-delete="assign_schedule_name" data-id ="'+data[i].createschedule_id+'">\
+                                           <input type="button" class="btn btn-primary align_right no_btn" value="No">\
+                                           <input type="hidden" name="delete_id" value="" id="delete_id"/>\
+                                         </div>\
+                                   </div>');
+                                    $('.edit_item,.save_item,.delete_item').hide();
+                               });
+                           }
+                      }
+                   });
+              }
+          });
+  		$(document).on('change','.assign_schedule_name_hover',function(){
+			if(this.checked){
+			 	$('#assign_schedule_table tbody').empty();
+				var create_schedule_id = $(this).attr('data-id');
+				$.ajax({
+			    	type: "POST",
+			    	url: "functions/assign_schedule_function.php?append_schedules=true",
+			    	data:{'id':create_schedule_id},
+			    	cache: false,
+			    	dataType:'json',
+			    	success: function(data) {
+ 						var category_dynamic = '';
+						$.each(data.cate, function(i){
+							 category_dynamic += "<option value='"+data.cate[i].categories_id+"'>"+data.cate[i].categories_name+"</option>";
+                        });
+                        var athelete_dynamic = '';
+						$.each(data.athe, function(i){
+							 athelete_dynamic += "<option value='"+data.athe[i].athlete_id+"'>"+data.athe[i].athlete_name+"</option>";
+                        });
+                        $.each(data.assign, function(i){
+                        	$('#assign_schedule_table tbody').append('\
+                        		<tr class="delete_color assignschedule_popup_open">\
+			      					<input value="'+data.assign[i].assignschedule_id+'" type="hidden">\
+									<td>'+data.assign[i].categories_name+'</td>\
+			        				<td class="popup-edit">\
+			        					<span class="edit_state edit_assign_schedule" data-schedule="'+data.assign[i].createschedule_id+'" data-category="'+data.assign[i].assigncategory_id+'"><i class="fa fa-pencil-square-o"></i></span>\
+		        						<span class="delete_state" data-value="'+data.assign[i].assignschedule_id+'"><i class="fa fa-trash-o"></i></span>\
+										<div class="assign-schedule-popup popup_hidden">\
+			          						<code class="close_btn cancel_btn"> </code>\
+			          						<div class="edit_title"><span class="del_txt">Edit detail</span></div>\
+			          						<div class="container state-content col-md-12 assign-scroll">\
+				          						<div class="col-xs-12 col-md-12 align_margin">\
+													<form id="edit_assign_schedule_form" action="functions/assign_schedule_function.php" method="post">\
+														<div class="form-group">\
+															  <input type="hidden" class="schedule_update_id" value="" />\
+																<input type="hidden" class="create_schedule_update_id" name="create_schedule_update_id" value="" />\
+														</div>\
+														<div class="form-group">\
+											  				<label for="sel1" class="popup_label">Select Category Name</label>\
+											  				<select class="form-control adjust_width classic category_update box-width" id="sel1" name="category" data-validation-error-msg="Please Select Category of the Schedule" data-validation="required">\
+																<option value="">Select Category Name</option>\
+																'+category_dynamic+'\
+										  					</select>\
+														</div>\
+														<label for="athlete" class="email_txt popup_label">Add Athletes</label><br>\
+														<div class=" clone_schedule_update_content assign_clone_content_edit_holder col-md-12">\
+															<div class="assign_clone_content_edit clone_schedule_update">\
+																<input type="hidden" class="assign_athelete_count_edit" value="1" />\
+																<div class="form-group col-md-1">\
+																	<div class="col-md-12 combo--align--popup align_atheletes_schedules">\
+																	<select class="form-control name_align_popup fl box-width athlete_name athlete_name_update athlete_name1" placeholder="Name" name="athlete_name[]"  data-validation-error-msg="Please Select Athlete" data-validation="required">\
+																		<option value="">Athletes</option>\
+																		'+athelete_dynamic+'\
+																	</select>\
+																</div>\
+																<div class="col-md-12" style="position: relative; top: 20px;">\
+														      		<input type="text" class="form-control bib_popup fl dob_update dob"  placeholder="Date" value="" disabled>\
+														    	</div>\
+											    			</div>\
+											    			<div class="form-group col-md-12">\
+														    	<div class="col-md-2">\
+														      		<input type="text" class="form-control schedule-name fl mobile_update mobile" placeholder="Mobile no" value="" disabled>\
+														      	</div>\
+														      	<div class="col-md-12">\
+														      		<input type="text" class="form-control bib_popup athlete_bib popup_bib fl bib_update"  placeholder="BIB NO" name="athlete_bib[]" autocomplete="off" data-validation-error-msg="Please Enter the BIBO NO" data-validation="number">\
+																</div>\
+											    			</div>\
+														    <div class="assign-delete col-md-12 edit_assign_schedule_delete">\
+																<span><i class="fa fa-trash-o"></i>Delete</span>\
+															</div>\
+														</div>\
+													</div>\
+													<div class="form-group assign-add-button popup-add-assign col-md-6">\
+														<div class="add-assign">\
+															<span class="edit_assign_schedule_add_btn">Add<i class="fa fa-plus plus_align_assign "></i></span>\
+														</div>\
+													</div>\
+													<input type="hidden" name="assing_schedule_update" value="1" />\
+													<div class="col-md-10 schedule_btn">\
+					  									<input type="submit" value="Save" class="btn btn-primary align_right test-submit clear">\
+													</div>\
+												</form>\
+											</div>\
+										</div>\
+									</div>\
+									<div class="delete_div delete_catagory_div delete-assign">\
+						            	<div class="del_title">\
+						                	<span class="del_txt">DELETE</span>\
+						              	</div>\
+						              	<div class="del_content">\
+						                	<span class="del_content_txt">Are you sure want to delete this whole record?</span>\
+						                	<input type="button" class="btn btn-primary align_right yes_btn" data-delete= "assign_schedule_attribute" value="Yes" data-schedule="'+data.assign[i].createschedule_id+'" data-category="'+data.assign[i].assigncategory_id+'">\
+						                	<input type="button" class="btn btn-primary align_right no_btn" value="No">\
+						                	<input type="hidden" name="delete_id" value="" id="delete_id"/>\
+						              	</div>\
+									</div>\
+				   				</td>\
+		      				</tr>\
+                        	');
+                        });
+                        
+			    	}
+				});
+			}
+  		});
+  		
+  		
+        
         //********* end *********
     });
-
+    
     $(document).bind("click", function(e) {
+    	if (document.location.href.match(/[^\/]+$/)[0] != 'assign_schedule.php'){
          var popup = $(".popup_hidden");
          if (!$('.fa-pencil-square-o,.ui-menu-item').is(e.target) && !popup.is(e.target) && popup.has(e.target).length == 0) {
              popup.hide();
-            $('.edit_state').parents('tr').siblings().children('.popup-edit').show();
-            $('.edit_remove_rattr_id').val('');
-         }
-        var del_popup = $(".delete_div");
-         if (!$('.fa-trash-o').is(e.target) && !del_popup.is(e.target) && del_popup.has(e.target).length == 0) {
+             $('.edit_state').parents('tr').siblings().children('.popup-edit').show();
+             $('.edit_remove_rattr_id').val('');
+          }
+         var del_popup = $(".delete_div");
+          if (!$('.fa-trash-o').is(e.target) && !del_popup.is(e.target) && del_popup.has(e.target).length == 0) {
              del_popup.hide();
              $('.edit_remove_rattr_id').val('');
+         }
         }
-     });
+      });
+     
+     
+    $(document).on('click','.edit_assign_schedule_delete',function(){
+  			$(this).parents('.assign_clone_content_edit').remove();
+  			//alert($(this).parents('.assign_clone_content_edit').html());
+    });
+
+    
      
      $(document).on("click",".edit_state",function(){
         // get the scollTop (distance scrolled from top)
