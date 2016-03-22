@@ -9,6 +9,30 @@
 	  $categoryfunction = new categoryfunction();
 	  $testfunction = new testfunction();
 ?>
+<style type="text/css">
+	thead, tbody tr {
+    display:table;
+    width:100%;
+    table-layout:fixed;
+	}
+	.table > tbody tr:last-child{
+		border: 0 none !important;
+	}
+	.table > thead{
+		border-bottom: 0 none !important;
+	}
+	tbody tr {
+    border-left: 0 none !important;
+    border-right: 0 none !important;
+	}
+	.paging-nav {
+    display: none;
+	}
+	.table > tbody td{
+		height: 12px;
+	}
+</style>
+
 <div class="container">
 	<div class="container align_center left_align_category align_height">
 		<span class="sports">RANGE</span>
@@ -113,18 +137,76 @@
 					</div>
 				</form>
 			</div>
-			<div class="container table-position align_bottom">
+			<div class="col-md-12">
+				<div class="col-md-3 search_part" style="padding: 0px;">
+					<div class="test_title">
+						<span>Test Battery Name</span>
+					</div><!--test_title-->
+					<form>
+						<div class="search-content">
+							<div class="search__list">
+								<input type="text" class="search_box" placeholder="Search Name">
+								<i class="fa fa-search font-search"></i>
+							</div><!--search__list-->
+								<div class="test-list">
+									<span class="test-name">
+										<input type="checkbox" name="test" value="test" class="check_test" id="check-select">
+										<input type="text" name="test" value="xyz" class="list_edit input_wrap">
+										<span class="test-alter">
+											<i class="fa fa-floppy-o save_item"></i>
+											<i class="fa fa-pencil-square-o edit_item"></i>
+											<i class="fa fa-trash-o delete_item"></i>
+										</span><!--test-alter-->
+									</span><!--test-name-->
+									<div class="delete_div delete_search">
+							            <!-- <code class="close_btn cancel_btn"> </code>  -->
+							              <div class="del_title">
+							                <span class="del_txt">DELETE</span>
+							              </div>
+							              <div class="del_content">
+							                <span class="del_content_txt">Are you sure want to delete this whole record?</span>
+							                <input type="button" class="btn btn-primary align_right yes_btn" value="Yes">
+							                <input type="button" class="btn btn-primary align_right no_btn" value="No">
+							                <input type="hidden" name="delete_id" value="" id="delete_id"/>
+							              </div><!--del_content-->
+      								</div><!--delete_div-->
+									<span class="test-name">
+										<input type="checkbox" name="test" value="test" class="check_test">
+										<input type="text" name="test" value="xyz" class="list_edit input_wrap">
+										<span class="test-alter">
+											<i class="fa fa-floppy-o save_item"></i>
+											<i class="fa fa-pencil-square-o edit_item"></i>
+											<i class="fa fa-trash-o delete_item"></i>
+										</span><!--test-alter-->
+									</span><!--test-name-->
+									<div class="delete_div delete_search">
+								            <!-- <code class="close_btn cancel_btn"> </code>  -->
+								              <div class="del_title">
+								                <span class="del_txt">DELETE</span>
+								              </div>
+								              <div class="del_content">
+								                <span class="del_content_txt">Are you sure want to delete this whole record?</span>
+								                <input type="button" class="btn btn-primary align_right yes_btn" value="Yes">
+								                <input type="button" class="btn btn-primary align_right no_btn" value="No">
+								                <input type="hidden" name="delete_id" value="" id="delete_id"/>
+								              </div><!--del_content-->
+          								</div><!--delete_div-->
+								</div><!--test-list-->
+						</div><!--search-content-->
+					</form>
+				</div>
+			<div class="container table-position align_bottom col-md-9" style="padding: 0px;">
 			  <table class="table range_table">
 			    <thead>
 			      <tr class="row_color">
-			      	<th class="align_center">Test Battery Name</th>
+			      	<!-- <th class="align_center">Test Battery Name</th> -->
 			      	<th class="align_center">Category</th>
 			        <th class="align_center">Test Name</th>
 			        <th class="align_center">Parameter Name</th>
 			        <th style="text-align:right;">Action</th>
 			      </tr>
 			    </thead>
-			    <tbody>
+			    <tbody style="display:block;height:260px;overflow:auto;">
 			     	<?php
                     $query = $rangeFunction->rangeSelect();
                     $i=1;
@@ -133,10 +215,10 @@
                         <tr class="align_center delete_color">
                         <input type="hidden" name="range_id" class="t_range_id" value="<?php echo $row['range_id']; ?>">
 					     <!--   <td class="t_range_s_id"><?php // echo $i; ?></td> -->
-					        <td class="t_range_testbatteryname"><?php echo $row['testbattery_name']; ?></td>
+					         <!-- <td class="t_range_testbatteryname"><?php echo $row['testbattery_name']; ?></td> -->
 					        <td class="t_range_categoryname"><?php echo $row['categories_name']; ?></td>
-					        <td class="t_range_testname"><?php echo $row['test_name']; ?></td>
-					        <td class="t_range_paramtername"><?php echo $row['test_parameter_name']; ?></td>
+					        <td class="t_range_testname"><?php echo $row['test_name']; ?></td> 
+					       <td class="t_range_paramtername"><?php echo $row['test_parameter_name']; ?></td>
 					        <td class="popup-edit">
 					        	<span class="edit_state" onclick="editfunction(<?php echo $row['range_id'] ?>,this)"><i class="fa fa-pencil-square-o"></i></span>
 					        	<span class="delete_state" data-value="<?php echo $row['range_id'] ?>"><i class="fa fa-trash-o"></i></span>
@@ -150,9 +232,9 @@
 										<form name="edit_range_form" class="edit_range_form_id">
 										<input type="hidden" name="edit_range_id">
 										<input type="hidden" class="edit_remove_rattr_id" name="edit_remove_rattr_id" value="">
-											<div class="form-group">
+											<!-- <div class="form-group">
 											    <label for="sel1" class="popup_label">Select Test Battery Names</label>
-											  	<select class="form-control adjust_width classic box-width" id="sel1" name="edit_range_testbattery" data-validation-error-msg="Please Select the Name of Test Battery " data-validation="required">
+											  	<select class="form-control adjust_width classic box-width box_range" id="sel1" name="edit_range_testbattery" data-validation-error-msg="Please Select the Name of Test Battery " data-validation="required">
 												  <option value="">Select Test Battery Names</option>
 												  <?php
 							                        $tb_query = $testbatteryfunction->testbatterySelect();
@@ -161,22 +243,22 @@
 							                            <option value="<?php echo $row1['testbattery_id']; ?>"><?php echo $row1['testbattery_name']; ?></option>
 							                      <?php } ?>
 										  		</select>
-											</div>
+											</div> -->
 											<div class="form-group">
 												  <label for="sel1" class="popup_label">Category</label>
-												  <select class="form-control adjust_width classic range_category box-width" id="sel1" name="edit_range_category" data-validation-error-msg="Please Select the Category of Test Battery " data-validation="required">
+												  <select class="form-control adjust_width classic range_category box-width box_range" id="sel1" name="edit_range_category" data-validation-error-msg="Please Select the Category of Test Battery " data-validation="required">
 												  <option value="">Select Category</option>
 												  </select>
 											</div>
 											<div class="form-group">
 												  <label for="sel1" class="popup_label">Test Name</label>
-												  <select class="form-control adjust_width classic range_test box-width" id="sel1" name="edit_range_test" data-validation-error-msg="Please Select the Test Name" data-validation="required">
+												  <select class="form-control adjust_width classic range_test box-width box_range" id="sel1" name="edit_range_test" data-validation-error-msg="Please Select the Test Name" data-validation="required">
 												  <option value="">Select Test Name</option>
 												  </select>
 											</div>
 											<div class="form-group">
 												  <label for="sel1" class="popup_label">Parameter Name</label>
-												  <select class="form-control adjust_width classic range_parameter box-width" id="sel1" name="edit_range_parameter" data-validation-error-msg="Please Select the name of the Parameter" data-validation="required">
+												  <select class="form-control adjust_width classic range_parameter box-width box_range" id="sel1" name="edit_range_parameter" data-validation-error-msg="Please Select the name of the Parameter" data-validation="required">
 												  <option value="">Select Parameter Name</option>
 												  </select>
 												  <input type="hidden" class="range_parameter_type">
@@ -189,18 +271,18 @@
 											  	  <input type="hidden" class="edit_rattr_id" name="edit_rangeattr_id1" value="">
 											  	  <input type="hidden" class="edit_r_id" name="edit_range_id1" value="">
 											      	<div class="form-group col-md-12 ranges_popup">
-												      	<div class="col-md-12">
+												      	<div class="col-md-4">
 												      		<input type="text" class="form-control classic range_align_popup edit_r_strt" id="edit_strt1" name="edit_range_start1" autocomplete="off" placehoder="Start">
 												       		<span class="hided">Please Enter the start range</span>
 											    			<span class="hided">Please Check the format</span>
 												       	</div>
-												       	<div class="col-md-12">
+												       	<div class="col-md-4">
 												      		<input type="text" class="form-control classic range_align_popup edit_r_end check_end_range" id="edit_end1" name="edit_range_end1" autocomplete="off" placehoder="end">
 												       		<span class="hided">Please Enter the end range</span>
 											  				<span class="hided">Please Check the format</span>
 											  				<span class="hided">Enter greater than start value</span>
 												       	</div>
-												       	<div class="col-md-12">
+												       	<div class="col-md-4">
 												      		<input type="text" class="form-control classic range_align_popup edit_r_point" id="edit_point1" name="edit_range_points1" autocomplete="off" placehoder="points">
 											  				<span class="hided">Please Enter the points</span>
 											  				<span class="hided">Please Check the format</span>
@@ -249,6 +331,7 @@
 			</div>
 		</div>
 	</div><!-- end  container-->
+	</div><!--col-md-12->
 	<!-- <div class="container align_center">
 	  	<ul class="pagination">
 	  		<li><a href="#" class="align_left_icon"><i class="fa fa-angle-double-left"></i></a></li>

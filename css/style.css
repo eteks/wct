@@ -508,7 +508,7 @@ select {
     float: right;
     right: 0px;
     position: absolute;
-    width: 290px;
+    width: 468px;
     z-index: 9999;
 }
 .assign-schedule-popup{
@@ -808,7 +808,7 @@ button, input, optgroup, select, textarea {
     margin: 5px 0 0 10px;
     position: relative;
     right: 20px;
-    width: 220px !important;
+    width: 120px !important;
 }
 .footer {
     padding: 0 !important;
@@ -1401,7 +1401,7 @@ input[type=radio]:checked + label:before {
 .range_note,.edit_range_note{
     display: none;
     color: red;
-    font-size: 11px;
+    font-size: 10px;
     font-weight: normal;
 }
 .athlete__txt{
@@ -1418,7 +1418,7 @@ input[type=radio]:checked + label:before {
 .custom_error{
     display: block;
     color: red;
-    font-size: 11px;
+    font-size: 10px;
    /* left: 40px;
     position: relative;*/
 }
@@ -1807,7 +1807,7 @@ button, input, optgroup, select, textarea {
 .enter_result_error{
     display: none;
     color: red;
-    font-size: 11px;
+    font-size: 10px;
     /*margin-left: -42px;*/
     font-weight: normal;
 }
@@ -1940,4 +1940,39 @@ td {
 }
 .delete_state {
     padding: 3px;
+}
+.box_range{
+	box-shadow: none !important;
+    float: left;
+    height: 30px !important;
+    width: 398px !important;
+}
+.ranges_popup {
+    width: 410px !important;
+}
+.add-assign > span{
+    color: #414141;
+    font-size: 14px;
+}
+.assign-delete i {
+    padding: 0 8px 0 0;
+}
+.assign-delete, .add-assign {
+    line-height: 2.5;
+    cursor: pointer;
+}
+.plus_align_assign {
+    background: rgb(0, 102, 135) none repeat scroll 0 0;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    left: 15px;
+    padding: 5px;
+    position: relative;
+    top: 1px;
+}
+.assign-delete span{
+	color: #414141;
+    font-size: 14px;
+    float: right;
+    width: 32px;
 }

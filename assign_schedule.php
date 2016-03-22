@@ -22,6 +22,27 @@ if(isset($_GET['update_success'])){
 	#ui-id-1{
     	width: 204px !important;
 	}
+	thead, tbody tr {
+    display:table;
+    width:100%;
+    table-layout:fixed;
+	}
+	.table > tbody tr:last-child{
+		border: 0 none !important;
+	}
+	.table > thead{
+		border-bottom: 0 none !important;
+	}
+	tbody tr {
+    border-left: 0 none !important;
+    border-right: 0 none !important;
+	}
+	.paging-nav {
+    display: none;
+	}
+	.table > tbody td{
+		height: 12px;
+	}
 </style>
 <div class="container">
 	<div class="container left_align_parameter align_height">
@@ -99,18 +120,76 @@ if(isset($_GET['update_success'])){
 					</div>
 				</form>
 			</div>
-			<div class="container table-position align_bottom">
+			<div class="col-md-12">
+			<div class="col-md-3 search_part" style="padding: 0px;">
+					<div class="test_title">
+						<span>Schedule Name</span>
+					</div><!--test_title-->
+					<form>
+						<div class="search-content">
+							<div class="search__list">
+								<input type="text" class="search_box" placeholder="Search Name">
+								<i class="fa fa-search font-search"></i>
+							</div><!--search__list-->
+								<div class="test-list">
+									<span class="test-name">
+										<input type="checkbox" name="test" value="test" class="check_test" id="check-select">
+										<input type="text" name="test" value="xyz" class="list_edit input_wrap">
+										<span class="test-alter">
+											<i class="fa fa-floppy-o save_item"></i>
+											<i class="fa fa-pencil-square-o edit_item"></i>
+											<i class="fa fa-trash-o delete_item"></i>
+										</span><!--test-alter-->
+									</span><!--test-name-->
+									<div class="delete_div delete_search">
+							            <!-- <code class="close_btn cancel_btn"> </code>  -->
+							              <div class="del_title">
+							                <span class="del_txt">DELETE</span>
+							              </div>
+							              <div class="del_content">
+							                <span class="del_content_txt">Are you sure want to delete this whole record?</span>
+							                <input type="button" class="btn btn-primary align_right yes_btn" value="Yes">
+							                <input type="button" class="btn btn-primary align_right no_btn" value="No">
+							                <input type="hidden" name="delete_id" value="" id="delete_id"/>
+							              </div><!--del_content-->
+      								</div><!--delete_div-->
+									<span class="test-name">
+										<input type="checkbox" name="test" value="test" class="check_test">
+										<input type="text" name="test" value="xyz" class="list_edit input_wrap">
+										<span class="test-alter">
+											<i class="fa fa-floppy-o save_item"></i>
+											<i class="fa fa-pencil-square-o edit_item"></i>
+											<i class="fa fa-trash-o delete_item"></i>
+										</span><!--test-alter-->
+									</span><!--test-name-->
+									<div class="delete_div delete_search">
+								            <!-- <code class="close_btn cancel_btn"> </code>  -->
+								              <div class="del_title">
+								                <span class="del_txt">DELETE</span>
+								              </div>
+								              <div class="del_content">
+								                <span class="del_content_txt">Are you sure want to delete this whole record?</span>
+								                <input type="button" class="btn btn-primary align_right yes_btn" value="Yes">
+								                <input type="button" class="btn btn-primary align_right no_btn" value="No">
+								                <input type="hidden" name="delete_id" value="" id="delete_id"/>
+								              </div><!--del_content-->
+          								</div><!--delete_div-->
+								</div><!--test-list-->
+						</div><!--search-content-->
+					</form>
+				</div>
+			<div class="container table-position col-md-9 align_bottom" style="padding: 0px;">
 			  <table class="table state_table">
 			    <thead>
 			      <tr class="row_color">
-			        <th>Schedule Name</th>
+			        <!-- <th>Schedule Name</th> -->
 			        <th>Category Name</th>
 			        <!--th class="align_center">Athletes Name</th>
 			        <th class="align_center">BIB NO</th> -->
 			        <th style="text-align:right;">Action</th>
 			      </tr>
 			    </thead>
-			    <tbody>
+			    <tbody style="display:block;height:260px;overflow:auto;">
 					<?php
 					$data = $assignschedule->assignscheduleSelect();
 					$i=1;
@@ -118,7 +197,7 @@ if(isset($_GET['update_success'])){
 					 ?>
 			      <tr class="delete_color assignschedule_popup_open">
 			      	<input value="<?php echo $eachrecord ['assignschedule_id']; ?>" type="hidden">
-			        <td><?php echo $eachrecord ['createschedule_name']; ?></td>
+			        <!-- <td><?php echo $eachrecord ['createschedule_name']; ?></td> -->
 					<td><?php echo $eachrecord ['categories_name']; ?></td>
 			        <td class="popup-edit">
 			        	<span class="edit_state edit_assign_schedule" data-schedule="<?php echo $eachrecord ['createschedule_id']; ?>" data-category="<?php echo $eachrecord ['assigncategory_id']; ?>"><i class="fa fa-pencil-square-o"></i></span>
@@ -131,11 +210,11 @@ if(isset($_GET['update_success'])){
 			          			<div class="container state-content col-md-12 assign-scroll">
 				          			<div class="col-xs-12 col-md-12 align_margin">
 							<form id="edit_assign_schedule_form" action="functions/assign_schedule_function.php" method="post">
-								<div class="form-group">
+								<!-- <div class="form-group">
 									  <label for="sel1" class="popup_label">Select Schedule Name</label>
 									  <input type="text" class="form-control adjust_width classic schedule_update box-width" name="Schedule" data-validation-error-msg="Please Select Name of the Schedule" data-validation="required" disabled />
 									  <input type="hidden" class="schedule_update_id" value="" />
-								</div>
+								</div> -->
 								<div class="form-group">
 									  <label for="sel1" class="popup_label">Select Category Name</label>
 									  <select class="form-control adjust_width classic category_update box-width" id="sel1" name="category" data-validation-error-msg="Please Select Category of the Schedule" data-validation="required">
@@ -179,19 +258,25 @@ if(isset($_GET['update_success'])){
 											<!-- <input type="hidden" class="assing_schedule_update_id" name="assing_schedule_update_id1" value="" /> -->
 											<input type="hidden" class="create_schedule_update_id" name="create_schedule_update_id1" value="" />
 									    </div>
+									    <div class="assign-delete col-md-12">
+											<span><i class="fa fa-trash-o"></i>Delete</span>
+										</div><!--assign-delete-->
 									</div>
 								</div>
 								<div class="form-group assign-add-button popup-add-assign col-md-6">
 									<!-- <input type="submit" class="btn btn-primary align_right adds_btn add_athelete" value="Add"> -->
 									<!-- <i class="fa fa-plus add_align"></i> -->
-									<i class="fa fa-plus plus_align edit_assign_schedule_add_btn">
-										<div class="tooltip_parameter edit-popup-add assign_schedule_add">Add</div>
-										<div class="tip_triangle"></div>
-									</i>
-									<i class="fa fa-minus assign_remove assign_remove_edit">
+									
+									<div class="add-assign">
+										<span class="edit_assign_schedule_add_btn">Add<i class="fa fa-plus plus_align_assign edit_assign_schedule_add_btn"></i></span>
+									</div><!--add-assign-->
+										<!-- <div class="tooltip_parameter edit-popup-add assign_schedule_add">Add</div>
+										<div class="tip_triangle"></div> -->
+									
+									<!-- <i class="fa fa-minus assign_remove assign_remove_edit">
 										<div class="tooltip_remove popup-remove-assign">Remove</div>
 										<div class="tip_triangle"></div>
-									</i>
+									</i> -->
 								</div>
 								<input type="hidden" name="assing_schedule_update" value="1" />
 
@@ -224,7 +309,7 @@ if(isset($_GET['update_success'])){
 		</div>
 	</div><!-- end  container-->
 </div><!-- end  container-->
-
+</div><!--col-md-12-->
 <!--<div class="popup_fade cancel_btn"></div><!--popup_fade-->
 		<!--<div class="container">
 
