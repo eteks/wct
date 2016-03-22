@@ -82,6 +82,21 @@ class testbatteryfunction{
           $res = mysql_fetch_array($row);
           return $res;
       }
+      //Function called when update testbattery name from range
+      public function testbatterynameUpdate(){
+        $res = mysql_query("update wc_testbattery set testbattery_name='".$this->testbatteryname."' where testbattery_id ='".$this->testbatteryid."'")or die(mysql_error());
+        if($res){ return true; }
+        else{ return false; }
+      }
+      public function istestbatteryExist(){
+        $qr = mysql_query("SELECT * FROM wc_testbattery WHERE testbattery_name = '".$this->testbatteryname."'");
+        $row = mysql_num_rows($qr);
+        if($row > 0){
+          return true;
+        } else {
+          return false;
+        }
+      }
 }
 if(isset($_POST['testbattery_add'])){
     include ("../dbconnect.php");
@@ -255,4 +270,24 @@ if(isset($_GET['find_test_battery_sports'])){
     }
     print(json_encode($row2));
 }
+
+    // To Update only testbattery name from range page
+    if(isset($_GET['testbatteryname_edit'])){
+      include ("../dbconnect.php");
+      $testbatteryFunction = new testbatteryfunction();
+      $testbatteryFunction->testbatteryid = $_POST['edit_testbattery_id'];
+      $testbatteryFunction->testbatteryname = $_POST['edit_testbattery_name'];
+        $testbattery = $testbatteryFunction->istestbatteryExist();
+        if(!$testbattery){
+          $testbatteryupdate = $testbatteryFunction->testbatterynameUpdate();
+          if($testbatteryupdate){
+            echo "success#Testbattery Updated#".$_POST['edit_testbattery_id']."#".$_POST['edit_testbattery_name'];
+          }else{
+            echo "failure#Testbattery Not Updated";
+          }
+        }
+        else {
+          echo "failure#Testbattery Already Exist";
+        }
+    }
  ?>

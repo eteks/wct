@@ -199,7 +199,7 @@
                    while ($row = mysql_fetch_array($query)) {
                         ?>
                         <tr class="align_center delete_color">
-                        	<input type='hidden' class="t_athlete_id check_id" name='athlete_id' value="<?php echo $row['athlete_id']; ?>">
+                        	<input type='hidden' class="t_athlete_id check_id hidden_value" name='athlete_id' value="<?php echo $row['athlete_id']; ?>">
                         	<input type='hidden' class="t_athlete_name check_name" name='athlete_name' value="<?php echo $row['athlete_name']; ?>">
 					      <!--  <td class="t_athlete_s_id"><?php // echo $i; ?></td> -->
 					      <!--  <td class="t_athlete_name"><?php //echo $row['athlete_name']; ?></td>
