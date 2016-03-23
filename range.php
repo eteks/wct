@@ -217,6 +217,7 @@
 							          			<div class="col-xs-12 col-md-12 align_margin">
 										<form name="edit_range_form" class="edit_range_form_id">
 										<input type="hidden" name="edit_range_id">
+										<input type="hidden" class ="edit_range_testbattery" name="edit_range_testbattery" value="<?php echo $row['rangetestbattery_id']; ?>">
 										<input type="hidden" class="edit_remove_rattr_id" name="edit_remove_rattr_id" value="">
 											<!-- <div class="form-group">
 											    <label for="sel1" class="popup_label">Select Test Battery Names</label>
@@ -238,18 +239,18 @@
 											</div>
 											<div class="form-group">
 												  <label for="sel1" class="popup_label">Test Name</label>
-												  <select class="form-control adjust_width classic range_test box-width box_range" id="sel1" name="edit_range_test" data-validation-error-msg="Please Select the Test Name" data-validation="required">
+												  <select class="form-control adjust_width classic edit_range_test box-width box_range" id="sel1" name="edit_range_test" data-validation-error-msg="Please Select the Test Name" data-validation="required">
 												  <option value="">Select Test Name</option>
 												  </select>
 											</div>
 											<div class="form-group">
 												  <label for="sel1" class="popup_label">Parameter Name</label>
-												  <select class="form-control adjust_width classic range_parameter box-width box_range" id="sel1" name="edit_range_parameter" data-validation-error-msg="Please Select the name of the Parameter" data-validation="required">
+												  <select class="form-control adjust_width classic edit_range_parameter box-width box_range" id="sel1" name="edit_range_parameter" data-validation-error-msg="Please Select the name of the Parameter" data-validation="required">
 												  <option value="">Select Parameter Name</option>
 												  </select>
-												  <input type="hidden" class="range_parameter_type">
-												  <input type="hidden" class="range_parameter_unit">
-												  <input type="hidden" class="range_parameter_format">
+												  <input type="hidden" class="edit_range_parameter_type">
+												  <input type="hidden" class="edit_range_parameter_unit">
+												  <input type="hidden" class="edit_range_parameter_format">
 											</div>
 											<div class="form-group edit_range_holder">
 											   <div class="edit_clone_content" id="edit_range_counter1">

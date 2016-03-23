@@ -3419,8 +3419,15 @@ $(document).on('blur','.enter_result',function(e){
                   $.each(obj, function(i){
                     options += '<option value="'+obj[i].testattribute_id+'">'+obj[i].testparameter_name+'</option>';
                   });
-                  $('.range_parameter').html(options);
-                  $('.range_note').hide();
+                  if($(this).hasClass('range_test')){
+                    $('.range_parameter').html(options);
+                    $('.range_note').hide();
+                  }
+                  else{
+                    $('.edit_range_parameter').html(options);
+                    $('.edit_range_note').hide();
+                  }
+                  
                }
            });
         });
@@ -3472,7 +3479,7 @@ $(document).on('blur','.enter_result',function(e){
             $('.edit_district_error').hide();
         });
 
-        $('.range_parameter').on('change',function () {
+        $('.range_parameter,.edit_range_parameter').on('change',function () {
           selected_test = $("option:selected", this).val();
           form_data = {'testattribute_id':selected_test};
            $.ajax({
@@ -3483,14 +3490,27 @@ $(document).on('blur','.enter_result',function(e){
                success: function(data) {
                 var obj = JSON.parse(data);
                 $.each(obj, function(i){
-                  $('.range_parameter_type').val(obj[i].test_parameter_type);
-                  $('.range_parameter_unit').val(obj[i].test_parameter_unit);
-                  $('.range_parameter_format').val(obj[i].test_parameter_format);
-                  if($('.range_parameter_type').val().toLowerCase()=="time")
-                    $('.range_notes').text("Enter the range in "+obj[i].test_parameter_unit);
-                  else
-                    $('.range_notes').text("Enter the range in "+obj[i].test_parameter_unit+ " with "+obj[i].test_parameter_format+" formats");
-                  $('.range_note').show();
+                  if($(this).hasClass('range_parameter')){
+                    $('.range_parameter_type').val(obj[i].test_parameter_type);
+                    $('.range_parameter_unit').val(obj[i].test_parameter_unit);
+                    $('.range_parameter_format').val(obj[i].test_parameter_format);
+                    if($('.range_parameter_type').val().toLowerCase()=="time")
+                      $('.range_notes').text("Enter the range in "+obj[i].test_parameter_unit);
+                    else
+                      $('.range_notes').text("Enter the range in "+obj[i].test_parameter_unit+ " with "+obj[i].test_parameter_format+" formats");
+                    $('.range_note').show();
+                  }
+                  else{
+                    $('.edit_range_parameter_type').val(obj[i].test_parameter_type);
+                    $('.edit_range_parameter_unit').val(obj[i].test_parameter_unit);
+                    $('.edit_range_parameter_format').val(obj[i].test_parameter_format);
+                    if($('.edit_range_parameter_type').val().toLowerCase()=="time")
+                      $('.edit_range_notes').text("Enter the range in "+obj[i].test_parameter_unit);
+                    else
+                      $('.edit_range_notes').text("Enter the range in "+obj[i].test_parameter_unit+ " with "+obj[i].test_parameter_format+" formats");
+                    $('.edit_range_note').show();
+                  }
+                  
                 });
                }
            });
@@ -4003,6 +4023,7 @@ $(document).on('blur','.enter_result',function(e){
         $(document).on('click','.yes_btn_tb',function() {
           var del_id =$('#delete_id').val();
           var form_data = {'delete_id':del_id};
+          // alert(JSON.stringify(form_data));
           $.ajax({
                type: "POST",
                url: "functions/test_battery_functions.php?delete_test_battery_name=true",
