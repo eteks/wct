@@ -40,10 +40,18 @@ $createschedule = new createscheduleFunction();
 					$res = mysql_fetch_assoc(mysql_query($sql4));
 					$test = array('','','','','','','','','','','');
 					$pararms = explode(",",$res['results']);
+					$temp = '';
 					foreach($pararms as $single_param){
 						$param_split = explode("#",$single_param);
-						array_push($test,$param_split[0]);
-						array_push($test,'');
+						if($temp != $param_split[0]){
+							array_push($test,$param_split[0]);
+							array_push($test,'');
+							$temp = $param_split[0];
+						}else{
+							array_push($test,'');
+							array_push($test,'');
+						}
+						
 						//array_push($test,'');
 					}
 					fputcsv($output, $test);
@@ -58,8 +66,8 @@ $createschedule = new createscheduleFunction();
 					foreach($pararms as $single_param){
 						$param_split = explode("#",$single_param);
 						//array_push($heading,'Parameter Name');
-						array_push($heading,$param_split[0].' Result');
-						array_push($heading,$param_split[0].' Point');
+						array_push($heading,'Result For '.$param_split[0]);
+						array_push($heading,'Points For '.$param_split[0]);
 					}
 					array_push($heading,'Total points');
 					fputcsv($output, $heading);
@@ -74,15 +82,15 @@ $createschedule = new createscheduleFunction();
 					foreach($pararms as $single_param){
 						$param_split = explode("#",$single_param);
 						//array_push($csv_record,$param_split[0]);
-						if(isset($param_split[1])){
+						if($param_split[1] == '-'){
+							array_push($csv_record,'A');
+							array_push($csv_record,'A');
+						}else if($param_split[1] == '0'){
+							array_push($csv_record,'DNF');
+							array_push($csv_record,'DNF');
+						}else{
 							array_push($csv_record,$param_split[1]);
-						}else{
-							array_push($csv_record,'-');
-						}
-						if(isset($param_split[2])){
 							array_push($csv_record,$param_split[2]);
-						}else{
-							array_push($csv_record,'-');
 						}
 					}
 					array_push($csv_record,$res['totalpoints']);
