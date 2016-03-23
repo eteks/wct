@@ -186,9 +186,9 @@
                     $('.edit_range_notes').text("Enter the range in "+range_obj[i].rangeparameter_unit+ " format");
                   else
                     $('.edit_range_notes').text("Enter the range in "+range_obj[i].rangeparameter_unit+ " with "+range_obj[i].rangeparameter_format +" format");
-                  $('.range_parameter_type').val(range_obj[i].rangeparameter_type);
-                  $('.range_parameter_unit').val(range_obj[i].rangeparameter_unit);
-                  $('.range_parameter_format').val(range_obj[i].rangeparameter_format);
+                  $(el).parents('tr').find('.range_parameter_type').val(range_obj[i].rangeparameter_type);
+                  $(el).parents('tr').find('.range_parameter_unit').val(range_obj[i].rangeparameter_unit);
+                  $(el).parents('tr').find('.range_parameter_format').val(range_obj[i].rangeparameter_format);
                 });
                 $('.edit_range_note').show();
                 //Append data to first range part without using for loop
@@ -3480,7 +3480,7 @@ $(document).on('blur','.enter_result',function(e){
             $('.edit_district_error').hide();
         });
 
-        $('.range_parameter,.edit_range_parameter').on('change',function () {
+        $('.range_parameter').on('change',function () {
           var $this = $(this);
           selected_test = $("option:selected", this).val();
           form_data = {'testattribute_id':selected_test};
@@ -3492,7 +3492,17 @@ $(document).on('blur','.enter_result',function(e){
                success: function(data) {
                 var obj = JSON.parse(data);
                 $.each(obj, function(i){
-                  if($this.hasClass('range_parameter')){
+                  if($this.hasClass('edit_range_parameter')){
+                    $this.siblings('.range_parameter_type').val(obj[i].test_parameter_type);
+                    $this.siblings('.range_parameter_unit').val(obj[i].test_parameter_unit);
+                    $this.siblings('.range_parameter_format').val(obj[i].test_parameter_format);
+                    if($this.siblings('.range_parameter_type').val().toLowerCase()=="time")
+                      $this.parents('.edit_range_form_id').find('.edit_range_notes').text("Enter the range in "+obj[i].test_parameter_unit);
+                    else
+                      $this.parents('.edit_range_form_id').find('.edit_range_notes').text("Enter the range in "+obj[i].test_parameter_unit+ " with "+obj[i].test_parameter_format+" formats");
+                    $this.parents('.edit_range_form_id').find('.edit_range_note').show();   
+                  }
+                  else{
                     $('.range_parameter_type').val(obj[i].test_parameter_type);
                     $('.range_parameter_unit').val(obj[i].test_parameter_unit);
                     $('.range_parameter_format').val(obj[i].test_parameter_format);
@@ -3501,16 +3511,6 @@ $(document).on('blur','.enter_result',function(e){
                     else
                       $('.range_notes').text("Enter the range in "+obj[i].test_parameter_unit+ " with "+obj[i].test_parameter_format+" formats");
                     $('.range_note').show();
-                  }
-                  else{
-                    $('.edit_range_parameter_type').val(obj[i].test_parameter_type);
-                    $('.edit_range_parameter_unit').val(obj[i].test_parameter_unit);
-                    $('.edit_range_parameter_format').val(obj[i].test_parameter_format);
-                    if($('.edit_range_parameter_type').val().toLowerCase()=="time")
-                      $('.edit_range_notes').text("Enter the range in "+obj[i].test_parameter_unit);
-                    else
-                      $('.edit_range_notes').text("Enter the range in "+obj[i].test_parameter_unit+ " with "+obj[i].test_parameter_format+" formats");
-                    $('.edit_range_note').show();
                   }
                   
                 });
@@ -3535,6 +3535,9 @@ $(document).on('blur','.enter_result',function(e){
          $(document).on('blur','.r_strt,.r_end,.edit_r_strt,.edit_r_end',function(e){
             //Checking entered range
             value=$(this).val();
+            $range_parameter_type = $(this).parents('form').find('.range_parameter_type');
+            $range_parameter_unit = $(this).parents('form').find('.range_parameter_unit');
+            $range_parameter_format = $(this).parents('form').find('.range_parameter_format');
             if(value == ''){
               $(this).next().next().next('.hided').removeClass('custom_error').hide();
               $(this).next().next('.hided').addClass('custom_error').hide();
@@ -3543,7 +3546,7 @@ $(document).on('blur','.enter_result',function(e){
             else{
               $(this).next('.hided').removeClass('custom_error').hide();
             }
-            if(($('.range_parameter_type').val().toLowerCase()=="time") && (value!='')){
+            if(($range_parameter_type.val().toLowerCase()=="time") && (value!='')){
               if($(this).hasClass('check_end_range')){
                 // alert("check_end_range");
                 if($(this).hasClass('r_end'))
@@ -3561,7 +3564,7 @@ $(document).on('blur','.enter_result',function(e){
                     $(this).next().next().next('.hided').removeClass('custom_error').hide();
                   }
               }
-              if($('.range_parameter_format').val().toLowerCase()=="hh:mm:ss"){
+              if($range_parameter_format.val().toLowerCase()=="hh:mm:ss"){
                 // regex=/^(?:(?:([01]?\d|2[0-3]):)?([0-5]?\d):)?([0-5]?\d)$/;
                 if(!(/^(?:[0-2][0-4]|[0-1][0-9]):(?:[0-5][0-9]):[0-5][0-9]$/).test(value)){
                   // alert("check time format");
@@ -3572,7 +3575,7 @@ $(document).on('blur','.enter_result',function(e){
                   $(this).next().next('.hided').removeClass('custom_error').text('').hide();
                 }
               }
-              else if($('.range_parameter_format').val().toLowerCase()=="hh:mm"){
+              else if($range_parameter_format.val().toLowerCase()=="hh:mm"){
                 if(!(/^(?:[0-2][0-4]|[0-1][0-9]):[0-5][0-9]$/).test(value)){
                   $(this).next().next().next('.hided').removeClass('custom_error').hide();
                   $(this).next().next('.hided').addClass('custom_error').text('Please Check time format').show();
@@ -3581,7 +3584,7 @@ $(document).on('blur','.enter_result',function(e){
                   $(this).next().next('.hided').removeClass('custom_error').text('').hide();
                 }
               }
-              else if($('.range_parameter_format').val().toLowerCase()=="mm:ss"){
+              else if($range_parameter_format.val().toLowerCase()=="mm:ss"){
                 if(!(/^(?:[0-5][0-9]):[0-5][0-9]$/).test(value)){
                   $(this).next().next().next('.hided').removeClass('custom_error').hide();
                   $(this).next().next('.hided').addClass('custom_error').text('Please Check time format').show();
@@ -3590,7 +3593,7 @@ $(document).on('blur','.enter_result',function(e){
                   $(this).next().next('.hided').removeClass('custom_error').text('').hide();
                 }
               }
-              else if($('.range_parameter_format').val().toLowerCase()=="hh:mm:ss:mss"){
+              else if($range_parameter_format.val().toLowerCase()=="hh:mm:ss:mss"){
                 if(!(/^(?:[0-2][0-4]|[0-1][0-9]):(?:[0-5][0-9]):(?:[0-5][0-9]):([0-9][0-9]|[0-9][0-9][0-9]|[0-1][0][0][0])$/).test(value)){
                   $(this).next().next().next('.hided').removeClass('custom_error').hide();
                   $(this).next().next('.hided').addClass('custom_error').text('Please Check time format').show();
@@ -3599,7 +3602,7 @@ $(document).on('blur','.enter_result',function(e){
                   $(this).next().next('.hided').removeClass('custom_error').text('').hide();
                 }
               }
-              else if($('.range_parameter_format').val().toLowerCase()=="mm:ss:mss"){
+              else if($range_parameter_format.val().toLowerCase()=="mm:ss:mss"){
                 if(!(/^(?:[0-5][0-9]):(?:[0-5][0-9]):([0-9][0-9]|[0-9][0-9][0-9]|[0-1][0][0][0])$/).test(value)){
                   $(this).next().next().next('.hided').removeClass('custom_error').hide();
                   $(this).next().next('.hided').addClass('custom_error').text('Please Check time format').show();
@@ -3608,7 +3611,7 @@ $(document).on('blur','.enter_result',function(e){
                   $(this).next().next('.hided').removeClass('custom_error').text('').hide();
                 }
               }
-              else if($('.range_parameter_format').val().toLowerCase()=="ss:mss"){
+              else if($range_parameter_format.val().toLowerCase()=="ss:mss"){
                 if(!(/^(?:[0-5][0-9]):([0-9][0-9]|[0-9][0-9][0-9]|[0-1][0][0][0])$/).test(value)){
                   $(this).next().next().next('.hided').removeClass('custom_error').hide();
                   $(this).next().next('.hided').addClass('custom_error').text('Please Check time format').show();
@@ -3617,7 +3620,7 @@ $(document).on('blur','.enter_result',function(e){
                   $(this).next().next('.hided').removeClass('custom_error').text('').hide();
                 }
               }
-              else if($('.range_parameter_format').val().toLowerCase()=="mss"){
+              else if($range_parameter_format.val().toLowerCase()=="mss"){
                 if(!(/^(?:[0-9][0-9]|[0-9][0-9][0-9]|[0-1][0][0][0])$/).test(value)){
                   $(this).next().next().next('.hided').removeClass('custom_error').hide();
                   $(this).next().next('.hided').addClass('custom_error').text('Please Check time format').show();
@@ -3652,8 +3655,8 @@ $(document).on('blur','.enter_result',function(e){
                   else{
                     decimals = value.toString().split(".")[1].length;
                   }
-                  paramter_unit = $('.range_parameter_unit').val();
-                  parameter_format = $('.range_parameter_format').val();
+                  paramter_unit = $range_parameter_unit.val();
+                  parameter_format = $range_parameter_format.val();
                   if(decimals > parameter_format || value.indexOf(":") !== -1){
                      $(this).next().next().next('.hided').removeClass('custom_error').hide();
                      $(this).next().next('.hided').addClass('custom_error').text('Please Check range format').show();
