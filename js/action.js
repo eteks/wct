@@ -3406,6 +3406,7 @@ $(document).on('blur','.enter_result',function(e){
 
         // Load parameter in range form based on selected test
         $('[name=range_test],[name=edit_range_test]').on('change',function () {
+          var $this = $(this);
           selected_test = $("option:selected", this).val();
           form_data = {'test_id':selected_test};
            $.ajax({
@@ -3419,7 +3420,7 @@ $(document).on('blur','.enter_result',function(e){
                   $.each(obj, function(i){
                     options += '<option value="'+obj[i].testattribute_id+'">'+obj[i].testparameter_name+'</option>';
                   });
-                  if($(this).hasClass('range_test')){
+                  if($this.hasClass('range_test')){
                     $('.range_parameter').html(options);
                     $('.range_note').hide();
                   }
@@ -3480,6 +3481,7 @@ $(document).on('blur','.enter_result',function(e){
         });
 
         $('.range_parameter,.edit_range_parameter').on('change',function () {
+          var $this = $(this);
           selected_test = $("option:selected", this).val();
           form_data = {'testattribute_id':selected_test};
            $.ajax({
@@ -3490,7 +3492,7 @@ $(document).on('blur','.enter_result',function(e){
                success: function(data) {
                 var obj = JSON.parse(data);
                 $.each(obj, function(i){
-                  if($(this).hasClass('range_parameter')){
+                  if($this.hasClass('range_parameter')){
                     $('.range_parameter_type').val(obj[i].test_parameter_type);
                     $('.range_parameter_unit').val(obj[i].test_parameter_unit);
                     $('.range_parameter_format').val(obj[i].test_parameter_format);
