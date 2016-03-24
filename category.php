@@ -13,6 +13,7 @@ $obj = new categoryfunction();
 				<div class="col-md-4 align_margin">
 					<form id="category_form" name="categories_form" role="form">
 						<div class="align_margin">
+							<label>Enter name of the Category</label><br>
 							<input type="text" class="sportsname" name="category_name" autocomplete="off" data-validation-error-msg="Please enter the category name" data-validation="required">
 							<input type="hidden" name="category_add" value="1">
 						</div><!--align_margin-->
@@ -25,7 +26,7 @@ $obj = new categoryfunction();
 				    <thead>
 				      <tr class="row_color">
 				        <th>Category Name</th>
-				        <th style="text-align:right">Action</th>
+				        <th class="action_align">Action</th>
 				      </tr>
 				    </thead>
 				    <tbody>
@@ -55,7 +56,7 @@ $obj = new categoryfunction();
 												<input type="hidden" name="category_update" value="1">
 											</div><!--align_margin-->
 											<!-- <button type="button" class="btn btn-primary align_right clear category_update_act">Submit</button> -->
-											<input type="submit" class="btn btn-primary align_right clear category_update_act" value="Submit">
+											<input type="submit" class="btn btn-primary align_right clear category_update_act" value="Save">
 										</form>
 									</div><!--state-content-->
 								</div><!--state_div-->
@@ -65,9 +66,9 @@ $obj = new categoryfunction();
 						                <span class="del_txt">DELETE</span>
 						              </div>
 						              <div class="del_content">
-						                <span class="del_content_txt">Are you sure want to delete this whole record?</span>
-						                <input type="button" class="btn btn-primary align_right yes_btn" value="Yes">
+						                <span class="del_content_txt">Are you sure you want to delete this record?</span>
 						                <input type="button" class="btn btn-primary align_right no_btn" value="No">
+						                <input type="button" class="btn btn-primary align_right yes_btn" value="Yes">
 						                <input type="hidden" name="delete_id" value="" id="delete_id"/>
 						              </div><!--del_content-->
 								</div><!--delete_div-->

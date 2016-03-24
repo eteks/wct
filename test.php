@@ -52,7 +52,7 @@ if(isset($_GET['insert_new'])){
 			<div class="col-xs-12 col-md-12 align_margin">
 				<form id="test_form" name="test_form_act" action="functions/test_functions.php" method="post">
 					<div class="form-group">
-						<label>Enter Test Name</label><br>
+						<label>Enter name of Test</label><br>
 						<input type="text" class="adjust_width" name="test_name" autocomplete="off">
 						<span class="category_text">Please Enter the Test Name</span>
 					</div>
@@ -60,7 +60,7 @@ if(isset($_GET['insert_new'])){
 						<div class="clone_content" id="param_counter1">
 							<div class="form-group col-md-11 schedule_test">
 							<div class="form-group col-md-5">
-								<label>Enter Parameter Name</label><br>
+								<label>Enter Test Parameters</label><br>
 								<input type="text" class="adjust_width parameter_name" name="parameter_name1" autocomplete="off">
 								<span class="hided param_name_error">Please Enter the parameter name</span>
 								<input type="hidden" class="parameter_count" value="1" />
@@ -173,7 +173,7 @@ if(isset($_GET['insert_new'])){
 					        	<th class="align_center">Type</th>
 					        	<th class="align_center">Unit</th>
 					        	<th class="align_center">Format</th>
-					        	<th class="align_center">Action</th>
+					        	<th class="action_align">Action</th>
 				        	</tr>
 			        </thead>
 				    <tbody style="display:block;height:260px;overflow:auto;">
@@ -257,10 +257,10 @@ if(isset($_GET['insert_new'])){
 						                <span class="del_txt">DELETE</span>
 						              </div>
 						              <div class="del_content">
-						                <span class="del_content_txt">Are you sure want to delete this whole record?</span>
-						                <input type="button" class="btn btn-primary align_right yes_btn" value="Yes" data-delete='test_attribute' data-id ="<?php echo $eachrecord ['test_attribute_id']; ?>" data-test-id="<?php echo $eachrecord ['test_id']; ?>">
+						                <span class="del_content_txt">Are you sure you want to delete this record?</span>
 						                <input type="button" class="btn btn-primary align_right no_btn" value="No">
-						                <input type="hidden" name="delete_id" value="" id="delete_id"/>
+						                <input type="button" class="btn btn-primary align_right yes_btn" value="Yes" data-delete='test_attribute' data-id ="<?php echo $eachrecord ['test_attribute_id']; ?>" data-test-id="<?php echo $eachrecord ['test_id']; ?>">
+						               	<input type="hidden" name="delete_id" value="" id="delete_id"/>
 						              </div>
   								</div>
 				        </td>

@@ -361,8 +361,8 @@
                                        </div>\
                                        <div class="del_content">\
                                          <span class="del_content_txt">Are you sure want to delete this whole record?</span>\
-                                         <input type="button" class="btn btn-primary align_right yes_btn" value="Yes" data-delete="test_name" data-id ="'+data[i].test_id+'">\
                                          <input type="button" class="btn btn-primary align_right no_btn" value="No">\
+                                         <input type="button" class="btn btn-primary align_right yes_btn" value="Yes" data-delete="test_name" data-id ="'+data[i].test_id+'">\
                                          <input type="hidden" name="delete_id" value="" id="delete_id"/>\
                                        </div>\
                                  </div>');
@@ -444,9 +444,9 @@
                                            <span class="del_txt">DELETE</span>\
                                          </div>\
                                          <div class="del_content">\
-                                           <span class="del_content_txt">Are you sure want to delete this whole record?</span>\
-                                           <input type="button" class="btn btn-primary align_right yes_btn" value="Yes" data-delete="test_battery_name" data-id ="'+data[i].testbattery_id+'">\
+                                           <span class="del_content_txt">Are you sure you want to delete this record?</span>\
                                            <input type="button" class="btn btn-primary align_right no_btn" value="No">\
+                                           <input type="button" class="btn btn-primary align_right yes_btn" value="Yes" data-delete="test_battery_name" data-id ="'+data[i].testbattery_id+'">\
                                            <input type="hidden" name="delete_id" value="" id="delete_id"/>\
                                          </div>\
                                    </div>');
@@ -485,8 +485,8 @@
                                          </div>\
                                          <div class="del_content">\
                                            <span class="del_content_txt">Are you sure want to delete this whole record?</span>\
-                                           <input type="button" class="btn btn-primary align_right yes_btn" value="Yes" data-delete="test_battery_name" data-id ="'+data[i].testbattery_id+'">\
                                            <input type="button" class="btn btn-primary align_right no_btn" value="No">\
+                                           <input type="button" class="btn btn-primary align_right yes_btn" value="Yes" data-delete="test_battery_name" data-id ="'+data[i].testbattery_id+'">\
                                            <input type="hidden" name="delete_id" value="" id="delete_id"/>\
                                          </div>\
                                    </div>');
@@ -530,8 +530,8 @@
                                        </div>\
                                        <div class="del_content">\
                                          <span class="del_content_txt">Are you sure want to delete this whole record?</span>\
-                                         <input type="button" class="btn btn-primary align_right yes_btn" value="Yes" data-delete="parametertype_name" data-id ="'+data[i].parametertype_id+'">\
                                          <input type="button" class="btn btn-primary align_right no_btn" value="No">\
+                                         <input type="button" class="btn btn-primary align_right yes_btn" value="Yes" data-delete="parametertype_name" data-id ="'+data[i].parametertype_id+'">\
                                          <input type="hidden" name="delete_id" value="" id="delete_id"/>\
                                        </div>\
                                  </div>');
@@ -569,8 +569,8 @@
                                        </div>\
                                        <div class="del_content">\
                                          <span class="del_content_txt">Are you sure want to delete this whole record?</span>\
-                                         <input type="button" class="btn btn-primary align_right yes_btn" value="Yes" data-delete="parametertype_name" data-id ="'+data[i].parametertype_id+'">\
                                          <input type="button" class="btn btn-primary align_right no_btn" value="No">\
+                                         <input type="button" class="btn btn-primary align_right yes_btn" value="Yes" data-delete="parametertype_name" data-id ="'+data[i].parametertype_id+'">\
                                          <input type="hidden" name="delete_id" value="" id="delete_id"/>\
                                        </div>\
                                  </div>');
@@ -688,9 +688,9 @@
           						                <span class="del_txt">DELETE</span>\
           						              </div>\
           						              <div class="del_content">\
-          						                <span class="del_content_txt">Are you sure want to delete this whole record?</span>\
-          						                <input type="button" class="btn btn-primary align_right yes_btn" value="Yes" data-delete="test_attribute" data-id ="'+data.test[i].test_attribute_id+' "data-test-id="'+data.test[i].test_id+'">\
+          						                <span class="del_content_txt">Are you sure you want to delete this record?</span>\
           						                <input type="button" class="btn btn-primary align_right no_btn" value="No">\
+          						                <input type="button" class="btn btn-primary align_right yes_btn" value="Yes" data-delete="test_attribute" data-id ="'+data.test[i].test_attribute_id+' "data-test-id="'+data.test[i].test_id+'">\
           						                <input type="hidden" name="delete_id" value="" id="delete_id"/>\
           						              </div>\
             								</div>\
@@ -2414,7 +2414,7 @@
                                           <input type="text" class="adjust_width adjust_popup_width edit_param_unit" name="parameter_unit" data-validation-error-msg="Please Enter the Unit of the Parameter" data-validation="required" autocomplete="off">\
                                       </div>\
                                       <div class="col-md-12 schedule_btn">\
-                                          <input type="submit" class="btn btn-primary align_right clear edit_parameter_unit_act" value="Submit">\
+                                          <input type="submit" class="btn btn-primary align_right clear edit_parameter_unit_act" value="Save">\
                                       </div>\
                                   </form>\
                               </div>\
@@ -2425,9 +2425,9 @@
                                <span class="del_txt">DELETE</span>\
                              </div>\
                              <div class="del_content">\
-                               <span class="del_content_txt">Are you sure want to delete this whole record?</span>\
-                               <input type="button" class="btn btn-primary align_right yes_btn" value="Yes" data-delete="parameter_unit_name" data-id ="'+data.test[i].parameterunit_id+' ">\
+                               <span class="del_content_txt">Are you sure you want to delete this record?</span>\
                                <input type="button" class="btn btn-primary align_right no_btn" value="No">\
+                               <input type="button" class="btn btn-primary align_right yes_btn" value="Yes" data-delete="parameter_unit_name" data-id ="'+data.test[i].parameterunit_id+' ">\
                                <input type="hidden" name="delete_id" value="" id="delete_id"/>\
                              </div>\
                    </div>\
@@ -4074,8 +4074,8 @@ $(document).on('blur','.enter_result',function(e){
                                          </div>\
                                          <div class="del_content">\
                                            <span class="del_content_txt">Are you sure want to delete this whole record?</span>\
-                                           <input type="button" class="btn btn-primary align_right yes_btn" value="Yes" data-delete="assign_schedule_name" data-id ="'+data[i].createschedule_id+'">\
                                            <input type="button" class="btn btn-primary align_right no_btn" value="No">\
+                                           <input type="button" class="btn btn-primary align_right yes_btn" value="Yes" data-delete="assign_schedule_name" data-id ="'+data[i].createschedule_id+'">\
                                            <input type="hidden" name="delete_id" value="" id="delete_id"/>\
                                          </div>\
                                    </div>');
@@ -4114,9 +4114,9 @@ $(document).on('blur','.enter_result',function(e){
                                          </div>\
                                          <div class="del_content">\
                                            <span class="del_content_txt">Are you sure want to delete this whole record?</span>\
-                                           <input type="button" class="btn btn-primary align_right yes_btn" value="Yes" data-delete="assign_schedule_name" data-id ="'+data[i].createschedule_id+'">\
                                            <input type="button" class="btn btn-primary align_right no_btn" value="No">\
-                                           <input type="hidden" name="delete_id" value="" id="delete_id"/>\
+                                           <input type="button" class="btn btn-primary align_right yes_btn" value="Yes" data-delete="assign_schedule_name" data-id ="'+data[i].createschedule_id+'">\
+                                          	<input type="hidden" name="delete_id" value="" id="delete_id"/>\
                                          </div>\
                                    </div>');
                                     $('.edit_item,.save_item,.delete_item').hide();
@@ -4216,9 +4216,9 @@ $(document).on('blur','.enter_result',function(e){
 						                	<span class="del_txt">DELETE</span>\
 						              	</div>\
 						              	<div class="del_content">\
-						                	<span class="del_content_txt">Are you sure want to delete this whole record?</span>\
-						                	<input type="button" class="btn btn-primary align_right yes_btn" data-delete= "assign_schedule_attribute" value="Yes" data-schedule="'+data.assign[i].createschedule_id+'" data-category="'+data.assign[i].assigncategory_id+'">\
+						                	<span class="del_content_txt">Are you sure you want to delete this record?</span>\
 						                	<input type="button" class="btn btn-primary align_right no_btn" value="No">\
+						                	<input type="button" class="btn btn-primary align_right yes_btn" data-delete= "assign_schedule_attribute" value="Yes" data-schedule="'+data.assign[i].createschedule_id+'" data-category="'+data.assign[i].assigncategory_id+'">\
 						                	<input type="hidden" name="delete_id" value="" id="delete_id"/>\
 						              	</div>\
 									</div>\

@@ -38,7 +38,7 @@
 				<div class="col-md-7 col-xs-12 align_left_district">
 					<form name="district_form" class="districts_form">
 						<div class="form-group col-md-8 padding_zero">
-						  <label for="sel1">Select the State</label>
+						  <label for="sel1">Enter name of the District</label>
 						  <select class="form-control adjust_width classic choose_state" id="sel1" name="district_state">
 						  <option value="">Select the state</option>
 						  <?php
@@ -105,7 +105,7 @@
 										<span class="test-alter">
 											<i class="fa fa-floppy-o save_item save_state"></i>
 											<i class="fa fa-pencil-square-o edit_item"></i>
-											<i class="fa fa-trash-o delete_item delete_state" data-value="<?php echo $row['states_id']; ?>"></i>
+											<i class="fa fa-trash-o delete_item delete_state" data-value="<?php echo $row['states_id']; ?>" style="float: none;"></i>
 										</span><!--test-alter-->
 									</span><!--test-name-->
 									<div class="delete_div delete_search">
@@ -114,9 +114,9 @@
 							                <span class="del_txt">DELETE</span>
 							              </div>
 							              <div class="del_content">
-							                <span class="del_content_txt">Are you sure want to delete this whole record?</span>
-							                <input type="button" class="btn btn-primary align_right yes_btn_dt" value="Yes">
+							                <span class="del_content_txt">Are you sure you want to delete this record?</span>
 							                <input type="button" class="btn btn-primary align_right no_btn" value="No">
+							                <input type="button" class="btn btn-primary align_right yes_btn_dt" value="Yes">
 							                <input type="hidden" name="delete_id" value="" id="delete_id"/>
 							              </div><!--del_content-->
       								</div><!--delete_div-->
@@ -131,7 +131,7 @@
 					      <tr class="row_color">
 					        <!-- <th>State</th> -->
 							<th>District</th>
-					        <th style="text-align:right">Action</th>
+					        <th class="action_align">Action</th>
 					      </tr>
 					    </thead>
 					    <tbody style="display:block;height:260px;overflow:auto;">
@@ -176,7 +176,7 @@
 														</div>
 														<!-- <button type="button" class="btn btn-primary align_right clear edit_district_act" name="district">Submit</button>	 -->
 														<div class="col-md-12 form-group">
-															<input type="submit" class="btn btn-primary align_right clear edit_district_act" name="district" value="Submit">
+															<input type="submit" class="btn btn-primary align_right clear edit_district_act" name="district" value="Save">
 														</div>
 												</form>
 											</div><!--state-content-->
@@ -187,9 +187,9 @@
 							                <span class="del_txt">DELETE</span>
 							              </div>
 							              <div class="del_content">
-							                <span class="del_content_txt">Are you sure want to delete this whole record?</span>
-							                <input type="button" class="btn btn-primary align_right yes_btn" value="Yes">
+							                <span class="del_content_txt">Are you sure you want to delete this record?</span>
 							                <input type="button" class="btn btn-primary align_right no_btn" value="No">
+							                <input type="button" class="btn btn-primary align_right yes_btn" value="Yes">
 							                <input type="hidden" name="delete_id" value="" id="delete_id"/>
 							              </div><!--del_content-->
 									</div><!--delete_div-->

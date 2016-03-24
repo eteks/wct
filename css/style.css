@@ -553,7 +553,7 @@ select {
     font-family: Montserrat;
     font-weight: bold;
     height: 32px;
-    margin-right: 15px;
+    margin-right: 40px;
     width: 45px;
 }
 .yes_btn:hover,.no_btn:hover{
@@ -568,10 +568,17 @@ select {
 .edit_state:hover,.edit_district:hover{
     color: #006687 !important;
 }
-.del_title ,.login_title,.edit_title{
+.login_title,.edit_title{
     font-size: 14px;
     height: 40px;
     padding: 12px 0 0 15px;
+    font-weight: bold;
+    font-family: Montserrat;
+}
+.del_title{
+    font-size: 14px;
+    height: 40px;
+    padding: 12px 0 0 3px;
     font-weight: bold;
     font-family: Montserrat;
 }
@@ -1938,9 +1945,9 @@ td {
 .result_restrict{
     background: #eee;
 }
-.delete_state {
+/*.delete_state {
     padding: 3px;
-}
+}*/
 .box_range{
 	box-shadow: none !important;
     float: left;
@@ -1978,4 +1985,9 @@ td {
 }
 .enter_result{
     text-align: center;
+}
+.action_align{
+	text-align:right; 
+	position: relative; 
+	right: 15px;
 }

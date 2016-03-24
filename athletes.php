@@ -37,7 +37,7 @@
 </style>
 <div class="container">
 	<div class="container left_align_testbattery align_height">
-		<span class="sports">ADD ATHLETES</span>
+		<span class="sports">ADD ATHLETE</span>
 	</div><!--end container-->
 	<div class="container align_bottom">
 		<div class="col-xs-12 col-md-12">
@@ -45,7 +45,7 @@
 			<div class="col-xs-12 col-md-7 align_margin">
 				<form name="athletes_form" id="athlete_form">
 					<div class="form-group">
-						<label>Athlete Name</label><br>
+						<label>Name of Athlete</label><br>
 						<input type="text" class="adjust_width" name="athlete_name" autocomplete="off" data-validation-error-msg="Please Enter the name of the Athelete" data-validation="required">
 					</div>
 					<div class="form-group" style="position: relative; right: 15px;">
@@ -120,9 +120,9 @@
 					</div>
 
 					<div class="form-group">
-						  <label for="sel1">Sports</label>
+						  <label for="sel1">Sport</label>
 						  <select class="form-control adjust_width classic" id="sel1" name="athlete_sports" data-validation-error-msg="Please Select the Sports" data-validation="required">
-						   <option value="">Sports</option>
+						   <option value="">Sport</option>
 						   <?php
 	                        $query = $sportsfunction->sportsSelect();
 	                        while ($row = mysql_fetch_array($query)) {
@@ -169,9 +169,9 @@
 							                <span class="del_txt">DELETE</span>
 							              </div>
 							              <div class="del_content">
-							                <span class="del_content_txt">Are you sure want to delete this whole record?</span>
-							                <input type="button" class="btn btn-primary align_right yes_btn" value="Yes">
+							                <span class="del_content_txt">Are you sure you want to delete this record?</span>
 							                <input type="button" class="btn btn-primary align_right no_btn" value="No">
+							                <input type="button" class="btn btn-primary align_right yes_btn" value="Yes">
 							                <input type="hidden" name="delete_id" value="" id="delete_id"/>
 							              </div><!--del_content-->
       								</div><!--delete_div-->
@@ -189,7 +189,7 @@
 			        <th class="align_center">Gender</th>
 			        <th class="align_center">D.O.B</th>
 			        <th class="align_center">Address</th>
-			       	<th class="align_center">Action</th>
+			       	<th class="action_align">Action</th>
 			      </tr>
 			    </thead>
 			    <tbody style="display:block;height:260px;overflow:auto;">
@@ -318,9 +318,9 @@
 						                <span class="del_txt">DELETE</span>
 						              </div>
 						              <div class="del_content">
-						                <span class="del_content_txt">Are you sure want to delete this whole record?</span>
-						                <input type="button" class="btn btn-primary align_right yes_btn" value="Yes">
+						                <span class="del_content_txt">Are you sure you want to delete this record?</span>
 						                <input type="button" class="btn btn-primary align_right no_btn" value="No">
+						                <input type="button" class="btn btn-primary align_right yes_btn" value="Yes">
 						                <input type="hidden" name="delete_id" value="" id="delete_id"/>
 						              </div><!--del_content-->
   								</div><!--delete_div-->

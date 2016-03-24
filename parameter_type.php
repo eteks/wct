@@ -26,7 +26,7 @@
 			    <thead>
 			      <tr class="row_color">
 			        <th>Parameter Type</th>
-			        <th style="text-align:right">Action</th>
+			        <th class="action_align">Action</th>
 			      </tr>
 			    </thead>
 			    <tbody>
@@ -56,7 +56,7 @@
 										  <input type="text" class="form-control adjust_width_parameter classic" id="sel1" name="edit_parameter_type" autocomplete="off" data-validation-error-msg="Please Select the Type of the Parameter" data-validation="required">
 									</div>
 									<div class="col-md-12 schedule_btn">
-											<input type="submit" class="btn btn-primary align_right clear edit_parameter_act" value="Submit">
+											<input type="submit" class="btn btn-primary align_right clear edit_parameter_act" value="Save">
 									</div>
 								</form>
 								</div><!--tate-content-->
@@ -67,9 +67,9 @@
 					                <span class="del_txt">DELETE</span>
 					              </div>
 					              <div class="del_content">
-					                <span class="del_content_txt">Are you sure want to delete this whole record?</span>
-					                <input type="button" class="btn btn-primary align_right yes_btn" value="Yes">
+					                <span class="del_content_txt">Are you sure you want to delete this record?</span>
 					                <input type="button" class="btn btn-primary align_right no_btn" value="No">
+					                <input type="button" class="btn btn-primary align_right yes_btn" value="Yes">
 					                <input type="hidden" name="delete_id" value="" id="delete_id"/>
 					              </div><!--del_content-->
 						</div><!--delete_div-->

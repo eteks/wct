@@ -54,9 +54,9 @@ if(isset($_GET['update_success'])){
 			<div class="col-xs-12 col-md-12 align_margin">
 				<form method="post" id="assignschedule_form">
 					<div class="form-group">
-						  <label for="sel1">Select Schedule Name</label>
+						  <label for="sel1">Select Schedule</label>
 						  <select class="form-control adjust_width classic assignsche_create" id="sel1" name="Schedule" data-validation-error-msg="Please Select Name of the Schedule" data-validation="required">
-							 <option value="">Select Schedule Name</option>
+							 <option value="">Select Schedule</option>
 							 <?php
 		   						 $data = $createschedule->createscheduleselectfunction();
 		   						 foreach( $data as $eachrecord ) {
@@ -66,9 +66,9 @@ if(isset($_GET['update_success'])){
 						  </select>
 					</div>
 					<div class="form-group">
-						  <label for="sel1">Select Category Name</label>
+						  <label for="sel1">Select Category</label>
 						  <select class="form-control adjust_width classic assignsche_cate" id="sel1" name="category" data-validation-error-msg="Please Select Category of the Schedule" data-validation="required">
-							<option value="">Select Category Name</option>
+							<option value="">Select Category</option>
 						  </select>
 					</div>
 					<label for="athlete">Add Athletes</label><br>
@@ -152,8 +152,8 @@ if(isset($_GET['update_success'])){
 							              </div>
 							              <div class="del_content">
 							                <span class="del_content_txt">Are you sure want to delete this whole record?</span>
-							                <input type="button" class="btn btn-primary align_right yes_btn" value="Yes" data-delete="assign_schedule_name" data-id ="<?php echo $eachrecord ['createschedule_id']; ?>">
 							                <input type="button" class="btn btn-primary align_right no_btn" value="No">
+							                <input type="button" class="btn btn-primary align_right yes_btn" value="Yes" data-delete="assign_schedule_name" data-id ="<?php echo $eachrecord ['createschedule_id']; ?>">
 							                <input type="hidden" name="delete_id" value="" id="delete_id"/>
 							              </div><!--del_content-->
       								</div><!--delete_div-->
@@ -170,7 +170,7 @@ if(isset($_GET['update_success'])){
 			        <th>Category Name</th>
 			        <!--th class="align_center">Athletes Name</th>
 			        <th class="align_center">BIB NO</th> -->
-			        <th style="text-align:right;">Action</th>
+			        <th class="action_align">Action</th>
 			      </tr>
 			    </thead>
 			    <tbody style="display:block;height:260px;overflow:auto;">
@@ -268,9 +268,9 @@ if(isset($_GET['update_success'])){
 				                <span class="del_txt">DELETE</span>
 				              </div>
 				              <div class="del_content">
-				                <span class="del_content_txt">Are you sure want to delete this whole record?</span>
-				                <input type="button" class="btn btn-primary align_right yes_btn" value="Yes" data-delete = 'assign_schedule_attribute' data-schedule="<?php echo $eachrecord ['createschedule_id']; ?>" data-category="<?php echo $eachrecord ['assigncategory_id']; ?>">
+				                <span class="del_content_txt">Are you sure you want to delete this record?</span>
 				                <input type="button" class="btn btn-primary align_right no_btn" value="No">
+				                <input type="button" class="btn btn-primary align_right yes_btn" value="Yes" data-delete = 'assign_schedule_attribute' data-schedule="<?php echo $eachrecord ['createschedule_id']; ?>" data-category="<?php echo $eachrecord ['assigncategory_id']; ?>">
 				                <input type="hidden" name="delete_id" value="" id="delete_id"/>
 				              </div><!--del_content-->
 						</div><!--delete_div-->

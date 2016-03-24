@@ -43,9 +43,9 @@
 			<div class="col-xs-12 col-md-7 align_margin">
 				<form name="range_form" class="range_form_id">
 					<div class="form-group">
-						  <label for="sel1">Select Test Battery Names</label>
+						  <label for="sel1">Select Test Battery</label>
 						  <select class="form-control adjust_width classic" id="sel1" name="range_testbattery" data-validation-error-msg="Please Select the Name of Test Battery " data-validation="required">
-						  <option value="">Select Test Battery Names</option>
+						  <option value="">Select Test Battery</option>
 						  <?php
 	                        $query = $testbatteryfunction->testbatterySelect();
 	                        while ($row = mysql_fetch_array($query)) {
@@ -55,7 +55,7 @@
 						  </select>
 					</div>
 					<div class="form-group">
-						  <label for="sel1">Category</label>
+						  <label for="sel1">Select Category</label>
 						  <select class="form-control adjust_width classic range_category" id="sel1" name="range_category" data-validation-error-msg="Please Select the Category of Test Battery" data-validation="required">
 						    <option value="">Select Category</option>
 						  <!--<?php
@@ -67,9 +67,9 @@
 						  </select>
 					</div>
 					<div class="form-group">
-						  <label for="sel1">Test Name</label>
+						  <label for="sel1">Select Test</label>
 						  <select class="form-control adjust_width classic range_test" id="sel1" name="range_test" data-validation-error-msg="Please Select the name of the Test" data-validation="required">
-						  <option value="">Select Test Name</option>
+						  <option value="">Select Test</option>
 						   <!-- <?php
 	                        $query = $testfunction->testSelect();
 	                        while ($row = mysql_fetch_array($query)) {
@@ -79,9 +79,9 @@
 						  </select>
 					</div>
 					<div class="form-group">
-						  <label for="sel1">Parameter Name</label>
+						  <label for="sel1">Select Parameter</label>
 						  <select class="form-control adjust_width classic range_parameter" id="sel1" name="range_parameter" data-validation-error-msg="Please Select the name of the Parameter" data-validation="required">
-						  <option value="">Select Parameter Name</option>
+						  <option value="">Select Parameter</option>
 						  </select>
 						  <input type="hidden" class="range_parameter_type">
 						  <input type="hidden" class="range_parameter_unit">
@@ -188,7 +188,7 @@
 			      	<th class="align_center">Category</th>
 			        <th class="align_center">Test Name</th>
 			        <th class="align_center">Parameter Name</th>
-			        <th style="text-align:right;">Action</th>
+			        <th class="action_align">Action</th>
 			      </tr>
 			    </thead>
 			    <tbody style="display:block;height:260px;overflow:auto;">
@@ -304,9 +304,9 @@
 					                <span class="del_txt">DELETE</span>
 					              </div>
 					              <div class="del_content">
-					                <span class="del_content_txt">Are you sure want to delete this whole record?</span>
-					                <input type="button" class="btn btn-primary align_right yes_btn" value="Yes">
+					                <span class="del_content_txt">Are you sure you want to delete this record?</span>
 					                <input type="button" class="btn btn-primary align_right no_btn" value="No">
+					                <input type="button" class="btn btn-primary align_right yes_btn" value="Yes">
 					                <input type="hidden" name="delete_id" value="" id="delete_id"/>
 					              </div><!--del_content-->
   							</div><!--delete_div-->

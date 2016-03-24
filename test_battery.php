@@ -56,7 +56,7 @@ if(isset($_GET['duplicate'])){
 			<div class="col-xs-12 col-md-6 align_margin">
 				<form method="post" action="functions/test_battery_functions.php" id="test_battery_form">
 					<div class="form-group">
-						<label>Enter the name of the Test Battery</label><br>
+						<label>Enter name of Test Battery</label><br>
 						<input type="text" class="adjust_width" name="test_battery_name" autocomplete="off" data-validation-error-msg="please Enter the name of the Test Battery" data-validation="required">
 					</div>
 					<div class="form-group">
@@ -85,7 +85,7 @@ if(isset($_GET['duplicate'])){
 						</div>
 					</div>
 					<div class="align_margin">
-						<label>Select Test</label><br>
+						<label>Select Tests</label><br>
 						<div class="area_scroll">
 							<?php
 						  $test_data = $test->testbatteryselectfunction();
@@ -157,7 +157,7 @@ if(isset($_GET['duplicate'])){
 			        <th class="align_center">Sports</th>
 			        <th class="align_center">Categories</th>
 			        <th class="align_center">Test</th>
-			        <th class="align_center">Action</th>
+			        <th class="action_align">Action</th>
 			      </tr>
 			    </thead>
 					<!-- <?php
@@ -210,7 +210,7 @@ if(isset($_GET['duplicate'])){
 		        		<div class="test_battery popup_hidden">
 			          		<code class="close_btn cancel_btn"> </code>
 			          		<div class="edit_title">
-			                	<span class="del_txt">Edit Detail</span>
+			                	<span class="del_txt">Edit Test Battery</span>
 			              	</div><!--edit_title-->
 		          			<div class="container col-md-12">
 			          			<div class="col-xs-12 col-md-12">
@@ -247,7 +247,7 @@ if(isset($_GET['duplicate'])){
 											</div>
 										</div>
 										<div class="">
-											<label class="popup_label">Select Test</label><br>
+											<label class="popup_label">Select Tests</label><br>
 											<div class="area_scroll_popup form-group">
 												<?php
 											  $test_data = $test->testbatteryselectfunction();
@@ -274,9 +274,9 @@ if(isset($_GET['duplicate'])){
 				                <span class="del_txt">DELETE</span>
 				              </div>
 				              <div class="del_content">
-				                <span class="del_content_txt">Are you sure want to delete this whole record?</span>
-				                <input type="button" class="btn btn-primary align_right yes_btn test_battery_delete_button" value="Yes" data-delete="test_battery_attribute" data-id="<?php $test_data = $test_battery->testbatterylastidfunction();echo $test_data['MAX(testbattery_id)'];?>">
+				                <span class="del_content_txt">Are you sure you want to delete this record?</span>
 				                <input type="button" class="btn btn-primary align_right no_btn" value="No">
+				                <input type="button" class="btn btn-primary align_right yes_btn test_battery_delete_button" value="Yes" data-delete="test_battery_attribute" data-id="<?php $test_data = $test_battery->testbatterylastidfunction();echo $test_data['MAX(testbattery_id)'];?>">
 				                <input type="hidden" name="delete_id" value="" id="delete_id"/>
 				              </div><!--del_content-->
 					<!--delete_div-->

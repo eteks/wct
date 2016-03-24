@@ -26,9 +26,9 @@
 			<div class="col-xs-12 col-md-12 align_margin">
 				<form id="result_form" name="result_form">
 					<div class="form-group">
-						  <label for="sel1">Select Schedule Name</label>
+						  <label for="sel1">Select Schedule</label>
 						  <select class="form-control adjust_width classic resultcreateschedule_act" id="sel1" name="result_createschedule" data-validation-error-msg="Please Select Name of the Schedule" data-validation="required">
-						  <option value="">Select Schedule Name</option>
+						  <option value="">Select Schedule</option>
 	                       <?php
 	                        $query = $resultFunction->resultassignscheduleSelect();
 	                        while ($row = mysql_fetch_array($query)) {
@@ -38,7 +38,7 @@
 						  </select>
 					</div>
 					<div class="form-group col-md-11 schedule_btn">
-				      	<label for="athlete" class="email_txt athlete__txt">Select Athletes</label><br>
+				      	<label for="athlete" class="email_txt athlete__txt">Select Athlete</label><br>
 				      	<div class="form-group col-md-3">
 				      		<input type="text" class="form-control name_align fl result_athletename" id="result_athletename" placeholder="Name" name="result_athletename" data-validation-error-msg="Please Enter the name of the Athelete" data-validation="required">
 				      		<!-- <select class="athletes_drop classic result_athletename" name="result_athletename" id="result_athletename" required="required" data-validation-error-msg="Please Select the name of the Athelete" data-validation="required">

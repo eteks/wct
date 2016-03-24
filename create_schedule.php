@@ -48,11 +48,11 @@
 				<form name="create_schedule_form" class="createschedule_form" id="cs_form">
 				<input type="hidden" class="statesid" name="edit_schedule_id">
 					<div class="form-group">
-						<label>Schedule Name</label><br>
+						<label>Enter Name of Schedule</label><br>
 						<input type="text" class="adjust_width" name="schedule_name" data-validation-error-msg="Please Enter the name of the Schedule" data-validation="required">
 					</div>
 					<div class="form-group">
-					  <label for="battey_name">Select Test Battery Name</label>
+					  <label for="battey_name">Select Test Battery</label>
 					  <select class="form-control classic adjust_width" id="battey_name" name="schedule_testbattery" autocomplete="off" data-validation-error-msg="Please Select the name of the Test Battery Name" data-validation="required">
 					  	<option value="">Select Test Battery Name</option>
 					    <?php
@@ -64,7 +64,7 @@
 					  </select>
 					</div>
 					<div class="form-group">
-					  <label for="date" class="fl">Select date</label><br>
+					  <label for="date" class="fl">Select Date</label><br>
 				    	<input class="date_pick" type="text">
 					</div>
 					<div class="form-group col-md-12">
@@ -293,7 +293,7 @@
 			        <th class="align_center">Date</th>
 			        <th class="align_center">Time</th>
 			        <th class="align_center">Venue</th>
-			        <th class="align_center">Action</th>
+			        <th class="action_align">Action</th>
 			      </tr>
 			    </thead>
 				<tbody style="display:block;height:260px;overflow:auto;">
@@ -557,9 +557,9 @@
 						                <span class="del_txt">DELETE</span>
 						              </div>
 						              <div class="del_content">
-						                <span class="del_content_txt">Are you sure want to delete this whole record?</span>
-						                <input type="button" class="btn btn-primary align_right yes_btn" value="Yes">
+						                <span class="del_content_txt">Are you sure you want to delete this record?</span>
 						                <input type="button" class="btn btn-primary align_right no_btn" value="No">
+						                <input type="button" class="btn btn-primary align_right yes_btn" value="Yes">
 						                <input type="hidden" name="delete_id" value="" id="delete_id"/>
 						              </div><!--del_content-->
   								</div><!--delete_div-->

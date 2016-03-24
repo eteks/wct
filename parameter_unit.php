@@ -36,10 +36,10 @@
 			<div class="col-xs-12 col-md-5 align_margin">
 				<form id="parameter_unit" name="parameter_unit_add">
 					<div class="form-group">
-						  <label for="sel1">Select Parameter Type</label>
+						  <label for="sel1">Enter Parameter Type</label>
 						  <select class="form-control adjust_width classic" id="sel1" name="parametertype"  data-validation-error-msg="Please Select the Type of the Parameter" data-validation="required" >
 
-							<option value="">Select Parameter Type</option>
+							<option value="">Enter Parameter Type</option>
 							  <?php
 			  				$data = $parameterunitFunction->parametertypeSelect();
 			  				foreach( $data as $eachrecord ) {
@@ -89,9 +89,9 @@
 							              </div>
 							              <div class="del_content">
 							                <span class="del_content_txt">Are you sure want to delete this whole record?</span>
-							                <input type="button" class="btn btn-primary align_right yes_btn" data-id ="<?php echo $eachrecord ['parametertype_id']; ?>" value="Yes" data-delete='parametertype_name'>
 							                <input type="button" class="btn btn-primary align_right no_btn" value="No">
-							                <input type="hidden" name="delete_id" value="" id="delete_id"/>
+							                <input type="button" class="btn btn-primary align_right yes_btn" data-id ="<?php echo $eachrecord ['parametertype_id']; ?>" value="Yes" data-delete='parametertype_name'>
+							               	<input type="hidden" name="delete_id" value="" id="delete_id"/>
 							              </div><!--del_content-->
       								</div><!--delete_div-->
       								<?php } ?>
@@ -106,7 +106,7 @@
 				      <tr class="row_color">
 				        <!-- <th>Parameter Type</th> -->
 						<th>Parameter Unit</th>
-				        <th style="text-align:right">Action</th>
+				        <th class="action_align">Action</th>
 				      </tr>
 				    </thead>
 				    <tbody style="display:block;height:260px;overflow:auto;">
@@ -151,7 +151,7 @@
 												<input type="text" class="adjust_width adjust_popup_width edit_param_unit" name="parameter_unit" data-validation-error-msg="Please Enter the Unit of the Parameter" data-validation="required" autocomplete="off">
 											</div>
 											<div class="col-md-12 schedule_btn">
-												<input type="submit" class="btn btn-primary align_right clear edit_parameter_unit_act" value="Submit">
+												<input type="submit" class="btn btn-primary align_right clear edit_parameter_unit_act" value="Save">
 											</div>
 										</form>
 									</div>
@@ -163,7 +163,7 @@
 					            <span class="del_txt">DELETE</span>
 					          </div>
 					          <div class="del_content">
-					            <span class="del_content_txt">Are you sure want to delete this whole record?</span>
+					            <span class="del_content_txt">Are you sure you want to delete this record?</span>
 					            <input type="button" class="btn btn-primary align_right yes_btn" data-delete = "parameter_unit_name" data-id = "<?php echo $eachrecord ['parameterunit_id']; ?>" value="Yes">
 					            <input type="button" class="btn btn-primary align_right no_btn" value="No">
 					            <input type="hidden" name="delete_id" value="" id="delete_id"/>

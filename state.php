@@ -12,7 +12,7 @@
 				<div class="col-md-4 align_margin">
 					<form name="states_form" id="state_form">
 						<div class="align_margin">
-							<label>Enter the State</label><br>
+							<label>Enter name of the State</label><br>
 							<input type="text" class="statesname" name="states_name" data-validation-error-msg="Please Enter the State" data-validation="required" autocomplete="off">
 							<span class="add_states_error"></span>
 						</div>
@@ -26,7 +26,7 @@
 				      <tr class="row_color">
 				        <!-- <th class="align_center">SLNO</th> -->
 				        <th>State Name</th>
-				        <th style="text-align: right;">Action</th>
+				        <th class="action_align">Action</th>
 				      </tr>
 				    </thead>
 				    <tbody>
@@ -67,9 +67,9 @@
 							                <span class="del_txt">DELETE</span>
 							              </div>
 							              <div class="del_content">
-							                <span class="del_content_txt">Are you sure want to delete this whole record?</span>
-							                <input type="button" class="btn btn-primary align_right yes_btn" value="Yes">
+							                <span class="del_content_txt">Are you sure you want to delete this record?</span>
 							                <input type="button" class="btn btn-primary align_right no_btn" value="No">
+							                <input type="button" class="btn btn-primary align_right yes_btn" value="Yes">
 							                <input type="hidden" name="delete_id" value="" id="delete_id"/>
 							              </div><!--del_content-->
       								</div><!--delete_div-->

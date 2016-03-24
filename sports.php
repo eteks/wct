@@ -13,7 +13,7 @@ $obj = new sportsfunction();
 		<div class="col-md-6 align_margin_sports">
 			<form  class="sports_form" name="sport_form" role="form">
 				<div class="align_margin">
-					<label>Enter the name of the Sports</label><br>
+					<label>Enter the name of the Sport</label><br>
 					<input type="text" class="sportsname" name="sports_name" autocomplete="off" data-validation-error-msg="Please Enter the name of the Sports" data-validation="required">
 					<input type="hidden" name="sports_add" value="1">
 				</div>
@@ -27,8 +27,8 @@ $obj = new sportsfunction();
 	<table class="table sports_table" id="sports_table">
 	<thead>
 		<tr class="row_color">
-			<th>Sports Name</th>
-			<th style="text-align:right">Action</th>
+			<th>Sport Name</th>
+			<th class="action_align">Action</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -52,13 +52,13 @@ $obj = new sportsfunction();
 			<div class="container state-content col-md-12">
 			<form name="sports_form" class="sports_update_form">
 				<div class="align_margin">
-					<label>Enter the name of the Sports</label><br>
+					<label>Enter the name of the Sport</label><br>
 					<input type="text" class="sportsname sports_update_name" name="sports_name" autocomplete="off" data-validation-error-msg="Please Enter the name of the Sports" data-validation="required">
 					<input type="hidden" class="sports_update_id" name="sports_id">
 					<input type="hidden" name="sportd_update" value="1">
 				</div><!--align_margin-->
 				<!-- <button type="button" class="btn btn-primary align_right clear sports_update_act">Submit</button> -->
-				<input type="submit" class="btn btn-primary align_right clear sports_update_act" value="Submit">
+				<input type="submit" class="btn btn-primary align_right clear sports_update_act" value="Save">
 			</form>
 		</div><!--tate-content-->
 	</div><!--state_div-->
@@ -68,9 +68,9 @@ $obj = new sportsfunction();
                 <span class="del_txt">DELETE</span>
               </div>
               <div class="del_content">
-                <span class="del_content_txt">Are you sure want to delete this whole record?</span>
-                <input type="button" class="btn btn-primary align_right yes_btn" value="Yes">
-                <input type="button" class="btn btn-primary align_right no_btn" value="No">
+                <span class="del_content_txt">Are you sure you want to delete this record?</span>
+               	 <input type="button" class="btn btn-primary align_right no_btn" value="No">
+                 <input type="button" class="btn btn-primary align_right yes_btn" value="Yes">
                 <input type="hidden" name="delete_id" value="" id="delete_id"/>
               </div><!--del_content-->
 		</div><!--delete_div-->
