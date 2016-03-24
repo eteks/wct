@@ -119,13 +119,13 @@ include('configu.php');
 				if(!$district){
 					$districtupdate = $districtFunction->districtUpdate();
 					if($districtupdate){
-						echo "success#District Updated#".$_POST['edit_district_id']."#".$_POST['edit_district_name'];
+						echo "success#District edited successfully!#".$_POST['edit_district_id']."#".$_POST['edit_district_name'];
 					}else{
-						echo "failure#District Not Updated";
+						echo "failure#District not edited successfully!";
 					}
 				}
 				else {
-					echo "failure#District Already Exist";
+					echo "failure#District already Exists!";
 				}
 			// }
 			// else{
@@ -138,10 +138,10 @@ include('configu.php');
 			$districtFunction->districtid = $_POST['delete_id'];
 			$dsitrictdelete = $districtFunction->districtDelete();
 			if($dsitrictdelete){
-				echo "success#District Deleted#".$_POST['delete_id'];
+				echo "success#District deleted successfully!#".$_POST['delete_id'];
 			}
 			else{
-				echo "failure#Record not found";
+				echo "failure#District not found!";
 			}
 		}
 		// To load district for selected state
@@ -185,10 +185,10 @@ include('configu.php');
 			$districtFunction->statesid = $_POST['delete_id'];
 			$statenamedelete = $districtFunction->statenameDelete();
 			if($statenamedelete){
-				echo "success#State Deleted#".$_POST['delete_id'];
+				echo "success#State deleted successfully!#".$_POST['delete_id'];
 			}
 			else{
-				echo "failure#Record not found";
+				echo "failure#State not found";
 			}
 		}
 	  }
