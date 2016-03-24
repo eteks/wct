@@ -1524,10 +1524,10 @@
                    cache: false,
                    success: function(html) {
                        if(html){
-                           alert(html+' district already exist!');
-                           location.reload();
+                           alert(html+' District already exists!');
+                           // location.reload();
                        }else{
-                           alert('District Inserted Successfully!');
+                           alert('District inserted successfully!');
                             location.reload();
                         }
                    }

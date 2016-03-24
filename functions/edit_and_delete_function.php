@@ -73,13 +73,13 @@
 				if(!$states){
 					$statesinsert = $editdeleteFunction->updateData();
 					if($statesinsert){
-						echo "success#State Updated#".$_POST['edit_states_id']."#".$_POST['edit_states_name'];
+						echo "success#State edited successfully!#".$_POST['edit_states_id']."#".$_POST['edit_states_name'];
 					}else{
-						echo "failure#State Not Updated";
+						echo "failure#State not edited successfully!";
 					}
 				}
 				else {
-					echo "failure#State Already Exist";
+					echo "failure#State already Exists!";
 				}
 			// }
 			// else{
@@ -92,10 +92,10 @@
 			$editdeleteFunction->statesid = $_POST['delete_id'];
 			$statesdelete = $editdeleteFunction->deleteData();
 			if($statesdelete){
-				echo "success#State Deleted#".$_POST['delete_id'];
+				echo "success#State deleted successfully!#".$_POST['delete_id'];
 			}
 			else{
-				echo "failure#Record not found";
+				echo "failure#State not found";
 			}
 		}
 	}
