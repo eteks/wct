@@ -11,13 +11,13 @@ if(isset($_GET['insert'])){
 	echo "<script>alert('Test inserted successfully!');var url ='".$url."'; window.location = url ;</script>";
 }
 if(isset($_GET['update'])){
-	echo "<script>alert('Test updated successfully!');var url ='".$url."'; window.location = url ;</script>";
+	echo "<script>alert('Test parameter edited successfully!');var url ='".$url."'; window.location = url ;</script>";
 }
 if(isset($_GET['insert_new'])){
 	if($_GET['params'] != ''){
 		echo "<script>alert('".$_GET['params']."Parameter already exist!');var url ='".$url."'; window.location = url ;</script>";
 	}else{
-		echo "<script>alert('Parameter updated successfully!');var url ='".$url."'; window.location = url ;</script>";
+		echo "<script>alert(' Test Parameter edited successfully!');var url ='".$url."'; window.location = url ;</script>";
 	}
 	
 }
@@ -54,7 +54,7 @@ if(isset($_GET['insert_new'])){
 					<div class="form-group">
 						<label>Enter name of Test</label><br>
 						<input type="text" class="adjust_width" name="test_name" autocomplete="off">
-						<span class="category_text">Please Enter the Test Name</span>
+						<span class="category_text">Please enter name of Test</span>
 					</div>
 					<div class="parameter_holder1">
 						<div class="clone_content" id="param_counter1">
@@ -62,7 +62,7 @@ if(isset($_GET['insert_new'])){
 							<div class="form-group col-md-5">
 								<label>Enter Test Parameters</label><br>
 								<input type="text" class="adjust_width parameter_name" name="parameter_name1" autocomplete="off">
-								<span class="hided param_name_error">Please Enter the parameter name</span>
+								<span class="hided param_name_error">Please enter Parameter Name</span>
 								<input type="hidden" class="parameter_count" value="1" />
 							</div>
 
@@ -85,19 +85,19 @@ if(isset($_GET['insert_new'])){
 											}
 										?>
 									</select>
-									<span class="hided param_type_error">Please Select the type</span>
+									<span class="hided param_type_error">Please select Parameter Type</span>
 								</div>
 								<div class="form-group col-md-2 align-area">
 									<select class="form-control classic type_align fl parameter_unit paremeter_unit_add" id="unit" name="unit1">
 									<option value="">Unit</option>
 									</select>
-									<span class="hided param_unit_error">Please Select the unit</span>
+									<span class="hided param_unit_error">Please select Parameter Unit</span>
 								</div>
 								<div class="form-group col-md-2 align-area">
 									<select class="form-control classic type_align fl parameter_format" id="format" name="format1">
 										<option value="">Format</option>
 									</select>
-									<span class="hided param_format_error">Please Select the format</span>
+									<span class="hided param_format_error">Please select Parameter Format</span>
 								</div>
 
 
@@ -193,7 +193,7 @@ if(isset($_GET['insert_new'])){
 			        			<div class="test_div popup_hidden">
 					          		<code class="close_btn cancel_btn"> </code>
 					          		<div class="edit_title">
-					                	<span class="del_txt">Edit Detail</span>
+					                	<span class="del_txt">Edit Test</span>
 					              	</div>
 					          			<div class="container col-md-12">
 						          			<div class="col-xs-12 col-md-12">

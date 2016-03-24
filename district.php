@@ -55,14 +55,14 @@
 						</div>
 						<div class="align_margin district_clone">
 							<div class="district_clone_content form-group col-md-8 padding_zero">
-								<label>District</label><br>
+								<label>Enter name of the District</label><br>
 
 
 								<input type="text" class="districts district_select" name="district_name[]" autocomplete="off">
 
 								<input type="hidden" class="district_add_for_clone" value="1"/>
 								<span class="add_district_error"></span>
-								<span class="category_text">Please Enter the District</span>
+								<span class="category_text">Please enter name of District</span>
 							</div>
 						</div>
 						<div class="form-group district-add col-md-4 padding_zero">
@@ -170,8 +170,8 @@
 														  </select>
 														</div>
 														<div class="form-group">
-															<label>District</label><br>
-															<input type="text" class="districts adjust_popup_width" name="edit_district_name" data-validation-error-msg="Please Enter the name of the District" data-validation="required">
+															<label>Enter name of the District</label><br>
+															<input type="text" class="districts adjust_popup_width" name="edit_district_name" data-validation-error-msg="Please Enter name of District" data-validation="required">
 															<span class="edit_district_error"></span>
 														</div>
 														<!-- <button type="button" class="btn btn-primary align_right clear edit_district_act" name="district">Submit</button>	 -->

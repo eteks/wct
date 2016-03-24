@@ -754,6 +754,20 @@
 
                  }
             });
+            $.ajax({
+                 type: "POST",
+                 url: "functions/test_battery_functions.php?find_test_battery_sports_attr=true",
+                 data:{'id':test_battery_id},
+                 cache: false,
+                 dataType:'json',
+                 success: function(data) {
+                     $('.selected_sports').empty();
+                     $.each(data, function(i){
+                         $('.selected_sports').append('<div class="checkbox align_check" style="margin:0px;"><label class="hover-content">'+data[i].sports_name+'</label></div>');
+                     });
+
+                 }
+            });
         }
         });
 
@@ -769,7 +783,7 @@
                    success: function(data) {
                       //alert(data);
                       if(data.trim() == 'succeed'){
-                          alert('Test name updated successfully!');
+                          alert('Test edited successfully!');
                           location.reload();
                       }
                    }
@@ -792,7 +806,7 @@
                success: function(data) {
                   //alert(data);
                   if(data.trim() == 'succeed'){
-                      alert('Parameter updated successfully!');
+                      alert('Parameter Type updated successfully!');
                       location.reload();
                   }
                }
@@ -813,7 +827,7 @@
                    success: function(data) {
                       //alert(data);
                       if(data.trim() == 'succeed'){
-                          alert('Test battery name updated successfully!');
+                          alert('Test Battery Name edited successfully!');
                           location.reload();
                       }
                    }
@@ -902,6 +916,12 @@
       $(document).delegate('.delete_item','click',function(){
         $(this).parents('.test-list').find('.delete_div').show();
         $(this).parents('.test-name').next().siblings('.delete_div').hide();
+      });
+      $('.sports-list').mouseenter(function(){
+        $('.hover-sports').show();
+      });
+      $('.sports-list').mouseleave(function(){
+        $('.hover-sports').hide();
       });
       $('.category-list').mouseenter(function(){
         $('.hover-category').show();
@@ -1107,7 +1127,7 @@
                      var obj = JSON.parse(data);
                      $('.test_battery_name_update').val(obj.testbattery_name);
                      $('.test_battery_id_update').val(obj.testbattery_id);
-                     $('.edit_test_sport option[value="'+obj.sports_id+'"]').attr('selected','selected');
+                     //$('.edit_test_sport option[value="'+obj.sports_id+'"]').attr('selected','selected');
                      //$('.edit_test_sport').append($("<option value='"+obj.sports_id+"' selected='selected'>"+obj.sports_name+"</option>"));
 
 
@@ -1122,6 +1142,19 @@
                       var obj = JSON.parse(data);
                       $.each(obj, function(i){
                           $('input.cate_get:checkbox[value="'+obj[i].testbattery_category_id +'"]').attr('checked', 'checked');
+                      });
+
+                 }
+              });
+              $.ajax({
+                  type: "POST",
+                  url: "functions/test_battery_functions.php?getsportsdata=true",
+                  data:{'id':test_battery_id},
+                  cache: false,
+                  success: function(data) {
+                      var obj = JSON.parse(data);
+                      $.each(obj, function(i){
+                          $('input.sprts_get:checkbox[value="'+obj[i].wc_testbattery_sports_id +'"]').attr('checked', 'checked');
                       });
 
                  }
@@ -1362,7 +1395,7 @@
                      alert('Sports already exist');
                    }else{
 
-                       alert('Sports inserted successfully!');
+                       alert('Sport inserted successfully!');
                        location.reload();
                      //$('#sports_table tr:last').after(html);
                      }
@@ -1449,7 +1482,7 @@
                          </td></tr> ";
                       //$('.parameter_type_table tr:first').after(html);
                       document.parameter_type_form.reset();
-                      alert('Parameter Type Inserted Successfully!');
+                      alert('Parameter Type inserted successfully!');
                       location.reload();
                     }
                     else{
@@ -1524,10 +1557,10 @@
                    cache: false,
                    success: function(html) {
                        if(html){
-                           alert(html+' district already exist!');
-                           location.reload();
+                           alert(html+' District already exists!');
+                           // location.reload();
                        }else{
-                           alert('District Inserted Successfully!');
+                           alert('District inserted successfully!');
                             location.reload();
                         }
                    }
@@ -1595,7 +1628,7 @@
                     var sports_split = html.split('-');
                     //alert(sports_split[1]);
                     $('#sports_table').find("input[value="+sports_split[1]+"]").siblings('.sports_name').html(sports_split[0]);
-                    alert('Sports name updated successfully');
+                    alert('Sport edited successfully');
                     $('.popup_fade').hide();
                     $('.state_div,.delete_div').hide();
                     document.body.style.overflow = 'auto';
@@ -1616,7 +1649,7 @@
                    data: form_data,
                    cache: false,
                    success: function(html) {
-                       alert('Category successfully deleted');
+                       alert('Category deleted successfully!');
                        $('#category_table').find(".category_id:contains("+html+")").parents('tr').remove();
                        $('.popup_fade').hide();
                        $('.state_div,.delete_div').hide();
@@ -1632,7 +1665,7 @@
                    data: form_data,
                    cache: false,
                    success: function(html) {
-                       alert('Sports successfully deleted');
+                       alert('Sport deleted successfully! ');
                        $('#sports_table').find(".sports_id:contains("+html+")").parents('tr').remove();
                        $('.popup_fade').hide();
                        $('.state_div,.delete_div').hide();
@@ -1727,7 +1760,7 @@
                         data: form_data,
                         cache: false,
                         success: function(html) {
-                            //alert(html);
+                         alert('Test deleted successfully!');
                          $('.popup_fade').hide();
                          $('.state_div,.delete_div').hide();
                          document.body.style.overflow = 'auto';
@@ -1743,7 +1776,7 @@
                         data: form_data,
                         cache: false,
                         success: function(html) {
-                         alert('Test parameter deleted successfully');
+                         alert('Test parameter deleted successfully!');
                          $('.popup_fade').hide();
                          $('.state_div,.delete_div').hide();
                          document.body.style.overflow = 'auto';
@@ -1764,7 +1797,7 @@
                         cache: false,
                         success: function(html) {
                             //alert(html);
-                        alert('Test battery deleted successfully');
+                        alert('Test Battery Name deleted successfully!');
                          $('.popup_fade').hide();
                          $('.state_div,.delete_div').hide();
                          document.body.style.overflow = 'auto';
@@ -1818,7 +1851,7 @@
                      cache: false,
                      success: function(html) {
                          //alert(html);
-                      alert('Parameter deleted Successfully! ');
+                      alert('Parameter Type deleted successfully! ');
                       $('.popup_fade').hide();
                       $('.state_div,.delete_div').hide();
                       document.body.style.overflow = 'auto';
@@ -1838,7 +1871,7 @@
                         cache: false,
                         success: function(html) {
                             //alert(html);
-                        alert('Assign Schedule deleted successfully');
+                        alert('Schedule deleted successfully');
                          $('.popup_fade').hide();
                          $('.state_div,.delete_div').hide();
                          document.body.style.overflow = 'auto';
@@ -1875,7 +1908,7 @@
                      cache: false,
                      success: function(html) {
                          //alert(html);
-                      alert('Parameter unit deleted Successfully! ');
+                      alert('Parameter Type deleted Successfully! ');
                       $('.popup_fade').hide();
                       $('.state_div,.delete_div').hide();
                       document.body.style.overflow = 'auto';
@@ -1963,7 +1996,7 @@
                      alert('This category is already used');
                    }else{
 
-                     alert('Category updated successfully!');
+                     alert('Category edited successfully!');
                      location.reload();
                      var category_split = html.split('-');
                     $('#category_table').find("input[value="+category_split[1]+"]").next('.category_name').html(category_split[0]);
@@ -2622,7 +2655,7 @@
                         cache: false,
                         success: function(html) {
                             if(html == 'success'){
-                                alert('Parameter updated successfully!');
+                                alert('Parameter Type edited successfully!');
                                 location.reload();
                             }else if(html == 'exist'){
                                 alert('Parameter type already Exist!');
@@ -2653,7 +2686,7 @@
                             cache: false,
                             success: function(html) {
                                 if(html == 'success'){
-                                    alert('Parameterunit added successfully!');
+                                    alert('Parameter Unit inserted successfully!');
                                     location.reload();
                                 }else if(html == 'error'){
                                     alert('Parameterunit already exist!');
@@ -2682,7 +2715,7 @@
                        cache: false,
                        success: function(data) {
                           if(data=='success'){
-                              alert('Parameter unit updated successfully');
+                              alert('Parameter unit updated successfully!');
                               location.reload();
                           }else if(data == 'exist'){
                               alert('Parameter unit already exist!');
@@ -2714,7 +2747,7 @@
                cache: false,
                success: function(html) {
                    if(html=='success'){
-                       alert('Schedule successfully assigned');
+                       alert('Schedule assigned successfully! ');
                        location.reload();
                    }else if(html=='error'){
                        alert('Schedule already exist!');
@@ -2949,6 +2982,7 @@
                cache: false,
                dataType:'json',
                success: function(data) {
+               		
                    var assign_id = data[0].assigncategory_id;
                    main_content_assign_popup.find('.schedule_update').val(data[0].createschedule_name);
                    main_content_assign_popup.find('.schedule_update_id').val(data[0].createschedule_id);
@@ -2961,6 +2995,7 @@
                             main_content_assign_popup.find('.category_update').empty().append("<option value=''>Select Category Name</option>"+data);
                        }
                     });
+                   main_content_assign_popup.find('.category_update1').val(data[0].assigncategory_id);
                    main_content_assign_popup.find('.clone_schedule_update .athlete_name option[value="'+data[0].assignathlete_id+'"]').attr('selected','selected');
                    var res =data[0].athlete_dob.split('-');
                    var new_date = res[2]+'/'+res[1]+'/'+res[0];

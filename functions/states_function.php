@@ -41,13 +41,13 @@
 				if(!$states){
 					$statesinsert = $statesFunction->statesInsert();
 					if($statesinsert){
-						echo "success#State Inserted#".$statesinsert.'#'.$_POST['states_name'];
+						echo "success#State inserted successfully!#".$statesinsert.'#'.$_POST['states_name'];
 					}else{
-						echo "failure#State Not Inserted";
+						echo "failure#State not inserted successfully!";
 					}
 				}
 				else {
-					echo "failure#State Already Exist";
+					echo "failure#State already Exists!";
 				}
 				// }
 				// else{

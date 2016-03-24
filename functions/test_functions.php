@@ -145,7 +145,7 @@ class testfunction{
         $temp_arr = array();
         $testname = $_POST['id'];
         if($testname!=''){
-            $sql = mysql_query("SELECT * FROM wc_test where  test_name like '%".$testname."%' ORDER BY test_id DESC")or die(mysql_error());
+            $sql = mysql_query("SELECT * FROM wc_test where  test_name like '".$testname."%' ORDER BY test_id DESC")or die(mysql_error());
             while($row = mysql_fetch_assoc($sql)) {
                 $temp_arr[] =$row;
             }

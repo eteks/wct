@@ -36,10 +36,9 @@
 			<div class="col-xs-12 col-md-5 align_margin">
 				<form id="parameter_unit" name="parameter_unit_add">
 					<div class="form-group">
-						  <label for="sel1">Enter Parameter Type</label>
-						  <select class="form-control adjust_width classic" id="sel1" name="parametertype"  data-validation-error-msg="Please Select the Type of the Parameter" data-validation="required" >
-
-							<option value="">Enter Parameter Type</option>
+						<label for="sel1">Enter Parameter Type</label>
+						  <select class="form-control adjust_width classic" id="sel1" name="parametertype"  data-validation-error-msg="Please select Parameter Type" data-validation="required" >
+							<option value="">Select Parameter Type</option>
 							  <?php
 			  				$data = $parameterunitFunction->parametertypeSelect();
 			  				foreach( $data as $eachrecord ) {
@@ -50,7 +49,7 @@
 					</div>
 					<div class="form-group">
 						<label>Enter Parameter Unit</label><br>
-						<input type="text" class="adjust_width" name="parameterunit"  data-validation-error-msg="Please Enter the Unit of the Parameter" data-validation="required" autocomplete="off">
+						<input type="text" class="adjust_width" name="parameterunit"  data-validation-error-msg="Please enter Parameter Unit" data-validation="required" autocomplete="off">
 					</div>
 					<div class="col-md-9 schedule_btn">
 						<input type="submit" class="btn btn-primary clear parameter-submit" value="Submit">
@@ -129,7 +128,7 @@
 							<div class="paramter_div edit_parameterunit_div popup_hidden">
 				          		<code class="close_btn cancel_btn"> </code>
 				          		<div class="edit_title">
-				                	<span class="del_txt">Edit detail</span>
+				                	<span class="del_txt">Edit Parameter Unit</span>
 				              	</div><!--edit_title-->
 			          			<div class="container state-content col-md-12" style="padding: 0px;">
 				          			<div class="col-xs-12 col-md-12 align_margin">

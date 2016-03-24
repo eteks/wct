@@ -13,7 +13,7 @@
 					<form name="states_form" id="state_form">
 						<div class="align_margin">
 							<label>Enter name of the State</label><br>
-							<input type="text" class="statesname" name="states_name" data-validation-error-msg="Please Enter the State" data-validation="required" autocomplete="off">
+							<input type="text" class="statesname" name="states_name" data-validation-error-msg="Please enter name of State" data-validation="required" autocomplete="off">
 							<span class="add_states_error"></span>
 						</div>
 						<!-- <button type="button" class="btn btn-primary align_right clear add_states_act" name="states">Submit</button>																							 -->
@@ -51,7 +51,7 @@
 						          			<div class="container state-content col-md-12">
 							          			<form name="edit_states_form" class="edit_state_form">
 													<div class="align_margin">
-														<label>Enter the State</label><br>
+														<label>Enter name of the State</label><br>
 														<input type="hidden" class="statesid" name="edit_states_id">
 														<input type="text" class="edit_states_name" name="edit_states_name" data-validation-error-msg="Please Enter the State" data-validation="required" autocomplete="off">
 														<span class="edit_states_error"></span>

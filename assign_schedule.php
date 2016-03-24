@@ -15,7 +15,7 @@ $athlete = new athletesFunction();
 <?php
 $url = $_SERVER['PHP_SELF'];
 if(isset($_GET['update_success'])){
-	echo "<script>alert('Assign schedule update successfully');var url ='".$url."'; window.location = url ;</script>";
+	echo "<script>alert('Schedule edited successfully!');var url ='".$url."'; window.location = url ;</script>";
 }
 ?>
 <style>
@@ -67,7 +67,7 @@ if(isset($_GET['update_success'])){
 					</div>
 					<div class="form-group">
 						  <label for="sel1">Select Category</label>
-						  <select class="form-control adjust_width classic assignsche_cate" id="sel1" name="category" data-validation-error-msg="Please Select Category of the Schedule" data-validation="required">
+							<select class="form-control adjust_width classic assignsche_cate" id="sel1" name="category" data-validation-error-msg="Please Select Category of the Schedule" data-validation="required">
 							<option value="">Select Category</option>
 						  </select>
 					</div>
@@ -77,7 +77,7 @@ if(isset($_GET['update_success'])){
 							<input type="hidden" class="assign_athelete_count_add" value="1" />
 							<div class="form-group col-md-6 padding_zero">
 								<div class="col-md-6 form-group combo--align" style="position: relative; top: 10px;">
-									<select class="form-control name_align  athlete_name athlete_name1" placeholder="Name" name="athlete_name1" id="combobox" data-validation-error-msg="Please Select Athlete" data-validation="required">
+									<select class="form-control name_align  athlete_name athlete_name1" placeholder="Name" name="athlete_name1" id="combobox" data-validation-error-msg="Please Enter Athlete Name" data-validation="required">
 										<option value="">Athletes</option>
 										<?php
 											$data = $athlete->athleteSelect1();
@@ -97,7 +97,7 @@ if(isset($_GET['update_success'])){
 						      		<input type="text" class="form-control name_align athlete_mobile mobile" id="mobile" placeholder="Mobile no" name="athlete_mobile1" disabled>
 						      	</div>
 						      	<div class="form-group col-md-5">
-						      		<input type="text" class="form-control date_assign athlete_bib" id="bib" placeholder="BIB NO" name="athlete_bib1" data-validation-error-msg="Please Enter the BIB NO" data-validation="number">
+						      		<input type="text" class="form-control date_assign athlete_bib" id="bib" placeholder="BIB NO" name="athlete_bib1" data-validation-error-msg="Please Enter BIB NO" data-validation="number">
 								</div>
 						    </div>
 						</div>
@@ -188,7 +188,7 @@ if(isset($_GET['update_success'])){
 						<div class="assign-schedule-popup popup_hidden">
 			          		<code class="close_btn cancel_btn"> </code>
 			          		<div class="edit_title">
-			                	<span class="del_txt">Edit detail</span>
+			                	<span class="del_txt">Edit Assign Schedule</span>
 			              	</div><!--edit_title-->
 			          			<div class="container state-content col-md-12 assign-scroll">
 				          			<div class="col-xs-12 col-md-12 align_margin">
@@ -198,8 +198,9 @@ if(isset($_GET['update_success'])){
 									  <input type="hidden" class="create_schedule_update_id" name="create_schedule_update_id" value="" />
 								</div>
 								<div class="form-group">
-									  <label for="sel1" class="popup_label">Select Category Name</label>
-									  <select class="form-control adjust_width classic category_update box-width" id="sel1" name="category" data-validation-error-msg="Please Select Category of the Schedule" data-validation="required">
+									  <label for="sel1" class="popup_label">Category Name</label>
+									  <input type="hidden" class="category_update1" name="category" value="" />
+									  <select class="form-control adjust_width classic category_update box-width" id="sel1" data-validation-error-msg="Please Select Category of the Schedule" data-validation="required" disabled="">
 										<option value="">Select Category Name</option>
 										<?php
 			   							 $data = $category->categoryselectfunction();
