@@ -13,8 +13,8 @@ $obj = new sportsfunction();
 		<div class="col-md-6 align_margin_sports">
 			<form  class="sports_form" name="sport_form" role="form">
 				<div class="align_margin">
-					<label>Enter the name of the Sports</label><br>
-					<input type="text" class="sportsname" name="sports_name" autocomplete="off" data-validation-error-msg="Please Enter the name of the Sports" data-validation="required">
+					<label>Enter name of the Sport</label><br>
+					<input type="text" class="sportsname" name="sports_name" autocomplete="off" data-validation-error-msg="Please enter name of Sport" data-validation="required">
 					<input type="hidden" name="sports_add" value="1">
 				</div>
 				<!-- <button type="button" id="submmit" class="btn btn-primary align_right clear sports_submit_act">Submit</button> -->
@@ -27,7 +27,7 @@ $obj = new sportsfunction();
 	<table class="table sports_table" id="sports_table">
 	<thead>
 		<tr class="row_color">
-			<th>Sports Name</th>
+			<th>Sport Name</th>
 			<th style="text-align:right">Action</th>
 		</tr>
 	</thead>
@@ -47,7 +47,7 @@ $obj = new sportsfunction();
 			<div class="state_div edit_sports_div popup_hidden">
 			<code class="close_btn cancel_btn"> </code>
 			<div class="edit_title">
-            	<span class="del_txt">Edit Detail</span>
+            	<span class="del_txt">Edit Sport</span>
           	</div><!--edit_title-->
 			<div class="container state-content col-md-12">
 			<form name="sports_form" class="sports_update_form">

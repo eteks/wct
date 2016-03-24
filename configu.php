@@ -1,3 +1,3 @@
 <?php
-include($_SERVER["DOCUMENT_ROOT"] . "/wct_v2/common.php");
+include($_SERVER["DOCUMENT_ROOT"] . "/wct/common.php");
 ?>

@@ -14,10 +14,10 @@ $test = new testfunction();
 <?php
 $url = $_SERVER['PHP_SELF'];
 if(isset($_GET['update_success'])){
-	echo "<script>alert('Test Battery update successfully');var url ='".$url."'; window.location = url ;</script>";
+	echo "<script>alert('Test Battery edited successfully!');var url ='".$url."'; window.location = url ;</script>";
 }
 if(isset($_GET['insert_success'])){
-	echo "<script>alert('Test Battery inserted successfully');var url ='".$url."'; window.location = url ;</script>";
+	echo "<script>alert('Test Battery inserted successfully!');var url ='".$url."'; window.location = url ;</script>";
 }
 if(isset($_GET['duplicate'])){
 	echo "<script>alert('Test Battery already exist!');var url ='".$url."'; window.location = url ;</script>";
@@ -56,20 +56,33 @@ if(isset($_GET['duplicate'])){
 			<div class="col-xs-12 col-md-6 align_margin">
 				<form method="post" action="functions/test_battery_functions.php" id="test_battery_form">
 					<div class="form-group">
-						<label>Enter the name of the Test Battery</label><br>
-						<input type="text" class="adjust_width" name="test_battery_name" autocomplete="off" data-validation-error-msg="please Enter the name of the Test Battery" data-validation="required">
+						<label>Enter name of Test Battery</label><br>
+						<input type="text" class="adjust_width" name="test_battery_name" autocomplete="off" data-validation-error-msg="Please enter name of Test Battery" data-validation="required">
 					</div>
-					<div class="form-group">
+					<!-- <div class="form-group">
 						  <label for="sel1">Select Sport</label>
-						  <select class="form-control adjust_width classic" id="sel1" name="Sport" data-validation-error-msg="Please Select the sport" data-validation="required">
+						  <select class="form-control adjust_width classic" id="sel1" name="Sport" data-validation-error-msg="Please select sport" data-validation="required">
 							  <option value="">Select Sport</option>
 							  <?php
+					  		//$data = $sports->sportsselectfunction();
+					  		//foreach( $data as $eachrecord ) {
+					  		 ?>
+							 <option value="<?php //echo $eachrecord ['sports_id']; ?>"><?php //echo $eachrecord ['sports_name']; ?></option>
+							 <?php //} ?>
+							</select>
+					</div> -->
+					<div class="align_margin">
+						<label>Select Sports</label><br>
+						<div class="area_scroll">
+							<?php
 					  		$data = $sports->sportsselectfunction();
 					  		foreach( $data as $eachrecord ) {
 					  		 ?>
-							 <option value="<?php echo $eachrecord ['sports_id']; ?>"><?php echo $eachrecord ['sports_name']; ?></option>
-							 <?php } ?>
-							</select>
+							<div class="checkbox align_check">
+					      		<label class="remember_txt"><input type="checkbox" name='sports[]' data-validation="checkbox_group" data-validation-qty="min1" value="<?php echo $eachrecord ['sports_id']; ?>"><?php echo $eachrecord ['sports_name']; ?></label>
+					    	</div>
+							<?php } ?>
+						</div>
 					</div>
 					<div class="align_margin">
 						<label>Select Categories</label><br>
@@ -85,7 +98,7 @@ if(isset($_GET['duplicate'])){
 						</div>
 					</div>
 					<div class="align_margin">
-						<label>Select Test</label><br>
+						<label>Select Tests</label><br>
 						<div class="area_scroll">
 							<?php
 						  $test_data = $test->testbatteryselectfunction();
@@ -168,11 +181,27 @@ if(isset($_GET['duplicate'])){
 
 			    <tbody style="display:block;height:260px;overflow:auto;">
 			      <tr class="align_center delete_color">
-			        <td class="test_battery_sports_name_grid"><?php
-				  $test_battery_sports = $test_battery->testbatterysportslastselectfunction();
-				  $row = mysql_fetch_array($test_battery_sports);
-				  echo $row['sports_name'];
-				  ?></td>
+			        <!-- <td class="test_battery_sports_name_grid"><?php
+				  //$test_battery_sports = $test_battery->testbatterysportslastselectfunction();
+				  //$row = mysql_fetch_array($test_battery_sports);
+				  //echo $row['sports_name'];
+				  ?></td> -->
+				  	<td class="sports-list">Selected Sports<i class="fa fa-angle-down down_font"></i>
+			        	<div class="hover-list hover-sports">
+			        	<span class="hover_title ">Selected Sports</span>
+						<div class="selected_sports">
+							<?php
+						  $spts_data = $test_battery->sportslastselectfunction();
+						  while($row = mysql_fetch_array($spts_data)){
+						   ?>
+							<div class="checkbox align_check" style="margin:0px;">
+								<label class="hover-content"><?php echo $row['sports_name']; ?></label>
+					    	</div>
+							<?php } ?>
+						</div>
+
+						</div>
+			        </td>
 			        <td class="category-list">Selected Categories<i class="fa fa-angle-down down_font"></i>
 			        	<div class="hover-list hover-category">
 			        	<span class="hover_title ">Selected Categories</span>
@@ -210,7 +239,7 @@ if(isset($_GET['duplicate'])){
 		        		<div class="test_battery popup_hidden">
 			          		<code class="close_btn cancel_btn"> </code>
 			          		<div class="edit_title">
-			                	<span class="del_txt">Edit Detail</span>
+			                	<span class="del_txt">Edit Testbattery</span>
 			              	</div><!--edit_title-->
 		          			<div class="container col-md-12">
 			          			<div class="col-xs-12 col-md-12">
@@ -221,17 +250,30 @@ if(isset($_GET['duplicate'])){
 											<input type="hidden" class="adjust_width test_battery_name_update" name="test_battery_name" value="" data-validation-error-msg="please Enter the name of the Test Battery" data-validation="required">
 											<input type="hidden" class="test_battery_id_update" name="test_battery_id" value="" />
 										</div>
-										<div class="form-group">
+										<!-- <div class="form-group">
 											  <label for="sel1" class="popup_label">Select Sport</label>
 											  <select class="form-control adjust_width box-width classic edit_test_sport" id="sel1" name="Sport" data-validation-error-msg="please Select the Sport" data-validation="required">
 											  <option value="">Select Sport</option>
 												  <?php
-												$data = $sports->sportsselectfunction();
-												foreach( $data as $eachrecord ) {
+												//$data = $sports->sportsselectfunction();
+												//foreach( $data as $eachrecord ) {
 												 ?>
-												 <option value="<?php echo $eachrecord ['sports_id']; ?>"><?php echo $eachrecord ['sports_name']; ?></option>
-												 <?php } ?>
+												 <option value="<?php //echo $eachrecord ['sports_id']; ?>"><?php //echo $eachrecord ['sports_name']; ?></option>
+												 <?php //} ?>
 											  </select>
+										</div> -->
+										<div class="form-group">
+											<label class="popup_label">Select Sports</label><br>
+											<div class="area_scroll_popup">
+												<?php
+											  		$sports_data = $sports->sportsselectfunction();
+											  		foreach( $sports_data as $eachrecord ) {
+											   ?>
+												<div class="checkbox align_check ">
+										      		<label class="checklist_txt"><input class="sprts_get" type="checkbox" name='sports[]' data-validation="checkbox_group" data-validation-qty="min1" value="<?php echo $eachrecord ['sports_id']; ?>"><?php echo $eachrecord ['sports_name']; ?></label>
+										    	</div>
+												<?php } ?>
+											</div>
 										</div>
 										<div class="form-group">
 											<label class="popup_label">Select Categories</label><br>
@@ -247,7 +289,7 @@ if(isset($_GET['duplicate'])){
 											</div>
 										</div>
 										<div class="">
-											<label class="popup_label">Select Test</label><br>
+											<label class="popup_label">Select Tests</label><br>
 											<div class="area_scroll_popup form-group">
 												<?php
 											  $test_data = $test->testbatteryselectfunction();

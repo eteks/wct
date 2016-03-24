@@ -73,7 +73,7 @@ class assignscheduleFunction {
             //echo $i;
             $category_id = $_POST['category'];
             //$assign_schedule_id = $_POST["assing_schedule_update_id".$i.""];
-            $create_schedule_update_id = $_POST["create_schedule_update_id"][$i];
+            $create_schedule_update_id = $_POST["create_schedule_update_id"];
             $athlete_id = $_POST["athlete_name"][$i];
             $athlete_bib = $_POST["athlete_bib"][$i];
             $sql = "insert into wc_assignschedule (assigncreateschedule_id,assigncategory_id,assignathlete_id,assignbib_number,assignschedule_status)values('$create_schedule_update_id','$category_id','$athlete_id','$athlete_bib','1')";
@@ -125,7 +125,7 @@ class assignscheduleFunction {
 	    $temp_arr = array();
 	    $assignname = $_POST['id'];
 	    if($assignname!=''){
-	        $sql = mysql_query("SELECT * FROM wc_assignschedule inner join wc_createschedule on wc_assignschedule.assigncreateschedule_id = wc_createschedule.createschedule_id  where  wc_createschedule.createschedule_name like '%".$assignname."%' group by wc_createschedule.createschedule_name ORDER BY wc_assignschedule.assignschedule_id DESC")or die(mysql_error());
+	        $sql = mysql_query("SELECT * FROM wc_assignschedule inner join wc_createschedule on wc_assignschedule.assigncreateschedule_id = wc_createschedule.createschedule_id  where  wc_createschedule.createschedule_name like '".$assignname."%' group by wc_createschedule.createschedule_name ORDER BY wc_assignschedule.assignschedule_id DESC")or die(mysql_error());
 	        while($row = mysql_fetch_assoc($sql)) {
 	            $temp_arr[] =$row;
 	        }

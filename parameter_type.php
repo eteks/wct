@@ -14,7 +14,7 @@
 				<form id="parameter_type_form" name="parameter_type_form">
 					<div class="form-group">
 						  <label for="sel1">Enter Parameter Type</label>
-						  <input type="text" class="form-control adjust_width classic" id="sel1" value='' name="parameter_type" autocomplete="off" data-validation-error-msg="Please Enter Parameter type" data-validation="required">
+						  <input type="text" class="form-control adjust_width classic" id="sel1" value='' name="parameter_type" autocomplete="off" data-validation-error-msg="Please enter Parameter Type" data-validation="required">
 					</div>
 					<div class="col-md-9 schedule_btn">
 						<input type="submit" class="btn btn-primary parameter-submit clear add_parameter_act" value="Submit">
@@ -46,7 +46,7 @@
 						<div class="state_div edit_parametertype_div popup_hidden">
 			          		<code class="close_btn cancel_btn"> </code>
 			          		<div class="edit_title">
-			                	<span class="del_txt">Edit detail</span>
+			                	<span class="del_txt">Edit Parameter Type</span>
 			              	</div><!--edit_title-->
 			          			<div class="container state-content col-md-12">
 			          			<form class='edit_parameter_type' name="parameter_edit">
