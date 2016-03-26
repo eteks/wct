@@ -38,7 +38,7 @@
 				<div class="col-md-7 col-xs-12 align_left_district">
 					<form name="district_form" class="districts_form">
 						<div class="form-group col-md-8 padding_zero">
-						  <label for="sel1">Enter name of the District</label>
+						  <label for="sel1">Select the State</label>
 						  <select class="form-control adjust_width classic choose_state" id="sel1" name="district_state">
 						  <option value="">Select the state</option>
 						  <?php

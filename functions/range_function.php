@@ -88,7 +88,7 @@ include('configu.php');
 			// $qr = mysql_query("SELECT * FROM wc_range WHERE rangetestattribute_id = '".$this->rangetestattributeid."'");
 			//newly changed
 			// echo "SELECT * FROM wc_range WHERE rangecategories_id='".$this->rangecategoryid."' AND rangetest_id='".$this->rangetestid."' AND rangetestattribute_id='".$this->rangetestattributeid."'";
-			$qr = mysql_query("SELECT * FROM wc_range WHERE rangecategories_id='".$this->rangecategoryid."' AND rangetest_id='".$this->rangetestid."' AND rangetestattribute_id='".$this->rangetestattributeid."'")or die(mysql_error());
+			$qr = mysql_query("SELECT * FROM wc_range WHERE rangetestbattery_id='".$this->rangetestbatteryid."' AND rangecategories_id='".$this->rangecategoryid."' AND rangetest_id='".$this->rangetestid."' AND rangetestattribute_id='".$this->rangetestattributeid."'")or die(mysql_error());
 			$row = mysql_num_rows($qr);
 			if($row > 0){
 				return true;
@@ -137,10 +137,10 @@ include('configu.php');
 	                $rangeFunction->rangepoint = $_POST["range_points".$i.""];
 	                $rangeattrinsert = $rangeFunction->rangeattributeInsert();
 	            }
-	            echo "success#Range Inserted#".$rangeinsert.'#'.$rangeFunction->rangetestname;
+	            echo "success#Range inserted successfully!#".$rangeinsert.'#'.$rangeFunction->rangetestname;
 			}
 			else{
-			 	echo "failure#Range Not Inserted";
+			 	echo "failure#Range not inserted successfully!";
 			}
 		}
 		else{
@@ -255,9 +255,9 @@ include('configu.php');
 		                else
 		                	$rangeattrinsert = $rangeFunction->rangeattributeInsert();
 		            }
-					echo "success#Range Updated#".$_POST['edit_range_id']."#".$rangeFunction->rangetestname;
+					echo "success#Range edited successfully!#".$_POST['edit_range_id']."#".$rangeFunction->rangetestname;
 				}else{
-					echo "failure#Range Not Updated";
+					echo "failure#Range not edited successfully!";
 				}
 		   }
 		// }
@@ -271,10 +271,10 @@ include('configu.php');
 		$rangeFunction->rangeid = $_POST['delete_id'];
 		$rangedelete = $rangeFunction->rangedelete();
 		if($rangedelete){
-			echo "success#Range Deleted#".$_POST['delete_id'];
+			echo "success#Range deleted successfully!#".$_POST['delete_id'];
 		}
 		else{
-			echo "failure#Range not Deleted";
+			echo "failure#Range not deleted successfully!";
 		}
 	}
 	// To load parameter for selected test
@@ -325,6 +325,7 @@ include('configu.php');
 		$select_data = $rangeFunction->parameterSelect();
 		while ( $result = mysql_fetch_array( $select_data )){
 	    	$tmp = array(
+	    	   'test_parameter_name' => $result['test_parameter_name'],
 	    	   'test_parameter_type' => $result['test_parameter_type'],
 	           'test_parameter_unit' => $result['test_parameter_unit'],
 	           'test_parameter_format' => $result['test_parameter_format'],

@@ -167,13 +167,13 @@
             $.each(rangetest_obj, function(i){
               rangetest_options += '<option value="'+rangetest_obj[i].test_id+'">'+rangetest_obj[i].test_name+'</option>';
             });
-            $('[name=edit_range_test]').html(rangetest_options);
+            $('[name=edit_range_test]').html(rangetest_options).attr("disabled",true);
 
             var rangecategory_options = '<option></option>';
             $.each(rangecategory_obj, function(i){
               rangecategory_options += '<option value="'+rangecategory_obj[i].categories_id+'">'+rangecategory_obj[i].categories_name+'</option>';
             });
-            $('[name=edit_range_category]').html(rangecategory_options);
+            $('[name=edit_range_category]').html(rangecategory_options).attr("disabled",true);
 
             $.each(range_obj, function(i){
               $('[name=edit_range_id').val(range_obj[i].range_id);
@@ -182,10 +182,11 @@
               $('[name=edit_range_test]').find("option[value="+range_obj[i].rangetest_id+"]").attr("selected","selected");
 
               $('[name=edit_range_parameter]').html('<option value="'+range_obj[i].rangetestattribute_id+'" selected>'+range_obj[i].rangeparameter_name+'</option>');
-                  if(range_obj[i].rangeparameter_type == "time" || range_obj[i].rangeparameter_type == "Time")
-                    $('.edit_range_notes').text("Enter the range in "+range_obj[i].rangeparameter_unit+ " format");
+                  if(range_obj[i].rangeparameter_type.toLowerCase() == 'time')
+                    // $('.edit_range_notes').text("Enter the range in "+range_obj[i].rangeparameter_unit+ " format");
+                    $('.edit_range_notes').text("Enter Ranges for "+range_obj[i].rangeparameter_name+" in "+range_obj[i].rangeparameter_unit);
                   else
-                    $('.edit_range_notes').text("Enter the range in "+range_obj[i].rangeparameter_unit+ " with "+range_obj[i].rangeparameter_format +" format");
+                    $('.edit_range_notes').text("Enter Ranges for "+range_obj[i].rangeparameter_name+" in "+range_obj[i].rangeparameter_unit+ " in "+range_obj[i].rangeparameter_format+" decimals");
                   $(el).parents('tr').find('.range_parameter_type').val(range_obj[i].rangeparameter_type);
                   $(el).parents('tr').find('.range_parameter_unit').val(range_obj[i].rangeparameter_unit);
                   $(el).parents('tr').find('.range_parameter_format').val(range_obj[i].rangeparameter_format);
@@ -3438,7 +3439,7 @@ $(document).on('blur','.enter_result',function(e){
                  }
               });
          });
-
+        $('.edit_range_parameter').attr("disabled",true);
         // Load parameter in range form based on selected test
         $('[name=range_test],[name=edit_range_test]').on('change',function () {
           var $this = $(this);
@@ -3532,9 +3533,11 @@ $(document).on('blur','.enter_result',function(e){
                     $this.siblings('.range_parameter_unit').val(obj[i].test_parameter_unit);
                     $this.siblings('.range_parameter_format').val(obj[i].test_parameter_format);
                     if($this.siblings('.range_parameter_type').val().toLowerCase()=="time")
-                      $this.parents('.edit_range_form_id').find('.edit_range_notes').text("Enter the range in "+obj[i].test_parameter_unit);
+                      // $this.parents('.edit_range_form_id').find('.edit_range_notes').text("Enter the range in "+obj[i].test_parameter_unit);
+                      $this.parents('.edit_range_form_id').find('.edit_range_notes').text("Enter Ranges for "+obj[i].test_parameter_name+" in "+obj[i].test_parameter_unit);
                     else
-                      $this.parents('.edit_range_form_id').find('.edit_range_notes').text("Enter the range in "+obj[i].test_parameter_unit+ " with "+obj[i].test_parameter_format+" formats");
+                      // $this.parents('.edit_range_form_id').find('.edit_range_notes').text("Enter the range in "+obj[i].test_parameter_unit+ " with "+obj[i].test_parameter_format+" formats");
+                      $this.parents('.edit_range_form_id').find('.edit_range_notes').text("Enter Ranges for "+obj[i].test_parameter_name+" in "+obj[i].test_parameter_unit+ " in "+obj[i].test_parameter_format+" decimals");
                     $this.parents('.edit_range_form_id').find('.edit_range_note').show();   
                   }
                   else{
@@ -3542,9 +3545,9 @@ $(document).on('blur','.enter_result',function(e){
                     $('.range_parameter_unit').val(obj[i].test_parameter_unit);
                     $('.range_parameter_format').val(obj[i].test_parameter_format);
                     if($('.range_parameter_type').val().toLowerCase()=="time")
-                      $('.range_notes').text("Enter the range in "+obj[i].test_parameter_unit);
+                      $('.range_notes').text("Enter Ranges for "+obj[i].test_parameter_name+" in "+obj[i].test_parameter_unit);
                     else
-                      $('.range_notes').text("Enter the range in "+obj[i].test_parameter_unit+ " with "+obj[i].test_parameter_format+" formats");
+                      $('.range_notes').text("Enter Ranges for "+obj[i].test_parameter_name+" in "+obj[i].test_parameter_unit+ " in "+obj[i].test_parameter_format+" decimals");
                     $('.range_note').show();
                   }
                   
@@ -3804,7 +3807,8 @@ $(document).on('blur','.enter_result',function(e){
           }else{
             $('.test-name').hide();
             $('.test-list input').each(function(){
-                if($(this).val().toLowerCase().indexOf(search_value) !== -1){
+                // if($(this).val().toLowerCase().startsWith(search_value) !== -1){
+               if($(this).val().toLowerCase().indexOf(search_value) == 0){
                   $(this).parents('.test-name').show();
                 }
             });

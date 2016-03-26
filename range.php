@@ -44,7 +44,7 @@
 				<form name="range_form" class="range_form_id">
 					<div class="form-group">
 						  <label for="sel1">Select Test Battery</label>
-						  <select class="form-control adjust_width classic" id="sel1" name="range_testbattery" data-validation-error-msg="Please Select the Name of Test Battery " data-validation="required">
+						  <select class="form-control adjust_width classic" id="sel1" name="range_testbattery" data-validation-error-msg="Please select Test Battery " data-validation="required">
 						  <option value="">Select Test Battery</option>
 						  <?php
 	                        $query = $testbatteryfunction->testbatterySelect();
@@ -56,7 +56,7 @@
 					</div>
 					<div class="form-group">
 						  <label for="sel1">Select Category</label>
-						  <select class="form-control adjust_width classic range_category" id="sel1" name="range_category" data-validation-error-msg="Please Select the Category of Test Battery" data-validation="required">
+						  <select class="form-control adjust_width classic range_category" id="sel1" name="range_category" data-validation-error-msg="Please select Category" data-validation="required">
 						    <option value="">Select Category</option>
 						  <!--<?php
 						  $cat_data = $categoryfunction->categoryselectfunction();
@@ -68,7 +68,7 @@
 					</div>
 					<div class="form-group">
 						  <label for="sel1">Select Test</label>
-						  <select class="form-control adjust_width classic range_test" id="sel1" name="range_test" data-validation-error-msg="Please Select the name of the Test" data-validation="required">
+						  <select class="form-control adjust_width classic range_test" id="sel1" name="range_test" data-validation-error-msg="Please select Test" data-validation="required">
 						  <option value="">Select Test</option>
 						   <!-- <?php
 	                        $query = $testfunction->testSelect();
@@ -80,7 +80,7 @@
 					</div>
 					<div class="form-group">
 						  <label for="sel1">Select Parameter</label>
-						  <select class="form-control adjust_width classic range_parameter" id="sel1" name="range_parameter" data-validation-error-msg="Please Select the name of the Parameter" data-validation="required">
+						  <select class="form-control adjust_width classic range_parameter" id="sel1" name="range_parameter" data-validation-error-msg="Please select Parameter" data-validation="required">
 						  <option value="">Select Parameter</option>
 						  </select>
 						  <input type="hidden" class="range_parameter_type">
@@ -101,19 +101,20 @@
 						  	<div class="form-group col-md-10">
 								  <div class="col-md-4">
 								  	<input type="text" class="form-control classic range_align  r_strt" id="strt1" name="range_start1" autocomplete="off" placeholder="Start">
-								    <span class="hided">Please Enter the start range</span>
-								    <span class="hided">Please Check the format</span>
+								    <span class="hided">Please enter Range Start</span>
+								    <span class="hided">Please enter ranges in correct format</span>
 								  </div>
 								  <div class="col-md-4">
 								  	<input type="text" class="form-control classic range_align  r_end check_end_range" id="end1" name="range_end1" autocomplete="off" placeholder="End">
-								  	<span class="hided">Please Enter the end range</span>
-								  	<span class="hided">Please Check the format</span>
-								  	<span class="hided">Enter greater than start value</span>
+								  	<span class="hided">Please enter Range End</span>
+								  	<span class="hided">Please enter ranges in correct format</span>
+								  	<!-- <span class="hided">Enter greater than start value</span> -->
+								  	<span class="hided">Please enter correct ranges</span>
 								  </div>
 								  <div class="col-md-4">
 								  	<input type="text" class="form-control classic range_align  r_point" id="point1" name="range_points1" autocomplete="off" placeholder="Points">
-								  	<span class="hided">Please Enter the points</span>
-								  	<span class="hided">Please Check the format</span>
+								  	<span class="hided">Please enter Points</span>
+								  	<span class="hided">Please enter ranges in correct format</span>
 								  </div>
 							</div>
 						</div>
@@ -232,20 +233,20 @@
 										  		</select>
 											</div> -->
 											<div class="form-group">
-												  <label for="sel1" class="popup_label">Category</label>
-												  <select class="form-control adjust_width classic range_category box-width box_range" id="sel1" name="edit_range_category" data-validation-error-msg="Please Select the Category of Test Battery " data-validation="required">
+												  <label for="sel1" class="popup_label">Select Category</label>
+												  <select class="form-control adjust_width classic range_category box-width box_range" id="sel1" name="edit_range_category" data-validation-error-msg="Please select Category" data-validation="required">
 												  <option value="">Select Category</option>
 												  </select>
 											</div>
 											<div class="form-group">
-												  <label for="sel1" class="popup_label">Test Name</label>
-												  <select class="form-control adjust_width classic edit_range_test box-width box_range" id="sel1" name="edit_range_test" data-validation-error-msg="Please Select the Test Name" data-validation="required">
+												  <label for="sel1" class="popup_label">Select Test</label>
+												  <select class="form-control adjust_width classic edit_range_test box-width box_range" id="sel1" name="edit_range_test" data-validation-error-msg="Please select Test" data-validation="required">
 												  <option value="">Select Test Name</option>
 												  </select>
 											</div>
 											<div class="form-group">
-												  <label for="sel1" class="popup_label">Parameter Name</label>
-												  <select class="form-control adjust_width classic range_parameter edit_range_parameter box-width box_range" id="sel1" name="edit_range_parameter" data-validation-error-msg="Please Select the name of the Parameter" data-validation="required">
+												  <label for="sel1" class="popup_label">Select Parameter</label>
+												  <select class="form-control adjust_width classic range_parameter edit_range_parameter box-width box_range" id="sel1" name="edit_range_parameter" data-validation-error-msg="Please select Parameter" data-validation="required">
 												  <option value="">Select Parameter Name</option>
 												  </select>
 												  <input type="hidden" class="range_parameter_type">
@@ -260,19 +261,19 @@
 											      	<div class="form-group col-md-12 ranges_popup">
 												      	<div class="col-md-4">
 												      		<input type="text" class="form-control classic range_align_popup edit_r_strt" id="edit_strt1" name="edit_range_start1" autocomplete="off" placehoder="Start">
-												       		<span class="hided">Please Enter the start range</span>
-											    			<span class="hided">Please Check the format</span>
+												       		<span class="hided">Please enter Range Start</span>
+											    			<span class="hided">Please enter ranges in correct format</span>
 												       	</div>
 												       	<div class="col-md-4">
 												      		<input type="text" class="form-control classic range_align_popup edit_r_end check_end_range" id="edit_end1" name="edit_range_end1" autocomplete="off" placehoder="end">
-												       		<span class="hided">Please Enter the end range</span>
-											  				<span class="hided">Please Check the format</span>
-											  				<span class="hided">Enter greater than start value</span>
+												       		<span class="hided">Please enter Range End</span>
+											  				<span class="hided">Please enter ranges in correct format</span>
+											  				<span class="hided">Please enter correct ranges</span>
 												       	</div>
 												       	<div class="col-md-4">
 												      		<input type="text" class="form-control classic range_align_popup edit_r_point" id="edit_point1" name="edit_range_points1" autocomplete="off" placehoder="points">
-											  				<span class="hided">Please Enter the points</span>
-											  				<span class="hided">Please Check the format</span>
+											  				<span class="hided">Please enter Points</span>
+											  				<span class="hided">Please enter ranges in correct format</span>
 											  			</div>
 
 											  		</div><!--ranges_popup-->
