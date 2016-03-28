@@ -3,43 +3,42 @@ require_once "session.php";
 require_once "header.php";
 require_once "functions/test_functions.php";
 $obj = new testfunction();
-
 ?>
 <?php
 $url = $_SERVER['PHP_SELF'];
-if(isset($_GET['insert'])){
-	echo "<script>alert('Test inserted successfully!');var url ='".$url."'; window.location = url ;</script>";
+if (isset($_GET['insert'])) {
+	echo "<script>alert('Test inserted successfully!');var url ='" . $url . "'; window.location = url ;</script>";
 }
-if(isset($_GET['update'])){
-	echo "<script>alert('Test parameter edited successfully!');var url ='".$url."'; window.location = url ;</script>";
+if (isset($_GET['update'])) {
+	echo "<script>alert('Test parameter edited successfully!');var url ='" . $url . "'; window.location = url ;</script>";
 }
-if(isset($_GET['insert_new'])){
-	if($_GET['params'] != ''){
-		echo "<script>alert('".$_GET['params']."Parameter already exist!');var url ='".$url."'; window.location = url ;</script>";
-	}else{
-		echo "<script>alert(' Test Parameter edited successfully!');var url ='".$url."'; window.location = url ;</script>";
+if (isset($_GET['insert_new'])) {
+	if ($_GET['params'] != '') {
+		echo "<script>alert('" . $_GET['params'] . "Parameter already exist!');var url ='" . $url . "'; window.location = url ;</script>";
+	} else {
+		echo "<script>alert(' Test Parameter edited successfully!');var url ='" . $url . "'; window.location = url ;</script>";
 	}
-	
+
 }
 ?>
 <style type="text/css">
 	thead, tbody tr {
-    display:table;
-    width:100%;
-    table-layout:fixed;
+		display: table;
+		width: 100%;
+		table-layout: fixed;
 	}
-	.table > tbody tr:last-child{
+	.table > tbody tr:last-child {
 		border: 0 none !important;
 	}
-	.table > thead{
+	.table > thead {
 		border-bottom: 0 none !important;
 	}
 	tbody tr {
-    border-left: 0 none !important;
-    border-right: 0 none !important;
+		border-left: 0 none !important;
+		border-right: 0 none !important;
 	}
 	.paging-nav {
-    display: none;
+		display: none;
 	}
 </style>
 <div class="container">
@@ -67,6 +66,7 @@ if(isset($_GET['insert_new'])){
 							</div>
 
 							<div class="form-group col-md-2 align-area">
+									<label>TYPE</label><br>
 									<select class="form-control classic type_align fl parameter_type parameter_type_add" id="type" name="type1">
 										<option value="">
 											Type
@@ -81,19 +81,21 @@ if(isset($_GET['insert_new'])){
 												<?php echo $row['parametertype_name']; ?>
 											</option>
 										<?php
-												}
-											}
+										}
+										}
 										?>
 									</select>
 									<span class="hided param_type_error">Please select Parameter Type</span>
 								</div>
 								<div class="form-group col-md-2 align-area">
+									<label>UNIT</label><br>
 									<select class="form-control classic type_align fl parameter_unit paremeter_unit_add" id="unit" name="unit1">
 									<option value="">Unit</option>
 									</select>
 									<span class="hided param_unit_error">Please select Parameter Unit</span>
 								</div>
 								<div class="form-group col-md-2 align-area">
+									<label>FORMAT</label><br>
 									<select class="form-control classic type_align fl parameter_format" id="format" name="format1">
 										<option value="">Format</option>
 									</select>
@@ -140,8 +142,8 @@ if(isset($_GET['insert_new'])){
 									foreach( $data as $eachrecord ) {
 									 ?>
 									<span class="test-name test-test-name">
-										<input type="checkbox" name="test " value="test" class="check_test test_name_hover_check" id="check-select" data-id ="<?php echo $eachrecord ['test_id']; ?>">
-										<input type="text" name="test"  value="<?php echo $eachrecord ['test_name']; ?>" class="list_edit test_name_hover test_name_value input_wrap" disabled>
+										<input type="checkbox" name="test " value="test" class="check_test test_name_hover_check" id="check-select" data-id ="<?php echo $eachrecord['test_id']; ?>">
+										<input type="text" name="test"  value="<?php echo $eachrecord['test_name']; ?>" class="list_edit test_name_hover test_name_value input_wrap" disabled>
 										<span class="test-alter">
 											<i class="fa fa-floppy-o save_item edit_save_button"></i>
 											<i class="fa fa-pencil-square-o edit_item "></i>
@@ -155,7 +157,7 @@ if(isset($_GET['insert_new'])){
 							              </div>
 							              <div class="del_content">
 							                <span class="del_content_txt">Are you sure want to delete this whole record?</span>
-							                <input type="button" class="btn btn-primary align_right yes_btn" data-id ="<?php echo $eachrecord ['test_id']; ?>" value="Yes" data-delete='test_name'>
+							                <input type="button" class="btn btn-primary align_right yes_btn" data-id ="<?php echo $eachrecord['test_id']; ?>" value="Yes" data-delete='test_name'>
 							                <input type="button" class="btn btn-primary align_right no_btn" value="No">
 							                <input type="hidden" name="delete_id" value="" id="delete_id"/>
 										</div><!--del_content-->
@@ -182,14 +184,14 @@ if(isset($_GET['insert_new'])){
 					foreach( $data as $eachrecord ) {
 					 ?>
 				      <tr class="align_center delete_color">
-						<input type="hidden" value="<?php echo $eachrecord ['test_attribute_id']; ?>" id="test_attribute_id">
-				        <td><?php echo $eachrecord ['test_parameter_name']; ?></td>
-				        <td><?php echo $eachrecord ['test_parameter_type']; ?></td>
-				        <td><?php echo $eachrecord ['test_parameter_unit']; ?></td>
-				        <td><?php echo $eachrecord ['test_parameter_format']; ?></td>
+						<input type="hidden" value="<?php echo $eachrecord['test_attribute_id']; ?>" id="test_attribute_id">
+				        <td><?php echo $eachrecord['test_parameter_name']; ?></td>
+				        <td><?php echo $eachrecord['test_parameter_type']; ?></td>
+				        <td><?php echo $eachrecord['test_parameter_unit']; ?></td>
+				        <td><?php echo $eachrecord['test_parameter_format']; ?></td>
 				        <td class="popup-edit">
-				        	<span class="edit_state new_editstate edit_test" data-value="<?php echo $eachrecord ['test_attribute_id']; ?>" data-test-id="<?php echo $eachrecord ['test_id']; ?>"><i class="fa fa-pencil-square-o"></i></span>
-			        		<span class="delete_state" data-value="<?php echo $eachrecord ['test_attribute_id']; ?>"><i class="fa fa-trash-o"></i></span>
+				        	<span class="edit_state new_editstate edit_test" data-value="<?php echo $eachrecord['test_attribute_id']; ?>" data-test-id="<?php echo $eachrecord['test_id']; ?>"><i class="fa fa-pencil-square-o"></i></span>
+			        		<span class="delete_state" data-value="<?php echo $eachrecord['test_attribute_id']; ?>"><i class="fa fa-trash-o"></i></span>
 			        			<div class="test_div popup_hidden">
 					          		<code class="close_btn cancel_btn"> </code>
 					          		<div class="edit_title">
@@ -219,8 +221,8 @@ if(isset($_GET['insert_new'])){
 																<?php echo $row['parametertype_name']; ?>
 															</option>
 														<?php
-																}
-															}
+														}
+														}
 														?>
 													</select>
 												</div>
@@ -259,15 +261,16 @@ if(isset($_GET['insert_new'])){
 						              <div class="del_content">
 						                <span class="del_content_txt">Are you sure you want to delete this record?</span>
 						                <input type="button" class="btn btn-primary align_right no_btn" value="No">
-						                <input type="button" class="btn btn-primary align_right yes_btn" value="Yes" data-delete='test_attribute' data-id ="<?php echo $eachrecord ['test_attribute_id']; ?>" data-test-id="<?php echo $eachrecord ['test_id']; ?>">
+						                <input type="button" class="btn btn-primary align_right yes_btn" value="Yes" data-delete='test_attribute' data-id ="<?php echo $eachrecord['test_attribute_id']; ?>" data-test-id="<?php echo $eachrecord['test_id']; ?>">
 						               	<input type="hidden" name="delete_id" value="" id="delete_id"/>
 						              </div>
   								</div>
 				        </td>
-						<input type="hidden" name="test_attribute_id" id="test_attribute_id" value="<?php echo $eachrecord ['test_attribute_id']; ?>" />
+						<input type="hidden" name="test_attribute_id" id="test_attribute_id" value="<?php echo $eachrecord['test_attribute_id']; ?>" />
 				      </tr>
 				      <?php
-				  		} ?>
+					}
+ ?>
 				    </tbody>
 				  </table>
 				</div>

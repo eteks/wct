@@ -13,6 +13,7 @@ $obj = new categoryfunction();
 				<div class="col-md-4 align_margin">
 					<form id="category_form" name="categories_form" role="form">
 						<div class="align_margin">
+							<label>Enter name of the Category</label><br>
 							<input type="text" class="sportsname" name="category_name" autocomplete="off" data-validation-error-msg="Please enter name of Category" data-validation="required">
 							<input type="hidden" name="category_add" value="1">
 						</div><!--align_margin-->
