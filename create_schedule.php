@@ -49,11 +49,11 @@
 				<input type="hidden" class="statesid" name="edit_schedule_id">
 					<div class="form-group">
 						<label>Enter Name of Schedule</label><br>
-						<input type="text" class="adjust_width" name="schedule_name" data-validation-error-msg="Please Enter the name of the Schedule" data-validation="required">
+						<input type="text" class="adjust_width" name="schedule_name" data-validation-error-msg="Please enter Name of Schedule" data-validation="required">
 					</div>
 					<div class="form-group">
 					  <label for="battey_name">Select Test Battery</label>
-					  <select class="form-control classic adjust_width" id="battey_name" name="schedule_testbattery" autocomplete="off" data-validation-error-msg="Please Select the name of the Test Battery Name" data-validation="required">
+					  <select class="form-control classic adjust_width" id="battey_name" name="schedule_testbattery" autocomplete="off" data-validation-error-msg="Please select Test Battery" data-validation="required">
 					  	<option value="">Select Test Battery Name</option>
 					    <?php
 	                        $query = $testbattery->testbatterySelect();
@@ -70,7 +70,7 @@
 					<div class="form-group col-md-12">
 					  <label for="date" class="fl" style="position: relative; left: -10px;">Select Time</label><br>
 					  	<div class="form-group align-time col-md-3">
-							<select class="form-control classic adjust_tiny fl" id="hour" name="schedule_hour" data-validation-error-msg="Please Select the Hour" data-validation="required">
+							<select class="form-control classic adjust_tiny fl" id="hour" name="schedule_hour" data-validation-error-msg="Please select Hour" data-validation="required">
 							  	<option value="">Hour</option>
 							    <option value="01">01</option>
 							    <option value="02">02</option>
@@ -99,7 +99,7 @@
 							</select>
 						</div>
 						<div class="form-group align-time col-md-3">
-							<select class="form-control classic adjust_tiny fl" id="minute" name="schedule_minute" data-validation-error-msg="Please Select the Minute" data-validation="required">
+							<select class="form-control classic adjust_tiny fl" id="minute" name="schedule_minute" data-validation-error-msg="Please select Minute" data-validation="required">
 							  	<option value="">Minute</option>
 							   	<option value="00">00</option>
 							    <option value="01">01</option>
@@ -164,7 +164,7 @@
 							</select>
 					  	</div>
 					  	<div class="form-group align-time col-md-3">
-							<select class="form-control classic adjust_tiny fl" id="seconds" name="schedule_seconds" data-validation-error-msg="Please Select the Seconds" data-validation="required">
+							<select class="form-control classic adjust_tiny fl" id="seconds" name="schedule_seconds" data-validation-error-msg="Please select Second" data-validation="required">
 							  	<option value="">Seconds</option>
 							   	<option value="00">00</option>
 							    <option value="01">01</option>
@@ -231,7 +231,7 @@
 					</div>
 					<div class="align_height align_margin">
 						<label>Venue</label><br>
-						<textarea class="area_width" name="schedule_venue" data-validation-error-msg="please Enter the name of the Venue" data-validation="required"></textarea>
+						<textarea class="area_width" name="schedule_venue" data-validation-error-msg="Please enter Venue" data-validation="required"></textarea>
 					</div>
 					<div class="col-md-9 schedule_btn">
 						<input type="submit" class="btn btn-primary test-submit clear add_createschedule_act" value="Submit">
@@ -289,7 +289,7 @@
 			      <tr class="row_color">
 
 
-			        <th class="align_center">Test Battery Name</th>
+			        <th class="align_center">Test Battery</th>
 			        <th class="align_center">Date</th>
 			        <th class="align_center">Time</th>
 			        <th class="align_center">Venue</th>

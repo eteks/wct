@@ -122,7 +122,7 @@
 					<div class="form-group add-ranges-button col-md-3">
 						<!-- <input type="button" class="btn btn-primary ranges_btn add_range_points" value="Add Ranges"> -->
 						<!-- <i class="fa fa-plus plus_align add_range_points"></i> -->
-						<i class="fa fa-plus plus_align add_range_points">
+						<i class="fa fa-plus plus_align add_range_points" tabindex="1">
 							<div class="tooltip_parameter">Add Range</div>
 							<div class="tip_triangle"></div>
 						</i>

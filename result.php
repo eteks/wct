@@ -27,7 +27,7 @@
 				<form id="result_form" name="result_form">
 					<div class="form-group">
 						  <label for="sel1">Select Schedule</label>
-						  <select class="form-control adjust_width classic resultcreateschedule_act" id="sel1" name="result_createschedule" data-validation-error-msg="Please Select Name of the Schedule" data-validation="required">
+						  <select class="form-control adjust_width classic resultcreateschedule_act" id="sel1" name="result_createschedule" data-validation-error-msg="Please select Schedule" data-validation="required">
 						  <option value="">Select Schedule</option>
 	                       <?php
 	                        $query = $resultFunction->resultassignscheduleSelect();
@@ -38,22 +38,22 @@
 						  </select>
 					</div>
 					<div class="form-group col-md-11 schedule_btn">
-				      	<label for="athlete" class="email_txt athlete__txt">Select Athlete</label><br>
+				      	<label for="athlete" class="athlete__txt">Select Athlete</label><br>
 				      	<div class="form-group col-md-3">
-				      		<input type="text" class="form-control name_align fl result_athletename" id="result_athletename" placeholder="Name" name="result_athletename" data-validation-error-msg="Please Enter the name of the Athelete" data-validation="required">
+				      		<input type="text" class="form-control name_align fl result_athletename" id="result_athletename" placeholder="Name" name="result_athletename" data-validation-error-msg="Please enter name of Athlete" data-validation="required">
 				      		<!-- <select class="athletes_drop classic result_athletename" name="result_athletename" id="result_athletename" required="required" data-validation-error-msg="Please Select the name of the Athelete" data-validation="required">
 				      		<option></option>
 				      		</select> -->
 				      	</div>
 				      	<div class="form-group col-md-3">
 				      		<!-- <input type="text" class="form-control date_assign fl result_athletedate" id="result_athletedate" placeholder="Date" name="result_athletedate"  data-validation="date" data-validation-format="dd/mm/yyyy"> -->
-				      		<input type="text" class="form-control date_assign fl result_athletedate" id="result_athletedate" placeholder="Date" name="result_athletedate">
+				      		<input type="text" class="form-control date_assign fl result_athletedate" id="result_athletedate" placeholder="Date" name="result_athletedate" data-validation-error-msg="Please Enter DOB" data-validation="required">
 			      		</div>
 						<div class="form-group col-md-3">
-				      		<input type="text" class="form-control name_align fl result_athletemobile" id="result_athletemobile" placeholder="Mobile no" name="result_athletemobile" data-validation-error-msg="Please Enter the value that must contain 10 numbers" data-validation="length" data-validation-length="10">
+				      		<input type="text" class="form-control name_align fl result_athletemobile" id="result_athletemobile" placeholder="Mobile no" name="result_athletemobile" data-validation-error-msg="Please enter Mobile No. (with 10 digits)" data-validation="length" data-validation-length="10">
 				      	</div>
 				      	<div class="form-group col-md-3">
-				      		<input type="text" class="form-control date_assign fl result_athletebib" id="result_athletebib" placeholder="BIB NO" name="result_athletebib" data-validation-error-msg="Please Enter the BIB NO" data-validation="required">
+				      		<input type="text" class="form-control date_assign fl result_athletebib" id="result_athletebib" placeholder="BIB NO" name="result_athletebib" data-validation-error-msg="Please enter Bib No." data-validation="required">
 				    	</div>
 					</div>
 				    <div class="form-group">
@@ -85,7 +85,7 @@
 			        <th class="align_center">Result</th>
 			        <th class="align_center"></th>
 			        <th class="align_center">Points</th>
-			        <th class="align_center">DNF?</th>
+			        <th class="align_center">Did not finish?</th>
 			      </tr>
 			    </thead>
 			    <tbody class="assign_content">

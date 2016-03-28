@@ -195,9 +195,9 @@
 				// }
 			}
 			if($status == 1)
-				echo "success#Result Created";
+				echo "success#Result saved successfully!";
 			else
-				echo "success#Result Updated";
+				echo "success#Result edited successfully!";
 			// if($status == true)
 			// 	echo "success#Result Created";
 			// else
