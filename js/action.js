@@ -276,7 +276,7 @@
               }
            });
         $(".assign_clone_content .custom-combobox-input").each(function(index) {
-          if(currentInput === $(this).val()) {
+          if(athe_id === $(this).parents('.assign_clone_content').find('.athlete_name').val()) {
               j++;
           }
         });
