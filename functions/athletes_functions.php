@@ -16,7 +16,7 @@
 	    public $athletesportsname;
 
 		public function athleteSelect(){
-			$res = mysql_query("SELECT * FROM wc_athlete as a INNER JOIN wc_sports as s ON s.sports_id = a.athletesports_id where a.athlete_status='1' ORDER BY a.athlete_id DESC")or die(mysql_error());
+			$res = mysql_query("SELECT * FROM wc_athlete as a INNER JOIN wc_sports as s ON s.sports_id = a.athletesports_id INNER JOIN wc_district as d ON d.district_id = a.athletedistrict_id where a.athlete_status='1' ORDER BY a.athlete_id DESC")or die(mysql_error());
 			return $res;
 		}
 
@@ -94,13 +94,13 @@
 				$athleteinsert = $athletesFunction->athleteInsert();
 				$atheletedob = $athletesFunction->athletedob;
 				if($athleteinsert){
-					echo "success#Athletes Inserted#".$athleteinsert.'#'.$_POST['athlete_name'].'#'.$_POST['athlete_gender'].'#'.$atheletedob.'#'.$_POST['athlete_address'];
+					echo "success#Athlete inserted successfully!#".$athleteinsert.'#'.$_POST['athlete_name'].'#'.$_POST['athlete_gender'].'#'.$atheletedob.'#'.$_POST['athlete_address'];
 				}else{
-					echo "failure#Athletes Not Inserted";
+					echo "failure#Athlete not inserted successfully!";
 				}
 			}
 			else{
-				echo "failure#Athlete Already Exists";
+				echo "failure#Athlete already Exists";
 			}
 
 		}
@@ -111,10 +111,10 @@
 			$athletesFunction->athleteid = $_POST['delete_id'];
 			$statesdelete = $athletesFunction->athleteDelete();
 			if($statesdelete){
-				echo "success#Athlete Deleted#".$_POST['delete_id'];
+				echo "success#Athlete deleted successfully!#".$_POST['delete_id'];
 			}
 			else{
-				echo "failure#Record not found";
+				echo "failure#Athlete not found";
 			}
 		}
 
@@ -164,9 +164,9 @@
 			$athletesupdate = $athletesFunction->athleteUpdate();
 			if($athletesupdate){
 				// echo "success#Record Updated";
-				echo "success#Record Updated#".$_POST['edit_athlete_id']."#".$_POST['edit_athlete_name'].'#'.$_POST['edit_athlete_gender']."#".$athletesFunction->athletedob."#".$_POST['edit_athlete_address'];
+				echo "success#Athlete edited successfully!#".$_POST['edit_athlete_id']."#".$_POST['edit_athlete_name'].'#'.$_POST['edit_athlete_gender']."#".$athletesFunction->athletedob."#".$_POST['edit_athlete_address'];
 			}else{
-				echo "failure#Record Not Updated";
+				echo "failure#Athlete not edited successfully!";
 			}
 		}
         if(isset($_GET['get_ath'])){
@@ -201,9 +201,9 @@
  			$athletesFunction->athletename=$_POST['check_athletename'];
 			$athletename_update = $athletesFunction->athletenameUpdate();
 			if($athletename_update){
-				echo "success#Athlete Name Updated#".$_POST['check_athletename'];
+				echo "success#Athlete name edited successfully!#".$_POST['check_athletename'];
 			}else{
-				echo "failure#Athlete Name Not Updated";
+				echo "failure#Athlete name not edited successfully!";
 			}
 		}
 	  }

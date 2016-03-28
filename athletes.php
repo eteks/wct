@@ -185,10 +185,12 @@
 				  <table class="table athletes_table check_table">
 			    <thead>
 			      <tr class="row_color">
-			      <th class="align_center">sports</th>
+			      	<!-- <th class="align_center">sports</th> -->
 			        <th class="align_center">Gender</th>
-			        <th class="align_center">D.O.B</th>
-			        <th class="align_center">Address</th>
+			        <th class="align_center">Date of Birth</th>
+			        <!-- <th class="align_center">Address</th> -->
+			        <th class="align_center">District</th>
+			        <th class="align_center">Mobile No.</th>
 			       	<th class="action_align">Action</th>
 			      </tr>
 			    </thead>
@@ -206,10 +208,12 @@
 					       <td class="t_athlete_gender"><?php // echo $row['athlete_gender']; ?></td>
 					        <td class="t_athlete_dob"><?php // echo date("d/m/Y", strtotime($row['athlete_dob'])); ?></td>
 					        <td class="t_athlete_address"><?php // echo $row['athlete_address']; ?></td> -->
-					        <td><?php echo $row['sports_name']; ?></td>
+					        <!-- <td><?php //echo $row['sports_name']; ?></td> -->
 					        <td><?php echo $row['athlete_gender']; ?></td>
 					        <td><?php echo date("d/m/Y", strtotime($row['athlete_dob'])); ?></td>
-					        <td><?php echo $row['athlete_address']; ?></td>
+					        <td><?php echo $row['district_name']; ?></td>
+					        <!-- <td><?php echo $row['athlete_address']; ?></td> -->
+					        <td><?php echo $row['athlete_mobile']; ?></td>
 							<td class="popup-edit">
 					        	<span class="edit_state new-edit" onclick="editfunction(<?php echo $row['athlete_id'] ?>,this)"><i class="fa fa-pencil-square-o"></i></span>
 				        		<span class="delete_state" data-value="<?php echo $row['athlete_id'] ?>"><i class="fa fa-trash-o"></i></span>
