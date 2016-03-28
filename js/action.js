@@ -2805,11 +2805,14 @@
                                     <td class='error_icon'></td>\
                                     <td class='result_test_name'>"+obj[i].test_name+"</td>\
                                     <td class='result_parameter_name'>"+obj[i].parameter_name+"</td>\
-                                    <td><input type='text' class='assign_border enter_result' name='enter_result'><br><span class='enter_result_error'></span></td>\
-                                    <td><span class='result_error' name='result_error'>Enter the result in " +obj[i].parameter_unit+ " with "+obj[i].parameter_format+" formats</span></td>\
-                                    <td></td>\
-                                    <td><input type='checkbox' name='status_incomplete' class='status_incomplete'></td>\
-                                   </tr>";
+                                    <td><input type='text' class='assign_border enter_result' name='enter_result'><br><span class='enter_result_error'></span></td>";
+                            if(obj[i].parameter_type.toLowerCase() == "time")
+                              html+="<td><span class='result_error' name='result_error'>Enter " +obj[i].parameter_name+ " in " +obj[i].parameter_unit+"</span></td>";
+                            else
+                              html+="<td><span class='result_error' name='result_error'>Enter " +obj[i].parameter_name+ " in " +obj[i].parameter_unit+ " in "+obj[i].parameter_format+" decimals</span></td>";
+                            html+="<td></td>\
+                            <td><input type='checkbox' name='status_incomplete' class='status_incomplete'></td></tr>\
+                           </tr>";
                         }
                         else{
                           html = "<tr class='align_center delete_color assign_table'>\
@@ -2822,10 +2825,13 @@
                                     <td class='error_icon'></td>\
                                     <td class='result_test_name'>"+obj[i].test_name+"</td>\
                                     <td class='result_parameter_name'>"+obj[i].parameter_name+"</td>\
-                                    <td><input type='text' class='assign_border enter_result' name='enter_result'><br><span class='enter_result_error'></span></td>\
-                                    <td><span class='result_error' name='result_error'>Enter the result in " +obj[i].parameter_unit+ " with "+obj[i].parameter_format+" formats</span></td>\
-                                    <td><span class='assign_border enter_points'></span></td>\
-                                    <td><input type='checkbox' name='status_incomplete' class='status_incomplete'></td></tr>";
+                                    <td><input type='text' class='assign_border enter_result' name='enter_result'><br><span class='enter_result_error'></span></td>";
+                          if(obj[i].parameter_type.toLowerCase() == "time")
+                            html+="<td><span class='result_error' name='result_error'>Enter " +obj[i].parameter_name+ " in " +obj[i].parameter_unit+"</span></td>";
+                          else
+                            html+="<td><span class='result_error' name='result_error'>Enter " +obj[i].parameter_name+ " in " +obj[i].parameter_unit+ " in "+obj[i].parameter_format+" decimals</span></td>";
+                          html+="<td><span class='assign_border enter_points'></span></td>\
+                          <td><input type='checkbox' name='status_incomplete' class='status_incomplete'></td></tr>";
                         }
                         $('.result_table tr:last').before(html);
                       });
@@ -3163,42 +3169,42 @@ $(document).on('blur','.enter_result',function(e){
               // alert("time");
               if((parameter_format=="hh:mm:ss")&&(!(/^(?:[0-2][0-4]|[0-1][0-9]):(?:[0-5][0-9]):[0-5][0-9]$/).test(value))){
                   // alert("if1");
-                  $(this).siblings('.enter_result_error').addClass('error').text('Please Check time format').show();
+                  $(this).siblings('.enter_result_error').addClass('error').text('Please enter result in correct format').show();
                   status=1;
                   // break;
                 } else if((parameter_format=="hh:mm")&&(!(/^(?:[0-2][0-4]|[0-1][0-9]):[0-5][0-9]$/).test(value))){
                   // alert("if2");
-                  $(this).siblings('.enter_result_error').addClass('error').text('Please Check time format').show();
+                  $(this).siblings('.enter_result_error').addClass('error').text('Please enter result in correct format').show();
                   status=1;
                   // break;
                 }
                 else if((parameter_format=="mm:ss")&&(!(/^(?:[0-5][0-9]):[0-5][0-9]$/).test(value))){
                   // alert("if3");
-                  $(this).siblings('.enter_result_error').addClass('error').text('Please Check time format').show();
+                  $(this).siblings('.enter_result_error').addClass('error').text('Please enter result in correct format').show();
                   status=1;
                   // break;
                 }
                 else if((parameter_format=="hh:mm:ss:mss")&&(!(/^(?:[0-2][0-4]|[0-1][0-9]):(?:[0-5][0-9]):(?:[0-5][0-9]):([0-9][0-9]|[0-9][0-9][0-9]|[0-1][0][0][0])$/).test(value))){
                   // alert("if4");
-                  $(this).siblings('.enter_result_error').addClass('error').text('Please Check time format').show();
+                  $(this).siblings('.enter_result_error').addClass('error').text('Please enter result in correct format').show();
                   status=1;
                   // break;
                 }
                 else if((parameter_format=="mm:ss:mss")&&(!(/^(?:[0-5][0-9]):(?:[0-5][0-9]):([0-9][0-9]|[0-9][0-9][0-9]|[0-1][0][0][0])$/).test(value))){
                   // alert("if5");
-                  $(this).siblings('.enter_result_error').addClass('error').text('Please Check time format').show();
+                  $(this).siblings('.enter_result_error').addClass('error').text('Please enter result in correct format').show();
                   status=1;
                   // break;
                 }
                 else if((parameter_format=="ss:mss")&&(!(/^(?:[0-5][0-9]):([0-9][0-9]|[0-9][0-9][0-9]|[0-1][0][0][0])$/).test(value))){
                   // alert("if6");
-                  $(this).siblings('.enter_result_error').addClass('error').text('Please Check time format').show();
+                  $(this).siblings('.enter_result_error').addClass('error').text('Please enter result in correct format').show();
                   status=1;
                   // break;
                 }
                 else if((parameter_format=="mss")&&(!(/^(?:[0-9][0-9]|[0-9][0-9][0-9]|[0-1][0][0][0])$/).test(value))){
                   // alert("if6");
-                  $(this).siblings('.enter_result_error').addClass('error').text('Please Check time format').show();
+                  $(this).siblings('.enter_result_error').addClass('error').text('Please enter result in correct format').show();
                   status=1;
                   // break;
                 }
@@ -3260,7 +3266,7 @@ $(document).on('blur','.enter_result',function(e){
                                break;
                             }
                             else{
-                               $(this).siblings('.enter_result_error').addClass('error').text('Please Check decimal points').show();
+                               $(this).siblings('.enter_result_error').addClass('error').text('Please enter result in correct format').show();
                                totalvlaue = $('.total_result').text();
                                pointvalue = $(this).parents('tr').find('.enter_points').text();
                                result = totalvlaue - pointvalue;
@@ -3279,7 +3285,7 @@ $(document).on('blur','.enter_result',function(e){
                             else{
                               // alert("else");
                               status = 1;
-                              $(this).siblings('.enter_result_error').addClass('error').text('Please Check decimal points').show();
+                              $(this).siblings('.enter_result_error').addClass('error').text('Please enter result in correct format').show();
                             }
                           }
                         }
@@ -3291,17 +3297,17 @@ $(document).on('blur','.enter_result',function(e){
                        $(this).siblings('.enter_result_error').removeClass('error').hide();
                     }
                     else{
-                      $(this).siblings('.enter_result_error').addClass('error').text('Please Check decimal points').show();
+                      $(this).siblings('.enter_result_error').addClass('error').text('Please enter result in correct format').show();
                     }
                   }
                 }
                 else{
                   status = 1;
-                  $(this).siblings('.enter_result_error').addClass('error').text('Please check format').show();
+                  $(this).siblings('.enter_result_error').addClass('error').text('Please enter result in correct format').show();
                 }
                  
                   if (value.indexOf(".") !== -1 && decimals == 0){
-                    $(this).siblings('.enter_result_error').addClass('error').text('Please Check decimal points').show();
+                    $(this).siblings('.enter_result_error').addClass('error').text('Please enter result in correct format').show();
                   }
                   // else{
                   //   $(this).siblings('.enter_result_error').removeClass('error').hide();
@@ -4033,6 +4039,7 @@ $(document).on('blur','.enter_result',function(e){
            // $(this).parents('tr').find('.enter_result').val('').addClass('result_restrict').attr('disabled',true);
            $(this).parents('tr').find('.enter_result').val('0').addClass('result_restrict').attr('disabled',true);
            $(this).parents('tr').find('.enter_points').text('0');
+           $(this).parents('tr').find('.enter_result_error').removeClass('error').hide();
            //Points total result
             var val=0;
             $(".enter_points").each(function() {
