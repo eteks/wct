@@ -13,7 +13,7 @@ $obj = new sportsfunction();
 		<div class="col-md-6 align_margin_sports">
 			<form  class="sports_form" name="sport_form" role="form">
 				<div class="align_margin">
-					<label>Enter the name of the Sport</label><br>
+					<label>Enter name of the Sport</label><br>
 					<input type="text" class="sportsname" name="sports_name" autocomplete="off" data-validation-error-msg="Please enter name of Sport" data-validation="required">
 					<input type="hidden" name="sports_add" value="1">
 				</div>

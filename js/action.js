@@ -2088,6 +2088,7 @@
             newElement.find('#type').removeAttr('name').attr('name', 'type'+id);
             newElement.find('#unit').removeAttr('name').attr('name', 'unit'+id).removeClass('error').removeAttr('style').empty().append("<option value='' selected>UNIT</option>");
             newElement.find('#unit').next('span').remove();
+            newElement.find('label').remove();
             newElement.find('#format').removeAttr('name').attr('name', 'format'+id);
             newElement.appendTo($(".parameter_holder1"));
         }
@@ -4271,6 +4272,33 @@ $(document).on('blur','.enter_result',function(e){
 			}
   		});
   		
+  		$(document).delegate('.assign_clone_content .athlete_bib','blur',function(){
+          var j = 0;
+          var currentInput  = $(this).val();
+        $(this).parents('.assign_content_holder').find(".athlete_bib").each(function(index) {
+          if(currentInput === $(this).val()) {
+              j++;
+          }
+        });
+        if(j=='2'){
+            alert('Bib No. Already assigned!');
+            $(this).parents('.assign_clone_content').find('.athlete_bib').val('');
+        }
+      });
+      
+      $(document).delegate('.assign_clone_content_edit .athlete_bib','blur',function(){
+          var j = 0;
+          var currentInput  = $(this).val();
+        $(this).parents('.assign_clone_content_edit_holder').find(".athlete_bib").each(function(index) {
+          if(currentInput === $(this).val()) {
+              j++;
+          }
+        });
+        if(j=='2'){
+            alert('Bib No. Already assigned!');
+            $(this).parents('.assign_clone_content_edit').find('.athlete_bib').val('');
+        }
+      });
   		
         
         //********* end *********
