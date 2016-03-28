@@ -23,23 +23,6 @@
       }
 
     }
-    // function EnterToTabHack(event) {    
-    // //event.stopPropagation();
-    // alert("yes");
-    // alert(event.keyCode);
-    // if (event.which && event.which == 9){
-    //   e.preventDefault(); 
-    //   $(".add_range_points").focus();
-    // }
-
-      
-
-    //   // $(".add_range_points").attr("tabindex",-1).focus();
-    //     // if ((event.which && event.which == 13) || (event.keyCode && event.keyCode == 13)) { 
-    //     // alert("focus");
-    //     //     $(".add_range_points").focus();
-    //     // }
-    // }
     var d1_list = [];
     function editfunction(data_id,el){
         if (window.location.href.indexOf("state.php") !== -1){
@@ -197,8 +180,10 @@
               $('[name=edit_range_testbattery]').find("option:contains("+range_obj[i].rangetestbattery_name+")").attr("selected","selected");
               $('[name=edit_range_category]').find("option[value="+range_obj[i].rangecategory_id+"]").attr("selected","selected");
               $('[name=edit_range_test]').find("option[value="+range_obj[i].rangetest_id+"]").attr("selected","selected");
-
               $('[name=edit_range_parameter]').html('<option value="'+range_obj[i].rangetestattribute_id+'" selected>'+range_obj[i].rangeparameter_name+'</option>');
+              $(el).parents('tr').find('.hide_range_parameter').val(range_obj[i].rangetestattribute_id);
+              $(el).parents('tr').find('.hide_range_category').val(range_obj[i].rangecategory_id);
+              $(el).parents('tr').find('.hide_range_test').val(range_obj[i].rangetest_id);
                   if(range_obj[i].rangeparameter_type.toLowerCase() == 'time')
                     // $('.edit_range_notes').text("Enter the range in "+range_obj[i].rangeparameter_unit+ " format");
                     $('.edit_range_notes').text("Enter Ranges for "+range_obj[i].rangeparameter_name+" in "+range_obj[i].rangeparameter_unit);

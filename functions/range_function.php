@@ -45,7 +45,7 @@ include('configu.php');
 			else{ return false; }
 		}
 		public function rangeDelete(){
-            $res = mysql_query("delete from wc_range where range_id ='".$this->rangeid."' ")or die(mysql_error());
+            $res = mysql_query("delete from wc_range where range_id ='".$this->rangeid."'")or die(mysql_error());
 			if($res){ return true; }
 			else{ return false; }
 		}
@@ -218,9 +218,12 @@ include('configu.php');
 		$rangeFunction = new rangeFunction();
 		$rangeFunction->rangeid = $_POST['edit_range_id'];
 		$rangeFunction->rangetestbatteryid = $_POST['edit_range_testbattery'];
-		$rangeFunction->rangecategoryid =$_POST['edit_range_category'];
-		$rangeFunction->rangetestid=$_POST['edit_range_test'];
-		$rangeFunction->rangetestattributeid=$_POST['edit_range_parameter'];
+		// $rangeFunction->rangecategoryid =$_POST['edit_range_category'];
+		// $rangeFunction->rangetestid=$_POST['edit_range_test'];
+		// $rangeFunction->rangetestattributeid=$_POST['edit_range_parameter'];
+		$rangeFunction->rangecategoryid =$_POST['hide_range_category'];
+		$rangeFunction->rangetestid=$_POST['hide_range_test'];
+		$rangeFunction->rangetestattributeid=$_POST['hide_range_parameter'];
 
 		$testname = mysql_fetch_array( $rangeFunction->testnameSelect());
 		$rangeFunction->rangetestname = $testname['test_name'];
