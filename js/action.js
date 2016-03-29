@@ -1743,13 +1743,14 @@
                      success: function(html) {
                      var result_split = html.split('#');
                      if (result_split[0].indexOf("success") !== -1){
+                      alert(result_split[1]);
                       $('.createschedule_table').find("input[value="+result_split[2]+"]").parents('tr').remove();
                       $('.popup_fade').hide();
                       $('.createschedule_div,.delete_div').hide();
                       document.body.style.overflow = 'auto';
                       location.reload();
                      }
-                     location.reload();
+                     // location.reload();
                      }
                  });
            } else if (window.location.href.indexOf("test.php") !== -1){

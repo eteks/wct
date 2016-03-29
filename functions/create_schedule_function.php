@@ -100,10 +100,10 @@
 			$createscheduleFunction->createscheduleid = $_POST['delete_id'];
 			$scheduledelete = $createscheduleFunction->createscheduleDelete();
 			if($scheduledelete){
-				echo "success#Schedule Deleted#".$_POST['delete_id'];
+				echo "success#Schedule deleted successfully!#".$_POST['delete_id'];
 			}
 			else{
-				echo "failure#Schedule not found";
+				echo "failure#Schedule not deleted successfully!";
 			}
 		}
 		// For display edit data
@@ -138,9 +138,9 @@
 			$createscheduleupdate = $createscheduleFunction->createscheduleUpdate();
 			if($createscheduleupdate){
 				$testbattery = mysql_fetch_array($createscheduleFunction->testbatterynameSelect());
-				echo "success#Schedule Updated#".$_POST['edit_schedule_id']."#".$_POST['edit_schedule_name'].'#'.$testbattery['testbattery_name']."#".$createscheduleFunction->createscheduledate."#".$createscheduleFunction->createscheduletime.'#'.$_POST['edit_schedule_venue'];
+				echo "success#Schedule edited successfully!#".$_POST['edit_schedule_id']."#".$_POST['edit_schedule_name'].'#'.$testbattery['testbattery_name']."#".$createscheduleFunction->createscheduledate."#".$createscheduleFunction->createscheduletime.'#'.$_POST['edit_schedule_venue'];
 			}else{
-				echo "failure#Schedule Not Updated";
+				echo "failure#Schedule not edited successfully!";
 			}
 		}
 		//newly added for v2
@@ -150,9 +150,9 @@
  			$createscheduleFunction->createschedulename=$_POST['check_createschedulename'];
 			$createschedulename_update = $createscheduleFunction->createschedulenameUpdate();
 			if($createschedulename_update){
-				echo "success#Schedule Name Updated#".$_POST['check_createschedulename'];
+				echo "success#Schedule name edited successfully!#".$_POST['check_createschedulename'];
 			}else{
-				echo "failure#Schedule Name Not Updated";
+				echo "failure#Schedule name not edited successfully!";
 			}
 		}
 	  }
