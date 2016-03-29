@@ -304,7 +304,8 @@ if(isset($_GET['duplicate'])){
 
 										<div class="col-md-12 schedule_btn">
 											<!-- <input type="reset" value="Clear" class="btn btn-primary align_right clear" maxlength="50"> -->
-											<input type="submit" class="btn btn-primary align_right test-submit clear" value="Save">
+											<input type="submit" class="btn btn-primary test-submit clear" value="Save">
+											<input type="reset" value="Cancel" class="btn btn-primary clear" maxlength="50">
 										</div>
 									</form>
 								</div>

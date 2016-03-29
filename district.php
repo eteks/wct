@@ -176,7 +176,8 @@
 														</div>
 														<!-- <button type="button" class="btn btn-primary align_right clear edit_district_act" name="district">Submit</button>	 -->
 														<div class="col-md-12 form-group">
-															<input type="submit" class="btn btn-primary align_right clear edit_district_act" name="district" value="Save">
+															<input type="submit" class="btn btn-primary clear edit_district_act" name="district" value="Save">
+															<input type="reset" class="btn btn-primary clear reset_form_dist" value="Cancel">
 														</div>
 												</form>
 											</div><!--state-content-->

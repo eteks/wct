@@ -247,8 +247,9 @@ if (isset($_GET['insert_new'])) {
 										</div>
 										<input class="parameter_update" type="hidden" name="parameter_update" value="" />
 										<input class="test_update_id" type="hidden" name="test_update_id" value="" />
-										<div class="col-md-12 schedule_btn">
-											<input type="submit" class="btn btn-primary align_right  clear" value="Save">
+										<div class="col-md-12 schedule_btn"  style="white-space: nowrap;">
+											<input type="submit" class="btn btn-primary clear" value="Save">
+											<input type="reset" value="Cancel" class="btn btn-primary clear reset_form" maxlength="50">
 										</div>
 									</form>
 								</div>

@@ -14,7 +14,12 @@
 	    overflow: visible;
 	    text-overflow: unset;
 	    white-space: normal;
+	    text-align: left;
 	}
+	.table > thead > tr > th {
+    border-bottom: 1px none !important;
+    text-align: left;
+}
 </style>
 <div class="container">
 	<div class="container left_align_parameter align_height">
@@ -94,7 +99,7 @@
 			      	<td></td>
 			      	<td></td>
 			      	<td></td>
-			      	<td>Total</td>
+			      	<td class="total_align">Total</td>
 			      	<td><span class="assign_border total_result"></span></td>
 			      </tr>
 				</tbody>

@@ -48,8 +48,8 @@
 						<label>Name of Athlete</label><br>
 						<input type="text" class="adjust_width" name="athlete_name" autocomplete="off" data-validation-error-msg="Please enter Name of athlete" data-validation="required">
 					</div>
-					<div class="form-group" style="position: relative; right: 15px;">
-					  <label for="date" class="fl" style="position: relative; left: 15px;">Date Of Birth</label><br>
+					<div class="form-group">
+					  <label for="date" class="fl">Date Of Birth</label><br>
 					  <input class="athlete_date_pick" type="text">
 					 <!-- <select class="form-control classic dob_align fl" id="date" name="athlete_dobday" data-validation-error-msg="Please Select the Date" data-validation="required">
 					  	<option value="">Date</option>
@@ -217,21 +217,21 @@
 							<td class="popup-edit">
 					        	<span class="edit_state new-edit" onclick="editfunction(<?php echo $row['athlete_id'] ?>,this)"><i class="fa fa-pencil-square-o"></i></span>
 				        		<span class="delete_state" data-value="<?php echo $row['athlete_id'] ?>"><i class="fa fa-trash-o"></i></span>
-					            <div class="athletes_div popup_hidden">
+					            <div class="athletes_div popup_hidden athlete_popup">
 					          		<code class="close_btn cancel_btn"> </code>
 					          		<div class="edit_title">
 					                	<span class="del_txt">Edit Detail</span>
 					              	</div><!--edit_title-->
 				          			<div class="container state-content col-md-12">
 				          			<div class="col-xs-12 col-md-12 align_margin">
-						          	<form name="edit_athletes_form" class="edit_athletes_form">
+						          	<form name="edit_athletes_form" class="edit_athletes_form" style="white-space: normal;">
 						          		<input type="hidden" class="statesid" name="edit_athlete_id" value="">
 						          		<input type="hidden" class="edit_athlete_name" name="edit_athlete_name" value="">
 										<!-- <div class="form-group">
 											<label>Athlete Name</label><br>
 											<input type="text" class="adjust_width" name="edit_athlete_name" data-validation-error-msg="Please Enter the name of the Athelete" data-validation="required">
 										</div> -->
-										<div class="form-group align-day align-day-popup" style=" white-space: normal;">
+										<div class="form-group align-day align-day-popup">
 										  <label for="date" class="popup_label" style="text-align:center;">Date Of Birth</label><br>
 										  <input class="popup_athlete_datepick" type="text">
 										 <!--  <select class="form-control classic dob_align1 fl" id="date1" name="edit_athlete_dobday" data-validation-error-msg="Please Select the Date" data-validation="required">
@@ -253,21 +253,21 @@
 										    <option value="1993">1993</option>
 										  </select> -->
 										</div>
-										<div class="form-group">
+										<div class="form-group col-md-10">
 					      					<label class="popup_label">Mobile Number</label><br>
-					      					<input id="ahtlete_mobile" type="text" value="" class="adjust_width box-width" name="edit_athlete_mobile" autocomplete="off" data-validation-error-msg="Please Enter the value that must contain 10 numbers" data-validation="length" data-validation-length="10">
+					      					<input id="ahtlete_mobile" type="text" value="" class="adjust_width box-width box-width-athlete" name="edit_athlete_mobile" autocomplete="off" data-validation-error-msg="Please Enter the value that must contain 10 numbers" data-validation="length" data-validation-length="10">
 					     				</div>
-										<div class="form-group">
+										<div class="form-group col-md-10">
 											  <label for="sel1" class="popup_label">Gender</label>
-											  <select class="form-control adjust_width classic box-width" id="sel1" name="edit_athlete_gender" data-validation-error-msg="Please Select the Gender" data-validation="required">
+											  <select class="form-control adjust_width classic box-width box-width-athlete" id="sel1" name="edit_athlete_gender" data-validation-error-msg="Please Select the Gender" data-validation="required">
 											  <option value=""></option>
 											  <option value="Female">Female</option>
 											  <option value="Male">Male</option>
 											  </select>
 										</div>
-										<div class="form-group">
+										<div class="form-group col-md-10">
 											  <label for="sel1" class="popup_label">State</label>
-											  <select class="form-control adjust_width classic athlete_state_act box-width" id="sel1" name="edit_athlete_state" data-validation-error-msg="Please Select the State" data-validation="required">
+											  <select class="form-control adjust_width classic athlete_state_act box-width box-width-athlete" id="sel1" name="edit_athlete_state" data-validation-error-msg="Please Select the State" data-validation="required">
 											  <option value="">State</option>
 											   <?php
 						                        $state_query = $statesFunction->statesSelect();
@@ -277,26 +277,26 @@
 						                      <?php } ?>
 											  </select>
 										</div>
-										<div class="form-group">
+										<div class="form-group col-md-10">
 											  <label for="sel1" class="popup_label">District</label>
-											  <select class="form-control adjust_width classic athlete_district_act box-width" id="sel1" name="edit_athlete_district" data-validation-error-msg="Please Select the District" data-validation="required">
+											  <select class="form-control adjust_width classic athlete_district_act box-width box-width-athlete" id="sel1" name="edit_athlete_district" data-validation-error-msg="Please Select the District" data-validation="required">
 											  <option value=""> District</option>
 											  </select>
 										</div>
 
-										<div class="align_height align_margin">
+										<div class="align_height align_margin col-md-10">
 											<label class="popup_label">Address</label><br>
-											<textarea class="area_width_athlete box-width" name="edit_athlete_address" data-validation-error-msg="Please Enter the Address" data-validation="required"></textarea>
+											<textarea class="area_width_athlete box-width box-width-athlete" name="edit_athlete_address" data-validation-error-msg="Please Enter the Address" data-validation="required"></textarea>
 										</div>
 
-										<div class="form-group">
+										<div class="form-group col-md-10">
 											<label class="popup_label">Taluka</label><br>
-											<input type="text" class="adjust_width box-width" name="edit_athlete_taluka" autocomplete="off" data-validation-error-msg="Please Enter the Taluka" data-validation="required">
+											<input type="text" class="adjust_width box-width box-width-athlete" name="edit_athlete_taluka" autocomplete="off" data-validation-error-msg="Please Enter the Taluka" data-validation="required">
 										</div>
 
-										<div class="form-group">
+										<div class="form-group col-md-10">
 											  <label for="sel1" class="popup_label">Sports</label>
-											  <select class="form-control adjust_width classic box-width form-group" id="sel1" name="edit_athlete_sports" data-validation-error-msg="Please Select the Sport" data-validation="required">
+											  <select class="form-control adjust_width classic box-width box-width-athlete form-group" id="sel1" name="edit_athlete_sports" data-validation-error-msg="Please Select the Sport" data-validation="required">
 											  <option value=""> Sports</option>
 											   <?php
 						                        $sports_query = $sportsfunction->sportsSelect();
@@ -310,7 +310,8 @@
 											<!-- <button type="button" class="btn btn-primary align_right clear edit_athletes_act">Submit</button>
 											<button type="button" class="btn btn-primary align_right clear">Clear</button> -->
 											<!-- <input type="reset" class="btn btn-primary align_right clear reset_form edit_athlete_clear" value="Clear"> -->
-											<input type="submit" class="btn btn-primary align_right test-submit clear edit_athletes_act" value="Save">
+											<input type="submit" class="btn btn-primary test-submit clear edit_athletes_act" value="Save">
+											<input type="reset" class="btn btn-primary clear" value="Cancel">
 										</div>
 									</form>
 				          		  </div>

@@ -296,7 +296,8 @@
 											</div><!--add-ranges-button-->
 											<div class="col-md-12 schedule_btn">
 												<!-- <input type="reset" value="Clear" class="btn btn-primary align_right clear" maxlength="50"> -->
-												<input type="submit" class="btn btn-primary align_right test-submit clear edit_range_act" value="Save">
+												<input type="submit" class="btn btn-primary test-submit clear edit_range_act" value="Save">
+												<input type="reset" value="Cancel" class="btn btn-primary clear reset_form" maxlength="50">
 											</div>
 										</form>
 									</div>

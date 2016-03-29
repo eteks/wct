@@ -2,7 +2,7 @@
     font-family: Montserrat;
     src :url(../fonts/Montserrat-Regular.ttf);
 }
-.header_bg {
+.header_bg  {
     background: url("../images/header.png");
     background-color: transparent;
     background-size: cover;
@@ -138,7 +138,7 @@
 	text-align: center;
 }
 .align_right{
-	float: right;
+	float: right !important;
 }
 .sports{
   	font-size: 48px;
@@ -213,17 +213,17 @@
 .clear{
     background-color: #006687 !important;
     color: #fff !important;
-    height: 45px;
-    width: 135px;
+    height: 40px;
+    width: 100px;
     border-radius: 0 !important;
     font-weight: bold;
     font-family: Montserrat;
-    margin-right: 0px;
+    margin-right: 20px;
 }
 .clear:hover{
     background: none repeat scroll 0 0 #fff !important;
-    height: 45px;
-    width: 135px;
+    height: 40px;
+    width: 100px;
     border-radius: 0 !important;
     font-weight: bold;
     font-family: Montserrat;
@@ -481,7 +481,7 @@ select {
     height: 370px;
     float: right;
     right: 0px;
-    width: 290px;
+    width: 400px;
     position:absolute;
     z-index:9999;
     background:#fff;
@@ -489,11 +489,14 @@ select {
     display:none;
     overflow-y: scroll;
 }
+.createschedule_div{
+	width: 500px !important;
+}
 .test_battery{
     background: #fff none repeat scroll 0 0;
     box-shadow: 0 2px 10px 3px #b8b7b9;
     display: none;
-    height: 390px;
+    height: 440px;
     float: right;
     right: 0px;
     position: absolute;
@@ -545,6 +548,7 @@ select {
     height: 32px;
     margin-right: 9px;
     width: 45px;
+    padding: 0px !important;
 }
 .no_btn{
     background-color: #ffffff !important;
@@ -555,6 +559,7 @@ select {
     height: 32px;
     margin-right: 40px;
     width: 45px;
+    padding: 0px !important;
 }
 .yes_btn:hover,.no_btn:hover{
     background-color: #006687 !important;
@@ -1076,38 +1081,41 @@ input[type=radio]:checked + label:before {
     border-radius: 0 !important;
     box-shadow: none !important;
     color: #424242 !important;
+    float: left;
     font-family: Montserrat;
     height: 34px;
     margin: 0 0 10px -25px;
     position: relative;
-    right: 0;
-    width: 220px !important;
+    right: 46px;
+    width: 105px !important;
 }
 .create-time2{
     border-radius: 0 !important;
     box-shadow: none !important;
-    color: #424242  !important;
+    color: #424242 !important;
+    float: left;
     font-family: Montserrat;
     height: 34px;
-    margin: 0px 0 10px;
+    margin: 0 0 10px;
     position: relative;
-    right: 25px;
-    width: 220px !important;
+    right: 46px;
+    width: 100px !important;
 }
 .create-time3{
     border-radius: 0 !important;
     box-shadow: none !important;
-    color: #424242  !important;
+    color: #424242 !important;
     font-family: Montserrat;
     height: 34px;
-    margin: 0px 0 0px -36px;
+    left: 17px;
+    margin: 0 0 0 -46px;
     position: relative;
-    right: -10px;
-    width: 220px !important;
+    width: 100px !important;
 }
 .area_width_create{
-    float: left;
-    width: 115%;
+    position: relative;
+    right: 45px;
+    width: 86%;
 }
 .dob_align1{
     border-radius: 0 !important;
@@ -1179,7 +1187,7 @@ input[type=radio]:checked + label:before {
     margin-top: 10px;
     padding: 6px 2px;
     position: relative;
-    right: 80px;
+    right: 95px;
     width: 125px;
 }
 .athletes_drop{
@@ -1312,7 +1320,7 @@ input[type=radio]:checked + label:before {
     right: 19%;
 }
 .align-day {
-    width: 100%;
+    width: 107% !important;
 }
 .tooltip_parameter{
     background: #828282 none repeat scroll 0 0;
@@ -1767,9 +1775,11 @@ tbody tr {
     float: left;
 }
 .align-day-popup select {
-    left: 2px !important;
+    padding: 0 !important;
     position: relative !important;
-    width: 105% !important;
+    right: 70px;
+    width: 23% !important;
+     font-size: 13px;
 }
 .test-list {
     height: 175px;
@@ -1990,4 +2000,37 @@ td {
 	text-align:right; 
 	position: relative; 
 	right: 15px;
+}
+.total_align{
+	font-weight: bold;
+	color: #006687;
+}
+.box-width-athlete {
+    box-shadow: none !important;
+    float: left;
+    height: 30px !important;
+    position: relative;
+    
+    width: 349px !important;
+}
+.athlete_popup{
+	width: 500px !important;
+}
+.width-assign{
+	width: 330px !important;
+}
+.test_error{
+	display:none;
+}
+/*.positioning{
+	position: absolute;
+	top:220px;
+}*/
+.button-align{
+	background: #006687 none repeat scroll 0 0;
+    border: 1px solid #006687;
+    color: #fff;
+    height: 35px;
+    padding: 0 !important;
+    width: 35px;
 }

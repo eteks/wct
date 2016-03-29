@@ -63,8 +63,8 @@
 	                      <?php } ?>
 					  </select>
 					</div>
-					<div class="form-group">
-					  <label for="date" class="fl">Select Date</label><br>
+					<div class="form-group col-md-12">
+					  <label for="date" class="fl"  style="position: relative; right: 10px;">Select Date</label><br>
 				    	<input class="date_pick" type="text">
 					</div>
 					<div class="form-group col-md-12">
@@ -337,9 +337,9 @@
 													<label>Enter the schedule Name</label><br>
 													<input type="text" class="adjust_width" name="edit_schedule_name" data-validation-error-msg="Please Enter the name of the Schedule" data-validation="required">
 												</div> -->
-												<div class="form-group">
+												<div class="form-group col-md-12">
 												  <label for="battey_name" class="popup_label">Select Test Battery Name</label>
-												  <select class="form-control classic adjust_width box-width form-group" id="battey_name" name="edit_schedule_testbattery" data-validation-error-msg="Please Select the name of the Test Battery Name" data-validation="required">
+												  <select class="form-control classic adjust_width box-width width-assign form-group" id="battey_name" name="edit_schedule_testbattery" data-validation-error-msg="Please Select the name of the Test Battery Name" data-validation="required">
 												  	<option value=""> Test Battery Name</option>
 												   <?php
 								                        $tb_query = $testbattery->testbatterySelect();
@@ -350,7 +350,7 @@
 												  </select>
 												</div>
 
-												<div class="form-group align-day align-day-popup" style=" white-space: normal;">
+												<div class="form-group align-day align-day-popup col-md-12">
 												  <label for="date" class="popup_label">Select date</label><br>
 												  <input class="popup_date_pick" type="text">
 												 <!--  <select class="form-control classic create-date1 fl" id="date" name="edit_schedule_day" data-validation-error-msg="Please Select the Date" data-validation="required">
@@ -375,7 +375,7 @@
 
 												<div class="form-group col-md-12">
 												  <label for="date" class="popup_label">Select Time</label><br>
-												  	<div class="col-md-12">
+												  	<div class="">
 														<select class="form-control classic create-time1" id="hour" name="edit_schedule_hour" data-validation-error-msg="Please Select the Hour" data-validation="required">
 														  	<option value="">Hour</option>
 														    <option value="01">01</option>
@@ -404,7 +404,7 @@
 														    <option value="24">24</option>
 														</select>
 													</div>
-													<div class="col-md-12">
+													<div class="col-md-3">
 														<select class="form-control classic create-time2 popup_label" id="minute" name="edit_schedule_minute" data-validation-error-msg="Please Select the Minute" data-validation="required">
 														  	<option value="">Minute</option>
 														  	<option value="00">00</option>
@@ -469,7 +469,7 @@
 											                <option value="59">59</option>
 														</select>
 													</div>
-													<div class="col-md-12">
+													<div class="col-md-3">
 												  		<select class="form-control classic create-time3 popup_label" id="seconds" name="edit_schedule_seconds" data-validation-error-msg="Please Select the Seconds" data-validation="required">
 													  	<option value="">Seconds</option>
 													    <option value="00">00</option>
@@ -544,7 +544,8 @@
 													<!-- <button type="button" class="btn btn-primary align_right clear edit_createschedule_act">Submit</button>
 													<button type="button" class="btn btn-primary align_right clear">Clear</button> -->
 													<!-- <input type="reset" class="btn btn-primary align_right clear reset_form" value="Clear"> -->
-													<input type="submit" class="btn btn-primary align_right test-submit clear edit_createschedule_act" value="Save">
+													<input type="submit" class="btn btn-primary test-submit clear edit_createschedule_act" value="Save">
+													<input type="reset" class="btn btn-primary clear reset_form" value="Cancel">
 												</div>
 								          	</form>
 								          		</div>

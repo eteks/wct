@@ -323,7 +323,7 @@
     
 
     $(document).ready(function () {
-
+		 
       package_menu();
 
       $('.add_createschedule_act,.edit_createschedule_act,.add_athletes_act,.edit_athletes_act').on('click', function(){
@@ -679,8 +679,9 @@
           										</div>\
           										<input class="parameter_update" type="hidden" name="parameter_update" value="" />\
           										<input class="test_update_id" type="hidden" name="test_update_id" value="" />\
-          										<div class="col-md-12 schedule_btn">\
-          											<input type="submit" class="btn btn-primary align_right  clear" value="Save">\
+          										<div class="col-md-12 schedule_btn" style="white-space: nowrap;">\
+          											<input type="submit" class="btn btn-primary clear" value="Save">\
+          											<input type="reset" value="Cancel" class="btn btn-primary clear reset_form" maxlength="50">\
           										</div>\
           									</form>\
           								</div>\
@@ -2451,8 +2452,9 @@
                                           <label>Enter Parameter Unit</label><br>\
                                           <input type="text" class="adjust_width adjust_popup_width edit_param_unit" name="parameter_unit" data-validation-error-msg="Please Enter the Unit of the Parameter" data-validation="required" autocomplete="off">\
                                       </div>\
-                                      <div class="col-md-12 schedule_btn">\
-                                          <input type="submit" class="btn btn-primary align_right clear edit_parameter_unit_act" value="Save">\
+                                      <div class="col-md-10 align_right schedule_btn">\
+                                          <input type="submit" class="btn btn-primary clear edit_parameter_unit_act" value="Save">\
+                                          <input type="reset" class="btn btn-primary clear reset_form_dist" value="Cancel">\
                                       </div>\
                                   </form>\
                               </div>\
@@ -4286,7 +4288,8 @@ $(document).on('blur','.enter_result',function(e){
 													</div>\
 													<input type="hidden" name="assing_schedule_update" value="1" />\
 													<div class="col-md-10 schedule_btn">\
-					  									<input type="submit" value="Save" class="btn btn-primary align_right test-submit clear">\
+					  									<input type="submit" value="Save" class="btn btn-primary test-submit clear">\
+					  									<input type="reset" value="Cancel" class="btn btn-primary clear" maxlength="50">\
 													</div>\
 												</form>\
 											</div>\
@@ -4388,3 +4391,5 @@ $(document).on('blur','.enter_result',function(e){
             $(".popup_hidden").removeClass("reverse");
         }
     });
+	
+	
