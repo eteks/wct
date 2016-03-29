@@ -220,6 +220,9 @@
 										<input type="hidden" name="edit_range_id">
 										<input type="hidden" class ="edit_range_testbattery" name="edit_range_testbattery" value="<?php echo $row['rangetestbattery_id']; ?>">
 										<input type="hidden" class="edit_remove_rattr_id" name="edit_remove_rattr_id" value="">
+										<input type="hidden" class="hide_range_parameter" name="hide_range_parameter">
+									    <input type="hidden" class="hide_range_category" name="hide_range_category">
+									    <input type="hidden" class="hide_range_test" name="hide_range_test">	
 											<!-- <div class="form-group">
 											    <label for="sel1" class="popup_label">Select Test Battery Names</label>
 											  	<select class="form-control adjust_width classic box-width box_range" id="sel1" name="edit_range_testbattery" data-validation-error-msg="Please Select the Name of Test Battery " data-validation="required">

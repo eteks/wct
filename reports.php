@@ -10,8 +10,8 @@ if(isset($_POST['submit'])){
 }else{
 require_once "header.php";
 }
-require_once "functions/create_schedule_function.php";
-$createschedule = new createscheduleFunction();
+require_once "functions/assign_schedule_function.php";
+$createschedule = new assignscheduleFunction();
 
 ?>
 <?php
@@ -120,7 +120,7 @@ $createschedule = new createscheduleFunction();
 								<label>Select Schedule</label><br>
 								<div class="area_scroll">
 									<?php
-									   $data = $createschedule->createscheduleselectfunction();
+									   $data = $createschedule->assignschedulenamefunction();
 									   foreach( $data as $eachrecord ) {
 										?>
 									<div class="checkbox align_check">

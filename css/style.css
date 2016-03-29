@@ -667,7 +667,7 @@ select {
     color: #424242 !important;
     font-family: Montserrat;
     height: 34px;
-    margin: 25px 0 10px -12px;
+    margin: 0px 0 10px -12px;
     max-width: 170px;
     text-overflow: ellipsis;
     white-space: nowrap;

@@ -180,8 +180,10 @@
               $('[name=edit_range_testbattery]').find("option:contains("+range_obj[i].rangetestbattery_name+")").attr("selected","selected");
               $('[name=edit_range_category]').find("option[value="+range_obj[i].rangecategory_id+"]").attr("selected","selected");
               $('[name=edit_range_test]').find("option[value="+range_obj[i].rangetest_id+"]").attr("selected","selected");
-
               $('[name=edit_range_parameter]').html('<option value="'+range_obj[i].rangetestattribute_id+'" selected>'+range_obj[i].rangeparameter_name+'</option>');
+              $(el).parents('tr').find('.hide_range_parameter').val(range_obj[i].rangetestattribute_id);
+              $(el).parents('tr').find('.hide_range_category').val(range_obj[i].rangecategory_id);
+              $(el).parents('tr').find('.hide_range_test').val(range_obj[i].rangetest_id);
                   if(range_obj[i].rangeparameter_type.toLowerCase() == 'time')
                     // $('.edit_range_notes').text("Enter the range in "+range_obj[i].rangeparameter_unit+ " format");
                     $('.edit_range_notes').text("Enter Ranges for "+range_obj[i].rangeparameter_name+" in "+range_obj[i].rangeparameter_unit);
@@ -259,7 +261,7 @@
               }
            });
         $(".assign_clone_content .custom-combobox-input").each(function(index) {
-          if(currentInput === $(this).val()) {
+          if(athe_id === $(this).parents('.assign_clone_content').find('.athlete_name').val()) {
               j++;
           }
         });
@@ -2089,6 +2091,7 @@
             newElement.find('#type').removeAttr('name').attr('name', 'type'+id);
             newElement.find('#unit').removeAttr('name').attr('name', 'unit'+id).removeClass('error').removeAttr('style').empty().append("<option value='' selected>UNIT</option>");
             newElement.find('#unit').next('span').remove();
+            newElement.find('label').remove();
             newElement.find('#format').removeAttr('name').attr('name', 'format'+id);
             newElement.appendTo($(".parameter_holder1"));
         }
@@ -3615,7 +3618,7 @@ $(document).on('blur','.enter_result',function(e){
                 if(!(/^(?:[0-2][0-4]|[0-1][0-9]):(?:[0-5][0-9]):[0-5][0-9]$/).test(value)){
                   // alert("check time format");
                   $(this).next().next().next('.hided').removeClass('custom_error').hide();
-                  $(this).next().next('.hided').addClass('custom_error').text('Please Check time format').show();
+                  $(this).next().next('.hided').addClass('custom_error').text('Please enter ranges in correct format').show();
                 }
                 else{
                   $(this).next().next('.hided').removeClass('custom_error').text('').hide();
@@ -3624,7 +3627,7 @@ $(document).on('blur','.enter_result',function(e){
               else if($range_parameter_format.val().toLowerCase()=="hh:mm"){
                 if(!(/^(?:[0-2][0-4]|[0-1][0-9]):[0-5][0-9]$/).test(value)){
                   $(this).next().next().next('.hided').removeClass('custom_error').hide();
-                  $(this).next().next('.hided').addClass('custom_error').text('Please Check time format').show();
+                  $(this).next().next('.hided').addClass('custom_error').text('Please enter ranges in correct format').show();
                 }
                 else{
                   $(this).next().next('.hided').removeClass('custom_error').text('').hide();
@@ -3633,7 +3636,7 @@ $(document).on('blur','.enter_result',function(e){
               else if($range_parameter_format.val().toLowerCase()=="mm:ss"){
                 if(!(/^(?:[0-5][0-9]):[0-5][0-9]$/).test(value)){
                   $(this).next().next().next('.hided').removeClass('custom_error').hide();
-                  $(this).next().next('.hided').addClass('custom_error').text('Please Check time format').show();
+                  $(this).next().next('.hided').addClass('custom_error').text('Please enter ranges in correct format').show();
                 }
                 else{
                   $(this).next().next('.hided').removeClass('custom_error').text('').hide();
@@ -3642,7 +3645,7 @@ $(document).on('blur','.enter_result',function(e){
               else if($range_parameter_format.val().toLowerCase()=="hh:mm:ss:mss"){
                 if(!(/^(?:[0-2][0-4]|[0-1][0-9]):(?:[0-5][0-9]):(?:[0-5][0-9]):([0-9][0-9]|[0-9][0-9][0-9]|[0-1][0][0][0])$/).test(value)){
                   $(this).next().next().next('.hided').removeClass('custom_error').hide();
-                  $(this).next().next('.hided').addClass('custom_error').text('Please Check time format').show();
+                  $(this).next().next('.hided').addClass('custom_error').text('Please enter ranges in correct format').show();
                 }
                 else{
                   $(this).next().next('.hided').removeClass('custom_error').text('').hide();
@@ -3651,7 +3654,7 @@ $(document).on('blur','.enter_result',function(e){
               else if($range_parameter_format.val().toLowerCase()=="mm:ss:mss"){
                 if(!(/^(?:[0-5][0-9]):(?:[0-5][0-9]):([0-9][0-9]|[0-9][0-9][0-9]|[0-1][0][0][0])$/).test(value)){
                   $(this).next().next().next('.hided').removeClass('custom_error').hide();
-                  $(this).next().next('.hided').addClass('custom_error').text('Please Check time format').show();
+                  $(this).next().next('.hided').addClass('custom_error').text('Please enter ranges in correct format').show();
                 }
                 else{
                   $(this).next().next('.hided').removeClass('custom_error').text('').hide();
@@ -3660,7 +3663,7 @@ $(document).on('blur','.enter_result',function(e){
               else if($range_parameter_format.val().toLowerCase()=="ss:mss"){
                 if(!(/^(?:[0-5][0-9]):([0-9][0-9]|[0-9][0-9][0-9]|[0-1][0][0][0])$/).test(value)){
                   $(this).next().next().next('.hided').removeClass('custom_error').hide();
-                  $(this).next().next('.hided').addClass('custom_error').text('Please Check time format').show();
+                  $(this).next().next('.hided').addClass('custom_error').text('Please enter ranges in correct format').show();
                 }
                 else{
                   $(this).next().next('.hided').removeClass('custom_error').text('').hide();
@@ -3669,7 +3672,7 @@ $(document).on('blur','.enter_result',function(e){
               else if($range_parameter_format.val().toLowerCase()=="mss"){
                 if(!(/^(?:[0-9][0-9]|[0-9][0-9][0-9]|[0-1][0][0][0])$/).test(value)){
                   $(this).next().next().next('.hided').removeClass('custom_error').hide();
-                  $(this).next().next('.hided').addClass('custom_error').text('Please Check time format').show();
+                  $(this).next().next('.hided').addClass('custom_error').text('Please enter ranges in correct format').show();
                 }
                 else{
                   $(this).next().next('.hided').removeClass('custom_error').text('').hide();
@@ -3705,7 +3708,7 @@ $(document).on('blur','.enter_result',function(e){
                   parameter_format = $range_parameter_format.val();
                   if(decimals > parameter_format || value.indexOf(":") !== -1){
                      $(this).next().next().next('.hided').removeClass('custom_error').hide();
-                     $(this).next().next('.hided').addClass('custom_error').text('Please Check range format').show();
+                     $(this).next().next('.hided').addClass('custom_error').text('Please enter ranges in correct format').show();
                   }
                   else{
                      // $(this).next().next().next('.hided').removeClass('custom_error').hide();
@@ -3713,7 +3716,7 @@ $(document).on('blur','.enter_result',function(e){
                   }
                   if (value.indexOf(".") !== -1 && decimals == 0){
                     $(this).next().next().next('.hided').removeClass('custom_error').hide();
-                    $(this).next().next('.hided').addClass('custom_error').text('Please Check range format').show();
+                    $(this).next().next('.hided').addClass('custom_error').text('Please enter ranges in correct format').show();
                   }
               }
             }
@@ -4281,6 +4284,33 @@ $(document).on('blur','.enter_result',function(e){
 			}
   		});
   		
+  		$(document).delegate('.assign_clone_content .athlete_bib','blur',function(){
+          var j = 0;
+          var currentInput  = $(this).val();
+        $(this).parents('.assign_content_holder').find(".athlete_bib").each(function(index) {
+          if(currentInput === $(this).val()) {
+              j++;
+          }
+        });
+        if(j=='2'){
+            alert('Bib No. Already assigned!');
+            $(this).parents('.assign_clone_content').find('.athlete_bib').val('');
+        }
+      });
+      
+      $(document).delegate('.assign_clone_content_edit .athlete_bib','blur',function(){
+          var j = 0;
+          var currentInput  = $(this).val();
+        $(this).parents('.assign_clone_content_edit_holder').find(".athlete_bib").each(function(index) {
+          if(currentInput === $(this).val()) {
+              j++;
+          }
+        });
+        if(j=='2'){
+            alert('Bib No. Already assigned!');
+            $(this).parents('.assign_clone_content_edit').find('.athlete_bib').val('');
+        }
+      });
   		
         
         //********* end *********
