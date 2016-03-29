@@ -149,8 +149,9 @@
 												<label>Enter Parameter Unit</label><br>
 												<input type="text" class="adjust_width adjust_popup_width edit_param_unit" name="parameter_unit" data-validation-error-msg="Please Enter the Unit of the Parameter" data-validation="required" autocomplete="off">
 											</div>
-											<div class="col-md-12 schedule_btn">
-												<input type="submit" class="btn btn-primary align_right clear edit_parameter_unit_act" value="Save">
+											<div class="col-md-10  align_right schedule_btn">
+												<input type="submit" class="btn btn-primary clear edit_parameter_unit_act" value="Save">
+												<input type="reset" class="btn btn-primary clear reset_form_dist" value="Cancel">
 											</div>
 										</form>
 									</div>
