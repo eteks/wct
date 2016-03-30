@@ -2025,6 +2025,7 @@
           }
         });
 
+
         var current_id = 1;
         $(document).on('click','.parameter_btn',function(e){
             if(($('.clone_content:last').children().find('.parameter_name').val() == '') || ($('.clone_content:last').children().find('.parameter_type').val() == '') || ($('.clone_content:last').children().find('.parameter_unit').val() == '') || ($('.clone_content:last').children().find('.parameter_format').val() == '') || ($('.clone_content').children().find('.parameter_name').val() == '') || ($('.clone_content').children().find('.parameter_type').val() == '') || ($('.clone_content').children().find('.parameter_unit').val() == '') || ($('.clone_content').children().find('.parameter_format').val() == ''))
@@ -2044,6 +2045,7 @@
             nextElement($('.clone_content:last'));
             $('.clone_content:last').attr('id','parameter_count'+id);
            }
+           return false;
         });
 
         $(".reset_form,.test_submit_act").on('click', function() {
@@ -2196,6 +2198,7 @@
           if($('.district_clone_content').length !=1){
             $('.district_clone_content:last').remove();
           }
+          return false;
        });
        $('form[name="district_form"]').submit(function(e){
 
@@ -2910,6 +2913,11 @@
           $(".parameter-list").fadeOut(1000);
         });
 
+
+      $(document).on('click','.restrict_form',function(e){
+        return false;
+      });
+
         // Jquery functions for Range Form added by kalai
         var current_id = 1;
         $(document).on('click','.add_range_points',function(e){
@@ -2928,6 +2936,7 @@
               nextrangeElement($('.clone_content:last'));
               $('.clone_content:last').attr('id','range_counter'+id);
            }
+           return false;
         });
 
         // $(document).on('click','.add_range_points',function(e){
@@ -3524,12 +3533,14 @@ $(document).on('blur','.enter_result',function(e){
           if($('.clone_content').length !=1){
             $('.clone_content:last').remove();
           }
+          return false;
         });
         $('.range_remove').click(function(){
           if($('.clone_content').length !=1){
             $('.clone_content:last').remove();
             current_id -=1;
           }
+          return false;
         });
 
         var remove_rattr_id = [];
@@ -3541,6 +3552,7 @@ $(document).on('blur','.enter_result',function(e){
             remove_element.remove();
             $('.edit_remove_rattr_id').val(remove_rattr_id);
           }
+          return false;
         });
 
         $('.assign_remove').click(function(){
@@ -4045,6 +4057,7 @@ $(document).on('blur','.enter_result',function(e){
               newElement.appendTo($(".edit_range_holder"));
               $(this).parents('.add-ranges-button').siblings('.edit_range_holder').find('.edit_clone_content:last').attr('id','edit_range_counter'+id);
            }
+           return false;
         });
 
         $('.edit_district_add').click(function(){

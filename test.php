@@ -108,14 +108,18 @@ if (isset($_GET['insert_new'])) {
 					</div>
 					<div class="form-group parameter__align col-md-1">
 						<!-- <input type="button" class="btn btn-primary align_right parameter_btn"> -->
-						<i class="fa fa-plus parameter_btn parameter_add">
-							<div class="tooltip_parameter">Add Parameter</div>
-							<div class="tip_triangle"></div>
-						</i>
-						<i class="fa fa-minus parameter_remove">
-							<div class="tooltip_remove">Remove Parameter</div>
-							<div class="tip_triangle"></div>
-						</i>
+						<button class="plus_align parameter_btn parameter_add">
+							<i class="fa fa-plus">
+								<div class="tooltip_parameter">Add Parameter</div>
+								<div class="tip_triangle"></div>
+							</i>
+						</button>
+						<button class="plus_align parameter_remove">
+							<i class="fa fa-minus">
+								<div class="tooltip_remove">Remove Parameter</div>
+								<div class="tip_triangle"></div>
+							</i>
+						</button>
 					</div>
 
 					<input type="hidden" name="test_add" value="1">
@@ -157,8 +161,8 @@ if (isset($_GET['insert_new'])) {
 							              </div>
 							              <div class="del_content">
 							                <span class="del_content_txt">Are you sure want to delete this whole record?</span>
-							                <input type="button" class="btn btn-primary align_right yes_btn" data-id ="<?php echo $eachrecord['test_id']; ?>" value="Yes" data-delete='test_name'>
-							                <input type="button" class="btn btn-primary align_right no_btn" value="No">
+							                <input type="button" class="btn btn-primary center_align yes_btn" data-id ="<?php echo $eachrecord['test_id']; ?>" value="Yes" data-delete='test_name'>
+							                <input type="button" class="btn btn-primary center_align no_btn" value="No">
 							                <input type="hidden" name="delete_id" value="" id="delete_id"/>
 										</div><!--del_content-->
       								</div><!--delete_div -->

@@ -66,14 +66,18 @@
 							</div>
 						</div>
 						<div class="form-group district-add col-md-4 padding_zero">
-							<i class="fa fa-plus district_add">
-								<div class="tooltip_parameter">Add District</div>
-								<div class="tip_triangle"></div>
-							</i>
-							<i class="fa fa-minus district_remove">
-								<div class="tooltip_remove">Remove District</div>
-								<div class="tip_triangle"></div>
-							</i>
+							<button class="plus_align district_add">
+								<i class="fa fa-plus">
+									<div class="tooltip_parameter">Add District</div>
+									<div class="tip_triangle"></div>
+								</i>
+							</button>
+							<button class="plus_align district_remove">
+								<i class="fa fa-minus">
+									<div class="tooltip_remove">Remove District</div>
+									<div class="tip_triangle"></div>
+								</i>
+							</button>
 						</div>
 						<div class="form-group col-md-12 padding_zero">
 							<input type="submit" class="btn btn-primary clear add_district_act" name="district" value="Submit">

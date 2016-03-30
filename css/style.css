@@ -760,7 +760,7 @@ select {
     position: relative;
     top: 20px;
 }
-.plus_align {
+/*.plus_align {
     background: rgb(0, 102, 135) none repeat scroll 0 0;
     color: rgb(255, 255, 255);
     cursor: pointer;
@@ -768,6 +768,18 @@ select {
     padding: 12px 10px 7px 12px;
     position: relative;
     top: 1px;
+}*/
+.plus_align{
+    background: rgb(0, 102, 135) none repeat scroll 0 0;
+    border: 1px solid;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    height: 35px;
+    left: 0;
+    padding-right: 15px !important;
+    position: relative;
+    top: 1px;
+    width: 35px;
 }
 .parameter_remove,.district_remove{
     background: #006687 none repeat scroll 0 0;
@@ -1326,7 +1338,7 @@ input[type=radio]:checked + label:before {
 .tooltip_parameter{
     background: #828282 none repeat scroll 0 0;
     border-radius: 5px;
-    bottom: 45px;
+    bottom: 29px;
     color: #fff;
     display: none;
     font-family: Montserrat;
@@ -1342,7 +1354,7 @@ input[type=radio]:checked + label:before {
 .tooltip_remove{
     background: #828282 none repeat scroll 0 0;
     border-radius: 5px;
-    bottom: 45px;
+    bottom: 33px;
     color: #fff;
     display: none;
     font-family: Montserrat;
@@ -1393,7 +1405,7 @@ input[type=radio]:checked + label:before {
     height: 0;
     left: 8px;
     position: absolute;
-    top: -15px;
+    top: -19px;
     width: 0;
 }
 .range_remove{
@@ -1403,7 +1415,11 @@ input[type=radio]:checked + label:before {
     left: 6px;
     padding: 10px;
     position: relative;
-    top: -1px;
+    top: 1px;
+}
+.plus_align:focus{
+    outline: thin dotted;
+    outline-offset: -2px;
 }
 .assign_remove{
     background: #006687 none repeat scroll 0 0;
