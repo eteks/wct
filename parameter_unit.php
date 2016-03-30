@@ -151,7 +151,7 @@
 											</div>
 											<div class="col-md-10  align_right schedule_btn">
 												<input type="submit" class="btn btn-primary clear edit_parameter_unit_act" value="Save">
-												<input type="reset" class="btn btn-primary clear reset_form_dist" value="Cancel">
+												<input type="reset" class="btn btn-primary clear reset_form" value="Cancel">
 											</div>
 										</form>
 									</div>

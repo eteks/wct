@@ -25,6 +25,7 @@
           source: $.proxy( this, "_source" )
         })
         .attr("data-validation","required")
+        .attr("data-validation-error-msg","Please enter Athlete Name")
         .tooltip({
           tooltipClass: "ui-state-highlight"
         });

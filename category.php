@@ -56,7 +56,8 @@ $obj = new categoryfunction();
 												<input type="hidden" name="category_update" value="1">
 											</div><!--align_margin-->
 											<!-- <button type="button" class="btn btn-primary align_right clear category_update_act">Submit</button> -->
-											<input type="submit" class="btn btn-primary align_right clear category_update_act" value="Save">
+											<input type="submit" class="btn btn-primary clear category_update_act center_align" value="Save">
+											<input type="reset" value="Cancel" class="btn btn-primary clear center_align">
 										</form>
 									</div><!--state-content-->
 								</div><!--state_div-->

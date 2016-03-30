@@ -49,12 +49,12 @@
 				<input type="hidden" class="statesid" name="edit_schedule_id">
 					<div class="form-group">
 						<label>Enter Name of Schedule</label><br>
-						<input type="text" class="adjust_width" name="schedule_name" data-validation-error-msg="Please enter Name of Schedule" data-validation="required">
+						<input type="text" class="adjust_width" name="schedule_name" data-validation-error-msg="Please Enter Name of Schedule" data-validation="required">
 					</div>
 					<div class="form-group">
 					  <label for="battey_name">Select Test Battery</label>
 					  <select class="form-control classic adjust_width" id="battey_name" name="schedule_testbattery" autocomplete="off" data-validation-error-msg="Please select Test Battery" data-validation="required">
-					  	<option value="">Select Test Battery Name</option>
+					  	<option value="">Select Test Battery</option>
 					    <?php
 	                        $query = $testbattery->testbatterySelect();
 	                        while ($row = mysql_fetch_array($query)) {
@@ -63,12 +63,12 @@
 	                      <?php } ?>
 					  </select>
 					</div>
-					<div class="form-group col-md-12">
-					  <label for="date" class="fl"  style="position: relative; right: 10px;">Select Date</label><br>
+					<div class="form-group">
+					  <label for="date" class="fl"  style="position: relative;">Select Date</label><br>
 				    	<input class="date_pick" type="text">
 					</div>
 					<div class="form-group col-md-12">
-					  <label for="date" class="fl" style="position: relative; left: -10px;">Select Time</label><br>
+					  <label for="date" class="fl" style="position: relative; left: -17px;">Select Time</label><br>
 					  	<div class="form-group align-time col-md-3">
 							<select class="form-control classic adjust_tiny fl" id="hour" name="schedule_hour" data-validation-error-msg="Please select Hour" data-validation="required">
 							  	<option value="">Hour</option>
@@ -337,10 +337,10 @@
 													<label>Enter the schedule Name</label><br>
 													<input type="text" class="adjust_width" name="edit_schedule_name" data-validation-error-msg="Please Enter the name of the Schedule" data-validation="required">
 												</div> -->
-												<div class="form-group col-md-12">
+												<div class="form-group col-md-5">
 												  <label for="battey_name" class="popup_label">Select Test Battery Name</label>
-												  <select class="form-control classic adjust_width box-width width-assign form-group" id="battey_name" name="edit_schedule_testbattery" data-validation-error-msg="Please Select the name of the Test Battery Name" data-validation="required">
-												  	<option value=""> Test Battery Name</option>
+												  <select class="form-control classic adjust_width box-width width-assign form-group" id="battey_name" name="edit_schedule_testbattery" data-validation-error-msg="Please Select Test Battery Name" data-validation="required">
+												  	<option value="">Select Test Battery Name</option>
 												   <?php
 								                        $tb_query = $testbattery->testbatterySelect();
 								                        while ($tb_row = mysql_fetch_array($tb_query)) {
@@ -375,7 +375,7 @@
 
 												<div class="form-group col-md-12">
 												  <label for="date" class="popup_label">Select Time</label><br>
-												  	<div class="">
+												  	<div class="col-md-3">
 														<select class="form-control classic create-time1" id="hour" name="edit_schedule_hour" data-validation-error-msg="Please Select the Hour" data-validation="required">
 														  	<option value="">Hour</option>
 														    <option value="01">01</option>
@@ -470,7 +470,7 @@
 														</select>
 													</div>
 													<div class="col-md-3">
-												  		<select class="form-control classic create-time3 popup_label" id="seconds" name="edit_schedule_seconds" data-validation-error-msg="Please Select the Seconds" data-validation="required">
+												  		<select class="form-control classic create-time3 popup_label" id="seconds" name="edit_schedule_seconds" data-validation-error-msg="Please select Time" data-validation="required">
 													  	<option value="">Seconds</option>
 													    <option value="00">00</option>
 													    <option value="01">01</option>

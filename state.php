@@ -57,7 +57,8 @@
 														<span class="edit_states_error"></span>
 													</div>
 													<!-- <button type="button" class="btn btn-primary align_right clear edit_states_act" name="edit_states">Submit</button> -->
-													<input type="submit" class="btn btn-primary align_right clear edit_states_act" value="Save">
+													<input type="submit" class="btn btn-primary center_align clear edit_states_act" value="Save">
+													<input type="reset" value="Cancel" class="btn btn-primary clear center_align">
 												</form>
 											</div><!--state-content-->
 									</div><!--state_div-->

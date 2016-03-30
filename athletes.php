@@ -311,7 +311,7 @@
 											<button type="button" class="btn btn-primary align_right clear">Clear</button> -->
 											<!-- <input type="reset" class="btn btn-primary align_right clear reset_form edit_athlete_clear" value="Clear"> -->
 											<input type="submit" class="btn btn-primary test-submit clear edit_athletes_act" value="Save">
-											<input type="reset" class="btn btn-primary clear" value="Cancel">
+											<input type="reset" class="btn btn-primary clear reset_form" value="Cancel">
 										</div>
 									</form>
 				          		  </div>

@@ -45,23 +45,25 @@ $obj = new sportsfunction();
 	    	<span class="edit_state"><i class="fa fa-pencil-square-o"></i></span>
 	    	<span class="delete_state" data-value="<?php echo $eachrecord ['sports_id']; ?>"><i class="fa fa-trash-o"></i></span>
 			<div class="state_div edit_sports_div popup_hidden">
-			<code class="close_btn cancel_btn"> </code>
-			<div class="edit_title">
-            	<span class="del_txt">Edit Sport</span>
-          	</div><!--edit_title-->
-			<div class="container state-content col-md-12">
-			<form name="sports_form" class="sports_update_form">
-				<div class="align_margin">
-					<label>Enter the name of the Sport</label><br>
-					<input type="text" class="sportsname sports_update_name" name="sports_name" autocomplete="off" data-validation-error-msg="Please Enter the name of the Sports" data-validation="required">
-					<input type="hidden" class="sports_update_id" name="sports_id">
-					<input type="hidden" name="sportd_update" value="1">
-				</div><!--align_margin-->
-				<!-- <button type="button" class="btn btn-primary align_right clear sports_update_act">Submit</button> -->
-				<input type="submit" class="btn btn-primary align_right clear sports_update_act" value="Save">
-			</form>
-		</div><!--tate-content-->
-	</div><!--state_div-->
+				<code class="close_btn cancel_btn"> </code>
+				<div class="edit_title">
+	            	<span class="del_txt">Edit Sport</span>
+	          	</div><!--edit_title-->
+				<div class="container state-content col-md-12">
+					<form name="sports_form" class="sports_update_form">
+						<div class="align_margin">
+							<label>Enter the name of the Sport</label><br>
+							<input type="text" class="sportsname sports_update_name" name="sports_name" autocomplete="off" data-validation-error-msg="Please Enter the name of the Sports" data-validation="required">
+							<input type="hidden" class="sports_update_id" name="sports_id">
+							<input type="hidden" name="sportd_update" value="1">
+						</div><!--align_margin-->
+						<!-- <button type="button" class="btn btn-primary align_right clear sports_update_act">Submit</button> -->
+						<!-- <input type="submit" class="btn btn-primary align_right clear sports_update_act" value="Save"> -->
+						<input type="submit" value="Save" class="btn btn-primary clear sports_update_act center_align" maxlength="50" autocomplete="off">
+						<input type="reset" value="Cancel" class="btn btn-primary clear center_align">
+					</form>
+				</div><!--tate-content-->
+		</div><!--state_div-->
 		<div class="delete_div delete_sports_div">
           <!--  <code class="close_btn cancel_btn"> </code> -->
               <div class="del_title">

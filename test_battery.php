@@ -71,7 +71,7 @@ if(isset($_GET['duplicate'])){
 							 <?php //} ?>
 							</select>
 					</div> -->
-					<div class="align_margin">
+					<div class="form-group align_margin">
 						<label>Select Sports</label><br>
 						<div class="area_scroll">
 							<?php
@@ -79,12 +79,12 @@ if(isset($_GET['duplicate'])){
 					  		foreach( $data as $eachrecord ) {
 					  		 ?>
 							<div class="checkbox align_check">
-					      		<label class="remember_txt"><input type="checkbox" name='sports[]' data-validation="checkbox_group" data-validation-qty="min1" value="<?php echo $eachrecord ['sports_id']; ?>"><?php echo $eachrecord ['sports_name']; ?></label>
+					      		<label class="remember_txt"><input type="checkbox" name='sports[]' data-validation-error-msg="Please select at least 1 option" data-validation="checkbox_group" data-validation-qty="min1" value="<?php echo $eachrecord ['sports_id']; ?>"><?php echo $eachrecord ['sports_name']; ?></label>
 					    	</div>
 							<?php } ?>
 						</div>
 					</div>
-					<div class="align_margin">
+					<div class="form-group align_margin">
 						<label>Select Categories</label><br>
 						<div class="area_scroll">
 							<?php
@@ -92,12 +92,12 @@ if(isset($_GET['duplicate'])){
 						  foreach( $cat_data as $eachrecord ) {
 						   ?>
 							<div class="checkbox align_check">
-					      		<label class="remember_txt"><input type="checkbox" name='categories[]' data-validation="checkbox_group" data-validation-qty="min1" value="<?php echo $eachrecord ['categories_id']; ?>"><?php echo $eachrecord ['categories_name']; ?></label>
+					      		<label class="remember_txt"><input type="checkbox" name='categories[]' data-validation-error-msg="Please select at least 1 option" data-validation="checkbox_group" data-validation-qty="min1" value="<?php echo $eachrecord ['categories_id']; ?>"><?php echo $eachrecord ['categories_name']; ?></label>
 					    	</div>
 							<?php } ?>
 						</div>
 					</div>
-					<div class="align_margin">
+					<div class="form-group align_margin">
 						<label>Select Tests</label><br>
 						<div class="area_scroll">
 							<?php
@@ -105,7 +105,7 @@ if(isset($_GET['duplicate'])){
 						  foreach( $test_data as $eachrecord ) {
 						   ?>
 							<div class="checkbox align_check">
-					      		<label class="remember_txt"><input type="checkbox" name="test[]" data-validation="checkbox_group" data-validation-qty="min1" value="<?php echo $eachrecord ['test_id']; ?>"><?php echo $eachrecord ['test_name']; ?></label>
+					      		<label class="remember_txt"><input type="checkbox" name="test[]" data-validation-error-msg="Please select at least 1 option"  data-validation="checkbox_group" data-validation-qty="min1" value="<?php echo $eachrecord ['test_id']; ?>"><?php echo $eachrecord ['test_name']; ?></label>
 					    	</div>
 							<?php } ?>
 						</div>
@@ -150,8 +150,8 @@ if(isset($_GET['duplicate'])){
 							              </div>
 							              <div class="del_content">
 							                <span class="del_content_txt">Are you sure want to delete this whole record?</span>
+							                 <input type="button" class="btn btn-primary align_right no_btn" value="No">
 							                <input type="button" class="btn btn-primary align_right yes_btn" value="Yes" data-delete="test_battery_name" data-id ="<?php echo $eachrecord ['testbattery_id']; ?>">
-							                <input type="button" class="btn btn-primary align_right no_btn" value="No">
 							                <input type="hidden" name="delete_id" value="" id="delete_id"/>
 							              </div><!--del_content-->
       								</div><!--delete_div-->
@@ -288,9 +288,9 @@ if(isset($_GET['duplicate'])){
 												<?php } ?>
 											</div>
 										</div>
-										<div class="">
+										<div class="form-group">
 											<label class="popup_label">Select Tests</label><br>
-											<div class="area_scroll_popup form-group">
+											<div class="area_scroll_popup">
 												<?php
 											  $test_data = $test->testbatteryselectfunction();
 											  foreach( $test_data as $eachrecord ) {
@@ -305,7 +305,7 @@ if(isset($_GET['duplicate'])){
 										<div class="col-md-12 schedule_btn">
 											<!-- <input type="reset" value="Clear" class="btn btn-primary align_right clear" maxlength="50"> -->
 											<input type="submit" class="btn btn-primary test-submit clear" value="Save">
-											<input type="reset" value="Cancel" class="btn btn-primary clear" maxlength="50">
+											<input type="reset" value="Cancel" class="btn btn-primary clear reset_check">
 										</div>
 									</form>
 								</div>

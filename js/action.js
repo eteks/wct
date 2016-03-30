@@ -328,6 +328,7 @@
 
       $('.add_createschedule_act,.edit_createschedule_act,.add_athletes_act,.edit_athletes_act').on('click', function(){
          $('.day, .month, .year').attr('data-validation', 'required');
+         $('.day, .month, .year').attr('data-validation-error-msg', 'Please Select Date');
         });
 
         $('.edit_item,.save_item,.delete_item').hide();
@@ -1009,6 +1010,7 @@
               });
       });
     });
+
     $('#cs_form .reset_form').on('click',function(){
       $("#cs_form").find("select").each(function (index) {
              var ctrl=$(this);
@@ -1017,8 +1019,14 @@
                   else $(this).removeAttr('required');
               });
       });
-    });
-       //Edit popup
+    }); 
+
+      $('.reset_check').on('click',function(){
+        $('#test_battery_update_form :checked').removeAttr('checked');
+      });
+    
+
+         //Edit popup
       	$(document.body).on('click','.edit_state',function() {
             // state_center_align();
             // $('.popup_fade').show();
@@ -2075,7 +2083,7 @@
           if($("#athletes_mobile1").siblings('span').hasClass("help-block form-error")){
             return false;
           }
-          if (x.value.length == 10) {
+          if (x.length == 10) {
             $('#athletes_mobile1').next('span').hide();
             return true;
           }
