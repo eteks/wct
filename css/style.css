@@ -1096,8 +1096,9 @@ input[type=radio]:checked + label:before {
     color: #424242 !important;
     float: left;
     font-family: Montserrat;
+    font-size: 11px !important;
     height: 34px;
-    margin: 0 0 10px -25px;
+    margin: 0 0 10px -39px;
     position: relative;
     right: 46px;
     width: 105px !important;
@@ -1108,8 +1109,9 @@ input[type=radio]:checked + label:before {
     color: #424242 !important;
     float: left;
     font-family: Montserrat;
+    font-size: 11px !important;
     height: 34px;
-    margin: 0 0 10px;
+    margin: 0 0 10px -19px;
     position: relative;
     right: 46px;
     width: 100px !important;
@@ -1119,9 +1121,10 @@ input[type=radio]:checked + label:before {
     box-shadow: none !important;
     color: #424242 !important;
     font-family: Montserrat;
+    font-size: 11px !important;
     height: 34px;
     left: 17px;
-    margin: 0 0 0 -46px;
+    margin: 0 0 0 -65px;
     position: relative;
     width: 100px !important;
 }
