@@ -276,11 +276,11 @@
       $(document).delegate('.assign_clone_content_edit .athlete_name_update','change',function(){
           var j = 0;
           var main_content =  $(this).parents('.assign_clone_content_edit');
-          var schedule = $(this).parents('.clone_schedule_update_content').find('.assign_clone_content_edit:first').find('.create_schedule_update_id').val();
+          var schedule = $(this).parents('#edit_assign_schedule_form').find('.create_schedule_update_id').val();
           var category = $('.category_update').val();
           var athe_id = $(this).val();
           var currentInput  = $(this).val();
-          
+         
           $.ajax({
                type: "POST",
                url: "functions/athletes_functions.php?athelete_check=true",
@@ -811,7 +811,7 @@
                success: function(data) {
                   //alert(data);
                   if(data.trim() == 'succeed'){
-                      alert('Parameter Type updated successfully!');
+                      alert('Parameter Type edited successfully!');
                       location.reload();
                   }
                }
@@ -2428,8 +2428,10 @@
                     $('#test_table tbody').empty();
                     if(data.test[0]){
                          var param_dynamic = '';
+                         var selected_param_id = '';
                        $.each(data.param, function(i){
                            if(data.test[0].parametertype_name == data.param[i].parametertype_name ){
+                           	   selected_param_id += data.param[i].parametertype_id;
                                param_dynamic += "<option value='"+data.param[i].parametertype_id+"' selected>"+data.param[i].parametertype_name+"</option>";
                            }else{
                                param_dynamic += "<option value='"+data.param[i].parametertype_id+"'>"+data.param[i].parametertype_name+"</option>";
@@ -2454,7 +2456,8 @@
                                       <div class="form-group">\
                                             <label for="sel1">Select Parameter Type</label>\
                                             <input type="hidden" class="edit_param_unit_id" name="edit_param_unit_id"  value=""/>\
-                                            <select class="form-control adjust_width adjust_popup_width classic edit_param_type" id="sel1" name="parameter_type" data-validation-error-msg="Please Select the Type of the Parameter" data-validation="required">\
+                                            <input type = "hidden" name="parameter_type" value="'+selected_param_id+'">\
+                                            <select class="form-control adjust_width adjust_popup_width classic edit_param_type" id="sel1" data-validation-error-msg="Please Select the Type of the Parameter" data-validation="required" disabled>\
                                               <option value="">Select Parameter Type</option> \
                                                '+param_dynamic+' \
                                             </select>\
@@ -2733,7 +2736,7 @@
                        cache: false,
                        success: function(data) {
                           if(data=='success'){
-                              alert('Parameter unit updated successfully!');
+                              alert('Parameter unit edited successfully!');
                               location.reload();
                           }else if(data == 'exist'){
                               alert('Parameter unit already exist!');
