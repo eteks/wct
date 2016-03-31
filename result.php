@@ -55,7 +55,7 @@
 				      		<input type="text" class="form-control date_assign fl result_athletedate" id="result_athletedate" placeholder="Date" name="result_athletedate" data-validation-error-msg="Please enter DOB" data-validation="required">
 			      		</div>
 						<div class="form-group col-md-3">
-				      		<input type="text" class="form-control name_align fl result_athletemobile" id="result_athletemobile" placeholder="Mobile no" name="result_athletemobile" data-validation-error-msg="Please enter Mobile No. (with 10 digits)" data-validation="length" data-validation-length="10">
+				      		<input type="text" class="form-control name_align fl result_athletemobile" id="result_athletemobile" placeholder="Mobile no" name="result_athletemobile" data-validation-error-msg="Please enter valid Mobile no.(with 10 digits)" data-validation="length" data-validation-length="10">
 				      	</div>
 				      	<div class="form-group col-md-3">
 				      		<input type="text" class="form-control date_assign fl result_athletebib" id="result_athletebib" placeholder="BIB NO" name="result_athletebib" data-validation-error-msg="Please enter Bib No." data-validation="required">
