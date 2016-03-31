@@ -303,7 +303,7 @@
 	                   while ($row = mysql_fetch_array($query)) {
                     ?>
 				<tr class="align_center delete_color">
-                        <input type="hidden" class="t_createschedule_id check_id" name="createschedule_id" value="<?php echo $row['createschedule_id']; ?>">
+                        <input type="hidden" class="t_createschedule_id check_id hidden_value" name="createschedule_id" value="<?php echo $row['createschedule_id']; ?>">
 					 	<input type='hidden' class="t_createschedule_name check_name" name='createschedule_name' value="<?php echo $row['createschedule_name']; ?>">
 			    <!--  <?php
                    // $query = $createscheduleFunction->createscheduleSelect();

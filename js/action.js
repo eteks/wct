@@ -3115,7 +3115,7 @@
                     // var options = '<select class="ath_list">';
                       $.each(obj, function(i){
                         // athletes_list.push(obj[i].athlete_name);
-                        athletes_list.push({'label':obj[i].athlete_id,'value':obj[i].athlete_name});
+                        athletes_list.push({'ath_id':obj[i].athlete_id,'ath_name':obj[i].athlete_name,'ath_dob':obj[i].athlete_dob,'ath_mobile':obj[i].athlete_mobile,'ath_bib':obj[i].assignbib_number});
                         athlete_json.push({'athlete_id':obj[i].athlete_id,'athlete_name':obj[i].athlete_name,'athlete_dob':obj[i].athlete_dob,'athlete_mobile':obj[i].athlete_mobile,'athlete_bibno':obj[i].assignbib_number})
                         // options += '<option value="'+obj[i].athlete_id+'">'+obj[i].athlete_name+'</option>';
                         $('.result_athletename,.result_athletedate,.result_athletemobile,.result_athletebib').val('');
@@ -3146,9 +3146,9 @@
           source: function(req, add) {
               add($.map(athletes_list, function(el) {
                   return {
-                      label: el.value,
-                      value: el.value,
-                      data:el.label
+                      label: el.ath_name,
+                      value: el.ath_name,
+                      data:el.ath_id
                   };
               }));
           },
@@ -3162,6 +3162,58 @@
                   $('.result_athleteid').val(obj[i].athlete_id).prop("readonly", true);
                   $('.result_athletedate').val(new_date).prop("readonly", true);
                   $('.result_athletemobile').val(obj[i].athlete_mobile).prop("readonly", true);
+                  $('.result_athletebib').val(obj[i].athlete_bibno).prop("readonly", true);
+                }
+            });
+          }
+        });
+
+        $(".result_athletebib").autocomplete({
+          source: function(req, add) {
+              add($.map(athletes_list, function(el) {
+                  return {
+                      label: el.ath_bib,
+                      value: el.ath_bib,
+                      data:el.ath_id
+                  };
+              }));
+          },
+          select: function(event, ui) {
+              // alert(JSON.stringify(athletes_list));
+              var obj = athlete_json;
+              $.each(obj, function(i){
+                if((obj[i].athlete_bibno == ui.item.value) && (obj[i].athlete_id == ui.item.data)){
+                  var res = obj[i].athlete_dob.split('-');
+                  var new_date = res[2]+'/'+res[1]+'/'+res[0];
+                  $('.result_athleteid').val(obj[i].athlete_id).prop("readonly", true);
+                  $('.result_athletedate').val(new_date).prop("readonly", true);
+                  $('.result_athletename').val(obj[i].athlete_name).prop("readonly", true);
+                  $('.result_athletemobile').val(obj[i].athlete_mobile).prop("readonly", true);
+                }
+            });
+          }
+        });
+
+        $(".result_athletemobile").autocomplete({
+          source: function(req, add) {
+              add($.map(athletes_list, function(el) {
+                  return {
+                      label: el.ath_mobile,
+                      value: el.ath_mobile,
+                      data:el.ath_id
+                  };
+              }));
+          },
+          select: function(event, ui) {
+              // alert(JSON.stringify(athletes_list));
+              var obj = athlete_json;
+              $.each(obj, function(i){
+                if((obj[i].athlete_mobile == ui.item.value) && (obj[i].athlete_id == ui.item.data)){
+                  var res = obj[i].athlete_dob.split('-');
+                  var new_date = res[2]+'/'+res[1]+'/'+res[0];
+                  $('.result_athleteid').val(obj[i].athlete_id).prop("readonly", true);
+                  $('.result_athletedate').val(new_date).prop("readonly", true);
+                  $('.result_athletename').val(obj[i].athlete_name).prop("readonly", true);
                   $('.result_athletebib').val(obj[i].athlete_bibno).prop("readonly", true);
                 }
             });
@@ -3220,7 +3272,7 @@ $(document).on('blur','.enter_result',function(e){
             if (value == ''){
               $(this).siblings('.enter_result_error').removeClass('error').hide();
               $(this).parents('tr').find('.enter_points').text('0');
-              $(this).val('-');
+              // $(this).val('-');
             }
             if(((parameter_type == "time") && (value!='') && (value!='-'))||((parameter_type == "Time") && (value!=''))){
               // alert("time");
@@ -4110,7 +4162,7 @@ $(document).on('blur','.enter_result',function(e){
           }
           else{
            // $(this).parents('tr').find('.enter_result').removeClass('result_restrict').attr('disabled',false);
-           $(this).parents('tr').find('.enter_result').val('-').removeClass('result_restrict').attr('disabled',false);
+           $(this).parents('tr').find('.enter_result').val('').removeClass('result_restrict').attr('disabled',false);
            $(this).parents('tr').find('.enter_points').text('');
           }
         });
