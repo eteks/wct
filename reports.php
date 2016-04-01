@@ -10,8 +10,8 @@ if(isset($_POST['submit'])){
 }else{
 require_once "header.php";
 }
-require_once "functions/assign_schedule_function.php";
-$createschedule = new assignscheduleFunction();
+require_once "functions/create_schedule_function.php";
+$createschedule = new createscheduleFunction();
 
 ?>
 <?php
@@ -95,7 +95,6 @@ $createschedule = new assignscheduleFunction();
 					}
 					array_push($csv_record,$res['totalpoints']);
 					fputcsv($output, $csv_record);
-					
 				}
 			}
 			exit;
@@ -120,7 +119,7 @@ $createschedule = new assignscheduleFunction();
 								<label>Select Schedule</label><br>
 								<div class="area_scroll">
 									<?php
-									   $data = $createschedule->assignschedulenamefunction();
+									   $data = $createschedule->createscheduleselectfunction();
 									   foreach( $data as $eachrecord ) {
 										?>
 									<div class="checkbox align_check">
