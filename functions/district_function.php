@@ -107,8 +107,8 @@ include('configu.php');
 		if(isset($_GET['editdata'])){
 			$editstatus = false;
 			$districtFunction = new districtFunction();
-			$districtFunction->districtid = $_POST['edit_states_id'];
-			$districtFunction->statesid = $_POST['edit_district_state'];
+			$districtFunction->districtid = $_POST['edit_district_id'];
+			$districtFunction->statesid = $_POST['edit_states_id'];
 			$districtFunction->districtname = $_POST['edit_district_name'];
 			//Multidimensional array looping for district
 			foreach ($DISTRICT as $element) {

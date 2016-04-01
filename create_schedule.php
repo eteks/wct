@@ -234,7 +234,7 @@
 						<textarea class="area_width" name="schedule_venue" data-validation-error-msg="Please enter Venue" data-validation="required"></textarea>
 					</div>
 					<div class="col-md-9 schedule_btn">
-						<input type="submit" class="btn btn-primary test-submit clear add_createschedule_act" value="Submit">
+						<input type="submit" class="btn btn-primary test-submit clear add_createschedule_act" value="Save">
 						<input type="reset" class="btn btn-primary clear reset_form" value="Cancel">
 					</div>
 				</form>
@@ -405,7 +405,7 @@
 														</select>
 													</div>
 													<div class="col-md-3">
-														<select class="form-control classic create-time2 popup_label" id="minute" name="edit_schedule_minute" data-validation-error-msg="Please Select the Minute" data-validation="required">
+														<select class="form-control classic create-time2" id="minute" name="edit_schedule_minute" data-validation-error-msg="Please Select the Minute" data-validation="required">
 														  	<option value="">Minute</option>
 														  	<option value="00">00</option>
 														    <option value="01">01</option>
@@ -470,7 +470,7 @@
 														</select>
 													</div>
 													<div class="col-md-3">
-												  		<select class="form-control classic create-time3 popup_label" id="seconds" name="edit_schedule_seconds" data-validation-error-msg="Please select Time" data-validation="required">
+												  		<select class="form-control classic create-time3" id="seconds" name="edit_schedule_seconds" data-validation-error-msg="Please select Time" data-validation="required">
 													  	<option value="">Seconds</option>
 													    <option value="00">00</option>
 													    <option value="01">01</option>

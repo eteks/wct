@@ -17,7 +17,8 @@
 						  <input type="text" class="form-control adjust_width classic" id="sel1" value='' name="parameter_type" autocomplete="off" data-validation-error-msg="Please enter Parameter Type" data-validation="required">
 					</div>
 					<div class="col-md-9 schedule_btn">
-						<input type="submit" class="btn btn-primary parameter-submit clear add_parameter_act" value="Submit">
+						<input type="submit" class="btn btn-primary parameter-submit clear add_parameter_act" value="Save">
+						<input type="reset" value="Cancel" class="btn btn-primary clear">
 					</div>
 				</form>
 			</div>

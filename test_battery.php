@@ -113,7 +113,7 @@ if(isset($_GET['duplicate'])){
 
 					<div class="col-md-9 schedule_btn">
 						<input type="hidden" value="1" name="testbattery_add" />
-						<input type="submit" class="btn btn-primary test-submit clear" value="Submit">
+						<input type="submit" class="btn btn-primary test-submit clear" value="Save">
 						<input type="reset" value="Cancel" class="btn btn-primary clear" maxlength="50">
 					</div>
 				</form>

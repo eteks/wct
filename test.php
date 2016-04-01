@@ -66,7 +66,7 @@ if (isset($_GET['insert_new'])) {
 							</div>
 
 							<div class="form-group col-md-2 align-area">
-									<label>TYPE</label><br>
+									<label>Type</label><br>
 									<select class="form-control classic type_align fl parameter_type parameter_type_add" id="type" name="type1">
 										<option value="">
 											Type
@@ -88,14 +88,14 @@ if (isset($_GET['insert_new'])) {
 									<span class="hided param_type_error">Please select Parameter Type</span>
 								</div>
 								<div class="form-group col-md-2 align-area">
-									<label>UNIT</label><br>
+									<label>Unit</label><br>
 									<select class="form-control classic type_align fl parameter_unit paremeter_unit_add" id="unit" name="unit1">
 									<option value="">Unit</option>
 									</select>
 									<span class="hided param_unit_error">Please select Parameter Unit</span>
 								</div>
 								<div class="form-group col-md-2 align-area">
-									<label>FORMAT</label><br>
+									<label>Format</label><br>
 									<select class="form-control classic type_align fl parameter_format" id="format" name="format1">
 										<option value="">Format</option>
 									</select>
@@ -124,7 +124,7 @@ if (isset($_GET['insert_new'])) {
 
 					<input type="hidden" name="test_add" value="1">
 					<div class="col-md-9 schedule_btn">
-						<input type="submit" class="btn btn-primary clear test-submit test_submit_act" value="Submit">
+						<input type="submit" class="btn btn-primary clear test-submit test_submit_act" value="Save">
 						<input type="reset" value="Cancel" class="btn btn-primary clear reset_form" maxlength="50">
 					</div>
 				</form>
