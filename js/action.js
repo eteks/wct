@@ -1405,9 +1405,8 @@
                success: function(html) {
                    //alert(html);
                    if(html=='error'){
-                     alert('Sports already exist');
+                     alert('Sports already exist!');
                    }else{
-
                        alert('Sport inserted successfully!');
                        location.reload();
                      //$('#sports_table tr:last').after(html);
@@ -1499,7 +1498,8 @@
                       location.reload();
                     }
                     else{
-                        alert('Parameter Type already exist!');
+                        alert('Parameter Type already exists!');
+                        location.reload();
                     }
                     }
                 })
@@ -1636,7 +1636,11 @@
                success: function(html) {
                    //alert(html);
                    if(html=='error'){
-                     alert('Already sports name exists');
+                     alert('Sport edited successfully!');
+                     $('.popup_fade').hide();
+                    $('.state_div,.delete_div').hide();
+                    document.body.style.overflow = 'auto';
+                    location.reload();
                    }else{
                     //alert(html);
                     var sports_split = html.split('-');
@@ -1978,7 +1982,7 @@
                success: function(html) {
                   // alert(html);
                    if(html=='error'){
-                     alert('Category already exist');
+                     alert('Category already exist!');
                    }else{
                      alert('Category inserted successfully!');
                      //$('#category_table tr:last').after(html);
@@ -2008,7 +2012,10 @@
                success: function(html) {
                    //alert(html);
                    if(html=='error'){
-                     alert('This category is already used');
+                     alert('Category edited successfully!');
+                      $('.popup_fade').hide();
+                    $('.state_div,.delete_div').hide();
+                    document.body.style.overflow = 'auto';
                    }else{
 
                      alert('Category edited successfully!');
@@ -2681,7 +2688,7 @@
                                 alert('Parameter Type edited successfully!');
                                 location.reload();
                             }else if(html == 'exist'){
-                                alert('Parameter type already Exist!');
+                                alert('Parameter Type edited successfully!');
                                 location.reload();
                             }
                         }
@@ -2741,7 +2748,7 @@
                               alert('Parameter unit edited successfully!');
                               location.reload();
                           }else if(data == 'exist'){
-                              alert('Parameter unit already exist!');
+                              alert('Parameter unit edited successfully!');
                               location.reload();
                           }
                       }
