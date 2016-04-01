@@ -80,6 +80,9 @@
 			<div class="note_range col-md-5">
 			  	<span><i class="fa fa-exclamation-circle error-font" style=" padding: 0 12px 0 0;"></i>Please assign range for the selected test and parameter</span>
 			  </div><!--note_range-->
+			  <div class="select_all">
+			  	 <span><input type="checkbox" class="result-select">Select All</span>
+			  </div><!--select_all-->
 			<div class="container table-position align_bottom col-md-12">
 			  <table class="table result_table">
 			    <thead>

@@ -2912,6 +2912,7 @@
                             val += Number($(this).text());
                             $('.total_result').text(val);
                           });
+                          $('.select_all').show();
                   }
               });
           }
@@ -4191,6 +4192,21 @@ $(document).on('blur','.enter_result',function(e){
                  $(this).siblings().find('.enter_points').text('');
                  $(this).siblings().find('.status_incomplete').attr("checked",false);
               }
+            });
+            $('.result-select').attr("checked",false);
+          }
+        });
+
+        //newly added for select all logic for dnf(did not finish) in result
+        $(document).on('change','.result-select',function () {
+          if($(this).is(':checked')){
+            $('.result_table input[name="status_incomplete"]').each(function(){
+              $(this).prop("checked",true);
+            });
+          }
+          else{
+            $('.result_table input[name="status_incomplete"]').each(function(){
+              $(this).prop("checked",false);
             });
           }
         });
