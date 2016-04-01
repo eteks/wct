@@ -18,7 +18,8 @@ $obj = new sportsfunction();
 					<input type="hidden" name="sports_add" value="1">
 				</div>
 				<!-- <button type="button" id="submmit" class="btn btn-primary align_right clear sports_submit_act">Submit</button> -->
-				<input type="submit" id="submmit" class="btn btn-primary clear sports_submit_act" value="Submit">
+				<input type="submit" id="submmit" class="btn btn-primary clear sports_submit_act" value="Save">
+				<input type="reset" value="Cancel" class="btn btn-primary clear">
 			</form>
 		</div>
 	</div>

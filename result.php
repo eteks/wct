@@ -62,7 +62,7 @@
 				    	</div>
 					</div>
 				    <div class="form-group">
-				    	<input type="submit" class="btn btn-primary test-submit clear" value="Submit">
+				    	<input type="submit" class="btn btn-primary test-submit clear" value="Save">
 						<input type="reset" class="btn btn-primary clear result_clear" value="Cancel">
 				    </div>
 				<!--	<div class="col-md-9">
@@ -90,7 +90,7 @@
 			        <th class="align_center">Result</th>
 			        <th class="align_center"></th>
 			        <th class="align_center">Points</th>
-			        <th class="align_center">Did not finish?</th>
+			        <th class="align_center">Did not finish</th>
 			      </tr>
 			    </thead>
 			    <tbody class="assign_content">

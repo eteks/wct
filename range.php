@@ -99,19 +99,19 @@
 						<div class="clone_content" id="range_counter1">
 						  <label for="range" class="range_label">Ranges <span class="range_note">(Note:<span class="range_notes"></span>)</span></label><br>
 						  	<div class="form-group col-md-10">
-								  <div class="col-md-4">
+								  <div class="col-md-4 range-box1">
 								  	<input type="text" class="form-control classic range_align  r_strt" id="strt1" name="range_start1" autocomplete="off" placeholder="Start">
 								    <span class="hided">Please enter Range Start</span>
 								    <span class="hided">Please enter ranges in correct format</span>
 								  </div>
-								  <div class="col-md-4">
+								  <div class="col-md-4 range-box2">
 								  	<input type="text" class="form-control classic range_align  r_end check_end_range" id="end1" name="range_end1" autocomplete="off" placeholder="End">
 								  	<span class="hided">Please enter Range End</span>
 								  	<span class="hided">Please enter ranges in correct format</span>
 								  	<!-- <span class="hided">Enter greater than start value</span> -->
 								  	<span class="hided">Please enter correct ranges</span>
 								  </div>
-								  <div class="col-md-4">
+								  <div class="col-md-4 range-box3">
 								  	<input type="text" class="form-control classic range_align  r_point" id="point1" name="range_points1" autocomplete="off" placeholder="Points">
 								  	<span class="hided">Please enter Points</span>
 								  	<span class="hided">Please enter ranges in correct format</span>
@@ -134,7 +134,7 @@
 					</div>
 					<!-- <button type="button" class="btn btn-primary align_right ranges_btn add_range_points">Add Ranges</button><i class="fa fa-plus plus_align"></i> -->
 					<div class="col-md-9 schedule_btn">
-						<input type="submit" class="btn btn-primary test-submit clear add_range_act" value="Submit">
+						<input type="submit" class="btn btn-primary test-submit clear add_range_act" value="Save">
 						<input type="reset" value="Cancel" class="btn btn-primary clear reset_form" maxlength="50">
 					</div>
 				</form>
@@ -213,7 +213,7 @@
 								<div class="range_div popup_hidden">
 						          		<code class="close_btn cancel_btn"> </code>
 						          		<div class="edit_title">
-						                	<span class="del_txt">Edit Detail</span>
+						                	<span class="del_txt">Edit Range</span>
 						              	</div><!--edit_title-->
 						          			<div class="container state-content range_popup_scroll col-md-12">
 							          			<div class="col-xs-12 col-md-12 align_margin">

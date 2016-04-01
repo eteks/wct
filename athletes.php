@@ -133,7 +133,7 @@
 					</div>
 					<div class="col-md-9 schedule_btn">
 						<!-- <button type="button" class="btn btn-primary align_right clear add_athletes_act">Submit</button> -->
-						<input type="submit" class="btn btn-primary test-submit clear add_athletes_act" value="Submit">
+						<input type="submit" class="btn btn-primary test-submit clear add_athletes_act" value="Save">
 						<input type="reset" class="btn btn-primary clear" value="Cancel">
 					</div>
 				</form>
@@ -220,11 +220,11 @@
 					            <div class="athletes_div popup_hidden athlete_popup">
 					          		<code class="close_btn cancel_btn"> </code>
 					          		<div class="edit_title">
-					                	<span class="del_txt">Edit Detail</span>
+					                	<span class="del_txt">Edit Athlete Details</span>
 					              	</div><!--edit_title-->
 				          			<div class="container state-content col-md-12">
 				          			<div class="col-xs-12 col-md-12 align_margin">
-						          	<form name="edit_athletes_form" class="edit_athletes_form" style="white-space: normal;">
+						          	<form name="edit_athletes_form" class="edit_athletes_form">
 						          		<input type="hidden" class="statesid" name="edit_athlete_id" value="">
 						          		<input type="hidden" class="edit_athlete_name" name="edit_athlete_name" value="">
 										<!-- <div class="form-group">
@@ -295,9 +295,9 @@
 										</div>
 
 										<div class="form-group col-md-10">
-											  <label for="sel1" class="popup_label">Sports</label>
+											  <label for="sel1" class="popup_label">Sport</label>
 											  <select class="form-control adjust_width classic box-width box-width-athlete form-group" id="sel1" name="edit_athlete_sports" data-validation-error-msg="Please Select the Sport" data-validation="required">
-											  <option value=""> Sports</option>
+											  <option value=""> Sport</option>
 											   <?php
 						                        $sports_query = $sportsfunction->sportsSelect();
 						                        while ($row = mysql_fetch_array($sports_query)) {
