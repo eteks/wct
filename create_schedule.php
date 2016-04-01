@@ -326,7 +326,7 @@
 					                    <div class="createschedule_div popup_hidden">
 							          		<code class="close_btn cancel_btn"> </code>
 							          		<div class="edit_title">
-							                	<span class="del_txt">Edit Detail</span>
+							                	<span class="del_txt">Edit Schedule Details</span>
 							              	</div><!--edit_title-->
 							          			<div class="container state-content col-md-12">
 							          			<div class="col-xs-12 col-md-12 align_margin">

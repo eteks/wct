@@ -54,7 +54,7 @@
                 $('[name=edit_district_id]').val(obj[i].district_id);
                 $('[name=edit_district_state]').find("option:contains("+obj[i].states_name+")").attr("selected","selected");
                 $('[name=edit_district_name]').val(obj[i].district_name);
-                
+                $('[name=edit_states_id]').val(obj[i].states_id);
                  $.ajax({
                    type: "POST",
                    url: "functions/district_function.php?loaddistrictbystate=true",
@@ -1591,6 +1591,7 @@
           });
           if(res){
           var form_data = $(this).serialize();
+          // alert(JSON.stringify(form_data));
             $.ajax({
                type: "POST",
                url: "functions/district_function.php?editdata=true",
@@ -2839,7 +2840,7 @@
                             else
                               html+="<td><span class='result_error' name='result_error'>Enter " +obj[i].parameter_name+ " in " +obj[i].parameter_unit+ " in "+obj[i].parameter_format+" decimals</span></td>";
                             html+="<td></td>\
-                            <td><input type='checkbox' name='status_incomplete' class='status_incomplete'></td></tr>\
+                            <td><input type='checkbox' name='status_incomplete' class='status_incomplete' style='display:none;'></td></tr>\
                            </tr>";
                         }
                         else{
@@ -3497,7 +3498,8 @@ $(document).on('blur','.enter_result',function(e){
                   enter_result = $(this).find('.enter_result').val();
                   enter_points = $(this).find('.enter_points').text();
                   result_id = $(this).find('.result_id').val();
-                  if($(this).find('.status_incomplete').is(':checked'))
+                  // if($(this).find('.status_incomplete').is(':checked'))
+                  if($(this).find('.status_incomplete').attr('checked'))
                     result_incomplete = 0;
                   else
                     result_incomplete = 1;
@@ -4156,11 +4158,16 @@ $(document).on('blur','.enter_result',function(e){
         // });
         //newly added for result to handle incomplete results
         $(document).on('change','.status_incomplete',function () {
+          test_value = $(this).parents('tr').find('.result_test_name').text();
           if($(this).is(':checked')){
-           // $(this).parents('tr').find('.enter_result').val('').addClass('result_restrict').attr('disabled',true);
-           $(this).parents('tr').find('.enter_result').val('0').addClass('result_restrict').attr('disabled',true);
-           $(this).parents('tr').find('.enter_points').text('0');
-           $(this).parents('tr').find('.enter_result_error').removeClass('error').hide();
+            $('.result_test_name').each(function(){
+              if($(this).text() == test_value){
+                $(this).siblings().find('.enter_result').val('0').addClass('result_restrict').attr('disabled',true);
+                $(this).siblings().find('.enter_points').text('0');
+                $(this).siblings().find('.enter_result_error').removeClass('error').hide();
+                $(this).siblings().find('.status_incomplete').attr("checked",true);
+              }
+            });
            //Points total result
             var val=0;
             $(".enter_points").each(function() {
@@ -4169,9 +4176,13 @@ $(document).on('blur','.enter_result',function(e){
             });
           }
           else{
-           // $(this).parents('tr').find('.enter_result').removeClass('result_restrict').attr('disabled',false);
-           $(this).parents('tr').find('.enter_result').val('').removeClass('result_restrict').attr('disabled',false);
-           $(this).parents('tr').find('.enter_points').text('');
+            $('.result_test_name').each(function(){
+              if($(this).text() == test_value){
+                 $(this).siblings().find('.enter_result').val('').removeClass('result_restrict').attr('disabled',false);
+                 $(this).siblings().find('.enter_points').text('');
+                 $(this).siblings().find('.status_incomplete').attr("checked",false);
+              }
+            });
           }
         });
 

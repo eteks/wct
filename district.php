@@ -161,6 +161,7 @@
 						          			<div class="container state-content col-md-12">
 							          			<form name="edit_district_form" class="edit_district_form">
 								          			<input type="hidden" class="statesid" name="edit_district_id">
+								          			<input type="hidden" name="edit_states_id">
 													 <div class="form-group">
 													  <label for="sel1">Select the State</label>
 													  <select class="form-control adjust_width adjust_popup_width classic edit_choose_state" id="sel1" name="edit_district_state" data-validation-error-msg="Please Select the name of the State" data-validation="required" disabled>

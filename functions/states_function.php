@@ -47,7 +47,7 @@
 					}
 				}
 				else {
-					echo "failure#State already Exists!";
+					echo "failure#State already exists!";
 				}
 				// }
 				// else{
