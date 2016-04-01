@@ -163,7 +163,7 @@
 								          			<input type="hidden" class="statesid" name="edit_district_id">
 													 <div class="form-group">
 													  <label for="sel1">Select the State</label>
-													  <select class="form-control adjust_width adjust_popup_width classic edit_choose_state" id="sel1" name="edit_district_state" data-validation-error-msg="Please Select the name of the State" data-validation="required">
+													  <select class="form-control adjust_width adjust_popup_width classic edit_choose_state" id="sel1" name="edit_district_state" data-validation-error-msg="Please Select the name of the State" data-validation="required" disabled>
 													  	<option value="">Select the state</option>
 														  	<?php
 									                        $state_query = $statesFunction->statesSelect();
