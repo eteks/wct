@@ -6,6 +6,8 @@
  		public $athleteid;
  		public $resulttest_name;
  		public $resultparameter_name;
+ 		public $resultparameter_unit;
+ 		public $resultparameter_format;
  		public $result;
  		public $points;
  		public $resultstatus;
@@ -56,8 +58,11 @@
 		   return $res;
   		}
 		public function resultInsert(){
-			$res = mysql_query("insert into wc_result (resultcreateschedule_id,resultathlete_id,resulttest_name,resultparameter_name,result,points,result_status)
-				values('".$this->createscheduleid."','".$this->athleteid."','".$this->resulttest_name."','".$this->resultparameter_name."','".$this->result."','".$this->points."','".$this->resultstatus."')")or die(mysql_error());
+			// $res = mysql_query("insert into wc_result (resultcreateschedule_id,resultathlete_id,resulttest_name,resultparameter_name,result,points,result_status)
+			// 	values('".$this->createscheduleid."','".$this->athleteid."','".$this->resulttest_name."','".$this->resultparameter_name."','".$this->result."','".$this->points."','".$this->resultstatus."')")or die(mysql_error());
+			//newly changed the above query for reports module
+			$res = mysql_query("insert into wc_result (resultcreateschedule_id,resultathlete_id,resulttest_name,resultparameter_name,resultparameter_unit,resultparameter_format,result,points,result_status)
+				values('".$this->createscheduleid."','".$this->athleteid."','".$this->resulttest_name."','".$this->resultparameter_name."','".$this->resultparameter_unit."','".$this->resultparameter_format."','".$this->result."','".$this->points."','".$this->resultstatus."')")or die(mysql_error());
 			$lastinsertid = mysql_insert_id();
 			if($res){ return $lastinsertid; }
 			else{ return false; }
@@ -76,7 +81,9 @@
 			return $qr;
 		}
 		public function resultUpdate(){
-			$res = mysql_query("update wc_result set resultcreateschedule_id = '".$this->createscheduleid."', resultathlete_id = '".$this->athleteid."', resulttest_name = '".$this->resulttest_name."', resultparameter_name = '".$this->resultparameter_name."', result = '".$this->result."', points = '".$this->points."',result_status = '".$this->resultstatus."' where result_id ='".$this->resultid."'")or die(mysql_error());
+			// $res = mysql_query("update wc_result set resultcreateschedule_id = '".$this->createscheduleid."', resultathlete_id = '".$this->athleteid."', resulttest_name = '".$this->resulttest_name."', resultparameter_name = '".$this->resultparameter_name."', result = '".$this->result."', points = '".$this->points."',result_status = '".$this->resultstatus."' where result_id ='".$this->resultid."'")or die(mysql_error());
+			//newly changed the above query for reports module
+			$res = mysql_query("update wc_result set resultcreateschedule_id = '".$this->createscheduleid."', resultathlete_id = '".$this->athleteid."', resulttest_name = '".$this->resulttest_name."', resultparameter_name = '".$this->resultparameter_name."', resultparameter_unit = '".$this->resultparameter_unit."', resultparameter_format = '".$this->resultparameter_format."', result = '".$this->result."', points = '".$this->points."',result_status = '".$this->resultstatus."' where result_id ='".$this->resultid."'")or die(mysql_error());
 			if($res){ return true; }
 			else{ return false; }
 		}
@@ -161,6 +168,11 @@
 				$resultFunction->athleteid = $value->athlete_id;
 				$resultFunction->resulttest_name = $value->test_name;
 				$resultFunction->resultparameter_name = $value->parameter_name;
+				//newly added for reports module
+				//start
+				$resultFunction->resultparameter_unit = $value->parameter_unit;
+				$resultFunction->resultparameter_format = $value->parameter_format;
+				//end
 				// $resultFunction->result = $value->enter_result;
 				if($value->enter_result == '')
 					$resultFunction->result = '-';

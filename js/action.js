@@ -3488,6 +3488,11 @@ $(document).on('blur','.enter_result',function(e){
               $(".result_table tr:not(:last-child)").each(function(i) {
                   test_name = $(this).find('.result_test_name').text();
                   parameter_name = $(this).find('.result_parameter_name').text();
+                  //newly added for reports module
+                  //start
+                  parameter_unit = $(this).find('.result_parameterunit').val();
+                  parameter_format = $(this).find('.result_parameterformat').val();
+                  //end
                   enter_result = $(this).find('.enter_result').val();
                   enter_points = $(this).find('.enter_points').text();
                   result_id = $(this).find('.result_id').val();
@@ -3497,9 +3502,13 @@ $(document).on('blur','.enter_result',function(e){
                   else
                     result_incomplete = 1;
                   // alert(result_incomplete);
+                  // result_data.push({'result_id':result_id,'createschedule_id':createschedule_id,'athlete_id':athlete_id,'test_name':test_name,
+                  //                   'parameter_name':parameter_name,'enter_result':enter_result,
+                  //                   'enter_points':enter_points,'result_incomplete':result_incomplete});
+                  //newly changed the above code for reports module
                   result_data.push({'result_id':result_id,'createschedule_id':createschedule_id,'athlete_id':athlete_id,'test_name':test_name,
-                                    'parameter_name':parameter_name,'enter_result':enter_result,
-                                    'enter_points':enter_points,'result_incomplete':result_incomplete});
+                                    'parameter_name':parameter_name,'parameter_unit':parameter_unit,'parameter_format':parameter_format,
+                                    'enter_result':enter_result,'enter_points':enter_points,'result_incomplete':result_incomplete});
               });
               if((result_data.length != 0)){
                   $.ajax({
