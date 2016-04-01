@@ -35,7 +35,7 @@ include('configu.php');
 			else{ return false; }
 		}
 		public function isDistrictExist(){
-				$qr = mysql_query("SELECT * FROM wc_district WHERE districtstates_id = '".$this->statesid."' AND district_name = '".$this->districtname."'");
+				$qr = mysql_query("SELECT * FROM wc_district WHERE districtstates_id = '".$this->statesid."' AND district_name = '".$this->districtname."' AND district_id NOT IN ('".$this->districtid."')");
 				$row = mysql_num_rows($qr);
 				if($row > 0){
 					return true;
@@ -107,7 +107,7 @@ include('configu.php');
 		if(isset($_GET['editdata'])){
 			$editstatus = false;
 			$districtFunction = new districtFunction();
-			$districtFunction->districtid = $_POST['edit_district_id'];
+			$districtFunction->districtid = $_POST['edit_states_id'];
 			$districtFunction->statesid = $_POST['edit_district_state'];
 			$districtFunction->districtname = $_POST['edit_district_name'];
 			//Multidimensional array looping for district
@@ -125,7 +125,7 @@ include('configu.php');
 					}
 				}
 				else {
-					echo "failure#District already Exists!";
+					echo "failure#District already exists!";
 				}
 			// }
 			// else{
