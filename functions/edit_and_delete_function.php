@@ -36,7 +36,7 @@
 		}
 
 		public function isStatesExist(){
-			$qr = mysql_query("SELECT * FROM wc_states WHERE states_name = '".$this->statesname."'");
+			$qr = mysql_query("SELECT * FROM wc_states WHERE states_name = '".$this->statesname."' AND states_id NOT IN ('".$this->statesid."')");
 			$row = mysql_num_rows($qr);
 			if($row > 0){
 				return true;
@@ -79,7 +79,7 @@
 					}
 				}
 				else {
-					echo "failure#State already Exists!";
+					echo "failure#State already exists!";
 				}
 			// }
 			// else{

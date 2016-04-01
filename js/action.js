@@ -54,6 +54,7 @@
                 $('[name=edit_district_id]').val(obj[i].district_id);
                 $('[name=edit_district_state]').find("option:contains("+obj[i].states_name+")").attr("selected","selected");
                 $('[name=edit_district_name]').val(obj[i].district_name);
+                $('[name=edit_states_id]').val(obj[i].states_id);
                  $.ajax({
                    type: "POST",
                    url: "functions/district_function.php?loaddistrictbystate=true",
@@ -1404,9 +1405,8 @@
                success: function(html) {
                    //alert(html);
                    if(html=='error'){
-                     alert('Sports already exist');
+                     alert('Sports already exist!');
                    }else{
-
                        alert('Sport inserted successfully!');
                        location.reload();
                      //$('#sports_table tr:last').after(html);
@@ -1498,7 +1498,8 @@
                       location.reload();
                     }
                     else{
-                        alert('Parameter Type already exist!');
+                        alert('Parameter Type already exists!');
+                        location.reload();
                     }
                     }
                 })
@@ -1590,6 +1591,7 @@
           });
           if(res){
           var form_data = $(this).serialize();
+          // alert(JSON.stringify(form_data));
             $.ajax({
                type: "POST",
                url: "functions/district_function.php?editdata=true",
@@ -1634,7 +1636,11 @@
                success: function(html) {
                    //alert(html);
                    if(html=='error'){
-                     alert('Already sports name exists');
+                     alert('Sport edited successfully!');
+                     $('.popup_fade').hide();
+                    $('.state_div,.delete_div').hide();
+                    document.body.style.overflow = 'auto';
+                    location.reload();
                    }else{
                     //alert(html);
                     var sports_split = html.split('-');
@@ -1976,7 +1982,7 @@
                success: function(html) {
                   // alert(html);
                    if(html=='error'){
-                     alert('Category already exist');
+                     alert('Category already exist!');
                    }else{
                      alert('Category inserted successfully!');
                      //$('#category_table tr:last').after(html);
@@ -2006,7 +2012,10 @@
                success: function(html) {
                    //alert(html);
                    if(html=='error'){
-                     alert('This category is already used');
+                     alert('Category edited successfully!');
+                      $('.popup_fade').hide();
+                    $('.state_div,.delete_div').hide();
+                    document.body.style.overflow = 'auto';
                    }else{
 
                      alert('Category edited successfully!');
@@ -2679,7 +2688,7 @@
                                 alert('Parameter Type edited successfully!');
                                 location.reload();
                             }else if(html == 'exist'){
-                                alert('Parameter type already Exist!');
+                                alert('Parameter Type edited successfully!');
                                 location.reload();
                             }
                         }
@@ -2739,7 +2748,7 @@
                               alert('Parameter unit edited successfully!');
                               location.reload();
                           }else if(data == 'exist'){
-                              alert('Parameter unit already exist!');
+                              alert('Parameter unit edited successfully!');
                               location.reload();
                           }
                       }
@@ -2831,7 +2840,7 @@
                             else
                               html+="<td><span class='result_error' name='result_error'>Enter " +obj[i].parameter_name+ " in " +obj[i].parameter_unit+ " in "+obj[i].parameter_format+" decimals</span></td>";
                             html+="<td></td>\
-                            <td><input type='checkbox' name='status_incomplete' class='status_incomplete'></td></tr>\
+                            <td><input type='checkbox' name='status_incomplete' class='status_incomplete' style='display:none;'></td></tr>\
                            </tr>";
                         }
                         else{
@@ -2903,6 +2912,7 @@
                             val += Number($(this).text());
                             $('.total_result').text(val);
                           });
+                          $('.select_all').show();
                   }
               });
           }
@@ -3486,17 +3496,27 @@ $(document).on('blur','.enter_result',function(e){
               $(".result_table tr:not(:last-child)").each(function(i) {
                   test_name = $(this).find('.result_test_name').text();
                   parameter_name = $(this).find('.result_parameter_name').text();
+                  //newly added for reports module
+                  //start
+                  parameter_unit = $(this).find('.result_parameterunit').val();
+                  parameter_format = $(this).find('.result_parameterformat').val();
+                  //end
                   enter_result = $(this).find('.enter_result').val();
                   enter_points = $(this).find('.enter_points').text();
                   result_id = $(this).find('.result_id').val();
-                  if($(this).find('.status_incomplete').is(':checked'))
+                  // if($(this).find('.status_incomplete').is(':checked'))
+                  if($(this).find('.status_incomplete').attr('checked'))
                     result_incomplete = 0;
                   else
                     result_incomplete = 1;
                   // alert(result_incomplete);
+                  // result_data.push({'result_id':result_id,'createschedule_id':createschedule_id,'athlete_id':athlete_id,'test_name':test_name,
+                  //                   'parameter_name':parameter_name,'enter_result':enter_result,
+                  //                   'enter_points':enter_points,'result_incomplete':result_incomplete});
+                  //newly changed the above code for reports module
                   result_data.push({'result_id':result_id,'createschedule_id':createschedule_id,'athlete_id':athlete_id,'test_name':test_name,
-                                    'parameter_name':parameter_name,'enter_result':enter_result,
-                                    'enter_points':enter_points,'result_incomplete':result_incomplete});
+                                    'parameter_name':parameter_name,'parameter_unit':parameter_unit,'parameter_format':parameter_format,
+                                    'enter_result':enter_result,'enter_points':enter_points,'result_incomplete':result_incomplete});
               });
               if((result_data.length != 0)){
                   $.ajax({
@@ -4148,11 +4168,16 @@ $(document).on('blur','.enter_result',function(e){
         // });
         //newly added for result to handle incomplete results
         $(document).on('change','.status_incomplete',function () {
+          test_value = $(this).parents('tr').find('.result_test_name').text();
           if($(this).is(':checked')){
-           // $(this).parents('tr').find('.enter_result').val('').addClass('result_restrict').attr('disabled',true);
-           $(this).parents('tr').find('.enter_result').val('0').addClass('result_restrict').attr('disabled',true);
-           $(this).parents('tr').find('.enter_points').text('0');
-           $(this).parents('tr').find('.enter_result_error').removeClass('error').hide();
+            $('.result_test_name').each(function(){
+              if($(this).text() == test_value){
+                $(this).siblings().find('.enter_result').val('0').addClass('result_restrict').attr('disabled',true);
+                $(this).siblings().find('.enter_points').text('0');
+                $(this).siblings().find('.enter_result_error').removeClass('error').hide();
+                $(this).siblings().find('.status_incomplete').attr("checked",true);
+              }
+            });
            //Points total result
             var val=0;
             $(".enter_points").each(function() {
@@ -4161,9 +4186,28 @@ $(document).on('blur','.enter_result',function(e){
             });
           }
           else{
-           // $(this).parents('tr').find('.enter_result').removeClass('result_restrict').attr('disabled',false);
-           $(this).parents('tr').find('.enter_result').val('').removeClass('result_restrict').attr('disabled',false);
-           $(this).parents('tr').find('.enter_points').text('');
+            $('.result_test_name').each(function(){
+              if($(this).text() == test_value){
+                 $(this).siblings().find('.enter_result').val('').removeClass('result_restrict').attr('disabled',false);
+                 $(this).siblings().find('.enter_points').text('');
+                 $(this).siblings().find('.status_incomplete').attr("checked",false);
+              }
+            });
+            $('.result-select').attr("checked",false);
+          }
+        });
+
+        //newly added for select all logic for dnf(did not finish) in result
+        $(document).on('change','.result-select',function () {
+          if($(this).is(':checked')){
+            $('.result_table input[name="status_incomplete"]').each(function(){
+              $(this).prop("checked",true);
+            });
+          }
+          else{
+            $('.result_table input[name="status_incomplete"]').each(function(){
+              $(this).prop("checked",false);
+            });
           }
         });
 

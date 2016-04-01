@@ -2088,3 +2088,22 @@ td {
 	position: relative;
     right: 65px;
 }
+.select_all {
+    float: right;
+    width: 145px;
+    display: none;
+}
+.select_all span{
+    background: #f3f3f3 none repeat scroll 0 0;
+    color: #414141;
+    font-family: Montserrat;
+    font-size: 14px;
+    font-weight: normal;
+    padding: 8px 20px;
+}
+.result-select {
+    position: relative;
+    right: 14px;
+    top: 2px;
+}
+

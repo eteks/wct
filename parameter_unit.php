@@ -36,7 +36,7 @@
 			<div class="col-xs-12 col-md-5 align_margin">
 				<form id="parameter_unit" name="parameter_unit_add">
 					<div class="form-group">
-						<label for="sel1">Enter Parameter Type</label>
+						<label for="sel1">Select Parameter Type</label>
 						  <select class="form-control adjust_width classic" id="sel1" name="parametertype"  data-validation-error-msg="Please select Parameter Type" data-validation="required" >
 							<option value="">Select Parameter Type</option>
 							  <?php
