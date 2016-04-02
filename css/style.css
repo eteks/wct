@@ -1308,7 +1308,7 @@ input[type=radio]:checked + label:before {
     width: 227px;
 }
 .assign-add-button {
-    bottom: 65px;
+    bottom: 85px;
     float: right !important;
     left: 52px;
     position: relative;

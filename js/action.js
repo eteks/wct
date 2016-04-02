@@ -1799,7 +1799,7 @@
                         data: form_data,
                         cache: false,
                         success: function(html) {
-                         alert('Test parameter deleted successfully!');
+                         alert('Test Parameter deleted successfully!');
                          $('.popup_fade').hide();
                          $('.state_div,.delete_div').hide();
                          document.body.style.overflow = 'auto';
@@ -1836,7 +1836,7 @@
                         data: form_data,
                         cache: false,
                         success: function(html) {
-                             alert('Test battery deleted successfully');
+                             alert('Test Battery deleted successfully');
                              $('.popup_fade').hide();
                              $('.state_div,.delete_div').hide();
                              document.body.style.overflow = 'auto';
@@ -1949,7 +1949,7 @@
                       cache: false,
                       success: function(html) {
                           //alert(html);
-                       alert('Parameter unit deleted Successfully! ');
+                       alert('Parameter Unit deleted successfully! ');
                        $('.popup_fade').hide();
                        $('.state_div,.delete_div').hide();
                        document.body.style.overflow = 'auto';
@@ -2124,20 +2124,20 @@
         // $('.add_athelete').click(function(){
             // nextElement1($('.assign_clone_content:last'));
         // });
-         var test_id = 1;  
+              var test_id = 1;  
            $(document).on('click','.add_athelete',function(e){
             if($('.assign_clone_content:last').children().find('#bib,#combobox').val() == ''){              
               $('.assign_clone_content:last').children().find('#bib').next().addClass('custom_error');
-              $('.assign_clone_content:last').children().find('#bib').next().addClass('custom_error');
+              $('.assign_clone_content:last').children().find('#combobox').next().next().addClass('custom_error');
+                $('.assign_clone_content:last').children().find('#combobox').next().next().next().next().remove('span');                   
                e.preventDefault();
-            }
-           
+            }           
             else{
               $('.assign_clone_content:last').children().find('input[type="text"]').next().removeClass('custom_error');
+              $('.assign_clone_content:last').children().find('#combobox').next().next().removeClass('custom_error');
               nextElement1($('.assign_clone_content:last'));
            }
-           return false;
-     
+           return false;     
         });
 
         function nextElement1(element){
@@ -2245,7 +2245,8 @@
         
        
        $('.reset_form_assign_schedule').click(function(){   
-         $("#bib").next('span').removeClass('custom_error');
+          $("#bib").next('span').removeClass('custom_error');
+         $("#combobox").next().next('span').removeClass('custom_error');
            $(".assign_clone_content").each(function() {
                if($('.assign_clone_content').length !=1){
                    $('.assign_clone_content:last').remove();
@@ -2253,17 +2254,18 @@
            });
        });
 
-        $('.schedule_submit').on('click',function(e){         
+         $('.schedule_submit').on('click',function(e){         
           var res = true;         
-            if($('#bibo').val().trim() == "") {
+            if($('.assign_clone_content_edit:last').children().find('#bibo').val().trim() == "" || $('.assign_clone_content_edit:last').children().find('#athlete_sel').val() == '') {
               e.preventDefault();
-             $("#bibo").next('span').addClass('custom_error');
-              res = false;
+             $('.assign_clone_content_edit:last').children().find('#bibo').next('span').addClass('custom_error');
+             $('.assign_clone_content_edit:last').children().find('#athlete_sel').next('span').addClass('custom_error');
+             res = false;
               // alert('false');
             }       
           if(res){
-            // alert('success');
-            $("#bibo").next('span').removeClass('custom_error');
+            $('.assign_clone_content_edit:last').children().find('#bibo').next('span').removeClass('custom_error');
+            $('.assign_clone_content_edit:last').children().find('#athlete_sel').next('span').removeClass('custom_error');
             return true;
           }
         });
@@ -2352,7 +2354,7 @@
                        current.parents('.parameter_holder').find('.parameter_unit').html(html);
                    }else{
                         current.parents('.parameter_holder').find('.parameter_unit').html("<option value=''>UNIT</option>");
-                        alert('No parameter unit found');
+                        alert('No Parameter unit found');
                    }
                }
            });
@@ -2397,7 +2399,7 @@
                        current.parents('.schedule_test').find('.parameter_unit').html(html);
                    }else{
                         current.parents('.schedule_test').find('.parameter_unit').html("<option value=''>UNIT</option>");
-                        alert('Parameter Unit Not availabel!');
+                        alert('Parameter Unit not availabel!');
                    }
                }
            });
@@ -2592,8 +2594,8 @@
                              </div>\
                              <div class="del_content">\
                                <span class="del_content_txt">Are you sure you want to delete this record?</span>\
-                               <input type="button" class="btn btn-primary align_right no_btn" value="No">\
                                <input type="button" class="btn btn-primary align_right yes_btn" value="Yes" data-delete="parameter_unit_name" data-id ="'+data.test[i].parameterunit_id+' ">\
+                               <input type="button" class="btn btn-primary align_right no_btn" value="No">\
                                <input type="hidden" name="delete_id" value="" id="delete_id"/>\
                              </div>\
                    </div>\
@@ -2822,7 +2824,7 @@
                                     alert('Parameter Unit inserted successfully!');
                                     location.reload();
                                 }else if(html == 'error'){
-                                    alert('Parameterunit already exist!');
+                                    alert('Parameter Unit already exist!');
                                 }
                             }
                          });
@@ -2848,10 +2850,10 @@
                        cache: false,
                        success: function(data) {
                           if(data=='success'){
-                              alert('Parameter unit edited successfully!');
+                              alert('Parameter Unit edited successfully!');
                               location.reload();
                           }else if(data == 'exist'){
-                              alert('Parameter unit edited successfully!');
+                              alert('Parameter Unit edited successfully!');
                               location.reload();
                           }
                       }
@@ -2864,12 +2866,14 @@
 
       $('#assignschedule_form').submit(function(e){
         e.preventDefault();
+           $('#bib').next().addClass('custom_error');
+          $('#combobox').next().next().removeClass('custom_error');
         var res = true;
         $('input[type="text"],textarea,select',this).each(function() {
           if($(this).val().trim() == "") {
             res = false;
           }
-        });
+        });	
         if(res){
             var form_data = $('#assignschedule_form').serialize();
            //alert(form_data);
@@ -4364,7 +4368,7 @@ $(document).on('blur','.enter_result',function(e){
                data: form_data,
                cache: false,
                success: function(html) {
-                alert("Testbattery Deleted");
+                alert("Test Battery deleted successfully!");
                 location.reload();
                }
            });
@@ -4572,7 +4576,7 @@ $(document).on('blur','.enter_result',function(e){
           }
         });
         if(j=='2'){
-            alert('Bib No. Already assigned!');
+            alert('Bib No. already assigned!');
             $(this).parents('.assign_clone_content').find('.athlete_bib').val('');
         }
       });
@@ -4586,7 +4590,7 @@ $(document).on('blur','.enter_result',function(e){
           }
         });
         if(j=='2'){
-            alert('Bib No. Already assigned!');
+            alert('Bib No. already assigned!');
             $(this).parents('.assign_clone_content_edit').find('.athlete_bib').val('');
         }
       });

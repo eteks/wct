@@ -219,7 +219,7 @@ if(isset($_GET['update_success'])){
 											<input type="hidden" class="assign_athelete_count_edit" value="1" />
 											<div class="form-group col-md-6"  style="padding: 0px;">
 												<div class="col-md-7 combo--align--popup align_atheletes_schedules">
-															<select class="form-control name_align_popup fl  athlete_name athlete_name_update athlete_name1" id="athlete_sel" placeholder="Name" name="athlete_name[]"  data-validation-error-msg="Please Select Athlete" data-validation="required"><!--id="combobox1"-->
+															<select class="form-control name_align_popup fl  athlete_name athlete_name_update athlete_name1" id="athlete_sel" placeholder="Name" name="athlete_name[]" ><!--id="combobox1"-->
 														<option value="">Athletes</option>
 														<?php
 															$data = $athlete->athleteSelect1();
