@@ -17,7 +17,8 @@
 							<span class="add_states_error"></span>
 						</div>
 						<!-- <button type="button" class="btn btn-primary align_right clear add_states_act" name="states">Submit</button>																							 -->
-						<input type="submit" class="btn btn-primary clear add_states_act" name="states" value="Submit">
+						<input type="submit" class="btn btn-primary clear add_states_act" name="states" value="Save">
+						<input type="reset" value="Cancel" class="btn btn-primary clear">
 					</form>
 				</div><!--align_margin-->
 				<div class="container table-position col-md-12">
@@ -46,7 +47,7 @@
 									<div class="state_div edit_state_div popup_hidden">
 						          		<code class="close_btn cancel_btn"> </code>
 						          		<div class="edit_title">
-						                	<span class="del_txt">Edit Detail</span>
+						                	<span class="del_txt">Edit State</span>
 						              	</div><!--edit_title-->
 						          			<div class="container state-content col-md-12">
 							          			<form name="edit_states_form" class="edit_state_form">

@@ -105,17 +105,17 @@ if(isset($_GET['update_success'])){
 					<div class="form-group assign-add-button col-md-2">
 						<!-- <input type="submit" class="btn btn-primary align_right adds_btn add_athelete" value="Add"> -->
 						<!-- <i class="fa fa-plus add_align"></i> -->
-						<i class="fa fa-plus plus_align add_athelete">
+						<button class="plus_align add_athelete"><i class="fa fa-plus">
 							<div class="tooltip_parameter">Add</div>
 							<div class="tip_triangle"></div>
-						</i>
-						<i class="fa fa-minus assign_remove">
+						</i></button>
+						<button class="plus_align assign_remove"><i class="fa fa-minus">
 							<div class="tooltip_remove">Remove</div>
 							<div class="tip_triangle"></div>
-						</i>
+						</i></button>
 					</div>
 					<div class="col-md-9 schedule_btn">
-						<input type="submit" class="btn btn-primary test-submit clear assignschedule_submit" value="Submit">
+						<input type="submit" class="btn btn-primary test-submit clear assignschedule_submit" value="Save">
 						<input type="reset" class="btn btn-primary clear" value="Cancel">
 					</div>
 				</form>
@@ -188,7 +188,7 @@ if(isset($_GET['update_success'])){
 						<div class="assign-schedule-popup popup_hidden">
 			          		<code class="close_btn cancel_btn"> </code>
 			          		<div class="edit_title">
-			                	<span class="del_txt">Edit Assign Schedule</span>
+			                	<span class="del_txt">Edit Schedule Details</span>
 			              	</div><!--edit_title-->
 			          			<div class="container state-content col-md-12 assign-scroll">
 				          			<div class="col-xs-12 col-md-12 align_margin">
@@ -215,9 +215,9 @@ if(isset($_GET['update_success'])){
 									<div class="assign_clone_content_edit clone_schedule_update">
 										
 											<input type="hidden" class="assign_athelete_count_edit" value="1" />
-											<div class="form-group col-md-1">
-												<div class="col-md-12 combo--align--popup align_atheletes_schedules">
-															<select class="form-control name_align_popup fl box-width athlete_name athlete_name_update athlete_name1" placeholder="Name" name="athlete_name[]"  data-validation-error-msg="Please Select Athlete" data-validation="required"><!--id="combobox1"-->
+											<div class="form-group col-md-6"  style="padding: 0px;">
+												<div class="col-md-7 combo--align--popup align_atheletes_schedules">
+															<select class="form-control name_align_popup fl  athlete_name athlete_name_update athlete_name1" placeholder="Name" name="athlete_name[]"  data-validation-error-msg="Please Select Athlete" data-validation="required"><!--id="combobox1"-->
 														<option value="">Athletes</option>
 														<?php
 															$data = $athlete->athleteSelect1();
@@ -227,35 +227,35 @@ if(isset($_GET['update_success'])){
 														<?php } ?>
 													</select>
 												</div>
-												<div class="col-md-12" style="position: relative; top: 20px;">
+												<div class="col-md-5" style="position: relative; top: 20px;">
 										      		
 										      		<input type="text" class="form-control bib_popup fl dob_update dob"  placeholder="Date" value="" disabled>
 										    	</div>
 										    </div>
-										    <div class="form-group col-md-12">
-										    	<div class="col-md-2">
+										    <div class="form-group col-md-6">
+										    	<div class="col-md-4">
 										      		<input type="text" class="form-control schedule-name fl mobile_update mobile" placeholder="Mobile no" value="" disabled>
 										      	</div>
-										      	<div class="col-md-12">
+										      	<div class="col-md-8">
 										      		<input type="text" class="form-control bib_popup athlete_bib popup_bib fl bib_update"  placeholder="BIB NO" name="athlete_bib[]" autocomplete="off" data-validation-error-msg="Please Enter the BIBO NO" data-validation="number">
 												</div>
 												
 												
 										    </div>
-										    <div class="assign-delete col-md-12 ">
+										    <div class="assign-delete col-md-12">
 												<span class="edit_assign_schedule_delete"><i class="fa fa-trash-o"></i>Delete</span>
 											</div>
 										</div>
 									
 								</div>
-								<div class="form-group assign-add-button popup-add-assign col-md-6">
+								<div class="form-group assign-add-button popup-add-assign col-md-4">
 									<div class="add-assign">
 										<span class="edit_assign_schedule_add_btn">Add<i class="fa fa-plus plus_align_assign"></i></span>
 									</div><!--add-assign-->
 								</div>
 								<input type="hidden" name="assing_schedule_update" value="1" />
 
-								<div class="col-md-10 schedule_btn">
+								<div class="col-md-9 align_right schedule_btn">
 						
 			  					<input type="submit" value="Save" class="btn btn-primary test-submit clear">
 			  					<input type="reset" class="btn btn-primary clear reset_form" value="Cancel">

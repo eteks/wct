@@ -1,14 +1,12 @@
 <?php
 require_once "session.php";
 if(isset($_POST['submit'])){
-	header('Content-Type: text/csv; charset=utf-8');
-	header('Content-Disposition: attachment; filename=export.csv');
-	header("Cache-Control: no-cache, no-store, must-revalidate"); // HTTP 1.1
-	header("Pragma: no-cache"); // HTTP 1.0
-	header("Expires: 0"); //
-
+	header("Content-type: application/octet-stream;charset=utf-8'");
+	header("Content-Disposition: attachment; filename=export.xls");
+	header("Pragma: no-cache");
+	header ("Expires: 0");
 }else{
-require_once "header.php";
+	require_once "header.php";
 }
 require_once "functions/create_schedule_function.php";
 $createschedule = new createscheduleFunction();
@@ -16,7 +14,6 @@ $createschedule = new createscheduleFunction();
 ?>
 <?php
 	if(isset($_POST['submit'])){
-		$output = fopen('php://output', 'w');
 		if(!empty($_POST['schedul_ids'])) {
 			foreach($_POST['schedul_ids'] as $check) {
 				$id = $check;
@@ -27,79 +24,157 @@ $createschedule = new createscheduleFunction();
 				while($row = mysql_fetch_assoc($test)){
 					$test1[] = $row;
 				}
-				foreach($test1 as $testvalue){
-					fputcsv($output, array('Schedule Name',$testvalue['createschedule_name']));
-					fputcsv($output, array('Test Battery name',$testvalue['testbattery_name']));
-					fputcsv($output, array('Date',date("d/m/Y", strtotime($testvalue['createschedule_date']))));
-					fputcsv($output, array('Time',$testvalue['createschedule_time']));
-					fputcsv($output, array('Venue',$testvalue['createschedule_venue']));
-					break;
-				}
-				foreach($test1 as $testvalue){
-					$sql4 = "select wc_result.result_id,wc_result.resultcreateschedule_id,wc_result.resultathlete_id,wc_result.resulttest_name,SUM(wc_result.points) as totalpoints,GROUP_CONCAT(CONCAT(wc_result.resulttest_name,'#',wc_result.resultparameter_name,'#',wc_result.result,'#',wc_result.points)) results  from wc_result where wc_result.resultcreateschedule_id ='$id' and wc_result.resultathlete_id ='".$testvalue['athlete_id']."'";
-					$res = mysql_fetch_assoc(mysql_query($sql4));
-					$test = array('','','','','','','','','','','');
-					$pararms = explode(",",$res['results']);
-					$temp = '';
-					foreach($pararms as $single_param){
-						$param_split = explode("#",$single_param);
-						if($temp != $param_split[0]){
-							array_push($test,$param_split[0]);
-							array_push($test,'');
-							$temp = $param_split[0];
-						}else{
-							array_push($test,'');
-							array_push($test,'');
+				?>
+				<table width="100%" border="1">
+					<?php
+						foreach($test1 as $testvalue){
+					?>
+						<tr>
+							<td>Schedule Name</td><td align="center"><?php echo $testvalue['createschedule_name'];?></td>
+						</tr>
+						<tr>
+							<td>Test Battery name</td><td align="center"><?php echo $testvalue['testbattery_name'];?></td>
+						</tr>
+						<tr>
+							<td>Date</td><td align="center"><?php echo date("d/m/Y", strtotime($testvalue['createschedule_date']));?></td>
+						</tr>
+						<tr>
+							<td>Time</td><td align="center"><?php echo $testvalue['createschedule_time'];?></td>
+						</tr>
+						<tr>
+							<td>Venue</td><td align="center"><?php echo $testvalue['createschedule_venue'];?></td>
+						</tr>
+				
+					<?php	
+						break;
+					}
+					foreach($test1 as $testvalue){
+						$sql4 = "select wc_result.result_id,wc_result.resultcreateschedule_id,wc_result.resultathlete_id,wc_result.resulttest_name,SUM(wc_result.points) as totalpoints,GROUP_CONCAT(CONCAT(wc_result.resulttest_name,'#',wc_result.resultparameter_name,'#',wc_result.resultparameter_unit,'#',wc_result.resultparameter_format,'#',wc_result.result,'#',wc_result.points)) results  from wc_result where wc_result.resultcreateschedule_id ='$id' and wc_result.resultathlete_id ='".$testvalue['athlete_id']."'";
+						$res = mysql_fetch_assoc(mysql_query($sql4));
+					?>
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+					<?php
+						$pararms = explode(",",$res['results']);
+						$temp = '';
+						$check = '';
+						$merge_count = array();
+						$merge_data = array();
+						array_push($merge_count,'0');
+						array_push($merge_data,'0');
+						foreach($pararms as $single_param){
+							$param_split = explode("#",$single_param);
+							if($temp == $param_split[0]){
+								$last_value = end($merge_count);
+								$increment = $last_value+2;
+								array_pop($merge_count);
+								array_push($merge_count,$increment);
+								$temp = $param_split[0];
+							}else{
+								array_push($merge_count,'2');
+								array_push($merge_data,$param_split[0]);
+								$temp = $param_split[0];
+							}
 						}
-						
-						//array_push($test,'');
-					}
-					fputcsv($output, $test);
-					break;
-				}	
-				foreach($test1 as $testvalue){
-					$sql3 = "select wc_result.result_id,wc_result.resultcreateschedule_id,wc_result.resultathlete_id,wc_result.resulttest_name,SUM(wc_result.points) as totalpoints,GROUP_CONCAT(CONCAT(wc_result.resultparameter_name,'#',wc_result.result,'#',wc_result.points)) results  from wc_result where wc_result.resultcreateschedule_id ='$id' and wc_result.resultathlete_id ='".$testvalue['athlete_id']."'";
-					$res1 = mysql_fetch_assoc(mysql_query($sql3));
-					$pararms = explode(",",$res1['results']);
-					$heading =  array('Athlete Name','Athelete DOB','Athlete Mobile Number','Gender','State','District','Taluka','Address','Sports','Category','BIB number');
-					
-					foreach($pararms as $single_param){
-						$param_split = explode("#",$single_param);
-						//array_push($heading,'Parameter Name');
-						array_push($heading,'Result For '.$param_split[0]);
-						array_push($heading,'Points For '.$param_split[0]);
-					}
-					array_push($heading,'Total points');
-					fputcsv($output, $heading);
-					break;
-				}	
-						
-				foreach($test1 as $testvalue){
-					$sql2 = "select wc_result.result_id,wc_result.resultcreateschedule_id,wc_result.resultathlete_id,wc_result.resulttest_name,SUM(wc_result.points) as totalpoints,GROUP_CONCAT(CONCAT(wc_result.resultparameter_name,'#',wc_result.result,'#',wc_result.points)) results  from wc_result where wc_result.resultcreateschedule_id ='$id' and wc_result.resultathlete_id ='".$testvalue['athlete_id']."'";
-					$res = mysql_fetch_assoc(mysql_query($sql2));
-					$csv_record = array($testvalue['athlete_name'],date("d/m/Y", strtotime($testvalue['athlete_dob'])),$testvalue['athlete_mobile'],$testvalue['athlete_gender'],$testvalue['states_name'],$testvalue['district_name'],$testvalue['athlete_taluka'],$testvalue['athlete_address'],$testvalue['sports_name'],$testvalue['categories_name'],$testvalue['assignbib_number']);
-					$pararms = explode(",",$res['results']);
-					foreach($pararms as $single_param){
-						$param_split = explode("#",$single_param);
-						//array_push($csv_record,$param_split[0]);
-						if($param_split[1] == '-'){
-							array_push($csv_record,'A');
-							array_push($csv_record,'A');
-						}else if($param_split[1] == '0'){
-							array_push($csv_record,'DNF');
-							array_push($csv_record,'DNF');
-						}else{
-							array_push($csv_record,$param_split[1]);
-							array_push($csv_record,$param_split[2]);
+						for($m=1;$m<count($merge_data);$m++){
+					?>
+							<td colspan="<?php echo $merge_count[$m];?>" align="center"><?php echo $merge_data[$m];?></td>
+					<?php
 						}
+					?>
+						</tr>
+						<tr>
+					<?php
+						break;
+					}	
+					foreach($test1 as $testvalue){
+						$sql3 = "select wc_result.result_id,wc_result.resultcreateschedule_id,wc_result.resultathlete_id,wc_result.resulttest_name,SUM(wc_result.points) as totalpoints,GROUP_CONCAT(CONCAT(wc_result.resulttest_name,'#',wc_result.resultparameter_name,'#',wc_result.resultparameter_unit,'#',wc_result.resultparameter_format,'#',wc_result.result,'#',wc_result.points)) results  from wc_result where wc_result.resultcreateschedule_id ='$id' and wc_result.resultathlete_id ='".$testvalue['athlete_id']."'";
+						$res1 = mysql_fetch_assoc(mysql_query($sql3));
+						$pararms = explode(",",$res1['results']);
+					?>
+							<td align="center">Athlete Name</td><td align="center">Athelete DOB</td><td align="center">Athlete Mobile Number</td><td align="center">Gender</td><td align="center">State</td><td align="center">District</td><td align="center">Taluka</td><td align="center">Address</td><td align="center">Sports</td><td align="center">Category</td><td align="center">BIB number</td>
+					<?php
+						foreach($pararms as $single_param){
+							$param_split = explode("#",$single_param);
+							
+					?>
+							<td align="center"><?php echo 'Result For '.$param_split[0].'(Unit:'.$param_split[2].'; Format:'.$param_split[3].' decimal places)';?></td><td align="center"><?php echo 'Points For '.$param_split[0];?></td>
+					<?php	
+						}
+					?>
+							<td align="center">Total points</td>
+				
+					<?php
+						break;
+					}	
+					?>
+						</tr>
+				
+					<?php		
+					foreach($test1 as $testvalue){
+						$sql2 = "select wc_result.result_id,wc_result.resultcreateschedule_id,wc_result.resultathlete_id,wc_result.resulttest_name,SUM(wc_result.points) as totalpoints,GROUP_CONCAT(CONCAT(wc_result.resultparameter_name,'#',wc_result.result,'#',wc_result.points)) results  from wc_result where wc_result.resultcreateschedule_id ='$id' and wc_result.resultathlete_id ='".$testvalue['athlete_id']."'";
+						$res = mysql_fetch_assoc(mysql_query($sql2));
+					?>
+						<tr>
+							<td align="center"><?php echo $testvalue['athlete_name']; ?></td>
+							<td align="center"><?php echo date("d/m/Y", strtotime($testvalue['athlete_dob']));?></td>
+							<td align="center"><?php echo $testvalue['athlete_mobile']; ?></td>
+							<td align="center"><?php echo $testvalue['athlete_gender']; ?></td>
+							<td align="center"><?php echo $testvalue['states_name']; ?></td>
+							<td align="center"><?php echo $testvalue['district_name']; ?></td>
+							<td align="center"><?php echo $testvalue['athlete_taluka']; ?></td>
+							<td align="center"><?php echo $testvalue['athlete_address']; ?></td>
+							<td align="center"><?php echo $testvalue['sports_name']; ?></td>
+							<td align="center"><?php echo $testvalue['categories_name']; ?></td>
+							<td align="center"><?php echo $testvalue['assignbib_number']; ?></td>
+					<?php
+						
+						$pararms = explode(",",$res['results']);
+						foreach($pararms as $single_param){
+							$param_split = explode("#",$single_param);
+							if($param_split[1] == '-'){
+					?>
+								<td align="center">A</td>
+								<td align="center">A</td>
+					<?php
+								
+							}else if($param_split[1] == '0'){
+					?>
+								<td align="center">DNF</td>
+								<td align="center">DNF</td>
+					<?php
+							}else{
+					?>
+								<td align="center"><?php echo $param_split[1]; ?></td>
+								<td align="center"><?php echo $param_split[2]; ?></td>
+					<?php
+							}
+						}
+					?>
+							<td align="center"><?php echo $res['totalpoints']; ?></td>
+
+						</tr>
+		
+					<?php
 					}
-					array_push($csv_record,$res['totalpoints']);
-					fputcsv($output, $csv_record);
+					?>
+					</table>
+					<?php
 				}
+				exit;
 			}
-			exit;
-		}
-	} else {
+		} 
+		else {
 		?>
 		<style type="text/css">
 			.footer_txt{
@@ -128,7 +203,7 @@ $createschedule = new createscheduleFunction();
 									<?php } ?>
 								</div>
 							</div>
-							<input type="submit" class="btn btn-primary test-submit clear report_sumbit" name="submit" value="Submit">
+							<input type="submit" class="btn btn-primary test-submit clear report_sumbit" name="submit" value="Save">
 							<input type="reset" class="btn btn-primary clear" value="Cancel">
 						</form>
 					</div>

@@ -18,7 +18,8 @@ $obj = new categoryfunction();
 							<input type="hidden" name="category_add" value="1">
 						</div><!--align_margin-->
 						<!-- <button type="button" class="btn btn-primary align_right clear category_submit_act">Submit</button> -->
-						<input type="submit" class="btn btn-primary clear category_submit_act" value="Submit">
+						<input type="submit" class="btn btn-primary clear category_submit_act" value="Save">
+						<input type="reset" value="Cancel" class="btn btn-primary clear">
 					</form>
 				</div>
 				<div class="container table-position col-md-12">

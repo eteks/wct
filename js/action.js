@@ -642,7 +642,7 @@
           			        			<div class="test_div popup_hidden">\
           					          		<code class="close_btn cancel_btn"> </code>\
           					          		<div class="edit_title">\
-          					                	<span class="del_txt">Edit Detail</span>\
+          					                	<span class="del_txt">Edit Test</span>\
           					              	</div>\
           					          			<div class="container col-md-12">\
           						          			<div class="col-xs-12 col-md-12">\
@@ -4386,7 +4386,7 @@ $(document).on('blur','.enter_result',function(e){
 		        						<span class="delete_state" data-value="'+data.assign[i].assignschedule_id+'"><i class="fa fa-trash-o"></i></span>\
 										<div class="assign-schedule-popup popup_hidden">\
 			          						<code class="close_btn cancel_btn"> </code>\
-			          						<div class="edit_title"><span class="del_txt">Edit detail</span></div>\
+			          						<div class="edit_title"><span class="del_txt">Edit Schedule Details</span></div>\
 			          						<div class="container state-content col-md-12 assign-scroll">\
 				          						<div class="col-xs-12 col-md-12 align_margin">\
 													<form id="edit_assign_schedule_form" action="functions/assign_schedule_function.php" method="post">\
@@ -4405,22 +4405,22 @@ $(document).on('blur','.enter_result',function(e){
 														<div class=" clone_schedule_update_content assign_clone_content_edit_holder col-md-12">\
 															<div class="assign_clone_content_edit clone_schedule_update">\
 																<input type="hidden" class="assign_athelete_count_edit" value="1" />\
-																<div class="form-group col-md-1">\
-																	<div class="col-md-12 combo--align--popup align_atheletes_schedules">\
+																<div class="form-group col-md-6"  style="padding: 0px;">\
+																	<div class="col-md-7 combo--align--popup align_atheletes_schedules">\
 																	<select class="form-control name_align_popup fl box-width athlete_name athlete_name_update athlete_name1" placeholder="Name" name="athlete_name[]"  data-validation-error-msg="Please Select Athlete" data-validation="required">\
 																		<option value="">Athletes</option>\
 																		'+athelete_dynamic+'\
 																	</select>\
 																</div>\
-																<div class="col-md-12" style="position: relative; top: 20px;">\
+																<div class="col-md-5" style="position: relative; top: 20px;">\
 														      		<input type="text" class="form-control bib_popup fl dob_update dob"  placeholder="Date" value="" disabled>\
 														    	</div>\
 											    			</div>\
-											    			<div class="form-group col-md-12">\
-														    	<div class="col-md-2">\
+											    			<div class="form-group col-md-6">\
+														    	<div class="col-md-4">\
 														      		<input type="text" class="form-control schedule-name fl mobile_update mobile" placeholder="Mobile no" value="" disabled>\
 														      	</div>\
-														      	<div class="col-md-12">\
+														      	<div class="col-md-8">\
 														      		<input type="text" class="form-control bib_popup athlete_bib popup_bib fl bib_update"  placeholder="BIB NO" name="athlete_bib[]" autocomplete="off" data-validation-error-msg="Please Enter the BIBO NO" data-validation="number">\
 																</div>\
 											    			</div>\
@@ -4429,13 +4429,13 @@ $(document).on('blur','.enter_result',function(e){
 															</div>\
 														</div>\
 													</div>\
-													<div class="form-group assign-add-button popup-add-assign col-md-6">\
+													<div class="form-group assign-add-button popup-add-assign col-md-4">\
 														<div class="add-assign">\
 															<span class="edit_assign_schedule_add_btn">Add<i class="fa fa-plus plus_align_assign "></i></span>\
 														</div>\
 													</div>\
 													<input type="hidden" name="assing_schedule_update" value="1" />\
-													<div class="col-md-10 schedule_btn">\
+													<div class="col-md-9 align_right schedule_btn">\
 					  									<input type="submit" value="Save" class="btn btn-primary test-submit clear">\
 					  									<input type="reset" value="Cancel" class="btn btn-primary clear" maxlength="50">\
 													</div>\

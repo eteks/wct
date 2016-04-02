@@ -153,7 +153,7 @@
 	width: 66%;
 }
 .statesname,.sportsname,.edit_states_name{
-    width: 100%;
+    width: 330px;
     height: 33px;
 }
 .align_margin{
@@ -519,12 +519,13 @@ select {
     background: #fff none repeat scroll 0 0;
     box-shadow: 0 2px 10px 3px #b8b7b9;
     display: none;
-    height: 425px;
+    height: 430px;
     float: right;
     right: 0;
     position: absolute;
-    width: 290px;
+    width: 550px;
     z-index: 9999;
+    white-space: normal;
 }
 .close_btn{
     background-color: hsla(0, 0%, 0%, 0);
@@ -580,6 +581,7 @@ select {
     padding: 12px 0 0 15px;
     font-weight: bold;
     font-family: Montserrat;
+    text-align: left;
 }
 .del_title{
     font-size: 14px;
@@ -634,7 +636,7 @@ select {
     font-family: Montserrat;
     height: 34px;
     position: relative;
-    right: 45px;
+    right: 6px;
     width: 130px !important;
 }
 .ranges_btn{
@@ -698,13 +700,14 @@ select {
 .name_align_popup{
     border-radius: 0 !important;
     box-shadow: none !important;
-    height: 34px;
-    margin: 12px 0 0px -25px;
-    position: relative;
-    right: 18px;
-    width: 205px !important;
-    color: #424242  !important;
+    color: #424242 !important;
     font-family: Montserrat;
+    height: 34px;
+    margin: 0;
+    position: relative;
+    right: 5px;
+    top: -7px;
+    width: 100px !important;
 }
 .result_athletename,.result_athletemobile{
     border-radius: 0 !important;
@@ -931,22 +934,23 @@ button, input, optgroup, select, textarea {
     color: #424242 !important;
     font-family: Montserrat;
     height: 34px;
-    margin: 18px 0 10px 16px;
+    margin: 12px 0 10px 5px;
     position: relative;
     right: 56px;
-    width: 225px !important;
+    top: -7px;
+    width: 100px !important;
 }
 .bib_popup{
-    border-radius: 0 !important;
+     border-radius: 0 !important;
     box-shadow: none !important;
     color: #424242 !important;
     font-family: Montserrat;
     height: 34px;
-    margin: 0 0 0px 28px;
+    margin: 5px 0 0 37px;
     position: relative;
-    right: 70px;
-    top: -13px;
-    width: 226px !important;
+    right: 60px;
+    top: -20px;
+    width: 100px !important;
 }
 .create-date {
     border-radius: 0 !important;
@@ -1102,6 +1106,8 @@ input[type=radio]:checked + label:before {
     position: relative;
     right: 46px;
     width: 105px !important;
+    font-size: 13px !important;
+    padding: 0 !important;
 }
 .create-time2{
     border-radius: 0 !important;
@@ -1115,6 +1121,8 @@ input[type=radio]:checked + label:before {
     position: relative;
     right: 46px;
     width: 100px !important;
+    font-size: 13px !important;
+    padding: 0 !important;
 }
 .create-time3{
     border-radius: 0 !important;
@@ -1127,6 +1135,8 @@ input[type=radio]:checked + label:before {
     margin: 0 0 0 -65px;
     position: relative;
     width: 100px !important;
+    font-size: 13px !important;
+    padding: 0 !important;
 }
 .area_width_create{
     position: relative;
@@ -1197,7 +1207,7 @@ input[type=radio]:checked + label:before {
 .day, .month, .year {
     background-color: white;
     border: 1px solid #ccc;
-    color: black;
+    color: #424242;
     height: 34px;
     margin-right: 17px;
     margin-top: 10px;
@@ -1341,7 +1351,7 @@ input[type=radio]:checked + label:before {
 .tooltip_parameter{
     background: #828282 none repeat scroll 0 0;
     border-radius: 5px;
-    bottom: 29px;
+    bottom: 38px;
     color: #fff;
     display: none;
     font-family: Montserrat;
@@ -1357,7 +1367,7 @@ input[type=radio]:checked + label:before {
 .tooltip_remove{
     background: #828282 none repeat scroll 0 0;
     border-radius: 5px;
-    bottom: 33px;
+    bottom: 38px;
     color: #fff;
     display: none;
     font-family: Montserrat;
@@ -1406,9 +1416,9 @@ input[type=radio]:checked + label:before {
     border-right: 12px solid transparent;
     border-top: 14px solid #828282;
     height: 0;
-    left: 8px;
+    left: 6px;
     position: absolute;
-    top: -19px;
+    top: -25px;
     width: 0;
 }
 .range_remove{
@@ -1592,7 +1602,7 @@ tbody tr {
 /* added by siva for pop_up alignment */
 .edit_state_div{    /* state div */
     height: 200px;
-    width: 360px;
+    /*width: 360px;*/
     position:absolute;
     z-index:9999;
     background:#fff;
@@ -1617,7 +1627,7 @@ tbody tr {
 
 .edit_sports_div {  /* state div */
     height: 200px;
-    width: 360px;
+    /*width: 360px;*/
     position:absolute;
     z-index:9999;
     background:#fff;
@@ -1654,7 +1664,7 @@ tbody tr {
 }
 .edit_category_div { /* state div */
     height: 200px;
-    width: 360px;
+    /*width: 360px;*/
     position:absolute;
     z-index:9999;
     background:#fff;
@@ -1671,7 +1681,7 @@ tbody tr {
     float: right;
     right: 0px;
     position: absolute;
-    width: 360px;
+    /*width: 360px;*/
     z-index: 9999;
     /*overflow: auto;*/
 }
@@ -1701,7 +1711,7 @@ tbody tr {
     float: right;
     right: 0px;
     position: absolute;
-    width: 360px;
+    /*width: 360px;*/
     z-index: 9999;
 
 }
@@ -1753,7 +1763,7 @@ tbody tr {
 }*/
 .popup_label{
     float: left;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: bold;
 }
 .delete_test_div{
@@ -1816,7 +1826,7 @@ tbody tr {
     background: #fff none repeat scroll 0 0;
     border: 1px solid #a0a0a0;
     height: 180px;
-    overflow-y: scroll;
+    overflow-y: auto;
     position: absolute;
     top: 50px;
     width: 190px;
@@ -1863,9 +1873,9 @@ button, input, optgroup, select, textarea {
     display: none;
 }
 .popup_bib{
-    margin: 0 0 0 28px;
+    margin: 11px 0 0 52px;
     position: relative;
-    top: -3px;
+    top: -6px;
 }
 .align_bottom{
     margin-bottom: 70px;
@@ -2011,7 +2021,7 @@ td {
 	color: #414141;
     font-size: 14px;
     float: right;
-    width: 32px;
+    width: 90px;
 }
 .enter_result{
     text-align: center;
@@ -2060,6 +2070,24 @@ td {
     left: 50px;
     position: relative;
 }
+.category_update{
+	width: 425px !important;
+}
+.combo--align--popup {
+    margin: 12px -6px -8px -18px;
+}
+.range-box1{
+	position: relative;
+    right: 35px;
+}
+.range-box2{
+	 position: relative;
+     right: 50px;
+}
+.range-box3{
+	position: relative;
+    right: 65px;
+}
 .select_all {
     float: right;
     width: 145px;
@@ -2078,3 +2106,4 @@ td {
     right: 14px;
     top: 2px;
 }
+

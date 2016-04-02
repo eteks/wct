@@ -52,7 +52,8 @@
 						<input type="text" class="adjust_width" name="parameterunit"  data-validation-error-msg="Please enter Parameter Unit" data-validation="required" autocomplete="off">
 					</div>
 					<div class="col-md-9 schedule_btn">
-						<input type="submit" class="btn btn-primary clear parameter-submit" value="Submit">
+						<input type="submit" class="btn btn-primary clear parameter-submit" value="Save">
+						<input type="reset" value="Cancel" class="btn btn-primary clear">
 					</div>
 				</form>
 			</div>
