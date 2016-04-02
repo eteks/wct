@@ -1405,7 +1405,7 @@
                success: function(html) {
                    //alert(html);
                    if(html=='error'){
-                     alert('Sports already exist!');
+                     alert('Sports already exists!');
                    }else{
                        alert('Sport inserted successfully!');
                        location.reload();
@@ -1441,7 +1441,7 @@
                   var result_split = html.split('#');
                    if (result_split[0].indexOf("success") !== -1){
                      // $('.add_states_error').text(result_split[1]).show();
-                     $('.add_states_error').hide();
+                     // $('.add_states_error').hide();
                      alert(result_split[1]);
                      html ="<tr class='align_center delete_color'>\
                      <input type='hidden' name='states_id' value="+result_split[2]+">\
@@ -1456,7 +1456,8 @@
                      location.reload();
                    }
                    else{
-                    $('.add_states_error').text(result_split[1]).show();
+                    // $('.add_states_error').text(result_split[1]).show();
+                    alert(result_split[1]);
                        }
                    }
                })
@@ -1524,7 +1525,7 @@
                success: function(html) {
                    var result_split = html.split('#');
                    if (result_split[0].indexOf("success") !== -1){
-                     $('.edit_states_error').hide();
+                     // $('.edit_states_error').hide();
                      $('.state_table').find("input[value="+result_split[2]+"]").siblings('.t_states_name').html(result_split[3]);
                      $('.popup_fade').hide();
                      $('.state_div, .close_btn').hide();
@@ -1533,7 +1534,8 @@
                      location.reload();
                    }
                    else{
-                    $('.edit_states_error').text(result_split[1]).show();
+                    // $('.edit_states_error').text(result_split[1]).show();
+                    alert(result_split[1]);
                    }
                }
            });
@@ -1613,7 +1615,8 @@
                      location.reload();
                    }
                    else{
-                    $('.edit_district_error').text(result_split[1]).show();
+                    // $('.edit_district_error').text(result_split[1]).show();
+                    alert(result_split[1]);
                    }
                }
            });
@@ -1986,7 +1989,7 @@
                success: function(html) {
                   // alert(html);
                    if(html=='error'){
-                     alert('Category already exist!');
+                     alert('Category already exists!');
                    }else{
                      alert('Category inserted successfully!');
                      //$('#category_table tr:last').after(html);
