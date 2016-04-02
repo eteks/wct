@@ -3300,7 +3300,7 @@ $(document).on('blur','.enter_result',function(e){
             if (value == ''){
               $(this).siblings('.enter_result_error').removeClass('error').hide();
               $(this).parents('tr').find('.enter_points').text('0');
-              // $(this).val('-');
+              $(this).val('-');
             }
             if(((parameter_type == "time") && (value!='') && (value!='-'))||((parameter_type == "Time") && (value!=''))){
               // alert("time");
@@ -4230,11 +4230,20 @@ $(document).on('blur','.enter_result',function(e){
           if($(this).is(':checked')){
             $('.result_table input[name="status_incomplete"]').each(function(){
               $(this).prop("checked",true);
+              //newly added
+              $(this).parents('tr').find('.enter_result').val('0').addClass('result_restrict').attr('disabled',true);
+              $(this).parents('tr').find('.enter_points').text('0');
+              $(this).parents('tr').find('.enter_result_error').removeClass('error').hide();
+              $(this).parents('tr').find('.status_incomplete').attr("checked",true);
             });
           }
           else{
             $('.result_table input[name="status_incomplete"]').each(function(){
               $(this).prop("checked",false);
+              //newly added
+               $(this).parents('tr').find('.enter_result').val('').removeClass('result_restrict').attr('disabled',false);
+               $(this).parents('tr').find('.enter_points').text('');
+               $(this).parents('tr').find('.status_incomplete').attr("checked",false);   
             });
           }
         });
