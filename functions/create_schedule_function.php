@@ -40,6 +40,14 @@
             }
             return $temp_arr;
 		}
+		public function createscheduleselectreportfunction(){
+            $temp_arr = array();
+            $res = mysql_query("SELECT * FROM wc_createschedule where createschedule_id IN (select DISTINCT assigncreateschedule_id from wc_assignschedule )") or die(mysql_error());
+            while($row = mysql_fetch_array($res)) {
+                $temp_arr[] =$row;
+            }
+            return $temp_arr;
+		}
 		public function testbatterynameSelect(){
 			$res = mysql_query("SELECT testbattery_name FROM wc_testbattery WHERE testbattery_id='".$this->createschedule_testbatteryid."'")or die(mysql_error());
 			return $res;

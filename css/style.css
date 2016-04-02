@@ -1465,6 +1465,8 @@ input[type=radio]:checked + label:before {
     display: block;
     color: red;
     font-size: 10px;
+    font-size: 10px !important;
+    font-family: sans-serif !important;
    /* left: 40px;
     position: relative;*/
 }
