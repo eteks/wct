@@ -3967,13 +3967,15 @@ $(document).on('blur','.enter_result',function(e){
         // });
 
       $(document).on('keyup','.at_search,.cs_search,.dt_search,.tb_search',function(e){
+        // alert("yes");
         search_value = $('.search_text').val();
           if(search_value == ''){
             $('.test-name').show();
           }else{
             $('.test-name').hide();
-            $('.test-list input').each(function(){
+            $('.list_edit').each(function(){
                 // if($(this).val().toLowerCase().startsWith(search_value) !== -1){
+                 // alert($(this).val());
                if($(this).val().toLowerCase().indexOf(search_value) == 0){
                   $(this).parents('.test-name').show();
                 }
