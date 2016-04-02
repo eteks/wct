@@ -65,7 +65,7 @@ if (isset($_GET['insert_new'])) {
 								<input type="hidden" class="parameter_count" value="1" />
 							</div>
 
-							<div class="form-group col-md-2 align-area">
+							<div class="form-group col-md-3 align-area">
 									<label>Type</label><br>
 									<select class="form-control classic type_align fl parameter_type parameter_type_add" id="type" name="type1">
 										<option value="">
@@ -87,14 +87,14 @@ if (isset($_GET['insert_new'])) {
 									</select>
 									<span class="hided param_type_error">Please select Parameter Type</span>
 								</div>
-								<div class="form-group col-md-2 align-area">
+								<div class="form-group col-md-3 align-area">
 									<label>Unit</label><br>
 									<select class="form-control classic type_align fl parameter_unit paremeter_unit_add" id="unit" name="unit1">
 									<option value="">Unit</option>
 									</select>
 									<span class="hided param_unit_error">Please select Parameter Unit</span>
 								</div>
-								<div class="form-group col-md-2 align-area">
+								<div class="form-group col-md-3 align-area">
 									<label>Format</label><br>
 									<select class="form-control classic type_align fl parameter_format" id="format" name="format1">
 										<option value="">Format</option>
@@ -205,7 +205,7 @@ if (isset($_GET['insert_new'])) {
 						          			<div class="col-xs-12 col-md-12">
 									<form id="test_updation_form" action="functions/test_functions.php" method="post">
 										<div class="parameter_holder">
-											<div class="form-group col-md-4" style="padding: 0;">
+											<div class="form-group col-md-5" style="padding: 0;">
 												<label class="popup_label">Enter Parameter Name</label><br>
 												<input type="text" class="adjust_width test_parameter_name_update" name="parameter_name1" data-validation-error-msg="Please Enter the Parameter Name" data-validation="required" style="width:500px !important;height: 30px;">
 
