@@ -162,7 +162,7 @@
 										<span class="test-alter">
 											<i class="fa fa-floppy-o save_item save-testbattery"></i>
 											<i class="fa fa-pencil-square-o edit_item"></i>
-											<i class="fa fa-trash-o delete_item delete_state" data-value="<?php echo $row['testbattery_id']; ?>"></i>
+											<i class="fa fa-trash-o delete_item delete_state"  style="float: none;" <?php echo $row['testbattery_id']; ?>"></i>
 										</span><!--test-alter-->
 									</span><!--test-name-->
 									<div class="delete_div delete_search">
@@ -172,8 +172,8 @@
 							              </div>
 							              <div class="del_content">
 							                <span class="del_content_txt">Are you sure want to delete this whole record?</span>
-							                <input type="button" class="btn btn-primary align_right yes_btn_tb" value="Yes">
 							                <input type="button" class="btn btn-primary align_right no_btn" value="No">
+							                <input type="button" class="btn btn-primary align_right yes_btn_tb" value="Yes">
 							                <input type="hidden" name="delete_id" value="" id="delete_id"/>
 							              </div><!--del_content-->
       								</div><!--delete_div-->

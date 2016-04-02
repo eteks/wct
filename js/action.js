@@ -404,9 +404,9 @@
                                        </div>\
                                        <div class="del_content">\
                                          <span class="del_content_txt">Are you sure want to delete this whole record?</span>\
-                                         <input type="button" class="btn btn-primary align_right yes_btn" value="Yes" data-delete="test_name" data-id ="'+data[i].test_id+'">\
-                                         <input type="button" class="btn btn-primary align_right no_btn" value="No">\
-                                         <input type="hidden" name="delete_id" value="" id="delete_id"/>\
+                                          <input type="button" class="btn btn-primary align_right no_btn" value="No">\
+                                          <input type="button" class="btn btn-primary align_right yes_btn" value="Yes" data-delete="test_name" data-id ="'+data[i].test_id+'">\
+                                          <input type="hidden" name="delete_id" value="" id="delete_id"/>\
                                        </div>\
                                  </div>');
                                   $('.edit_item,.save_item,.delete_item').hide();
@@ -648,25 +648,25 @@
           						          			<div class="col-xs-12 col-md-12">\
           									<form id="test_updation_form" action="functions/test_functions.php" method="post">\
           										<div class="parameter_holder">\
-          											<div class="form-group" style="margin: 0;">\
+          											<div class="form-group col-md-4" style="padding: 0;">\
           												<label class="popup_label">Enter Parameter Name</label><br>\
-          												<input type="text" class="adjust_width test_parameter_name_update" name="parameter_name1" data-validation-error-msg="Please Enter the Parameter Name" data-validation="required" style="width:220px !important;height: 30px;" required>\
+          												<input type="text" class="adjust_width test_parameter_name_update" name="parameter_name1" data-validation-error-msg="Please Enter the Parameter Name" data-validation="required" style="width:500px !important;height: 30px;" required>\
           											</div>\
-          											<div class="form-group col-md-8 test_percentage parameter_type_parent">\
-          												<div class="col-md-12" style="padding: 0;">\
-          													<label class="popup_label">Type</label>\
+          											<div class="form-group col-md-12 test_percentage parameter_type_parent">\
+          												<div class="form-group col-md-4" style="padding: 0;">\
+          													<label class="popup_label">Type</label><br>\
           													<select class="form-control classic type_align_popup fl parameter_type parameter_type_update" id="type1" name="type1" data-validation-error-msg="Please Select the Type" data-validation="required" required>\
           														<option value=""></option>\
                                                                 '+param_dynamic+'\
           													</select>\
           												</div>\
-          												<div class="col-md-12" style="padding: 0;">\
-          													<label class="popup_label">Unit</label>\
+          												<div class="form-group col-md-4" style="padding: 0;">\
+          													<label class="popup_label">Unit</label><br>\
           													<select class="form-control classic type_align_popup fl parameter_unit parameter_unit_update" id="unit1" name="unit1" data-validation-error-msg="Please Select the Unit" data-validation="required" required>\
           													</select>\
           												</div>\
-          												<div class="col-md-12" style="padding: 0;">\
-          													<label class="popup_label">Format</label>\
+          												<div class="form-group col-md-4" style="padding: 0;">\
+          													<label class="popup_label">Format</label><br>\
           													<select class="form-control classic type_align_popup fl parameter_format parameter_format_update" id="format1" name="format1" data-validation-error-msg="Please Select the Format" data-validation="required" required>\
           														<option value="">Format</option>\
           														<option value="0">0</option>\
@@ -1556,11 +1556,15 @@
         $('.districts_form').submit(function(e){
             e.preventDefault();
             var res = true;
-            $('input[type="text"]',this).each(function() {
+            $('input[type="text"],select',this).each(function() {
               if($(this).val().trim() == "") {
+                $(this).siblings('.hided').addClass('custom_error').show();
                 res = false;
               }
             });
+            if($(":input").siblings('span').hasClass("custom_error")){
+              res =  false;
+            }
             if(res){
               var form_data = $(this).serialize();
               $.ajax({
@@ -1571,7 +1575,7 @@
                    success: function(html) {
                        if(html){
                            alert(html+' District already exists!');
-                           // location.reload();
+                           location.reload();
                        }else{
                            alert('District inserted successfully!');
                             location.reload();
@@ -2178,23 +2182,37 @@
             newElement.appendTo($(".assign_clone_content_edit_holder"));
 
         });
+        // var dist_id = 1;
+        // $('.district_add').on('click',function(e){
+        //     if($('.district_clone_content:last').find('input').val() == ''){
+        //       e.preventDefault();
+        //      $('.district_clone_content :last').find('input').siblings('.add_district_error').next().removeClass('category_text');
+        //       $('.district_clone_content:last').find('input').siblings('.add_district_error').next().addClass('help-block form-error');
+        //     }
+        //     else{
+        //       if($('.district_clone_content:last').find('input').val() !== ''){
+        //         // var id = dist_id+1;
+        //           $('.district_clone_content:last').find('input').siblings('.add_district_error').next().removeClass('help-block form-error');
+        //           $('.district_clone_content :last').find('input').siblings('.add_district_error').next().addClass('category_text');
+        //         nextElement2($('.district_clone_content:last'));
+        //         // $('.district_clone_content').find('input[type="hidden"]').attr('id','district_add_for_clone'+id);
+        //       }
+        //     }
+        // });
+
         var dist_id = 1;
         $('.district_add').on('click',function(e){
-            if($('.district_clone_content:last').find('input').val() == ''){
+            if($('.district_clone_content:last').find('.districts').val() == ''){
               e.preventDefault();
-             $('.district_clone_content :last').find('input').siblings('.add_district_error').next().removeClass('category_text');
-              $('.district_clone_content:last').find('input').siblings('.add_district_error').next().addClass('help-block form-error');
+              $('.district_clone_content:last').children().find('input[type="text"]').siblings('.hided').addClass('custom_error');
             }
             else{
               if($('.district_clone_content:last').find('input').val() !== ''){
-                // var id = dist_id+1;
-                  $('.district_clone_content:last').find('input').siblings('.add_district_error').next().removeClass('help-block form-error');
-                  $('.district_clone_content :last').find('input').siblings('.add_district_error').next().addClass('category_text');
+                $('.district_clone_content:last').children().find('input[type="text"]').siblings('.hided').removeClass('custom_error');
                 nextElement2($('.district_clone_content:last'));
                 // $('.district_clone_content').find('input[type="hidden"]').attr('id','district_add_for_clone'+id);
               }
             }
-
         });
 
         function nextElement2(element){
@@ -2209,20 +2227,20 @@
           }
           return false;
        });
-       $('form[name="district_form"]').submit(function(e){
+       // $('form[name="district_form"]').submit(function(e){
 
-         // var res = true;
-         $('select, input[type="text"]',this).each(function() {
-           if($(this).val().trim() == "") {
-           e.preventDefault();
-             $(this).next().removeClass('category_text');
-             $(this).next().addClass('help-block form-error');
-               $('.district_clone_content :last').find('input').siblings('.add_district_error').next().removeClass('category_text');
-             $('.district_clone_content:last').find('input').siblings('.add_district_error').next().addClass('help-block form-error');
-           }
-         });
+       //   // var res = true;
+       //   $('select, input[type="text"]',this).each(function() {
+       //     if($(this).val().trim() == "") {
+       //     e.preventDefault();
+       //       $(this).next().removeClass('category_text');
+       //       $(this).next().addClass('help-block form-error');
+       //         $('.district_clone_content :last').find('input').siblings('.add_district_error').next().removeClass('category_text');
+       //       $('.district_clone_content:last').find('input').siblings('.add_district_error').next().addClass('help-block form-error');
+       //     }
+       //   });
 
-       });
+       // });
 
        $('.reset_form_dist').click(function(){
            $("span .help-block form-error").hide();
@@ -3282,7 +3300,7 @@ $(document).on('blur','.enter_result',function(e){
             if (value == ''){
               $(this).siblings('.enter_result_error').removeClass('error').hide();
               $(this).parents('tr').find('.enter_points').text('0');
-              // $(this).val('-');
+              $(this).val('-');
             }
             if(((parameter_type == "time") && (value!='') && (value!='-'))||((parameter_type == "Time") && (value!=''))){
               // alert("time");
@@ -3708,6 +3726,16 @@ $(document).on('blur','.enter_result',function(e){
 
         // });
 
+         $(document).on('blur','.districts',function(e){
+            value=$(this).val();
+            if(value == ''){
+              $(this).siblings('.hided').addClass('custom_error').show();
+            }
+            else{
+              $(this).siblings('.hided').removeClass('custom_error').hide();
+            }
+         });
+
          $(document).on('blur','.r_strt,.r_end,.edit_r_strt,.edit_r_end',function(e){
             //Checking entered range
             value=$(this).val();
@@ -3939,13 +3967,15 @@ $(document).on('blur','.enter_result',function(e){
         // });
 
       $(document).on('keyup','.at_search,.cs_search,.dt_search,.tb_search',function(e){
+        // alert("yes");
         search_value = $('.search_text').val();
           if(search_value == ''){
             $('.test-name').show();
           }else{
             $('.test-name').hide();
-            $('.test-list input').each(function(){
+            $('.list_edit').each(function(){
                 // if($(this).val().toLowerCase().startsWith(search_value) !== -1){
+                 // alert($(this).val());
                if($(this).val().toLowerCase().indexOf(search_value) == 0){
                   $(this).parents('.test-name').show();
                 }
@@ -4202,11 +4232,20 @@ $(document).on('blur','.enter_result',function(e){
           if($(this).is(':checked')){
             $('.result_table input[name="status_incomplete"]').each(function(){
               $(this).prop("checked",true);
+              //newly added
+              $(this).parents('tr').find('.enter_result').val('0').addClass('result_restrict').attr('disabled',true);
+              $(this).parents('tr').find('.enter_points').text('0');
+              $(this).parents('tr').find('.enter_result_error').removeClass('error').hide();
+              $(this).parents('tr').find('.status_incomplete').attr("checked",true);
             });
           }
           else{
             $('.result_table input[name="status_incomplete"]').each(function(){
               $(this).prop("checked",false);
+              //newly added
+               $(this).parents('tr').find('.enter_result').val('').removeClass('result_restrict').attr('disabled',false);
+               $(this).parents('tr').find('.enter_points').text('');
+               $(this).parents('tr').find('.status_incomplete').attr("checked",false);   
             });
           }
         });
