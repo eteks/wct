@@ -286,7 +286,7 @@
 
 										<div class="align_height align_margin col-md-10">
 											<label class="popup_label">Address</label><br>
-											<textarea class="area_width_athlete box-width box-width-athlete" name="edit_athlete_address" data-validation-error-msg="Please Enter the Address" data-validation="required"></textarea>
+											<textarea class="area_width_athlete" name="edit_athlete_address" data-validation-error-msg="Please Enter the Address" data-validation="required"></textarea>
 										</div>
 
 										<div class="form-group col-md-10">
