@@ -258,7 +258,7 @@
 					      					<input id="ahtlete_mobile" type="text" value="" class="adjust_width box-width box-width-athlete" name="edit_athlete_mobile" autocomplete="off" data-validation-error-msg="Please Enter the value that must contain 10 numbers" data-validation="length" data-validation-length="10">
 					     				</div>
 										<div class="form-group col-md-10">
-											  <label for="sel1" class="popup_label">Gender</label>
+											  <label for="sel1" class="popup_label">Gender</label><br>
 											  <select class="form-control adjust_width classic box-width box-width-athlete" id="sel1" name="edit_athlete_gender" data-validation-error-msg="Please Select the Gender" data-validation="required">
 											  <option value=""></option>
 											  <option value="Female">Female</option>
@@ -266,7 +266,7 @@
 											  </select>
 										</div>
 										<div class="form-group col-md-10">
-											  <label for="sel1" class="popup_label">State</label>
+											  <label for="sel1" class="popup_label">State</label><br>
 											  <select class="form-control adjust_width classic athlete_state_act box-width box-width-athlete" id="sel1" name="edit_athlete_state" data-validation-error-msg="Please Select the State" data-validation="required">
 											  <option value="">State</option>
 											   <?php
@@ -278,7 +278,7 @@
 											  </select>
 										</div>
 										<div class="form-group col-md-10">
-											  <label for="sel1" class="popup_label">District</label>
+											  <label for="sel1" class="popup_label">District</label><br>
 											  <select class="form-control adjust_width classic athlete_district_act box-width box-width-athlete" id="sel1" name="edit_athlete_district" data-validation-error-msg="Please Select the District" data-validation="required">
 											  <option value=""> District</option>
 											  </select>
@@ -295,7 +295,7 @@
 										</div>
 
 										<div class="form-group col-md-10">
-											  <label for="sel1" class="popup_label">Sport</label>
+											  <label for="sel1" class="popup_label">Sport</label><br>
 											  <select class="form-control adjust_width classic box-width box-width-athlete form-group" id="sel1" name="edit_athlete_sports" data-validation-error-msg="Please Select the Sport" data-validation="required">
 											  <option value=""> Sport</option>
 											   <?php

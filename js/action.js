@@ -404,9 +404,9 @@
                                        </div>\
                                        <div class="del_content">\
                                          <span class="del_content_txt">Are you sure want to delete this whole record?</span>\
-                                         <input type="button" class="btn btn-primary align_right yes_btn" value="Yes" data-delete="test_name" data-id ="'+data[i].test_id+'">\
-                                         <input type="button" class="btn btn-primary align_right no_btn" value="No">\
-                                         <input type="hidden" name="delete_id" value="" id="delete_id"/>\
+                                          <input type="button" class="btn btn-primary align_right no_btn" value="No">\
+                                          <input type="button" class="btn btn-primary align_right yes_btn" value="Yes" data-delete="test_name" data-id ="'+data[i].test_id+'">\
+                                          <input type="hidden" name="delete_id" value="" id="delete_id"/>\
                                        </div>\
                                  </div>');
                                   $('.edit_item,.save_item,.delete_item').hide();
@@ -648,25 +648,25 @@
           						          			<div class="col-xs-12 col-md-12">\
           									<form id="test_updation_form" action="functions/test_functions.php" method="post">\
           										<div class="parameter_holder">\
-          											<div class="form-group" style="margin: 0;">\
+          											<div class="form-group col-md-4" style="padding: 0;">\
           												<label class="popup_label">Enter Parameter Name</label><br>\
-          												<input type="text" class="adjust_width test_parameter_name_update" name="parameter_name1" data-validation-error-msg="Please Enter the Parameter Name" data-validation="required" style="width:220px !important;height: 30px;" required>\
+          												<input type="text" class="adjust_width test_parameter_name_update" name="parameter_name1" data-validation-error-msg="Please Enter the Parameter Name" data-validation="required" style="width:500px !important;height: 30px;" required>\
           											</div>\
-          											<div class="form-group col-md-8 test_percentage parameter_type_parent">\
-          												<div class="col-md-12" style="padding: 0;">\
-          													<label class="popup_label">Type</label>\
+          											<div class="form-group col-md-12 test_percentage parameter_type_parent">\
+          												<div class="form-group col-md-4" style="padding: 0;">\
+          													<label class="popup_label">Type</label><br>\
           													<select class="form-control classic type_align_popup fl parameter_type parameter_type_update" id="type1" name="type1" data-validation-error-msg="Please Select the Type" data-validation="required" required>\
           														<option value=""></option>\
                                                                 '+param_dynamic+'\
           													</select>\
           												</div>\
-          												<div class="col-md-12" style="padding: 0;">\
-          													<label class="popup_label">Unit</label>\
+          												<div class="form-group col-md-4" style="padding: 0;">\
+          													<label class="popup_label">Unit</label><br>\
           													<select class="form-control classic type_align_popup fl parameter_unit parameter_unit_update" id="unit1" name="unit1" data-validation-error-msg="Please Select the Unit" data-validation="required" required>\
           													</select>\
           												</div>\
-          												<div class="col-md-12" style="padding: 0;">\
-          													<label class="popup_label">Format</label>\
+          												<div class="form-group col-md-4" style="padding: 0;">\
+          													<label class="popup_label">Format</label><br>\
           													<select class="form-control classic type_align_popup fl parameter_format parameter_format_update" id="format1" name="format1" data-validation-error-msg="Please Select the Format" data-validation="required" required>\
           														<option value="">Format</option>\
           														<option value="0">0</option>\

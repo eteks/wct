@@ -272,9 +272,9 @@
 							              </div>
 							              <div class="del_content">
 							                <span class="del_content_txt">Are you sure want to delete this whole record?</span>
-							                <input type="button" class="btn btn-primary align_right yes_btn" value="Yes">
-							                <input type="button" class="btn btn-primary align_right no_btn" value="No">
-							                <input type="hidden" name="delete_id" value="" id="delete_id"/>
+							                 <input type="button" class="btn btn-primary align_right no_btn" value="No">
+							                 <input type="button" class="btn btn-primary align_right yes_btn" value="Yes">
+							                 <input type="hidden" name="delete_id" value="" id="delete_id"/>
 							              </div><!--del_content-->
       								</div><!--delete_div-->
       								<?php } ?>
@@ -375,7 +375,8 @@
 
 												<div class="form-group col-md-12">
 												  <label for="date" class="popup_label">Select Time</label><br>
-												  	<div class="col-md-3">
+												  	<div class="form-group col-md-3 align-time-popup1">
+												  		<label class="popup_label">Time</label>
 														<select class="form-control classic create-time1" id="hour" name="edit_schedule_hour" data-validation-error-msg="Please Select the Hour" data-validation="required">
 														  	<option value="">Hour</option>
 														    <option value="01">01</option>
@@ -404,7 +405,8 @@
 														    <option value="24">24</option>
 														</select>
 													</div>
-													<div class="col-md-3">
+													<div class="form-group col-md-3 align-time-popup2">
+														<label class="popup_label">Minute</label>
 														<select class="form-control classic create-time2" id="minute" name="edit_schedule_minute" data-validation-error-msg="Please Select the Minute" data-validation="required">
 														  	<option value="">Minute</option>
 														  	<option value="00">00</option>
@@ -469,7 +471,8 @@
 											                <option value="59">59</option>
 														</select>
 													</div>
-													<div class="col-md-3">
+													<div class="form-group col-md-3 align-time-popup3">
+														<label class="popup_label">Seconds</label>
 												  		<select class="form-control classic create-time3" id="seconds" name="edit_schedule_seconds" data-validation-error-msg="Please select Time" data-validation="required">
 													  	<option value="">Seconds</option>
 													    <option value="00">00</option>
@@ -536,7 +539,7 @@
 											  	</div>
 											</div>
 
-												<div class="align_height align_margin col-md-12">
+												<div class="align_height align_margin col-md-3">
 													<label class="popup_label">Venue</label><br>
 													<textarea class="area_width_create" name="edit_schedule_venue" data-validation-error-msg="Please Enter the Venue" data-validation="required"></textarea>
 												</div>
