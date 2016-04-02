@@ -195,6 +195,7 @@ $createschedule = new createscheduleFunction();
 								<div class="area_scroll">
 									<?php
 									   $data = $createschedule->createscheduleselectreportfunction();
+									   $length = count($data);
 									   foreach( $data as $eachrecord ) {
 									?>
 									<div class="checkbox align_check">
@@ -203,8 +204,8 @@ $createschedule = new createscheduleFunction();
 									<?php } ?>
 								</div>
 							</div>
-							<input type="submit" class="btn btn-primary test-submit clear report_sumbit" name="submit" value="Save">
-							<input type="reset" class="btn btn-primary clear" value="Cancel">
+							<input type="submit" class="btn btn-primary test-submit clear report_sumbit" name="submit" value="Save" <?php if($length == 0){ echo 'disabled'; }?>>
+							<input type="reset" class="btn btn-primary clear" value="Cancel" <?php if($length == 0){ echo 'disabled'; }?>>
 						</form>
 					</div>
 				</div>

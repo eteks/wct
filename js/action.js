@@ -2120,9 +2120,24 @@
             newElement.appendTo($(".parameter_holder1"));
         }
 
-        var test_id = 1;
-        $('.add_athelete').click(function(){
-            nextElement1($('.assign_clone_content:last'));
+        // var test_id = 1;
+        // $('.add_athelete').click(function(){
+            // nextElement1($('.assign_clone_content:last'));
+        // });
+         var test_id = 1;  
+           $(document).on('click','.add_athelete',function(e){
+            if($('.assign_clone_content:last').children().find('#bib,#combobox').val() == ''){              
+              $('.assign_clone_content:last').children().find('#bib').next().addClass('custom_error');
+              $('.assign_clone_content:last').children().find('#bib').next().addClass('custom_error');
+               e.preventDefault();
+            }
+           
+            else{
+              $('.assign_clone_content:last').children().find('input[type="text"]').next().removeClass('custom_error');
+              nextElement1($('.assign_clone_content:last'));
+           }
+           return false;
+     
         });
 
         function nextElement1(element){
@@ -2162,25 +2177,95 @@
 
         }
 
-        $(document).on('click','.edit_assign_schedule_add_btn',function(){
-            var element = $(this).parents('#edit_assign_schedule_form').find('.assign_clone_content_edit:last');
-            var last_id = parseInt(element.find('.assign_athelete_count_edit').val());
-            //alert(last_id);
+        // $(document).on('click','.edit_assign_schedule_add_btn',function(){
+            // var element = $(this).parents('#edit_assign_schedule_form').find('.assign_clone_content_edit:last');
+            // var last_id = parseInt(element.find('.assign_athelete_count_edit').val());
+            // //alert(last_id);
+            // var newElement = element.clone();
+            // var id = last_id+1;
+            // test_id = id;
+            // //alert(newElement.find('.athlete_name option:selected').html());
+            // newElement.find('.assign_athelete_count_edit').val(id);
+            // //newElement.find('.athlete_name').removeAttr('name').attr('name', 'athlete_name'+id);
+            // newElement.find('.athlete_name option:selected').removeAttr('selected');
+            // //newElement.find('.athlete_bib').removeAttr('name').attr('name', 'athlete_bib'+id).val('');
+            // newElement.find('.dob').val('');
+            // newElement.find('.athlete_bib').val('');
+            // //newElement.find('.create_schedule_update_id').removeAttr('name').attr('name', 'create_schedule_update_id'+id);
+            // newElement.find('.mobile').val('');
+            // newElement.find('.custom-combobox:nth-child(3)').remove();
+            // newElement.appendTo($(".assign_clone_content_edit_holder"));
+		// 
+        // });
+        var test_id = 1;  
+           $(document).on('click','.edit_assign_schedule_add_btn',function(e){            
+            if($('.assign_clone_content_edit:last').children().find('#bibo, #athlete_sel').val() == ''){   
+            e.preventDefault();          
+              $('.assign_clone_content_edit:last').children().find('#bibo').next().addClass('custom_error');
+              $('.assign_clone_content_edit:last').children().find('#athlete_sel').next().next().addClass('custom_error');                      
+            }           
+            else{
+              $('.assign_clone_content_edit:last').children().find('#bibo').next().removeClass('custom_error');
+              $('.assign_clone_content_edit:last').children().find('#athlete_sel').next().next().removeClass('custom_error');
+              newElement($('.assign_clone_content_edit:last'));
+           }
+           return false;
+     
+        });
+
+        function newElement(element){
+          var last_id = parseInt(element.find('.assign_athelete_count_edit').val()); 
             var newElement = element.clone();
             var id = last_id+1;
-            test_id = id;
-            //alert(newElement.find('.athlete_name option:selected').html());
-            newElement.find('.assign_athelete_count_edit').val(id);
-            //newElement.find('.athlete_name').removeAttr('name').attr('name', 'athlete_name'+id);
-            newElement.find('.athlete_name option:selected').removeAttr('selected');
-            //newElement.find('.athlete_bib').removeAttr('name').attr('name', 'athlete_bib'+id).val('');
+            test_id = id;            
+            newElement.find('.assign_athelete_count_edit').val(id);           
+            newElement.find('.athlete_name option:selected').removeAttr('selected');            
             newElement.find('.dob').val('');
-            newElement.find('.athlete_bib').val('');
-            //newElement.find('.create_schedule_update_id').removeAttr('name').attr('name', 'create_schedule_update_id'+id);
+            newElement.find('.athlete_bib').val('');           
             newElement.find('.mobile').val('');
-            newElement.find('.custom-combobox:nth-child(3)').remove();
+            newElement.find('.custom-combobox:nth-child(3)').remove();   
             newElement.appendTo($(".assign_clone_content_edit_holder"));
+        }  
 
+       // $(document).on('click','.edit_assign_schedule_delete',function(){
+        // if($('.assign_clone_content_edit').length !=1){
+          // $('.assign_clone_content_edit:last').remove();
+        // }
+        // return false;
+        // });        
+
+        $('.reset_form_edit_schedule').click(function(){   
+          $("#bibo").next('span').removeClass('custom_error');          
+           $(".assign_clone_content_edit").each(function() {
+               if($('.assign_clone_content_edit').length !=1){
+                   $('.assign_clone_content_edit:last').remove();
+               }
+           });
+       });
+        
+       
+       $('.reset_form_assign_schedule').click(function(){   
+         $("#bib").next('span').removeClass('custom_error');
+           $(".assign_clone_content").each(function() {
+               if($('.assign_clone_content').length !=1){
+                   $('.assign_clone_content:last').remove();
+               }
+           });
+       });
+
+        $('.schedule_submit').on('click',function(e){         
+          var res = true;         
+            if($('#bibo').val().trim() == "") {
+              e.preventDefault();
+             $("#bibo").next('span').addClass('custom_error');
+              res = false;
+              // alert('false');
+            }       
+          if(res){
+            // alert('success');
+            $("#bibo").next('span').removeClass('custom_error');
+            return true;
+          }
         });
         // var dist_id = 1;
         // $('.district_add').on('click',function(e){
@@ -3652,11 +3737,13 @@ $(document).on('blur','.enter_result',function(e){
           if($('.assign_clone_content').length !=1){
             $('.assign_clone_content:last').remove();
           }
+          return false;
         });
         $('.assign_remove_edit').click(function(){
           if($(this).parents('.assign-schedule-popup').find('.assign_clone_content_edit').length !=1){
             $(this).parents('.assign-schedule-popup').find('.assign_clone_content_edit:last').remove();
           }
+          return false;
         });
 
 
@@ -4526,8 +4613,9 @@ $(document).on('blur','.enter_result',function(e){
      
      
     $(document).on('click','.edit_assign_schedule_delete',function(){
-  			$(this).parents('.assign_clone_content_edit').remove();
-  			//alert($(this).parents('.assign_clone_content_edit').html());
+  		$(this).parents('.assign_clone_content_edit').remove();
+  		//alert($(this).parents('.assign_clone_content_edit').html());
+  		return false;
     });
 
     
