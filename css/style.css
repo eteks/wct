@@ -457,11 +457,11 @@ select {
     background: #fff none repeat scroll 0 0;
     box-shadow: 0 2px 10px 3px #b8b7b9;
     display: none;
-    height: 353px;
+    height: 270px;
     float: right;
-    right: 0px;
+    right: 25%;
     position: absolute;
-    width: 275px;
+    width: 565px;
     z-index: 9999;
     white-space: normal;
 }
@@ -491,17 +491,20 @@ select {
     overflow-x: hidden;
 }
 .createschedule_div{
-	width: 500px !important;
+	width: 556px !important;
+}
+.athletes_div,.createschedule_div{
+	right: 30% !important;
 }
 .test_battery{
     background: #fff none repeat scroll 0 0;
     box-shadow: 0 2px 10px 3px #b8b7b9;
     display: none;
-    height: 440px;
     float: right;
-    right: 0px;
+    height: 490px;
     position: absolute;
-    width: 290px;
+    right: 0;
+    width: 350px;
     z-index: 9999;
 }
 .range_div{
@@ -510,7 +513,7 @@ select {
     display: none;
     height: 425px;
     float: right;
-    right: 0px;
+    right: 35%;
     position: absolute;
     width: 468px;
     z-index: 9999;
@@ -521,7 +524,7 @@ select {
     display: none;
     height: 430px;
     float: right;
-    right: 0;
+    right: 35%;
     position: absolute;
     width: 550px;
     z-index: 9999;
@@ -818,7 +821,7 @@ button, input, optgroup, select, textarea {
     right: 27px;
     text-overflow: ellipsis;
     white-space: nowrap;
-    width: 219px !important;
+    width: 155px !important;
 }
 .area_scroll_popup{
     border: 1px solid #A0A0A0;
@@ -1095,53 +1098,50 @@ input[type=radio]:checked + label:before {
     width: 132px !important;
 }
 .create-time1{
-    border-radius: 0 !important;
+     border-radius: 0 !important;
     box-shadow: none !important;
     color: #424242 !important;
-    float: left;
+    /*float: left;*/
     font-family: Montserrat;
-    font-size: 11px !important;
-    height: 34px;
-    margin: 0 0 10px -39px;
-    position: relative;
-    right: 46px;
-    width: 105px !important;
     font-size: 13px !important;
+    height: 34px;
+    margin: 0 0 10px 33px;
     padding: 0 !important;
+    position: relative;
+    right: 34px;
+    width: 115px !important;
 }
 .create-time2{
     border-radius: 0 !important;
     box-shadow: none !important;
     color: #424242 !important;
-    float: left;
+    /*float: left;*/
     font-family: Montserrat;
-    font-size: 11px !important;
-    height: 34px;
-    margin: 0 0 10px -19px;
-    position: relative;
-    right: 46px;
-    width: 100px !important;
     font-size: 13px !important;
+    height: 34px;
+    margin: 0 0 10px -20px;
     padding: 0 !important;
+    position: relative;
+    right: -14px;
+    width: 115px !important;
 }
 .create-time3{
     border-radius: 0 !important;
     box-shadow: none !important;
     color: #424242 !important;
     font-family: Montserrat;
-    font-size: 11px !important;
+    font-size: 13px !important;
     height: 34px;
     left: 17px;
-    margin: 0 0 0 -65px;
-    position: relative;
-    width: 100px !important;
-    font-size: 13px !important;
+    margin: 0 0 10px -27px;
     padding: 0 !important;
+    position: relative;
+    width: 115px !important;
 }
 .area_width_create{
     position: relative;
-    right: 45px;
-    width: 86%;
+    right: 40px;
+    width: 390px;
 }
 .dob_align1{
     border-radius: 0 !important;
@@ -1215,6 +1215,7 @@ input[type=radio]:checked + label:before {
     position: relative;
     right: 95px;
     width: 125px;
+    padding: 0 !important;
 }
 .athletes_drop{
     background-color: white;
@@ -1441,7 +1442,7 @@ input[type=radio]:checked + label:before {
     left: 6px;
     padding: 10px;
     position: relative;
-    top: -1px;
+    top: 1px;
 }
 .range_note,.edit_range_note{
     display: none;
@@ -1601,7 +1602,7 @@ tbody tr {
 }
 /* added by siva for pop_up alignment */
 .edit_state_div{    /* state div */
-    height: 200px;
+    height: 209px;
     /*width: 360px;*/
     position:absolute;
     z-index:9999;
@@ -1626,7 +1627,7 @@ tbody tr {
 }
 
 .edit_sports_div {  /* state div */
-    height: 200px;
+    height: 209px;
     /*width: 360px;*/
     position:absolute;
     z-index:9999;
@@ -1663,7 +1664,7 @@ tbody tr {
     white-space: normal;
 }
 .edit_category_div { /* state div */
-    height: 200px;
+    height: 209px;
     /*width: 360px;*/
     position:absolute;
     z-index:9999;
@@ -2041,13 +2042,14 @@ td {
     height: 30px !important;
     position: relative;
     
-    width: 349px !important;
+    width: 390px !important;
 }
 .athlete_popup{
-	width: 500px !important;
+	width: 545px !important;
+	white-space: normal; 
 }
 .width-assign{
-	width: 330px !important;
+	width: 385px !important;
     float: none;
 }
 .test_error{
@@ -2106,4 +2108,16 @@ td {
     right: 14px;
     top: 2px;
 }
-
+.align-time-popup1 {
+    margin-right: 10px;
+    position: relative;
+    right: 17%;
+}
+.align-time-popup2 {
+    position: relative;
+    right: 14%;
+}
+.align-time-popup3 {
+    position: relative;
+    right: 10%;
+}
