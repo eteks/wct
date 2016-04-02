@@ -194,9 +194,9 @@ $createschedule = new createscheduleFunction();
 								<label>Select Schedule</label><br>
 								<div class="area_scroll">
 									<?php
-									   $data = $createschedule->createscheduleselectfunction();
+									   $data = $createschedule->createscheduleselectreportfunction();
 									   foreach( $data as $eachrecord ) {
-										?>
+									?>
 									<div class="checkbox align_check">
 							      		<label class="remember_txt"><input type="checkbox"  data-validation="checkbox_group" data-validation-qty="min1" value="<?php echo $eachrecord ['createschedule_id']; ?>" name="schedul_ids[]"><?php echo $eachrecord ['createschedule_name']; ?></label>
 							    	</div>

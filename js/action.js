@@ -4368,7 +4368,8 @@ $(document).on('blur','.enter_result',function(e){
 														</div>\
 														<div class="form-group">\
 											  				<label for="sel1" class="popup_label">Select Category Name</label>\
-											  				<select class="form-control adjust_width classic category_update box-width" id="sel1" name="category" data-validation-error-msg="Please Select Category of the Schedule" data-validation="required">\
+											  				 <input type="hidden" class="category_update1" name="category" value="" />\
+											  				<select class="form-control adjust_width classic category_update box-width" id="sel1" name="category" data-validation-error-msg="Please Select Category of the Schedule" data-validation="required" disabled="">\
 																<option value="">Select Category Name</option>\
 																'+category_dynamic+'\
 										  					</select>\
@@ -4379,7 +4380,7 @@ $(document).on('blur','.enter_result',function(e){
 																<input type="hidden" class="assign_athelete_count_edit" value="1" />\
 																<div class="form-group col-md-6"  style="padding: 0px;">\
 																	<div class="col-md-7 combo--align--popup align_atheletes_schedules">\
-																	<select class="form-control name_align_popup fl box-width athlete_name athlete_name_update athlete_name1" placeholder="Name" name="athlete_name[]"  data-validation-error-msg="Please Select Athlete" data-validation="required">\
+																	<select class="form-control name_align_popup fl athlete_name athlete_name_update athlete_name1" placeholder="Name" name="athlete_name[]"  data-validation-error-msg="Please Select Athlete" data-validation="required">\
 																		<option value="">Athletes</option>\
 																		'+athelete_dynamic+'\
 																	</select>\
