@@ -8,9 +8,15 @@ class categoryfunction{
     public $categoryname;
     public $categorystatus;
     public function categoryinsertfunction(){
-        $check_query = "select * from wc_categories where categories_name = '".$this->categoryname."' ";
+        $check_query = "select * from wc_categories where categories_name = '".$this->categoryname."' and categories_status = '1' ";
         if(!mysql_num_rows(mysql_query($check_query))){
-          $sql = "insert into wc_categories (categories_name,categories_status) values ('".$this->categoryname."','1') ";
+          $check_query1 = "select * from wc_categories where categories_name = '".$this->categoryname."' and categories_status = '0' ";
+		  if(!mysql_num_rows(mysql_query($check_query))){
+          	$sql = "insert into wc_categories (categories_name,categories_status) values ('".$this->categoryname."','1') ";
+		  }
+		  else{
+		  	$sql = "update wc_categories set categories_status='1' where categories_name ='".$this->categoryname."'";
+		  }
           mysql_query($sql) or die("insert:".mysql_error());
           return true;
         }else{
@@ -29,12 +35,13 @@ class categoryfunction{
           }
     }
     public function categorydeletefunction(){
-        $sql = "delete from wc_categories where categories_id ='".$this->categoryid."' ";
+    	$sql = "update wc_categories set categories_status='0' where categories_id ='".$this->categoryid."' ";
+        //$sql = "delete from wc_categories where categories_id ='".$this->categoryid."' ";
         mysql_query($sql) or die("delete".mysql_error());
         return true;
     }
     public function categoryselectlastdatafunction(){
-        $sql = "select * from wc_categories order by categories_id desc limit 1";
+        $sql = "select * from wc_categories where categories_status = '1' order by categories_id desc limit 1";
         $row = mysql_query($sql) or die(mysql_error());
         $data = mysql_fetch_array($row);
         return $data;
@@ -42,7 +49,7 @@ class categoryfunction{
 
     public function categoryselectfunction(){
       $temp_arr = array();
-      $res = mysql_query("SELECT * FROM wc_categories ORDER BY categories_id DESC") or die(mysql_error());
+      $res = mysql_query("SELECT * FROM wc_categories where categories_status = '1' ORDER BY categories_name ASC") or die(mysql_error());
       $count=mysql_num_rows($res);
       while($row = mysql_fetch_array($res)) {
           $temp_arr[] =$row;

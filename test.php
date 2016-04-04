@@ -72,7 +72,7 @@ if (isset($_GET['insert_new'])) {
 											Type
 										</option>
 										<?php
-											$sql = mysql_query('select * from wc_parametertype') or die(mysql_error());
+											$sql = mysql_query('select * from wc_parametertype order by parametertype_name ASC') or die(mysql_error());
 											$count = mysql_num_rows($sql);
 											if ($count != '0') {
 												while ($row = mysql_fetch_array($sql)) {
@@ -216,7 +216,7 @@ if (isset($_GET['insert_new'])) {
 													<select class="form-control classic type_align_popup fl parameter_type parameter_type_update" id="type1" name="type1" data-validation-error-msg="Please Select the Type" data-validation="required">
 														<option value=""></option>
 														<?php
-															$sql = mysql_query('select * from wc_parametertype') or die(mysql_error());
+															$sql = mysql_query('select * from wc_parametertype order by parametertype_name ASC') or die(mysql_error());
 															$count = mysql_num_rows($sql);
 															if ($count != '0') {
 																while ($row = mysql_fetch_array($sql)) {

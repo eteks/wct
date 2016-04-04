@@ -8,7 +8,7 @@ class assignscheduleFunction {
     public $assignschedule_status;
    public function assignscheduleSelect(){
        $temp_arr = array();
-       $res = mysql_query("SELECT * from wc_assignschedule INNER JOIN wc_createschedule ON wc_assignschedule.assigncreateschedule_id=wc_createschedule.createschedule_id inner join wc_categories on wc_assignschedule.assigncategory_id = wc_categories.categories_id where wc_assignschedule.assignschedule_status='1' and wc_createschedule.createschedule_id = (select assigncreateschedule_id from wc_assignschedule where assignschedule_id = (select MAX(assignschedule_id) from wc_assignschedule)) group by wc_assignschedule.assigncreateschedule_id,wc_assignschedule.assigncategory_id ORDER BY wc_assignschedule.assignschedule_id DESC")or die(mysql_error());
+       $res = mysql_query("SELECT * from wc_assignschedule INNER JOIN wc_createschedule ON wc_assignschedule.assigncreateschedule_id=wc_createschedule.createschedule_id inner join wc_categories on wc_assignschedule.assigncategory_id = wc_categories.categories_id where wc_assignschedule.assignschedule_status='1' and wc_createschedule.createschedule_id = (select assigncreateschedule_id from wc_assignschedule where assignschedule_id = (select MAX(assignschedule_id) from wc_assignschedule)) group by wc_assignschedule.assigncreateschedule_id,wc_assignschedule.assigncategory_id ORDER BY wc_createschedule.createschedule_name ASC")or die(mysql_error());
        $count=mysql_num_rows($res);
        while($row = mysql_fetch_array($res)) {
            $temp_arr[] =$row;
@@ -22,7 +22,7 @@ class assignscheduleFunction {
    }
    public function assignschedulenamefunction(){
        $temp_arr = array();
-      $res = mysql_query("SELECT * FROM wc_assignschedule inner join wc_createschedule on wc_assignschedule.assigncreateschedule_id = wc_createschedule.createschedule_id group by createschedule_name ORDER BY createschedule_id DESC") or die(mysql_error());
+      $res = mysql_query("SELECT * FROM wc_assignschedule inner join wc_createschedule on wc_assignschedule.assigncreateschedule_id = wc_createschedule.createschedule_id group by createschedule_name ORDER BY createschedule_name ASC") or die(mysql_error());
       $count=mysql_num_rows($res);
       while($row = mysql_fetch_array($res)) {
           $temp_arr[] =$row;
@@ -112,7 +112,7 @@ class assignscheduleFunction {
     if(isset($_GET['cate_list'])){
         include ("../dbconnect.php");
         $id = $_POST['id'];
-        $query = mysql_query("select * from wc_createschedule inner join wc_range on wc_createschedule.createscheduletestbattery_id = wc_range.rangetestbattery_id inner join wc_categories on wc_categories.categories_id = wc_range.rangecategories_id where wc_createschedule.createschedule_id = '$id' group by wc_categories.categories_name ");
+        $query = mysql_query("select * from wc_createschedule inner join wc_range on wc_createschedule.createscheduletestbattery_id = wc_range.rangetestbattery_id inner join wc_categories on wc_categories.categories_id = wc_range.rangecategories_id where wc_createschedule.createschedule_id = '$id' group by wc_categories.categories_name order by wc_categories.categories_name asc");
         while($row = mysql_fetch_array($query)){
 
                 echo "<option value=".$row['categories_id'].">".$row['categories_name']."</option>";
@@ -125,7 +125,7 @@ class assignscheduleFunction {
 	    $temp_arr = array();
 	    $assignname = $_POST['id'];
 	    if($assignname!=''){
-	        $sql = mysql_query("SELECT * FROM wc_assignschedule inner join wc_createschedule on wc_assignschedule.assigncreateschedule_id = wc_createschedule.createschedule_id  where  wc_createschedule.createschedule_name like '".$assignname."%' group by wc_createschedule.createschedule_name ORDER BY wc_assignschedule.assignschedule_id DESC")or die(mysql_error());
+	        $sql = mysql_query("SELECT * FROM wc_assignschedule inner join wc_createschedule on wc_assignschedule.assigncreateschedule_id = wc_createschedule.createschedule_id  where  wc_createschedule.createschedule_name like '".$assignname."%' group by wc_createschedule.createschedule_name ORDER BY wc_createschedule.createschedule_name ASC")or die(mysql_error());
 	        while($row = mysql_fetch_assoc($sql)) {
 	            $temp_arr[] =$row;
 	        }
@@ -138,7 +138,7 @@ class assignscheduleFunction {
 	    $temp_arr = array();
 	    $testbatteryname = $_POST['id'];
 	    if($testbatteryname!=''){
-	        $sql = mysql_query("SELECT * FROM wc_assignschedule inner join wc_createschedule on wc_assignschedule.assigncreateschedule_id = wc_createschedule.createschedule_id group by createschedule_name ORDER BY createschedule_id DESC")or die(mysql_error());
+	        $sql = mysql_query("SELECT * FROM wc_assignschedule inner join wc_createschedule on wc_assignschedule.assigncreateschedule_id = wc_createschedule.createschedule_id group by createschedule_name ORDER BY createschedule_name ASC")or die(mysql_error());
 	        while($row = mysql_fetch_assoc($sql)) {
 	            $temp_arr[] =$row;
 	        }
@@ -172,7 +172,7 @@ class assignscheduleFunction {
         $category_arr = array();
         $schedule_id = $_POST['id'];
         if($schedule_id!=''){
-            $sql = mysql_query("SELECT * from wc_assignschedule INNER JOIN wc_createschedule ON wc_assignschedule.assigncreateschedule_id=wc_createschedule.createschedule_id inner join wc_categories on wc_assignschedule.assigncategory_id = wc_categories.categories_id where wc_assignschedule.assignschedule_status='1' and wc_createschedule.createschedule_id = '$schedule_id' group by wc_assignschedule.assigncreateschedule_id,wc_assignschedule.assigncategory_id ORDER BY wc_assignschedule.assignschedule_id DESC")or die(mysql_error());
+            $sql = mysql_query("SELECT * from wc_assignschedule INNER JOIN wc_createschedule ON wc_assignschedule.assigncreateschedule_id=wc_createschedule.createschedule_id inner join wc_categories on wc_assignschedule.assigncategory_id = wc_categories.categories_id where wc_assignschedule.assignschedule_status='1' and wc_createschedule.createschedule_id = '$schedule_id' group by wc_assignschedule.assigncreateschedule_id,wc_assignschedule.assigncategory_id ORDER BY wc_createschedule.createschedule_name ASC")or die(mysql_error());
             while($row = mysql_fetch_assoc($sql)) {
                 $assign_arr[] =$row;
             }

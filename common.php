@@ -144,7 +144,7 @@ $DISTRICT = array(
 //dynamically get parameter unit
 if(isset($_GET['param_name'])){
     $data = $_POST['parameter_name'];
-    $query = mysql_query("select * from wc_parameterunit INNER JOIN wc_parametertype ON wc_parameterunit.parametertype_id = wc_parametertype.parametertype_id where wc_parametertype.parametertype_name = '$data' ")or die(mysql_error());
+    $query = mysql_query("select * from wc_parameterunit INNER JOIN wc_parametertype ON wc_parameterunit.parametertype_id = wc_parametertype.parametertype_id where wc_parametertype.parametertype_name = '$data' order by  wc_parameterunit.parameterunit asc ")or die(mysql_error());
     $count = mysql_num_rows($query);
     if ($count > 0) {
         echo '<option value="">UNIT</option>';

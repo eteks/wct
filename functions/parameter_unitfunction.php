@@ -6,7 +6,7 @@ class parameterunitFunction {
     public $parameterunitid;
     public function parametertypeSelect(){
         $temp_arr = array();
-        $res = mysql_query("select * from wc_parametertype where parametertype_status ='1'")or die(mysql_error());
+        $res = mysql_query("select * from wc_parametertype where parametertype_status ='1' ORDER BY parametertype_name ASC")or die(mysql_error());
         while($row = mysql_fetch_array($res)) {
             $temp_arr[] =$row;
         }
@@ -14,7 +14,7 @@ class parameterunitFunction {
     }
     public function parameterunitSelect(){
         $temp_arr1 = array();
-        $res1 = mysql_query("select * from wc_parameterunit inner join wc_parametertype on wc_parameterunit.parametertype_id=wc_parametertype.parametertype_id  where wc_parametertype.parametertype_id = (select MAX(parametertype_id) from wc_parametertype)  ORDER BY parameterunit_id DESC")or die(mysql_error());
+        $res1 = mysql_query("select * from wc_parameterunit inner join wc_parametertype on wc_parameterunit.parametertype_id=wc_parametertype.parametertype_id  where wc_parametertype.parametertype_id = (select MAX(parametertype_id) from wc_parametertype)  ORDER BY wc_parametertype.parametertype_name ASC")or die(mysql_error());
         while($row = mysql_fetch_array($res1)) {
             $temp_arr1[] =$row;
         }
@@ -56,7 +56,7 @@ class parameterunitFunction {
     }
     public function parameterunitsearchSelect(){
         $temp_arr = array();
-        $res = mysql_query("select * from wc_parametertype inner join wc_parameterunit on wc_parameterunit.parametertype_id = wc_parametertype.parametertype_id GROUP BY wc_parametertype.parametertype_name ORDER BY wc_parametertype.parametertype_id DESC")or die(mysql_error());
+        $res = mysql_query("select * from wc_parametertype inner join wc_parameterunit on wc_parameterunit.parametertype_id = wc_parametertype.parametertype_id GROUP BY wc_parametertype.parametertype_name ORDER BY wc_parametertype.parametertype_name ASC")or die(mysql_error());
         $count=mysql_num_rows($res);
         while($row = mysql_fetch_array($res)) {
             $temp_arr[] =$row;
@@ -112,12 +112,12 @@ if(isset($_GET['param_unit_for_test_edit'])){
     $temp = array();
     if($param_type == 'time'){
 
-        $sql = mysql_query("select * from wc_parameterunit inner join wc_parametertype on wc_parameterunit.parametertype_id =wc_parametertype.parametertype_id where wc_parametertype.parametertype_name = 'time'");
+        $sql = mysql_query("select * from wc_parameterunit inner join wc_parametertype on wc_parameterunit.parametertype_id =wc_parametertype.parametertype_id where wc_parametertype.parametertype_name = 'time' ORDER BY wc_parametertype.parametertype_name DESC");
         while($output = mysql_fetch_assoc($sql)){
             $temp[] = $output;
         }
     }else{
-        $sql = mysql_query("select * from wc_parameterunit inner join wc_parametertype on wc_parameterunit.parametertype_id =wc_parametertype.parametertype_id where wc_parametertype.parametertype_name = '$param_type'");
+        $sql = mysql_query("select * from wc_parameterunit inner join wc_parametertype on wc_parameterunit.parametertype_id =wc_parametertype.parametertype_id where wc_parametertype.parametertype_name = '$param_type' ORDER BY wc_parametertype.parametertype_name DESC");
         while($output = mysql_fetch_assoc($sql)){
             $temp[] = $output;
         }
@@ -130,7 +130,7 @@ if(isset($_GET['find_type'])){
     $temp_arr = array();
     $typename = $_POST['id'];
     if($typename!=''){
-        $sql = mysql_query("select * from wc_parametertype inner join wc_parameterunit on wc_parameterunit.parametertype_id = wc_parametertype.parametertype_id where wc_parametertype.parametertype_name like '%".$typename."%' GROUP BY wc_parametertype.parametertype_name ORDER BY wc_parametertype.parametertype_id DESC")or die(mysql_error());
+        $sql = mysql_query("select * from wc_parametertype inner join wc_parameterunit on wc_parameterunit.parametertype_id = wc_parametertype.parametertype_id where wc_parametertype.parametertype_name like '%".$typename."%' GROUP BY wc_parametertype.parametertype_name ORDER BY wc_parametertype.parametertype_name ASC")or die(mysql_error());
         while($row = mysql_fetch_assoc($sql)) {
             $temp_arr[] =$row;
         }
@@ -144,7 +144,7 @@ if(isset($_GET['find_all_type'])){
     $temp_arr = array();
     $typename = $_POST['id'];
     if($typename!=''){
-        $sql = mysql_query("select * from wc_parametertype inner join wc_parameterunit on wc_parameterunit.parametertype_id = wc_parametertype.parametertype_id GROUP BY wc_parametertype.parametertype_name ORDER BY wc_parametertype.parametertype_id DESC")or die(mysql_error());
+        $sql = mysql_query("select * from wc_parametertype inner join wc_parameterunit on wc_parameterunit.parametertype_id = wc_parametertype.parametertype_id GROUP BY wc_parametertype.parametertype_name ORDER BY wc_parametertype.parametertype_name ASC")or die(mysql_error());
         while($row = mysql_fetch_assoc($sql)) {
             $temp_arr[] =$row;
         }
@@ -170,11 +170,11 @@ if(isset($_GET['find_params_units'])){
         $param_arr = array();
         $paramstypeid = $_POST['id'];
         if($paramstypeid!=''){
-            $sql = mysql_query("select * from wc_parameterunit inner join wc_parametertype on wc_parameterunit.parametertype_id =wc_parametertype.parametertype_id where wc_parametertype.parametertype_id = '".$paramstypeid."'")or die(mysql_error());
+            $sql = mysql_query("select * from wc_parameterunit inner join wc_parametertype on wc_parameterunit.parametertype_id =wc_parametertype.parametertype_id where wc_parametertype.parametertype_id = '".$paramstypeid."' ORDER BY wc_parameterunit.parameterunit ASC ")or die(mysql_error());
             while($row = mysql_fetch_assoc($sql)) {
                 $test_arr[] =$row;
             }
-            $sql1 = mysql_query("select * from wc_parametertype")or die(mysql_error());
+            $sql1 = mysql_query("select * from wc_parametertype ORDER BY wc_parametertype.parametertype_name")or die(mysql_error());
             while($row1 = mysql_fetch_assoc($sql1)) {
                 $param_arr[] =$row1;
             }

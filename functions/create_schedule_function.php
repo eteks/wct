@@ -34,7 +34,7 @@
 		}
         public function createscheduleselectfunction(){
             $temp_arr = array();
-            $res = mysql_query("SELECT * FROM wc_createschedule") or die(mysql_error());
+            $res = mysql_query("SELECT * FROM wc_createschedule order by createschedule_name asc") or die(mysql_error());
             while($row = mysql_fetch_array($res)) {
                 $temp_arr[] =$row;
             }

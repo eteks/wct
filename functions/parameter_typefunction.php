@@ -12,7 +12,7 @@
 
 		}
 		public function parametertypeSelect(){
-			$res = mysql_query("select * from wc_parametertype where parametertype_status ='1' ORDER BY parametertype_id DESC")or die(mysql_error());
+			$res = mysql_query("select * from wc_parametertype where parametertype_status ='1' ORDER BY parametertype_name ASC")or die(mysql_error());
 			return $res;
 		}
 		public function selectData(){
@@ -20,12 +20,20 @@
 			return $res;
 		}
 		public function parametertypeInsert(){
-			$check_query = "select * from wc_parametertype where parametertype_name = '".$this->parametertypename."' ";
+			$check_query = "select * from wc_parametertype where parametertype_name = '".$this->parametertypename."'  and parametertype_status = '1' ";
 			if(!mysql_num_rows(mysql_query($check_query))){
-				$res = mysql_query("insert into wc_parametertype (parametertype_name,parametertype_status) values('".$this->parametertypename."','1')")or die(mysql_error());
-				$lastinsertid = mysql_insert_id();
-				if($res){ return $lastinsertid; }
-				else{ return false; }
+				$check_query1 = "select * from wc_parametertype where parametertype_name = '".$this->parametertypename."'  and parametertype_status = '0' ";
+				if(!mysql_num_rows(mysql_query($check_query1))){
+					$res = mysql_query("insert into wc_parametertype (parametertype_name,parametertype_status) values('".$this->parametertypename."','1')")or die(mysql_error());
+					$lastinsertid = mysql_insert_id();
+					if($res){ return $lastinsertid; }
+					else{ return false; }
+				}else{
+					$res = mysql_query("update wc_parametertype set parametertype_status ='1' where parametertype_name ='".$this->parametertypename."'");
+					if($res){ return 'duplicate'; }
+					else{ return false; }
+				}
+				
 			}else{
 	          return false;
 	        }
@@ -39,8 +47,13 @@
 				return false;
 			}
 		}
-		public function parameterdeletefunction(){
-	        $sql = "delete from wc_parametertype where parametertype_id ='".$this->parametertypeid."'";
+		// public function parameterdeletefunction(){
+	        // $sql = "delete from wc_parametertype where parametertype_id ='".$this->parametertypeid."'";
+	        // mysql_query($sql) or die("delete".mysql_error());
+	        // return true;
+	    // }
+	    public function parameterdeletefunction(){
+	        $sql = "update wc_parametertype set parametertype_status ='0' where parametertype_id ='".$this->parametertypeid."'";
 	        mysql_query($sql) or die("delete".mysql_error());
 	        return true;
 	    }

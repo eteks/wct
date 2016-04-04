@@ -1498,6 +1498,10 @@
                       alert('Parameter Type inserted successfully!');
                       location.reload();
                     }
+                    else if(result_split[0].indexOf("duplicate") !== -1){
+                    	alert('Parameter Type inserted successfully!');
+                        location.reload();
+                    }
                     else{
                         alert('Parameter Type already exists!');
                         location.reload();
@@ -2581,11 +2585,12 @@
                                       </div>\
                                       <div class="form-group">\
                                           <label>Enter Parameter Unit</label><br>\
-                                          <input type="text" class="adjust_width adjust_popup_width edit_param_unit" name="parameter_unit" data-validation-error-msg="Please Enter the Unit of the Parameter" data-validation="required" autocomplete="off">\
+                                          <input type="text" class="adjust_width adjust_popup_width edit_param_unit" name="parameter_unit" autocomplete="off">\
+                                          <span class="hided">Please enter Parameter Unit</span>\
                                       </div>\
                                       <div class="col-md-10 align_right schedule_btn">\
                                           <input type="submit" class="btn btn-primary clear edit_parameter_unit_act" value="Save">\
-                                          <input type="reset" class="btn btn-primary clear reset_form_dist" value="Cancel">\
+                                          <input type="reset" class="btn btn-primary clear reset_form_param_unit" value="Cancel">\
                                       </div>\
                                   </form>\
                               </div>\
@@ -2833,37 +2838,38 @@
                          });
                   }
                 });
-        $(document).on('click','.edit_parameter_unit_act',function(e){
-            //alert('dsfdsf');
-              e.preventDefault();
+		$(document).on('submit','#edit_parameter_unit', function(e){      
+          e.preventDefault();
               var res = true;
-              $(this).parents('#edit_parameter_unit').find('input[type="text"],textarea,select',this).each(function() {
+              $('input[type="text"]',this).each(function() {
                 if($(this).val().trim() == "") {
-                  res = false;
-                  //alert('edit_parameter_unitfalse');
+                   $('[name="parameter_unit"]').next().addClass('custom_error');
+                  res = false;              
                 }
               });
-              if(res){
-                  var form_data =  $(this).parents('#edit_parameter_unit').serialize();
-                  //alert(form_data);
-                  $.ajax({
+              if(res){      
+                  $('[name="parameter_unit"]').next().removeClass('custom_error');             
+                  var form_data = $('form[name="edit_parameter_unit_form"]').serialize();
+	                  $.ajax({
                        type: "POST",
                        url: "functions/parameter_unitfunction.php?updateunitdata=true",
                        data:form_data,
                        cache: false,
                        success: function(data) {
                           if(data=='success'){
-                              alert('Parameter Unit edited successfully!');
+                              alert('Parameter unit edited successfully!');
                               location.reload();
                           }else if(data == 'exist'){
-                              alert('Parameter Unit edited successfully!');
+                              alert('Parameter unit edited successfully!');
                               location.reload();
                           }
                       }
                    });
               }
-
-            });
+        });
+       $(document).on('click',".reset_form_param_unit", function(){     
+           $('[name="parameter_unit"]').next().removeClass('custom_error');    
+        });
 
     //ASSIGN SCHEDULE
 

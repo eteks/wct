@@ -10,12 +10,12 @@ class testfunction{
     public $testformat;
 
     public function testSelect(){
-      $res = mysql_query("SELECT * FROM wc_test where test_status='1'")or die(mysql_error());
+      $res = mysql_query("SELECT * FROM wc_test where test_status='1' ORDER BY test_name ASC")or die(mysql_error());
       return $res;
     }
 
     public function testattributeSelect(){
-      $res = mysql_query("SELECT * FROM wc_test_attribute where test_attribute_status='1'")or die(mysql_error());
+      $res = mysql_query("SELECT * FROM wc_test_attribute where test_attribute_status='1' ORDER BY test_parameter_name ASC")or die(mysql_error());
       return $res;
     }
 
@@ -53,7 +53,7 @@ class testfunction{
     }
     public function testselectfunction(){
       $temp_arr = array();
-      $res = mysql_query("SELECT * FROM wc_test_attribute INNER JOIN wc_test ON wc_test_attribute.test_id = wc_test.test_id where wc_test.test_id = (SELECT MAX(test_id) FROM wc_test ) ORDER BY test_attribute_id DESC") or die(mysql_error());
+      $res = mysql_query("SELECT * FROM wc_test_attribute INNER JOIN wc_test ON wc_test_attribute.test_id = wc_test.test_id where wc_test.test_id = (SELECT MAX(test_id) FROM wc_test ) ORDER BY test_parameter_name ASC") or die(mysql_error());
       $count=mysql_num_rows($res);
       while($row = mysql_fetch_array($res)) {
           $temp_arr[] =$row;
@@ -62,7 +62,7 @@ class testfunction{
       }
       public function testnamefunction(){
         $temp_arr = array();
-        $res = mysql_query("SELECT * FROM wc_test ORDER BY test_id DESC") or die(mysql_error());
+        $res = mysql_query("SELECT * FROM wc_test ORDER BY test_name ASC") or die(mysql_error());
         $count=mysql_num_rows($res);
         while($row = mysql_fetch_array($res)) {
             $temp_arr[] =$row;
@@ -71,7 +71,7 @@ class testfunction{
         }
     public function testbatteryselectfunction(){
       $temp_arr = array();
-      $res = mysql_query("SELECT * FROM wc_test_attribute INNER JOIN wc_test ON wc_test_attribute.test_id = wc_test.test_id group by wc_test_attribute.test_id  ") or die(mysql_error());
+      $res = mysql_query("SELECT * FROM wc_test_attribute INNER JOIN wc_test ON wc_test_attribute.test_id = wc_test.test_id group by wc_test_attribute.test_id ORDER BY wc_test.test_name ASC  ") or die(mysql_error());
       $count=mysql_num_rows($res);
       while($row = mysql_fetch_array($res)) {
           $temp_arr[] =$row;
@@ -135,7 +135,7 @@ class testfunction{
     if(isset($_GET['gettestdata'])){
         include ("../dbconnect.php");
         $testattrid = $_POST['id'];
-        $sql = mysql_query("SELECT * FROM wc_test_attribute INNER JOIN wc_test ON wc_test_attribute.test_id = wc_test.test_id where test_attribute_id='$testattrid'")or die(mysql_error());
+        $sql = mysql_query("SELECT * FROM wc_test_attribute INNER JOIN wc_test ON wc_test_attribute.test_id = wc_test.test_id where test_attribute_id='$testattrid' ORDER BY test_parameter_name ASC")or die(mysql_error());
         $res = mysql_fetch_assoc($sql);
         print(json_encode($res));
 
@@ -145,7 +145,7 @@ class testfunction{
         $temp_arr = array();
         $testname = $_POST['id'];
         if($testname!=''){
-            $sql = mysql_query("SELECT * FROM wc_test where  test_name like '".$testname."%' ORDER BY test_id DESC")or die(mysql_error());
+            $sql = mysql_query("SELECT * FROM wc_test where  test_name like '".$testname."%' ORDER BY test_name ASC")or die(mysql_error());
             while($row = mysql_fetch_assoc($sql)) {
                 $temp_arr[] =$row;
             }
@@ -157,7 +157,7 @@ class testfunction{
         $temp_arr = array();
         $testname = $_POST['id'];
         if($testname!=''){
-            $sql = mysql_query("SELECT * FROM wc_test ORDER BY test_id DESC")or die(mysql_error());
+            $sql = mysql_query("SELECT * FROM wc_test ORDER BY test_name ASC")or die(mysql_error());
             while($row = mysql_fetch_assoc($sql)) {
                 $temp_arr[] =$row;
             }
@@ -171,12 +171,12 @@ class testfunction{
         $parameter_arr = array();
         $testid = $_POST['id'];
         if($testid!=''){
-            $sql = mysql_query("SELECT * FROM  wc_test_attribute where  test_id = '$testid' ORDER BY test_attribute_id DESC ")or die(mysql_error());
+            $sql = mysql_query("SELECT * FROM  wc_test_attribute where  test_id = '$testid' ORDER BY test_parameter_name ASC ")or die(mysql_error());
             while($row = mysql_fetch_assoc($sql)) {
                 $test_arr[] =$row;
             }
         }
-        $sql1 = mysql_query("SELECT * FROM  wc_parametertype")or die(mysql_error());
+        $sql1 = mysql_query("SELECT * FROM  wc_parametertype ORDER BY parametertype_name ASC")or die(mysql_error());
         while($row1 = mysql_fetch_assoc($sql1)) {
             $parameter_arr[] =$row1;
         }
@@ -232,7 +232,7 @@ class testfunction{
         include ("../dbconnect.php");
         $test_id = $_POST['testid'];
         $paramname = $_POST['param_name'];
-        $sql = mysql_query("select * from wc_test_attribute where test_parameter_type ='".$paramname."'and test_id='".$test_id."'");
+        $sql = mysql_query("select * from wc_test_attribute where test_parameter_type ='".$paramname."'and test_id='".$test_id."' ORDER BY test_parameter_name ASC ");
         $count = mysql_num_rows($sql);
         if($count>0){
             echo 'error';
