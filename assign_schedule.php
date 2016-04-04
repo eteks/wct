@@ -95,6 +95,7 @@ if(isset($_GET['update_success'])){
 											<option value="<?php echo $eachrecord ['athlete_id']; ?>"><?php echo $eachrecord ['athlete_name']; ?></option>
 										<?php } ?>
 									</select>
+									<span class="hided">Please Select Athlete</span><br>
 								</div>
 						      	<!-- <input type="text" class="form-control name_align fl athlete_name" id="name" placeholder="Name" name="athlete_name1" required> -->
 						      	<div class="form-group col-md-5">
@@ -106,7 +107,8 @@ if(isset($_GET['update_success'])){
 						      		<input type="text" class="form-control name_align athlete_mobile mobile" id="mobile" placeholder="Mobile no" name="athlete_mobile1" disabled>
 						      	</div>
 						      	<div class="form-group col-md-5">
-						      		<input type="text" class="form-control date_assign athlete_bib" id="bib" placeholder="BIB NO" name="athlete_bib1" data-validation-error-msg="Please enter BIB NO" data-validation="number">
+						      		<input type="text" class="form-control date_assign athlete_bib" id="bib" placeholder="BIB NO" name="athlete_bib1" >
+						      		 <span class="hided">Please Enter BIBO number</span><br>
 								</div>
 						    </div>
 						</div>
@@ -125,7 +127,7 @@ if(isset($_GET['update_success'])){
 					</div>
 					<div class="col-md-9 schedule_btn">
 						<input type="submit" class="btn btn-primary test-submit clear assignschedule_submit" value="Save">
-						<input type="reset" class="btn btn-primary clear" value="Cancel">
+						<input type="reset" class="btn btn-primary clear reset_form_assign_schedule" value="Cancel">
 					</div>
 				</form>
 			</div>
@@ -226,7 +228,7 @@ if(isset($_GET['update_success'])){
 											<input type="hidden" class="assign_athelete_count_edit" value="1" />
 											<div class="form-group col-md-6"  style="padding: 0px;">
 												<div class="col-md-7 combo--align--popup align_atheletes_schedules">
-															<select class="form-control name_align_popup fl  athlete_name athlete_name_update athlete_name1" placeholder="Name" name="athlete_name[]"  data-validation-error-msg="Please Select Athlete" data-validation="required"><!--id="combobox1"-->
+															<select class="form-control name_align_popup fl  athlete_name athlete_name_update athlete_name1" id="athlete_sel" placeholder="Name" name="athlete_name[]" ><!--id="combobox1"-->
 														<option value="">Athletes</option>
 														<?php
 															$data = $athlete->athleteSelect1();
@@ -235,6 +237,7 @@ if(isset($_GET['update_success'])){
 															<option value="<?php echo $eachrecord2 ['athlete_id']; ?>"><?php echo $eachrecord2 ['athlete_name']; ?></option>
 														<?php } ?>
 													</select>
+													<span class="hided">Please Select Athlete</span><br>
 												</div>
 												<div class="col-md-5" style="position: relative; top: 20px;">
 										      		
@@ -246,7 +249,8 @@ if(isset($_GET['update_success'])){
 										      		<input type="text" class="form-control schedule-name fl mobile_update mobile" placeholder="Mobile no" value="" disabled>
 										      	</div>
 										      	<div class="col-md-8">
-										      		<input type="text" class="form-control bib_popup athlete_bib popup_bib fl bib_update"  placeholder="BIB NO" name="athlete_bib[]" autocomplete="off" data-validation-error-msg="Please Enter the BIBO NO" data-validation="number">
+										      		<input type="text" class="form-control bib_popup athlete_bib popup_bib fl bib_update"  placeholder="BIB NO" name="athlete_bib[]" autocomplete="off" id="bibo">
+										      		<span class="hided">Please Enter BIBO number</span><br>
 												</div>
 												
 												
@@ -266,8 +270,8 @@ if(isset($_GET['update_success'])){
 
 								<div class="col-md-9 align_right schedule_btn">
 						
-			  					<input type="submit" value="Save" class="btn btn-primary test-submit clear">
-			  					<input type="reset" class="btn btn-primary clear reset_form" value="Cancel">
+			  					<input type="submit" value="Save" class="btn btn-primary test-submit schedule_submit clear">
+			  					<input type="reset" class="btn btn-primary clear reset_form_edit_schedule" value="Cancel">
 								</div>
 							</form>
 						</div>
