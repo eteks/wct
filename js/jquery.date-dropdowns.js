@@ -12,7 +12,7 @@
             minAge: 0,
             maxAge: 120,
             minYear: 1970,
-            maxYear: new Date().getFullYear(),
+            maxYear: 2030,
             submitFieldName: "date",
             wrapperClass: "date-dropdowns",
             dropdownClass: null,

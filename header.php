@@ -92,6 +92,14 @@
         </ul>
       </div>
     </div><!--menu_list-->
-    <!-- <div class="popup_fade cancel_btn"></div> -->
+    <div class="popup_fade cancel_btn"></div> 
+		 
+		 	<div class="success_msg">
+			 	<div class="success-alert">
+			 		<span></span>
+			 	</div><!--success-alert-->
+			 	<input type="submit" class="btn btn-primary alert_btn" value="Ok">
+		 	</div><!--success_msg-->
+		
 
 <?php } ?>

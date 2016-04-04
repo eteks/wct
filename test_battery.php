@@ -14,13 +14,42 @@ $test = new testfunction();
 <?php
 $url = $_SERVER['PHP_SELF'];
 if(isset($_GET['update_success'])){
-	echo "<script>alert('Test Battery edited successfully!');var url ='".$url."'; window.location = url ;</script>";
+	echo "<script>
+	$(document).ready(function () {
+		success_align();
+		$('.success_msg span').html('Test Battery edited successfully!');
+       	$('.success_msg').show();
+      	$('.popup_fade').show();
+      	document.body.style.overflow = 'hidden';
+    	});
+	  //alert('Test Battery edited successfully!');
+	  var url ='".$url."'; window.location = url ;</script>";
 }
 if(isset($_GET['insert_success'])){
-	echo "<script>alert('Test Battery inserted successfully!');var url ='".$url."'; window.location = url ;</script>";
+	echo "<script>
+	$(document).ready(function () {
+		success_align();
+		$('.success_msg span').html('Test Battery inserted successfully!');
+       	$('.success_msg').show();
+      	$('.popup_fade').show();
+      	document.body.style.overflow = 'hidden';
+    	});
+	   //alert('Test Battery inserted successfully!');
+	   var url ='".$url."'; window.location = url ;</script>";
 }
 if(isset($_GET['duplicate'])){
-	echo "<script>alert('Test Battery already exist!');var url ='".$url."'; window.location = url ;</script>";
+	echo "<script>
+	$(document).ready(function () {
+		success_align();
+		$('.success_msg span').html('Test Battery already exist!');
+       	$('.success_msg').show();
+      	$('.popup_fade').show();
+      	document.body.style.overflow = 'hidden';
+    	});
+	   //alert('Test Battery already exist!');
+	   var url ='".$url."'; 
+	   window.location = url ;
+	   </script>";
 }
  ?>
  <style type="text/css">

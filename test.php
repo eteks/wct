@@ -7,16 +7,56 @@ $obj = new testfunction();
 <?php
 $url = $_SERVER['PHP_SELF'];
 if (isset($_GET['insert'])) {
-	echo "<script>alert('Test inserted successfully!');var url ='" . $url . "'; window.location = url ;</script>";
+	echo "<script>
+	$(document).ready(function () {
+		success_align();
+		$('.success_msg span').html('Test inserted successfully!');
+       	$('.success_msg').show();
+      	$('.popup_fade').show();
+      	document.body.style.overflow = 'hidden';
+    	// alert('Test inserted successfully!');
+    	});
+    	var url ='" . $url . "'; window.location = url ;</script>";
 }
 if (isset($_GET['update'])) {
-	echo "<script>alert('Test parameter edited successfully!');var url ='" . $url . "'; window.location = url ;</script>";
+	echo "<script>
+	$(document).ready(function () {
+		success_align();
+		$('.success_msg span').html('Test parameter edited successfully!');
+       	$('.success_msg').show();
+      	$('.popup_fade').show();
+      	document.body.style.overflow = 'hidden';
+    	});
+	    //alert('Test parameter edited successfully!');
+	    var url ='" . $url . "'; window.location = url ;</script>";
 }
 if (isset($_GET['insert_new'])) {
 	if ($_GET['params'] != '') {
-		echo "<script>alert('" . $_GET['params'] . "Parameter already exist!');var url ='" . $url . "'; window.location = url ;</script>";
+		echo "<script>
+		$(document).ready(function () {
+		success_align();
+		$('.success_msg span').html('" . $_GET['params'] . "Parameter already exist!');
+       	$('.success_msg').show();
+      	$('.popup_fade').show();
+      	document.body.style.overflow = 'hidden';
+    	});
+		//alert('" . $_GET['params'] . "Parameter already exist!');
+		var url ='" . $url . "'; 
+		window.location = url ;
+		</script>";
 	} else {
-		echo "<script>alert(' Test Parameter edited successfully!');var url ='" . $url . "'; window.location = url ;</script>";
+		echo "<script>
+		$(document).ready(function () {
+		success_align();
+		$('.success_msg span').html('Test Parameter edited successfully!');
+       	$('.success_msg').show();
+      	$('.popup_fade').show();
+      	document.body.style.overflow = 'hidden';
+    	});
+		//alert(' Test Parameter edited successfully!');
+		var url ='" . $url . "'; 
+		window.location = url ;
+		</script>";
 	}
 
 }
