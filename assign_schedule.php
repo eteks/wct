@@ -15,7 +15,16 @@ $athlete = new athletesFunction();
 <?php
 $url = $_SERVER['PHP_SELF'];
 if(isset($_GET['update_success'])){
-	echo "<script>alert('Schedule edited successfully!');var url ='".$url."'; window.location = url ;</script>";
+	echo "<script>
+	$(document).ready(function () {
+		success_align();
+		$('.success_msg span').html('Schedule edited successfully!');
+       	$('.success_msg').show();
+      	$('.popup_fade').show();
+      	document.body.style.overflow = 'hidden';
+    	});
+	//alert('Schedule edited successfully!');
+	var url ='".$url."'; window.location = url ;</script>";
 }
 ?>
 <style>

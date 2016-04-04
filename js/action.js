@@ -8,6 +8,11 @@
           var width=$('.register_div').width();
           $('.register_div').css({'margin-top': -height / 2 + "px", 'margin-left': -width / 2 + "px"});
     }
+    function success_align(){
+          var height=$('.success_msg').height();
+          var width=$('.success_msg').width();
+          $('.success_msg').css({'margin-top': -height / 2 + "px", 'margin-left': -width / 2 + "px"});
+    }
     function package_menu(){
       var dh = $(document).height();
       var wh = $(window).innerHeight() - 34;
@@ -37,7 +42,7 @@
                     $('[name=edit_states_id]').val(obj[i].states_id);
                     $('[name=edit_states_name]').val(obj[i].states_name);
                   });
-                  $('.popup_fade').show();
+                  $('.popup_fade').hide();
                   $('.state_div, .close_btn').show();
                   document.body.style.overflow = 'auto';
                  }
@@ -69,7 +74,7 @@
                    }
                 });
               });
-              $('.popup_fade').show();
+              $('.popup_fade').hide();
               $('.district_div, .close_btn').show();
               document.body.style.overflow = 'auto';
              }
@@ -88,7 +93,7 @@
                 // $('[value='+data_id+']').parents('.delete_color').find('[name=edit_parameter_id]').val(obj[i].parametertype_id);
                 // $('[value='+data_id+']').parents('.delete_color').find('[name=edit_parameter_type]').val(obj[i].parametertype_name);
               });
-              $('.popup_fade').show();
+              $('.popup_fade').hide();
               $('.state_div, .close_btn').show();
               document.body.style.overflow = 'auto';
               //location.reload();
@@ -145,7 +150,7 @@
                   $('[name=edit_schedule_seconds]').find("option:contains("+time[2]+")").attr("selected","selected");
                   $('[name=edit_schedule_venue]').val(obj[i].createschedule_venue);
                 });
-                $('.popup_fade').show();
+                $('.popup_fade').hide();
                 // createschedule_center_align();
                 $('.createschedule_div, .close_btn').show();
                 document.body.style.overflow = 'auto';
@@ -324,7 +329,7 @@
     
 
     $(document).ready(function () {
-		 
+	  
       package_menu();
 
       $('.add_createschedule_act,.edit_createschedule_act,.add_athletes_act,.edit_athletes_act').on('click', function(){
@@ -599,8 +604,13 @@
                success: function(data) {
                   //alert(data);
                   if(data.trim() == 'succeed'){
-                      alert('Paramstype name updated successfully!');
-                      location.reload();
+                      //alert('Paramstype name updated successfully!');
+                      //location.reload();
+                      success_align();
+			           $('.success_msg span').html('Paramstype name updated successfully!');
+			           $('.success_msg').show();
+			           $('.popup_fade').show();
+			           document.body.style.overflow = 'hidden';
                   }
                }
           });
@@ -705,7 +715,12 @@
           				      </tr>');
                           });
                      }else{
-                         alert('No Parameter availabel!');
+                        //alert('No Parameter availabel!');
+                         success_align();
+				           $('.success_msg span').html('No Parameter availabel!');
+				           $('.success_msg').show();
+				           $('.popup_fade').show();
+				           document.body.style.overflow = 'hidden';
                      }
                  }
             });
@@ -789,13 +804,23 @@
                    success: function(data) {
                       //alert(data);
                       if(data.trim() == 'succeed'){
-                          alert('Test edited successfully!');
-                          location.reload();
+                          //alert('Test edited successfully!');
+                          //location.reload();
+                          success_align();
+		                   $('.success_msg span').html('Test edited successfully!');
+		                   $('.success_msg').show();
+		                   $('.popup_fade').show();
+		                   document.body.style.overflow = 'hidden';
                       }
                    }
               });
           }else{
-              alert('Invalid test name');
+              //alert('Invalid test name');
+              success_align();
+               $('.success_msg span').html('Invalid test name');
+               $('.success_msg').show();
+               $('.popup_fade').show();
+               document.body.style.overflow = 'hidden';
           }
 
 
@@ -812,13 +837,23 @@
                success: function(data) {
                   //alert(data);
                   if(data.trim() == 'succeed'){
-                      alert('Parameter Type edited successfully!');
-                      location.reload();
+                      //alert('Parameter Type edited successfully!');
+                      //location.reload();
+                      success_align();
+		               $('.success_msg span').html('Parameter Type edited successfully!');
+		               $('.success_msg').show();
+		               $('.popup_fade').show();
+		               document.body.style.overflow = 'hidden';
                   }
                }
           });
         }else{
-          alert('Invalid Parameter Type');
+          //alert('Invalid Parameter Type');
+          success_align();
+           $('.success_msg span').html('Invalid Parameter Type');
+           $('.success_msg').show();
+           $('.popup_fade').show();
+           document.body.style.overflow = 'hidden';
         }
       });
       $(document).delegate('.save_test_battery_name','click',function() {
@@ -833,14 +868,24 @@
                    success: function(data) {
                       //alert(data);
                       if(data.trim() == 'succeed'){
-                          alert('Test Battery Name edited successfully!');
-                          location.reload();
+                          //alert('Test Battery Name edited successfully!');
+                          //location.reload();
+                          success_align();
+				           $('.success_msg span').html('Test Battery Name edited successfully!');
+				           $('.success_msg').show();
+				           $('.popup_fade').show();
+				           document.body.style.overflow = 'hidden';
                       }
                    }
               });
           }
           else{
-              alert('Invalid Test Battery Name');
+              //alert('Invalid Test Battery Name');
+              success_align();
+	           $('.success_msg span').html('Invalid Test Battery Name');
+	           $('.success_msg').show();
+	           $('.popup_fade').show();
+	           document.body.style.overflow = 'hidden';
           }
 
       });
@@ -954,6 +999,7 @@
       // test_battery_center_align();
       // range_center_align();
       // parameter_center_align();
+      success_align();
       $('#radio-2').click(function() {
           $.ajax({
                type: "POST",
@@ -1195,7 +1241,12 @@
             });
             //alert(parameter_type_count);
             if(parameter_type_count == 2){
-                alert('already exist!');
+                //alert('already exist!');
+                success_align();
+	           $('.success_msg span').html('already exist!');
+	           $('.success_msg').show();
+	           $('.popup_fade').show();
+	           document.body.style.overflow = 'hidden';
                 $(this).prop('selectedIndex',0);
                 $(this).parents('.clone_content').find('.paremeter_unit_add').empty().append('<option>UNIT</option>');
             }
@@ -1214,7 +1265,12 @@
                  success: function(data) {
 
                     if(data.trim() == 'error'){
-                        alert('already exist!');
+                        //alert('already exist!');
+                        success_align();
+			            $('.success_msg span').html('already exist!');
+			            $('.success_msg').show();
+			            $('.popup_fade').show();
+			            document.body.style.overflow = 'hidden';
                         current_content.prop('selectedIndex',0);
                         current_content.parents('#test_updation_form').find('.parameter_unit_update').empty().append('<option>UNIT</option>');
                         current_content.parents('#test_updation_form').find('.parameter_format_update').prop('selectedIndex',0);
@@ -1236,7 +1292,12 @@
             $('.register_div, .close_btn').show();
             document.body.style.overflow = 'hidden';
         });
-
+		$('.alert_btn').on('click',function(){
+		  	$('.success_msg').hide();
+		  	$('.popup_fade').hide();
+		  	document.body.style.overflow = 'auto';
+		  	location.reload();
+	  	}); 
         $(document).delegate('.cancel_btn','click',function(){
             $('.popup_fade').hide();
             $('.state_div,.delete_div,.login_div,.register_div,.test_div,.district_div,.test_battery_div,.range_div,.paramter_div,.athletes_div,.createschedule_div').hide();
@@ -1405,10 +1466,20 @@
                success: function(html) {
                    //alert(html);
                    if(html=='error'){
-                     alert('Sports already exists!');
+                     //alert('Sports already exist!');
+                     success_align();
+	             	    $('.success_msg span').html('Sports already exist!');
+	                    $('.success_msg').show();
+	                    $('.popup_fade').show();
+	                    document.body.style.overflow = 'hidden';
                    }else{
-                       alert('Sport inserted successfully!');
-                       location.reload();
+                       //alert('Sport inserted successfully!');
+                       success_align();
+	             	    $('.success_msg span').html('Sport inserted successfully!');
+	                    $('.success_msg').show();
+	                    $('.popup_fade').show();
+	                     document.body.style.overflow = 'hidden';
+                       //location.reload();
                      //$('#sports_table tr:last').after(html);
                      }
 
@@ -1441,9 +1512,13 @@
                   var result_split = html.split('#');
                    if (result_split[0].indexOf("success") !== -1){
                      // $('.add_states_error').text(result_split[1]).show();
-                     // $('.add_states_error').hide();
-                     alert(result_split[1]);
-                     html ="<tr class='align_center delete_color'>\
+                     $('.add_states_error').hide();
+                     //alert(result_split[1]);
+                     success_align();
+	                   $('.success_msg span').html(result_split[1]);
+	                   $('.success_msg').show();
+	                   $('.popup_fade').show();
+	                  html ="<tr class='align_center delete_color'>\
                      <input type='hidden' name='states_id' value="+result_split[2]+">\
                      <td class='t_states_id'>"+result_split[2]+"</td>\
                         <td class='t_states_name'>"+result_split[3]+"</td>\
@@ -1453,7 +1528,8 @@
                         </td></tr> ";
                      // $('.state_table tr:last').after(html);
                      document.states_form.reset();
-                     location.reload();
+                     document.body.style.overflow = 'hidden';
+                     //location.reload();
                    }
                    else{
                     // $('.add_states_error').text(result_split[1]).show();
@@ -1494,17 +1570,27 @@
                            <span class='delete_state' data-value="+result_split[2]+">Delete</span>\
                          </td></tr> ";
                       //$('.parameter_type_table tr:first').after(html);
+                       success_align();
+	                   $('.success_msg span').html('Parameter Type inserted successfully!');
+	                   $('.success_msg').show();
+	                   $('.popup_fade').show();
                       document.parameter_type_form.reset();
-                      alert('Parameter Type inserted successfully!');
-                      location.reload();
+                      //alert('Parameter Type inserted successfully!');
+                      //location.reload();
+                      document.body.style.overflow = 'hidden';
                     }
                     else if(result_split[0].indexOf("duplicate") !== -1){
                     	alert('Parameter Type inserted successfully!');
                         location.reload();
                     }
                     else{
-                        alert('Parameter Type already exists!');
-                        location.reload();
+                        //alert('Parameter Type already exists!');
+                        //location.reload();
+                        success_align();
+		                $('.success_msg span').html('Parameter Type already exists!');
+		                $('.success_msg').show();
+		                $('.popup_fade').show();
+	                    document.body.style.overflow = 'hidden';
                     }
                     }
                 })
@@ -1531,11 +1617,14 @@
                    if (result_split[0].indexOf("success") !== -1){
                      // $('.edit_states_error').hide();
                      $('.state_table').find("input[value="+result_split[2]+"]").siblings('.t_states_name').html(result_split[3]);
-                     $('.popup_fade').hide();
+                     success_align();
+	         	     $('.success_msg span').html(result_split[1]);
+	                 $('.success_msg').show();
+	                 $('.popup_fade').show();
                      $('.state_div, .close_btn').hide();
-                     document.body.style.overflow = 'auto';
-                     alert(result_split[1]);
-                     location.reload();
+                     document.body.style.overflow = 'hidden';
+                     //alert(result_split[1]);
+                     //location.reload();
                    }
                    else{
                     // $('.edit_states_error').text(result_split[1]).show();
@@ -1580,11 +1669,21 @@
                    cache: false,
                    success: function(html) {
                        if(html){
-                           alert(html+' District already exists!');
-                           location.reload();
+                           //alert(html+' District already exists!');
+                           //location.reload();
+                           success_align();
+		                   $('.success_msg span').html(html+' District already exists!');
+		                   $('.success_msg').show();
+		                   $('.popup_fade').show();
+		                   document.body.style.overflow = 'hidden';
                        }else{
-                           alert('District inserted successfully!');
-                            location.reload();
+                           //alert('District inserted successfully!');
+                           success_align();
+		                   $('.success_msg span').html('District inserted successfully!');
+		                   $('.success_msg').show();
+		                   $('.popup_fade').show();
+		                   document.body.style.overflow = 'hidden';
+                            //location.reload();
                         }
                    }
               });
@@ -1611,12 +1710,15 @@
                    var result_split = html.split('#');
                    if (result_split[0].indexOf("success") !== -1){
                      // $('.edit_states_error').hide();
-                     alert(result_split[1]);
+                     //alert(result_split[1]);
                      $('.district_table').find(".t_district_id:contains("+result_split[2]+")").next('.t_district_name').html(result_split[3]);
-                     $('.popup_fade').hide();
+                     success_align();
+	                   $('.success_msg span').html(result_split[1]);
+	                   $('.success_msg').show();
+	                   $('.popup_fade').show();
                      $('.district_div, .close_btn').hide();
-                     document.body.style.overflow = 'auto';
-                     location.reload();
+                     document.body.style.overflow = 'hidden';
+                     //location.reload();
                    }
                    else{
                     // $('.edit_district_error').text(result_split[1]).show();
@@ -1647,21 +1749,27 @@
                success: function(html) {
                    //alert(html);
                    if(html=='error'){
-                     alert('Sport edited successfully!');
-                     $('.popup_fade').hide();
+                     //alert('Sport edited successfully!');
+                     success_align();
+                     $('.success_msg span').html('Sport edited successfully!');
+                     $('.success_msg').show();
+                     $('.popup_fade').show();
                     $('.state_div,.delete_div').hide();
-                    document.body.style.overflow = 'auto';
-                    location.reload();
+                    document.body.style.overflow = 'hidden';
+                    //location.reload();
                    }else{
                     //alert(html);
                     var sports_split = html.split('-');
                     //alert(sports_split[1]);
                     $('#sports_table').find("input[value="+sports_split[1]+"]").siblings('.sports_name').html(sports_split[0]);
-                    alert('Sport edited successfully');
-                    $('.popup_fade').hide();
+                    //alert('Sport edited successfully');
+                     success_align();
+                     $('.success_msg span').html('Sport edited successfully!');
+                     $('.success_msg').show();
+                     $('.popup_fade').show();
                     $('.state_div,.delete_div').hide();
-                    document.body.style.overflow = 'auto';
-                    location.reload();
+                    document.body.style.overflow = 'hidden';
+                    //location.reload();
                    }
 
                }
@@ -1678,12 +1786,15 @@
                    data: form_data,
                    cache: false,
                    success: function(html) {
-                       alert('Category deleted successfully!');
+                       //alert('Category deleted successfully!');
                        $('#category_table').find(".category_id:contains("+html+")").parents('tr').remove();
-                       $('.popup_fade').hide();
+                       success_align();
+	                   $('.success_msg span').html('Category deleted successfully!');
+	                   $('.success_msg').show();
+	                   $('.popup_fade').show();
                        $('.state_div,.delete_div').hide();
-                       document.body.style.overflow = 'auto';
-                       location.reload();
+                       document.body.style.overflow = 'hidden';
+                       //location.reload();
                     }
                });
             } else if (window.location.href.indexOf("sports.php") !== -1){
@@ -1694,12 +1805,15 @@
                    data: form_data,
                    cache: false,
                    success: function(html) {
-                       alert('Sport deleted successfully! ');
+                       //alert('Sport deleted successfully! ');
                        $('#sports_table').find(".sports_id:contains("+html+")").parents('tr').remove();
-                       $('.popup_fade').hide();
+                       success_align();
+	                   $('.success_msg span').html('Sport deleted successfully!');
+	                   $('.success_msg').show();
+	                   $('.popup_fade').show();
                        $('.state_div,.delete_div').hide();
-                       document.body.style.overflow = 'auto';
-                       location.reload();
+                       document.body.style.overflow = 'hidden';
+                       //location.reload();
                     }
                });
            } else if (window.location.href.indexOf("state.php") !== -1){
@@ -1712,12 +1826,15 @@
                      success: function(html) {
                      var result_split = html.split('#');
                      if (result_split[0].indexOf("success") !== -1){
-                      alert(result_split[1]);
+                      //alert(result_split[1]);
                       $('.state_table').find("input[value="+result_split[2]+"]").parents('tr').remove();
-                      $('.popup_fade').hide();
+                      success_align();
+	                   $('.success_msg span').html(result_split[1]);
+	                   $('.success_msg').show();
+	                   $('.popup_fade').show();
                       $('.state_div,.delete_div').hide();
-                      document.body.style.overflow = 'auto';
-                      location.reload();
+                      document.body.style.overflow = 'hidden';
+                      //location.reload();
                      }
                      }
                  });
@@ -1731,12 +1848,15 @@
                      success: function(html) {
                      var result_split = html.split('#');
                      if (result_split[0].indexOf("success") !== -1){
-                      alert(result_split[1]);
+                      //alert(result_split[1]);
                       $('.district_table').find(".t_district_id:contains("+$.trim(result_split[2])+")").parents('tr').remove();
-                      $('.popup_fade').hide();
+                       success_align();
+	                   $('.success_msg span').html(result_split[1]);
+	                   $('.success_msg').show();
+	                   $('.popup_fade').show();
                       $('.state_div,.delete_div').hide();
-                      document.body.style.overflow = 'auto';
-                      location.reload();
+                      document.body.style.overflow = 'hidden';
+                      //location.reload();
                      }
                      }
                  });
@@ -1750,12 +1870,15 @@
                      success: function(html) {
                      var result_split = html.split('#');
                      if (result_split[0].indexOf("success") !== -1){
-                      alert(result_split[1]);
+                      //alert(result_split[1]);
                       $('.athletes_table').find("input[value="+result_split[2]+"]").parents('tr').remove();
-                      $('.popup_fade').hide();
+                      success_align();
+	                   $('.success_msg span').html(result_split[1]);
+	                   $('.success_msg').show();
+	                   $('.popup_fade').show();
                       $('.state_div,.delete_div').hide();
-                      document.body.style.overflow = 'auto';
-                      location.reload();
+                      document.body.style.overflow = 'hidden';
+                      //location.reload();
                      }
                      }
                  });
@@ -1769,12 +1892,15 @@
                      success: function(html) {
                      var result_split = html.split('#');
                      if (result_split[0].indexOf("success") !== -1){
-                      alert(result_split[1]);
+                      //alert(result_split[1]);
                       $('.createschedule_table').find("input[value="+result_split[2]+"]").parents('tr').remove();
-                      $('.popup_fade').hide();
+                       success_align();
+	                   $('.success_msg span').html(result_split[1]);
+	                   $('.success_msg').show();
+	                   $('.popup_fade').show();
                       $('.createschedule_div,.delete_div').hide();
-                      document.body.style.overflow = 'auto';
-                      location.reload();
+                      document.body.style.overflow = 'hidden';
+                      //location.reload();
                      }
                      // location.reload();
                      }
@@ -1790,11 +1916,14 @@
                         data: form_data,
                         cache: false,
                         success: function(html) {
-                         alert('Test deleted successfully!');
-                         $('.popup_fade').hide();
+                         //alert('Test deleted successfully!');
+                         success_align();
+		                 $('.success_msg span').html('Test deleted successfully!');
+		                 $('.success_msg').show();
+		                 $('.popup_fade').show();
                          $('.state_div,.delete_div').hide();
-                         document.body.style.overflow = 'auto';
-                         location.reload();
+                         document.body.style.overflow = 'hidden';
+                         //location.reload();
                         }
                     });
                }else if(delete_data.trim()=='test_attribute'){
@@ -1806,11 +1935,14 @@
                         data: form_data,
                         cache: false,
                         success: function(html) {
-                         alert('Test Parameter deleted successfully!');
-                         $('.popup_fade').hide();
+						 //alert('Test parameter deleted successfully!');
+                         success_align();
+		                 $('.success_msg span').html('Test parameter deleted successfully!');
+		                 $('.success_msg').show();
+		                 $('.popup_fade').show();
                          $('.state_div,.delete_div').hide();
-                         document.body.style.overflow = 'auto';
-                         location.reload();
+                         document.body.style.overflow = 'hidden';
+                         //location.reload();
                         }
                     });
                }
@@ -1827,11 +1959,14 @@
                         cache: false,
                         success: function(html) {
                             //alert(html);
-                        alert('Test Battery Name deleted successfully!');
-                         $('.popup_fade').hide();
+                        //alert('Test Battery Name deleted successfully!');
+                         success_align();
+		                 $('.success_msg span').html('Test Battery Name deleted successfully!');
+		                 $('.success_msg').show();
+		                 $('.popup_fade').show();
                          $('.state_div,.delete_div').hide();
-                         document.body.style.overflow = 'auto';
-                         location.reload();
+                         document.body.style.overflow = 'hidden';
+                         //location.reload();
                         }
                     });
                }else if(delete_data.trim()=='test_battery_attribute'){
@@ -1843,11 +1978,14 @@
                         data: form_data,
                         cache: false,
                         success: function(html) {
-                             alert('Test Battery deleted successfully');
-                             $('.popup_fade').hide();
+                             //alert('Test battery deleted successfully');
+                             success_align();
+			                 $('.success_msg span').html('Test battery deleted successfully');
+			                 $('.success_msg').show();
+			                 $('.popup_fade').show();
                              $('.state_div,.delete_div').hide();
-                             document.body.style.overflow = 'auto';
-                             location.reload();
+                             document.body.style.overflow = 'hidden';
+                             //location.reload();
                         }
                     });
                }
@@ -1861,12 +1999,15 @@
                      success: function(html) {
                       var result_split = html.split('#');
                       if (result_split[0].indexOf("success") !== -1){
-                        alert(result_split[1]);
+                        //alert(result_split[1]);
                         $('.range_table').find(".t_range_id:contains("+$.trim(result_split[2])+")").parents('tr').remove();
-                        $('.popup_fade').hide();
+                        success_align();
+		                 $('.success_msg span').html(result_split[1]);
+		                 $('.success_msg').show();
+		                 $('.popup_fade').show();
                         $('.delete_div').hide();
-                        document.body.style.overflow = 'auto';
-                        location.reload();
+                        document.body.style.overflow = 'hidden';
+                        //location.reload();
                       }
                      }
                  });
@@ -1881,11 +2022,14 @@
                      cache: false,
                      success: function(html) {
                          //alert(html);
-                      alert('Parameter Type deleted successfully! ');
-                      $('.popup_fade').hide();
+                      //alert('Parameter Type deleted successfully! ');
+                      success_align();
+                 	  $('.success_msg span').html('Parameter Type deleted successfully!');
+	                  $('.success_msg').show();
+	                  $('.popup_fade').show();
                       $('.state_div,.delete_div').hide();
-                      document.body.style.overflow = 'auto';
-                      location.reload();
+                      document.body.style.overflow = 'hidden';
+                      //location.reload();
 
                      }
                  });
@@ -1901,11 +2045,14 @@
                         cache: false,
                         success: function(html) {
                             //alert(html);
-                        alert('Schedule deleted successfully');
-                         $('.popup_fade').hide();
+                        //alert('Schedule deleted successfully');
+                        success_align();
+	                 	 $('.success_msg span').html('Schedule deleted successfully');
+		                 $('.success_msg').show();
+		                 $('.popup_fade').show();
                          $('.state_div,.delete_div').hide();
-                         document.body.style.overflow = 'auto';
-                         location.reload();
+                         document.body.style.overflow = 'hidden';
+                         //location.reload();
                         }
                     });
                }else if(delete_data.trim()=='assign_schedule_attribute'){
@@ -1917,11 +2064,14 @@
                         data: form_data,
                         cache: false,
                         success: function(html) {
-                             alert('Assign Schedule deleted successfully');
-                             $('.popup_fade').hide();
+                             //alert('Assign Schedule deleted successfully');
+                             success_align();
+		                 	 $('.success_msg span').html('Assign Schedule deleted successfully');
+			                 $('.success_msg').show();
+			                 $('.popup_fade').show();
                              $('.state_div,.delete_div').hide();
-                             document.body.style.overflow = 'auto';
-                             location.reload();
+                             document.body.style.overflow = 'hidden';
+                             //location.reload();
                         }
                     });
                }
@@ -1938,11 +2088,14 @@
                      cache: false,
                      success: function(html) {
                          //alert(html);
-                      alert('Parameter Type deleted Successfully! ');
-                      $('.popup_fade').hide();
+                      //alert('Parameter Type deleted Successfully! ');
+                      success_align();
+                 	  $('.success_msg span').html('Parameter Type deleted Successfully!');
+	                  $('.success_msg').show();
+	                  $('.popup_fade').show();
                       $('.state_div,.delete_div').hide();
-                      document.body.style.overflow = 'auto';
-                      location.reload();
+                      document.body.style.overflow = 'hidden';
+                      //location.reload();
 
                      }
                  });
@@ -1956,11 +2109,14 @@
                       cache: false,
                       success: function(html) {
                           //alert(html);
-                       alert('Parameter Unit deleted successfully! ');
-                       $('.popup_fade').hide();
+                       //alert('Parameter unit deleted Successfully! ');
+                        success_align();
+                 	   $('.success_msg span').html('Parameter unit deleted Successfully!');
+	                   $('.success_msg').show();
+	                   $('.popup_fade').show();
                        $('.state_div,.delete_div').hide();
-                       document.body.style.overflow = 'auto';
-                       location.reload();
+                       document.body.style.overflow = 'hidden';
+                       //location.reload();
 
                       }
                   });
@@ -1993,11 +2149,21 @@
                success: function(html) {
                   // alert(html);
                    if(html=='error'){
-                     alert('Category already exists!');
+                     //alert('Category already exist!');
+                     success_align();
+                 	   $('.success_msg span').html('Category already exist!');
+	                   $('.success_msg').show();
+	                   $('.popup_fade').show();
+	                   document.body.style.overflow = 'hidden';
                    }else{
-                     alert('Category inserted successfully!');
+                     //alert('Category inserted successfully!');
                      //$('#category_table tr:last').after(html);
-                     location.reload();
+                    // location.reload();
+                    success_align();
+                 	   $('.success_msg span').html('Category inserted successfully!');
+	                   $('.success_msg').show();
+	                   $('.popup_fade').show();
+	                   document.body.style.overflow = 'hidden';
                    }
                }
            });
@@ -2023,20 +2189,26 @@
                success: function(html) {
                    //alert(html);
                    if(html=='error'){
-                     alert('Category edited successfully!');
-                      $('.popup_fade').hide();
+                     //alert('Category edited successfully!');
+                      success_align();
+                 	   $('.success_msg span').html('Category edited successfully!');
+	                   $('.success_msg').show();
+	                   $('.popup_fade').show();
                     $('.state_div,.delete_div').hide();
-                    document.body.style.overflow = 'auto';
+                    document.body.style.overflow = 'hidden';
                    }else{
 
-                     alert('Category edited successfully!');
+                     //alert('Category edited successfully!');
                      location.reload();
                      var category_split = html.split('-');
                     $('#category_table').find("input[value="+category_split[1]+"]").next('.category_name').html(category_split[0]);
                     //alert('Sports name updated successfully');
-                    $('.popup_fade').hide();
+                    success_align();
+             	    $('.success_msg span').html('Category edited successfully!');
+                    $('.success_msg').show();
+                    $('.popup_fade').show();
                     $('.state_div,.delete_div').hide();
-                    document.body.style.overflow = 'auto';
+                    document.body.style.overflow = 'hidden';
 
                    }
 
@@ -2361,7 +2533,12 @@
                        current.parents('.parameter_holder').find('.parameter_unit').html(html);
                    }else{
                         current.parents('.parameter_holder').find('.parameter_unit').html("<option value=''>UNIT</option>");
-                        alert('No Parameter unit found');
+                        //alert('No parameter unit found');
+                        success_align();
+                 	    $('.success_msg span').html('No parameter unit found');
+	                    $('.success_msg').show();
+	                    $('.popup_fade').show();
+	                   document.body.style.overflow = 'hidden';
                    }
                }
            });
@@ -2406,7 +2583,12 @@
                        current.parents('.schedule_test').find('.parameter_unit').html(html);
                    }else{
                         current.parents('.schedule_test').find('.parameter_unit').html("<option value=''>UNIT</option>");
-                        alert('Parameter Unit not availabel!');
+                        //alert('Parameter Unit Not availabel!');
+                        success_align();
+                 	    $('.success_msg span').html('Parameter Unit Not availabel!');
+	                    $('.success_msg').show();
+	                    $('.popup_fade').show();
+	                   document.body.style.overflow = 'hidden';
                    }
                }
            });
@@ -2432,7 +2614,12 @@
                  success: function(html) {
                     var result_split = html.split('#');
                      if (result_split[0].indexOf("success") !== -1){
-                       alert(result_split[1]);
+                       //alert(result_split[1]);
+                       success_align();
+                 	    $('.success_msg span').html(result_split[1]);
+	                    $('.success_msg').show();
+	                    $('.popup_fade').show();
+	                   document.body.style.overflow = 'hidden';
                        html ="<tr class='align_center delete_color'>\
                           <input type='hidden' name='athlete_id' value="+result_split[2]+">\
                           <td class='t_athlete_id'>"+result_split[2]+"</td>\
@@ -2445,10 +2632,15 @@
                             <span class='delete_state' data-value="+result_split[2]+">Delete</span>\
                           </td></tr> ";
                        // $('.athletes_table tr:last').after(html);
-                     location.reload();
+                     //location.reload();
                      }
                      else{
-                      alert(result_split[1]);
+                      //alert(result_split[1]);
+                       success_align();
+                 	    $('.success_msg span').html(result_split[1]);
+	                    $('.success_msg').show();
+	                    $('.popup_fade').show();
+	                   document.body.style.overflow = 'hidden';
                      }
                  }
              });
@@ -2473,16 +2665,24 @@
                    success: function(html) {
                        var result_split = html.split('#');
                        if (result_split[0].indexOf("success") !== -1){
-                         alert(result_split[1]);
+                         //alert(result_split[1]);
                          $('.athletes_table').find("input[value="+result_split[2]+"]").siblings('.t_athlete_name').html(result_split[3])
                          .siblings('.t_athlete_gender').html(result_split[4]).siblings('.t_athlete_dob').html(result_split[5]).siblings('.t_athlete_address').html(result_split[6]);
-                         $('.popup_fade').hide();
+                         success_align();
+                 	     $('.success_msg span').html(result_split[1]);
+	                     $('.success_msg').show();
+	                     $('.popup_fade').show();
                          $('.athletes_div, .close_btn').hide();
-                         document.body.style.overflow = 'auto';
-                        location.reload();
+                         document.body.style.overflow = 'hidden';
+                        //location.reload();
                        }
                        else{
-                        alert(result_split[1]);
+                        //alert(result_split[1]);
+                        success_align();
+                 	     $('.success_msg span').html(result_split[1]);
+	                     $('.success_msg').show();
+	                     $('.popup_fade').show();
+	                     document.body.style.overflow = 'hidden';
                        }
                    }
                });
@@ -2509,7 +2709,11 @@
                  success: function(html) {
                     var result_split = html.split('#');
                      if (result_split[0].indexOf("success") !==-1){
-                      alert(result_split[1]);
+                      //alert(result_split[1]);
+                      success_align();
+                 	  $('.success_msg span').html(result_split[1]);
+	                  $('.success_msg').show();
+	                  $('.popup_fade').show();
                        html ="<tr class='align_center delete_color'>\
                           <input type='hidden' name='createschedule_id' value="+result_split[2]+">\
                           <td class='t_createschedule_id'>"+result_split[2]+"</td>\
@@ -2523,11 +2727,16 @@
                             <span class='delete_district' data-value="+result_split[2]+">Delete</span>\
                           </td></tr> ";
                        // $('.createschedule_table tr:last').after(html);
-                        document.body.style.overflow = 'auto';
-                       location.reload();
+                        document.body.style.overflow = 'hidden';
+                       //location.reload();
                      }
                      else{
-                      alert(result_split[1]);
+                      //alert(result_split[1]);
+                      success_align();
+             	      $('.success_msg span').html(result_split[1]);
+	                  $('.success_msg').show();
+	                  $('.popup_fade').show();
+	                  document.body.style.overflow = 'hidden';
                      }
                  }
              });
@@ -2612,7 +2821,12 @@
                    </tr>');
                          });
                     }else{
-                        alert('No Parameter availabel!');
+                        //alert('No Parameter availabel!');
+                        success_align();
+             	        $('.success_msg span').html('No Parameter availabel!');
+	                    $('.success_msg').show();
+	                    $('.popup_fade').show();
+	                    document.body.style.overflow = 'hidden';
                     }
                 }
            });
@@ -2655,17 +2869,25 @@
                        success: function(html) {
                            var result_split = html.split('#');
                            if (result_split[0].indexOf("success") !== -1){
-                            alert(result_split[1]);
+                            //alert(result_split[1]);
                              $('.createschedule_table').find("input[value="+result_split[2]+"]").siblings('.t_createschedule_name').html(result_split[3])
                              .siblings('.t_testbattery_name').html(result_split[4]).siblings('.t_createschedule_date').html(result_split[5]).siblings('.t_createschedule_time')
                              .html(result_split[6]).siblings('.t_createschedule_venue').html(result_split[7]);
-                             $('.popup_fade').hide();
+                             success_align();
+	             	         $('.success_msg span').html(result_split[1]);
+		                     $('.success_msg').show();
+		                     $('.popup_fade').show();
                              $('.createschedule_div, .close_btn').hide();
-                             document.body.style.overflow = 'auto';
-                             location.reload();
+                             document.body.style.overflow = 'hidden';
+                             //location.reload();
                            }
                            else{
-                            alert(result_split[1]);
+                            //alert(result_split[1]);
+                             success_align();
+	             	         $('.success_msg span').html(result_split[1]);
+		                     $('.success_msg').show();
+		                     $('.popup_fade').show();
+		                     document.body.style.overflow = 'hidden';
                            }
                        }
                    });
@@ -2697,7 +2919,11 @@
                  success: function(html) {
                     var result_split = html.split('#');
                      if (result_split[0].indexOf("success") !==-1){
-                       alert(result_split[1]);
+                       //alert(result_split[1]);
+                       success_align();
+             	       $('.success_msg span').html(result_split[1]);
+	                   $('.success_msg').show();
+	                   $('.popup_fade').show();
                        html ="<tr class='align_center delete_color'>\
                           <input type='hidden' name='range_id' value="+result_split[2]+">\
                           <td class='t_range_id'>"+result_split[2]+"</td>\
@@ -2708,10 +2934,16 @@
                           </td></tr> ";
                        // $('.range_table tr:last').after(html);
                        document.range_form.reset();
-                       location.reload();
+                       document.body.style.overflow = 'hidden';
+                       //location.reload();
                      }
                      else{
-                      alert(result_split[1]);
+                      //alert(result_split[1]);
+                      success_align();
+             	       $('.success_msg span').html(result_split[1]);
+	                   $('.success_msg').show();
+	                   $('.popup_fade').show();
+	                   document.body.style.overflow = 'hidden';
                      }
                  }
               });
@@ -2742,15 +2974,23 @@
                        success: function(html) {
                            var result_split = html.split('#');
                            if (result_split[0].indexOf("success") !== -1){
-                            alert(result_split[1]);
+                            //alert(result_split[1]);
                              $('.range_table').find(".t_range_id:contains("+result_split[2]+")").siblings('.t_range_testname').html(result_split[3]);
-                             $('.popup_fade').hide();
+                             success_align();
+		             	     $('.success_msg span').html(result_split[1]);
+			                 $('.success_msg').show();
+			                 $('.popup_fade').show();
                              $('.range_div, .close_btn').hide();
-                             document.body.style.overflow = 'auto';
-                            location.reload();
+                             document.body.style.overflow = 'hidden';
+                            //location.reload();
                            }
                            else{
-                            alert(result_split[1]);
+                            //alert(result_split[1]);
+                            success_align();
+	             	       	$('.success_msg span').html(result_split[1]);
+		                   	$('.success_msg').show();
+		                   	$('.popup_fade').show();
+		                    document.body.style.overflow = 'hidden';
                            }
                        }
                    });
@@ -2798,11 +3038,21 @@
                         cache: false,
                         success: function(html) {
                             if(html == 'success'){
-                                alert('Parameter Type edited successfully!');
-                                location.reload();
+                                //alert('Parameter Type edited successfully!');
+                                //location.reload();
+                                success_align();
+			             	     $('.success_msg span').html('Parameter Type edited successfully!');
+				                 $('.success_msg').show();
+				                 $('.popup_fade').show();
+			                  	document.body.style.overflow = 'hidden';
                             }else if(html == 'exist'){
-                                alert('Parameter Type edited successfully!');
-                                location.reload();
+                                //alert('Parameter Type edited successfully!');
+                                //location.reload();
+	                            success_align();
+			             	    $('.success_msg span').html('Parameter Type edited successfully!');
+				                $('.success_msg').show();
+				                $('.popup_fade').show();
+			                   document.body.style.overflow = 'hidden';
                             }
                         }
                      });
@@ -2829,10 +3079,20 @@
                             cache: false,
                             success: function(html) {
                                 if(html == 'success'){
-                                    alert('Parameter Unit inserted successfully!');
-                                    location.reload();
+                                    //alert('Parameter Unit inserted successfully!');
+                                    //location.reload();
+                                     success_align();
+				             	     $('.success_msg span').html('Parameter Unit inserted successfully!');
+					                 $('.success_msg').show();
+					                 $('.popup_fade').show();
+				                    document.body.style.overflow = 'hidden';
                                 }else if(html == 'error'){
-                                    alert('Parameter Unit already exist!');
+                                    //alert('Parameterunit already exist!');
+                                     success_align();
+				             	     $('.success_msg span').html('Parameterunit already exist!');
+					                 $('.success_msg').show();
+					                 $('.popup_fade').show();
+				                    document.body.style.overflow = 'hidden';
                                 }
                             }
                          });
@@ -2857,11 +3117,21 @@
                        cache: false,
                        success: function(data) {
                           if(data=='success'){
-                              alert('Parameter unit edited successfully!');
-                              location.reload();
+                              //alert('Parameter unit edited successfully!');
+                              //location.reload();
+                               success_align();
+			             	   $('.success_msg span').html('Parameter unit edited successfully!');
+				               $('.success_msg').show();
+				               $('.popup_fade').show();
+			                   document.body.style.overflow = 'hidden';
                           }else if(data == 'exist'){
-                              alert('Parameter unit edited successfully!');
-                              location.reload();
+                              //alert('Parameter unit edited successfully!');
+                              //location.reload();
+                               success_align();
+			             	   $('.success_msg span').html('Parameter unit edited successfully!');
+				               $('.success_msg').show();
+				               $('.popup_fade').show();
+			                   document.body.style.overflow = 'hidden';
                           }
                       }
                    });
@@ -2893,10 +3163,20 @@
                cache: false,
                success: function(html) {
                    if(html=='success'){
-                       alert('Schedule assigned successfully! ');
-                       location.reload();
+                       //alert('Schedule assigned successfully! ');
+                       //location.reload();
+                       success_align();
+	             	   $('.success_msg span').html('Schedule assigned successfully!');
+		               $('.success_msg').show();
+		               $('.popup_fade').show();
+	                   document.body.style.overflow = 'hidden';
                    }else if(html=='error'){
-                       alert('Schedule already exist!');
+                       //alert('Schedule already exist!');
+                       success_align();
+	             	   $('.success_msg span').html('Schedule already exist!');
+		               $('.success_msg').show();
+		               $('.popup_fade').show();
+	                   document.body.style.overflow = 'hidden';
                    }
                }
            });
@@ -3255,7 +3535,12 @@
                       // alert(JSON.stringify(athlete_json));
                     }
                     else{
-                      alert(result_split[1]);
+                      //alert(result_split[1]);
+                      success_align();
+	             	   $('.success_msg span').html(result_split[1]);
+		               $('.success_msg').show();
+		               $('.popup_fade').show();
+	                   document.body.style.overflow = 'hidden';
                     }
                   }
             });
@@ -3642,21 +3927,36 @@ $(document).on('blur','.enter_result',function(e){
                    // dataType: 'json',
                    cache: false,
                    success: function(data) {
-                    var result_split = data.split('#');
+                   var result_split = data.split('#');
                      if (result_split[0].indexOf("success") !== -1){
-                      alert(result_split[1]);
+                      //alert(result_split[1]);
+                      success_align();
+	             	   $('.success_msg span').html(result_split[1]);
+		               $('.success_msg').show();
+		               $('.popup_fade').show();
+	                   document.body.style.overflow = 'hidden';
                       document.result_form.reset();
                       $('.result_table tbody tr:not(:last)').remove();
                       $('.total_result').text('');
                      }
                      else{
-                      alert(result_split[1]);
+                      //alert(result_split[1]);
+                      success_align();
+	             	   $('.success_msg span').html(result_split[1]);
+		               $('.success_msg').show();
+		               $('.popup_fade').show();
+	                   document.body.style.overflow = 'hidden';
                      }
                     }
                 });
               }
               else{
-                alert("Please enter the result");
+                //alert("Please enter the result");
+                success_align();
+         	    $('.success_msg span').html('Please enter the result');
+                $('.success_msg').show();
+                $('.popup_fade').show();
+                document.body.style.overflow = 'hidden';
               }
             }
          });
@@ -4127,17 +4427,32 @@ $(document).on('blur','.enter_result',function(e){
                success: function(data) {
                 var result_split = data.split('#');
                 if (result_split[0].indexOf("success") !== -1){
-                  alert(result_split[1]);
+                  //alert(result_split[1]);
+                  success_align();
+             	   $('.success_msg span').html(result_split[1]);
+	               $('.success_msg').show();
+	               $('.popup_fade').show();
+                   document.body.style.overflow = 'hidden';
                   athlete_element.val(result_split[2]);
                   $('.search_text').val('');
                 }
                 else{
-                  alert(result_split[1]);
+                  //alert(result_split[1]);
+              	success_align();
+         	    $('.success_msg span').html(result_split[1]);
+                $('.success_msg').show();
+                $('.popup_fade').show();
+                document.body.style.overflow = 'hidden';
                 }
               }
              });
            }else{
-              alert('Invalid Athlete Name!');
+              //alert('Invalid Athlete Name!');
+              success_align();
+	     	  $('.success_msg span').html('Invalid Athlete Name!');
+	          $('.success_msg').show();
+	          $('.popup_fade').show();
+	          document.body.style.overflow = 'hidden';
           }
         });
 
@@ -4155,18 +4470,33 @@ $(document).on('blur','.enter_result',function(e){
                success: function(html) {
                 var result_split = html.split('#');
                 if (result_split[0].indexOf("success") !== -1){
-                  alert(result_split[1]);
+                  //alert(result_split[1]);
+                  success_align();
+		     	  $('.success_msg span').html(result_split[1]);
+		          $('.success_msg').show();
+		          $('.popup_fade').show();
+		          document.body.style.overflow = 'hidden';
                   // $(this).find('.check_athletename').val(result_split[2]);
                   schedule_element.val(result_split[2]);
                   $('.search_text').val('');
                 }
                 else{
-                  alert(result_split[1]);
+                  //alert(result_split[1]);
+                  success_align();
+		     	  $('.success_msg span').html(result_split[1]);
+		          $('.success_msg').show();
+		          $('.popup_fade').show();
+		          document.body.style.overflow = 'hidden';
                 }
               }
              });
           }else{
               alert('Invalid Schedule Name!');
+              success_align();
+	     	  $('.success_msg span').html('Invalid Schedule Name!');
+	          $('.success_msg').show();
+	          $('.popup_fade').show();
+	          document.body.style.overflow = 'hidden';
             }
         });
 
@@ -4184,19 +4514,34 @@ $(document).on('blur','.enter_result',function(e){
                    success: function(html) {
                     var result_split = html.split('#');
                     if (result_split[0].indexOf("success") !== -1){
-                      alert(result_split[1]);
+                      //alert(result_split[1]);
+                       success_align();
+			     	   $('.success_msg span').html(result_split[1]);
+			           $('.success_msg').show();
+			           $('.popup_fade').show();
+			           document.body.style.overflow = 'hidden';
                       // $(this).find('.check_athletename').val(result_split[2]);
                       state_element.val(result_split[3]);
                       $('.search_text').val('');
                     }
                     else{
-                      alert(result_split[1]);
+                      //alert(result_split[1]);
+                       success_align();
+			     	  $('.success_msg span').html(result_split[1]);
+			          $('.success_msg').show();
+			          $('.popup_fade').show();
+			          document.body.style.overflow = 'hidden';
                     }
-                    location.reload();
+                    //location.reload();
                   }
                  });
           }else{
-              alert('Invalid State Name!');
+              //alert('Invalid State Name!');
+              success_align();
+	     	  $('.success_msg span').html('Invalid State Name!');
+	          $('.success_msg').show();
+	          $('.popup_fade').show();
+	          document.body.style.overflow = 'hidden';
           }
         });
         //newly added when change grid structure in range
@@ -4216,19 +4561,34 @@ $(document).on('blur','.enter_result',function(e){
                     // alert(html);
                     var result_split = html.split('#');
                     if (result_split[0].indexOf("success") !== -1){
-                      alert(result_split[1]);
+                      //alert(result_split[1]);
                       // $(this).find('.check_athletename').val(result_split[2]);
+                      success_align();
+	             	   $('.success_msg span').html(result_split[1]);
+		               $('.success_msg').show();
+		               $('.popup_fade').show();
+	                   document.body.style.overflow = 'hidden';
                       testbattery_element.val(result_split[3]);
                       $('.search_text').val('');
                     }
                     else{
-                      alert(result_split[1]);
+                      //alert(result_split[1]);
+                      success_align();
+			     	  $('.success_msg span').html(result_split[1]);
+			          $('.success_msg').show();
+			          $('.popup_fade').show();
+			          document.body.style.overflow = 'hidden';
                     }
-                    location.reload();
+                    //location.reload();
                   }
                  });
           }else{
               alert('Invalid Testbattery Name!');
+               success_align();
+	     	  $('.success_msg span').html('Invalid Testbattery Name!');
+	          $('.success_msg').show();
+	          $('.popup_fade').show();
+	          document.body.style.overflow = 'hidden';
           }
         });
 
@@ -4361,8 +4721,13 @@ $(document).on('blur','.enter_result',function(e){
                success: function(html) {
                var result_split = html.split('#');
                if (result_split[0].indexOf("success") !== -1){
-                alert(result_split[1]);
-                location.reload();
+                //alert(result_split[1]);
+                //location.reload();
+                success_align();
+		     	$('.success_msg span').html(result_split[1]);
+		        $('.success_msg').show();
+		        $('.popup_fade').show();
+		        document.body.style.overflow = 'hidden';
                 }
                }
            });
@@ -4377,8 +4742,13 @@ $(document).on('blur','.enter_result',function(e){
                data: form_data,
                cache: false,
                success: function(html) {
-                alert("Test Battery deleted successfully!");
-                location.reload();
+                //alert("Testbattery Deleted");
+                //location.reload();
+                success_align();
+	     	  	$('.success_msg span').html('Testbattery Deleted');
+	          	$('.success_msg').show();
+	          	$('.popup_fade').show();
+	          	document.body.style.overflow = 'hidden';
                }
            });
         });
