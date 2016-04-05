@@ -259,13 +259,13 @@
                cache: false,
                success: function(data) {
                     if(data == 'error'){
-                        success_align();
-			           $('.success_msg span').html('Schedule already exists!');
-			           $('.success_msg').show();
-			           $('.popup_fade').show();
                         main.val('');
                         main.parents('.assign_clone_content').find('.dob').val('');
                         main.parents('.assign_clone_content').find('.mobile').val('');
+                      success_align();
+			           $('.success_msg span').html('Schedule already exists!');
+			           $('.success_msg').show();
+			           $('.popup_fade').show();
                     }
               }
            });
@@ -275,11 +275,16 @@
           }
         });
         if(j=='2'){
-            alert('Already Exists!');
+            //alert('Already Exists!');
             $(this).val('');
             $(this).parents('.assign_clone_content').find('.dob').val('');
             $(this).parents('.assign_clone_content').find('.mobile').val('');
             //alert($(this).parents('.assign_clone_content').find('date_assign dob').val('').html());
+             success_align();
+               $('.success_msg span').html('Already Exists!');
+               $('.success_msg').show();
+               $('.popup_fade').show();
+               document.body.style.overflow = 'hidden';
         }
       });
       $(document).delegate('.assign_clone_content_edit .athlete_name_update','change',function(){
@@ -298,14 +303,14 @@
                success: function(data) {
                     if(data == 'error'){
                         //alert('This athelete already assigned another category!');
-                         success_align();
+                        $('option:selected',main_content).removeAttr('selected');
+                        main_content.find('.dob').val('');
+                        main_content.find('.mobile').val('');
+                               success_align();
 			           $('.success_msg span').html('Schedule already exists!');
 			           $('.success_msg').show();
 			           $('.popup_fade').show();
 			           document.body.style.overflow = 'hidden';
-                        $('option:selected',main_content).removeAttr('selected');
-                        main_content.find('.dob').val('');
-                        main_content.find('.mobile').val('');
                     }
               }
            });
@@ -316,12 +321,17 @@
           }
         });
         if(j=='2'){
-            alert('Already Exists!');
+            //alert('Already Exists!');
             //$(this).val('');
             $('option:selected',this).removeAttr('selected');
             $(this).parents('.assign_clone_content').find('.dob').val('');
             $(this).parents('.assign_clone_content').find('.mobile').val('');
             //alert($(this).parents('.assign_clone_content').find('date_assign dob').val('').html());
+            success_align();
+           $('.success_msg span').html('Already Exists!');
+           $('.success_msg').show();
+           $('.popup_fade').show();
+           document.body.style.overflow = 'hidden';
         }
       });
 
