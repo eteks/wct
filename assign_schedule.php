@@ -108,7 +108,7 @@ if(isset($_GET['update_success'])){
 						      	</div>
 						      	<div class="form-group col-md-5">
 						      		<input type="text" class="form-control date_assign athlete_bib" id="bib" placeholder="BIB NO" name="athlete_bib1" >
-						      		 <span class="hided">Please Enter BIBO number</span><br>
+						      		 <span class="hided">Please Enter Bib No</span><br>
 								</div>
 						    </div>
 						</div>
@@ -190,7 +190,7 @@ if(isset($_GET['update_success'])){
 					$i=1;
 					foreach( $data as $eachrecord ) {
 					 ?>
-			      <tr class="delete_color assignschedule_popup_open">
+			      <tr class="delete_color assignschedule_popup_open assignschedule_category_table" data-id = "<?php echo $eachrecord ['createschedule_id']; ?>">
 			      	<input value="<?php echo $eachrecord ['assignschedule_id']; ?>" type="hidden">
 					<td><?php echo $eachrecord ['categories_name']; ?></td>
 			        <td class="popup-edit">
@@ -319,6 +319,7 @@ if(isset($_GET['update_success'])){
 						   var new_date = res[2]+'/'+res[1]+'/'+res[0];
 							$('.assign_content_holder .assign_clone_content:first').find('.dob').val(new_date).attr('disabled', 'disabled');
 							$('.assign_content_holder .assign_clone_content:first').find('.mobile').val(html.athlete_mobile).attr('disabled', 'disabled');
+							 $('.assign_clone_content:last').children().find('#combobox').next().next().removeClass('custom_error');
 			           }
 			       });
         		}

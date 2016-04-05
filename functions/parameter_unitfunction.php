@@ -14,7 +14,8 @@ class parameterunitFunction {
     }
     public function parameterunitSelect(){
         $temp_arr1 = array();
-        $res1 = mysql_query("select * from wc_parameterunit inner join wc_parametertype on wc_parameterunit.parametertype_id=wc_parametertype.parametertype_id  where wc_parametertype.parametertype_id = (select MAX(parametertype_id) from wc_parametertype)  ORDER BY wc_parametertype.parametertype_name ASC")or die(mysql_error());
+        //$res1 = mysql_query("select * from wc_parameterunit inner join wc_parametertype on wc_parameterunit.parametertype_id=wc_parametertype.parametertype_id  where wc_parametertype.parametertype_id = (select MAX(parametertype_id) from wc_parametertype)  ORDER BY wc_parametertype.parametertype_name ASC")or die(mysql_error());
+		$res1 = mysql_query("select * from wc_parameterunit inner join wc_parametertype on wc_parameterunit.parametertype_id=wc_parametertype.parametertype_id ORDER BY wc_parametertype.parametertype_name ASC	")or die(mysql_error());
         while($row = mysql_fetch_array($res1)) {
             $temp_arr1[] =$row;
         }
@@ -130,7 +131,7 @@ if(isset($_GET['find_type'])){
     $temp_arr = array();
     $typename = $_POST['id'];
     if($typename!=''){
-        $sql = mysql_query("select * from wc_parametertype inner join wc_parameterunit on wc_parameterunit.parametertype_id = wc_parametertype.parametertype_id where wc_parametertype.parametertype_name like '%".$typename."%' GROUP BY wc_parametertype.parametertype_name ORDER BY wc_parametertype.parametertype_name ASC")or die(mysql_error());
+        $sql = mysql_query("select * from wc_parametertype inner join wc_parameterunit on wc_parameterunit.parametertype_id = wc_parametertype.parametertype_id where wc_parametertype.parametertype_name like '".$typename."%' GROUP BY wc_parametertype.parametertype_name ORDER BY wc_parametertype.parametertype_name ASC")or die(mysql_error());
         while($row = mysql_fetch_assoc($sql)) {
             $temp_arr[] =$row;
         }

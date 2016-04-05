@@ -53,7 +53,8 @@ class testfunction{
     }
     public function testselectfunction(){
       $temp_arr = array();
-      $res = mysql_query("SELECT * FROM wc_test_attribute INNER JOIN wc_test ON wc_test_attribute.test_id = wc_test.test_id where wc_test.test_id = (SELECT MAX(test_id) FROM wc_test ) ORDER BY test_parameter_name ASC") or die(mysql_error());
+      //$res = mysql_query("SELECT * FROM wc_test_attribute INNER JOIN wc_test ON wc_test_attribute.test_id = wc_test.test_id where wc_test.test_id = (SELECT MAX(test_id) FROM wc_test ) ORDER BY test_parameter_name ASC") or die(mysql_error());
+      $res = mysql_query("SELECT * FROM wc_test_attribute INNER JOIN wc_test ON wc_test_attribute.test_id = wc_test.test_id ORDER BY test_parameter_name ASC") or die(mysql_error());
       $count=mysql_num_rows($res);
       while($row = mysql_fetch_array($res)) {
           $temp_arr[] =$row;
@@ -120,16 +121,21 @@ class testfunction{
     }
     if(isset($_POST['parameter_update'])){
         include ("../dbconnect.php");
-        $parameter_id = $_POST['parameter_update'];
-        $testid =$_POST['test_update_id'];
-        $parameter_name = $_POST['parameter_name1'];
-        $paramtype = $_POST['type1'];
-        $paramunit = $_POST['unit1'];
-        $paramformat = $_POST['format1'];
-        //$test_name = $_POST['test_name'];
-        //mysql_query("update wc_test set test_name ='$test_name' where test_id = $testid ")or die(mysql_error());
-        mysql_query("update wc_test_attribute set test_parameter_name ='$parameter_name',test_parameter_type ='$paramtype',test_parameter_unit='$paramunit',test_parameter_format ='$paramformat' where test_attribute_id = $parameter_id ")or die(mysql_error());
-        header('Location:../test.php?update=true');
+		$check_query = "select * from wc_test_attribute  where test_parameter_name = '".$_POST['parameter_name1']."' and test_id = '".$_POST['test_update_id']."' ";
+		if(!mysql_num_rows(mysql_query($check_query))){
+	        $parameter_id = $_POST['parameter_update'];
+	        $testid =$_POST['test_update_id'];
+	        $parameter_name = $_POST['parameter_name1'];
+	        $paramtype = $_POST['type1'];
+	        $paramunit = $_POST['unit1'];
+	        $paramformat = $_POST['format1'];
+	        //$test_name = $_POST['test_name'];
+	        //mysql_query("update wc_test set test_name ='$test_name' where test_id = $testid ")or die(mysql_error());
+	        mysql_query("update wc_test_attribute set test_parameter_name ='$parameter_name',test_parameter_type ='$paramtype',test_parameter_unit='$paramunit',test_parameter_format ='$paramformat' where test_attribute_id = $parameter_id ")or die(mysql_error());
+	        header('Location:../test.php?update=true');
+		}else{
+			header('Location:../test.php?param_name_exists=true');
+		}
 
     }
     if(isset($_GET['gettestdata'])){
@@ -224,8 +230,13 @@ class testfunction{
         $test_id = $_POST['test_id'];
         $test_name = $_POST['test_name'];
         if(isset($test_id)&&isset($test_name)){
-            $sql = mysql_query("update wc_test set test_name = '".$test_name."' where test_id = '".$test_id."'");
-            echo "succeed";
+        	$check_query = "select * from wc_test  where test_name = '".$_POST['test_name']."'";
+        	if(!mysql_num_rows(mysql_query($check_query))){
+	            $sql = mysql_query("update wc_test set test_name = '".$test_name."' where test_id = '".$test_id."'");
+	            echo "succeed";
+			}else{
+				echo "exists";
+			}
         }
     }
     if(isset($_GET['check_parameter'])){

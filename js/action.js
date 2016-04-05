@@ -259,7 +259,10 @@
                cache: false,
                success: function(data) {
                     if(data == 'error'){
-                        alert('This athelete already assigned another category!');
+                        success_align();
+			           $('.success_msg span').html('Schedule already exists!');
+			           $('.success_msg').show();
+			           $('.popup_fade').show();
                         main.val('');
                         main.parents('.assign_clone_content').find('.dob').val('');
                         main.parents('.assign_clone_content').find('.mobile').val('');
@@ -294,9 +297,13 @@
                cache: false,
                success: function(data) {
                     if(data == 'error'){
-                        alert('This athelete already assigned another category!');
+                        //alert('This athelete already assigned another category!');
+                         success_align();
+			           $('.success_msg span').html('Schedule already exists!');
+			           $('.success_msg').show();
+			           $('.popup_fade').show();
+			           document.body.style.overflow = 'hidden';
                         $('option:selected',main_content).removeAttr('selected');
-
                         main_content.find('.dob').val('');
                         main_content.find('.mobile').val('');
                     }
@@ -606,7 +613,7 @@
                   if(data.trim() == 'succeed'){
                       //alert('Paramstype name updated successfully!');
                       //location.reload();
-                      success_align();
+                       success_align();
 			           $('.success_msg span').html('Paramstype name updated successfully!');
 			           $('.success_msg').show();
 			           $('.popup_fade').show();
@@ -616,116 +623,116 @@
           });
 
       });
-        $(document).on('change','.test_name_hover_check',function(event) {
-            //alert($(this).attr('data-id'));
-
-          if(this.checked) {
-            $('.test_name_hover_check').not(this).prop('checked', false);
-            //alert($(this).attr('data-id'));
-             $('#test_table tbody').empty();
-            var test_id = $(this).attr('data-id');
-            $.ajax({
-                 type: "POST",
-                 url: "functions/test_functions.php?find_test_attribute=true",
-                 data:{'id':test_id},
-                 cache: false,
-                 dataType:'json',
-                 success: function(data) {
-                     //alert(JSON.stringify(data.test));
-                     $('#test_table tbody').empty();
-                     if(data.test){
-                          var param_dynamic = '';
-                        $.each(data.param, function(i){
-                             param_dynamic += "<option value='"+data.param[i].parametertype_name+"'>"+data.param[i].parametertype_name+"</option>";
-                         });
-                          $.each(data.test, function(i){
-                              $('#test_table tbody').append('\
-          				      <tr class="align_center delete_color">\
-          						<input type="hidden" value="'+data.test[i].test_attribute_id+'" id="test_attribute_id">\
-          				        <td>'+data.test[i].test_parameter_name+'</td>\
-          				        <td>'+data.test[i].test_parameter_type+'</td>\
-          				        <td>'+data.test[i].test_parameter_unit+'</td>\
-          				        <td>'+data.test[i].test_parameter_format+'</td>\
-          				        <td class="popup-edit">\
-          				        	<span class="edit_state edit_test" data-value="'+data.test[i].test_attribute_id+'" data-test-id="'+data.test[i].test_id+'"><i class="fa fa-pencil-square-o"></i></span>\
-          			        		<span class="delete_state" data-value="'+data.test[i].test_attribute_id+'"><i class="fa fa-trash-o"></i></span>\
-          			        			<div class="test_div popup_hidden">\
-          					          		<code class="close_btn cancel_btn"> </code>\
-          					          		<div class="edit_title">\
-          					                	<span class="del_txt">Edit Test</span>\
-          					              	</div>\
-          					          			<div class="container col-md-12">\
-          						          			<div class="col-xs-12 col-md-12">\
-          									<form id="test_updation_form" action="functions/test_functions.php" method="post">\
-          										<div class="parameter_holder">\
-          											<div class="form-group col-md-4" style="padding: 0;">\
-          												<label class="popup_label">Enter Parameter Name</label><br>\
-          												<input type="text" class="adjust_width test_parameter_name_update" name="parameter_name1" data-validation-error-msg="Please Enter the Parameter Name" data-validation="required" style="width:500px !important;height: 30px;" required>\
-          											</div>\
-          											<div class="form-group col-md-12 test_percentage parameter_type_parent">\
-          												<div class="form-group col-md-4" style="padding: 0;">\
-          													<label class="popup_label">Type</label><br>\
-          													<select class="form-control classic type_align_popup fl parameter_type parameter_type_update" id="type1" name="type1" data-validation-error-msg="Please Select the Type" data-validation="required" required>\
-          														<option value=""></option>\
-                                                                '+param_dynamic+'\
-          													</select>\
-          												</div>\
-          												<div class="form-group col-md-4" style="padding: 0;">\
-          													<label class="popup_label">Unit</label><br>\
-          													<select class="form-control classic type_align_popup fl parameter_unit parameter_unit_update" id="unit1" name="unit1" data-validation-error-msg="Please Select the Unit" data-validation="required" required>\
-          													</select>\
-          												</div>\
-          												<div class="form-group col-md-4" style="padding: 0;">\
-          													<label class="popup_label">Format</label><br>\
-          													<select class="form-control classic type_align_popup fl parameter_format parameter_format_update" id="format1" name="format1" data-validation-error-msg="Please Select the Format" data-validation="required" required>\
-          														<option value="">Format</option>\
-          														<option value="0">0</option>\
-          														<option value="1">1</option>\
-          														<option value="2">2</option>\
-          														<option value="3">3</option>\
-          														<option value="4">4</option>\
-          														<option value="5">5</option>\
-          													</select>\
-          												</div>\
-          											</div>\
-          										</div>\
-          										<input class="parameter_update" type="hidden" name="parameter_update" value="" />\
-          										<input class="test_update_id" type="hidden" name="test_update_id" value="" />\
-          										<div class="col-md-12 schedule_btn" style="white-space: nowrap;">\
-          											<input type="submit" class="btn btn-primary clear" value="Save">\
-          											<input type="reset" value="Cancel" class="btn btn-primary clear reset_form" maxlength="50">\
-          										</div>\
-          									</form>\
-          								</div>\
-          							</div>\
-          			                </div>\
-          							<div class="delete_div delete_test_div">\
-          						              <div class="del_title">\
-          						                <span class="del_txt">DELETE</span>\
-          						              </div>\
-          						              <div class="del_content">\
-          						                <span class="del_content_txt">Are you sure you want to delete this record?</span>\
-          						                <input type="button" class="btn btn-primary align_right no_btn" value="No">\
-          						                <input type="button" class="btn btn-primary align_right yes_btn" value="Yes" data-delete="test_attribute" data-id ="'+data.test[i].test_attribute_id+' "data-test-id="'+data.test[i].test_id+'">\
-          						                <input type="hidden" name="delete_id" value="" id="delete_id"/>\
-          						              </div>\
-            								</div>\
-          				        </td>\
-          						<input type="hidden" name="test_attribute_id" id="test_attribute_id" value="'+data.test[i].test_attribute_id+'" />\
-          				      </tr>');
-                          });
-                     }else{
-                        //alert('No Parameter availabel!');
-                         success_align();
-				           $('.success_msg span').html('No Parameter availabel!');
-				           $('.success_msg').show();
-				           $('.popup_fade').show();
-				           document.body.style.overflow = 'hidden';
-                     }
-                 }
-            });
-        }
-        });
+        // $(document).on('change','.test_name_hover_check',function(event) {
+            // //alert($(this).attr('data-id'));
+// 
+          // if(this.checked) {
+            // $('.test_name_hover_check').not(this).prop('checked', false);
+            // //alert($(this).attr('data-id'));
+             // $('#test_table tbody').empty();
+            // var test_id = $(this).attr('data-id');
+            // $.ajax({
+                 // type: "POST",
+                 // url: "functions/test_functions.php?find_test_attribute=true",
+                 // data:{'id':test_id},
+                 // cache: false,
+                 // dataType:'json',
+                 // success: function(data) {
+                     // //alert(JSON.stringify(data.test));
+                     // $('#test_table tbody').empty();
+                     // if(data.test){
+                          // var param_dynamic = '';
+                        // $.each(data.param, function(i){
+                             // param_dynamic += "<option value='"+data.param[i].parametertype_name+"'>"+data.param[i].parametertype_name+"</option>";
+                         // });
+                          // $.each(data.test, function(i){
+                              // $('#test_table tbody').append('\
+          				      // <tr class="align_center delete_color">\
+          						// <input type="hidden" value="'+data.test[i].test_attribute_id+'" id="test_attribute_id">\
+          				        // <td>'+data.test[i].test_parameter_name+'</td>\
+          				        // <td>'+data.test[i].test_parameter_type+'</td>\
+          				        // <td>'+data.test[i].test_parameter_unit+'</td>\
+          				        // <td>'+data.test[i].test_parameter_format+'</td>\
+          				        // <td class="popup-edit">\
+          				        	// <span class="edit_state edit_test" data-value="'+data.test[i].test_attribute_id+'" data-test-id="'+data.test[i].test_id+'"><i class="fa fa-pencil-square-o"></i></span>\
+          			        		// <span class="delete_state" data-value="'+data.test[i].test_attribute_id+'"><i class="fa fa-trash-o"></i></span>\
+          			        			// <div class="test_div popup_hidden">\
+          					          		// <code class="close_btn cancel_btn"> </code>\
+          					          		// <div class="edit_title">\
+          					                	// <span class="del_txt">Edit Test</span>\
+          					              	// </div>\
+          					          			// <div class="container col-md-12">\
+          						          			// <div class="col-xs-12 col-md-12">\
+          									// <form id="test_updation_form" action="functions/test_functions.php" method="post">\
+          										// <div class="parameter_holder">\
+          											// <div class="form-group col-md-4" style="padding: 0;">\
+          												// <label class="popup_label">Enter Parameter Name</label><br>\
+          												// <input type="text" class="adjust_width test_parameter_name_update" name="parameter_name1" data-validation-error-msg="Please Enter the Parameter Name" data-validation="required" style="width:500px !important;height: 30px;" required>\
+          											// </div>\
+          											// <div class="form-group col-md-12 test_percentage parameter_type_parent">\
+          												// <div class="form-group col-md-4" style="padding: 0;">\
+          													// <label class="popup_label">Type</label><br>\
+          													// <select class="form-control classic type_align_popup fl parameter_type parameter_type_update" id="type1" name="type1" data-validation-error-msg="Please Select the Type" data-validation="required" required>\
+          														// <option value=""></option>\
+                                                                // '+param_dynamic+'\
+          													// </select>\
+          												// </div>\
+          												// <div class="form-group col-md-4" style="padding: 0;">\
+          													// <label class="popup_label">Unit</label><br>\
+          													// <select class="form-control classic type_align_popup fl parameter_unit parameter_unit_update" id="unit1" name="unit1" data-validation-error-msg="Please Select the Unit" data-validation="required" required>\
+          													// </select>\
+          												// </div>\
+          												// <div class="form-group col-md-4" style="padding: 0;">\
+          													// <label class="popup_label">Format</label><br>\
+          													// <select class="form-control classic type_align_popup fl parameter_format parameter_format_update" id="format1" name="format1" data-validation-error-msg="Please Select the Format" data-validation="required" required>\
+          														// <option value="">Format</option>\
+          														// <option value="0">0</option>\
+          														// <option value="1">1</option>\
+          														// <option value="2">2</option>\
+          														// <option value="3">3</option>\
+          														// <option value="4">4</option>\
+          														// <option value="5">5</option>\
+          													// </select>\
+          												// </div>\
+          											// </div>\
+          										// </div>\
+          										// <input class="parameter_update" type="hidden" name="parameter_update" value="" />\
+          										// <input class="test_update_id" type="hidden" name="test_update_id" value="" />\
+          										// <div class="col-md-12 schedule_btn" style="white-space: nowrap;">\
+          											// <input type="submit" class="btn btn-primary clear" value="Save">\
+          											// <input type="reset" value="Cancel" class="btn btn-primary clear reset_form" maxlength="50">\
+          										// </div>\
+          									// </form>\
+          								// </div>\
+          							// </div>\
+          			                // </div>\
+          							// <div class="delete_div delete_test_div">\
+          						              // <div class="del_title">\
+          						                // <span class="del_txt">DELETE</span>\
+          						              // </div>\
+          						              // <div class="del_content">\
+          						                // <span class="del_content_txt">Are you sure you want to delete this record?</span>\
+          						                // <input type="button" class="btn btn-primary align_right no_btn" value="No">\
+          						                // <input type="button" class="btn btn-primary align_right yes_btn" value="Yes" data-delete="test_attribute" data-id ="'+data.test[i].test_attribute_id+' "data-test-id="'+data.test[i].test_id+'">\
+          						                // <input type="hidden" name="delete_id" value="" id="delete_id"/>\
+          						              // </div>\
+            								// </div>\
+          				        // </td>\
+          						// <input type="hidden" name="test_attribute_id" id="test_attribute_id" value="'+data.test[i].test_attribute_id+'" />\
+          				      // </tr>');
+                          // });
+                     // }else{
+                        // //alert('No Parameter availabel!');
+                         // success_align();
+				           // $('.success_msg span').html('No Parameter availabel!');
+				           // $('.success_msg').show();
+				           // $('.popup_fade').show();
+				           // document.body.style.overflow = 'hidden';
+                     // }
+                 // }
+            // });
+        // }
+        // });
         $(document).on('change','.test_battery_name_hover_check', function(event) {
             //alert($(this).attr('data-id'));
              //$('#test_battery_table tbody').empty();
@@ -811,8 +818,14 @@
 		                   $('.success_msg').show();
 		                   $('.popup_fade').show();
 		                   document.body.style.overflow = 'hidden';
-                      }
+                      }else if(data.trim() == 'exists'){
+              	 		success_align();
+	                    $('.success_msg span').html('Test already exists!');
+	                    $('.success_msg').show();
+	                    $('.popup_fade').show();
+	                    document.body.style.overflow = 'hidden';
                    }
+                  }
               });
           }else{
               //alert('Invalid test name');
@@ -1123,7 +1136,7 @@
                               dataType:'json',
                                success: function(data) {
                                    //alert(JSON.stringify(data));
-                                    var parameter_unit = '';
+                                    var parameter_unit = '<option></option>';
                                     $.each(data, function(i){
                                         if(data[i].parameterunit == paremeter_unit ){
                                             parameter_unit += "<option value='"+data[i].parameterunit+"' selected>"+data[i].parameterunit+"</option>";
@@ -1149,7 +1162,7 @@
                              cache: false,
                              dataType:'json',
                               success: function(data) {
-                                  var parameter_unit = '';
+                                  var parameter_unit = '<option></option>';
                                   $.each(data, function(i){
                                       if(data[i].parameterunit == paremeter_unit ){
                                           parameter_unit += "<option value='"+data[i].parameterunit+"' selected>"+data[i].parameterunit+"</option>";
@@ -1468,7 +1481,7 @@
                    if(html=='error'){
                      //alert('Sports already exist!');
                      success_align();
-	             	    $('.success_msg span').html('Sports already exist!');
+	             	    $('.success_msg span').html('Sport already exist!');
 	                    $('.success_msg').show();
 	                    $('.popup_fade').show();
 	                    document.body.style.overflow = 'hidden';
@@ -2066,7 +2079,7 @@
                         success: function(html) {
                              //alert('Assign Schedule deleted successfully');
                              success_align();
-		                 	 $('.success_msg span').html('Assign Schedule deleted successfully');
+		                 	 $('.success_msg span').html('Schedule category deleted successfully!');
 			                 $('.success_msg').show();
 			                 $('.popup_fade').show();
                              $('.state_div,.delete_div').hide();
@@ -2269,6 +2282,13 @@
                 $('.clone_content:last').remove();
               }
             });
+            
+            if($(this).parents('form').attr('id') == 'test_updation_form'){
+            	
+            	$(this).parents('form').find('.parameter_type_update option').removeAttr('selected').prop('selectedIndex',0);
+            	$(this).parents('form').find('.parameter_unit_update').empty().append('<option>Unit</option>');
+            	$(this).parents('form').find('.parameter_format_update').empty().append('<option>Format</option>');
+            }
         });
 
         $('.add_createschedule_act,.edit_createschedule_act,.add_athletes_act,.edit_athletes_act').on('click', function(){
@@ -2305,12 +2325,16 @@
         // });
               var test_id = 1;  
            $(document).on('click','.add_athelete',function(e){
-            if($('.assign_clone_content:last').children().find('#bib,#combobox').val() == ''){              
-              $('.assign_clone_content:last').children().find('#bib').next().addClass('custom_error');
+            if($('.assign_clone_content:last').children().find('#combobox').val() == ''){              
+ 
               $('.assign_clone_content:last').children().find('#combobox').next().next().addClass('custom_error');
-                $('.assign_clone_content:last').children().find('#combobox').next().next().next().next().remove('span');                   
+              $('.assign_clone_content:last').children().find('#combobox').next().next().next().next().remove('span');                   
                e.preventDefault();
-            }           
+            }else if($('.assign_clone_content:last').children().find('#bib').val() == '' ){
+              $('.assign_clone_content:last').children().find('#bib').next().addClass('custom_error');
+                        
+               e.preventDefault();
+            }          
             else{
               $('.assign_clone_content:last').children().find('input[type="text"]').next().removeClass('custom_error');
               $('.assign_clone_content:last').children().find('#combobox').next().next().removeClass('custom_error');
@@ -2346,6 +2370,7 @@
                             //alert(newElement.html());
                             newElement.find('.mobile').val(html.athlete_mobile).attr('disabled', 'disabled');
                             newElement.find('.athlete_bib').val('');
+                            newElement.find('#combobox').next().next().removeClass('custom_error');
 
                        }
                    });
@@ -2742,96 +2767,96 @@
              });
           }
         });
-        $(document).on('change','.check_parametertype', function(event) {
-           //alert($(this).attr('data-id'));
-           if(this.checked){
-            $('#param_unit_table tbody').empty();
-           var params_id = $(this).attr('data-id');
-           $.ajax({
-                type: "POST",
-                url: "functions/parameter_unitfunction.php?find_params_units=true",
-                data:{'id':params_id},
-                cache: false,
-                dataType:'json',
-                success: function(data) {
-                    //alert(JSON.stringify(data.test[0].parametertype_name));
-                    $('#test_table tbody').empty();
-                    if(data.test[0]){
-                         var param_dynamic = '';
-                         var selected_param_id = '';
-                       $.each(data.param, function(i){
-                           if(data.test[0].parametertype_name == data.param[i].parametertype_name ){
-                           	   selected_param_id += data.param[i].parametertype_id;
-                               param_dynamic += "<option value='"+data.param[i].parametertype_id+"' selected>"+data.param[i].parametertype_name+"</option>";
-                           }else{
-                               param_dynamic += "<option value='"+data.param[i].parametertype_id+"'>"+data.param[i].parametertype_name+"</option>";
-                           }
-                        });
-                         $.each(data.test, function(i){
-                             $('#param_unit_table tbody').append('\
-                   <tr class=" delete_color">\
-               <input type="hidden" value="'+data.test[i].parameterunit_id+'" id="parameterunit_id">\
-                     <td>'+data.test[i].parameterunit+'</td>\
-                     <td class="popup-edit">\
-                      <span class="edit_state edit_parameter_unit" data-value="'+data.test[i].parameterunit_id+'" data-test-id="'+data.test[i].parameterunit_id+'"><i class="fa fa-pencil-square-o"></i></span>\
-                      <span class="delete_state" data-value="'+data.test[i].parameterunit_id+'"><i class="fa fa-trash-o"></i></span>\
-                      <div class="paramter_div edit_parameterunit_div popup_hidden">\
-                          <code class="close_btn cancel_btn"> </code>\
-                          <div class="edit_title">\
-                              <span class="del_txt">Edit detail</span>\
-                          </div><!--edit_title-->\
-                          <div class="container state-content col-md-12" style="padding: 0px;">\
-                              <div class="col-xs-12 col-md-12 align_margin">\
-                                  <form id="edit_parameter_unit" name="edit_parameter_unit_form">\
-                                      <div class="form-group">\
-                                            <label for="sel1">Select Parameter Type</label>\
-                                            <input type="hidden" class="edit_param_unit_id" name="edit_param_unit_id"  value=""/>\
-                                            <input type = "hidden" name="parameter_type" value="'+selected_param_id+'">\
-                                            <select class="form-control adjust_width adjust_popup_width classic edit_param_type" id="sel1" data-validation-error-msg="Please Select the Type of the Parameter" data-validation="required" disabled>\
-                                              <option value="">Select Parameter Type</option> \
-                                               '+param_dynamic+' \
-                                            </select>\
-                                      </div>\
-                                      <div class="form-group">\
-                                          <label>Enter Parameter Unit</label><br>\
-                                          <input type="text" class="adjust_width adjust_popup_width edit_param_unit" name="parameter_unit" autocomplete="off">\
-                                          <span class="hided">Please enter Parameter Unit</span>\
-                                      </div>\
-                                      <div class="col-md-10 align_right schedule_btn">\
-                                          <input type="submit" class="btn btn-primary clear edit_parameter_unit_act" value="Save">\
-                                          <input type="reset" class="btn btn-primary clear reset_form_param_unit" value="Cancel">\
-                                      </div>\
-                                  </form>\
-                              </div>\
-                          </div>\
-                      </div><!--paramter_div-->\
-                <div class="delete_div delete_test_div">\
-                             <div class="del_title">\
-                               <span class="del_txt">DELETE</span>\
-                             </div>\
-                             <div class="del_content">\
-                               <span class="del_content_txt">Are you sure you want to delete this record?</span>\
-                               <input type="button" class="btn btn-primary align_right yes_btn" value="Yes" data-delete="parameter_unit_name" data-id ="'+data.test[i].parameterunit_id+' ">\
-                               <input type="button" class="btn btn-primary align_right no_btn" value="No">\
-                               <input type="hidden" name="delete_id" value="" id="delete_id"/>\
-                             </div>\
-                   </div>\
-                     </td>\
-               <input type="hidden" name="test_attribute_id" id="test_attribute_id" value="'+data.test[i].parameterunit_id+'" />\
-                   </tr>');
-                         });
-                    }else{
-                        //alert('No Parameter availabel!');
-                        success_align();
-             	        $('.success_msg span').html('No Parameter availabel!');
-	                    $('.success_msg').show();
-	                    $('.popup_fade').show();
-	                    document.body.style.overflow = 'hidden';
-                    }
-                }
-           });
-       }
-       });
+        // $(document).on('change','.check_parametertype', function(event) {
+           // //alert($(this).attr('data-id'));
+           // if(this.checked){
+            // $('#param_unit_table tbody').empty();
+           // var params_id = $(this).attr('data-id');
+           // $.ajax({
+                // type: "POST",
+                // url: "functions/parameter_unitfunction.php?find_params_units=true",
+                // data:{'id':params_id},
+                // cache: false,
+                // dataType:'json',
+                // success: function(data) {
+                    // //alert(JSON.stringify(data.test[0].parametertype_name));
+                    // $('#test_table tbody').empty();
+                    // if(data.test[0]){
+                         // var param_dynamic = '';
+                         // var selected_param_id = '';
+                       // $.each(data.param, function(i){
+                           // if(data.test[0].parametertype_name == data.param[i].parametertype_name ){
+                           	   // selected_param_id += data.param[i].parametertype_id;
+                               // param_dynamic += "<option value='"+data.param[i].parametertype_id+"' selected>"+data.param[i].parametertype_name+"</option>";
+                           // }else{
+                               // param_dynamic += "<option value='"+data.param[i].parametertype_id+"'>"+data.param[i].parametertype_name+"</option>";
+                           // }
+                        // });
+                         // $.each(data.test, function(i){
+                             // $('#param_unit_table tbody').append('\
+                   // <tr class=" delete_color">\
+               // <input type="hidden" value="'+data.test[i].parameterunit_id+'" id="parameterunit_id">\
+                     // <td>'+data.test[i].parameterunit+'</td>\
+                     // <td class="popup-edit">\
+                      // <span class="edit_state edit_parameter_unit" data-value="'+data.test[i].parameterunit_id+'" data-test-id="'+data.test[i].parameterunit_id+'"><i class="fa fa-pencil-square-o"></i></span>\
+                      // <span class="delete_state" data-value="'+data.test[i].parameterunit_id+'"><i class="fa fa-trash-o"></i></span>\
+                      // <div class="paramter_div edit_parameterunit_div popup_hidden">\
+                          // <code class="close_btn cancel_btn"> </code>\
+                          // <div class="edit_title">\
+                              // <span class="del_txt">Edit detail</span>\
+                          // </div><!--edit_title-->\
+                          // <div class="container state-content col-md-12" style="padding: 0px;">\
+                              // <div class="col-xs-12 col-md-12 align_margin">\
+                                  // <form id="edit_parameter_unit" name="edit_parameter_unit_form">\
+                                      // <div class="form-group">\
+                                            // <label for="sel1">Select Parameter Type</label>\
+                                            // <input type="hidden" class="edit_param_unit_id" name="edit_param_unit_id"  value=""/>\
+                                            // <input type = "hidden" name="parameter_type" value="'+selected_param_id+'">\
+                                            // <select class="form-control adjust_width adjust_popup_width classic edit_param_type" id="sel1" data-validation-error-msg="Please Select the Type of the Parameter" data-validation="required" disabled>\
+                                              // <option value="">Select Parameter Type</option> \
+                                               // '+param_dynamic+' \
+                                            // </select>\
+                                      // </div>\
+                                      // <div class="form-group">\
+                                          // <label>Enter Parameter Unit</label><br>\
+                                          // <input type="text" class="adjust_width adjust_popup_width edit_param_unit" name="parameter_unit" autocomplete="off">\
+                                          // <span class="hided">Please enter Parameter Unit</span>\
+                                      // </div>\
+                                      // <div class="col-md-10 align_right schedule_btn">\
+                                          // <input type="submit" class="btn btn-primary clear edit_parameter_unit_act" value="Save">\
+                                          // <input type="reset" class="btn btn-primary clear reset_form_param_unit" value="Cancel">\
+                                      // </div>\
+                                  // </form>\
+                              // </div>\
+                          // </div>\
+                      // </div><!--paramter_div-->\
+                // <div class="delete_div delete_test_div">\
+                             // <div class="del_title">\
+                               // <span class="del_txt">DELETE</span>\
+                             // </div>\
+                             // <div class="del_content">\
+                               // <span class="del_content_txt">Are you sure you want to delete this record?</span>\
+                               // <input type="button" class="btn btn-primary align_right yes_btn" value="Yes" data-delete="parameter_unit_name" data-id ="'+data.test[i].parameterunit_id+' ">\
+                               // <input type="button" class="btn btn-primary align_right no_btn" value="No">\
+                               // <input type="hidden" name="delete_id" value="" id="delete_id"/>\
+                             // </div>\
+                   // </div>\
+                     // </td>\
+               // <input type="hidden" name="test_attribute_id" id="test_attribute_id" value="'+data.test[i].parameterunit_id+'" />\
+                   // </tr>');
+                         // });
+                    // }else{
+                        // //alert('No Parameter availabel!');
+                        // success_align();
+             	        // $('.success_msg span').html('No Parameter availabel!');
+	                    // $('.success_msg').show();
+	                    // $('.popup_fade').show();
+	                    // document.body.style.overflow = 'hidden';
+                    // }
+                // }
+           // });
+       // }
+       // });
        // / Edit the Parameter Unit module - Start /
          $(document).on('click','.edit_parameter_unit',function(){
             var test_attr_id = $(this).attr("data-value");
@@ -3089,7 +3114,7 @@
                                 }else if(html == 'error'){
                                     //alert('Parameterunit already exist!');
                                      success_align();
-				             	     $('.success_msg span').html('Parameterunit already exist!');
+				             	     $('.success_msg span').html('Parameter Unit already exists!');
 					                 $('.success_msg').show();
 					                 $('.popup_fade').show();
 				                    document.body.style.overflow = 'hidden';
@@ -3098,7 +3123,7 @@
                          });
                   }
                 });
-		$(document).on('submit','#edit_parameter_unit', function(e){      
+		$(document).on('submit','#edit_parameter_unit', function(e){
           e.preventDefault();
               var res = true;
               $('input[type="text"]',this).each(function() {
@@ -3109,7 +3134,7 @@
               });
               if(res){      
                   $('[name="parameter_unit"]').next().removeClass('custom_error');             
-                  var form_data = $('form[name="edit_parameter_unit_form"]').serialize();
+                  var form_data = $(this).serialize();
 	                  $.ajax({
                        type: "POST",
                        url: "functions/parameter_unitfunction.php?updateunitdata=true",
@@ -3987,6 +4012,7 @@ $(document).on('blur','.enter_result',function(e){
                       $('.edit_param_type option[value="'+data.parametertype_id+'"]').attr('selected','selected');
                       $('.edit_param_unit').val(data.parameterunit);
                       $('.edit_param_unit_id').val(data.parameterunit_id);
+                      $('.edit_param_type_id').val(data.parametertype_id);
                  }
               });
          });
@@ -4344,15 +4370,50 @@ $(document).on('blur','.enter_result',function(e){
         $(document).on('change','.check_parametertype',function () {
           $('.check_parametertype').not(this).prop('checked', false);
           if($(this).is(':checked')){
-            // check_data = $(this).next().attr('data-id');
-            // $('.state_table').find('.parametertype_id').find("input[value="+check_data+"]").parents('tr').show();
-            // $('.state_table').find('.parametertype_id').not("input[value="+check_data+"]").parents('tr').hide();
+            check_data = $(this).attr('data-id');
+            $('#param_unit_table').find('.parametertype_id').find("input[value="+check_data+"]").parents('tr').show();
+            $('#param_unit_table').find('.parametertype_id').not("input[value="+check_data+"]").parents('tr').hide();
           }
           else{
-            $('.state_table tr').show();
+            $('#param_unit_table tr').show();
+          }
+        });
+         $(document).on('change','.test_name_hover_check',function () {
+         	
+          $('.test_name_hover_check').not(this).prop('checked', false);
+          if($(this).is(':checked')){
+            check_data = $(this).attr('data-id');
+	         $('.test_attr_table').each(function(){
+	         	if($(this).attr('data-id')==check_data){
+	         		$(this).show();
+	         	}else{
+	         		$(this).hide();
+	         	}
+	         		
+	         });
+	        }
+          else{
+            $('#test_table tr').show();
           }
         });
 
+		$(document).on('change','.assign_schedule_name_hover',function () {
+			  $('.assign_schedule_name_hover').not(this).prop('checked', false);
+			  if($(this).is(':checked')){
+			    check_data = $(this).attr('data-id');
+			     $('.assignschedule_category_table').each(function(){
+			     	if($(this).attr('data-id')==check_data){
+			     		$(this).show();
+			     	}else{
+			     		$(this).hide();
+			     	}
+			     		
+			     });
+			    }
+			  else{
+			    $('#assign_schedule_table tr').show();
+			  }
+		});
         // Autocomplete results for atheletes list while search
         // var at_list = [];
         // $('.athlete_list li').each(function(){
@@ -4838,113 +4899,113 @@ $(document).on('blur','.enter_result',function(e){
                    });
               }
           });
-  		$(document).on('change','.assign_schedule_name_hover',function(){
-			if(this.checked){
-			 	$('#assign_schedule_table tbody').empty();
-				var create_schedule_id = $(this).attr('data-id');
-				$.ajax({
-			    	type: "POST",
-			    	url: "functions/assign_schedule_function.php?append_schedules=true",
-			    	data:{'id':create_schedule_id},
-			    	cache: false,
-			    	dataType:'json',
-			    	success: function(data) {
- 						var category_dynamic = '';
-						$.each(data.cate, function(i){
-							 category_dynamic += "<option value='"+data.cate[i].categories_id+"'>"+data.cate[i].categories_name+"</option>";
-                        });
-                        var athelete_dynamic = '';
-						$.each(data.athe, function(i){
-							 athelete_dynamic += "<option value='"+data.athe[i].athlete_id+"'>"+data.athe[i].athlete_name+"</option>";
-                        });
-                        $.each(data.assign, function(i){
-                        	$('#assign_schedule_table tbody').append('\
-                        		<tr class="delete_color assignschedule_popup_open">\
-			      					<input value="'+data.assign[i].assignschedule_id+'" type="hidden">\
-									<td>'+data.assign[i].categories_name+'</td>\
-			        				<td class="popup-edit">\
-			        					<span class="edit_state edit_assign_schedule" data-schedule="'+data.assign[i].createschedule_id+'" data-category="'+data.assign[i].assigncategory_id+'"><i class="fa fa-pencil-square-o"></i></span>\
-		        						<span class="delete_state" data-value="'+data.assign[i].assignschedule_id+'"><i class="fa fa-trash-o"></i></span>\
-										<div class="assign-schedule-popup popup_hidden">\
-			          						<code class="close_btn cancel_btn"> </code>\
-			          						<div class="edit_title"><span class="del_txt">Edit Schedule Details</span></div>\
-			          						<div class="container state-content col-md-12 assign-scroll">\
-				          						<div class="col-xs-12 col-md-12 align_margin">\
-													<form id="edit_assign_schedule_form" action="functions/assign_schedule_function.php" method="post">\
-														<div class="form-group">\
-															  <input type="hidden" class="schedule_update_id" value="" />\
-																<input type="hidden" class="create_schedule_update_id" name="create_schedule_update_id" value="" />\
-														</div>\
-														<div class="form-group">\
-											  				<label for="sel1" class="popup_label">Select Category Name</label>\
-											  				 <input type="hidden" class="category_update1" name="category" value="" />\
-											  				<select class="form-control adjust_width classic category_update box-width" id="sel1" name="category" data-validation-error-msg="Please Select Category of the Schedule" data-validation="required" disabled="">\
-																<option value="">Select Category Name</option>\
-																'+category_dynamic+'\
-										  					</select>\
-														</div>\
-														<label for="athlete" class="email_txt popup_label">Add Athletes</label><br>\
-														<div class=" clone_schedule_update_content assign_clone_content_edit_holder col-md-12">\
-															<div class="assign_clone_content_edit clone_schedule_update">\
-																<input type="hidden" class="assign_athelete_count_edit" value="1" />\
-																<div class="form-group col-md-6"  style="padding: 0px;">\
-																	<div class="col-md-7 combo--align--popup align_atheletes_schedules">\
-																	<select class="form-control name_align_popup fl athlete_name athlete_name_update athlete_name1" placeholder="Name" name="athlete_name[]"  data-validation-error-msg="Please Select Athlete" data-validation="required">\
-																		<option value="">Athletes</option>\
-																		'+athelete_dynamic+'\
-																	</select>\
-																</div>\
-																<div class="col-md-5" style="position: relative; top: 20px;">\
-														      		<input type="text" class="form-control bib_popup fl dob_update dob"  placeholder="Date" value="" disabled>\
-														    	</div>\
-											    			</div>\
-											    			<div class="form-group col-md-6">\
-														    	<div class="col-md-4">\
-														      		<input type="text" class="form-control schedule-name fl mobile_update mobile" placeholder="Mobile no" value="" disabled>\
-														      	</div>\
-														      	<div class="col-md-8">\
-														      		<input type="text" class="form-control bib_popup athlete_bib popup_bib fl bib_update"  placeholder="BIB NO" name="athlete_bib[]" autocomplete="off" data-validation-error-msg="Please Enter the BIBO NO" data-validation="number">\
-																</div>\
-											    			</div>\
-														    <div class="assign-delete col-md-12 edit_assign_schedule_delete">\
-																<span><i class="fa fa-trash-o"></i>Delete</span>\
-															</div>\
-														</div>\
-													</div>\
-													<div class="form-group assign-add-button popup-add-assign col-md-4">\
-														<div class="add-assign">\
-															<span class="edit_assign_schedule_add_btn">Add<i class="fa fa-plus plus_align_assign "></i></span>\
-														</div>\
-													</div>\
-													<input type="hidden" name="assing_schedule_update" value="1" />\
-													<div class="col-md-9 align_right schedule_btn">\
-					  									<input type="submit" value="Save" class="btn btn-primary test-submit clear">\
-					  									<input type="reset" value="Cancel" class="btn btn-primary clear" maxlength="50">\
-													</div>\
-												</form>\
-											</div>\
-										</div>\
-									</div>\
-									<div class="delete_div delete_catagory_div delete-assign">\
-						            	<div class="del_title">\
-						                	<span class="del_txt">DELETE</span>\
-						              	</div>\
-						              	<div class="del_content">\
-						                	<span class="del_content_txt">Are you sure you want to delete this record?</span>\
-						                	<input type="button" class="btn btn-primary align_right no_btn" value="No">\
-						                	<input type="button" class="btn btn-primary align_right yes_btn" data-delete= "assign_schedule_attribute" value="Yes" data-schedule="'+data.assign[i].createschedule_id+'" data-category="'+data.assign[i].assigncategory_id+'">\
-						                	<input type="hidden" name="delete_id" value="" id="delete_id"/>\
-						              	</div>\
-									</div>\
-				   				</td>\
-		      				</tr>\
-                        	');
-                        });
-                        
-			    	}
-				});
-			}
-  		});
+  		// $(document).on('change','.assign_schedule_name_hover',function(){
+			// if(this.checked){
+			 	// $('#assign_schedule_table tbody').empty();
+				// var create_schedule_id = $(this).attr('data-id');
+				// $.ajax({
+			    	// type: "POST",
+			    	// url: "functions/assign_schedule_function.php?append_schedules=true",
+			    	// data:{'id':create_schedule_id},
+			    	// cache: false,
+			    	// dataType:'json',
+			    	// success: function(data) {
+ 						// var category_dynamic = '';
+						// $.each(data.cate, function(i){
+							 // category_dynamic += "<option value='"+data.cate[i].categories_id+"'>"+data.cate[i].categories_name+"</option>";
+                        // });
+                        // var athelete_dynamic = '';
+						// $.each(data.athe, function(i){
+							 // athelete_dynamic += "<option value='"+data.athe[i].athlete_id+"'>"+data.athe[i].athlete_name+"</option>";
+                        // });
+                        // $.each(data.assign, function(i){
+                        	// $('#assign_schedule_table tbody').append('\
+                        		// <tr class="delete_color assignschedule_popup_open">\
+			      					// <input value="'+data.assign[i].assignschedule_id+'" type="hidden">\
+									// <td>'+data.assign[i].categories_name+'</td>\
+			        				// <td class="popup-edit">\
+			        					// <span class="edit_state edit_assign_schedule" data-schedule="'+data.assign[i].createschedule_id+'" data-category="'+data.assign[i].assigncategory_id+'"><i class="fa fa-pencil-square-o"></i></span>\
+		        						// <span class="delete_state" data-value="'+data.assign[i].assignschedule_id+'"><i class="fa fa-trash-o"></i></span>\
+										// <div class="assign-schedule-popup popup_hidden">\
+			          						// <code class="close_btn cancel_btn"> </code>\
+			          						// <div class="edit_title"><span class="del_txt">Edit Schedule Details</span></div>\
+			          						// <div class="container state-content col-md-12 assign-scroll">\
+				          						// <div class="col-xs-12 col-md-12 align_margin">\
+													// <form id="edit_assign_schedule_form" action="functions/assign_schedule_function.php" method="post">\
+														// <div class="form-group">\
+															  // <input type="hidden" class="schedule_update_id" value="" />\
+																// <input type="hidden" class="create_schedule_update_id" name="create_schedule_update_id" value="" />\
+														// </div>\
+														// <div class="form-group">\
+											  				// <label for="sel1" class="popup_label">Select Category Name</label>\
+											  				 // <input type="hidden" class="category_update1" name="category" value="" />\
+											  				// <select class="form-control adjust_width classic category_update box-width" id="sel1" name="category" data-validation-error-msg="Please Select Category of the Schedule" data-validation="required" disabled="">\
+																// <option value="">Select Category Name</option>\
+																// '+category_dynamic+'\
+										  					// </select>\
+														// </div>\
+														// <label for="athlete" class="email_txt popup_label">Add Athletes</label><br>\
+														// <div class=" clone_schedule_update_content assign_clone_content_edit_holder col-md-12">\
+															// <div class="assign_clone_content_edit clone_schedule_update">\
+																// <input type="hidden" class="assign_athelete_count_edit" value="1" />\
+																// <div class="form-group col-md-6"  style="padding: 0px;">\
+																	// <div class="col-md-7 combo--align--popup align_atheletes_schedules">\
+																	// <select class="form-control name_align_popup fl athlete_name athlete_name_update athlete_name1" placeholder="Name" name="athlete_name[]"  data-validation-error-msg="Please Select Athlete" data-validation="required">\
+																		// <option value="">Athletes</option>\
+																		// '+athelete_dynamic+'\
+																	// </select>\
+																// </div>\
+																// <div class="col-md-5" style="position: relative; top: 20px;">\
+														      		// <input type="text" class="form-control bib_popup fl dob_update dob"  placeholder="Date" value="" disabled>\
+														    	// </div>\
+											    			// </div>\
+											    			// <div class="form-group col-md-6">\
+														    	// <div class="col-md-4">\
+														      		// <input type="text" class="form-control schedule-name fl mobile_update mobile" placeholder="Mobile no" value="" disabled>\
+														      	// </div>\
+														      	// <div class="col-md-8">\
+														      		// <input type="text" class="form-control bib_popup athlete_bib popup_bib fl bib_update"  placeholder="BIB NO" name="athlete_bib[]" autocomplete="off" data-validation-error-msg="Please Enter the BIBO NO" data-validation="number">\
+																// </div>\
+											    			// </div>\
+														    // <div class="assign-delete col-md-12 edit_assign_schedule_delete">\
+																// <span><i class="fa fa-trash-o"></i>Delete</span>\
+															// </div>\
+														// </div>\
+													// </div>\
+													// <div class="form-group assign-add-button popup-add-assign col-md-4">\
+														// <div class="add-assign">\
+															// <span class="edit_assign_schedule_add_btn">Add<i class="fa fa-plus plus_align_assign "></i></span>\
+														// </div>\
+													// </div>\
+													// <input type="hidden" name="assing_schedule_update" value="1" />\
+													// <div class="col-md-9 align_right schedule_btn">\
+					  									// <input type="submit" value="Save" class="btn btn-primary test-submit clear">\
+					  									// <input type="reset" value="Cancel" class="btn btn-primary clear" maxlength="50">\
+													// </div>\
+												// </form>\
+											// </div>\
+										// </div>\
+									// </div>\
+									// <div class="delete_div delete_catagory_div delete-assign">\
+						            	// <div class="del_title">\
+						                	// <span class="del_txt">DELETE</span>\
+						              	// </div>\
+						              	// <div class="del_content">\
+						                	// <span class="del_content_txt">Are you sure you want to delete this record?</span>\
+						                	// <input type="button" class="btn btn-primary align_right no_btn" value="No">\
+						                	// <input type="button" class="btn btn-primary align_right yes_btn" data-delete= "assign_schedule_attribute" value="Yes" data-schedule="'+data.assign[i].createschedule_id+'" data-category="'+data.assign[i].assigncategory_id+'">\
+						                	// <input type="hidden" name="delete_id" value="" id="delete_id"/>\
+						              	// </div>\
+									// </div>\
+				   				// </td>\
+		      				// </tr>\
+                        	// ');
+                        // });
+//                         
+			    	// }
+				// });
+			// }
+  		// });
   		
   		$(document).delegate('.assign_clone_content .athlete_bib','blur',function(){
           var j = 0;

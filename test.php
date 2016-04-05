@@ -22,7 +22,19 @@ if (isset($_GET['update'])) {
 	echo "<script>
 	$(document).ready(function () {
 		success_align();
-		$('.success_msg span').html('Test parameter edited successfully!');
+		$('.success_msg span').html('Test Parameter edited successfully!');
+       	$('.success_msg').show();
+      	$('.popup_fade').show();
+      	document.body.style.overflow = 'hidden';
+    	});
+	    //alert('Test parameter edited successfully!');
+	    var url ='" . $url . "'; window.location = url ;</script>";
+}
+if (isset($_GET['param_name_exists'])) {
+	echo "<script>
+	$(document).ready(function () {
+		success_align();
+		$('.success_msg span').html('Already exists!');
        	$('.success_msg').show();
       	$('.popup_fade').show();
       	document.body.style.overflow = 'hidden';
@@ -227,8 +239,10 @@ if (isset($_GET['insert_new'])) {
 					$data = $obj->testselectfunction();
 					foreach( $data as $eachrecord ) {
 					 ?>
-				      <tr class="align_center delete_color">
-						<input type="hidden" value="<?php echo $eachrecord['test_attribute_id']; ?>" id="test_attribute_id">
+				      <tr class="align_center delete_color test_attr_table" data-id ="<?php echo $eachrecord['test_id']; ?>">
+				      	
+						<input type="hidden" value="<?php echo $eachrecord['test_attribute_id']; ?>" id="test_attribute_id" class="test_attributs">
+						<input type="hidden" value="<?php echo $eachrecord['test_id']; ?>">
 				        <td><?php echo $eachrecord['test_parameter_name']; ?></td>
 				        <td><?php echo $eachrecord['test_parameter_type']; ?></td>
 				        <td><?php echo $eachrecord['test_parameter_unit']; ?></td>
@@ -254,7 +268,7 @@ if (isset($_GET['insert_new'])) {
 												<div class="form-group col-md-4" style="padding: 0;">
 													<label class="popup_label">Type</label><br>
 													<select class="form-control classic type_align_popup fl parameter_type parameter_type_update" id="type1" name="type1" data-validation-error-msg="Please Select the Type" data-validation="required">
-														<option value=""></option>
+														<option value="">Type</option>
 														<?php
 															$sql = mysql_query('select * from wc_parametertype order by parametertype_name ASC') or die(mysql_error());
 															$count = mysql_num_rows($sql);
