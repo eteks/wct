@@ -527,7 +527,7 @@ select {
     right: 35%;
     position: absolute;
     width: 550px;
-    z-index: 9999;
+    z-index: 999;
     white-space: normal;
 }
 .close_btn{
@@ -1344,7 +1344,7 @@ input[type=radio]:checked + label:before {
 .align-time {
     margin-right: -5px;
     position: relative;
-    right: 21%;
+    right: 19%;
 }
 .align-day {
     width: 107% !important;
@@ -1517,6 +1517,7 @@ tbody tr {
 .schedule_test { /* added by siva */
     padding: 0 !important;
     margin-left: -16px;
+    margin-bottom: 0 !important;
 }
 .search_part {
     margin: 14px 0 0;
@@ -1535,6 +1536,7 @@ tbody tr {
 .test_title {
     height: 22px;
     margin: 0 0 0 12px;
+    text-align: center;
 }
 .search_box{
     height: 33px;
@@ -2012,6 +2014,9 @@ td {
     line-height: 2.5;
     cursor: pointer;
 }
+.assign-delete{
+	height: 0px;
+}
 .plus_align_assign {
     background: rgb(0, 102, 135) none repeat scroll 0 0;
     color: rgb(255, 255, 255);
@@ -2022,10 +2027,13 @@ td {
     top: 1px;
 }
 .assign-delete span{
-	color: #414141;
-    font-size: 14px;
+	bottom: 65px;
+    color: #414141;
     float: right;
-    width: 90px;
+    font-size: 14px;
+    left: 55px;
+    position: relative;
+    width: 70px;
 }
 .enter_result{
     text-align: center;
@@ -2152,4 +2160,8 @@ td {
     padding: 0 !important;
     position: relative;
     width: 60px;
+}
+.create-label {
+    left: 15px;
+    position: relative;
 }

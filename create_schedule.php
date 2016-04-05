@@ -63,8 +63,8 @@
 	                      <?php } ?>
 					  </select>
 					</div>
-					<div class="form-group">
-					  <label for="date" class="fl"  style="position: relative;">Select Date</label><br>
+					<div class="form-group col-md-12">
+					  <label for="date" class="fl"  style="position: relative;right: 15px;">Select Date</label><br>
 				    	<input class="date_pick" type="text">
 					</div>
 					<div class="form-group col-md-12">
@@ -337,7 +337,7 @@
 													<label>Enter the schedule Name</label><br>
 													<input type="text" class="adjust_width" name="edit_schedule_name" data-validation-error-msg="Please Enter the name of the Schedule" data-validation="required">
 												</div> -->
-												<div class="form-group col-md-5">
+												<div class="form-group col-md-5 create-label">
 												  <label for="battey_name" class="popup_label">Select Test Battery Name</label>
 												  <select class="form-control classic adjust_width box-width width-assign form-group" id="battey_name" name="edit_schedule_testbattery" data-validation-error-msg="Please Select Test Battery Name" data-validation="required">
 												  	<option value="">Select Test Battery Name</option>
@@ -351,7 +351,7 @@
 												</div>
 
 												<div class="form-group align-day align-day-popup col-md-12">
-												  <label for="date" class="popup_label">Select date</label><br>
+												  <label for="date" class="popup_label create-label">Select date</label><br>
 												  <input class="popup_date_pick" type="text">
 												 <!--  <select class="form-control classic create-date1 fl" id="date" name="edit_schedule_day" data-validation-error-msg="Please Select the Date" data-validation="required">
 												  	<option value="">Date</option>
@@ -374,7 +374,7 @@
 												</div>
 
 												<div class="form-group col-md-12">
-												  <label for="date" class="popup_label">Select Time</label><br>
+												  <label for="date" class="popup_label create-label">Select Time</label><br>
 												  	<div class="form-group col-md-3 align-time-popup1">
 												  		<label class="popup_label">Time</label>
 														<select class="form-control classic create-time1" id="hour" name="edit_schedule_hour" data-validation-error-msg="Please Select the Hour" data-validation="required">
@@ -539,7 +539,7 @@
 											  	</div>
 											</div>
 
-												<div class="align_height align_margin col-md-3">
+												<div class="align_height align_margin col-md-3 create-label">
 													<label class="popup_label">Venue</label><br>
 													<textarea class="area_width_create" name="edit_schedule_venue" data-validation-error-msg="Please Enter the Venue" data-validation="required"></textarea>
 												</div>
