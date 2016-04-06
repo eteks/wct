@@ -338,13 +338,13 @@
         }
       });
 
-    $(window).load(function() {
-         // $('.check_table').find('tbody tr').not(':first').hide();
-         //newly added when change grid structure in range
-         hidden_value = $('.check_table').find('.hidden_value:first').val();
-         $('.check_table').find("input[value="+hidden_value+"]").parents('tr').show();
-         $('.check_table').find('.hidden_value').not("input[value="+hidden_value+"]").parents('tr').hide();
-    });
+    // $(window).load(function() {
+    //      // $('.check_table').find('tbody tr').not(':first').hide();
+    //      //newly added when change grid structure in range
+    //      hidden_value = $('.check_table').find('.hidden_value:first').val();
+    //      $('.check_table').find("input[value="+hidden_value+"]").parents('tr').show();
+    //      $('.check_table').find('.hidden_value').not("input[value="+hidden_value+"]").parents('tr').hide();
+    // });
     
     
 
@@ -1465,6 +1465,14 @@
            source: d1_list,
            });
        });
+       
+       // Overrides the default autocomplete filter function to search only from the beginning of the string
+       $.ui.autocomplete.filter = function (array, term) {
+        var matcher = new RegExp("^" + $.ui.autocomplete.escapeRegex(term), "i");
+        return $.grep(array, function (value) {
+            return matcher.test(value.label || value.value || value);
+        });
+       };
 
         $('.sports_form').submit(function(e) {
           e.preventDefault();
@@ -4396,7 +4404,8 @@ $(document).on('blur','.enter_result',function(e){
             $('.list_edit').each(function(){
                 // if($(this).val().toLowerCase().startsWith(search_value) !== -1){
                  // alert($(this).val());
-               if($(this).val().toLowerCase().indexOf(search_value) == 0){
+                 // alert(search_value.toLowerCase());
+               if($(this).val().toLowerCase().indexOf(search_value.toLowerCase()) == 0){
                   $(this).parents('.test-name').show();
                 }
             });
