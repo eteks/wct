@@ -263,8 +263,8 @@ if(isset($_GET['duplicate'])){
 					</div>
 			        </td>
 			        <td class="popup-edit">
-			        	<span class="edit_state edit_test_battery " data-value="<?php $test_data = $test_battery->testbatterylastidfunction();echo $test_data['MAX(testbattery_id)'];?>"><i class="fa fa-pencil-square-o"></i></span>
-		        		<span class="delete_state"><i class="fa fa-trash-o"></i></span>
+			        	<span class="edit_state edit_test_battery hided" data-value="<?php $test_data = $test_battery->testbatterylastidfunction();echo $test_data['MAX(testbattery_id)'];?>"><i class="fa fa-pencil-square-o"></i></span>
+		        		<span class="delete_state hided"><i class="fa fa-trash-o"></i></span>
 		        		<div class="test_battery popup_hidden">
 			          		<code class="close_btn cancel_btn"> </code>
 			          		<div class="edit_title">

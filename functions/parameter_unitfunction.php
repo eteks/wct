@@ -184,13 +184,5 @@ if(isset($_GET['find_params_units'])){
         $temp_arr['param'] = $param_arr;
         print(json_encode($temp_arr));
     }
-    if(isset($_GET['deletedata'])){
-        $parameterunitupdate = new parameterunitFunction();
-        $parameterunitupdate->parameterunitid = $_POST['delete_id'];
-        if($parameterunitupdate->parameterdeletefunction()){
-          echo $_POST['delete_id'];
-        }else{
-          echo "error";
-        }
-    }
+   
 ?>

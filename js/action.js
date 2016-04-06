@@ -354,7 +354,7 @@
          $('.day, .month, .year').attr('data-validation-error-msg', 'Please Select Date');
         });
 
-        $('.edit_item,.save_item,.delete_item').hide();
+      $('.edit_item,.save_item,.delete_item,.edit_time,.save_time,.delete_time').hide();
       $('.test_search').keyup(function() {
             $('.test-list').empty();
             var testname = $(this).val();
@@ -747,6 +747,8 @@
             //alert($(this).attr('data-id'));
              //$('#test_battery_table tbody').empty();
              if(this.checked){
+             $('.edit_test_battery').removeClass('hided');
+             $('.edit_test_battery').next().removeClass('hided');
               $('.test_battery_name_hover_check').not(this).prop('checked', false);
               var test_battery_id = $(this).attr('data-id');
               $.ajax({
@@ -806,6 +808,9 @@
 
                  }
             });
+        }else{
+        	$('.edit_test_battery').addClass('hided');
+            $('.edit_test_battery').next().addClass('hided');
         }
         });
 
@@ -1267,6 +1272,7 @@
                 //alert('already exist!');
                 success_align();
 	           $('.success_msg span').html('already exist!');
+	           $('.success_msg input').removeClass('alert_btn').addClass('alert_btn_without_refresh');
 	           $('.success_msg').show();
 	           $('.popup_fade').show();
 	           document.body.style.overflow = 'hidden';
@@ -1291,6 +1297,7 @@
                         //alert('already exist!');
                         success_align();
 			            $('.success_msg span').html('already exist!');
+			            $('.success_msg input').removeClass('alert_btn').addClass('alert_btn_without_refresh');
 			            $('.success_msg').show();
 			            $('.popup_fade').show();
 			            document.body.style.overflow = 'hidden';
@@ -1315,11 +1322,17 @@
             $('.register_div, .close_btn').show();
             document.body.style.overflow = 'hidden';
         });
-		$('.alert_btn').on('click',function(){
+		$(document).on('click','.alert_btn',function(){
 		  	$('.success_msg').hide();
 		  	$('.popup_fade').hide();
 		  	document.body.style.overflow = 'auto';
 		  	location.reload();
+	  	}); 
+	  	$(document).on('click','.alert_btn_without_refresh',function(){
+		  	$('.success_msg').hide();
+		  	$('.popup_fade').hide();
+		  	document.body.style.overflow = 'auto';
+		  	
 	  	}); 
         $(document).delegate('.cancel_btn','click',function(){
             $('.popup_fade').hide();
@@ -1492,12 +1505,16 @@
                      //alert('Sports already exist!');
                      success_align();
 	             	    $('.success_msg span').html('Sport already exist!');
+	             	    $('.success_msg input').removeClass('alert_btn').addClass('alert_btn_without_refresh');
 	                    $('.success_msg').show();
 	                    $('.popup_fade').show();
 	                    document.body.style.overflow = 'hidden';
                    }else{
                        //alert('Sport inserted successfully!');
-                       success_align();
+                       	success_align();
+                       	if($('.success_msg input').hasClass('alert_btn_without_refresh')){
+                       		$('.success_msg input').removeClass('alert_btn_without_refresh').addClass('alert_btn');
+                       	}
 	             	    $('.success_msg span').html('Sport inserted successfully!');
 	                    $('.success_msg').show();
 	                    $('.popup_fade').show();
@@ -1539,6 +1556,9 @@
                      //alert(result_split[1]);
                      success_align();
 	                   $('.success_msg span').html(result_split[1]);
+	                   if($('.success_msg input').hasClass('alert_btn_without_refresh')){
+                       		$('.success_msg input').removeClass('alert_btn_without_refresh').addClass('alert_btn');
+                       	}
 	                   $('.success_msg').show();
 	                   $('.popup_fade').show();
 	                  html ="<tr class='align_center delete_color'>\
@@ -1696,6 +1716,7 @@
                            //location.reload();
                            success_align();
 		                   $('.success_msg span').html(html+' District already exists!');
+		                   $('.success_msg input').removeClass('alert_btn').addClass('alert_btn_without_refresh');
 		                   $('.success_msg').show();
 		                   $('.popup_fade').show();
 		                   document.body.style.overflow = 'hidden';
@@ -1703,6 +1724,9 @@
                            //alert('District inserted successfully!');
                            success_align();
 		                   $('.success_msg span').html('District inserted successfully!');
+		                   if($('.success_msg input').hasClass('alert_btn_without_refresh')){
+                       		$('.success_msg input').removeClass('alert_btn_without_refresh').addClass('alert_btn');
+                       	}
 		                   $('.success_msg').show();
 		                   $('.popup_fade').show();
 		                   document.body.style.overflow = 'hidden';
@@ -1813,6 +1837,9 @@
                        $('#category_table').find(".category_id:contains("+html+")").parents('tr').remove();
                        success_align();
 	                   $('.success_msg span').html('Category deleted successfully!');
+	                    if($('.success_msg input').hasClass('alert_btn_without_refresh')){
+                       		$('.success_msg input').removeClass('alert_btn_without_refresh').addClass('alert_btn');
+                       	}
 	                   $('.success_msg').show();
 	                   $('.popup_fade').show();
                        $('.state_div,.delete_div').hide();
@@ -1832,6 +1859,9 @@
                        $('#sports_table').find(".sports_id:contains("+html+")").parents('tr').remove();
                        success_align();
 	                   $('.success_msg span').html('Sport deleted successfully!');
+	                    if($('.success_msg input').hasClass('alert_btn_without_refresh')){
+                       		$('.success_msg input').removeClass('alert_btn_without_refresh').addClass('alert_btn');
+                       	}
 	                   $('.success_msg').show();
 	                   $('.popup_fade').show();
                        $('.state_div,.delete_div').hide();
@@ -1875,6 +1905,9 @@
                       $('.district_table').find(".t_district_id:contains("+$.trim(result_split[2])+")").parents('tr').remove();
                        success_align();
 	                   $('.success_msg span').html(result_split[1]);
+	                    if($('.success_msg input').hasClass('alert_btn_without_refresh')){
+                       		$('.success_msg input').removeClass('alert_btn_without_refresh').addClass('alert_btn');
+                       	}
 	                   $('.success_msg').show();
 	                   $('.popup_fade').show();
                       $('.state_div,.delete_div').hide();
@@ -1897,6 +1930,9 @@
                       $('.athletes_table').find("input[value="+result_split[2]+"]").parents('tr').remove();
                       success_align();
 	                   $('.success_msg span').html(result_split[1]);
+	                    if($('.success_msg input').hasClass('alert_btn_without_refresh')){
+                       		$('.success_msg input').removeClass('alert_btn_without_refresh').addClass('alert_btn');
+                       	}
 	                   $('.success_msg').show();
 	                   $('.popup_fade').show();
                       $('.state_div,.delete_div').hide();
@@ -1919,6 +1955,9 @@
                       $('.createschedule_table').find("input[value="+result_split[2]+"]").parents('tr').remove();
                        success_align();
 	                   $('.success_msg span').html(result_split[1]);
+	                    if($('.success_msg input').hasClass('alert_btn_without_refresh')){
+                       		$('.success_msg input').removeClass('alert_btn_without_refresh').addClass('alert_btn');
+                       	}
 	                   $('.success_msg').show();
 	                   $('.popup_fade').show();
                       $('.createschedule_div,.delete_div').hide();
@@ -1942,6 +1981,9 @@
                          //alert('Test deleted successfully!');
                          success_align();
 		                 $('.success_msg span').html('Test deleted successfully!');
+		                  if($('.success_msg input').hasClass('alert_btn_without_refresh')){
+                       		$('.success_msg input').removeClass('alert_btn_without_refresh').addClass('alert_btn');
+                       	}
 		                 $('.success_msg').show();
 		                 $('.popup_fade').show();
                          $('.state_div,.delete_div').hide();
@@ -1961,6 +2003,9 @@
 						 //alert('Test parameter deleted successfully!');
                          success_align();
 		                 $('.success_msg span').html('Test parameter deleted successfully!');
+		                  if($('.success_msg input').hasClass('alert_btn_without_refresh')){
+                       		$('.success_msg input').removeClass('alert_btn_without_refresh').addClass('alert_btn');
+                       	}
 		                 $('.success_msg').show();
 		                 $('.popup_fade').show();
                          $('.state_div,.delete_div').hide();
@@ -1985,6 +2030,9 @@
                         //alert('Test Battery Name deleted successfully!');
                          success_align();
 		                 $('.success_msg span').html('Test Battery Name deleted successfully!');
+		                  if($('.success_msg input').hasClass('alert_btn_without_refresh')){
+                       		$('.success_msg input').removeClass('alert_btn_without_refresh').addClass('alert_btn');
+                       	}
 		                 $('.success_msg').show();
 		                 $('.popup_fade').show();
                          $('.state_div,.delete_div').hide();
@@ -2004,6 +2052,9 @@
                              //alert('Test battery deleted successfully');
                              success_align();
 			                 $('.success_msg span').html('Test battery deleted successfully');
+			                  if($('.success_msg input').hasClass('alert_btn_without_refresh')){
+                       		$('.success_msg input').removeClass('alert_btn_without_refresh').addClass('alert_btn');
+                       	}
 			                 $('.success_msg').show();
 			                 $('.popup_fade').show();
                              $('.state_div,.delete_div').hide();
@@ -2026,6 +2077,9 @@
                         $('.range_table').find(".t_range_id:contains("+$.trim(result_split[2])+")").parents('tr').remove();
                         success_align();
 		                 $('.success_msg span').html(result_split[1]);
+		                  if($('.success_msg input').hasClass('alert_btn_without_refresh')){
+                       		$('.success_msg input').removeClass('alert_btn_without_refresh').addClass('alert_btn');
+                       	}
 		                 $('.success_msg').show();
 		                 $('.popup_fade').show();
                         $('.delete_div').hide();
@@ -2048,6 +2102,9 @@
                       //alert('Parameter Type deleted successfully! ');
                       success_align();
                  	  $('.success_msg span').html('Parameter Type deleted successfully!');
+                 	   if($('.success_msg input').hasClass('alert_btn_without_refresh')){
+                       		$('.success_msg input').removeClass('alert_btn_without_refresh').addClass('alert_btn');
+                       	}
 	                  $('.success_msg').show();
 	                  $('.popup_fade').show();
                       $('.state_div,.delete_div').hide();
@@ -2071,6 +2128,9 @@
                         //alert('Schedule deleted successfully');
                         success_align();
 	                 	 $('.success_msg span').html('Schedule deleted successfully');
+	                 	  if($('.success_msg input').hasClass('alert_btn_without_refresh')){
+                       		$('.success_msg input').removeClass('alert_btn_without_refresh').addClass('alert_btn');
+                       	}
 		                 $('.success_msg').show();
 		                 $('.popup_fade').show();
                          $('.state_div,.delete_div').hide();
@@ -2090,6 +2150,9 @@
                              //alert('Assign Schedule deleted successfully');
                              success_align();
 		                 	 $('.success_msg span').html('Schedule category deleted successfully!');
+		                 	 if($('.success_msg input').hasClass('alert_btn_without_refresh')){
+                       			$('.success_msg input').removeClass('alert_btn_without_refresh').addClass('alert_btn');
+                       			}
 			                 $('.success_msg').show();
 			                 $('.popup_fade').show();
                              $('.state_div,.delete_div').hide();
@@ -2114,6 +2177,9 @@
                       //alert('Parameter Type deleted Successfully! ');
                       success_align();
                  	  $('.success_msg span').html('Parameter Type deleted Successfully!');
+                 	   if($('.success_msg input').hasClass('alert_btn_without_refresh')){
+                       		$('.success_msg input').removeClass('alert_btn_without_refresh').addClass('alert_btn');
+                       	}
 	                  $('.success_msg').show();
 	                  $('.popup_fade').show();
                       $('.state_div,.delete_div').hide();
@@ -2135,6 +2201,9 @@
                        //alert('Parameter unit deleted Successfully! ');
                         success_align();
                  	   $('.success_msg span').html('Parameter unit deleted Successfully!');
+                 	    if($('.success_msg input').hasClass('alert_btn_without_refresh')){
+                       		$('.success_msg input').removeClass('alert_btn_without_refresh').addClass('alert_btn');
+                       	}
 	                   $('.success_msg').show();
 	                   $('.popup_fade').show();
                        $('.state_div,.delete_div').hide();
@@ -2175,6 +2244,7 @@
                      //alert('Category already exist!');
                      success_align();
                  	   $('.success_msg span').html('Category already exist!');
+                 	   $('.success_msg input').removeClass('alert_btn').addClass('alert_btn_without_refresh');
 	                   $('.success_msg').show();
 	                   $('.popup_fade').show();
 	                   document.body.style.overflow = 'hidden';
@@ -2215,6 +2285,9 @@
                      //alert('Category edited successfully!');
                       success_align();
                  	   $('.success_msg span').html('Category edited successfully!');
+                 	    if($('.success_msg input').hasClass('alert_btn_without_refresh')){
+                       		$('.success_msg input').removeClass('alert_btn_without_refresh').addClass('alert_btn');
+                       	}
 	                   $('.success_msg').show();
 	                   $('.popup_fade').show();
                     $('.state_div,.delete_div').hide();
@@ -2222,12 +2295,15 @@
                    }else{
 
                      //alert('Category edited successfully!');
-                     location.reload();
+                     //location.reload();
                      var category_split = html.split('-');
                     $('#category_table').find("input[value="+category_split[1]+"]").next('.category_name').html(category_split[0]);
                     //alert('Sports name updated successfully');
                     success_align();
              	    $('.success_msg span').html('Category edited successfully!');
+             	     if($('.success_msg input').hasClass('alert_btn_without_refresh')){
+                       		$('.success_msg input').removeClass('alert_btn_without_refresh').addClass('alert_btn');
+                       	}
                     $('.success_msg').show();
                     $('.popup_fade').show();
                     $('.state_div,.delete_div').hide();
@@ -2571,6 +2647,7 @@
                         //alert('No parameter unit found');
                         success_align();
                  	    $('.success_msg span').html('No parameter unit found');
+                       	$('.success_msg input').removeClass('alert_btn').addClass('alert_btn_without_refresh');
 	                    $('.success_msg').show();
 	                    $('.popup_fade').show();
 	                   document.body.style.overflow = 'hidden';
@@ -2621,6 +2698,7 @@
                         //alert('Parameter Unit Not availabel!');
                         success_align();
                  	    $('.success_msg span').html('Parameter Unit Not availabel!');
+                   		$('.success_msg input').removeClass('alert_btn').addClass('alert_btn_without_refresh');
 	                    $('.success_msg').show();
 	                    $('.popup_fade').show();
 	                   document.body.style.overflow = 'hidden';
@@ -2673,6 +2751,9 @@
                       //alert(result_split[1]);
                        success_align();
                  	    $('.success_msg span').html(result_split[1]);
+                 	     if($('.success_msg input').hasClass('alert_btn_without_refresh')){
+                       		$('.success_msg input').removeClass('alert_btn_without_refresh').addClass('alert_btn');
+                       	}
 	                    $('.success_msg').show();
 	                    $('.popup_fade').show();
 	                   document.body.style.overflow = 'hidden';
@@ -2715,6 +2796,9 @@
                         //alert(result_split[1]);
                         success_align();
                  	     $('.success_msg span').html(result_split[1]);
+                 	     if($('.success_msg input').hasClass('alert_btn_without_refresh')){
+                       		$('.success_msg input').removeClass('alert_btn_without_refresh').addClass('alert_btn');
+                   		}
 	                     $('.success_msg').show();
 	                     $('.popup_fade').show();
 	                     document.body.style.overflow = 'hidden';
@@ -2769,6 +2853,9 @@
                       //alert(result_split[1]);
                       success_align();
              	      $('.success_msg span').html(result_split[1]);
+             	       if($('.success_msg input').hasClass('alert_btn_without_refresh')){
+                       		$('.success_msg input').removeClass('alert_btn_without_refresh').addClass('alert_btn');
+                       	}
 	                  $('.success_msg').show();
 	                  $('.popup_fade').show();
 	                  document.body.style.overflow = 'hidden';
@@ -2910,6 +2997,9 @@
                              .html(result_split[6]).siblings('.t_createschedule_venue').html(result_split[7]);
                              success_align();
 	             	         $('.success_msg span').html(result_split[1]);
+	             	          if($('.success_msg input').hasClass('alert_btn_without_refresh')){
+                       		$('.success_msg input').removeClass('alert_btn_without_refresh').addClass('alert_btn');
+                       	}
 		                     $('.success_msg').show();
 		                     $('.popup_fade').show();
                              $('.createschedule_div, .close_btn').hide();
@@ -2957,6 +3047,9 @@
                        //alert(result_split[1]);
                        success_align();
              	       $('.success_msg span').html(result_split[1]);
+             	        if($('.success_msg input').hasClass('alert_btn_without_refresh')){
+                       		$('.success_msg input').removeClass('alert_btn_without_refresh').addClass('alert_btn');
+                       	}
 	                   $('.success_msg').show();
 	                   $('.popup_fade').show();
                        html ="<tr class='align_center delete_color'>\
@@ -2976,6 +3069,9 @@
                       //alert(result_split[1]);
                       success_align();
              	       $('.success_msg span').html(result_split[1]);
+             	        if($('.success_msg input').hasClass('alert_btn_without_refresh')){
+                       		$('.success_msg input').removeClass('alert_btn_without_refresh').addClass('alert_btn');
+                       	}
 	                   $('.success_msg').show();
 	                   $('.popup_fade').show();
 	                   document.body.style.overflow = 'hidden';
@@ -3013,6 +3109,9 @@
                              $('.range_table').find(".t_range_id:contains("+result_split[2]+")").siblings('.t_range_testname').html(result_split[3]);
                              success_align();
 		             	     $('.success_msg span').html(result_split[1]);
+		             	      if($('.success_msg input').hasClass('alert_btn_without_refresh')){
+                       			$('.success_msg input').removeClass('alert_btn_without_refresh').addClass('alert_btn');
+                       		}
 			                 $('.success_msg').show();
 			                 $('.popup_fade').show();
                              $('.range_div, .close_btn').hide();
@@ -3023,6 +3122,9 @@
                             //alert(result_split[1]);
                             success_align();
 	             	       	$('.success_msg span').html(result_split[1]);
+	             	       	 if($('.success_msg input').hasClass('alert_btn_without_refresh')){
+                       		$('.success_msg input').removeClass('alert_btn_without_refresh').addClass('alert_btn');
+                       	}
 		                   	$('.success_msg').show();
 		                   	$('.popup_fade').show();
 		                    document.body.style.overflow = 'hidden';
@@ -3077,6 +3179,9 @@
                                 //location.reload();
                                 success_align();
 			             	     $('.success_msg span').html('Parameter Type edited successfully!');
+			             	      if($('.success_msg input').hasClass('alert_btn_without_refresh')){
+                       		$('.success_msg input').removeClass('alert_btn_without_refresh').addClass('alert_btn');
+                       	}
 				                 $('.success_msg').show();
 				                 $('.popup_fade').show();
 			                  	document.body.style.overflow = 'hidden';
@@ -3085,6 +3190,9 @@
                                 //location.reload();
 	                            success_align();
 			             	    $('.success_msg span').html('Parameter Type edited successfully!');
+			             	     if($('.success_msg input').hasClass('alert_btn_without_refresh')){
+                       		$('.success_msg input').removeClass('alert_btn_without_refresh').addClass('alert_btn');
+                       	}
 				                $('.success_msg').show();
 				                $('.popup_fade').show();
 			                   document.body.style.overflow = 'hidden';
@@ -3118,6 +3226,9 @@
                                     //location.reload();
                                      success_align();
 				             	     $('.success_msg span').html('Parameter Unit inserted successfully!');
+				             	      if($('.success_msg input').hasClass('alert_btn_without_refresh')){
+                       		$('.success_msg input').removeClass('alert_btn_without_refresh').addClass('alert_btn');
+                       	}
 					                 $('.success_msg').show();
 					                 $('.popup_fade').show();
 				                    document.body.style.overflow = 'hidden';
@@ -3125,6 +3236,9 @@
                                     //alert('Parameterunit already exist!');
                                      success_align();
 				             	     $('.success_msg span').html('Parameter Unit already exists!');
+				             	     
+                       					$('.success_msg input').removeClass('alert_btn').addClass('alert_btn_without_refresh');
+                       				
 					                 $('.success_msg').show();
 					                 $('.popup_fade').show();
 				                    document.body.style.overflow = 'hidden';
@@ -3156,6 +3270,9 @@
                               //location.reload();
                                success_align();
 			             	   $('.success_msg span').html('Parameter unit edited successfully!');
+			             	    if($('.success_msg input').hasClass('alert_btn_without_refresh')){
+                       		$('.success_msg input').removeClass('alert_btn_without_refresh').addClass('alert_btn');
+                       	}
 				               $('.success_msg').show();
 				               $('.popup_fade').show();
 			                   document.body.style.overflow = 'hidden';
@@ -3164,6 +3281,9 @@
                               //location.reload();
                                success_align();
 			             	   $('.success_msg span').html('Parameter unit edited successfully!');
+			             	    if($('.success_msg input').hasClass('alert_btn_without_refresh')){
+                       		$('.success_msg input').removeClass('alert_btn_without_refresh').addClass('alert_btn');
+                       	}
 				               $('.success_msg').show();
 				               $('.popup_fade').show();
 			                   document.body.style.overflow = 'hidden';
@@ -3202,6 +3322,9 @@
                        //location.reload();
                        success_align();
 	             	   $('.success_msg span').html('Schedule assigned successfully!');
+	             	    if($('.success_msg input').hasClass('alert_btn_without_refresh')){
+                       		$('.success_msg input').removeClass('alert_btn_without_refresh').addClass('alert_btn');
+                       	}
 		               $('.success_msg').show();
 		               $('.popup_fade').show();
 	                   document.body.style.overflow = 'hidden';
@@ -3209,6 +3332,9 @@
                        //alert('Schedule already exist!');
                        success_align();
 	             	   $('.success_msg span').html('Schedule already exist!');
+	             	   
+                       	$('.success_msg input').removeClass('alert_btn').addClass('alert_btn_without_refresh');
+                       
 		               $('.success_msg').show();
 		               $('.popup_fade').show();
 	                   document.body.style.overflow = 'hidden';
@@ -3573,6 +3699,9 @@
                       //alert(result_split[1]);
                       success_align();
 	             	   $('.success_msg span').html(result_split[1]);
+	             	    if($('.success_msg input').hasClass('alert_btn_without_refresh')){
+                       		$('.success_msg input').removeClass('alert_btn_without_refresh').addClass('alert_btn');
+                       	}
 		               $('.success_msg').show();
 		               $('.popup_fade').show();
 	                   document.body.style.overflow = 'hidden';
@@ -3967,6 +4096,9 @@ $(document).on('blur','.enter_result',function(e){
                       //alert(result_split[1]);
                       success_align();
 	             	   $('.success_msg span').html(result_split[1]);
+	             	    if($('.success_msg input').hasClass('alert_btn_without_refresh')){
+                       		$('.success_msg input').removeClass('alert_btn_without_refresh').addClass('alert_btn');
+                       	}
 		               $('.success_msg').show();
 		               $('.popup_fade').show();
 	                   document.body.style.overflow = 'hidden';
@@ -3978,6 +4110,9 @@ $(document).on('blur','.enter_result',function(e){
                       //alert(result_split[1]);
                       success_align();
 	             	   $('.success_msg span').html(result_split[1]);
+	             	    if($('.success_msg input').hasClass('alert_btn_without_refresh')){
+                       		$('.success_msg input').removeClass('alert_btn_without_refresh').addClass('alert_btn');
+                       	}
 		               $('.success_msg').show();
 		               $('.popup_fade').show();
 	                   document.body.style.overflow = 'hidden';
@@ -3989,6 +4124,9 @@ $(document).on('blur','.enter_result',function(e){
                 //alert("Please enter the result");
                 success_align();
          	    $('.success_msg span').html('Please enter the result');
+         	    
+           		$('.success_msg input').removeClass('alert_btn_without_refresh').addClass('alert_btn_without_refresh');
+                      
                 $('.success_msg').show();
                 $('.popup_fade').show();
                 document.body.style.overflow = 'hidden';
@@ -4501,6 +4639,9 @@ $(document).on('blur','.enter_result',function(e){
                   //alert(result_split[1]);
                   success_align();
              	   $('.success_msg span').html(result_split[1]);
+             	    if($('.success_msg input').hasClass('alert_btn_without_refresh')){
+                       		$('.success_msg input').removeClass('alert_btn_without_refresh').addClass('alert_btn');
+                       	}
 	               $('.success_msg').show();
 	               $('.popup_fade').show();
                    document.body.style.overflow = 'hidden';
@@ -4511,6 +4652,9 @@ $(document).on('blur','.enter_result',function(e){
                   //alert(result_split[1]);
               	success_align();
          	    $('.success_msg span').html(result_split[1]);
+         	     if($('.success_msg input').hasClass('alert_btn_without_refresh')){
+                       		$('.success_msg input').removeClass('alert_btn_without_refresh').addClass('alert_btn');
+                       	}
                 $('.success_msg').show();
                 $('.popup_fade').show();
                 document.body.style.overflow = 'hidden';
@@ -4521,6 +4665,9 @@ $(document).on('blur','.enter_result',function(e){
               //alert('Invalid Athlete Name!');
               success_align();
 	     	  $('.success_msg span').html('Invalid Athlete Name!');
+	     	  
+                       		$('.success_msg input').removeClass('alert_btn').addClass('alert_btn_without_refresh');
+                    
 	          $('.success_msg').show();
 	          $('.popup_fade').show();
 	          document.body.style.overflow = 'hidden';
@@ -4544,6 +4691,9 @@ $(document).on('blur','.enter_result',function(e){
                   //alert(result_split[1]);
                   success_align();
 		     	  $('.success_msg span').html(result_split[1]);
+		     	   if($('.success_msg input').hasClass('alert_btn_without_refresh')){
+                       		$('.success_msg input').removeClass('alert_btn_without_refresh').addClass('alert_btn');
+                       	}
 		          $('.success_msg').show();
 		          $('.popup_fade').show();
 		          document.body.style.overflow = 'hidden';
@@ -4555,6 +4705,9 @@ $(document).on('blur','.enter_result',function(e){
                   //alert(result_split[1]);
                   success_align();
 		     	  $('.success_msg span').html(result_split[1]);
+		     	   if($('.success_msg input').hasClass('alert_btn_without_refresh')){
+                       		$('.success_msg input').removeClass('alert_btn_without_refresh').addClass('alert_btn');
+                       	}
 		          $('.success_msg').show();
 		          $('.popup_fade').show();
 		          document.body.style.overflow = 'hidden';
@@ -4562,9 +4715,12 @@ $(document).on('blur','.enter_result',function(e){
               }
              });
           }else{
-              alert('Invalid Schedule Name!');
+             //alert('Invalid Schedule Name!');
               success_align();
 	     	  $('.success_msg span').html('Invalid Schedule Name!');
+	     	   
+              $('.success_msg input').removeClass('alert_btn').addClass('alert_btn_without_refresh');
+                       
 	          $('.success_msg').show();
 	          $('.popup_fade').show();
 	          document.body.style.overflow = 'hidden';
@@ -4588,6 +4744,9 @@ $(document).on('blur','.enter_result',function(e){
                       //alert(result_split[1]);
                        success_align();
 			     	   $('.success_msg span').html(result_split[1]);
+			     	    if($('.success_msg input').hasClass('alert_btn_without_refresh')){
+                       		$('.success_msg input').removeClass('alert_btn_without_refresh').addClass('alert_btn');
+                       	}
 			           $('.success_msg').show();
 			           $('.popup_fade').show();
 			           document.body.style.overflow = 'hidden';
@@ -4599,6 +4758,9 @@ $(document).on('blur','.enter_result',function(e){
                       //alert(result_split[1]);
                        success_align();
 			     	  $('.success_msg span').html(result_split[1]);
+			     	   if($('.success_msg input').hasClass('alert_btn_without_refresh')){
+                       		$('.success_msg input').removeClass('alert_btn_without_refresh').addClass('alert_btn');
+                       	}
 			          $('.success_msg').show();
 			          $('.popup_fade').show();
 			          document.body.style.overflow = 'hidden';
@@ -4610,6 +4772,9 @@ $(document).on('blur','.enter_result',function(e){
               //alert('Invalid State Name!');
               success_align();
 	     	  $('.success_msg span').html('Invalid State Name!');
+	     	  
+   				$('.success_msg input').removeClass('alert_btn_without_refresh').addClass('alert_btn_without_refresh');
+                   
 	          $('.success_msg').show();
 	          $('.popup_fade').show();
 	          document.body.style.overflow = 'hidden';
@@ -4636,6 +4801,9 @@ $(document).on('blur','.enter_result',function(e){
                       // $(this).find('.check_athletename').val(result_split[2]);
                       success_align();
 	             	   $('.success_msg span').html(result_split[1]);
+	             	    if($('.success_msg input').hasClass('alert_btn_without_refresh')){
+                       		$('.success_msg input').removeClass('alert_btn_without_refresh').addClass('alert_btn');
+                       	}
 		               $('.success_msg').show();
 		               $('.popup_fade').show();
 	                   document.body.style.overflow = 'hidden';
@@ -4646,6 +4814,9 @@ $(document).on('blur','.enter_result',function(e){
                       //alert(result_split[1]);
                       success_align();
 			     	  $('.success_msg span').html(result_split[1]);
+			     	   if($('.success_msg input').hasClass('alert_btn_without_refresh')){
+                       		$('.success_msg input').removeClass('alert_btn_without_refresh').addClass('alert_btn');
+                       	}
 			          $('.success_msg').show();
 			          $('.popup_fade').show();
 			          document.body.style.overflow = 'hidden';
@@ -4657,6 +4828,9 @@ $(document).on('blur','.enter_result',function(e){
               alert('Invalid Testbattery Name!');
                success_align();
 	     	  $('.success_msg span').html('Invalid Testbattery Name!');
+	     	   
+                       		$('.success_msg input').removeClass('alert_btn').addClass('alert_btn_without_refresh');
+                     
 	          $('.success_msg').show();
 	          $('.popup_fade').show();
 	          document.body.style.overflow = 'hidden';
@@ -4817,6 +4991,9 @@ $(document).on('blur','.enter_result',function(e){
                 //location.reload();
                 success_align();
 	     	  	$('.success_msg span').html('Testbattery Deleted');
+	     	  	 if($('.success_msg input').hasClass('alert_btn_without_refresh')){
+                       		$('.success_msg input').removeClass('alert_btn_without_refresh').addClass('alert_btn');
+                       	}
 	          	$('.success_msg').show();
 	          	$('.popup_fade').show();
 	          	document.body.style.overflow = 'hidden';
@@ -5026,7 +5203,14 @@ $(document).on('blur','.enter_result',function(e){
           }
         });
         if(j=='2'){
-            alert('Bib No. already assigned!');
+                success_align();
+	     	  	$('.success_msg span').html('Bib No. already assigned!');
+	     	  	
+           		$('.success_msg input').removeClass('alert_btn').addClass('alert_btn_without_refresh');
+                 
+	          	$('.success_msg').show();
+	          	$('.popup_fade').show();
+	          	document.body.style.overflow = 'hidden';
             $(this).parents('.assign_clone_content').find('.athlete_bib').val('');
         }
       });
@@ -5040,7 +5224,15 @@ $(document).on('blur','.enter_result',function(e){
           }
         });
         if(j=='2'){
-            alert('Bib No. already assigned!');
+           
+            success_align();
+	     	  	$('.success_msg span').html('Bib No. already assigned!');
+	     	  	
+           		$('.success_msg input').removeClass('alert_btn').addClass('alert_btn_without_refresh');
+                 
+	          	$('.success_msg').show();
+	          	$('.popup_fade').show();
+	          	document.body.style.overflow = 'hidden';
             $(this).parents('.assign_clone_content_edit').find('.athlete_bib').val('');
         }
       });

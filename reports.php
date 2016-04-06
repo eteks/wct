@@ -30,6 +30,11 @@ $createschedule = new createscheduleFunction();
 					$test1[] = $row;
 				}
 				?>
+				<style type="text/css" media="screen">
+					.te{
+  				mso-number-format:"\@";/*force text*/
+			}
+				</style>
 				<table width="100%" border="1">
 					<?php
 						foreach($test1 as $testvalue){
@@ -113,7 +118,7 @@ $createschedule = new createscheduleFunction();
 							$param_split = explode("#",$single_param);
 							
 					?>
-							<td align="center"><?php echo 'Result For '.$param_split[0].'(Unit:'.$param_split[2].'; Format:'.$param_split[3].' decimal places)';?></td><td align="center"><?php echo 'Points For '.$param_split[0];?></td>
+							<td align="center"><?php echo 'Result For '.$param_split[1].'(Unit:'.$param_split[2].'; Format:'.$param_split[3].' decimal places)';?></td><td align="center"><?php echo 'Points For '.$param_split[1];?></td>
 					<?php	
 						}
 					?>
@@ -165,8 +170,8 @@ $createschedule = new createscheduleFunction();
 					<?php
 							}else{
 					?>
-								<td align="center"><?php echo $param_split[1]; ?></td>
-								<td align="center"><?php echo $param_split[2]; ?></td>
+								<td align="center" class="te"><?php echo '&#8232;'.$param_split[1].'&#8232;';?></td> <!-- &#8232; ===> hidden character -->
+								<td align="center" class="te"><?php echo '&#8232;'.$param_split[2].'&#8232;';?></td> <!-- &#8232; ===> hidden character -->
 					<?php
 							}
 						}
@@ -190,6 +195,7 @@ $createschedule = new createscheduleFunction();
 			.footer_txt{
 				position: absolute !important;
 			}
+			
 		</style>
 		<div class="container">
 			<div class="container left_align_testbattery align_height">

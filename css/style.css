@@ -394,7 +394,7 @@ select {
 .collapsing {
     display:none;
 }
-.edit_state,.edit_district{
+.edit_state,.edit_district,.edit_time{
     cursor: pointer;
     float: right;
     position: relative;
@@ -570,7 +570,7 @@ select {
     background-color: #006687 !important;
     color: #fff !important;
 }
-.delete_state,.delete_district{
+.delete_state,.delete_district,.delete_time{
     cursor: pointer;
     float: right;
     position: relative;
@@ -1795,7 +1795,7 @@ tbody tr {
     padding: 5px 7px;
     margin: -45px 0 0 270px;
 }
-.edit_item,.save_item,.delete_item {
+.edit_item,.save_item,.delete_item,.edit_time,.save_time,.delete_time{
     font-size: 14px !important;
 }
 .checklist_txt{
@@ -2169,4 +2169,17 @@ td {
 .create-label {
     left: 15px;
     position: relative;
+}
+.alert_btn_without_refresh {
+    background-color: #006687 !important;
+    border-radius: 0 !important;
+    color: #fff !important;
+    float: left;
+    font-family: Montserrat;
+    font-weight: bold;
+    height: 30px;
+    left: 90px;
+    padding: 0 !important;
+    position: relative;
+    width: 60px;
 }

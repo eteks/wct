@@ -67,17 +67,20 @@ class testbatteryfunction{
       return $temp_arr;
       }
       public function categorylastselectfunction(){
-          $sql = "select * from wc_testbattery_category_attribute inner join wc_categories on wc_testbattery_category_attribute.testbattery_category_id =wc_categories.categories_id where wc_testbattery_category_attribute.testbattery_id = (SELECT MAX(testbattery_id) FROM wc_testbattery) order by wc_categories.categories_name asc";
+          //$sql = "select * from wc_testbattery_category_attribute inner join wc_categories on wc_testbattery_category_attribute.testbattery_category_id =wc_categories.categories_id where wc_testbattery_category_attribute.testbattery_id = (SELECT MAX(testbattery_id) FROM wc_testbattery) order by wc_categories.categories_name asc";
+          $sql = "select * from wc_testbattery_category_attribute inner join wc_categories on wc_testbattery_category_attribute.testbattery_category_id =wc_categories.categories_id group by wc_categories.categories_name order by wc_categories.categories_name asc";
           $row = mysql_query($sql) or die(mysql_error());
           return $row;
       }
   	  public function sportslastselectfunction(){
-          $sql = "select * from wc_testbattery_sports_attribute inner join wc_sports on wc_testbattery_sports_attribute.wc_testbattery_sports_id =wc_sports.sports_id where wc_testbattery_sports_attribute.wc_testbattery_id = (SELECT MAX(testbattery_id) FROM wc_testbattery)";
+          //$sql = "select * from wc_testbattery_sports_attribute inner join wc_sports on wc_testbattery_sports_attribute.wc_testbattery_sports_id =wc_sports.sports_id where wc_testbattery_sports_attribute.wc_testbattery_id = (SELECT MAX(testbattery_id) FROM wc_testbattery)";
+		  $sql = "select * from wc_testbattery_sports_attribute inner join wc_sports on wc_testbattery_sports_attribute.wc_testbattery_sports_id =wc_sports.sports_id group by wc_sports.sports_name order by wc_sports.sports_name";
           $row = mysql_query($sql) or die(mysql_error());
           return $row;
       }
       public function testbatterytestlastselectfunction(){
-          $sql = "select * from wc_testbattery_test_attribute inner join wc_test on wc_testbattery_test_attribute.testbattery_test_id =wc_test.test_id where wc_testbattery_test_attribute.testbattery_id = (SELECT MAX(testbattery_id) FROM wc_testbattery) order by wc_test.test_name asc";
+          //$sql = "select * from wc_testbattery_test_attribute inner join wc_test on wc_testbattery_test_attribute.testbattery_test_id =wc_test.test_id where wc_testbattery_test_attribute.testbattery_id = (SELECT MAX(testbattery_id) FROM wc_testbattery) order by wc_test.test_name asc";
+          $sql = "select * from wc_testbattery_test_attribute inner join wc_test on wc_testbattery_test_attribute.testbattery_test_id =wc_test.test_id group by wc_test.test_name order by wc_test.test_name asc";
           $row = mysql_query($sql) or die(mysql_error());
           return $row;
       }

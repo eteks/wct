@@ -42,9 +42,10 @@
 							  <?php
 			  				$data = $parameterunitFunction->parametertypeSelect();
 			  				foreach( $data as $eachrecord ) {
+			  					if(strtolower($eachrecord['parametertype_name']) != 'time'){
 			  				 ?>
-							 <option value="<?php echo $eachrecord ['parametertype_id']; ?>"><?php echo $eachrecord ['parametertype_name']; ?></option>
-							 <?php } ?>
+							 <option value="<?php echo $eachrecord ['parametertype_id']; ?>"><?php echo $eachrecord['parametertype_name']; ?></option>
+							 <?php }} ?>
 						  </select>
 					</div>
 					<div class="form-group">
@@ -76,11 +77,14 @@
 									<span class="test-name parameter-test-name">
 										<input type="checkbox" name="test" value="test" class="check_test check_parametertype" id="check-select" data-id ="<?php echo $eachrecord ['parametertype_id']; ?>">
 										<input type="text" name="test" data-id ="<?php echo $eachrecord ['parametertype_id']; ?>" value="<?php echo $eachrecord ['parametertype_name']; ?>" class="list_edit test parametertype_name_hover input_wrap" disabled>
+										<?php if(strtolower($eachrecord['parametertype_name']) != 'time'){?>
 										<span class="test-alter">
 											<i class="fa fa-floppy-o save_item paremeter_unit_type_save_btn"></i>
 											<i class="fa fa-pencil-square-o edit_item"></i>
 											<i class="fa fa-trash-o delete_item"></i>
 										</span><!--test-alter-->
+										
+										<?php } ?>
 									</span><!--test-name-->
 									<div class="delete_div delete_search">
 							            <!-- <code class="close_btn cancel_btn"> </code>  -->
@@ -115,17 +119,22 @@
 					  $i=1;
 					
 					  foreach( $data as $eachrecord ) {
+					  	
 					   ?>
 			      	<tr class="delete_color">
 				        <!-- <td><?php // echo $i;?></td> -->
 				        <input class="parametertype_id" value="<?php echo $eachrecord ['parametertype_id']; ?>" type="hidden" name="parametertype_id">
 				        <input value="<?php echo $eachrecord ['parameterunit_id']; ?>" type="hidden">
-				        <!-- <td><?php //echo $eachrecord ['parametertype_name'];?></td> -->
+				        <!-- <td><?php echo $eachrecord ['parametertype_name'];?></td> -->
 						<td><?php echo $eachrecord ['parameterunit'];?></td>
 				        <td class="popup-edit">
+				        	<?php if(strtolower($eachrecord['parametertype_name']) != 'time'){ ?>
 				        	<span class="edit_state edit_parameter_unit" data-value="<?php echo $eachrecord ['parameterunit_id'];?>"><i class="fa fa-pencil-square-o"></i></span>
-			        		<span class="delete_state" data-value="<?php echo $eachrecord ['parameterunit_id'];?>"><i class="fa fa-trash-o"></i></span>
-
+			        		<span class="delete_state " data-value="<?php echo $eachrecord ['parameterunit_id'];?>"><i class="fa fa-trash-o"></i></span>
+							<?php } else{?>
+								<span class="edit_time"><i class="fa fa-pencil-square-o"></i></span>
+			        			<span class="delete_time"><i class="fa fa-trash-o"></i></span>
+							<?php }?>
 							<div class="paramter_div edit_parameterunit_div popup_hidden">
 				          		<code class="close_btn cancel_btn"> </code>
 				          		<div class="edit_title">
