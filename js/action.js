@@ -4319,6 +4319,40 @@ $(document).on('blur','.enter_result',function(e){
                   }
               }
             }
+            //add decimal places after enter the range
+            if(($(this).siblings('span').is(':not(.custom_error)')) && ($range_parameter_type.val().toLowerCase()!="time") &&(value!='')){
+              // alert("no error");
+              // alert($range_parameter_format.val());
+              // alert(decimals);
+              if(value.indexOf(".")==-1){
+                decimals = 0;
+              }
+              else{
+                decimals = value.toString().split(".")[1].length;
+              }
+              range_data = '0';
+              if($range_parameter_format.val() != decimals){
+                // alert($(this).val());
+                if( decimals == 0 ){
+                  for(i=1;i<$range_parameter_format.val();i++){
+                    range_data = range_data + '0';
+                  }
+                  // alert(result_data);
+                }  
+                else{
+                  calc = $range_parameter_format.val() - decimals;
+                  // alert(calc);
+                  for(i=1;i<calc;i++){
+                    range_data = range_data + '0';
+                  }
+                }  
+                if ($(this).val().indexOf(".") !== -1)
+                    $(this).val(value + range_data);
+                else
+                    $(this).val(value + '.' + range_data); 
+              }
+            }
+
          });
 
         $(document).on('blur','.r_point,.edit_r_point',function(e){
