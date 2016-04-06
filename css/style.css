@@ -462,7 +462,7 @@ select {
     right: 25%;
     position: absolute;
     width: 565px;
-    z-index: 9999;
+    z-index: 999;
     white-space: normal;
 }
 /*.district_div{
@@ -2161,6 +2161,11 @@ td {
     position: relative;
     width: 60px;
 }
+
+.ui-autocomplete li a {
+    color: #000 !important;
+   }
+   
 .create-label {
     left: 15px;
     position: relative;

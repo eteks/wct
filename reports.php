@@ -1,8 +1,13 @@
 <?php
 require_once "session.php";
 if(isset($_POST['submit'])){
+	$name = '';
+	foreach($_POST['schedule_name'] as $check1) {
+		$name .= $check1.'_';
+	}
+	$full_name = 'Result for '.$name.date('d/m/Y H:i:s').'.xls';
 	header("Content-type: application/octet-stream;charset=utf-8'");
-	header("Content-Disposition: attachment; filename=export.xls");
+	header('Content-Disposition: attachment; filename="'.$full_name.'"');
 	header("Pragma: no-cache");
 	header ("Expires: 0");
 }else{
@@ -153,6 +158,11 @@ $createschedule = new createscheduleFunction();
 								<td align="center">DNF</td>
 								<td align="center">DNF</td>
 					<?php
+							}else if($param_split[1] == ''){
+					?>
+								<td align="center">-</td>
+								<td align="center">-</td>
+					<?php
 							}else{
 					?>
 								<td align="center"><?php echo $param_split[1]; ?></td>
@@ -190,7 +200,7 @@ $createschedule = new createscheduleFunction();
 				<!--	<div class="col-md-4 hidden-xs"></div> -->
 					<div class="col-xs-12 col-md-7 align_margin">
 						<form id="report_form" name="report_form" action="reports.php" method="post">
-							<div class="align_margin">
+							<div class="align_margin form-group">
 								<label>Select Schedule</label><br>
 								<div class="area_scroll">
 									<?php
@@ -200,6 +210,7 @@ $createschedule = new createscheduleFunction();
 									?>
 									<div class="checkbox align_check">
 							      		<label class="remember_txt"><input type="checkbox"  data-validation="checkbox_group" data-validation-qty="min1" value="<?php echo $eachrecord ['createschedule_id']; ?>" name="schedul_ids[]"><?php echo $eachrecord ['createschedule_name']; ?></label>
+							      		<input type="hidden" name="schedule_name[]" value="<?php echo $eachrecord ['createschedule_name']; ?>"/>
 							    	</div>
 									<?php } ?>
 								</div>

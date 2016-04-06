@@ -42,7 +42,7 @@
 		}
 		public function createscheduleselectreportfunction(){
             $temp_arr = array();
-            $res = mysql_query("SELECT * FROM wc_createschedule where createschedule_id IN (select DISTINCT assigncreateschedule_id from wc_assignschedule )") or die(mysql_error());
+            $res = mysql_query("SELECT * FROM wc_createschedule where createschedule_id IN (select DISTINCT assigncreateschedule_id from wc_assignschedule) order by createschedule_name asc") or die(mysql_error());
             while($row = mysql_fetch_array($res)) {
                 $temp_arr[] =$row;
             }

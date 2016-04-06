@@ -101,7 +101,7 @@
 				</div>
 
 				<div class="container table-position col-md-9 align_bottom" style="padding: 0px;">
-				  <table class="table state_table" id="param_unit_table">
+				  <table class="table" id="param_unit_table">
 				    <thead>
 				      <tr class="row_color">
 				        <!-- <th>Parameter Type</th> -->
@@ -137,6 +137,7 @@
 											<div class="form-group">
 												  <label for="sel1">Select Parameter Type</label>
 												  <input type="hidden" class="edit_param_unit_id" name="edit_param_unit_id"  value=""/>
+												  <input type="hidden" class="edit_param_type_id" name="parameter_type"  value=""/>
 												  <select class="form-control adjust_width adjust_popup_width classic edit_param_type" id="sel1" name="parameter_type" data-validation-error-msg="Please Select the Type of the Parameter" data-validation="required" disabled="">
 													<option value="">Select Parameter Type</option>  <?php
 													$data = $parameterunitFunction->parametertypeSelect();
@@ -149,6 +150,7 @@
 											<div class="form-group">
 												<label>Enter Parameter Unit</label><br>
 												<input type="text" class="adjust_width adjust_popup_width edit_param_unit" name="parameter_unit" autocomplete="off">
+												<span class="hided">Please enter Parameter Unit</span>
 											</div>
 											<div class="col-md-10  align_right schedule_btn">
 												<input type="submit" class="btn btn-primary clear edit_parameter_unit_act" value="Save">
