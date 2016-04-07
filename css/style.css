@@ -394,7 +394,7 @@ select {
 .collapsing {
     display:none;
 }
-.edit_state,.edit_district,.edit_time{
+.edit_state,.edit_district,.edit_time,.restrict{
     cursor: pointer;
     float: right;
     position: relative;
@@ -570,12 +570,12 @@ select {
     background-color: #006687 !important;
     color: #fff !important;
 }
-.delete_state,.delete_district,.delete_time{
+.delete_state,.delete_district,.delete_time,.restrict_del{
     cursor: pointer;
     float: right;
     position: relative;
 }
-.edit_state:hover,.edit_district:hover{
+.edit_state:hover,.edit_district:hover,.restrict:hover,.restrict_del:hover{
     color: #006687 !important;
 }
 .login_title,.edit_title{
@@ -1365,6 +1365,40 @@ input[type=radio]:checked + label:before {
     width: 90px;
     z-index: 98;
 }
+.restrict_tooltip{
+    background: #828282 none repeat scroll 0 0;
+    border-radius: 5px;
+    bottom: 38px;
+    color: #fff;
+    display: none;
+    font-family: Montserrat;
+    font-size: 10px;
+    height: 23px;
+    left: -295px;
+    padding: 5px 0 0;
+    position: absolute;
+    text-align: center;
+    width: 312px;
+    z-index: 9999;
+    top:-6px;
+}
+.side_restrict_tooltip{
+	background: #828282 none repeat scroll 0 0;
+    border-radius: 5px;
+    bottom: 38px;
+    color: #fff;
+    display: none;
+    font-family: Montserrat;
+    font-size: 10px;
+    height: 30px;
+    left: -181px;
+    padding: 5px 0 0;
+    position: absolute;
+    text-align: center;
+    top: -6px;
+    width: 177px;
+    z-index: 9999;
+}
 .tooltip_remove{
     background: #828282 none repeat scroll 0 0;
     border-radius: 5px;
@@ -1381,10 +1415,10 @@ input[type=radio]:checked + label:before {
     width: 113px;
     z-index: 98;
 }
-.parameter_add:hover .tooltip_parameter,.district_add:hover .tooltip_parameter{
+.parameter_add:hover .tooltip_parameter,.district_add:hover .tooltip_parameter ,.restrict:hover .restrict_tooltip,.restrict_del:hover .restrict_tooltip,.test-alter:hover .side_restrict_tooltip{
     display: block;
 }
-.parameter_add:hover .tip_triangle,.district_add:hover .tip_triangle{
+.parameter_add:hover .tip_triangle,.district_add:hover .tip_triangle,{
     display: block;
 }
 .parameter_remove:hover .tooltip_remove,.district_remove:hover .tooltip_remove{
@@ -1795,7 +1829,7 @@ tbody tr {
     padding: 5px 7px;
     margin: -45px 0 0 270px;
 }
-.edit_item,.save_item,.delete_item,.edit_time,.save_time,.delete_time{
+.edit_item,.save_item,.delete_item,.edit_time,.save_time,.delete_time,.side_restrict{
     font-size: 14px !important;
 }
 .checklist_txt{
@@ -2182,4 +2216,7 @@ td {
     padding: 0 !important;
     position: relative;
     width: 60px;
+}
+.popup-edit{
+	overflow:visible;
 }

@@ -117,6 +117,7 @@ if(isset($_POST['testbattery_add'])){
 		if(!empty($_POST['sports'])) {
             foreach($_POST['sports'] as $sprts_id) {
                 mysql_query("insert into wc_testbattery_sports_attribute (wc_testbattery_id,wc_testbattery_sports_id,wc_testbattery_sports_status)values('$test_battery','$sprts_id','1')");
+				
             }
         }
         if(!empty($_POST['categories'])) {
@@ -328,4 +329,15 @@ if(isset($_GET['find_test_battery_sports'])){
           echo "failure#Testbattery Already Exist";
         }
     }
+	if(isset($_GET['check_validation'])){
+	    include ("../dbconnect.php");
+	    $test_battery_id =  $_POST['id'];
+	    $query = mysql_query("select * from wc_createschedule where createscheduletestbattery_id = '$test_battery_id'");
+		$query1 = mysql_query("select * from wc_range where rangetestbattery_id = '$test_battery_id'");
+		if(!mysql_num_rows($query) || !mysql_num_rows($query1)){
+			echo 'ok';
+		}else{
+			echo "no";
+		}
+}
  ?>

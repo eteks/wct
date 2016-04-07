@@ -43,8 +43,21 @@ $obj = new sportsfunction();
 		<input class="sports_id" value="<?php echo $eachrecord ['sports_id']; ?>" type="hidden"/>
 	    <td class="sports_name"><?php echo $eachrecord ['sports_name']; ?></td>
 	    <td class="popup-edit">
+	    	<?php 
+	    	$query = mysql_query("select * from wc_testbattery_sports_attribute where wc_testbattery_sports_id ='".$eachrecord ['sports_id']."'");
+			$query1 = mysql_query("select * from wc_athlete where athletesports_id ='".$eachrecord ['sports_id']."'");
+			if(!mysql_num_rows($query) || !mysql_num_rows($query1)){
+	    	?>
 	    	<span class="edit_state"><i class="fa fa-pencil-square-o"></i></span>
 	    	<span class="delete_state" data-value="<?php echo $eachrecord ['sports_id']; ?>"><i class="fa fa-trash-o"></i></span>
+	    	<?php }else{?>
+    		<span class="restrict">
+    			<i class="fa fa-pencil-square-o">
+	    			<div class="restrict_tooltip">Mapping has been already done.Edit or Delete not possible.</div>
+				</i>
+			</span>
+	    	<span class="restrict_del"><i class="fa fa-trash-o"><div class="restrict_tooltip">Mapping has been already done.Edit or Delete not possible.</div></i></span>
+	    	<?php } ?>
 			<div class="state_div edit_sports_div popup_hidden">
 				<code class="close_btn cancel_btn"> </code>
 				<div class="edit_title">

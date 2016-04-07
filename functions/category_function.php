@@ -10,13 +10,9 @@ class categoryfunction{
     public function categoryinsertfunction(){
         $check_query = "select * from wc_categories where categories_name = '".$this->categoryname."' and categories_status = '1' ";
         if(!mysql_num_rows(mysql_query($check_query))){
-          $check_query1 = "select * from wc_categories where categories_name = '".$this->categoryname."' and categories_status = '0' ";
-		  if(!mysql_num_rows(mysql_query($check_query))){
-          	$sql = "insert into wc_categories (categories_name,categories_status) values ('".$this->categoryname."','1') ";
-		  }
-		  else{
-		  	$sql = "update wc_categories set categories_status='1' where categories_name ='".$this->categoryname."'";
-		  }
+    
+      	 $sql = "insert into wc_categories (categories_name,categories_status) values ('".$this->categoryname."','1') ";
+
           mysql_query($sql) or die("insert:".mysql_error());
           return true;
         }else{
@@ -35,8 +31,8 @@ class categoryfunction{
           }
     }
     public function categorydeletefunction(){
-    	$sql = "update wc_categories set categories_status='0' where categories_id ='".$this->categoryid."' ";
-        //$sql = "delete from wc_categories where categories_id ='".$this->categoryid."' ";
+    	//$sql = "update wc_categories set categories_status='0' where categories_id ='".$this->categoryid."' ";
+        $sql = "delete from wc_categories where categories_id ='".$this->categoryid."' ";
         mysql_query($sql) or die("delete".mysql_error());
         return true;
     }

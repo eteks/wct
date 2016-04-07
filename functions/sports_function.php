@@ -14,13 +14,7 @@ class sportsfunction{
     public function sportsinsertfunction(){
         $check_query = "select * from wc_sports where sports_name = '".$this->sportsname."' and sports_status = '1' ";
         if(!mysql_num_rows(mysql_query($check_query))){
-          $check_query1 = "select * from wc_sports where sports_name = '".$this->sportsname."' and sports_status = '0' ";
-		  if(!mysql_num_rows(mysql_query($check_query1))){
-	
-          	$sql = "insert into wc_sports (sports_name,sports_status) values ('".$this->sportsname."','1') ";
-		  }else{
-		  	$sql = "update wc_sports set sports_status = '1' where sports_name = '".$this->sportsname."'";
-		  }
+          $sql = "insert into wc_sports (sports_name,sports_status) values ('".$this->sportsname."','1') ";
           mysql_query($sql) or die("insert:".mysql_error());
           return true;
         }else{
@@ -39,8 +33,8 @@ class sportsfunction{
           }
     }
     public function sportsdeletefunction(){
-  		$sql = "update wc_sports set sports_status='0' where sports_id ='".$this->sportsid."' ";
-        //$sql = "delete from wc_sports where sports_id ='".$this->sportsid."'";
+  		//$sql = "update wc_sports set sports_status='0' where sports_id ='".$this->sportsid."' ";
+        $sql = "delete from wc_sports where sports_id ='".$this->sportsid."'";
         mysql_query($sql) or die("delete".mysql_error());
         return true;
     }
@@ -52,7 +46,7 @@ class sportsfunction{
     }
     public function sportsselectfunction(){
       $temp_arr = array();
-      $res = mysql_query("SELECT * FROM wc_sports where sports_status = '1' ORDER BY sports_name ASC") or die(mysql_error());
+      $res = mysql_query("SELECT * FROM wc_sports ORDER BY sports_name ASC") or die(mysql_error());
       $count=mysql_num_rows($res);
       while($row = mysql_fetch_array($res)) {
           $temp_arr[] =$row;

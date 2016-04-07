@@ -194,8 +194,20 @@ if(isset($_GET['update_success'])){
 			      	<input value="<?php echo $eachrecord ['assignschedule_id']; ?>" type="hidden">
 					<td><?php echo $eachrecord ['categories_name']; ?></td>
 			        <td class="popup-edit">
+			        	<?php
+			        	$chek = mysql_query("select * from wc_assignschedule inner join wc_result on wc_result.resultcreateschedule_id = assigncreateschedule_id where wc_assignschedule.assigncreateschedule_id = '".$eachrecord['createschedule_id']."'");
+						if(!mysql_num_rows($chek)){
+			        	?>
 			        	<span class="edit_state edit_assign_schedule" data-schedule="<?php echo $eachrecord ['createschedule_id']; ?>" data-category="<?php echo $eachrecord ['assigncategory_id']; ?>"><i class="fa fa-pencil-square-o"></i></span>
 		        		<span class="delete_state" data-value="<?php echo $eachrecord ['assignschedule_id']; ?>"><i class="fa fa-trash-o"></i></span>
+		        		<?php }else{?>
+				    		<span class="restrict">
+				    			<i class="fa fa-pencil-square-o">
+					    			<div class="restrict_tooltip">Mapping has been already done.Edit or Delete not possible.</div>
+								</i>
+							</span>
+					    	<span class="restrict_del"><i class="fa fa-trash-o"><div class="restrict_tooltip">Mapping has been already done.Edit or Delete not possible.</div></i></span>
+					    	<?php } ?>
 						<div class="assign-schedule-popup popup_hidden">
 			          		<code class="close_btn cancel_btn"> </code>
 			          		<div class="edit_title">

@@ -167,9 +167,19 @@ if(isset($_GET['duplicate'])){
 										<input type="checkbox" name="test" value="test" class="check_test test_battery_name_hover_check" id="check-select" data-id ="<?php echo $eachrecord ['testbattery_id']; ?>" >
 										<input type="text" name="test" value="<?php echo $eachrecord ['testbattery_name']; ?>" class="list_edit test_battery_name_hover input_wrap">
 										<span class="test-alter">
+									<?php
+										$query = mysql_query("select * from wc_createschedule where createscheduletestbattery_id = '".$eachrecord['testbattery_id']."'");
+										$query1 = mysql_query("select * from wc_range where rangetestbattery_id = '".$eachrecord['testbattery_id']."'");
+										if(!mysql_num_rows($query) || !mysql_num_rows($query1)){
+							 		?>
 											<i class="fa fa-floppy-o save_item save_test_battery_name"></i>
 											<i class="fa fa-pencil-square-o edit_item"></i>
 											<i class="fa fa-trash-o delete_item"></i>
+										<?php } else {?>
+												<i class="fa fa-floppy-o save_item edit_save_button"></i>
+												<i class="fa fa-pencil-square-o side_restrict "><div class="side_restrict_tooltip">Mapping has been already done.<br/>Edit or Delete not possible.</div></i>
+												<i class="fa fa-trash-o side_restrict"></i>
+											<?php } ?>
 										</span><!--test-alter-->
 									</span><!--test-name-->
 									<div class="delete_div delete_search">
@@ -263,8 +273,8 @@ if(isset($_GET['duplicate'])){
 					</div>
 			        </td>
 			        <td class="popup-edit">
-			        	<span class="edit_state edit_test_battery hided" data-value="<?php $test_data = $test_battery->testbatterylastidfunction();echo $test_data['MAX(testbattery_id)'];?>"><i class="fa fa-pencil-square-o"></i></span>
-		        		<span class="delete_state hided"><i class="fa fa-trash-o"></i></span>
+			        	<span class="edit_state edit_test_battery hided test_battery_edit_action" data-value="<?php $test_data = $test_battery->testbatterylastidfunction();echo $test_data['MAX(testbattery_id)'];?>"><i class="fa fa-pencil-square-o"></i></span>
+		        		<span class="delete_state hided test_battery_delete_action"><i class="fa fa-trash-o"></i></span>
 		        		<div class="test_battery popup_hidden">
 			          		<code class="close_btn cancel_btn"> </code>
 			          		<div class="edit_title">

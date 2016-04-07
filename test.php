@@ -201,9 +201,19 @@ if (isset($_GET['insert_new'])) {
 										<input type="checkbox" name="test " value="test" class="check_test test_name_hover_check" id="check-select" data-id ="<?php echo $eachrecord['test_id']; ?>">
 										<input type="text" name="test"  value="<?php echo $eachrecord['test_name']; ?>" class="list_edit test_name_hover test_name_value input_wrap" disabled>
 										<span class="test-alter">
+											<?php
+											$query = mysql_query("select * from wc_testbattery_test_attribute where testbattery_test_id = '".$eachrecord['test_id']."'");
+											$query1 = mysql_query("select * from wc_range where rangetest_id = '".$eachrecord['test_id']."'");
+											if(!mysql_num_rows($query) || !mysql_num_rows($query1)){
+											 ?>
 											<i class="fa fa-floppy-o save_item edit_save_button"></i>
 											<i class="fa fa-pencil-square-o edit_item "></i>
 											<i class="fa fa-trash-o delete_item"></i>
+											<?php } else {?>
+												<i class="fa fa-floppy-o save_item edit_save_button"></i>
+												<i class="fa fa-pencil-square-o side_restrict "><div class="side_restrict_tooltip">Mapping has been already done.<br/>Edit or Delete not possible.</div></i>
+												<i class="fa fa-trash-o side_restrict"></i>
+											<?php } ?>
 										</span><!--test-alter-->
 									</span><!--test-name-->
 									<div class="delete_div delete_search">
@@ -248,8 +258,21 @@ if (isset($_GET['insert_new'])) {
 				        <td><?php echo $eachrecord['test_parameter_unit']; ?></td>
 				        <td><?php echo $eachrecord['test_parameter_format']; ?></td>
 				        <td class="popup-edit">
+				        	<?php
+							$valid = mysql_query("select * from wc_testbattery_test_attribute where testbattery_test_id = '".$eachrecord['test_id']."'");
+							$valid1 = mysql_query("select * from wc_range where rangetest_id = '".$eachrecord['test_id']."'");
+							if(!mysql_num_rows($valid) || !mysql_num_rows($valid1)){
+							 ?>
 				        	<span class="edit_state new_editstate edit_test" data-value="<?php echo $eachrecord['test_attribute_id']; ?>" data-test-id="<?php echo $eachrecord['test_id']; ?>"><i class="fa fa-pencil-square-o"></i></span>
 			        		<span class="delete_state" data-value="<?php echo $eachrecord['test_attribute_id']; ?>"><i class="fa fa-trash-o"></i></span>
+			        		<?php }else{?>
+				    		<span class="restrict">
+				    			<i class="fa fa-pencil-square-o">
+					    			<div class="restrict_tooltip">Mapping has been already done.Edit or Delete not possible.</div>
+								</i>
+							</span>
+					    	<span class="restrict_del"><i class="fa fa-trash-o"><div class="restrict_tooltip">Mapping has been already done.Edit or Delete not possible.</div></i></span>
+					    	<?php } ?>
 			        			<div class="test_div popup_hidden">
 					          		<code class="close_btn cancel_btn"> </code>
 					          		<div class="edit_title">

@@ -751,6 +751,22 @@
              $('.edit_test_battery').next().removeClass('hided');
               $('.test_battery_name_hover_check').not(this).prop('checked', false);
               var test_battery_id = $(this).attr('data-id');
+               $.ajax({
+                   type: "POST",
+                   url: "functions/test_battery_functions.php?check_validation=true",
+                   data:{'id':test_battery_id},
+                   cache: false,
+                  
+                   success: function(data) {
+                   	if(data == 'no'){
+                   		$('.edit_test_battery').addClass('hided');
+             			$('.edit_test_battery').next().addClass('hided');
+                   	}else{
+                   		 $('.edit_test_battery').removeClass('hided');
+             			$('.edit_test_battery').next().removeClass('hided');
+                   	}
+                   }
+              });
               $.ajax({
                    type: "POST",
                    url: "functions/test_battery_functions.php?find_test_battery_sports=true",
@@ -954,12 +970,14 @@
       
       $(document).delegate('.test-name', 'mouseenter', function(event){
         $(this).children().find('.edit_item,.delete_item').show();
+        $(this).children().find('.side_restrict').show();
         $('.save_item').hide();
      
       });
-
+		$('.side_restrict').hide();
        $(document).delegate('.test-name','mouseleave',function(event){
         $('.edit_item,.delete_item,.save_item').hide();
+        $('.side_restrict').hide();
         $('.list_edit').removeClass('list_edit_rollover');
         $(this).find('.list_edit').attr('disabled', 'disabled');
       });
@@ -2181,7 +2199,7 @@
                      data: form_data,
                      cache: false,
                      success: function(html) {
-                         //alert(html);
+                        //alert(html);
                       //alert('Parameter Type deleted Successfully! ');
                       success_align();
                  	  $('.success_msg span').html('Parameter Type deleted Successfully!');
@@ -3308,7 +3326,7 @@
 
       $('#assignschedule_form').submit(function(e){
         e.preventDefault();
-           $('#bib').next().addClass('custom_error');
+           $('#bib').next().removeClass('custom_error');
           $('#combobox').next().next().removeClass('custom_error');
         var res = true;
         $('input[type="text"],textarea,select',this).each(function() {
