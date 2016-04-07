@@ -111,7 +111,7 @@ include('configu.php');
 		}
 		//newly added when change grid structure in range
 		public function rangetestbatterysearchSelect(){
-			$res = mysql_query("select * from wc_range as r INNER JOIN wc_testbattery as tb ON tb.testbattery_id=r.rangetestbattery_id group by tb.testbattery_id order by tb.testbattery_id DESC")or die(mysql_error());
+			$res = mysql_query("select * from wc_range as r INNER JOIN wc_testbattery as tb ON tb.testbattery_id=r.rangetestbattery_id group by tb.testbattery_id order by tb.testbattery_name ASC")or die(mysql_error());
 			return $res;
 		}
 	}
