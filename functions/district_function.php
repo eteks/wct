@@ -14,7 +14,8 @@ include('configu.php');
 		}
 		//To select all record for displaying data in table
 		public function districtSelect(){
-			$res = mysql_query("select * from wc_states s,wc_district d where d.districtstates_id=s.states_id and d.district_status='1' ORDER BY districtstates_id DESC")or die(mysql_error());
+			// $res = mysql_query("select * from wc_states s,wc_district d where d.districtstates_id=s.states_id and d.district_status='1' ORDER BY districtstates_id DESC")or die(mysql_error());
+			$res = mysql_query("select * from wc_states s,wc_district d where d.districtstates_id=s.states_id and d.district_status='1' ORDER BY d.district_name ASC")or die(mysql_error());
 			return $res;
 		}
 		public function districtInsert(){
@@ -58,7 +59,8 @@ include('configu.php');
 			return $res;
 		}
 		public function districtsearchSelect(){
-			$res = mysql_query("select * from wc_district as d INNER JOIN wc_states as s ON s.states_id=d.districtstates_id group by s.states_id order by d.districtstates_id DESC")or die(mysql_error());
+			// $res = mysql_query("select * from wc_district as d INNER JOIN wc_states as s ON s.states_id=d.districtstates_id group by s.states_id order by d.districtstates_id DESC")or die(mysql_error());
+			$res = mysql_query("select * from wc_district as d INNER JOIN wc_states as s ON s.states_id=d.districtstates_id group by s.states_id order by s.states_name ASC")or die(mysql_error());
 			return $res;
 		}
 		public function statenameDelete(){
