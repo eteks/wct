@@ -19,7 +19,7 @@ include('configu.php');
 		public function rangeSelect(){
 			// $res = mysql_query("select * from wc_range as r INNER JOIN wc_test as t ON r.rangetest_id=t.test_id INNER JOIN wc_test_attribute as ta ON ta.test_attribute_id = r.rangetestattribute_id where r.range_status='1' ORDER BY r.range_id DESC")or die(mysql_error());
 			$res = mysql_query("select * from wc_range as r INNER JOIN wc_test as t ON r.rangetest_id=t.test_id INNER JOIN wc_test_attribute as ta ON ta.test_attribute_id = r.rangetestattribute_id 
-				INNER JOIN wc_testbattery as tb ON tb.testbattery_id = r.rangetestbattery_id INNER JOIN wc_categories as c ON c.categories_id = r.rangecategories_id where r.range_status='1' ORDER BY r.range_id DESC")or die(mysql_error());
+				INNER JOIN wc_testbattery as tb ON tb.testbattery_id = r.rangetestbattery_id INNER JOIN wc_categories as c ON c.categories_id = r.rangecategories_id where r.range_status='1' ORDER BY c.categories_name ASC")or die(mysql_error());
 			return $res;
 		}
 		public function rangeInsert(){

@@ -158,9 +158,18 @@
 										<input type="hidden" class="check_athleteid check_data" name="check_athleteid" value="<?php echo $row['athlete_id']; ?>">
 										<input type="text" name="check_athletename" value="<?php echo $row['athlete_name']; ?>" class="list_edit check_athletename input_wrap" name="check_athletename">
 										<span class="test-alter">
+										<?php
+										$check_in_assignschedule = mysql_query("SELECT * FROM wc_assignschedule WHERE assignathlete_id='".$row['athlete_id']."'")or die(mysql_error());	
+			                        	$check_in_result = mysql_query("SELECT * FROM wc_result WHERE resultathlete_id='".$row['athlete_id']."'")or die(mysql_error());	
+										if(mysql_num_rows($check_in_result)>0 || mysql_num_rows($check_in_assignschedule)>0){ ?>
+											<i class="fa fa-floppy-o save_item save_state"></i>
+											<i class="fa fa-pencil-square-o side_restrict"><div class="side_restrict_tooltip">Mapping has been already done.<br/>Edit or Delete not possible.</div></i>
+											<i class="fa fa-trash-o side_restrict" style="float: none;"></i>
+										<?php } else{?>		
 											<i class="fa fa-floppy-o save_item save_athlete"></i>
 											<i class="fa fa-pencil-square-o edit_item"></i>
 											<i class="fa fa-trash-o delete_item delete_state" data-value="<?php echo $row['athlete_id']; ?>" style="float: none;"></i>
+										<?php }?>
 										</span><!--test-alter-->
 									</span><!--test-name-->
 									<div class="delete_div delete_search">
@@ -215,8 +224,24 @@
 					        <!-- <td><?php echo $row['athlete_address']; ?></td> -->
 					        <td><?php echo $row['athlete_mobile']; ?></td>
 							<td class="popup-edit">
+							<?php
+							$check_in_assignschedule = mysql_query("SELECT * FROM wc_assignschedule WHERE assignathlete_id='".$row['athlete_id']."'")or die(mysql_error());	
+                        	$check_in_result = mysql_query("SELECT * FROM wc_result WHERE resultathlete_id='".$row['athlete_id']."'")or die(mysql_error());	
+							if(mysql_num_rows($check_in_result)>0 || mysql_num_rows($check_in_assignschedule)>0){ ?>
+					        	<span class="restrict">
+						        	<i class="fa fa-pencil-square-o">
+						        	<div class="restrict_tooltip">Mapping has been already done.Edit or Delete not possible.</div>
+						        	</i>
+					        	</span>
+					        	<span class="restrict_del">
+						        	<i class="fa fa-trash-o"> 
+						        	<div class="restrict_tooltip">Mapping has been already done.Edit or Delete not possible.</div>
+						        	</i>
+					        	</span>
+						    <?php } else{?>
 					        	<span class="edit_state new-edit" onclick="editfunction(<?php echo $row['athlete_id'] ?>,this)"><i class="fa fa-pencil-square-o"></i></span>
 				        		<span class="delete_state" data-value="<?php echo $row['athlete_id'] ?>"><i class="fa fa-trash-o"></i></span>
+					        <?php }?>
 					            <div class="athletes_div popup_hidden athlete_popup">
 					          		<code class="close_btn cancel_btn"> </code>
 					          		<div class="edit_title">

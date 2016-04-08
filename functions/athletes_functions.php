@@ -16,7 +16,7 @@
 	    public $athletesportsname;
 
 		public function athleteSelect(){
-			$res = mysql_query("SELECT * FROM wc_athlete as a INNER JOIN wc_sports as s ON s.sports_id = a.athletesports_id INNER JOIN wc_district as d ON d.district_id = a.athletedistrict_id where a.athlete_status='1' ORDER BY a.athlete_id DESC")or die(mysql_error());
+			$res = mysql_query("SELECT * FROM wc_athlete as a INNER JOIN wc_sports as s ON s.sports_id = a.athletesports_id INNER JOIN wc_district as d ON d.district_id = a.athletedistrict_id where a.athlete_status='1' ORDER BY a.athlete_name ASC")or die(mysql_error());
 			return $res;
 		}
 

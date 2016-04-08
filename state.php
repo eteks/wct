@@ -41,9 +41,24 @@
 						        <!-- <td class="t_s_id"><?php //echo  $i;?></td> -->
 						        <td class="t_states_name"><?php echo $row['states_name']; ?></td>
 						        <td class="popup-edit">
+						        <?php
+						        $check_in_district = mysql_query("SELECT * FROM wc_district WHERE districtstates_id='".$row['states_id']."'")or die(mysql_error());
+                            	$check_in_athlete = mysql_query("SELECT * FROM wc_athlete WHERE athletestates_id='".$row['states_id']."'")or die(mysql_error());
+                            	if((mysql_num_rows($check_in_district)>0 || mysql_num_rows($check_in_athlete)>0)){ ?>
+                            		<span class="restrict">
+							        	<i class="fa fa-pencil-square-o">
+							        	<div class="restrict_tooltip">Mapping has been already done.Edit or Delete not possible.</div>	
+							        	</i>
+						        	</span>
+						        	<span class="restrict_del">
+							        	<i class="fa fa-trash-o">
+							        	<div class="restrict_tooltip">Mapping has been already done.Edit or Delete not possible.</div>	
+							        	</i>
+						        	</span>
+					        	<?php }else{?>
 						        	<span class="edit_state" onclick="editfunction(<?php echo $row['states_id'] ?>,this)"><i class="fa fa-pencil-square-o"></i></span>
 						        	<span class="delete_state" data-value="<?php echo $row['states_id'] ?>"><i class="fa fa-trash-o"></i></span>
-
+					        	<?php } ?>
 									<div class="state_div edit_state_div popup_hidden">
 						          		<code class="close_btn cancel_btn"> </code>
 						          		<div class="edit_title">

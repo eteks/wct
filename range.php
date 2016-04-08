@@ -160,9 +160,18 @@
 										<input type="hidden" class="check_testbatteryid check_data" name="check_testbatteryid" value="<?php echo $row['testbattery_id']; ?>">
 										<input type="text" name="check_testbattery" value="<?php echo $row['testbattery_name']; ?>" class="list_edit input_wrap check_testbatteryname" autocomplete="off">
 										<span class="test-alter">
+										<?php
+										$check_in_createschedule = mysql_query("SELECT * FROM wc_createschedule WHERE createscheduletestbattery_id='".$row['testbattery_id']."'")or die(mysql_error());
+                            			$check_in_sportsattribute = mysql_query("SELECT * FROM wc_testbattery_sports_attribute WHERE wc_testbattery_id='".$row['testbattery_id']."'")or die(mysql_error());
+										if((mysql_num_rows($check_in_createschedule)>0 || mysql_num_rows($check_in_sportsattribute)>0)){ ?>	
+											<i class="fa fa-floppy-o save_item save_state"></i>
+											<i class="fa fa-pencil-square-o side_restrict"><div class="side_restrict_tooltip">Mapping has been already done.Edit or Delete not possible.</div></i>
+											<i class="fa fa-trash-o side_restrict" style="float: none;"></i>
+										<?php } else{?>	
 											<i class="fa fa-floppy-o save_item save-testbattery"></i>
 											<i class="fa fa-pencil-square-o edit_item"></i>
-											<i class="fa fa-trash-o delete_item delete_state"  style="float: none;" <?php echo $row['testbattery_id']; ?>"></i>
+											<i class="fa fa-trash-o delete_item delete_state"  style="float: none;" data-value="<?php echo $row['testbattery_id']; ?>"></i>
+										<?php }?>
 										</span><!--test-alter-->
 									</span><!--test-name-->
 									<div class="delete_div delete_search">
@@ -206,7 +215,7 @@
 					         <!-- <td class="t_range_testbatteryname"><?php echo $row['testbattery_name']; ?></td> -->
 					        <td class="t_range_categoryname"><?php echo $row['categories_name']; ?></td>
 					        <td class="t_range_testname"><?php echo $row['test_name']; ?></td> 
-					       <td class="t_range_paramtername"><?php echo $row['test_parameter_name']; ?></td>
+					       	<td class="t_range_paramtername"><?php echo $row['test_parameter_name']; ?></td>
 					        <td class="popup-edit">
 					        	<span class="edit_state" onclick="editfunction(<?php echo $row['range_id'] ?>,this)"><i class="fa fa-pencil-square-o"></i></span>
 					        	<span class="delete_state" data-value="<?php echo $row['range_id'] ?>"><i class="fa fa-trash-o"></i></span>
