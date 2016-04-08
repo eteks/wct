@@ -109,7 +109,8 @@ class testfunction{
                 $unit = $_POST["unit".$i.""];
                 $format =  $_POST["format".$i.""];
 				$check_query_param = "select * from wc_test_attribute where test_id = '$test_id' and test_parameter_type ='$type'";
-				if(!mysql_num_rows(mysql_query($check_query_param))){
+				$check_query_param_name = "select * from wc_test_attribute where test_id = '$test_id' and test_parameter_name ='$parameter'";
+				if(!mysql_num_rows(mysql_query($check_query_param)) || !mysql_num_rows(mysql_query($check_query_param_name))){
                 	$sql = "insert into wc_test_attribute (test_id,test_parameter_name,test_parameter_type,test_parameter_unit,test_parameter_format,test_attribute_status)values('$test_id','$parameter','$type','$unit','$format','1')";
                 	mysql_query($sql) or die(mysql_error());	
 				}else{
@@ -121,7 +122,9 @@ class testfunction{
     }
     if(isset($_POST['parameter_update'])){
         include ("../dbconnect.php");
-		$check_query = "select * from wc_test_attribute  where test_parameter_name = '".$_POST['parameter_name1']."' and test_id = '".$_POST['test_update_id']."' ";
+		$check_query1 = "select * from wc_test_attribute  where test_parameter_name = '".$_POST['parameter_name1']."' and test_id = '".$_POST['test_update_id']."'";
+		if(!mysql_num_rows(mysql_query($check_query))){
+		$check_query = "select * from wc_test_attribute  where test_parameter_name = '".$_POST['parameter_name1']."' and test_id = '".$_POST['test_update_id']."' and test_parameter_type = '". $_POST['type1']."' and test_parameter_unit = '".$_POST['unit1']."' and test_parameter_format = '".$_POST['format1']."' ";
 		if(!mysql_num_rows(mysql_query($check_query))){
 	        $parameter_id = $_POST['parameter_update'];
 	        $testid =$_POST['test_update_id'];
@@ -133,6 +136,9 @@ class testfunction{
 	        //mysql_query("update wc_test set test_name ='$test_name' where test_id = $testid ")or die(mysql_error());
 	        mysql_query("update wc_test_attribute set test_parameter_name ='$parameter_name',test_parameter_type ='$paramtype',test_parameter_unit='$paramunit',test_parameter_format ='$paramformat' where test_attribute_id = $parameter_id ")or die(mysql_error());
 	        header('Location:../test.php?update=true');
+		}else{
+			header('Location:../test.php?param_name_exists=true');
+		}
 		}else{
 			header('Location:../test.php?param_name_exists=true');
 		}

@@ -827,6 +827,50 @@
         }else{
         	$('.edit_test_battery').addClass('hided');
             $('.edit_test_battery').next().addClass('hided');
+            $.ajax({
+                 type: "POST",
+                 url: "functions/test_battery_functions.php?find_test_battery_tests_all=true",
+                 data:{'id':'1'},
+                 cache: false,
+                 dataType:'json',
+                 success: function(data) {
+                     $.each(data, function(i){
+                         $('.selected_test').empty();
+                         $.each(data, function(i){
+                             $('.selected_test').append('<div class="checkbox align_check" style="margin:0px;"><label class="hover-content">'+data[i].test_name+'</label></div>');
+                         });
+
+                     });
+                 }
+            });
+            $.ajax({
+                 type: "POST",
+                 url: "functions/test_battery_functions.php?find_test_battery_category_all=true",
+                 data:{'id':'1'},
+                 cache: false,
+                 dataType:'json',
+                 success: function(data) {
+                     $('.selected_category').empty();
+                     $.each(data, function(i){
+                         $('.selected_category').append('<div class="checkbox align_check" style="margin:0px;"><label class="hover-content">'+data[i].categories_name+'</label></div>');
+                     });
+
+                 }
+            });
+            $.ajax({
+                 type: "POST",
+                 url: "functions/test_battery_functions.php?find_test_battery_sports_attr_all=true",
+                 data:{'id':'1'},
+                 cache: false,
+                 dataType:'json',
+                 success: function(data) {
+                     $('.selected_sports').empty();
+                     $.each(data, function(i){
+                         $('.selected_sports').append('<div class="checkbox align_check" style="margin:0px;"><label class="hover-content">'+data[i].sports_name+'</label></div>');
+                     });
+
+                 }
+            });
         }
         });
 

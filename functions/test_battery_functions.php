@@ -338,6 +338,38 @@ if(isset($_GET['find_test_battery_sports'])){
 			echo 'ok';
 		}else{
 			echo "no";
-		}
+	}
+	if(isset($_GET['find_test_battery_category_all'])){
+    include ("../dbconnect.php");
+ 
+    $sql1=mysql_query("select * from wc_testbattery_category_attribute inner join wc_categories on wc_testbattery_category_attribute.testbattery_category_id =wc_categories.categories_id group by wc_categories.categories_name order by wc_categories.categories_name asc") or die(mysql_error());
+    $rows1 = array();
+    while($r = mysql_fetch_assoc($sql1)) {
+        $row1[] = $r;
+    }
+    print(json_encode($row1));
+}
+if(isset($_GET['find_test_battery_sports_attr_all'])){
+    include ("../dbconnect.php");
+	echo "string";
+    $sql1=mysql_query("SELECT * FROM wc_testbattery
+                 INNER JOIN wc_sports ON wc_testbattery.testbatterysports_id = wc_sports.sports_id
+                 where wc_testbattery.testbattery_id = (SELECT MAX(testbattery_id) FROM wc_testbattery) order by wc_sports.sports_name asc") or die(mysql_error());
+    $rows1 = array();
+    while($r = mysql_fetch_assoc($sql1)) {
+        $row1[] = $r;
+    }
+    print(json_encode($row1));
+}
+if(isset($_GET['find_test_battery_tests_all'])){
+    include ("../dbconnect.php");
+    
+    $sql2=mysql_query("select * from wc_testbattery_test_attribute inner join wc_test on wc_testbattery_test_attribute.testbattery_test_id =wc_test.test_id group by wc_test.test_name order by wc_test.test_name asc") or die(mysql_error());
+    $rows2 = array();
+    while($r = mysql_fetch_assoc($sql2)) {
+        $row2[] = $r;
+    }
+    print(json_encode($row2));
+}
 }
  ?>
