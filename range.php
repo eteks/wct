@@ -162,8 +162,7 @@
 										<span class="test-alter">
 										<?php
 										$check_in_createschedule = mysql_query("SELECT * FROM wc_createschedule WHERE createscheduletestbattery_id='".$row['testbattery_id']."'")or die(mysql_error());
-                            			$check_in_sportsattribute = mysql_query("SELECT * FROM wc_testbattery_sports_attribute WHERE wc_testbattery_id='".$row['testbattery_id']."'")or die(mysql_error());
-										if((mysql_num_rows($check_in_createschedule)>0 || mysql_num_rows($check_in_sportsattribute)>0)){ ?>	
+										if(mysql_num_rows($check_in_createschedule)>0){ ?>	
 											<i class="fa fa-floppy-o save_item save_state"></i>
 											<i class="fa fa-pencil-square-o side_restrict"><div class="side_restrict_tooltip">Mapping has been already done.Edit or Delete not possible.</div></i>
 											<i class="fa fa-trash-o side_restrict" style="float: none;"></i>
@@ -250,12 +249,14 @@
 												  <select class="form-control adjust_width classic range_category box-width box_range" id="sel1" name="edit_range_category" data-validation-error-msg="Please select Category" data-validation="required">
 												  <option value="">Select Category</option>
 												  </select>
+												  <div class="clear_both"></div>
 											</div>
 											<div class="form-group">
 												  <label for="sel1" class="popup_label">Select Test</label>
 												  <select class="form-control adjust_width classic edit_range_test box-width box_range" id="sel1" name="edit_range_test" data-validation-error-msg="Please select Test" data-validation="required">
 												  <option value="">Select Test Name</option>
 												  </select>
+												  <div class="clear_both"></div>
 											</div>
 											<div class="form-group">
 												  <label for="sel1" class="popup_label">Select Parameter</label>
@@ -265,6 +266,7 @@
 												  <input type="hidden" class="range_parameter_type">
 												  <input type="hidden" class="range_parameter_unit">
 												  <input type="hidden" class="range_parameter_format">
+												  <div class="clear_both"></div>
 											</div>
 											<div class="form-group edit_range_holder">
 											   <div class="edit_clone_content" id="edit_range_counter1">

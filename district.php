@@ -29,7 +29,7 @@
 	}*/
 </style>
 
-		<div class="container align_center left_align align_height">
+		<div class="container align_center left_align align_height np">
 			<span class="sports">DISTRICT</span>
 		</div><!--end container-->
 		<div class="container">

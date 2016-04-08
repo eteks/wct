@@ -28,7 +28,7 @@
 	}
 </style>
 	<div class="container">
-		<div class="container left_align_parameter align_height">
+		<div class="container left_align_parameter align_height np">
 			<span class="sports">PARAMETER UNIT</span>
 		</div><!--end container-->
 		<div class="container">
@@ -176,9 +176,11 @@
 					          </div>
 					          <div class="del_content">
 					            <span class="del_content_txt">Are you sure you want to delete this record?</span>
-					            <input type="button" class="btn btn-primary align_right yes_btn" data-delete = "parameter_unit_name" data-id = "<?php echo $eachrecord ['parameterunit_id']; ?>" value="Yes">
-					            <input type="button" class="btn btn-primary align_right no_btn" value="No">
-					            <input type="hidden" name="delete_id" value="" id="delete_id"/>
+					            <div class="yes_no_btn_holder">
+						            <input type="button" class="btn btn-primary yes_btn" data-delete = "parameter_unit_name" data-id = "<?php echo $eachrecord ['parameterunit_id']; ?>" value="Yes">
+						            <input type="button" class="btn btn-primary no_btn" value="No">
+						            <input type="hidden" name="delete_id" value="" id="delete_id"/>
+					            </div><!-- yes_no_btn_holder -->
 					          </div><!--del_content-->
 							</div><!--delete_div-->
 						</td>

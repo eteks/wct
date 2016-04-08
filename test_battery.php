@@ -85,7 +85,7 @@ if(isset($_GET['duplicate'])){
 			<div class="col-xs-12 col-md-6 align_margin">
 				<form method="post" action="functions/test_battery_functions.php" id="test_battery_form">
 					<div class="form-group">
-						<label>Enter name of Test Battery</label><br>
+						<label>Enter name of Test Battery</label>
 						<input type="text" class="adjust_width" name="test_battery_name" autocomplete="off" data-validation-error-msg="Please enter name of Test Battery" data-validation="required">
 					</div>
 					<!-- <div class="form-group">
@@ -101,7 +101,7 @@ if(isset($_GET['duplicate'])){
 							</select>
 					</div> -->
 					<div class="form-group align_margin">
-						<label>Select Sports</label><br>
+						<label>Select Sports</label>
 						<div class="area_scroll">
 							<?php
 					  		$data = $sports->sportsselectfunction();
@@ -281,7 +281,7 @@ if(isset($_GET['duplicate'])){
 									<span class="del_txt">Edit Test Battery</span>
 							</div><!--edit_title-->
 		          			<div class="container col-md-12">
-			          			<div class="col-xs-12 col-md-12">
+			          			<div class="">
 										<form  method="post" action="functions/test_battery_functions.php" id="test_battery_update_form">
 										<input type="hidden" name="testbattery_update" value="1" />
 										<div class="form-group">
@@ -302,7 +302,7 @@ if(isset($_GET['duplicate'])){
 											  </select>
 										</div> -->
 										<div class="form-group">
-											<label class="popup_label">Select Sports</label><br>
+											<label class="popup_label">Select Sports</label>
 											<div class="area_scroll_popup">
 												<?php
 											  		$sports_data = $sports->sportsselectfunction();
@@ -315,7 +315,7 @@ if(isset($_GET['duplicate'])){
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="popup_label">Select Categories</label><br>
+											<label class="popup_label">Select Categories</label>
 											<div class="area_scroll_popup">
 												<?php
 											  		$cat_data = $category->categoryselectfunction();
@@ -328,7 +328,7 @@ if(isset($_GET['duplicate'])){
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="popup_label">Select Tests</label><br>
+											<label class="popup_label">Select Tests</label>
 											<div class="area_scroll_popup">
 												<?php
 											  $test_data = $test->testbatteryselectfunction();

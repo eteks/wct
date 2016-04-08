@@ -1399,7 +1399,7 @@
       });
     	$('.statesname,.edit_states_name').focus(function (e) {
     		$(this).autocomplete({
-    			source: states_list,
+    			source: states_list.sort(),
     	 	});
     	});
 
@@ -1410,7 +1410,7 @@
       });
       $('.edit_states_name').focus(function (e) {
         $(this).autocomplete({
-          source: edit_states_list,
+          source: edit_states_list.sort(),
         });
       });
 
@@ -1496,7 +1496,7 @@
        $(document).on('focus','.districts',function(e){
            $(this).autocomplete({
            // source: district_list,
-           source: d1_list,
+           source: d1_list.sort(),
            });
        });
        

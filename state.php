@@ -9,7 +9,7 @@
 		<div class="container align_margin align_bottom" style="width: 85%;">
 
 				<!-- <div class="col-md-6"></div> -->
-				<div class="col-md-4 align_margin">
+				<div class="align_margin">
 					<form name="states_form" id="state_form">
 						<div class="align_margin">
 							<label>Enter name of the State</label><br>
@@ -21,7 +21,7 @@
 						<input type="reset" value="Cancel" class="btn btn-primary clear">
 					</form>
 				</div><!--align_margin-->
-				<div class="container table-position col-md-12">
+				<div class="table-position">
 				  <table class="table state_table">
 				    <thead>
 				      <tr class="row_color">

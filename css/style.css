@@ -236,6 +236,7 @@
 	width: 215px;
 	height: 34px;
 }
+.np { padding:0px !important; }
 @media (min-width: 768px){
     .districts{
     width: 410px;
@@ -247,6 +248,9 @@
 	height: 34px;
 	/*border-radius:  0 !important;*/
 	box-shadow: none !important;
+}
+#test_form .adjust_width, #test_updation_form .adjust_width {
+    display:block;
 }
 .adjust_width_tiny{
     border-radius: 0 !important;
@@ -501,11 +505,12 @@ select {
     box-shadow: 0 2px 10px 3px #b8b7b9;
     display: none;
     float: right;
-    height: 490px;
+    /*height: 490px;*/
     position: absolute;
     right: 0;
     width: 350px;
     z-index: 9999;
+    padding:15px;
 }
 .range_div{
    background: #fff none repeat scroll 0 0;
@@ -578,6 +583,8 @@ select {
 .edit_state:hover,.edit_district:hover,.restrict:hover,.restrict_del:hover{
     color: #006687 !important;
 }
+.yes_no_btn_holder { text-align: center; }
+.yes_no_btn_holder input { display: inline-block; margin:5px 5px 0px 0px !important; }
 .login_title,.edit_title{
     font-size: 14px;
     height: 40px;
@@ -585,6 +592,9 @@ select {
     font-weight: bold;
     font-family: Montserrat;
     text-align: left;
+}
+.edit_title {
+    padding:15px 0px 0px 15px;
 }
 .del_title{
     font-size: 14px;
@@ -829,6 +839,9 @@ button, input, optgroup, select, textarea {
     width: 100%;
     height: 74px;
     text-align: left;
+}
+#test_battery_update_form .area_scroll_popup {
+    height:92px !important;
 }
 .range_align_popup{
     border-radius: 0 !important;
@@ -1143,6 +1156,14 @@ input[type=radio]:checked + label:before {
     right: 40px;
     width: 390px;
 }
+.edit_create_schedule_form .area_width_create {
+    right:0px !important;
+    display:block !important;
+}
+.edit_create_schedule_form .adjust_tiny {
+    margin: 10px 17px 3px 0px;
+    width:118px !important;
+}
 .dob_align1{
     border-radius: 0 !important;
     box-shadow: none !important;
@@ -1200,10 +1221,26 @@ input[type=radio]:checked + label:before {
     font-family: sans-serif !important;
     font-size: 10px !important;
 }
+.delete_color .form-error {
+    position:absolute;
+    left:15px;
+    top:69px;
+}
+.delete_color {
+
+}
 .help-block{
     margin-bottom: 0 !important;
     margin-top: 0 !important;
 }
+.date-dropdowns {
+    position:relative;
+    text-align: left;
+}
+.createschedule_div popup_hidden reverse ..adjust_tiny{
+    width: 115px !important;
+}
+
 .day, .month, .year {
     background-color: white;
     border: 1px solid #ccc;
@@ -1213,9 +1250,10 @@ input[type=radio]:checked + label:before {
     margin-top: 10px;
     padding: 6px 2px;
     position: relative;
-    right: 95px;
     width: 125px;
-    padding: 0 !important;
+}
+.pr {
+    position:relative;
 }
 .athletes_drop{
     background-color: white;
@@ -1337,6 +1375,7 @@ input[type=radio]:checked + label:before {
 .table-hidden{
     display: none;
 }
+.nm { margin:0px !important; }
 .parameter__align {
     margin: 24px 0 0 -8px;
     position: relative;
@@ -1346,6 +1385,11 @@ input[type=radio]:checked + label:before {
     position: relative;
     right: 19%;
 }
+#cs_form .adjust_tiny{
+    margin: 10px 17px 3px 0px !important;
+}
+#cs_form label { display:block; }
+
 .align-day {
     width: 107% !important;
 }
@@ -1358,11 +1402,11 @@ input[type=radio]:checked + label:before {
     font-family: Montserrat;
     font-size: 10px;
     height: 23px;
-    left: 24%;
-    padding: 5px 0 0;
+    left: -10px !important;
+    padding: 5px 10px 0px 10px;
     position: absolute;
     text-align: center;
-    width: 90px;
+    width: auto !important;
     z-index: 98;
 }
 .restrict_tooltip{
@@ -1408,11 +1452,11 @@ input[type=radio]:checked + label:before {
     font-family: Montserrat;
     font-size: 10px;
     height: 23px;
-    left: 24%;
-    padding: 6px 0 0;
+    left: -30px !important;
+    padding: 6px 10px 0px 10px;
     position: absolute;
     text-align: center;
-    width: 113px;
+    width: auto !important;
     z-index: 98;
 }
 .parameter_add:hover .tooltip_parameter,.district_add:hover .tooltip_parameter ,.restrict:hover .restrict_tooltip,.restrict_del:hover .restrict_tooltip,.test-alter:hover .side_restrict_tooltip{
@@ -1782,7 +1826,6 @@ tbody tr {
     background: #fff none repeat scroll 0 0;
     box-shadow: 0 2px 10px 3px #b8b7b9;
     display: none;
-    height: 145px;
     position: absolute;
     width: 200px;
     z-index: 9999;
@@ -1790,6 +1833,10 @@ tbody tr {
     float: right;
     right: 0px;
     white-space: normal;
+    padding:10px;
+}
+.delete_parameterunit_div .del_title {
+    padding:0px !important;
 }
 /*.save_item,.edit_item,.delete_item{
     display: none;
@@ -1801,10 +1848,12 @@ tbody tr {
     display: inline-block;
 }*/
 .popup_label{
-    float: left;
+    text-align:left !important;
     font-size: 13px;
     font-weight: bold;
+    display:block;
 }
+#athlete_form label { display:block; text-align:left; }
 .delete_test_div{
     background: #fff none repeat scroll 0 0;
     box-shadow: 0 2px 10px 3px #b8b7b9;
@@ -1846,9 +1895,8 @@ tbody tr {
 .align-day-popup select {
     padding: 0 !important;
     position: relative !important;
-    right: 70px;
-    width: 23% !important;
     font-size: 13px;
+    width:118px !important;
 }
 .test-list {
     height: 175px;

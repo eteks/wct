@@ -48,7 +48,7 @@
 				<form name="create_schedule_form" class="createschedule_form" id="cs_form">
 				<input type="hidden" class="statesid" name="edit_schedule_id">
 					<div class="form-group">
-						<label>Enter Name of Schedule</label><br>
+						<label>Enter Name of Schedule</label>
 						<input type="text" class="adjust_width" name="schedule_name" data-validation-error-msg="Please Enter Name of Schedule" data-validation="required">
 					</div>
 					<div class="form-group">
@@ -63,13 +63,13 @@
 	                      <?php } ?>
 					  </select>
 					</div>
-					<div class="form-group col-md-12">
-					  <label for="date" class="fl"  style="position: relative;right: 15px;">Select Date</label><br>
+					<div class="form-group">
+					  <label for="date" class=""  style="">Select Date</label>
 				    	<input class="date_pick" type="text">
 					</div>
-					<div class="form-group col-md-12">
-					  <label for="date" class="fl" style="position: relative; left: -17px;">Select Time</label><br>
-					  	<div class="form-group align-time col-md-3">
+					<div class="form-group nm">
+					  <label for="date" class="" style="">Select Time</label>
+					  	<div class="form-group fl">
 							<select class="form-control classic adjust_tiny fl" id="hour" name="schedule_hour" data-validation-error-msg="Please select Hour" data-validation="required">
 							  	<option value="">Hour</option>
 							    <option value="01">01</option>
@@ -98,7 +98,7 @@
 							    <option value="24">24</option>
 							</select>
 						</div>
-						<div class="form-group align-time col-md-3">
+						<div class="form-group fl">
 							<select class="form-control classic adjust_tiny fl" id="minute" name="schedule_minute" data-validation-error-msg="Please select Minute" data-validation="required">
 							  	<option value="">Minute</option>
 							   	<option value="00">00</option>
@@ -163,7 +163,7 @@
 				                <option value="59">59</option>
 							</select>
 					  	</div>
-					  	<div class="form-group align-time col-md-3">
+					  	<div class="form-group fl">
 							<select class="form-control classic adjust_tiny fl" id="seconds" name="schedule_seconds" data-validation-error-msg="Please select Second" data-validation="required">
 							  	<option value="">Seconds</option>
 							   	<option value="00">00</option>
@@ -228,9 +228,10 @@
 				                <option value="59">59</option>
 							</select>
 						</div>
+						<div class="clear_both"></div>
 					</div>
 					<div class="align_height align_margin">
-						<label>Venue</label><br>
+						<label>Venue</label>
 						<textarea class="area_width" name="schedule_venue" data-validation-error-msg="Please enter Venue" data-validation="required"></textarea>
 					</div>
 					<div class="col-md-9 schedule_btn">
@@ -359,10 +360,10 @@
 								          			<input type="hidden" class="statesid" name="edit_schedule_id">
 								          			<input type="hidden" class="edit_schedule_name" name="edit_schedule_name" value="">
 								          				<!-- <div class="form-group">
-													<label>Enter the schedule Name</label><br>
+													<label>Enter the schedule Name</label>
 													<input type="text" class="adjust_width" name="edit_schedule_name" data-validation-error-msg="Please Enter the name of the Schedule" data-validation="required">
 												</div> -->
-												<div class="form-group col-md-5 create-label">
+												<div class="form-group">
 												  <label for="battey_name" class="popup_label">Select Test Battery Name</label>
 												  <select class="form-control classic adjust_width box-width width-assign form-group" id="battey_name" name="edit_schedule_testbattery" data-validation-error-msg="Please Select Test Battery Name" data-validation="required">
 												  	<option value="">Select Test Battery Name</option>
@@ -375,8 +376,8 @@
 												  </select>
 												</div>
 
-												<div class="form-group align-day align-day-popup col-md-12">
-												  <label for="date" class="popup_label create-label">Select date</label><br>
+												<div class="form-group align-day align-day-popup">
+												  <label for="date" class="popup_label">Select date</label>
 												  <input class="popup_date_pick" type="text">
 												 <!--  <select class="form-control classic create-date1 fl" id="date" name="edit_schedule_day" data-validation-error-msg="Please Select the Date" data-validation="required">
 												  	<option value="">Date</option>
@@ -398,11 +399,11 @@
 												  </select> -->
 												</div>
 
-												<div class="form-group col-md-12">
-												  <label for="date" class="popup_label create-label">Select Time</label><br>
-												  	<div class="form-group col-md-3 align-time-popup1">
+												<div class="form-group nm">
+												  <label for="date" class="popup_label">Select Time</label>
+												  	<div class="form-group fl">
 												  		<label class="popup_label">Time</label>
-														<select class="form-control classic create-time1" id="hour" name="edit_schedule_hour" data-validation-error-msg="Please Select the Hour" data-validation="required">
+														<select class="form-control classic adjust_tiny" id="hour" name="edit_schedule_hour" data-validation-error-msg="Please Select the Hour" data-validation="required">
 														  	<option value="">Hour</option>
 														    <option value="01">01</option>
 														    <option value="02">02</option>
@@ -430,9 +431,9 @@
 														    <option value="24">24</option>
 														</select>
 													</div>
-													<div class="form-group col-md-3 align-time-popup2">
+													<div class="form-group fl">
 														<label class="popup_label">Minute</label>
-														<select class="form-control classic create-time2" id="minute" name="edit_schedule_minute" data-validation-error-msg="Please Select the Minute" data-validation="required">
+														<select class="form-control classic adjust_tiny" id="minute" name="edit_schedule_minute" data-validation-error-msg="Please Select the Minute" data-validation="required">
 														  	<option value="">Minute</option>
 														  	<option value="00">00</option>
 														    <option value="01">01</option>
@@ -496,9 +497,9 @@
 											                <option value="59">59</option>
 														</select>
 													</div>
-													<div class="form-group col-md-3 align-time-popup3">
+													<div class="form-group fl">
 														<label class="popup_label">Seconds</label>
-												  		<select class="form-control classic create-time3" id="seconds" name="edit_schedule_seconds" data-validation-error-msg="Please select Time" data-validation="required">
+												  		<select class="form-control classic adjust_tiny" id="seconds" name="edit_schedule_seconds" data-validation-error-msg="Please select Time" data-validation="required">
 													  	<option value="">Seconds</option>
 													    <option value="00">00</option>
 													    <option value="01">01</option>
@@ -562,10 +563,11 @@
 										                <option value="59">59</option>
 												  	</select>
 											  	</div>
+											  	<div class="clear_both"></div>
 											</div>
 
-												<div class="align_height align_margin col-md-3 create-label">
-													<label class="popup_label">Venue</label><br>
+												<div class="align_height align_margin">
+													<label class="popup_label">Venue</label>
 													<textarea class="area_width_create" name="edit_schedule_venue" data-validation-error-msg="Please Enter the Venue" data-validation="required"></textarea>
 												</div>
 												<div class="col-md-10 schedule_btn">
