@@ -2492,7 +2492,7 @@
             newElement.find('#unit').removeAttr('name').attr('name', 'unit'+id).removeClass('error').removeAttr('style').empty().append("<option value='' selected>UNIT</option>");
             newElement.find('#unit').next('span').remove();
             newElement.find('label').remove();
-            newElement.find('#format').removeAttr('name').attr('name', 'format'+id);
+            newElement.find('#format').removeAttr('name').attr('name', 'format'+id).empty().append('<option value="">Format</option>');
             newElement.appendTo($(".parameter_holder1"));
         }
 
