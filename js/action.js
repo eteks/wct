@@ -864,6 +864,7 @@
                  cache: false,
                  dataType:'json',
                  success: function(data) {
+                 	
                      $('.selected_sports').empty();
                      $.each(data, function(i){
                          $('.selected_sports').append('<div class="checkbox align_check" style="margin:0px;"><label class="hover-content">'+data[i].sports_name+'</label></div>');
@@ -877,7 +878,7 @@
       $(document).delegate('.edit_save_button','click',function() {
           var test_id = $(this).parents('.test-name').find('.test_name_hover_check').attr('data-id');
           var test_name = $(this).parents('.test-name').find('.list_edit').val();
-          if(test_name != ''){
+          if(test_name.trim() != ''){
               $.ajax({
                    type: "POST",
                    url: "functions/test_functions.php?test_name_update=true",
