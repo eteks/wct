@@ -749,8 +749,8 @@
              if(this.checked){
              $('.edit_test_battery').removeClass('hided');
              $('.edit_test_battery').next().removeClass('hided');
-              $('.test_battery_name_hover_check').not(this).prop('checked', false);
-              var test_battery_id = $(this).attr('data-id');
+             $('.test_battery_name_hover_check').not(this).prop('checked', false);
+             var test_battery_id = $(this).attr('data-id');
                $.ajax({
                    type: "POST",
                    url: "functions/test_battery_functions.php?check_validation=true",
@@ -761,6 +761,12 @@
                    	if(data == 'no'){
                    		$('.edit_test_battery').addClass('hided');
              			$('.edit_test_battery').next().addClass('hided');
+             			$('.popup-edit').append('<span class="restrict">\
+				    			<i class="fa fa-pencil-square-o">\
+					    			<div class="restrict_tooltip">Mapping has been already done.Edit or Delete not possible.</div>\
+								</i>\
+							</span>\
+					    	<span class="restrict_del"><i class="fa fa-trash-o"><div class="restrict_tooltip">Mapping has been already done.Edit or Delete not possible.</div></i></span>');
                    	}else{
                    		 $('.edit_test_battery').removeClass('hided');
              			$('.edit_test_battery').next().removeClass('hided');
@@ -827,6 +833,8 @@
         }else{
         	$('.edit_test_battery').addClass('hided');
             $('.edit_test_battery').next().addClass('hided');
+            $('.popup-edit .restrict').remove();
+            $('.popup-edit .restrict_del').remove();
             $.ajax({
                  type: "POST",
                  url: "functions/test_battery_functions.php?find_test_battery_tests_all=true",
@@ -864,6 +872,7 @@
                  cache: false,
                  dataType:'json',
                  success: function(data) {
+                 	
                      $('.selected_sports').empty();
                      $.each(data, function(i){
                          $('.selected_sports').append('<div class="checkbox align_check" style="margin:0px;"><label class="hover-content">'+data[i].sports_name+'</label></div>');
@@ -877,7 +886,7 @@
       $(document).delegate('.edit_save_button','click',function() {
           var test_id = $(this).parents('.test-name').find('.test_name_hover_check').attr('data-id');
           var test_name = $(this).parents('.test-name').find('.list_edit').val();
-          if(test_name != ''){
+          if(test_name.trim() != ''){
               $.ajax({
                    type: "POST",
                    url: "functions/test_functions.php?test_name_update=true",
@@ -5360,7 +5369,13 @@ $(document).on('blur','.enter_result',function(e){
             $(this).parents('.assign_clone_content_edit').find('.athlete_bib').val('');
         }
       });
-  		
+  	$(document).on('change','.report_checkbox', function(event) {
+		if(this.checked){
+			$(this).parents('.checkbox').find('.report_checkbox_name').prop( "checked", true );
+		}else{
+			$(this).parents('.checkbox').find('.report_checkbox_name').prop( "checked", false );
+		}
+	});
         
         //********* end *********
     });

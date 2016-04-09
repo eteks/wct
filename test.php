@@ -11,11 +11,13 @@ if (isset($_GET['insert'])) {
 	$(document).ready(function () {
 		success_align();
 		$('.success_msg span').html('Test inserted successfully!');
-       	$('.success_msg').show();
-      	$('.popup_fade').show();
-      	document.body.style.overflow = 'hidden';
+ 	    $('.success_msg input').removeClass('alert_btn').addClass('alert_btn_without_refresh');
+        $('.success_msg').show();
+        $('.popup_fade').show();
+        document.body.style.overflow = 'hidden';
     	// alert('Test inserted successfully!');
     	});
+	  	
     	var url ='" . $url . "'; window.location = url ;</script>";
 }
 if (isset($_GET['update'])) {
@@ -26,6 +28,13 @@ if (isset($_GET['update'])) {
        	$('.success_msg').show();
       	$('.popup_fade').show();
       	document.body.style.overflow = 'hidden';
+      	$('.success_msg span').html('Test Parameter edited successfully!');
+		if($('.success_msg input').hasClass('alert_btn_without_refresh')){
+       		$('.success_msg input').removeClass('alert_btn_without_refresh').addClass('alert_btn');
+       	}
+        $('.success_msg').show();
+        $('.popup_fade').show();
+        document.body.style.overflow = 'hidden';
     	});
 	    //alert('Test parameter edited successfully!');
 	    var url ='" . $url . "'; window.location = url ;</script>";
@@ -35,6 +44,7 @@ if (isset($_GET['param_name_exists'])) {
 	$(document).ready(function () {
 		success_align();
 		$('.success_msg span').html('Already exists!');
+		$('.success_msg input').removeClass('alert_btn').addClass('alert_btn_without_refresh');
        	$('.success_msg').show();
       	$('.popup_fade').show();
       	document.body.style.overflow = 'hidden';
@@ -48,6 +58,7 @@ if (isset($_GET['insert_new'])) {
 		$(document).ready(function () {
 		success_align();
 		$('.success_msg span').html('" . $_GET['params'] . "Parameter already exist!');
+		$('.success_msg input').removeClass('alert_btn').addClass('alert_btn_without_refresh');
        	$('.success_msg').show();
       	$('.popup_fade').show();
       	document.body.style.overflow = 'hidden';
@@ -204,7 +215,8 @@ if (isset($_GET['insert_new'])) {
 											<?php
 											$query = mysql_query("select * from wc_testbattery_test_attribute where testbattery_test_id = '".$eachrecord['test_id']."'");
 											$query1 = mysql_query("select * from wc_range where rangetest_id = '".$eachrecord['test_id']."'");
-											if(!mysql_num_rows($query) || !mysql_num_rows($query1)){
+											$query2 = mysql_query("select * from wc_result where resulttest_name = '".$eachrecord['test_name']."'");
+											if(!mysql_num_rows($query) || !mysql_num_rows($query1)||!mysql_num_rows($query2)){
 											 ?>
 											<i class="fa fa-floppy-o save_item edit_save_button"></i>
 											<i class="fa fa-pencil-square-o edit_item "></i>
