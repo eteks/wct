@@ -87,18 +87,29 @@ class testfunction{
         $testname = $_POST['test_name'];
         $test->testname = $testname ;
         if($test->testnameinsertfunction()){
+        	$exist = '';
             $row = mysql_fetch_array(mysql_query("select test_id from wc_test where test_name ='$testname'"));
             for($i=1;$i<=$counter;$i++){
                 $test_id = $row['test_id'];
+				
                 $parameter = $_POST["parameter_name".$i.""];
                 $type = $_POST["type".$i.""];
                 $unit = $_POST["unit".$i.""];
                 $format =  $_POST["format".$i.""];
-                
-                $sql = "insert into wc_test_attribute (test_id,test_parameter_name,test_parameter_type,test_parameter_unit,test_parameter_format,test_attribute_status)values('$test_id','$parameter','$type','$unit','$format','1')";
-                mysql_query($sql) or die(mysql_error());
+                // $sql = "insert into wc_test_attribute (test_id,test_parameter_name,test_parameter_type,test_parameter_unit,test_parameter_format,test_attribute_status)values('$test_id','$parameter','$type','$unit','$format','1')";
+                // mysql_query($sql) or die(mysql_error());
+                //$check_query_param = "select * from wc_test_attribute where test_id = '$test_id' and test_parameter_type ='$type'";
+				$check_query_param_name = "select * from wc_test_attribute where test_id = '$test_id' and test_parameter_name ='$parameter'";
+				if(!mysql_num_rows(mysql_query($check_query_param_name))){
+                	$sql = "insert into wc_test_attribute (test_id,test_parameter_name,test_parameter_type,test_parameter_unit,test_parameter_format,test_attribute_status)values('$test_id','$parameter','$type','$unit','$format','1')";
+                	mysql_query($sql) or die(mysql_error());	
+				}else{
+					$exist .= $parameter.',';
+				}
+				
             }
-            header('Location:../test.php?insert=true');
+            //header('Location:../test.php?insert=true');
+           header('Location:../test.php?insert_new=true&params='.$exist); 
         }else {
             $row = mysql_fetch_array(mysql_query("select test_id from wc_test where test_name ='$testname'"));
 			$exist = '';
@@ -108,13 +119,13 @@ class testfunction{
                 $type = $_POST["type".$i.""];
                 $unit = $_POST["unit".$i.""];
                 $format =  $_POST["format".$i.""];
-				$check_query_param = "select * from wc_test_attribute where test_id = '$test_id' and test_parameter_type ='$type'";
+				//$check_query_param = "select * from wc_test_attribute where test_id = '$test_id' and test_parameter_type ='$type'";
 				$check_query_param_name = "select * from wc_test_attribute where test_id = '$test_id' and test_parameter_name ='$parameter'";
-				if(!mysql_num_rows(mysql_query($check_query_param)) || !mysql_num_rows(mysql_query($check_query_param_name))){
+				if(!mysql_num_rows(mysql_query($check_query_param_name))){
                 	$sql = "insert into wc_test_attribute (test_id,test_parameter_name,test_parameter_type,test_parameter_unit,test_parameter_format,test_attribute_status)values('$test_id','$parameter','$type','$unit','$format','1')";
                 	mysql_query($sql) or die(mysql_error());	
 				}else{
-					$exist .= $type.',';
+					$exist .= $parameter.',';
 				}
             }
 			header('Location:../test.php?insert_new=true&params='.$exist);  
