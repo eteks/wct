@@ -677,7 +677,7 @@
           										// <div class="parameter_holder">\
           											// <div class="form-group col-md-4" style="padding: 0;">\
           												// <label class="popup_label">Enter Parameter Name</label><br>\
-          												// <input type="text" class="adjust_width test_parameter_name_update" name="parameter_name1" data-validation-error-msg="Please Enter the Parameter Name" data-validation="required" style="width:500px !important;height: 30px;" required>\
+          												// <input type="text" class="adjust_width test_parameter_name_update" name="parameter_name1" data-validation-error-msg="Please Enter the Parameter Name" data-validation="required" style="width:490px !important;height: 30px;" required>\
           											// </div>\
           											// <div class="form-group col-md-12 test_percentage parameter_type_parent">\
           												// <div class="form-group col-md-4" style="padding: 0;">\
@@ -2483,7 +2483,7 @@
         });
 
         function nextElement(element){
-            var last_id = parseInt(element.find('.parameter_count').val());
+        	var last_id = parseInt(element.find('.parameter_count').val());
             var newElement = element.clone();
             var id = last_id+1;
             current_id = id;

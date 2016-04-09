@@ -739,7 +739,7 @@ select {
     height: 34px;
     margin: 12px 0 0px 12px;
     position: relative;
-    right: 20px;
+    right: 13px;
     width: 192px !important;
     color: #424242  !important;
     font-family: Montserrat;
@@ -1314,9 +1314,9 @@ input[type=radio]:checked + label:before {
     float: right;
 }
 .add-ranges-button {
-    bottom: 65px;
+    bottom: 67px;
     float: right !important;
-    left: 10px;
+    left: -20px;
     position: relative;
     width: 140px;
 }
@@ -1348,7 +1348,7 @@ input[type=radio]:checked + label:before {
 .assign-add-button {
     bottom: 85px;
     float: right !important;
-    left: 52px;
+    left: 65px;
     position: relative;
 }
 .assign-scroll {
@@ -1545,6 +1545,7 @@ input[type=radio]:checked + label:before {
     font-size: 10px;
     font-size: 10px !important;
     font-family: sans-serif !important;
+    height: 1px;
    /* left: 40px;
     position: relative;*/
 }
