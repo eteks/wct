@@ -2391,7 +2391,7 @@
         $(document).on('click','.parameter_btn',function(e){
             if(($('.clone_content:last').children().find('.parameter_name').val() == '') || ($('.clone_content:last').children().find('.parameter_type').val() == '') || ($('.clone_content:last').children().find('.parameter_unit').val() == '') || ($('.clone_content:last').children().find('.parameter_format').val() == '') || ($('.clone_content').children().find('.parameter_name').val() == '') || ($('.clone_content').children().find('.parameter_type').val() == '') || ($('.clone_content').children().find('.parameter_unit').val() == '') || ($('.clone_content').children().find('.parameter_format').val() == ''))
             {
-              $('.clone_content:last').children().find('select, input[type="text"]').next().addClass('custom_error');
+              $('.clone_content:last').children().find('> select, input[type="text"]').next().addClass('custom_error');
               $('.clone_content:last select').next().next().remove();
               $('.clone_content:last input').next().next().next().remove();
               e.preventDefault();
@@ -2415,19 +2415,32 @@
         });
 
         $('#test_form .test_submit_act').click(function(e) {
-          e.preventDefault();  // don't submit it
+          e.preventDefault();  
           var submitOK = true;
-          $('#test_form').find('input[type="text"], select').each(function() {
+          $('#test_form').find('input[type="text"],select').each(function() {
                 if ($(this).val() == "") {
-                      $('input[name="test_name"]').next().addClass('custom_error');
-                      $('.clone_content:last').children().find('select, input[type="text"]').next().addClass('custom_error');
+                      $(this).next().addClass('custom_error');                     
                       submitOK = false;
-                      return false;  // breaks out of the each
+                      return false;  
+               }
+          });
+          $('.clone_content:last').children().find('input[type="text"],select').each(function() {
+             if ($(this).val() == ""){
+                      $(this).next().addClass('custom_error');                      
+                      var cntrl=$('.clone_content:last').children().find('> select');
+                          $(cntrl).each(function(index) {
+                          if (index==""){                          
+                            $(cntrl).next().addClass('custom_error');
+                            submitOK = false;
+                            return false; 
+                          }
+                          else  
+                            $(cntrl).next().removeClass('custom_error');
+                      });                     
                }
           });
           if (submitOK) {
-                $('input[name="test_name"]').next().removeClass('custom_error');
-                $('.clone_content:last').children().find('select, input[type="text"]').next().removeClass('custom_error');
+                $(this).next().removeClass('custom_error');              
                 $('#test_form').submit();
           }
         });
