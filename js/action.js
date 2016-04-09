@@ -2403,10 +2403,10 @@
               $('.clone_content:last select').next().next().remove();
               $('.clone_content:last input').next().next().next().remove();
               e.preventDefault();
-              if($('.clone_content:last').children().find('select, input[type="text"]').hasClass('custom_error')){
-                $("span .custom_error").hide();
-                $(".custom_error").removeClass("custom_error");
-              }
+              // if($('.clone_content:last').children().find('select, input[type="text"]').hasClass('custom_error')){
+              //   $("span .custom_error").hide();
+              //   $(".custom_error").removeClass("custom_error");
+              // }
             }
             else{
             $('.clone_content:last').children().find('select, input[type="text"]').next().removeClass('custom_error');
@@ -2490,8 +2490,8 @@
             newElement.find('.parameter_name').removeAttr('name').attr('name', 'parameter_name'+id).val('');
             newElement.find('#type').removeAttr('name').attr('name', 'type'+id);
             newElement.find('#unit').removeAttr('name').attr('name', 'unit'+id).removeClass('error').removeAttr('style').empty().append("<option value='' selected>UNIT</option>");
-            newElement.find('#unit').next('span').remove();
-            newElement.find('label').remove();
+            // newElement.find('#unit').next('span').remove();
+            // newElement.find('label').remove();
             newElement.find('#format').removeAttr('name').attr('name', 'format'+id).empty().append('<option value="">Format</option>');
             newElement.appendTo($(".parameter_holder1"));
         }
