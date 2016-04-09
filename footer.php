@@ -11,10 +11,13 @@ $(document).ready(function() {
     activePage: 0,
     rows: []
   });
-
   $(".date_pick,.popup_date_pick,.athlete_date_pick,.popup_athlete_datepick").dateDropdowns({
-    minAge: 18
-  });
+   maxDate: new Date(),
+   });
+  // $(".athlete_date_pick,.popup_athlete_datepick").dateDropdowns({
+  //  maxYear:2030
+  // });
+
 
   $("#athletes_mobile1,#ahtlete_mobile").keypress(function (e) {
      if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
