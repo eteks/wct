@@ -2395,12 +2395,11 @@
           }
         });
 
-
         var current_id = 1;
         $(document).on('click','.parameter_btn',function(e){
             if(($('.clone_content:last').children().find('.parameter_name').val() == '') || ($('.clone_content:last').children().find('.parameter_type').val() == '') || ($('.clone_content:last').children().find('.parameter_unit').val() == '') || ($('.clone_content:last').children().find('.parameter_format').val() == '') || ($('.clone_content').children().find('.parameter_name').val() == '') || ($('.clone_content').children().find('.parameter_type').val() == '') || ($('.clone_content').children().find('.parameter_unit').val() == '') || ($('.clone_content').children().find('.parameter_format').val() == ''))
             {
-              $('.clone_content:last').children().find('> select, input[type="text"]').next().addClass('custom_error');
+              $('.clone_content:last').children().find('select, input[type="text"]').next().addClass('custom_error');
               $('.clone_content:last select').next().next().remove();
               $('.clone_content:last input').next().next().next().remove();
               e.preventDefault();
@@ -2503,19 +2502,16 @@
         // });
               var test_id = 1;  
            $(document).on('click','.add_athelete',function(e){
-            if($('.assign_clone_content:last').children().find('#combobox').val() == ''){              
- 
+            if($('.assign_clone_content:last').children().find('#combobox').val() == '' || $('.assign_clone_content:last').children().find('#bib').val() == '' ){
               $('.assign_clone_content:last').children().find('#combobox').next().next().addClass('custom_error');
+              $('.assign_clone_content:last').children().find('#bib').next().addClass('custom_error');
               $('.assign_clone_content:last').children().find('#combobox').next().next().next().next().remove('span');                   
                e.preventDefault();
-            }else if($('.assign_clone_content:last').children().find('#bib').val() == '' ){
-              $('.assign_clone_content:last').children().find('#bib').next().addClass('custom_error');
-                        
-               e.preventDefault();
-            }          
+            }        
             else{
               $('.assign_clone_content:last').children().find('input[type="text"]').next().removeClass('custom_error');
               $('.assign_clone_content:last').children().find('#combobox').next().next().removeClass('custom_error');
+              $('.assign_clone_content:last').children().find('#bib').next().removeClass('custom_error');
               nextElement1($('.assign_clone_content:last'));
            }
            return false;     
@@ -3392,15 +3388,16 @@
 
       $('#assignschedule_form').submit(function(e){
         e.preventDefault();
-           $('#bib').next().removeClass('custom_error');
-          $('#combobox').next().next().removeClass('custom_error');
+         $('#combobox').next().next().removeClass('custom_error');           
         var res = true;
         $('input[type="text"],textarea,select',this).each(function() {
           if($(this).val().trim() == "") {
+            $('#bib').next().addClass('custom_error');
             res = false;
           }
         });	
         if(res){
+          $('#bib').next().removeClass('custom_error');         
             var form_data = $('#assignschedule_form').serialize();
            //alert(form_data);
             $.ajax({
