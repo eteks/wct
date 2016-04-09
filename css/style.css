@@ -249,9 +249,9 @@
 	/*border-radius:  0 !important;*/
 	box-shadow: none !important;
 }
-#test_form .adjust_width, #test_updation_form .adjust_width {
+/*#test_form .adjust_width, #test_updation_form .adjust_width {
     display:block;
-}
+}*/
 .adjust_width_tiny{
     border-radius: 0 !important;
     box-shadow: none !important;
@@ -801,7 +801,7 @@ select {
     background: #006687 none repeat scroll 0 0;
     color: #fff;
     cursor: pointer;
-    left: 53px;
+    left: 45px;
     padding: 10px;
     position: absolute;
 }
@@ -809,7 +809,9 @@ select {
     background: #006687 none repeat scroll 0 0;
     color: #fff;
     cursor: pointer;
+    left: 0px;
     padding: 10px;
+    position: relative;
 }
 label{
     color: #606060 !important;
@@ -967,6 +969,7 @@ button, input, optgroup, select, textarea {
     right: 60px;
     top: -20px;
     width: 100px !important;
+    padding: 3px !important;
 }
 .create-date {
     border-radius: 0 !important;
@@ -1221,14 +1224,11 @@ input[type=radio]:checked + label:before {
     font-family: sans-serif !important;
     font-size: 10px !important;
 }
-.delete_color .form-error {
+/*.delete_color .form-error {
     position:absolute;
     left:15px;
     top:69px;
-}
-.delete_color {
-
-}
+}*/
 .help-block{
     margin-bottom: 0 !important;
     margin-top: 0 !important;
@@ -1377,7 +1377,7 @@ input[type=radio]:checked + label:before {
 }
 .nm { margin:0px !important; }
 .parameter__align {
-    margin: 24px 0 0 -8px;
+    margin: 23px 0 0 -8px;
     position: relative;
 }
 .align-time {
@@ -1401,7 +1401,7 @@ input[type=radio]:checked + label:before {
     display: none;
     font-family: Montserrat;
     font-size: 10px;
-    height: 23px;
+    height: 30px !important;
     left: -10px !important;
     padding: 5px 10px 0px 10px;
     position: absolute;
@@ -1451,7 +1451,7 @@ input[type=radio]:checked + label:before {
     display: none;
     font-family: Montserrat;
     font-size: 10px;
-    height: 23px;
+    height: 30px !important;
     left: -30px !important;
     padding: 6px 10px 0px 10px;
     position: absolute;
@@ -2267,4 +2267,26 @@ td {
 }
 .popup-edit{
 	overflow:visible;
+}
+.edit_create_schedule_form  .form-error{
+	left: 0px;
+	top: 0px;
+	position:relative;
+	float:left;
+}
+#test_updation_form .form-error{
+	float:left;
+	left: 10px;
+    position: relative;
+}
+.edit_range_form_id .custom_error{
+	left: -7px;
+    position: relative;
+    float:left;
+}
+.edit_athletes_form .form-error{
+	float:left;
+}
+#test_battery_update_form .form-error{
+	float:left;
 }

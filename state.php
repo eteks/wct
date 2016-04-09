@@ -3,7 +3,7 @@
 	  require_once 'functions/states_function.php';
 	  $statesFunction = new statesFunction();
 ?>
-		<div class="container align_center left_align align_height">
+		<div class="container align_center left_align align_height padding_zero">
 			<span class="sports">STATE</span>
 		</div><!--end container-->
 		<div class="container align_margin align_bottom" style="width: 85%;">
@@ -21,7 +21,7 @@
 						<input type="reset" value="Cancel" class="btn btn-primary clear">
 					</form>
 				</div><!--align_margin-->
-				<div class="table-position">
+				<div class="table-position col-md-12 np">
 				  <table class="table state_table">
 				    <thead>
 				      <tr class="row_color">
