@@ -216,8 +216,26 @@
 					        <td class="t_range_testname"><?php echo $row['test_name']; ?></td> 
 					       	<td class="t_range_paramtername"><?php echo $row['test_parameter_name']; ?></td>
 					        <td class="popup-edit">
-					        	<span class="edit_state" onclick="editfunction(<?php echo $row['range_id'] ?>,this)"><i class="fa fa-pencil-square-o"></i></span>
-					        	<span class="delete_state" data-value="<?php echo $row['range_id'] ?>"><i class="fa fa-trash-o"></i></span>
+					        	<?php
+								$check_in_result = mysql_query("SELECT * FROM wc_result as r INNER JOIN wc_assignschedule as asch ON 
+									r.resultcreateschedule_id = asch.assigncreateschedule_id AND r.resultathlete_id = asch.assignathlete_id WHERE r.resulttest_name='".$row['test_name']."' AND r.resultparameter_name='".$row['test_parameter_name']."' AND asch.assigncategory_id='".$row['categories_id']."'")or die(mysql_error());
+								// echo "SELECT * FROM wc_result as r INNER JOIN wc_assignschedule as asch ON 
+								// 	r.resultcreateschedule_id = asch.assigncreateschedule_id AND r.resultathlete_id = asch.assignathlete_id WHERE r.resulttest_name='".$row['test_name']."' AND r.resultparameter_name='".$row['test_parameter_name']."' AND asch.assigncategory_id='".$row['categories_id']."'";
+								if(mysql_num_rows($check_in_result)>0){ ?>
+					        		<span class="restrict">
+								        	<i class="fa fa-pencil-square-o">
+								        	<div class="restrict_tooltip">Mapping has been already done.Edit or Delete not possible.</div>
+								        	</i>
+							        	</span>
+							        	<span class="restrict_del">
+								        	<i class="fa fa-trash-o"> 
+								        	<div class="restrict_tooltip">Mapping has been already done.Edit or Delete not possible.</div>
+								        	</i>
+							        	</span>
+						        <?php } else{?>
+						        	<span class="edit_state" onclick="editfunction(<?php echo $row['range_id'] ?>,this)"><i class="fa fa-pencil-square-o"></i></span>
+						        	<span class="delete_state" data-value="<?php echo $row['range_id'] ?>"><i class="fa fa-trash-o"></i></span>
+								<?php }?>
 								<div class="range_div popup_hidden">
 						          		<code class="close_btn cancel_btn"> </code>
 						          		<div class="edit_title">

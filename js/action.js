@@ -3729,6 +3729,11 @@
                }
            });
         });
+
+        //Sort By athlete name in result module while return autosuggestion results
+        function SortByName(x,y) {
+          return ((x.ath_name == y.ath_name) ? 0 : ((x.ath_name > y.ath_name) ? 1 : -1 ));
+        }
         //Jquery and Ajax functionality for Result form
         var athletes_list = [];
         var athlete_json = [];
@@ -3764,6 +3769,7 @@
 
                       // $('.result_athletename').html(options);
                       // alert(JSON.stringify(athlete_json));
+                      athletes_list.sort(SortByName);
                     }
                     else{
                       //alert(result_split[1]);
