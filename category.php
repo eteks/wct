@@ -5,7 +5,7 @@ require_once "functions/category_function.php";
 $obj = new categoryfunction();
 ?>
 	<div class="container">
-		<div class="container align_center left_align_category align_height">
+		<div class="align_center left_align_category align_height">
 			<span class="sports">CATEGORY</span>
 		</div><!--end container-->
 		<div class="container align_margin align_bottom">

@@ -1444,7 +1444,7 @@
       });
     	$('.statesname,.edit_states_name').focus(function (e) {
     		$(this).autocomplete({
-    			source: states_list,
+    			source: states_list.sort(),
     	 	});
     	});
 
@@ -1455,7 +1455,7 @@
       });
       $('.edit_states_name').focus(function (e) {
         $(this).autocomplete({
-          source: edit_states_list,
+          source: edit_states_list.sort(),
         });
       });
 
@@ -1541,7 +1541,7 @@
        $(document).on('focus','.districts',function(e){
            $(this).autocomplete({
            // source: district_list,
-           source: d1_list,
+           source: d1_list.sort(),
            });
        });
        
@@ -3730,6 +3730,11 @@
                }
            });
         });
+
+        //Sort By athlete name in result module while return autosuggestion results
+        function SortByName(x,y) {
+          return ((x.ath_name == y.ath_name) ? 0 : ((x.ath_name > y.ath_name) ? 1 : -1 ));
+        }
         //Jquery and Ajax functionality for Result form
         var athletes_list = [];
         var athlete_json = [];
@@ -3765,6 +3770,7 @@
 
                       // $('.result_athletename').html(options);
                       // alert(JSON.stringify(athlete_json));
+                      athletes_list.sort(SortByName);
                     }
                     else{
                       //alert(result_split[1]);

@@ -114,7 +114,7 @@ if (isset($_GET['insert_new'])) {
 			<div class="col-xs-12 col-md-12 align_margin">
 				<form id="test_form" name="test_form_act" action="functions/test_functions.php" method="post">
 					<div class="form-group">
-						<label>Enter name of Test</label><br>
+						<label>Enter name of Test</label>
 						<input type="text" class="adjust_width" name="test_name" autocomplete="off">
 						<span class="category_text">Please enter name of Test</span>
 					</div>
@@ -122,7 +122,7 @@ if (isset($_GET['insert_new'])) {
 						<div class="clone_content" id="param_counter1">
 							<div class="form-group col-md-11 schedule_test">
 							<div class="form-group col-md-5">
-								<label>Enter Test Parameters</label><br>
+								<label>Enter Test Parameters</label>
 								<input type="text" class="adjust_width parameter_name" name="parameter_name1" autocomplete="off">
 								<span class="hided param_name_error">Please enter Parameter Name</span>
 								<input type="hidden" class="parameter_count" value="1" />
@@ -291,17 +291,17 @@ if (isset($_GET['insert_new'])) {
 					                	<span class="del_txt">Edit Test</span>
 					              	</div>
 					          			<div class="container col-md-12">
-						          			<div class="col-xs-12 col-md-12">
+						          			<div class="">
 									<form id="test_updation_form" action="functions/test_functions.php" method="post">
 										<div class="parameter_holder">
-											<div class="form-group col-md-5" style="padding: 0;">
-												<label class="popup_label">Enter Parameter Name</label><br>
-												<input type="text" class="adjust_width test_parameter_name_update" name="parameter_name1" data-validation-error-msg="Please Enter the Parameter Name" data-validation="required" style="width:500px !important;height: 30px;">
+											<div class="form-group" style="padding: 0;">
+												<label class="popup_label">Enter Parameter Name</label>
+												<input type="text" class="adjust_width test_parameter_name_update" name="parameter_name1" data-validation-error-msg="Please Enter the Parameter Name" data-validation="required" style="width:515px !important;height: 30px;">
 
 											</div>
 											<div class="form-group col-md-12 test_percentage parameter_type_parent">
 												<div class="form-group col-md-4" style="padding: 0;">
-													<label class="popup_label">Type</label><br>
+													<label class="popup_label">Type</label>
 													<select class="form-control classic type_align_popup fl parameter_type parameter_type_update" id="type1" name="type1" data-validation-error-msg="Please Select the Type" data-validation="required">
 														<option value="">Type</option>
 														<?php
@@ -320,12 +320,12 @@ if (isset($_GET['insert_new'])) {
 													</select>
 												</div>
 												<div class="form-group col-md-4" style="padding: 0;">
-													<label class="popup_label">Unit</label><br>
+													<label class="popup_label">Unit</label>
 													<select class="form-control classic type_align_popup fl parameter_unit parameter_unit_update" id="unit1" name="unit1" data-validation-error-msg="Please Select the Unit" data-validation="required">
 													</select>
 												</div>
 												<div class="form-group col-md-4" style="padding: 0;">
-													<label class="popup_label">Format</label><br>
+													<label class="popup_label">Format</label>
 													<select class="form-control classic type_align_popup fl parameter_format parameter_format_update" id="format1" name="format1" data-validation-error-msg="Please Select the Format" data-validation="required">
 														<option value="">Format</option>
 														<option value="0">0</option>

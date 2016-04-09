@@ -4,7 +4,7 @@
 	  $parametertypeFunction = new parametertypeFunction();
 ?>
 <div class="container">
-	<div class="container left_align_parameter align_height">
+	<div class="container left_align_parameter align_height np">
 		<span class="sports">PARAMETER TYPE</span>
 	</div><!--end container-->
 	<div class="container">

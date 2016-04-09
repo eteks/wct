@@ -73,6 +73,7 @@ if(isset($_GET['update_success'])){
 		   						  <option value="<?php echo $eachrecord ['createschedule_id']; ?>"><?php echo $eachrecord ['createschedule_name']; ?></option>
 		   					   <?php } ?>
 						  </select>
+						  <div class="clear_both"></div>
 					</div>
 					<div class="form-group">
 						  <label for="sel1">Select Category</label>
@@ -213,7 +214,7 @@ if(isset($_GET['update_success'])){
 			          		<div class="edit_title">
 			                	<span class="del_txt">Edit Schedule Details</span>
 			              	</div><!--edit_title-->
-			          			<div class="container state-content col-md-12 assign-scroll">
+			          			<div class="container state-content col-md-12 assign-scroll nm">
 				          			<div class="col-xs-12 col-md-12 align_margin">
 							<form id="edit_assign_schedule_form" action="functions/assign_schedule_function.php" method="post">
 								<div class="form-group">
@@ -232,6 +233,7 @@ if(isset($_GET['update_success'])){
 			   							 <option value="<?php echo $eachrecord1 ['categories_id']; ?>"><?php echo $eachrecord1 ['categories_name']; ?></option>
 			   						   <?php } ?>
 									  </select>
+									  <div class="clear_both"></div>
 								</div>
 								<label for="athlete" class="email_txt popup_label">Add Athletes</label><br>
 								<div class=" clone_schedule_update_content assign_clone_content_edit_holder col-md-12">

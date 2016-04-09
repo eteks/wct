@@ -45,11 +45,11 @@
 			<div class="col-xs-12 col-md-7 align_margin">
 				<form name="athletes_form" id="athlete_form">
 					<div class="form-group">
-						<label>Name of Athlete</label><br>
+						<label>Name of Athlete</label>
 						<input type="text" class="adjust_width" name="athlete_name" autocomplete="off" data-validation-error-msg="Please enter Name of athlete" data-validation="required">
 					</div>
 					<div class="form-group">
-					  <label for="date" class="fl">Date Of Birth</label><br>
+					  <label for="date" class="">Date Of Birth</label>
 					  <input class="athlete_date_pick" type="text">
 					 <!-- <select class="form-control classic dob_align fl" id="date" name="athlete_dobday" data-validation-error-msg="Please Select the Date" data-validation="required">
 					  	<option value="">Date</option>
@@ -73,7 +73,7 @@
 					  </select> -->
 					</div>
 					<div class="form-group">
-      					<label>Mobile Number</label><br>
+      					<label>Mobile Number</label>
       					<input type="text" id="athletes_mobile1" class="adjust_width" name="athlete_mobile" autocomplete="off" data-validation-error-msg="Please enter valid Mobile no.(with 10 digits)" data-validation="length" data-validation-length="10"  maxlength="10">
      				</div>
 					<div class="form-group">
@@ -110,12 +110,12 @@
 					</div>
 
 					<div class="align_height align_margin">
-						<label>Address</label><br>
+						<label>Address</label>
 						<textarea class="area_width" name="athlete_address" data-validation-error-msg="Please enter Address" data-validation="required"></textarea>
 					</div>
 
 					<div class="form-group">
-						<label>Taluka</label><br>
+						<label>Taluka</label>
 						<input type="text" class="adjust_width" name="athlete_taluka" autocomplete="off" data-validation-error-msg="Please enter Taluka" data-validation="required">
 					</div>
 
@@ -256,9 +256,11 @@
 											<label>Athlete Name</label><br>
 											<input type="text" class="adjust_width" name="edit_athlete_name" data-validation-error-msg="Please Enter the name of the Athelete" data-validation="required">
 										</div> -->
-										<div class="form-group align-day align-day-popup">
-										  <label for="date" class="popup_label" style="text-align:center;">Date Of Birth</label><br>
-										  <input class="popup_athlete_datepick" type="text">
+										<div class="form-group align-day align-day-popup col-md-10">
+										  <label for="date" class="popup_label" style="text-align:center;">Date Of Birth</label>
+										
+										  	<input class="popup_athlete_datepick" type="text">
+										 
 										 <!--  <select class="form-control classic dob_align1 fl" id="date1" name="edit_athlete_dobday" data-validation-error-msg="Please Select the Date" data-validation="required">
 										  	<option value="">Date</option>
 										    <option value="1">1</option>
@@ -279,11 +281,11 @@
 										  </select> -->
 										</div>
 										<div class="form-group col-md-10">
-					      					<label class="popup_label">Mobile Number</label><br>
+					      					<label class="popup_label">Mobile Number</label>
 					      					<input id="ahtlete_mobile" type="text" value="" class="adjust_width box-width box-width-athlete" name="edit_athlete_mobile" autocomplete="off" data-validation-error-msg="Please Enter the value that must contain 10 numbers" data-validation="length" data-validation-length="10">
 					     				</div>
 										<div class="form-group col-md-10">
-											  <label for="sel1" class="popup_label">Gender</label><br>
+											  <label for="sel1" class="popup_label">Gender</label>
 											  <select class="form-control adjust_width classic box-width box-width-athlete" id="sel1" name="edit_athlete_gender" data-validation-error-msg="Please Select the Gender" data-validation="required">
 											  <option value=""></option>
 											  <option value="Female">Female</option>
@@ -291,7 +293,7 @@
 											  </select>
 										</div>
 										<div class="form-group col-md-10">
-											  <label for="sel1" class="popup_label">State</label><br>
+											  <label for="sel1" class="popup_label">State</label>
 											  <select class="form-control adjust_width classic athlete_state_act box-width box-width-athlete" id="sel1" name="edit_athlete_state" data-validation-error-msg="Please Select the State" data-validation="required">
 											  <option value="">State</option>
 											   <?php
@@ -303,24 +305,24 @@
 											  </select>
 										</div>
 										<div class="form-group col-md-10">
-											  <label for="sel1" class="popup_label">District</label><br>
+											  <label for="sel1" class="popup_label">District</label>
 											  <select class="form-control adjust_width classic athlete_district_act box-width box-width-athlete" id="sel1" name="edit_athlete_district" data-validation-error-msg="Please Select the District" data-validation="required">
 											  <option value=""> District</option>
 											  </select>
 										</div>
 
 										<div class="align_height align_margin col-md-10">
-											<label class="popup_label">Address</label><br>
+											<label class="popup_label">Address</label>
 											<textarea class="area_width_athlete" name="edit_athlete_address" data-validation-error-msg="Please Enter the Address" data-validation="required"></textarea>
 										</div>
 
 										<div class="form-group col-md-10">
-											<label class="popup_label">Taluka</label><br>
+											<label class="popup_label">Taluka</label>
 											<input type="text" class="adjust_width box-width box-width-athlete" name="edit_athlete_taluka" autocomplete="off" data-validation-error-msg="Please Enter the Taluka" data-validation="required">
 										</div>
 
 										<div class="form-group col-md-10">
-											  <label for="sel1" class="popup_label">Sport</label><br>
+											  <label for="sel1" class="popup_label">Sport</label>
 											  <select class="form-control adjust_width classic box-width box-width-athlete form-group" id="sel1" name="edit_athlete_sports" data-validation-error-msg="Please Select the Sport" data-validation="required">
 											  <option value=""> Sport</option>
 											   <?php
