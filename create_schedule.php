@@ -32,11 +32,6 @@
 	}
 </style>
 <script type="text/javascript">	
-	// $(document).ready(function () {
-	// 	$('.add_createschedule_act, .edit_createschedule_act').on('click', function(){
-	// 		$('.day, .month, .year').attr('data-validation', 'required');
-	// 	});
-	// });
 </script>
 <div class="container align_bottom">
 	<div class="container left_align_parameter align_height np">
@@ -66,6 +61,7 @@
 					<div class="form-group">
 					  <label for="date" class=""  style="">Select Date</label>
 				    	<input class="date_pick" type="text">
+				    	<span class="hided">Please Choose valid Date</span>
 					</div>
 					<div class="form-group nm">
 					  <label for="date" class="" style="">Select Time</label>
@@ -379,6 +375,7 @@
 												<div class="form-group align-day align-day-popup fl">
 												  <label for="date" class="popup_label">Select date</label>
 												  <input class="popup_date_pick" type="text">
+												  <span class="hided">Please Choose valid Date</span>
 												 <!--  <select class="form-control classic create-date1 fl" id="date" name="edit_schedule_day" data-validation-error-msg="Please Select the Date" data-validation="required">
 												  	<option value="">Date</option>
 												    <option value="1">1</option>

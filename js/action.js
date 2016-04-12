@@ -350,10 +350,44 @@
       package_menu();
 
       $('.add_createschedule_act,.edit_createschedule_act,.add_athletes_act,.edit_athletes_act').on('click', function(){
-         $('.day, .month, .year').attr('data-validation', 'required');
+         $('.day, .month, .year').attr('data-validation', 'birthdate');
          $('.day, .month, .year').attr('data-validation-error-msg', 'Please Select Date');
+          date_check();
+      });
+
+      $('#test_form .parameter_btn').click(function(e) {
+          e.preventDefault();  
+          var submitOK = true;
+           $('.clone_content:last').children().find('input[type="text"],select').each(function() {
+             if ($(this).val() == ""){
+                      $(this).next().addClass('custom_error');                      
+                      var cntrl=$('.clone_content:last').children().find('> select');
+                          $(cntrl).each(function(index) {
+                          if (index==""){                          
+                            $(cntrl).next().addClass('custom_error');
+                            submitOK = false;
+                            return false; 
+                          }
+                          else  
+                            $(cntrl).next().removeClass('custom_error');
+                      });                     
+               }
+               else{
+                 $(this).next().removeClass('custom_error');                              
+               }
+          });
+          //  if(($('.clone_content:last').children().find('.parameter_name').val() != '') || ($('.clone_content:last').children().find('.parameter_type').val() != '') || ($('.clone_content:last').children().find('.parameter_unit').val() != '') || ($('.clone_content:last').children().find('.parameter_format').val() != '') || ($('.clone_content').children().find('.parameter_name').val() != '') || ($('.clone_content').children().find('.parameter_type').val() != '') || ($('.clone_content').children().find('.parameter_unit').val() != '') || ($('.clone_content').children().find('.parameter_format').val() != ''))
+          //   {
+          //       var id = current_id+1;
+          //       nextElement($('.clone_content:last'));
+          //       $('.clone_content:last').attr('id','parameter_count'+id);
+          // }
+          // else{
+          //   return false;
+          // }
         });
 
+     
       $('.edit_item,.save_item,.delete_item,.edit_time,.save_time,.delete_time').hide();
       $('.test_search').keyup(function() {
             $('.test-list').empty();
@@ -2395,26 +2429,17 @@
           }
         });
 
-        var current_id = 1;
+       var current_id = 1;
         $(document).on('click','.parameter_btn',function(e){
             if(($('.clone_content:last').children().find('.parameter_name').val() == '') || ($('.clone_content:last').children().find('.parameter_type').val() == '') || ($('.clone_content:last').children().find('.parameter_unit').val() == '') || ($('.clone_content:last').children().find('.parameter_format').val() == '') || ($('.clone_content').children().find('.parameter_name').val() == '') || ($('.clone_content').children().find('.parameter_type').val() == '') || ($('.clone_content').children().find('.parameter_unit').val() == '') || ($('.clone_content').children().find('.parameter_format').val() == ''))
-            {
-              $('.clone_content:last').children().find('select, input[type="text"]').next().addClass('custom_error');
-              $('.clone_content:last select').next().next().remove();
-              $('.clone_content:last input').next().next().next().remove();
-              e.preventDefault();
-              // if($('.clone_content:last').children().find('select, input[type="text"]').hasClass('custom_error')){
-              //   $("span .custom_error").hide();
-              //   $(".custom_error").removeClass("custom_error");
-              // }
+            {            
+              e.preventDefault();            
             }
-            else{
-            $('.clone_content:last').children().find('select, input[type="text"]').next().removeClass('custom_error');
+            else{          
             var id = current_id+1;
             nextElement($('.clone_content:last'));
             $('.clone_content:last').attr('id','parameter_count'+id);
            }
-           return false;
         });
 
         $(".reset_form,.test_submit_act").on('click', function() {
@@ -2469,8 +2494,7 @@
         });
 
         $('.add_createschedule_act,.edit_createschedule_act,.add_athletes_act,.edit_athletes_act').on('click', function(){
-         $('.day, .month, .year').attr('data-validation', 'required');
-          var x = document.getElementById('athletes_mobile1').value;
+         var x = document.getElementById('athletes_mobile1').value;
           if($("#athletes_mobile1").siblings('span').hasClass("help-block form-error")){
             return false;
           }
@@ -2478,8 +2502,8 @@
             $('#athletes_mobile1').next('span').hide();
             return true;
           }
-
-        });
+        });         
+       
 
         function nextElement(element){
             var last_id = parseInt(element.find('.parameter_count').val());
@@ -2785,7 +2809,7 @@
                         current.parents('.schedule_test').find('.parameter_unit').html("<option value=''>UNIT</option>");
                         //alert('Parameter Unit Not availabel!');
                         success_align();
-                 	    $('.success_msg span').html('Parameter Unit Not availabel!');
+                 	    $('.success_msg span').html('Parameter Unit Not available!');
                    		$('.success_msg input').removeClass('alert_btn').addClass('alert_btn_without_refresh');
 	                    $('.success_msg').show();
 	                    $('.popup_fade').show();
@@ -2805,6 +2829,9 @@
 
             }
           });
+           if($(".date-dropdowns").next('span').hasClass("help-block form-error")){
+              res =  false;
+            }
           if(res){
               var form_data = $('[name=athletes_form]').serialize();
               $.ajax({
@@ -2901,7 +2928,7 @@
           e.preventDefault();
           var res = true;
           $('input[type="text"],select',this).each(function() {
-            if($(this).val().trim() == "") {
+            if($(this).val().trim() == ""){
               res = false;
               // alert('false  comes');
             }
@@ -3062,7 +3089,7 @@
         });
 
         $('.edit_create_schedule_form').submit(function(e){
-            e.preventDefault();
+            e.preventDefault();         
             var res = true;
             $('input[type="text"],textarea,select',this).each(function() {
               if($(this).val().trim() == "") {
@@ -3107,6 +3134,28 @@
             }
             });
 
+      function date_check()
+      {    
+       var day_from = $('.day').val();                     
+       var month_from = $('.month').val();                         
+       var year_from = $('.year').val();
+        var trans_date = day_from + "/" + month_from + "/" + year_from; 
+        // alert(trans_date);          
+        var d = new Date();
+        var today = d.getDate() + "/" + (d.getMonth()+1) + "/" + d.getFullYear();   
+        // alert(today);
+        if(new Date(trans_date) < new Date(today)){
+          $('.date-dropdowns').next().removeClass('help-block form-error');
+         // return true;
+       }
+       else{
+        if(new Date(trans_date) > new Date(today)){
+          $('.date-dropdowns').next().addClass('help-block form-error');
+          $('.date-dropdowns').next().next().removeClass('help-block form-error').addClass('hided');
+          return false;
+        } 
+       }
+    }
     //range
     //Jquery and Ajax Functionality for Range Form added by kalai
          $('.range_form_id').submit(function(e){
