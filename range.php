@@ -135,7 +135,7 @@
 					<!-- <button type="button" class="btn btn-primary align_right ranges_btn add_range_points">Add Ranges</button><i class="fa fa-plus plus_align"></i> -->
 					<div class="col-md-9 schedule_btn">
 						<input type="submit" class="btn btn-primary test-submit clear add_range_act" value="Save">
-						<input type="reset" value="Cancel" class="btn btn-primary clear reset_form" maxlength="50">
+						<input type="reset" value="Cancel" class="btn btn-primary clear reset_form_range" maxlength="50">
 					</div>
 				</form>
 			</div>

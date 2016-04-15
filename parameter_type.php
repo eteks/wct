@@ -73,7 +73,7 @@
 									<div class="form-group">
 										  <label for="sel1">Enter Parameter Type</label>
 										  <input type="hidden" name="edit_parameter_id" />
-										  <input type="text" class="form-control adjust_width_parameter classic" id="sel1" name="edit_parameter_type" autocomplete="off" data-validation-error-msg="Please Select the Type of the Parameter" data-validation="required">
+										  <input type="text" class="form-control adjust_width_parameter classic" id="sel1" name="edit_parameter_type" autocomplete="off" data-validation-error-msg="Please enter Parameter Type" data-validation="required">
 									</div>
 									<div class="col-md-12 schedule_btn">
 											<input type="submit" class="btn btn-primary center_align clear edit_parameter_act" value="Save">

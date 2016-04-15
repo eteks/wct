@@ -2732,9 +2732,10 @@
        // });
 
        $('.reset_form_dist').click(function(){
-           $("span .help-block form-error").hide();
-           $(".help-block,.form-error").removeClass("help-block form-error");
-           $('.choose_state').next('span').addClass('category_text');
+          $('.choose_state').next().find('span').removeClass("help-block form-error");
+           $('.choose_state').next().find('span').addClass('hided');
+            $('.district_clone_content:last').find('input[type="text"]').siblings('.hided').removeClass('custom_error');
+            // $('.district_clone_content :last').children().find('span').removeClass('custom_error');
            $(".district_clone_content").each(function() {
                if($('.district_clone_content').length !=1){
                    $('.district_clone_content:last').remove();
@@ -3630,14 +3631,14 @@
         return false;
       });
 
-        // Jquery functions for Range Form added by kalai
+      // Jquery functions for Range Form added by kalai
         var current_id = 1;
         $(document).on('click','.add_range_points',function(e){
-            if(($('.clone_content:last').children().find('.r_strt').val() == '') || ($('.clone_content:last').children().find('.r_end').val() == '') || ($('.clone_content:last').children().find('.r_point').val() == '') || ($('.clone_content').children().find('.r_strt').val() == '') || ($('.clone_content').children().find('.r_end').val() == '') || ($('.clone_content').children().find('.r_point').val() == ''))
-            {
+          $('.clone_content:last').children().find('input[type="text"]',this).each(function(){
+            if($(this).val() == '')
+            {            
               $('.clone_content:last').children().find('input[type="text"]').next().addClass('custom_error');
-              e.preventDefault();
-              // alert('please fill all the fields');
+              e.preventDefault();             
             }
             else if($('.range_holder').find('.hided').hasClass('custom_error')){
                 e.preventDefault();
@@ -3649,7 +3650,29 @@
               $('.clone_content:last').attr('id','range_counter'+id);
            }
            return false;
+            });
         });
+
+        // var current_id = 1;
+        // $(document).on('click','.add_range_points',function(e){
+
+        //     if(($('.clone_content:last').children().find('.r_strt').val() == '') || ($('.clone_content:last').children().find('.r_end').val() == '') || ($('.clone_content:last').children().find('.r_point').val() == '') || ($('.clone_content').children().find('.r_strt').val() == '') || ($('.clone_content').children().find('.r_end').val() == '') || ($('.clone_content').children().find('.r_point').val() == ''))
+        //     {
+        //       $('.clone_content:last').children().find('input[type="text"]').next().addClass('custom_error');
+        //       e.preventDefault();
+        //       // alert('please fill all the fields');
+        //     }
+        //     else if($('.range_holder').find('.hided').hasClass('custom_error')){
+        //         e.preventDefault();
+        //     }
+        //     else{
+        //       $('.clone_content:last').children().find('input[type="text"]').next().removeClass('custom_error');
+        //       var id = current_id+1;
+        //       nextrangeElement($('.clone_content:last'));
+        //       $('.clone_content:last').attr('id','range_counter'+id);
+        //    }
+        //    return false;
+        // });
 
         // $(document).on('click','.add_range_points',function(e){
         //   $('.r_strt .r_end .r_point').filter(function() {
@@ -3693,6 +3716,13 @@
             newElement.appendTo($(".range_holder"));
         }
 
+        $('.reset_form_range').click(function(){         
+           $(".clone_content").each(function() {
+               if($('.clone_content').length !=1){
+                   $('.clone_content:last').remove();
+               }
+           });
+       });
         //Calculate Range points by range start and end
         // $(document).on('focus','.r_point',function(){
         //     range_start = $(this).siblings('.r_strt').val();
