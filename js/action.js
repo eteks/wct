@@ -2732,9 +2732,10 @@
        // });
 
        $('.reset_form_dist').click(function(){
-           $("span .help-block form-error").hide();
-           $(".help-block,.form-error").removeClass("help-block form-error");
-           $('.choose_state').next('span').addClass('category_text');
+          $('.choose_state').next().find('span').removeClass("help-block form-error");
+           $('.choose_state').next().find('span').addClass('hided');
+            $('.district_clone_content:last').find('input[type="text"]').siblings('.hided').removeClass('custom_error');
+            // $('.district_clone_content :last').children().find('span').removeClass('custom_error');
            $(".district_clone_content").each(function() {
                if($('.district_clone_content').length !=1){
                    $('.district_clone_content:last').remove();
