@@ -334,7 +334,7 @@ if(isset($_GET['find_test_battery_sports'])){
 	    $test_battery_id =  $_POST['id'];
 	    $query = mysql_query("select * from wc_createschedule where createscheduletestbattery_id = '$test_battery_id'");
 		$query1 = mysql_query("select * from wc_range where rangetestbattery_id = '$test_battery_id'");
-		if(!mysql_num_rows($query) || !mysql_num_rows($query1)){
+		if(!mysql_num_rows($query) && !mysql_num_rows($query1)){
 			echo 'ok';
 		}else{
 			echo "no";

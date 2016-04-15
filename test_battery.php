@@ -170,7 +170,7 @@ if(isset($_GET['duplicate'])){
 									<?php
 										$query = mysql_query("select * from wc_createschedule where createscheduletestbattery_id = '".$eachrecord['testbattery_id']."'");
 										$query1 = mysql_query("select * from wc_range where rangetestbattery_id = '".$eachrecord['testbattery_id']."'");
-										if(!mysql_num_rows($query) || !mysql_num_rows($query1)){
+										if(!mysql_num_rows($query) && !mysql_num_rows($query1)){
 							 		?>
 											<i class="fa fa-floppy-o save_item save_test_battery_name"></i>
 											<i class="fa fa-pencil-square-o edit_item"></i>

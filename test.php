@@ -216,7 +216,7 @@ if (isset($_GET['insert_new'])) {
 											$query = mysql_query("select * from wc_testbattery_test_attribute where testbattery_test_id = '".$eachrecord['test_id']."'");
 											$query1 = mysql_query("select * from wc_range where rangetest_id = '".$eachrecord['test_id']."'");
 											$query2 = mysql_query("select * from wc_result where resulttest_name = '".$eachrecord['test_name']."'");
-											if(!mysql_num_rows($query) || !mysql_num_rows($query1)||!mysql_num_rows($query2)){
+											if(!mysql_num_rows($query) && !mysql_num_rows($query1)&&!mysql_num_rows($query2)){
 											 ?>
 											<i class="fa fa-floppy-o save_item edit_save_button"></i>
 											<i class="fa fa-pencil-square-o edit_item "></i>
@@ -273,7 +273,7 @@ if (isset($_GET['insert_new'])) {
 				        	<?php
 							$valid = mysql_query("select * from wc_testbattery_test_attribute where testbattery_test_id = '".$eachrecord['test_id']."'");
 							$valid1 = mysql_query("select * from wc_range where rangetest_id = '".$eachrecord['test_id']."'");
-							if(!mysql_num_rows($valid) || !mysql_num_rows($valid1)){
+							if(!mysql_num_rows($valid) && !mysql_num_rows($valid1)){
 							 ?>
 				        	<span class="edit_state new_editstate edit_test" data-value="<?php echo $eachrecord['test_attribute_id']; ?>" data-test-id="<?php echo $eachrecord['test_id']; ?>"><i class="fa fa-pencil-square-o"></i></span>
 			        		<span class="delete_state" data-value="<?php echo $eachrecord['test_attribute_id']; ?>"><i class="fa fa-trash-o"></i></span>

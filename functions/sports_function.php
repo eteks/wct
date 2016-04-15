@@ -23,14 +23,16 @@ class sportsfunction{
 
     }
     public function sportsupdatefunction(){
-        $check_query = "select * from wc_sports where sports_name = '".$this->sportsname."' ";
-        if(!mysql_num_rows(mysql_query($check_query))){
+        $check_query = "select * from wc_sports where sports_id = '".$this->sportsid."' ";
+		$row = mysql_query($check_query) or die(mysql_error());
+        $data = mysql_fetch_array($row);
+        if($data['sports_name'] != $this->sportsname ){
+        	return false;
+        }else{
             $sql = "update wc_sports set sports_name='".$this->sportsname."',sports_status='1' where sports_id ='".$this->sportsid."' ";
             mysql_query($sql) or die("update:".mysql_error());
             return true;
-          }else{
-            return false;
-          }
+        }
     }
     public function sportsdeletefunction(){
   		//$sql = "update wc_sports set sports_status='0' where sports_id ='".$this->sportsid."' ";
@@ -75,8 +77,9 @@ if(isset($_POST['sportd_update'])){
     $sport = new sportsfunction();
     $sport->sportsname = $_POST['sports_name'];
     $sport->sportsid = $_POST['sports_id'];
-    if($sport->sportsupdatefunction()){
-      echo $_POST['sports_name'].'-'.$_POST['sports_id'];
+    if($sport->sportsupdatefunction()){   
+      	echo $_POST['sports_name'].'-'.$_POST['sports_id'];
+ 
     }else{
       echo "error";
     }

@@ -93,16 +93,20 @@
         $parametertypeFunction = new parametertypeFunction();
         $parametertypeFunction->parametertypeid = $_POST['edit_parameter_id'];
 		$parametertypeFunction->parametertypename = $_POST['edit_parameter_type'];
-		$check_query = "select * from wc_parametertype where parametertype_name = '".$_POST['edit_parameter_type']."' ";
-		if(!mysql_num_rows(mysql_query($check_query))){
+		$check_query = "select * from wc_parametertype where parametertype_id = '".$_POST['edit_parameter_id']."' ";
+		$row = mysql_query($check_query) or die(mysql_error());
+        $data = mysql_fetch_array($row);
+		if($data['parametertype_name'] != $_POST['edit_parameter_type']){
+			echo 'exist';
+		}
+		else {
 	        if($parametertypeFunction->parameterupdatefunction()){
 	          echo 'success';
 	        }else{
 	          echo "error";
 	        }
 		}
-		else{
-			echo 'exist';
-		}
+		
+		
     }
 ?>
