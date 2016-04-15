@@ -55,16 +55,13 @@
 
 						</div>
 						<div class="align_margin district_clone">
-							<div class="district_clone_content form-group col-md-8 padding_zero">
+							<div class="district_clone_content cloner_act form-group col-md-8 padding_zero">
 								<label>Enter name of the District</label><br>
-
-
 								<input type="text" class="districts district_select" name="district_name[]" autocomplete="off">
-
 								<input type="hidden" class="district_add_for_clone" value="1"/>
-								<!-- <span class="add_district_error"></span> -->
-								<!-- <span class="category_text">Please enter name of District</span> -->
 								<span class="hided">Please enter name of District</span>
+								<!-- <span class="add_district_error"></span> -->
+								<!-- <span class="category_text">Please enter name of District</span> -->							
 							</div>
 						</div>
 						<div class="form-group district-add col-md-4 padding_zero">

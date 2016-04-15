@@ -2780,9 +2780,10 @@
        // });
 
        $('.reset_form_dist').click(function(){
-           $("span .help-block form-error").hide();
-           $(".help-block,.form-error").removeClass("help-block form-error");
-           $('.choose_state').next('span').addClass('category_text');
+          $('.choose_state').next().find('span').removeClass("help-block form-error");
+           $('.choose_state').next().find('span').addClass('hided');
+            $('.district_clone_content:last').find('input[type="text"]').siblings('.hided').removeClass('custom_error');
+            // $('.district_clone_content :last').children().find('span').removeClass('custom_error');
            $(".district_clone_content").each(function() {
                if($('.district_clone_content').length !=1){
                    $('.district_clone_content:last').remove();
@@ -3575,6 +3576,7 @@
                                     <input type='hidden' name='result_parameterformat' class='result_parameterformat' value="+obj[i].parameter_format+">\
                                     <input type='hidden' name='result_ranges' class='result_ranges' value="+ranges+">\
                                     <td class='error_icon'></td>\
+                                    <td class='result_category'>"+obj[i].category+"</td>\
                                     <td class='result_test_name'>"+obj[i].test_name+"</td>\
                                     <td class='result_parameter_name'>"+obj[i].parameter_name+"</td>\
                                     <td><input type='text' class='assign_border enter_result' name='enter_result'><br><span class='enter_result_error'></span></td>";
@@ -3595,6 +3597,7 @@
                                     <input type='hidden' name='result_parameterformat' class='result_parameterformat' value="+obj[i].parameter_format+">\
                                     <input type='hidden' name='result_ranges' class='result_ranges' value="+ranges+">\
                                     <td class='error_icon'></td>\
+                                    <td class='result_category'>"+obj[i].category+"</td>\
                                     <td class='result_test_name'>"+obj[i].test_name+"</td>\
                                     <td class='result_parameter_name'>"+obj[i].parameter_name+"</td>\
                                     <td><input type='text' class='assign_border enter_result' name='enter_result'><br><span class='enter_result_error'></span></td>";
@@ -3615,6 +3618,7 @@
                           select_test = select_element.text();
                           select_parameter_element = select_element.next('.result_parameter_name');
                           select_parameter = select_element.next('.result_parameter_name').text();
+                          select_category_element = select_element.siblings('.result_category');
                           if(select_ranges == '[]'){
                             $('.note_range').show();
                             // error_html = "<span class='result_table_error custom_error'>Please assign range for test " +select_test+ " and parameter " +select_parameter+ "</span><br>";
@@ -3622,7 +3626,8 @@
                             // $('.result_error_content').show();
                             select_element.addClass('error_range');
                             select_parameter_element.addClass('error_range');
-                            select_element.prev('.error_icon').html("<i class='fa fa-exclamation-circle error-font'></i>");
+                            select_category_element.addClass('error_range');
+                            select_category_element.prev('.error_icon').html("<i class='fa fa-exclamation-circle error-font'></i>");
 
                           }
                         });
@@ -3674,14 +3679,14 @@
         return false;
       });
 
-        // Jquery functions for Range Form added by kalai
+      // Jquery functions for Range Form added by kalai
         var current_id = 1;
         $(document).on('click','.add_range_points',function(e){
-            if(($('.clone_content:last').children().find('.r_strt').val() == '') || ($('.clone_content:last').children().find('.r_end').val() == '') || ($('.clone_content:last').children().find('.r_point').val() == '') || ($('.clone_content').children().find('.r_strt').val() == '') || ($('.clone_content').children().find('.r_end').val() == '') || ($('.clone_content').children().find('.r_point').val() == ''))
-            {
+          $('.clone_content:last').children().find('input[type="text"]',this).each(function(){
+            if($(this).val() == '')
+            {            
               $('.clone_content:last').children().find('input[type="text"]').next().addClass('custom_error');
-              e.preventDefault();
-              // alert('please fill all the fields');
+              e.preventDefault();             
             }
             else if($('.range_holder').find('.hided').hasClass('custom_error')){
                 e.preventDefault();
@@ -3693,7 +3698,29 @@
               $('.clone_content:last').attr('id','range_counter'+id);
            }
            return false;
+            });
         });
+
+        // var current_id = 1;
+        // $(document).on('click','.add_range_points',function(e){
+
+        //     if(($('.clone_content:last').children().find('.r_strt').val() == '') || ($('.clone_content:last').children().find('.r_end').val() == '') || ($('.clone_content:last').children().find('.r_point').val() == '') || ($('.clone_content').children().find('.r_strt').val() == '') || ($('.clone_content').children().find('.r_end').val() == '') || ($('.clone_content').children().find('.r_point').val() == ''))
+        //     {
+        //       $('.clone_content:last').children().find('input[type="text"]').next().addClass('custom_error');
+        //       e.preventDefault();
+        //       // alert('please fill all the fields');
+        //     }
+        //     else if($('.range_holder').find('.hided').hasClass('custom_error')){
+        //         e.preventDefault();
+        //     }
+        //     else{
+        //       $('.clone_content:last').children().find('input[type="text"]').next().removeClass('custom_error');
+        //       var id = current_id+1;
+        //       nextrangeElement($('.clone_content:last'));
+        //       $('.clone_content:last').attr('id','range_counter'+id);
+        //    }
+        //    return false;
+        // });
 
         // $(document).on('click','.add_range_points',function(e){
         //   $('.r_strt .r_end .r_point').filter(function() {
@@ -3737,6 +3764,13 @@
             newElement.appendTo($(".range_holder"));
         }
 
+        $('.reset_form_range').click(function(){         
+           $(".clone_content").each(function() {
+               if($('.clone_content').length !=1){
+                   $('.clone_content:last').remove();
+               }
+           });
+       });
         //Calculate Range points by range start and end
         // $(document).on('focus','.r_point',function(){
         //     range_start = $(this).siblings('.r_strt').val();
