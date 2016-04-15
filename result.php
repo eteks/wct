@@ -88,6 +88,7 @@
 			    <thead>
 			      <tr class="row_color">
 			      	<th class="align_center"></th>
+			      	<th class="align_center">Category</th>
 			        <th class="align_center">Test</th>
 			        <th class="align_center">Parameter</th>
 			        <th class="align_center">Result</th>
@@ -98,6 +99,7 @@
 			    </thead>
 			    <tbody class="assign_content">
 			      <tr class="align_center delete_color assign_table total_div">
+			      	<td></td>
 			      	<td></td>
 			      	<td></td>
 			      	<td></td>

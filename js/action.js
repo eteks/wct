@@ -3527,6 +3527,7 @@
                                     <input type='hidden' name='result_parameterformat' class='result_parameterformat' value="+obj[i].parameter_format+">\
                                     <input type='hidden' name='result_ranges' class='result_ranges' value="+ranges+">\
                                     <td class='error_icon'></td>\
+                                    <td class='result_category'>"+obj[i].category+"</td>\
                                     <td class='result_test_name'>"+obj[i].test_name+"</td>\
                                     <td class='result_parameter_name'>"+obj[i].parameter_name+"</td>\
                                     <td><input type='text' class='assign_border enter_result' name='enter_result'><br><span class='enter_result_error'></span></td>";
@@ -3547,6 +3548,7 @@
                                     <input type='hidden' name='result_parameterformat' class='result_parameterformat' value="+obj[i].parameter_format+">\
                                     <input type='hidden' name='result_ranges' class='result_ranges' value="+ranges+">\
                                     <td class='error_icon'></td>\
+                                    <td class='result_category'>"+obj[i].category+"</td>\
                                     <td class='result_test_name'>"+obj[i].test_name+"</td>\
                                     <td class='result_parameter_name'>"+obj[i].parameter_name+"</td>\
                                     <td><input type='text' class='assign_border enter_result' name='enter_result'><br><span class='enter_result_error'></span></td>";
@@ -3567,6 +3569,7 @@
                           select_test = select_element.text();
                           select_parameter_element = select_element.next('.result_parameter_name');
                           select_parameter = select_element.next('.result_parameter_name').text();
+                          select_category_element = select_element.siblings('.result_category');
                           if(select_ranges == '[]'){
                             $('.note_range').show();
                             // error_html = "<span class='result_table_error custom_error'>Please assign range for test " +select_test+ " and parameter " +select_parameter+ "</span><br>";
@@ -3574,7 +3577,8 @@
                             // $('.result_error_content').show();
                             select_element.addClass('error_range');
                             select_parameter_element.addClass('error_range');
-                            select_element.prev('.error_icon').html("<i class='fa fa-exclamation-circle error-font'></i>");
+                            select_category_element.addClass('error_range');
+                            select_category_element.prev('.error_icon').html("<i class='fa fa-exclamation-circle error-font'></i>");
 
                           }
                         });
