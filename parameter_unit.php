@@ -79,9 +79,24 @@
 										<input type="text" name="test" data-id ="<?php echo $eachrecord ['parametertype_id']; ?>" value="<?php echo $eachrecord ['parametertype_name']; ?>" class="list_edit test parametertype_name_hover input_wrap" disabled>
 										<?php if(strtolower($eachrecord['parametertype_name']) != 'time'){?>
 										<span class="test-alter">
+											
+											<?php
+											$que = mysql_query("select * from wc_test_attribute where test_parameter_type ='".$eachrecord['parametertype_name']."'");
+											$que1 = mysql_query("select * from wc_result where resultparameter_name ='".$eachrecord['parametertype_name']."'");
+											if(!mysql_num_rows($que) || !mysql_num_rows($que1)){
+											?>
 											<i class="fa fa-floppy-o save_item paremeter_unit_type_save_btn"></i>
 											<i class="fa fa-pencil-square-o edit_item"></i>
 											<i class="fa fa-trash-o delete_item"></i>
+											<?php
+											}else{
+											?>
+												<i class="fa fa-floppy-o save_item edit_save_button"></i>
+												<i class="fa fa-pencil-square-o side_restrict "><div class="side_restrict_tooltip">Mapping has been already done.<br/>Edit or Delete not possible.</div></i>
+												<i class="fa fa-trash-o side_restrict"></i>
+											<?php
+											}
+											?>
 										</span><!--test-alter-->
 										
 										<?php } ?>
@@ -128,10 +143,24 @@
 				        <!-- <td><?php echo $eachrecord ['parametertype_name'];?></td> -->
 						<td><?php echo $eachrecord ['parameterunit'];?></td>
 				        <td class="popup-edit">
-				        	<?php if(strtolower($eachrecord['parametertype_name']) != 'time'){ ?>
+				        	<?php if(strtolower($eachrecord['parametertype_name']) != 'time'){
+				        		$quer = mysql_query("select * from wc_test_attribute where test_parameter_type ='".$eachrecord['parametertype_name']."'");
+								$quer1 = mysql_query("select * from wc_result where resultparameter_name ='".$eachrecord['parametertype_name']."'");
+								if(!mysql_num_rows($quer) || !mysql_num_rows($quer1)){ 
+				        	?>
 				        	<span class="edit_state edit_parameter_unit" data-value="<?php echo $eachrecord ['parameterunit_id'];?>"><i class="fa fa-pencil-square-o"></i></span>
 			        		<span class="delete_state " data-value="<?php echo $eachrecord ['parameterunit_id'];?>"><i class="fa fa-trash-o"></i></span>
-							<?php } else{?>
+							<?php }else{
+								?>
+								<span class="restrict">
+			    			<i class="fa fa-pencil-square-o">
+				    			<div class="restrict_tooltip">Mapping has been already done.Edit or Delete not possible.</div>
+							</i>
+						</span>
+	    				<span class="restrict_del"><i class="fa fa-trash-o"><div class="restrict_tooltip">Mapping has been already done.Edit or Delete not possible.</div></i></span>
+							<?php }
+							}
+							else{?>
 								<span class="edit_time"><i class="fa fa-pencil-square-o"></i></span>
 			        			<span class="delete_time"><i class="fa fa-trash-o"></i></span>
 							<?php }?>
