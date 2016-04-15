@@ -35,6 +35,9 @@
 		height: 12px;
 	}
 </style>
+<script type="text/javascript">
+
+</script>
 <div class="container">
 	<div class="container left_align_testbattery align_height">
 		<span class="sports">ADD ATHLETE</span>
@@ -50,7 +53,8 @@
 					</div>
 					<div class="form-group">
 					  <label for="date" class="">Date Of Birth</label>
-					  <input class="athlete_date_pick" type="text">
+					  <input class="athlete_date_pick" type="text" id="date_drop">
+					  <span class="hided">Please Choose valid Date</span>
 					 <!-- <select class="form-control classic dob_align fl" id="date" name="athlete_dobday" data-validation-error-msg="Please Select the Date" data-validation="required">
 					  	<option value="">Date</option>
 					    <option value="1">1</option>
@@ -134,7 +138,7 @@
 					<div class="col-md-9 schedule_btn">
 						<!-- <button type="button" class="btn btn-primary align_right clear add_athletes_act">Submit</button> -->
 						<input type="submit" class="btn btn-primary test-submit clear add_athletes_act" value="Save">
-						<input type="reset" class="btn btn-primary clear" value="Cancel">
+						<input type="reset" class="btn btn-primary clear reset_form" value="Cancel">
 					</div>
 				</form>
 				</div>
@@ -257,10 +261,9 @@
 											<input type="text" class="adjust_width" name="edit_athlete_name" data-validation-error-msg="Please Enter the name of the Athelete" data-validation="required">
 										</div> -->
 										<div class="form-group align-day align-day-popup col-md-10">
-										  <label for="date" class="popup_label" style="text-align:center;">Date Of Birth</label>
-										
+										  <label for="date" class="popup_label" style="text-align:center;">Date Of Birth</label>										
 										  	<input class="popup_athlete_datepick" type="text">
-										 
+										 	<span class="hided">Please Choose valid Date</span>
 										 <!--  <select class="form-control classic dob_align1 fl" id="date1" name="edit_athlete_dobday" data-validation-error-msg="Please Select the Date" data-validation="required">
 										  	<option value="">Date</option>
 										    <option value="1">1</option>

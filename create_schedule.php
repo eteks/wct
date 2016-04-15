@@ -32,14 +32,9 @@
 	}
 </style>
 <script type="text/javascript">	
-	// $(document).ready(function () {
-	// 	$('.add_createschedule_act, .edit_createschedule_act').on('click', function(){
-	// 		$('.day, .month, .year').attr('data-validation', 'required');
-	// 	});
-	// });
 </script>
 <div class="container align_bottom">
-	<div class="container left_align_parameter align_height">
+	<div class="container left_align_parameter align_height np">
 		<span class="sports">CREATE SCHEDULE</span>
 	</div><!--end container-->
 		<div class="col-xs-12 col-md-12">
@@ -66,6 +61,7 @@
 					<div class="form-group">
 					  <label for="date" class=""  style="">Select Date</label>
 				    	<input class="date_pick" type="text">
+				    	<span class="hided">Please Choose valid Date</span>
 					</div>
 					<div class="form-group nm">
 					  <label for="date" class="" style="">Select Time</label>
@@ -363,9 +359,9 @@
 													<label>Enter the schedule Name</label>
 													<input type="text" class="adjust_width" name="edit_schedule_name" data-validation-error-msg="Please Enter the name of the Schedule" data-validation="required">
 												</div> -->
-												<div class="form-group">
+												<div class="form-group fl">
 												  <label for="battey_name" class="popup_label">Select Test Battery Name</label>
-												  <select class="form-control classic adjust_width box-width width-assign form-group" id="battey_name" name="edit_schedule_testbattery" data-validation-error-msg="Please Select Test Battery Name" data-validation="required">
+												  <select class="form-control classic adjust_width box-width width-assign" id="battey_name" name="edit_schedule_testbattery" data-validation-error-msg="Please Select Test Battery Name" data-validation="required">
 												  	<option value="">Select Test Battery Name</option>
 												   <?php
 								                        $tb_query = $testbattery->testbatterySelect();
@@ -376,9 +372,10 @@
 												  </select>
 												</div>
 
-												<div class="form-group align-day align-day-popup">
+												<div class="form-group align-day align-day-popup fl">
 												  <label for="date" class="popup_label">Select date</label>
 												  <input class="popup_date_pick" type="text">
+												  <span class="hided">Please Choose valid Date</span>
 												 <!--  <select class="form-control classic create-date1 fl" id="date" name="edit_schedule_day" data-validation-error-msg="Please Select the Date" data-validation="required">
 												  	<option value="">Date</option>
 												    <option value="1">1</option>
@@ -399,7 +396,7 @@
 												  </select> -->
 												</div>
 
-												<div class="form-group nm">
+												<div class="form-group nm fl">
 												  <label for="date" class="popup_label">Select Time</label>
 												  	<div class="form-group fl">
 												  		<label class="popup_label">Time</label>
@@ -566,11 +563,11 @@
 											  	<div class="clear_both"></div>
 											</div>
 
-												<div class="align_height align_margin">
+												<div class="align_height align_margin fl">
 													<label class="popup_label">Venue</label>
 													<textarea class="area_width_create" name="edit_schedule_venue" data-validation-error-msg="Please Enter the Venue" data-validation="required"></textarea>
 												</div>
-												<div class="col-md-10 schedule_btn">
+												<div class="col-md-10 schedule_btn fl">
 													<!-- <button type="button" class="btn btn-primary align_right clear edit_createschedule_act">Submit</button>
 													<button type="button" class="btn btn-primary align_right clear">Clear</button> -->
 													<!-- <input type="reset" class="btn btn-primary align_right clear reset_form" value="Clear"> -->

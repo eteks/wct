@@ -114,7 +114,7 @@ if (isset($_GET['insert_new'])) {
 			<div class="col-xs-12 col-md-12 align_margin">
 				<form id="test_form" name="test_form_act" action="functions/test_functions.php" method="post">
 					<div class="form-group">
-						<label>Enter name of Test</label>
+						<label>Enter name of Test</label><br>
 						<input type="text" class="adjust_width" name="test_name" autocomplete="off">
 						<span class="category_text">Please enter name of Test</span>
 					</div>
@@ -122,7 +122,7 @@ if (isset($_GET['insert_new'])) {
 						<div class="clone_content" id="param_counter1">
 							<div class="form-group col-md-11 schedule_test">
 							<div class="form-group col-md-5">
-								<label>Enter Test Parameters</label>
+								<label>Enter Test Parameters</label><br>
 								<input type="text" class="adjust_width parameter_name" name="parameter_name1" autocomplete="off">
 								<span class="hided param_name_error">Please enter Parameter Name</span>
 								<input type="hidden" class="parameter_count" value="1" />
@@ -169,7 +169,7 @@ if (isset($_GET['insert_new'])) {
 							</div>
 						</div>
 					</div>
-					<div class="form-group parameter__align col-md-1">
+					<div class="form-group parameter__align col-md-1 padding_zero">
 						<!-- <input type="button" class="btn btn-primary align_right parameter_btn"> -->
 						<button class="plus_align parameter_btn parameter_add">
 							<i class="fa fa-plus">
@@ -291,12 +291,12 @@ if (isset($_GET['insert_new'])) {
 					                	<span class="del_txt">Edit Test</span>
 					              	</div>
 					          			<div class="container col-md-12">
-						          			<div class="">
+						          			<div class="col-md-12">
 									<form id="test_updation_form" action="functions/test_functions.php" method="post">
 										<div class="parameter_holder">
 											<div class="form-group" style="padding: 0;">
 												<label class="popup_label">Enter Parameter Name</label>
-												<input type="text" class="adjust_width test_parameter_name_update" name="parameter_name1" data-validation-error-msg="Please Enter the Parameter Name" data-validation="required" style="width:515px !important;height: 30px;">
+												<input type="text" class="adjust_width test_parameter_name_update" name="parameter_name1" data-validation-error-msg="Please Enter the Parameter Name" data-validation="required" style="width:490px !important;height: 30px;">
 
 											</div>
 											<div class="form-group col-md-12 test_percentage parameter_type_parent">
