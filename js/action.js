@@ -3864,11 +3864,13 @@
         $(".result_athletename").autocomplete({
           source: function(req, add) {
               add($.map(athletes_list, function(el) {
+                if (el.ath_name.toLowerCase().indexOf(req.term.toLowerCase()) === 0) {
                   return {
                       label: el.ath_name,
                       value: el.ath_name,
                       data:el.ath_id
                   };
+                }
               }));
           },
           select: function(event, ui) {
@@ -3890,11 +3892,13 @@
         $(".result_athletebib").autocomplete({
           source: function(req, add) {
               add($.map(athletes_list, function(el) {
+                if (el.ath_bib.toLowerCase().indexOf(req.term.toLowerCase()) === 0) {
                   return {
                       label: el.ath_bib,
                       value: el.ath_bib,
                       data:el.ath_id
                   };
+                }
               }));
           },
           select: function(event, ui) {
@@ -3916,11 +3920,13 @@
         $(".result_athletemobile").autocomplete({
           source: function(req, add) {
               add($.map(athletes_list, function(el) {
+                if (el.ath_mobile.toLowerCase().indexOf(req.term.toLowerCase()) === 0) {
                   return {
                       label: el.ath_mobile,
                       value: el.ath_mobile,
                       data:el.ath_id
                   };
+                }
               }));
           },
           select: function(event, ui) {
