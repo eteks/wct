@@ -21,13 +21,15 @@ class categoryfunction{
 
     }
     public function categoryupdatefunction(){
-        $check_query = "select * from wc_categories where categories_name = '".$this->categoryname."' ";
-        if(!mysql_num_rows(mysql_query($check_query))){
+        $check_query = "select * from wc_categories where categories_id = '".$this->categoryid."' ";
+		$row = mysql_query($check_query) or die(mysql_error());
+        $data = mysql_fetch_array($row);
+		if($data['categories_name'] != $this->categoryname ){
+        	return false;
+        }else{
             $sql = "update wc_categories set categories_name='".$this->categoryname."',categories_status='1' where categories_id ='".$this->categoryid."' ";
             mysql_query($sql) or die("update:".mysql_error());
             return true;
-          }else{
-            return false;
           }
     }
     public function categorydeletefunction(){

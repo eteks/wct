@@ -46,7 +46,7 @@ $obj = new sportsfunction();
 	    	<?php 
 	    	$query = mysql_query("select * from wc_testbattery_sports_attribute where wc_testbattery_sports_id ='".$eachrecord ['sports_id']."'");
 			$query1 = mysql_query("select * from wc_athlete where athletesports_id ='".$eachrecord ['sports_id']."'");
-			if(!mysql_num_rows($query) || !mysql_num_rows($query1)){
+			if(!mysql_num_rows($query) && !mysql_num_rows($query1)){
 	    	?>
 	    	<span class="edit_state"><i class="fa fa-pencil-square-o"></i></span>
 	    	<span class="delete_state" data-value="<?php echo $eachrecord ['sports_id']; ?>"><i class="fa fa-trash-o"></i></span>

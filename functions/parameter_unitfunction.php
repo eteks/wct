@@ -98,12 +98,16 @@ if(isset($_GET['updateunitdata'])){
     $parameterunitupdate->parametertypeid = $_POST['parameter_type'];
     $parameterunitupdate->parameterunitname = $_POST['parameter_unit'];
     $check_query = "select * from wc_parameterunit where parametertype_id = '".$_POST['parameter_type']."' and parameterunit = '".$_POST['parameter_unit']."' ";
-    if(!mysql_num_rows(mysql_query($check_query))){
-    if($parameterunitupdate->parameterupdatefunction()){
-        echo "success";
-    }else{
-        echo "error";
-    }}else{
+    $row = mysql_query($check_query) or die(mysql_error());
+	$data = mysql_fetch_array($row);
+    if(!mysql_num_rows($row)){
+    	if($data['parameterunit'] != $_POST['parameter_unit'] ){
+	    	$parameterunitupdate->parameterupdatefunction();
+	        echo "success";
+	    }else{
+	        echo "error";
+	    }
+	}else{
         echo 'exist';
     }
 }
@@ -159,10 +163,21 @@ if(isset($_GET['paramstype_name_update'])){
         //include ("../dbconnect.php");
         $params_id = $_POST['params_id'];
         $params_name = $_POST['params_name'];
-        if(isset($params_id)&&isset($params_name)){
-            $sql = mysql_query("update wc_parametertype set parametertype_name = '".$params_name."' where parametertype_id = '".$params_id."'");
+		$check_query = "select * from wc_parametertype where parametertype_id = '".$_POST['params_id']."' ";
+		$row = mysql_query($check_query) or die(mysql_error());
+        $data = mysql_fetch_array($row);
+		if($data['parametertype_name'] != $params_name){
+			echo 'exist';
+		}
+		else {
+	        $sql = mysql_query("update wc_parametertype set parametertype_name = '".$params_name."' where parametertype_id = '".$params_id."'");
             echo "succeed";
-        }
+	   
+		}
+        // if(isset($params_id)&&isset($params_name)){
+            // $sql = mysql_query("update wc_parametertype set parametertype_name = '".$params_name."' where parametertype_id = '".$params_id."'");
+            // echo "succeed";
+        // }
 }
 if(isset($_GET['find_params_units'])){
         //include ("../dbconnect.php");

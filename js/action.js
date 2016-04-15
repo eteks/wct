@@ -390,257 +390,299 @@
      
       $('.edit_item,.save_item,.delete_item,.edit_time,.save_time,.delete_time').hide();
       $('.test_search').keyup(function() {
-            $('.test-list').empty();
-            var testname = $(this).val();
-            //alert(testname);
-            if(testname != ''){
-                $.ajax({
-                     type: "POST",
-                     url: "functions/test_functions.php?find_test=true",
-                     data:{'id':testname},
-                     cache: false,
-                     dataType:'json',
-                     success: function(data) {
-                         $('.test-list').empty();
-                         //alert(data);
-                         if(data !=''){
-                             $.each(data, function(i){
-                                 //alert(data[i].test_name);
-                                 $('.test-list').append(
-                                 '<span class="test-name">\
-                                     <input type="checkbox" name="test" value="test" class="check_test test_name_hover_check" id="check-select" data-id ="'+data[i].test_id+'" >\
-                                     <input type="text" name="test" value="'+data[i].test_name+'" class="list_edit test_name_hover input_wrap" disabled>\
-                                     <span class="test-alter">\
-                                         <i class="fa fa-floppy-o save_item edit_save_button"></i>\
-                                         <i class="fa fa-pencil-square-o edit_item "></i>\
-                                         <i class="fa fa-trash-o delete_item"></i>\
-                                     </span>\
-                                 </span>\
-                                 <div class="delete_div delete_search">\
-                                       <div class="del_title">\
-                                         <span class="del_txt">DELETE</span>\
-                                       </div>\
-                                       <div class="del_content">\
-                                         <span class="del_content_txt">Are you sure want to delete this whole record?</span>\
-                                         <input type="button" class="btn btn-primary align_right no_btn" value="No">\
-                                         <input type="button" class="btn btn-primary align_right yes_btn" value="Yes" data-delete="test_name" data-id ="'+data[i].test_id+'">\
-                                         <input type="hidden" name="delete_id" value="" id="delete_id"/>\
-                                       </div>\
-                                 </div>');
-                                  $('.edit_item,.save_item,.delete_item').hide();
-                             });
-                         }
-                    }
-                 });
-            }else{
-                $.ajax({
-                     type: "POST",
-                     url: "functions/test_functions.php?find_all_test=true",
-                     data:{'id':'all'},
-                     cache: false,
-                     dataType:'json',
-                     success: function(data) {
-                         //alert(data);
-                         if(data !=''){
-                             $.each(data, function(i){
-                                 //alert(data[i].test_name);
-                                 $('.test-list').append(
-                                 '<span class="test-name">\
-                                     <input type="checkbox" name="test" value="test" class="check_test test_name_hover_check" id="check-select"  data-id ="'+data[i].test_id+'">\
-                                     <input type="text" name="test" value="'+data[i].test_name+'" class="list_edit test_name_hover input_wrap" disabled>\
-                                     <span class="test-alter">\
-                                         <i class="fa fa-floppy-o save_item edit_save_button"></i>\
-                                         <i class="fa fa-pencil-square-o edit_item "></i>\
-                                         <i class="fa fa-trash-o delete_item"></i>\
-                                     </span>\
-                                 </span>\
-                                 <div class="delete_div delete_search">\
-                                       <div class="del_title">\
-                                         <span class="del_txt">DELETE</span>\
-                                       </div>\
-                                       <div class="del_content">\
-                                         <span class="del_content_txt">Are you sure want to delete this whole record?</span>\
-                                          <input type="button" class="btn btn-primary align_right no_btn" value="No">\
-                                          <input type="button" class="btn btn-primary align_right yes_btn" value="Yes" data-delete="test_name" data-id ="'+data[i].test_id+'">\
-                                          <input type="hidden" name="delete_id" value="" id="delete_id"/>\
-                                       </div>\
-                                 </div>');
-                                  $('.edit_item,.save_item,.delete_item').hide();
-                             });
-                         }
-                    }
-                 });
-            }
+            // $('.test-list').empty();
+            // var testname = $(this).val();
+            // //alert(testname);
+            // if(testname != ''){
+                // $.ajax({
+                     // type: "POST",
+                     // url: "functions/test_functions.php?find_test=true",
+                     // data:{'id':testname},
+                     // cache: false,
+                     // dataType:'json',
+                     // success: function(data) {
+                         // $('.test-list').empty();
+                         // //alert(data);
+                         // if(data !=''){
+                             // $.each(data, function(i){
+                                 // //alert(data[i].test_name);
+                                 // $('.test-list').append(
+                                 // '<span class="test-name">\
+                                     // <input type="checkbox" name="test" value="test" class="check_test test_name_hover_check" id="check-select" data-id ="'+data[i].test_id+'" >\
+                                     // <input type="text" name="test" value="'+data[i].test_name+'" class="list_edit test_name_hover input_wrap" disabled>\
+                                     // <span class="test-alter">\
+                                         // <i class="fa fa-floppy-o save_item edit_save_button"></i>\
+                                         // <i class="fa fa-pencil-square-o edit_item "></i>\
+                                         // <i class="fa fa-trash-o delete_item"></i>\
+                                     // </span>\
+                                 // </span>\
+                                 // <div class="delete_div delete_search">\
+                                       // <div class="del_title">\
+                                         // <span class="del_txt">DELETE</span>\
+                                       // </div>\
+                                       // <div class="del_content">\
+                                         // <span class="del_content_txt">Are you sure want to delete this whole record?</span>\
+                                         // <input type="button" class="btn btn-primary align_right no_btn" value="No">\
+                                         // <input type="button" class="btn btn-primary align_right yes_btn" value="Yes" data-delete="test_name" data-id ="'+data[i].test_id+'">\
+                                         // <input type="hidden" name="delete_id" value="" id="delete_id"/>\
+                                       // </div>\
+                                 // </div>');
+                                  // $('.edit_item,.save_item,.delete_item').hide();
+                             // });
+                         // }
+                    // }
+                 // });
+            // }else{
+                // $.ajax({
+                     // type: "POST",
+                     // url: "functions/test_functions.php?find_all_test=true",
+                     // data:{'id':'all'},
+                     // cache: false,
+                     // dataType:'json',
+                     // success: function(data) {
+                         // //alert(data);
+                         // if(data !=''){
+                             // $.each(data, function(i){
+                                 // //alert(data[i].test_name);
+                                 // $('.test-list').append(
+                                 // '<span class="test-name">\
+                                     // <input type="checkbox" name="test" value="test" class="check_test test_name_hover_check" id="check-select"  data-id ="'+data[i].test_id+'">\
+                                     // <input type="text" name="test" value="'+data[i].test_name+'" class="list_edit test_name_hover input_wrap" disabled>\
+                                     // <span class="test-alter">\
+                                         // <i class="fa fa-floppy-o save_item edit_save_button"></i>\
+                                         // <i class="fa fa-pencil-square-o edit_item "></i>\
+                                         // <i class="fa fa-trash-o delete_item"></i>\
+                                     // </span>\
+                                 // </span>\
+                                 // <div class="delete_div delete_search">\
+                                       // <div class="del_title">\
+                                         // <span class="del_txt">DELETE</span>\
+                                       // </div>\
+                                       // <div class="del_content">\
+                                         // <span class="del_content_txt">Are you sure want to delete this whole record?</span>\
+                                          // <input type="button" class="btn btn-primary align_right no_btn" value="No">\
+                                          // <input type="button" class="btn btn-primary align_right yes_btn" value="Yes" data-delete="test_name" data-id ="'+data[i].test_id+'">\
+                                          // <input type="hidden" name="delete_id" value="" id="delete_id"/>\
+                                       // </div>\
+                                 // </div>');
+                                  // $('.edit_item,.save_item,.delete_item').hide();
+                             // });
+                         // }
+                    // }
+                 // });
+            // }
+            var search_value = $(this).val();
+          	if(search_value == ''){
+            	$('.test-name').show();
+          	}else{
+            	$('.test-name').hide();
+            $('.list_edit').each(function(){
+                // if($(this).val().toLowerCase().startsWith(search_value) !== -1){
+                 // alert($(this).val());
+                 // alert(search_value.toLowerCase());
+               if($(this).val().toLowerCase().indexOf(search_value.toLowerCase()) == 0){
+                  $(this).parents('.test-name').show();
+                }
+            });
+          }
         });
         $('.test_battery_search').keyup(function() {
-              $('.test-list').empty();
-              var testbattreyname = $(this).val();
-              //alert(testname);
-              if(testbattreyname != ''){
-                  $.ajax({
-                       type: "POST",
-                       url: "functions/test_battery_functions.php?find_test_battery=true",
-                       data:{'id':testbattreyname},
-                       cache: false,
-                       dataType:'json',
-                       success: function(data) {
-                           $('.test-list').empty();
-                           //alert(data);
-                           if(data !=''){
-                               $.each(data, function(i){
-                                   //alert(data[i].test_name);
-                                   $('.test-list').append(
-                                   '<span class="test-name">\
-                                       <input type="checkbox" name="test" value="test" class="check_test test_battery_name_hover_check" id="check-select"  data-id ="'+data[i].testbattery_id+'">\
-                                       <input type="text" name="test" value="'+data[i].testbattery_name+'" class="list_edit test_battery_name_hover input_wrap">\
-                                       <span class="test-alter">\
-                                           <i class="fa fa-floppy-o save_item save_test_battery_name"></i>\
-                                           <i class="fa fa-pencil-square-o edit_item"></i>\
-                                           <i class="fa fa-trash-o delete_item"></i>\
-                                       </span>\
-                                   </span>\
-                                   <div class="delete_div delete_search">\
-                                       <!-- <code class="close_btn cancel_btn"> </code>  -->\
-                                         <div class="del_title">\
-                                           <span class="del_txt">DELETE</span>\
-                                         </div>\
-                                         <div class="del_content">\
-                                           <span class="del_content_txt">Are you sure you want to delete this record?</span>\
-                                           <input type="button" class="btn btn-primary align_right no_btn" value="No">\
-                                           <input type="button" class="btn btn-primary align_right yes_btn" value="Yes" data-delete="test_battery_name" data-id ="'+data[i].testbattery_id+'">\
-                                           <input type="hidden" name="delete_id" value="" id="delete_id"/>\
-                                         </div>\
-                                   </div>');
-                                    $('.edit_item,.save_item,.delete_item').hide();
-                               });
-                           }
-                      }
-                   });
-              }else{
-                  $.ajax({
-                       type: "POST",
-                       url: "functions/test_battery_functions.php?find_all_test_battery=true",
-                       data:{'id':'all'},
-                       cache: false,
-                       dataType:'json',
-                       success: function(data) {
-                           $('.test-list').empty();
-                           //alert(data);
-                           if(data !=''){
-                               $.each(data, function(i){
-                                   //alert(data[i].test_name);
-                                   $('.test-list').append(
-                                   '<span class="test-name">\
-                                       <input type="checkbox" name="test" value="test" class="check_test test_battery_name_hover_check" id="check-select" data-id ="'+data[i].testbattery_id+'">\
-                                       <input type="text" name="test"  value="'+data[i].testbattery_name+'" class="list_edit test_battery_name_hover input_wrap">\
-                                       <span class="test-alter">\
-                                           <i class="fa fa-floppy-o save_item save_test_battery_name"></i>\
-                                           <i class="fa fa-pencil-square-o edit_item"></i>\
-                                           <i class="fa fa-trash-o delete_item"></i>\
-                                       </span>\
-                                   </span>\
-                                   <div class="delete_div delete_search">\
-                                       <!-- <code class="close_btn cancel_btn"> </code>  -->\
-                                         <div class="del_title">\
-                                           <span class="del_txt">DELETE</span>\
-                                         </div>\
-                                         <div class="del_content">\
-                                           <span class="del_content_txt">Are you sure want to delete this whole record?</span>\
-                                           <input type="button" class="btn btn-primary align_right no_btn" value="No">\
-                                           <input type="button" class="btn btn-primary align_right yes_btn" value="Yes" data-delete="test_battery_name" data-id ="'+data[i].testbattery_id+'">\
-                                           <input type="hidden" name="delete_id" value="" id="delete_id"/>\
-                                         </div>\
-                                   </div>');
-                                    $('.edit_item,.save_item,.delete_item').hide();
-                               });
-                           }
-                      }
-                   });
-              }
+        	var search_value = $(this).val();
+          	if(search_value == ''){
+            	$('.test-name').show();
+          	}else{
+            	$('.test-name').hide();
+            $('.list_edit').each(function(){
+                // if($(this).val().toLowerCase().startsWith(search_value) !== -1){
+                 // alert($(this).val());
+                 // alert(search_value.toLowerCase());
+               if($(this).val().toLowerCase().indexOf(search_value.toLowerCase()) == 0){
+                  $(this).parents('.test-name').show();
+                }
+            });
+          }
+              // $('.test-list').empty();
+              // var testbattreyname = $(this).val();
+              // //alert(testname);
+              // if(testbattreyname != ''){
+                  // $.ajax({
+                       // type: "POST",
+                       // url: "functions/test_battery_functions.php?find_test_battery=true",
+                       // data:{'id':testbattreyname},
+                       // cache: false,
+                       // dataType:'json',
+                       // success: function(data) {
+                           // $('.test-list').empty();
+                           // //alert(data);
+                           // if(data !=''){
+                               // $.each(data, function(i){
+                                   // //alert(data[i].test_name);
+                                   // $('.test-list').append(
+                                   // '<span class="test-name">\
+                                       // <input type="checkbox" name="test" value="test" class="check_test test_battery_name_hover_check" id="check-select"  data-id ="'+data[i].testbattery_id+'">\
+                                       // <input type="text" name="test" value="'+data[i].testbattery_name+'" class="list_edit test_battery_name_hover input_wrap">\
+                                       // <span class="test-alter">\
+                                           // <i class="fa fa-floppy-o save_item save_test_battery_name"></i>\
+                                           // <i class="fa fa-pencil-square-o edit_item"></i>\
+                                           // <i class="fa fa-trash-o delete_item"></i>\
+                                       // </span>\
+                                   // </span>\
+                                   // <div class="delete_div delete_search">\
+                                       // <!-- <code class="close_btn cancel_btn"> </code>  -->\
+                                         // <div class="del_title">\
+                                           // <span class="del_txt">DELETE</span>\
+                                         // </div>\
+                                         // <div class="del_content">\
+                                           // <span class="del_content_txt">Are you sure you want to delete this record?</span>\
+                                           // <input type="button" class="btn btn-primary align_right no_btn" value="No">\
+                                           // <input type="button" class="btn btn-primary align_right yes_btn" value="Yes" data-delete="test_battery_name" data-id ="'+data[i].testbattery_id+'">\
+                                           // <input type="hidden" name="delete_id" value="" id="delete_id"/>\
+                                         // </div>\
+                                   // </div>');
+                                    // $('.edit_item,.save_item,.delete_item').hide();
+                               // });
+                           // }
+                      // }
+                   // });
+              // }else{
+                  // $.ajax({
+                       // type: "POST",
+                       // url: "functions/test_battery_functions.php?find_all_test_battery=true",
+                       // data:{'id':'all'},
+                       // cache: false,
+                       // dataType:'json',
+                       // success: function(data) {
+                           // $('.test-list').empty();
+                           // //alert(data);
+                           // if(data !=''){
+                               // $.each(data, function(i){
+                                   // //alert(data[i].test_name);
+                                   // $('.test-list').append(
+                                   // '<span class="test-name">\
+                                       // <input type="checkbox" name="test" value="test" class="check_test test_battery_name_hover_check" id="check-select" data-id ="'+data[i].testbattery_id+'">\
+                                       // <input type="text" name="test"  value="'+data[i].testbattery_name+'" class="list_edit test_battery_name_hover input_wrap">\
+                                       // <span class="test-alter">\
+                                           // <i class="fa fa-floppy-o save_item save_test_battery_name"></i>\
+                                           // <i class="fa fa-pencil-square-o edit_item"></i>\
+                                           // <i class="fa fa-trash-o delete_item"></i>\
+                                       // </span>\
+                                   // </span>\
+                                   // <div class="delete_div delete_search">\
+                                       // <!-- <code class="close_btn cancel_btn"> </code>  -->\
+                                         // <div class="del_title">\
+                                           // <span class="del_txt">DELETE</span>\
+                                         // </div>\
+                                         // <div class="del_content">\
+                                           // <span class="del_content_txt">Are you sure want to delete this whole record?</span>\
+                                           // <input type="button" class="btn btn-primary align_right no_btn" value="No">\
+                                           // <input type="button" class="btn btn-primary align_right yes_btn" value="Yes" data-delete="test_battery_name" data-id ="'+data[i].testbattery_id+'">\
+                                           // <input type="hidden" name="delete_id" value="" id="delete_id"/>\
+                                         // </div>\
+                                   // </div>');
+                                    // $('.edit_item,.save_item,.delete_item').hide();
+                               // });
+                           // }
+                      // }
+                   // });
+              // }
           });
           // Parametertype - Unit for Auto Search  //
 
       $('.parametertype_search').keyup(function() {
-            $('.test-list').empty();
-            var typename = $(this).val();
-            if(typename != ''){
-                $.ajax({
-                     type: "POST",
-                     url: "functions/parameter_unitfunction.php?find_type=true",
-                     data:{'id':typename},
-                     cache: false,
-                     dataType:'json',
-                     success: function(data) {
-                         $('.test-list').empty();
-                         if(data !=''){
-                             $.each(data, function(i){
-                                 //alert(data[i].typename);
-                                 $('.test-list').append(
-                                 '<span class="test-name">\
-                                     <input type="checkbox" name="test " value="test" class="check_test check_parametertype" id="check-select" data-id ="'+data[i].parametertype_id+'">\
-                                     <input type="text" data-id ="'+data[i].parametertype_id+'" name="test" value="'+data[i].parametertype_name+'" class="list_edit parametertype_name_hover input_wrap" disabled>\
-                                     <span class="test-alter">\
-                                         <i class="fa fa-floppy-o save_item edit_save_button"></i>\
-                                         <i class="fa fa-pencil-square-o edit_item "></i>\
-                                         <i class="fa fa-trash-o delete_item"></i>\
-                                     </span>\
-                                 </span>\
-                                 <div class="delete_div delete_search">\
-                                       <div class="del_title">\
-                                         <span class="del_txt">DELETE</span>\
-                                       </div>\
-                                       <div class="del_content">\
-                                         <span class="del_content_txt">Are you sure want to delete this whole record?</span>\
-                                         <input type="button" class="btn btn-primary align_right no_btn" value="No">\
-                                         <input type="button" class="btn btn-primary align_right yes_btn" value="Yes" data-delete="parametertype_name" data-id ="'+data[i].parametertype_id+'">\
-                                         <input type="hidden" name="delete_id" value="" id="delete_id"/>\
-                                       </div>\
-                                 </div>');
-                                $('.edit_item,.save_item,.delete_item').hide();
-                             });
-                         }
-                    }
-                 });
-            }else{
-                $.ajax({
-                     type: "POST",
-                     url: "functions/parameter_unitfunction.php?find_all_type=true",
-                     data:{'id':'all'},
-                     cache: false,
-                     dataType:'json',
-                     success: function(data) {
-                         $('.test-list').empty();
-                         //alert(data);
-                         if(data !=''){
-                             $.each(data, function(i){
-                                 //alert(data[i].test_name);
-                                 $('.test-list').append(
-                                 '<span class="test-name">\
-                                     <input type="checkbox" name="test" value="test" class="check_test check_parametertype" id="check-select" data-id ="'+data[i].parametertype_id+'">\
-                                     <input type="text" data-id ="'+data[i].parametertype_id+'" name="test" value="'+data[i].parametertype_name+'" class="list_edit test_name_hover input_wrap" disabled>\
-                                     <span class="test-alter">\
-                                         <i class="fa fa-floppy-o save_item edit_save_button"></i>\
-                                         <i class="fa fa-pencil-square-o edit_item "></i>\
-                                         <i class="fa fa-trash-o delete_item"></i>\
-                                     </span>\
-                                 </span>\
-                                 <div class="delete_div delete_search">\
-                                       <div class="del_title">\
-                                         <span class="del_txt">DELETE</span>\
-                                       </div>\
-                                       <div class="del_content">\
-                                         <span class="del_content_txt">Are you sure want to delete this whole record?</span>\
-                                         <input type="button" class="btn btn-primary align_right no_btn" value="No">\
-                                         <input type="button" class="btn btn-primary align_right yes_btn" value="Yes" data-delete="parametertype_name" data-id ="'+data[i].parametertype_id+'">\
-                                         <input type="hidden" name="delete_id" value="" id="delete_id"/>\
-                                       </div>\
-                                 </div>');
-                                $('.edit_item,.save_item,.delete_item').hide();
-                             });
-                         }
-                    }
-                 });
-            }
+      	var search_value = $(this).val();
+          	if(search_value == ''){
+            	$('.test-name').show();
+          	}else{
+            	$('.test-name').hide();
+            $('.list_edit').each(function(){
+                // if($(this).val().toLowerCase().startsWith(search_value) !== -1){
+                 // alert($(this).val());
+                 // alert(search_value.toLowerCase());
+               if($(this).val().toLowerCase().indexOf(search_value.toLowerCase()) == 0){
+                  $(this).parents('.test-name').show();
+                }
+            });
+          }
+            // $('.test-list').empty();
+            // var typename = $(this).val();
+            // if(typename != ''){
+                // $.ajax({
+                     // type: "POST",
+                     // url: "functions/parameter_unitfunction.php?find_type=true",
+                     // data:{'id':typename},
+                     // cache: false,
+                     // dataType:'json',
+                     // success: function(data) {
+                         // $('.test-list').empty();
+                         // if(data !=''){
+                             // $.each(data, function(i){
+                                 // //alert(data[i].typename);
+                                 // $('.test-list').append(
+                                 // '<span class="test-name">\
+                                     // <input type="checkbox" name="test " value="test" class="check_test check_parametertype" id="check-select" data-id ="'+data[i].parametertype_id+'">\
+                                     // <input type="text" data-id ="'+data[i].parametertype_id+'" name="test" value="'+data[i].parametertype_name+'" class="list_edit parametertype_name_hover input_wrap" disabled>\
+                                     // <span class="test-alter">\
+                                         // <i class="fa fa-floppy-o save_item edit_save_button"></i>\
+                                         // <i class="fa fa-pencil-square-o edit_item "></i>\
+                                         // <i class="fa fa-trash-o delete_item"></i>\
+                                     // </span>\
+                                 // </span>\
+                                 // <div class="delete_div delete_search">\
+                                       // <div class="del_title">\
+                                         // <span class="del_txt">DELETE</span>\
+                                       // </div>\
+                                       // <div class="del_content">\
+                                         // <span class="del_content_txt">Are you sure want to delete this whole record?</span>\
+                                         // <input type="button" class="btn btn-primary align_right no_btn" value="No">\
+                                         // <input type="button" class="btn btn-primary align_right yes_btn" value="Yes" data-delete="parametertype_name" data-id ="'+data[i].parametertype_id+'">\
+                                         // <input type="hidden" name="delete_id" value="" id="delete_id"/>\
+                                       // </div>\
+                                 // </div>');
+                                // $('.edit_item,.save_item,.delete_item').hide();
+                             // });
+                         // }
+                    // }
+                 // });
+            // }else{
+                // $.ajax({
+                     // type: "POST",
+                     // url: "functions/parameter_unitfunction.php?find_all_type=true",
+                     // data:{'id':'all'},
+                     // cache: false,
+                     // dataType:'json',
+                     // success: function(data) {
+                         // $('.test-list').empty();
+                         // //alert(data);
+                         // if(data !=''){
+                             // $.each(data, function(i){
+                                 // //alert(data[i].test_name);
+                                 // $('.test-list').append(
+                                 // '<span class="test-name">\
+                                     // <input type="checkbox" name="test" value="test" class="check_test check_parametertype" id="check-select" data-id ="'+data[i].parametertype_id+'">\
+                                     // <input type="text" data-id ="'+data[i].parametertype_id+'" name="test" value="'+data[i].parametertype_name+'" class="list_edit test_name_hover input_wrap" disabled>\
+                                     // <span class="test-alter">\
+                                         // <i class="fa fa-floppy-o save_item edit_save_button"></i>\
+                                         // <i class="fa fa-pencil-square-o edit_item "></i>\
+                                         // <i class="fa fa-trash-o delete_item"></i>\
+                                     // </span>\
+                                 // </span>\
+                                 // <div class="delete_div delete_search">\
+                                       // <div class="del_title">\
+                                         // <span class="del_txt">DELETE</span>\
+                                       // </div>\
+                                       // <div class="del_content">\
+                                         // <span class="del_content_txt">Are you sure want to delete this whole record?</span>\
+                                         // <input type="button" class="btn btn-primary align_right no_btn" value="No">\
+                                         // <input type="button" class="btn btn-primary align_right yes_btn" value="Yes" data-delete="parametertype_name" data-id ="'+data[i].parametertype_id+'">\
+                                         // <input type="hidden" name="delete_id" value="" id="delete_id"/>\
+                                       // </div>\
+                                 // </div>');
+                                // $('.edit_item,.save_item,.delete_item').hide();
+                             // });
+                         // }
+                    // }
+                 // });
+            // }
         });
     // Parameter type Edit Option in Parameter unit Module //
 
@@ -970,8 +1012,14 @@
                   if(data.trim() == 'succeed'){
                       //alert('Parameter Type edited successfully!');
                       //location.reload();
-                      success_align();
+                       success_align();
 		               $('.success_msg span').html('Parameter Type edited successfully!');
+		               $('.success_msg').show();
+		               $('.popup_fade').show();
+		               document.body.style.overflow = 'hidden';
+                  }else{
+                  		success_align();
+		               $('.success_msg span').html('Parameter Type already exists!');
 		               $('.success_msg').show();
 		               $('.popup_fade').show();
 		               document.body.style.overflow = 'hidden';
@@ -1911,7 +1959,7 @@
                    if(html=='error'){
                      //alert('Sport edited successfully!');
                      success_align();
-                     $('.success_msg span').html('Sport edited successfully!');
+                     $('.success_msg span').html('Sport already exists!');
                      $('.success_msg').show();
                      $('.popup_fade').show();
                     $('.state_div,.delete_div').hide();
@@ -2397,7 +2445,7 @@
                    if(html=='error'){
                      //alert('Category edited successfully!');
                       success_align();
-                 	   $('.success_msg span').html('Category edited successfully!');
+                 	   $('.success_msg span').html('Category already exists!');
                  	    if($('.success_msg input').hasClass('alert_btn_without_refresh')){
                        		$('.success_msg input').removeClass('alert_btn_without_refresh').addClass('alert_btn');
                        	}
@@ -2416,7 +2464,7 @@
              	    $('.success_msg span').html('Category edited successfully!');
              	     if($('.success_msg input').hasClass('alert_btn_without_refresh')){
                        		$('.success_msg input').removeClass('alert_btn_without_refresh').addClass('alert_btn');
-                       	}
+                     }
                     $('.success_msg').show();
                     $('.popup_fade').show();
                     $('.state_div,.delete_div').hide();
@@ -3317,19 +3365,19 @@
                                 success_align();
 			             	     $('.success_msg span').html('Parameter Type edited successfully!');
 			             	      if($('.success_msg input').hasClass('alert_btn_without_refresh')){
-                       		$('.success_msg input').removeClass('alert_btn_without_refresh').addClass('alert_btn');
-                       	}
+                       				$('.success_msg input').removeClass('alert_btn_without_refresh').addClass('alert_btn');
+                       				}
 				                 $('.success_msg').show();
 				                 $('.popup_fade').show();
 			                  	document.body.style.overflow = 'hidden';
                             }else if(html == 'exist'){
-                                //alert('Parameter Type edited successfully!');
+                                //alert('Parameter Type already exists!');
                                 //location.reload();
 	                            success_align();
-			             	    $('.success_msg span').html('Parameter Type edited successfully!');
+			             	    $('.success_msg span').html('Parameter Type already exists!');
 			             	     if($('.success_msg input').hasClass('alert_btn_without_refresh')){
-                       		$('.success_msg input').removeClass('alert_btn_without_refresh').addClass('alert_btn');
-                       	}
+                       				$('.success_msg input').removeClass('alert_btn_without_refresh').addClass('alert_btn');
+                       			}
 				                $('.success_msg').show();
 				                $('.popup_fade').show();
 			                   document.body.style.overflow = 'hidden';
@@ -3407,9 +3455,9 @@
                               //location.reload();
                                success_align();
 			             	   $('.success_msg span').html('Parameter unit edited successfully!');
-			             	    if($('.success_msg input').hasClass('alert_btn_without_refresh')){
-                       		$('.success_msg input').removeClass('alert_btn_without_refresh').addClass('alert_btn');
-                       	}
+			             	   if($('.success_msg input').hasClass('alert_btn_without_refresh')){
+                       		       $('.success_msg input').removeClass('alert_btn_without_refresh').addClass('alert_btn');
+                       	       }
 				               $('.success_msg').show();
 				               $('.popup_fade').show();
 			                   document.body.style.overflow = 'hidden';
@@ -3418,9 +3466,9 @@
                               //location.reload();
                                success_align();
 			             	   $('.success_msg span').html('Parameter unit edited successfully!');
-			             	    if($('.success_msg input').hasClass('alert_btn_without_refresh')){
-                       		$('.success_msg input').removeClass('alert_btn_without_refresh').addClass('alert_btn');
-                       	}
+			             	   if($('.success_msg input').hasClass('alert_btn_without_refresh')){
+                       		       $('.success_msg input').removeClass('alert_btn_without_refresh').addClass('alert_btn');
+                       		   }
 				               $('.success_msg').show();
 				               $('.popup_fade').show();
 			                   document.body.style.overflow = 'hidden';
@@ -3527,6 +3575,7 @@
                                     <input type='hidden' name='result_parameterformat' class='result_parameterformat' value="+obj[i].parameter_format+">\
                                     <input type='hidden' name='result_ranges' class='result_ranges' value="+ranges+">\
                                     <td class='error_icon'></td>\
+                                    <td class='result_category'>"+obj[i].category+"</td>\
                                     <td class='result_test_name'>"+obj[i].test_name+"</td>\
                                     <td class='result_parameter_name'>"+obj[i].parameter_name+"</td>\
                                     <td><input type='text' class='assign_border enter_result' name='enter_result'><br><span class='enter_result_error'></span></td>";
@@ -3547,6 +3596,7 @@
                                     <input type='hidden' name='result_parameterformat' class='result_parameterformat' value="+obj[i].parameter_format+">\
                                     <input type='hidden' name='result_ranges' class='result_ranges' value="+ranges+">\
                                     <td class='error_icon'></td>\
+                                    <td class='result_category'>"+obj[i].category+"</td>\
                                     <td class='result_test_name'>"+obj[i].test_name+"</td>\
                                     <td class='result_parameter_name'>"+obj[i].parameter_name+"</td>\
                                     <td><input type='text' class='assign_border enter_result' name='enter_result'><br><span class='enter_result_error'></span></td>";
@@ -3567,6 +3617,7 @@
                           select_test = select_element.text();
                           select_parameter_element = select_element.next('.result_parameter_name');
                           select_parameter = select_element.next('.result_parameter_name').text();
+                          select_category_element = select_element.siblings('.result_category');
                           if(select_ranges == '[]'){
                             $('.note_range').show();
                             // error_html = "<span class='result_table_error custom_error'>Please assign range for test " +select_test+ " and parameter " +select_parameter+ "</span><br>";
@@ -3574,7 +3625,8 @@
                             // $('.result_error_content').show();
                             select_element.addClass('error_range');
                             select_parameter_element.addClass('error_range');
-                            select_element.prev('.error_icon').html("<i class='fa fa-exclamation-circle error-font'></i>");
+                            select_category_element.addClass('error_range');
+                            select_category_element.prev('.error_icon').html("<i class='fa fa-exclamation-circle error-font'></i>");
 
                           }
                         });

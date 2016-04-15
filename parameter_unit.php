@@ -83,7 +83,7 @@
 											<?php
 											$que = mysql_query("select * from wc_test_attribute where test_parameter_type ='".$eachrecord['parametertype_name']."'");
 											$que1 = mysql_query("select * from wc_result where resultparameter_name ='".$eachrecord['parametertype_name']."'");
-											if(!mysql_num_rows($que) || !mysql_num_rows($que1)){
+											if(!mysql_num_rows($que) && !mysql_num_rows($que1)){
 											?>
 											<i class="fa fa-floppy-o save_item paremeter_unit_type_save_btn"></i>
 											<i class="fa fa-pencil-square-o edit_item"></i>
@@ -144,9 +144,9 @@
 						<td><?php echo $eachrecord ['parameterunit'];?></td>
 				        <td class="popup-edit">
 				        	<?php if(strtolower($eachrecord['parametertype_name']) != 'time'){
-				        		$quer = mysql_query("select * from wc_test_attribute where test_parameter_type ='".$eachrecord['parametertype_name']."'");
+				        		$quer = mysql_query("select * from wc_test_attribute where test_parameter_unit ='".$eachrecord['parameterunit']."'");
 								$quer1 = mysql_query("select * from wc_result where resultparameter_name ='".$eachrecord['parametertype_name']."'");
-								if(!mysql_num_rows($quer) || !mysql_num_rows($quer1)){ 
+								if(!mysql_num_rows($quer) && !mysql_num_rows($quer1)){ 
 				        	?>
 				        	<span class="edit_state edit_parameter_unit" data-value="<?php echo $eachrecord ['parameterunit_id'];?>"><i class="fa fa-pencil-square-o"></i></span>
 			        		<span class="delete_state " data-value="<?php echo $eachrecord ['parameterunit_id'];?>"><i class="fa fa-trash-o"></i></span>

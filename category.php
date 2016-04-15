@@ -44,7 +44,7 @@ $obj = new categoryfunction();
 					        	<?php 
 							    	$query = mysql_query("select * from wc_testbattery_category_attribute where testbattery_category_id ='".$eachrecord ['categories_id']."'");
 									$query1 = mysql_query("select * from wc_assignschedule where assigncategory_id = '".$eachrecord ['categories_id']."'");
-									if(!mysql_num_rows($query) || !mysql_num_rows($query1)){
+									if(!mysql_num_rows($query) && !mysql_num_rows($query1)){
 	    						?>
 					        	<span class="edit_state"><i class="fa fa-pencil-square-o"></i></span>
 					        	<span class="delete_state" data-value="<?php echo $eachrecord ['categories_id']; ?>"><i class="fa fa-trash-o"></i></span>
