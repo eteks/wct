@@ -54,7 +54,7 @@
 					<div class="form-group">
 					  <label for="date" class="">Date Of Birth</label>
 					  <input class="athlete_date_pick" type="text" id="date_drop">
-					  <span class="hided">Please Choose valid Date</span>
+					  <span class="hided">Please select valid Date</span>
 					 <!-- <select class="form-control classic dob_align fl" id="date" name="athlete_dobday" data-validation-error-msg="Please Select the Date" data-validation="required">
 					  	<option value="">Date</option>
 					    <option value="1">1</option>
@@ -263,7 +263,7 @@
 										<div class="form-group align-day align-day-popup col-md-10">
 										  <label for="date" class="popup_label" style="text-align:center;">Date Of Birth</label>										
 										  	<input class="popup_athlete_datepick" type="text">
-										 	<span class="hided">Please Choose valid Date</span>
+										 	<span class="hided">Please select valid Date</span>
 										 <!--  <select class="form-control classic dob_align1 fl" id="date1" name="edit_athlete_dobday" data-validation-error-msg="Please Select the Date" data-validation="required">
 										  	<option value="">Date</option>
 										    <option value="1">1</option>
@@ -326,7 +326,7 @@
 
 										<div class="form-group col-md-10">
 											  <label for="sel1" class="popup_label">Sport</label>
-											  <select class="form-control adjust_width classic box-width box-width-athlete form-group" id="sel1" name="edit_athlete_sports" data-validation-error-msg="Please Select the Sport" data-validation="required">
+											  <select class="form-control adjust_width classic box-width box-width-athlete" id="sel1" name="edit_athlete_sports" data-validation-error-msg="Please Select the Sport" data-validation="required">
 											  <option value=""> Sport</option>
 											   <?php
 						                        $sports_query = $sportsfunction->sportsSelect();

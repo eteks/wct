@@ -350,7 +350,7 @@
       package_menu();
 
       $('.add_createschedule_act,.edit_createschedule_act,.add_athletes_act,.edit_athletes_act').on('click', function(){
-         $('.day, .month, .year').attr('data-validation', 'birthdate');
+         $('.day, .month, .year').attr('data-validation', 'required');
          $('.day, .month, .year').attr('data-validation-error-msg', 'Please Select Date');
           date_check();
       });
@@ -2539,8 +2539,8 @@
             if($(this).parents('form').attr('id') == 'test_updation_form'){
             	
             	$(this).parents('form').find('.parameter_type_update option').removeAttr('selected').prop('selectedIndex',0);
-            	$(this).parents('form').find('.parameter_unit_update').empty().append('<option>Unit</option>');
-            	$(this).parents('form').find('.parameter_format_update').empty().append('<option>Format</option>');
+            	$(this).parents('form').find('.parameter_unit_update').empty().append('<option value="">Unit</option>');
+            	$(this).parents('form').find('.parameter_format_update').empty().append('<option value="">Format</option>');
             }
         });
 
@@ -2878,13 +2878,9 @@
           $('input[type="text"],select',this).each(function() {
             if($(this).val().trim() == "") {
               res = false;
-
             }
-          });
-           if($(".date-dropdowns").next('span').hasClass("help-block form-error")){
-              res =  false;
-            }
-          if(res){
+          });         
+          if(res){                     
               var form_data = $('[name=athletes_form]').serialize();
               $.ajax({
                  type: "POST",
@@ -3187,24 +3183,27 @@
             });
 
       function date_check()
-      {    
+      {   
+// alert($('.date-dropdowns').next().html());
        var day_from = $('.day').val();                     
        var month_from = $('.month').val();                         
        var year_from = $('.year').val();
-        var trans_date = day_from + "/" + month_from + "/" + year_from; 
-        // alert(trans_date);          
+        var trans_date = day_from + "/" + month_from + "/" + year_from;          
         var d = new Date();
         var today = d.getDate() + "/" + (d.getMonth()+1) + "/" + d.getFullYear();   
         // alert(today);
-        if(new Date(trans_date) < new Date(today)){
-          $('.date-dropdowns').next().removeClass('help-block form-error');
-         // return true;
+        if(new Date(trans_date) > new Date(today)){        
+          $('.date-dropdowns').next().removeClass('hided').addClass('help-block form-error');
+          $('.date-dropdowns').next().next().removeClass('help-block form-error').addClass('hided');
+          //  if($('.date-dropdowns').next().hasClass('help-block form-error')){
+          //   return false;
+          // }
        }
        else{
-        if(new Date(trans_date) > new Date(today)){
-          $('.date-dropdowns').next().addClass('help-block form-error');
+        if(new Date(trans_date) < new Date(today)){
+          // alert('add');
+          $('.date-dropdowns').next().removeClass('help-block form-error').addClass('hided');
           $('.date-dropdowns').next().next().removeClass('help-block form-error').addClass('hided');
-          return false;
         } 
        }
     }
@@ -3767,7 +3766,8 @@
             newElement.appendTo($(".range_holder"));
         }
 
-        $('.reset_form_range').click(function(){         
+        $('.reset_form_range').click(function(){
+        $('.clone_content').children().find('input[type="text"]').next('span').removeClass('custom_error');
            $(".clone_content").each(function() {
                if($('.clone_content').length !=1){
                    $('.clone_content:last').remove();
