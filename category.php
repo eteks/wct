@@ -65,7 +65,7 @@ $obj = new categoryfunction();
 										<form name="category_update" class="category_update_form">
 											<div class="align_margin">
 												<label>Enter name of the Category</label><br>
-												<input type="text" class="sportsname category_update_name" name="category_name" autocomplete="off" data-validation-error-msg="Please enter the category name" data-validation="required">
+												<input type="text" class="sportsname category_update_name" name="category_name" autocomplete="off" data-validation-error-msg="Please enter the Category Name" data-validation="required">
 												<input type="hidden" class="category_update_id" name="category_id">
 												<input type="hidden" name="category_update" value="1">
 											</div><!--align_margin-->
@@ -95,25 +95,5 @@ $obj = new categoryfunction();
 				</div><!--table-position-->
 		</div><!-- end  container-->
 	</div>
-	<!-- <div class="popup_fade cancel_btn"></div> -->   <!--popup_fade-->
-		<!-- <div class="container">
-            <div class="state_div">
-          		<code class="close_btn cancel_btn"> </code>
-          		<div class="edit_title">
-                	<span class="del_txt">EDIT</span>
-              	</div> --> <!--edit_title-->
-      			<!--<div class="container state-content col-md-12">
-					<form name="category_update" id="category_update_form">
-						<div class="align_margin">
-							<label>Enter the Category Name</label><br>
-							<input type="text" class="sportsname category_update_name" name="category_name" data-validation-error-msg="Please enter the category name" data-validation="required">
-							<input type="hidden" class="category_update_id" name="category_id">
-							<input type="hidden" name="category_update" value="1">
-						</div>--><!--align_margin-->
-						<!-- <button type="button" class="btn btn-primary align_right clear category_update_act">Submit</button> -->
-						<!--<input type="submit" class="btn btn-primary align_right clear category_update_act" value="Submit">
-					</form>
-				</div>--> <!--tate-content-->
-			<!--</div> --><!--state_div-->
-		<!--</div> --> <!--container-->
+	
 <?php require_once "footer.php" ?>

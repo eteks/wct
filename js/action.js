@@ -349,10 +349,10 @@
 	  
       package_menu();
 
-      $('.add_createschedule_act,.edit_createschedule_act,.add_athletes_act,.edit_athletes_act').on('click', function(){
+      $('.add_athletes_act,.edit_athletes_act').on('click', function(){
          $('.day, .month, .year').attr('data-validation', 'required');
-         $('.day, .month, .year').attr('data-validation-error-msg', 'Please Select Date');
-          date_check();
+         $('.day, .month, .year').attr('data-validation-error-msg', 'Please select Date');
+          date_check1();
       });
 
       $('#test_form .parameter_btn').click(function(e) {
@@ -709,116 +709,7 @@
           });
 
       });
-        // $(document).on('change','.test_name_hover_check',function(event) {
-            // //alert($(this).attr('data-id'));
-// 
-          // if(this.checked) {
-            // $('.test_name_hover_check').not(this).prop('checked', false);
-            // //alert($(this).attr('data-id'));
-             // $('#test_table tbody').empty();
-            // var test_id = $(this).attr('data-id');
-            // $.ajax({
-                 // type: "POST",
-                 // url: "functions/test_functions.php?find_test_attribute=true",
-                 // data:{'id':test_id},
-                 // cache: false,
-                 // dataType:'json',
-                 // success: function(data) {
-                     // //alert(JSON.stringify(data.test));
-                     // $('#test_table tbody').empty();
-                     // if(data.test){
-                          // var param_dynamic = '';
-                        // $.each(data.param, function(i){
-                             // param_dynamic += "<option value='"+data.param[i].parametertype_name+"'>"+data.param[i].parametertype_name+"</option>";
-                         // });
-                          // $.each(data.test, function(i){
-                              // $('#test_table tbody').append('\
-          				      // <tr class="align_center delete_color">\
-          						// <input type="hidden" value="'+data.test[i].test_attribute_id+'" id="test_attribute_id">\
-          				        // <td>'+data.test[i].test_parameter_name+'</td>\
-          				        // <td>'+data.test[i].test_parameter_type+'</td>\
-          				        // <td>'+data.test[i].test_parameter_unit+'</td>\
-          				        // <td>'+data.test[i].test_parameter_format+'</td>\
-          				        // <td class="popup-edit">\
-          				        	// <span class="edit_state edit_test" data-value="'+data.test[i].test_attribute_id+'" data-test-id="'+data.test[i].test_id+'"><i class="fa fa-pencil-square-o"></i></span>\
-          			        		// <span class="delete_state" data-value="'+data.test[i].test_attribute_id+'"><i class="fa fa-trash-o"></i></span>\
-          			        			// <div class="test_div popup_hidden">\
-          					          		// <code class="close_btn cancel_btn"> </code>\
-          					          		// <div class="edit_title">\
-          					                	// <span class="del_txt">Edit Test</span>\
-          					              	// </div>\
-          					          			// <div class="container col-md-12">\
-          						          			// <div class="col-xs-12 col-md-12">\
-          									// <form id="test_updation_form" action="functions/test_functions.php" method="post">\
-          										// <div class="parameter_holder">\
-          											// <div class="form-group col-md-4" style="padding: 0;">\
-          												// <label class="popup_label">Enter Parameter Name</label><br>\
-          												// <input type="text" class="adjust_width test_parameter_name_update" name="parameter_name1" data-validation-error-msg="Please Enter the Parameter Name" data-validation="required" style="width:490px !important;height: 30px;" required>\
-          											// </div>\
-          											// <div class="form-group col-md-12 test_percentage parameter_type_parent">\
-          												// <div class="form-group col-md-4" style="padding: 0;">\
-          													// <label class="popup_label">Type</label><br>\
-          													// <select class="form-control classic type_align_popup fl parameter_type parameter_type_update" id="type1" name="type1" data-validation-error-msg="Please Select the Type" data-validation="required" required>\
-          														// <option value=""></option>\
-                                                                // '+param_dynamic+'\
-          													// </select>\
-          												// </div>\
-          												// <div class="form-group col-md-4" style="padding: 0;">\
-          													// <label class="popup_label">Unit</label><br>\
-          													// <select class="form-control classic type_align_popup fl parameter_unit parameter_unit_update" id="unit1" name="unit1" data-validation-error-msg="Please Select the Unit" data-validation="required" required>\
-          													// </select>\
-          												// </div>\
-          												// <div class="form-group col-md-4" style="padding: 0;">\
-          													// <label class="popup_label">Format</label><br>\
-          													// <select class="form-control classic type_align_popup fl parameter_format parameter_format_update" id="format1" name="format1" data-validation-error-msg="Please Select the Format" data-validation="required" required>\
-          														// <option value="">Format</option>\
-          														// <option value="0">0</option>\
-          														// <option value="1">1</option>\
-          														// <option value="2">2</option>\
-          														// <option value="3">3</option>\
-          														// <option value="4">4</option>\
-          														// <option value="5">5</option>\
-          													// </select>\
-          												// </div>\
-          											// </div>\
-          										// </div>\
-          										// <input class="parameter_update" type="hidden" name="parameter_update" value="" />\
-          										// <input class="test_update_id" type="hidden" name="test_update_id" value="" />\
-          										// <div class="col-md-12 schedule_btn" style="white-space: nowrap;">\
-          											// <input type="submit" class="btn btn-primary clear" value="Save">\
-          											// <input type="reset" value="Cancel" class="btn btn-primary clear reset_form" maxlength="50">\
-          										// </div>\
-          									// </form>\
-          								// </div>\
-          							// </div>\
-          			                // </div>\
-          							// <div class="delete_div delete_test_div">\
-          						              // <div class="del_title">\
-          						                // <span class="del_txt">DELETE</span>\
-          						              // </div>\
-          						              // <div class="del_content">\
-          						                // <span class="del_content_txt">Are you sure you want to delete this record?</span>\
-          						                // <input type="button" class="btn btn-primary align_right no_btn" value="No">\
-          						                // <input type="button" class="btn btn-primary align_right yes_btn" value="Yes" data-delete="test_attribute" data-id ="'+data.test[i].test_attribute_id+' "data-test-id="'+data.test[i].test_id+'">\
-          						                // <input type="hidden" name="delete_id" value="" id="delete_id"/>\
-          						              // </div>\
-            								// </div>\
-          				        // </td>\
-          						// <input type="hidden" name="test_attribute_id" id="test_attribute_id" value="'+data.test[i].test_attribute_id+'" />\
-          				      // </tr>');
-                          // });
-                     // }else{
-                        // //alert('No Parameter availabel!');
-                         // success_align();
-				           // $('.success_msg span').html('No Parameter availabel!');
-				           // $('.success_msg').show();
-				           // $('.popup_fade').show();
-				           // document.body.style.overflow = 'hidden';
-                     // }
-                 // }
-            // });
-        // }
-        // });
+        
         $(document).on('change','.test_battery_name_hover_check', function(event) {
             //alert($(this).attr('data-id'));
              //$('#test_battery_table tbody').empty();
@@ -1293,7 +1184,7 @@
                  success: function(data) {
                     //  $('.test_name_update').val(data.test_name);
                     //alert(current_popup.parents('.popup-edit').html());
-                     current_popup.parents('.popup-edit').find('.test_parameter_name_update').val(data.test_parameter_name).attr('data-validation-error-msg', 'Please Enter the Parameter Name').attr('data-validation', 'required');
+                     current_popup.parents('.popup-edit').find('.test_parameter_name_update').val(data.test_parameter_name).attr('data-validation-error-msg', 'Please enter the Parameter Name').attr('data-validation', 'required');
                      current_popup.parents('.popup-edit').find('.parameter_type_update option[value="'+data.test_parameter_type+'"]').attr('selected','selected');
                     // current_popup.parents('.popup-edit').find('.parameter_format_update option[value="'+data.test_parameter_format+'"]').attr('selected','selected');
                      if(data.test_parameter_type.toLowerCase() == 'time'){
@@ -1835,7 +1726,13 @@
                    }
                    else{
                     // $('.edit_states_error').text(result_split[1]).show();
-                    alert(result_split[1]);
+                    //alert(result_split[1]);
+                    success_align();
+	         	     $('.success_msg span').html(result_split[1]);
+	                 $('.success_msg').show();
+	                 $('.popup_fade').show();
+                     $('.state_div, .close_btn').hide();
+                     document.body.style.overflow = 'hidden';
                    }
                }
            });
@@ -1933,7 +1830,12 @@
                    }
                    else{
                     // $('.edit_district_error').text(result_split[1]).show();
-                    alert(result_split[1]);
+                    success_align();
+	                   $('.success_msg span').html(result_split[1]);
+	                   $('.success_msg').show();
+	                   $('.popup_fade').show();
+                     $('.district_div, .close_btn').hide();
+                     document.body.style.overflow = 'hidden';
                    }
                }
            });
@@ -2544,7 +2446,7 @@
             }
         });
 
-        $('.add_createschedule_act,.edit_createschedule_act,.add_athletes_act,.edit_athletes_act').on('click', function(){
+        $('.add_athletes_act,.edit_athletes_act').on('click', function(){
          var x = document.getElementById('athletes_mobile1').value;
           if($("#athletes_mobile1").siblings('span').hasClass("help-block form-error")){
             return false;
@@ -2655,11 +2557,11 @@
             if($('.assign_clone_content_edit:last').children().find('#bibo, #athlete_sel').val() == ''){   
             e.preventDefault();          
               $('.assign_clone_content_edit:last').children().find('#bibo').next().addClass('custom_error');
-              $('.assign_clone_content_edit:last').children().find('#athlete_sel').next().next().addClass('custom_error');                      
+              $('.assign_clone_content_edit:last').children().find('#athlete_sel').next().addClass('custom_error');                      
             }           
             else{
               $('.assign_clone_content_edit:last').children().find('#bibo').next().removeClass('custom_error');
-              $('.assign_clone_content_edit:last').children().find('#athlete_sel').next().next().removeClass('custom_error');
+              $('.assign_clone_content_edit:last').children().find('#athlete_sel').next().removeClass('custom_error');
               newElement($('.assign_clone_content_edit:last'));
            }
            return false;
@@ -2981,6 +2883,10 @@
               // alert('false  comes');
             }
           });
+          if($('.create_date').next('span').hasClass('help-block form-error')){ 
+            
+            res = false;         
+          }
           if(res){
              var form_data = $(this).serialize();
               $.ajax({
@@ -3027,96 +2933,7 @@
              });
           }
         });
-        // $(document).on('change','.check_parametertype', function(event) {
-           // //alert($(this).attr('data-id'));
-           // if(this.checked){
-            // $('#param_unit_table tbody').empty();
-           // var params_id = $(this).attr('data-id');
-           // $.ajax({
-                // type: "POST",
-                // url: "functions/parameter_unitfunction.php?find_params_units=true",
-                // data:{'id':params_id},
-                // cache: false,
-                // dataType:'json',
-                // success: function(data) {
-                    // //alert(JSON.stringify(data.test[0].parametertype_name));
-                    // $('#test_table tbody').empty();
-                    // if(data.test[0]){
-                         // var param_dynamic = '';
-                         // var selected_param_id = '';
-                       // $.each(data.param, function(i){
-                           // if(data.test[0].parametertype_name == data.param[i].parametertype_name ){
-                           	   // selected_param_id += data.param[i].parametertype_id;
-                               // param_dynamic += "<option value='"+data.param[i].parametertype_id+"' selected>"+data.param[i].parametertype_name+"</option>";
-                           // }else{
-                               // param_dynamic += "<option value='"+data.param[i].parametertype_id+"'>"+data.param[i].parametertype_name+"</option>";
-                           // }
-                        // });
-                         // $.each(data.test, function(i){
-                             // $('#param_unit_table tbody').append('\
-                   // <tr class=" delete_color">\
-               // <input type="hidden" value="'+data.test[i].parameterunit_id+'" id="parameterunit_id">\
-                     // <td>'+data.test[i].parameterunit+'</td>\
-                     // <td class="popup-edit">\
-                      // <span class="edit_state edit_parameter_unit" data-value="'+data.test[i].parameterunit_id+'" data-test-id="'+data.test[i].parameterunit_id+'"><i class="fa fa-pencil-square-o"></i></span>\
-                      // <span class="delete_state" data-value="'+data.test[i].parameterunit_id+'"><i class="fa fa-trash-o"></i></span>\
-                      // <div class="paramter_div edit_parameterunit_div popup_hidden">\
-                          // <code class="close_btn cancel_btn"> </code>\
-                          // <div class="edit_title">\
-                              // <span class="del_txt">Edit detail</span>\
-                          // </div><!--edit_title-->\
-                          // <div class="container state-content col-md-12" style="padding: 0px;">\
-                              // <div class="col-xs-12 col-md-12 align_margin">\
-                                  // <form id="edit_parameter_unit" name="edit_parameter_unit_form">\
-                                      // <div class="form-group">\
-                                            // <label for="sel1">Select Parameter Type</label>\
-                                            // <input type="hidden" class="edit_param_unit_id" name="edit_param_unit_id"  value=""/>\
-                                            // <input type = "hidden" name="parameter_type" value="'+selected_param_id+'">\
-                                            // <select class="form-control adjust_width adjust_popup_width classic edit_param_type" id="sel1" data-validation-error-msg="Please Select the Type of the Parameter" data-validation="required" disabled>\
-                                              // <option value="">Select Parameter Type</option> \
-                                               // '+param_dynamic+' \
-                                            // </select>\
-                                      // </div>\
-                                      // <div class="form-group">\
-                                          // <label>Enter Parameter Unit</label><br>\
-                                          // <input type="text" class="adjust_width adjust_popup_width edit_param_unit" name="parameter_unit" autocomplete="off">\
-                                          // <span class="hided">Please enter Parameter Unit</span>\
-                                      // </div>\
-                                      // <div class="col-md-10 align_right schedule_btn">\
-                                          // <input type="submit" class="btn btn-primary clear edit_parameter_unit_act" value="Save">\
-                                          // <input type="reset" class="btn btn-primary clear reset_form_param_unit" value="Cancel">\
-                                      // </div>\
-                                  // </form>\
-                              // </div>\
-                          // </div>\
-                      // </div><!--paramter_div-->\
-                // <div class="delete_div delete_test_div">\
-                             // <div class="del_title">\
-                               // <span class="del_txt">DELETE</span>\
-                             // </div>\
-                             // <div class="del_content">\
-                               // <span class="del_content_txt">Are you sure you want to delete this record?</span>\
-                               // <input type="button" class="btn btn-primary align_right yes_btn" value="Yes" data-delete="parameter_unit_name" data-id ="'+data.test[i].parameterunit_id+' ">\
-                               // <input type="button" class="btn btn-primary align_right no_btn" value="No">\
-                               // <input type="hidden" name="delete_id" value="" id="delete_id"/>\
-                             // </div>\
-                   // </div>\
-                     // </td>\
-               // <input type="hidden" name="test_attribute_id" id="test_attribute_id" value="'+data.test[i].parameterunit_id+'" />\
-                   // </tr>');
-                         // });
-                    // }else{
-                        // //alert('No Parameter availabel!');
-                        // success_align();
-             	        // $('.success_msg span').html('No Parameter availabel!');
-	                    // $('.success_msg').show();
-	                    // $('.popup_fade').show();
-	                    // document.body.style.overflow = 'hidden';
-                    // }
-                // }
-           // });
-       // }
-       // });
+       
        // / Edit the Parameter Unit module - Start /
          $(document).on('click','.edit_parameter_unit',function(){
             var test_attr_id = $(this).attr("data-value");
@@ -3182,31 +2999,9 @@
             }
             });
 
-      function date_check()
-      {   
-// alert($('.date-dropdowns').next().html());
-       var day_from = $('.day').val();                     
-       var month_from = $('.month').val();                         
-       var year_from = $('.year').val();
-        var trans_date = day_from + "/" + month_from + "/" + year_from;          
-        var d = new Date();
-        var today = d.getDate() + "/" + (d.getMonth()+1) + "/" + d.getFullYear();   
-        // alert(today);
-        if(new Date(trans_date) > new Date(today)){        
-          $('.date-dropdowns').next().removeClass('hided').addClass('help-block form-error');
-          $('.date-dropdowns').next().next().removeClass('help-block form-error').addClass('hided');
-          //  if($('.date-dropdowns').next().hasClass('help-block form-error')){
-          //   return false;
-          // }
-       }
-       else{
-        if(new Date(trans_date) < new Date(today)){
-          // alert('add');
-          $('.date-dropdowns').next().removeClass('help-block form-error').addClass('hided');
-          $('.date-dropdowns').next().next().removeClass('help-block form-error').addClass('hided');
-        } 
-       }
-    }
+
+
+
     //range
     //Jquery and Ajax Functionality for Range Form added by kalai
          $('.range_form_id').submit(function(e){
@@ -3452,30 +3247,50 @@
                        url: "functions/parameter_unitfunction.php?updateunitdata=true",
                        data:form_data,
                        cache: false,
-                       success: function(data) {
-                          if(data=='success'){
-                              //alert('Parameter unit edited successfully!');
-                              //location.reload();
-                               success_align();
-			             	   $('.success_msg span').html('Parameter unit edited successfully!');
-			             	   if($('.success_msg input').hasClass('alert_btn_without_refresh')){
-                       		       $('.success_msg input').removeClass('alert_btn_without_refresh').addClass('alert_btn');
-                       	       }
-				               $('.success_msg').show();
-				               $('.popup_fade').show();
-			                   document.body.style.overflow = 'hidden';
-                          }else if(data == 'exist'){
-                              //alert('Parameter unit edited successfully!');
-                              //location.reload();
-                               success_align();
-			             	   $('.success_msg span').html('Parameter unit edited successfully!');
-			             	   if($('.success_msg input').hasClass('alert_btn_without_refresh')){
-                       		       $('.success_msg input').removeClass('alert_btn_without_refresh').addClass('alert_btn');
-                       		   }
-				               $('.success_msg').show();
-				               $('.popup_fade').show();
-			                   document.body.style.overflow = 'hidden';
-                          }
+                       success: function(html) {
+                          // if(data=='e'){
+//                               
+                               // success_align();
+			             	   // $('.success_msg span').html('Parameter Unit edited successfully!');
+			             	   // if($('.success_msg input').hasClass('alert_btn_without_refresh')){
+                       		       // $('.success_msg input').removeClass('alert_btn_without_refresh').addClass('alert_btn');
+                       	       // }
+				               // $('.success_msg').show();
+				               // $('.popup_fade').show();
+			                   // document.body.style.overflow = 'hidden';
+                          // }else if(data == 'exist'){
+//                              
+                               // success_align();
+			             	   // $('.success_msg span').html('Parameter Unit already exists!');
+			             	   // if($('.success_msg input').hasClass('alert_btn_without_refresh')){
+                       		       // $('.success_msg input').removeClass('alert_btn_without_refresh').addClass('alert_btn');
+                       		   // }
+				               // $('.success_msg').show();
+				               // $('.popup_fade').show();
+			                   // document.body.style.overflow = 'hidden';
+                          // }
+                          var result_split = html.split('#');
+                   if (result_split[0].indexOf("success") !== -1){
+                     success_align();
+	             	   $('.success_msg span').html(result_split[1]);
+	             	   if($('.success_msg input').hasClass('alert_btn_without_refresh')){
+	           		       $('.success_msg input').removeClass('alert_btn_without_refresh').addClass('alert_btn');
+	           	       }
+		               $('.success_msg').show();
+		               $('.popup_fade').show();
+	                   document.body.style.overflow = 'hidden';
+                   }
+                   else{
+
+                  		success_align();
+					   $('.success_msg span').html(result_split[1]);
+					   if($('.success_msg input').hasClass('alert_btn_without_refresh')){
+					       $('.success_msg input').removeClass('alert_btn_without_refresh').addClass('alert_btn');
+					   }
+					   $('.success_msg').show();
+					   $('.popup_fade').show();
+					   document.body.style.overflow = 'hidden';
+                   }
                       }
                    });
               }

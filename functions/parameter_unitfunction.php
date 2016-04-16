@@ -14,7 +14,6 @@ class parameterunitFunction {
     }
     public function parameterunitSelect(){
         $temp_arr1 = array();
-        //$res1 = mysql_query("select * from wc_parameterunit inner join wc_parametertype on wc_parameterunit.parametertype_id=wc_parametertype.parametertype_id  where wc_parametertype.parametertype_id = (select MAX(parametertype_id) from wc_parametertype)  ORDER BY wc_parametertype.parametertype_name ASC")or die(mysql_error());
 		$res1 = mysql_query("select * from wc_parameterunit inner join wc_parametertype on wc_parameterunit.parametertype_id=wc_parametertype.parametertype_id ORDER BY wc_parametertype.parametertype_name ASC	")or die(mysql_error());
         while($row = mysql_fetch_array($res1)) {
             $temp_arr1[] =$row;
@@ -42,9 +41,9 @@ class parameterunitFunction {
         return true;
     }
     public function parameterupdatefunction(){
-        $sql = "update wc_parameterunit set parametertype_id = '".$this->parametertypeid."',parameterunit='".$this->parameterunitname."' where parameterunit_id ='".$this->parameterunitid."'";
-        mysql_query($sql) or die("delete".mysql_error());
-        return true;
+        $res = mysql_query("update wc_parameterunit set parametertype_id = '".$this->parametertypeid."',parameterunit='".$this->parameterunitname."' where parameterunit_id ='".$this->parameterunitid."'")or die(mysql_error());
+		if($res){ return true; }
+		else{ return false; }
     }
     public function parametertypefunction(){
         $temp_arr = array();
@@ -64,6 +63,15 @@ class parameterunitFunction {
         }
         return $temp_arr;
     }
+    public function isparameterunitExist(){
+		$qr = mysql_query("SELECT * FROM wc_parameterunit WHERE parametertype_id = '".$this->parametertypeid."' AND parameterunit = '".$this->parameterunitname."' AND parameterunit_id NOT IN ('".$this->parameterunitid."')");
+		$row = mysql_num_rows($qr);
+		if($row > 0){
+			return true;
+		} else {
+			return false;
+		}
+	}
 }
 if(isset($_GET['adddata'])){
     $parametertype_id= $_POST['parametertype'];
@@ -93,23 +101,26 @@ if(isset($_GET['getunitdata'])){
     print(json_encode($output));
 }
 if(isset($_GET['updateunitdata'])){
+	$valid = false;
     $parameterunitupdate = new parameterunitFunction();
     $parameterunitupdate->parameterunitid = $_POST['edit_param_unit_id'];
     $parameterunitupdate->parametertypeid = $_POST['parameter_type'];
     $parameterunitupdate->parameterunitname = $_POST['parameter_unit'];
-    $check_query = "select * from wc_parameterunit where parametertype_id = '".$_POST['parameter_type']."' and parameterunit = '".$_POST['parameter_unit']."' ";
-    $row = mysql_query($check_query) or die(mysql_error());
-	$data = mysql_fetch_array($row);
-    if(!mysql_num_rows($row)){
-    	if($data['parameterunit'] != $_POST['parameter_unit'] ){
-	    	$parameterunitupdate->parameterupdatefunction();
-	        echo "success";
-	    }else{
-	        echo "error";
-	    }
-	}else{
-        echo 'exist';
+	foreach ($DISTRICT as $element) {
+        if (in_array($_POST['parameter_unit'], $element)){$valid = true;}
     }
+	$parameter_unit = $parameterunitupdate->isparameterunitExist();
+	if(!$parameter_unit){
+		$parameter_unit_func = $parameterunitupdate->parameterupdatefunction();
+		if($districtupdate){
+			echo "success#Parameter Unit edited successfully!#".$_POST['edit_param_unit_id']."#".$_POST['parameter_unit'];
+		}else{
+			echo "failure#Parameter Unit edited successfully!";
+		}
+	}
+	else {
+		echo "failure#Parameter Unit already exists!";
+	}
 }
 
 if(isset($_GET['param_unit_for_test_edit'])){

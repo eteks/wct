@@ -39,7 +39,7 @@
 					<form name="district_form" class="districts_form">
 						<div class="form-group col-md-8 padding_zero">
 						  <label for="sel1">Select the State</label>
-						  <select class="form-control adjust_width classic choose_state" id="sel1" name="district_state" data-validation-error-msg="Please Select the State" data-validation="required">
+						  <select class="form-control adjust_width classic choose_state" id="sel1" name="district_state" data-validation-error-msg="Please select the State" data-validation="required">
 						  <option value="">Select the state</option>
 						  <?php
 	                        $query = $statesFunction->statesSelect();
@@ -186,7 +186,7 @@
 								          			<input type="hidden" name="edit_states_id">
 													 <div class="form-group">
 													  <label for="sel1">Select the State</label>
-													  <select class="form-control adjust_width adjust_popup_width classic edit_choose_state" id="sel1" name="edit_district_state" data-validation-error-msg="Please Select the name of the State" data-validation="required" disabled>
+													  <select class="form-control adjust_width adjust_popup_width classic edit_choose_state" id="sel1" name="edit_district_state" data-validation-error-msg="Please select the name of the State" data-validation="required" disabled>
 													  	<option value="">Select the state</option>
 														  	<?php
 									                        $state_query = $statesFunction->statesSelect();
@@ -198,7 +198,7 @@
 														</div>
 														<div class="form-group">
 															<label>Enter name of the District</label><br>
-															<input type="text" class="districts adjust_popup_width" name="edit_district_name" data-validation-error-msg="Please Enter name of District" data-validation="required">
+															<input type="text" class="districts adjust_popup_width" name="edit_district_name" data-validation-error-msg="Please enter name of District" data-validation="required">
 															<span class="edit_district_error"></span>
 														</div>
 														<!-- <button type="button" class="btn btn-primary align_right clear edit_district_act" name="district">Submit</button>	 -->

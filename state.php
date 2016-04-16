@@ -42,9 +42,9 @@
 						        <td class="t_states_name"><?php echo $row['states_name']; ?></td>
 						        <td class="popup-edit">
 						        <?php
-						        $check_in_district = mysql_query("SELECT * FROM wc_district WHERE districtstates_id='".$row['states_id']."'")or die(mysql_error());
+						        //$check_in_district = mysql_query("SELECT * FROM wc_district WHERE districtstates_id='".$row['states_id']."'")or die(mysql_error());
                             	$check_in_athlete = mysql_query("SELECT * FROM wc_athlete WHERE athletestates_id='".$row['states_id']."'")or die(mysql_error());
-                            	if((mysql_num_rows($check_in_district)>0 || mysql_num_rows($check_in_athlete)>0)){ ?>
+                            	if((mysql_num_rows($check_in_athlete)>0)){ ?><!-- && mysql_num_rows($check_in_district)>0-->
                             		<span class="restrict">
 							        	<i class="fa fa-pencil-square-o">
 							        	<div class="restrict_tooltip">Mapping has been already done.Edit or Delete not possible.</div>	

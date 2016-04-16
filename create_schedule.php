@@ -44,7 +44,7 @@
 				<input type="hidden" class="statesid" name="edit_schedule_id">
 					<div class="form-group">
 						<label>Enter Name of Schedule</label>
-						<input type="text" class="adjust_width" name="schedule_name" data-validation-error-msg="Please Enter Name of Schedule" data-validation="required">
+						<input type="text" class="adjust_width" name="schedule_name" data-validation-error-msg="Please enter name of Schedule" data-validation="required">
 					</div>
 					<div class="form-group">
 					  <label for="battey_name">Select Test Battery</label>
@@ -58,11 +58,16 @@
 	                      <?php } ?>
 					  </select>
 					</div>
-					<div class="form-group">
-					  <label for="date" class=""  style="">Select Date</label>
-				    	<input class="date_pick" type="text">
-				    	<span class="hided">Please Choose valid Date</span>
+					<div class="form-group create_date">
+					  <label for="date" class="date_cre"  style="">Select Date</label>
+				    	<!-- <input class="date_pick" type="text"> -->
+				    	  
+				    	  <select name="dateday" id="day" class="day classic" data-validation-error-msg="Please select Date" data-validation="required"></select>
+				    	  <select name="datemonth" id="month" class="month classic" data-validation-error-msg="Please select Date" data-validation="required"></select>
+  						  <select name="dateyear" id="year" class="year classic" data-validation-error-msg="Please select Date" data-validation="required"></select>
+				    	  
 					</div>
+					<span class="hided">Please Choose valid Date</span>
 					<div class="form-group nm">
 					  <label for="date" class="" style="">Select Time</label>
 					  	<div class="form-group fl">
@@ -355,10 +360,7 @@
 								          			<form name="edit_createschedule_form" class="edit_create_schedule_form">
 								          			<input type="hidden" class="statesid" name="edit_schedule_id">
 								          			<input type="hidden" class="edit_schedule_name" name="edit_schedule_name" value="">
-								          				<!-- <div class="form-group">
-													<label>Enter the schedule Name</label>
-													<input type="text" class="adjust_width" name="edit_schedule_name" data-validation-error-msg="Please Enter the name of the Schedule" data-validation="required">
-												</div> -->
+								          				
 												<div class="form-group fl">
 												  <label for="battey_name" class="popup_label">Select Test Battery Name</label>
 												  <select class="form-control classic adjust_width box-width width-assign" id="battey_name" name="edit_schedule_testbattery" data-validation-error-msg="Please Select Test Battery Name" data-validation="required">
@@ -372,35 +374,21 @@
 												  </select>
 												</div>
 
-												<div class="form-group align-day align-day-popup fl">
+												<div class="form-group align-day align-day-popup fl create_date">
 												  <label for="date" class="popup_label">Select date</label>
-												  <input class="popup_date_pick" type="text">
-												  <span class="hided">Please Choose valid Date</span>
-												 <!--  <select class="form-control classic create-date1 fl" id="date" name="edit_schedule_day" data-validation-error-msg="Please Select the Date" data-validation="required">
-												  	<option value="">Date</option>
-												    <option value="1">1</option>
-												    <option value="2">2</option>
-												    <option value="3">3</option>
-												  </select>
-												  <select class="form-control classic create-date2 fl" id="month" name="edit_schedule_month" data-validation-error-msg="Please Select the Month" data-validation="required">
-												  	<option value="">Month</option>
-												    <option value="1">January</option>
-												    <option value="2">February</option>
-												    <option value="3">March</option>
-												  </select>
-												  <select class="form-control classic create-date3 fl" id="year" name="edit_schedule_year" data-validation-error-msg="Please Select the Year" data-validation="required">
-												  	<option value="">Years</option>
-												    <option value="1991">1991</option>
-												    <option value="1992">1992</option>
-												    <option value="1993">1993</option>
-												  </select> -->
+												  <input class="popup_date_pick" type="hidden">
+												  <div class="date-dropdowns">
+										    	  	<select name="dateday" id="day1" class="day classic" data-validation-error-msg="Please select Date" data-validation="required"></select>
+										    	  	<select name="datemonth" id="month1" class="month classic" data-validation-error-msg="Please select Date" data-validation="required"></select>
+						  						  	<select name="dateyear" id="year1" class="year classic" data-validation-error-msg="Please select Date" data-validation="required"></select>
+													</div>
 												</div>
-
+												<span class="hided">Please Choose valid Date</span>
 												<div class="form-group nm fl">
 												  <label for="date" class="popup_label">Select Time</label>
 												  	<div class="form-group fl">
 												  		<label class="popup_label">Time</label>
-														<select class="form-control classic adjust_tiny" id="hour" name="edit_schedule_hour" data-validation-error-msg="Please Select the Hour" data-validation="required">
+														<select class="form-control classic adjust_tiny" id="hour" name="edit_schedule_hour" data-validation-error-msg="Please select the Hour" data-validation="required">
 														  	<option value="">Hour</option>
 														    <option value="01">01</option>
 														    <option value="02">02</option>
@@ -430,7 +418,7 @@
 													</div>
 													<div class="form-group fl">
 														<label class="popup_label">Minute</label>
-														<select class="form-control classic adjust_tiny" id="minute" name="edit_schedule_minute" data-validation-error-msg="Please Select the Minute" data-validation="required">
+														<select class="form-control classic adjust_tiny" id="minute" name="edit_schedule_minute" data-validation-error-msg="Please select the Minute" data-validation="required">
 														  	<option value="">Minute</option>
 														  	<option value="00">00</option>
 														    <option value="01">01</option>
@@ -565,7 +553,7 @@
 
 												<div class="align_height align_margin fl">
 													<label class="popup_label">Venue</label>
-													<textarea class="area_width_create" name="edit_schedule_venue" data-validation-error-msg="Please Enter the Venue" data-validation="required"></textarea>
+													<textarea class="area_width_create" name="edit_schedule_venue" data-validation-error-msg="Please enter the Venue" data-validation="required"></textarea>
 												</div>
 												<div class="col-md-10 schedule_btn fl">
 													<!-- <button type="button" class="btn btn-primary align_right clear edit_createschedule_act">Submit</button>
@@ -626,4 +614,9 @@
 		<!-- <div class="container">
 
 		</div><!--container-->
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	});
+</script>
 <?php require_once "footer.php" ?>

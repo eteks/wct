@@ -55,26 +55,7 @@
 					  <label for="date" class="">Date Of Birth</label>
 					  <input class="athlete_date_pick" type="text" id="date_drop">
 					  <span class="hided">Please select valid Date</span>
-					 <!-- <select class="form-control classic dob_align fl" id="date" name="athlete_dobday" data-validation-error-msg="Please Select the Date" data-validation="required">
-					  	<option value="">Date</option>
-					    <option value="1">1</option>
-					    <option value="2">2</option>
-					    <option value="3">3</option>
-					  </select>
-
-						<select class="form-control classic dob_align fl" id="month" name="athlete_dobmonth" data-validation-error-msg="Please Select the Month" data-validation="required">
-					  	<option value="">Month</option>
-					    <option value="1">January</option>
-					    <option value="2">February</option>
-					    <option value="3">March</option>
-					  </select>
-
-					  <select class="form-control classic dob_align fl" id="year" name="athlete_dobyear" data-validation-error-msg="Please Select the Year" data-validation="required">
-					  	<option value="">Years</option>
-					    <option value="1991">1991</option>
-					    <option value="1992">1992</option>
-					    <option value="1993">1993</option>
-					  </select> -->
+					
 					</div>
 					<div class="form-group">
       					<label>Mobile Number</label>
@@ -216,16 +197,10 @@
                         <tr class="align_center delete_color">
                         	<input type='hidden' class="t_athlete_id check_id hidden_value" name='athlete_id' value="<?php echo $row['athlete_id']; ?>">
                         	<input type='hidden' class="t_athlete_name check_name" name='athlete_name' value="<?php echo $row['athlete_name']; ?>">
-					      <!--  <td class="t_athlete_s_id"><?php // echo $i; ?></td> -->
-					      <!--  <td class="t_athlete_name"><?php //echo $row['athlete_name']; ?></td>
-					       <td class="t_athlete_gender"><?php // echo $row['athlete_gender']; ?></td>
-					        <td class="t_athlete_dob"><?php // echo date("d/m/Y", strtotime($row['athlete_dob'])); ?></td>
-					        <td class="t_athlete_address"><?php // echo $row['athlete_address']; ?></td> -->
-					        <!-- <td><?php //echo $row['sports_name']; ?></td> -->
+					     
 					        <td><?php echo $row['athlete_gender']; ?></td>
 					        <td><?php echo date("d/m/Y", strtotime($row['athlete_dob'])); ?></td>
 					        <td><?php echo $row['district_name']; ?></td>
-					        <!-- <td><?php echo $row['athlete_address']; ?></td> -->
 					        <td><?php echo $row['athlete_mobile']; ?></td>
 							<td class="popup-edit">
 							<?php
@@ -256,40 +231,20 @@
 						          	<form name="edit_athletes_form" class="edit_athletes_form">
 						          		<input type="hidden" class="statesid" name="edit_athlete_id" value="">
 						          		<input type="hidden" class="edit_athlete_name" name="edit_athlete_name" value="">
-										<!-- <div class="form-group">
-											<label>Athlete Name</label><br>
-											<input type="text" class="adjust_width" name="edit_athlete_name" data-validation-error-msg="Please Enter the name of the Athelete" data-validation="required">
-										</div> -->
+										
 										<div class="form-group align-day align-day-popup col-md-10">
 										  <label for="date" class="popup_label" style="text-align:center;">Date Of Birth</label>										
 										  	<input class="popup_athlete_datepick" type="text">
 										 	<span class="hided">Please select valid Date</span>
-										 <!--  <select class="form-control classic dob_align1 fl" id="date1" name="edit_athlete_dobday" data-validation-error-msg="Please Select the Date" data-validation="required">
-										  	<option value="">Date</option>
-										    <option value="1">1</option>
-										    <option value="2">2</option>
-										    <option value="3">3</option>
-										  </select>
-										  <select class="form-control classic dob_align2 fl" id="month" name="edit_athlete_dobmonth" data-validation-error-msg="Please Select the Month" data-validation="required">
-										  	<option value="" value="">Month</option>
-										     <option value="1">January</option>
-										    <option value="2">February</option>
-										    <option value="3">March</option>
-										  </select>
-										  <select class="form-control classic dob_align3 fl" id="year" name="edit_athlete_dobyear" data-validation-error-msg="Please Select the Year" data-validation="required">
-										  	<option value="">Years</option>
-										    <option value="1991">1991</option>
-										    <option value="1992">1992</option>
-										    <option value="1993">1993</option>
-										  </select> -->
+										
 										</div>
 										<div class="form-group col-md-10">
 					      					<label class="popup_label">Mobile Number</label>
-					      					<input id="ahtlete_mobile" type="text" value="" class="adjust_width box-width box-width-athlete" name="edit_athlete_mobile" autocomplete="off" data-validation-error-msg="Please Enter the value that must contain 10 numbers" data-validation="length" data-validation-length="10">
+					      					<input id="ahtlete_mobile" type="text" value="" class="adjust_width box-width box-width-athlete" name="edit_athlete_mobile" autocomplete="off" data-validation-error-msg="Please enter the value that must contain 10 numbers" data-validation="length" data-validation-length="10">
 					     				</div>
 										<div class="form-group col-md-10">
 											  <label for="sel1" class="popup_label">Gender</label>
-											  <select class="form-control adjust_width classic box-width box-width-athlete" id="sel1" name="edit_athlete_gender" data-validation-error-msg="Please Select the Gender" data-validation="required">
+											  <select class="form-control adjust_width classic box-width box-width-athlete" id="sel1" name="edit_athlete_gender" data-validation-error-msg="Please select the Gender" data-validation="required">
 											  <option value=""></option>
 											  <option value="Female">Female</option>
 											  <option value="Male">Male</option>
@@ -297,7 +252,7 @@
 										</div>
 										<div class="form-group col-md-10">
 											  <label for="sel1" class="popup_label">State</label>
-											  <select class="form-control adjust_width classic athlete_state_act box-width box-width-athlete" id="sel1" name="edit_athlete_state" data-validation-error-msg="Please Select the State" data-validation="required">
+											  <select class="form-control adjust_width classic athlete_state_act box-width box-width-athlete" id="sel1" name="edit_athlete_state" data-validation-error-msg="Please select the State" data-validation="required">
 											  <option value="">State</option>
 											   <?php
 						                        $state_query = $statesFunction->statesSelect();
@@ -309,24 +264,24 @@
 										</div>
 										<div class="form-group col-md-10">
 											  <label for="sel1" class="popup_label">District</label>
-											  <select class="form-control adjust_width classic athlete_district_act box-width box-width-athlete" id="sel1" name="edit_athlete_district" data-validation-error-msg="Please Select the District" data-validation="required">
+											  <select class="form-control adjust_width classic athlete_district_act box-width box-width-athlete" id="sel1" name="edit_athlete_district" data-validation-error-msg="Please select the District" data-validation="required">
 											  <option value=""> District</option>
 											  </select>
 										</div>
 
 										<div class="align_height align_margin col-md-10">
 											<label class="popup_label">Address</label>
-											<textarea class="area_width_athlete" name="edit_athlete_address" data-validation-error-msg="Please Enter the Address" data-validation="required"></textarea>
+											<textarea class="area_width_athlete" name="edit_athlete_address" data-validation-error-msg="Please enter the Address" data-validation="required"></textarea>
 										</div>
 
 										<div class="form-group col-md-10">
 											<label class="popup_label">Taluka</label>
-											<input type="text" class="adjust_width box-width box-width-athlete" name="edit_athlete_taluka" autocomplete="off" data-validation-error-msg="Please Enter the Taluka" data-validation="required">
+											<input type="text" class="adjust_width box-width box-width-athlete" name="edit_athlete_taluka" autocomplete="off" data-validation-error-msg="Please enter the Taluka" data-validation="required">
 										</div>
 
 										<div class="form-group col-md-10">
 											  <label for="sel1" class="popup_label">Sport</label>
-											  <select class="form-control adjust_width classic box-width box-width-athlete" id="sel1" name="edit_athlete_sports" data-validation-error-msg="Please Select the Sport" data-validation="required">
+											  <select class="form-control adjust_width classic box-width box-width-athlete" id="sel1" name="edit_athlete_sports" data-validation-error-msg="Please select the Sport" data-validation="required">
 											  <option value=""> Sport</option>
 											   <?php
 						                        $sports_query = $sportsfunction->sportsSelect();
@@ -337,9 +292,7 @@
 											  </select>
 										</div>
 										<div class="col-md-10 schedule_btn">
-											<!-- <button type="button" class="btn btn-primary align_right clear edit_athletes_act">Submit</button>
-											<button type="button" class="btn btn-primary align_right clear">Clear</button> -->
-											<!-- <input type="reset" class="btn btn-primary align_right clear reset_form edit_athlete_clear" value="Clear"> -->
+											
 											<input type="submit" class="btn btn-primary test-submit clear edit_athletes_act" value="Save">
 											<input type="reset" class="btn btn-primary clear reset_form" value="Cancel">
 										</div>
@@ -383,22 +336,4 @@
 			</div>
 			</div>
 
-
-			<!-- end  container-->
-	<!-- <div class="container align_center">
-	  	<ul class="pagination">
-	  		<li><a href="#" class="align_left_icon"><i class="fa fa-angle-double-left"></i></a></li>
-		    <li><a href="#">1</a></li>
-		    <li><a href="#">2</a></li>
-		    <li><a href="#">3</a></li>
-		    <li><a href="#">4</a></li>
-		    <li><a href="#">5</a></li>
-		    <li><a href="#" class="align_right_icon"><i class="fa fa-angle-double-right"></i></a></li>
-		</ul>
-	</div> --><!-- end  container-->
-<!-- end  container-->
-<!--<div class="popup_fade cancel_btn"></div><!--popup_fade-->
-	<!--	<div class="container">
-
-		</div> --><!--container-->
 <?php require_once "footer.php" ?>

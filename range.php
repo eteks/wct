@@ -87,14 +87,7 @@
 						  <input type="hidden" class="range_parameter_unit">
 						  <input type="hidden" class="range_parameter_format">
 					</div>
-					<!-- <div class="form-group range_holder">
-						<div class="clone_content" id="range_counter1">
-						  <label for="range" class="fl range_label">Ranges</label><br>
-						  <input type="text" class="form-control classic range_align fl r_strt" id="strt1" name="range_start1" placehoder="Start" data-validation-error-msg="Please Enter the start range of Test" data-validation="required">
-						  <input type="text" class="form-control classic range_align fl r_end" id="end1" name="range_end1" placehoder="end" data-validation-error-msg="Please Enter the End range of Test" data-validation="required">
-						  <input type="text" class="form-control classic range_align fl r_point" id="point1" name="range_points1" placehoder="points" data-validation-error-msg="Please Enter the Point" data-validation="required">
-						</div>
-					</div> -->
+
 					<div class="form-group range_holder col-md-12">
 						<div class="clone_content" id="range_counter1">
 						  <label for="range" class="range_label">Ranges <span class="range_note">(Note:<span class="range_notes"></span>)</span></label><br>

@@ -67,7 +67,7 @@ $obj = new sportsfunction();
 					<form name="sports_form" class="sports_update_form">
 						<div class="align_margin">
 							<label>Enter name of the Sport</label><br>
-							<input type="text" class="sportsname sports_update_name" name="sports_name" autocomplete="off" data-validation-error-msg="Please Enter the name of the Sports" data-validation="required">
+							<input type="text" class="sportsname sports_update_name" name="sports_name" autocomplete="off" data-validation-error-msg="Please enter name of sport" data-validation="required">
 							<input type="hidden" class="sports_update_id" name="sports_id">
 							<input type="hidden" name="sportd_update" value="1">
 						</div><!--align_margin-->

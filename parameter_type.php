@@ -103,26 +103,5 @@
 		</div><!-- end  container-->
 	</div><!-- end  container-->
 
-<!-- <div class="popup_fade cancel_btn"></div><!--popup_fade-->
-		 <!-- <div class="container">
-            <div class="state_div">
-          		<code class="close_btn cancel_btn"> </code>
-          		<div class="edit_title">
-                	<span class="del_txt">EDIT</span>
-              	</div> --><!--edit_title-->
-          			<!--<div class="container state-content col-md-12">
-          			<form id="edit_parameter_type" name="parameter_edit">
-						<div class="form-group">
-							  <label for="sel1">Enter Parameter Type</label>
-							  <input type="hidden" name="edit_parameter_id" />
-							  <input type="text" class="form-control adjust_width_parameter classic" id="sel1" name="edit_parameter_type" data-validation-error-msg="Please Select the Type of the Parameter" data-validation="required">
 
-						</div>
-						<div class="col-md-12 schedule_btn">
-								<input type="submit" class="btn btn-primary align_right clear" value="Submit">
-						</div>
-					</form>
-					</div> --><!--tate-content-->
-			<!-- </div> --><!--state_div-->
-		<!-- </div> --> <!--container-->
 <?php require_once "footer.php" ?>

@@ -721,6 +721,7 @@ select {
     right: 5px;
     top: -7px;
     width: 100px !important;
+    padding: 0 !important;
 }
 .result_athletename,.result_athletemobile{
     border-radius: 0 !important;
@@ -957,6 +958,7 @@ button, input, optgroup, select, textarea {
     right: 56px;
     top: -7px;
     width: 100px !important;
+    padding: 0 0 0 5px !important;
 }
 .bib_popup{
      border-radius: 0 !important;

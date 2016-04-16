@@ -46,12 +46,9 @@
 				      	<label for="athlete" class="athlete__txt">Select Athlete</label><br>
 				      	<div class="form-group col-md-3"  style="margin-left:-18px;">
 				      		<input type="text" class="form-control name_align fl result_athletename" id="result_athletename" placeholder="Name" name="result_athletename" data-validation-error-msg="Please enter name of Athlete" data-validation="required">
-				      		<!-- <select class="athletes_drop classic result_athletename" name="result_athletename" id="result_athletename" required="required" data-validation-error-msg="Please Select the name of the Athelete" data-validation="required">
-				      		<option></option>
-				      		</select> -->
+				      		
 				      	</div>
 				      	<div class="form-group col-md-3">
-				      		<!-- <input type="text" class="form-control date_assign fl result_athletedate" id="result_athletedate" placeholder="Date" name="result_athletedate"  data-validation="date" data-validation-format="dd/mm/yyyy"> -->
 				      		<input type="text" class="form-control date_assign fl result_athletedate" id="result_athletedate" placeholder="Date" name="result_athletedate" data-validation-error-msg="Please enter DOB" data-validation="required">
 			      		</div>
 						<div class="form-group col-md-3">

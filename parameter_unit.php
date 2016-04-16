@@ -176,7 +176,7 @@
 												  <label for="sel1">Select Parameter Type</label>
 												  <input type="hidden" class="edit_param_unit_id" name="edit_param_unit_id"  value=""/>
 												  <input type="hidden" class="edit_param_type_id" name="parameter_type"  value=""/>
-												  <select class="form-control adjust_width adjust_popup_width classic edit_param_type" id="sel1" name="parameter_type" data-validation-error-msg="Please Select the Type of the Parameter" data-validation="required" disabled="">
+												  <select class="form-control adjust_width adjust_popup_width classic edit_param_type" id="sel1" name="parameter_type" data-validation-error-msg="Please select the type of the Parameter" data-validation="required" disabled="">
 													<option value="">Select Parameter Type</option>  <?php
 													$data = $parameterunitFunction->parametertypeSelect();
 													foreach( $data as $eachrecord1 ) {
