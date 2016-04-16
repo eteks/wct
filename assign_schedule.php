@@ -152,8 +152,7 @@ if(isset($_GET['update_success'])){
 										<input type="checkbox" name="test" value="test" class="check_test check_list assign_schedule_name_hover" id="check-select" data-id ="<?php echo $eachrecord ['createschedule_id'];?>" >
 										<input type="text" name="test" value="<?php echo $eachrecord ['createschedule_name']; ?>" class="list_edit input_wrap assing_name_hover">
 										<span class="test-alter ">
-											<i class="fa fa-floppy-o save_item save_assign_schdule_name"></i>
-											<i class="fa fa-pencil-square-o edit_item"></i>
+											
 											<i class="fa fa-trash-o delete_item"></i>
 										</span><!--test-alter-->
 									</span><!--test-name-->
@@ -175,7 +174,7 @@ if(isset($_GET['update_success'])){
 					</form>
 				</div>
 			<div class="container table-position col-md-9 align_bottom" style="padding: 0px;">
-			  <table class="table state_table" id="assign_schedule_table">
+			  <table class="table" id="assign_schedule_table">
 			    <thead>
 			      <tr class="row_color">
 			        <!-- <th>Schedule Name</th> -->

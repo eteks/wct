@@ -835,8 +835,11 @@
                   
                    success: function(data) {
                    	if(data == 'no'){
+                   		$('.popup-edit .restrict').remove();
+             			$('.popup-edit .restrict_del').remove();
                    		$('.edit_test_battery').addClass('hided');
              			$('.edit_test_battery').next().addClass('hided');
+             			
              			$('.popup-edit').append('<span class="restrict">\
 				    			<i class="fa fa-pencil-square-o">\
 					    			<div class="restrict_tooltip">Mapping has been already done.Edit or Delete not possible.</div>\
@@ -2442,7 +2445,7 @@
                cache: false,
                success: function(html) {
                    //alert(html);
-                   if(html=='error'){
+                   if(html=='exist'){
                      //alert('Category edited successfully!');
                       success_align();
                  	   $('.success_msg span').html('Category already exists!');
@@ -2453,7 +2456,7 @@
 	                   $('.popup_fade').show();
                     $('.state_div,.delete_div').hide();
                     document.body.style.overflow = 'hidden';
-                   }else{
+                   }else if(html=='edit'){
 
                      //alert('Category edited successfully!');
                      //location.reload();
@@ -3360,7 +3363,7 @@
                         data: form_data,
                         cache: false,
                         success: function(html) {
-                            if(html == 'success'){
+                            if(html == 'edit'){
                                 //alert('Parameter Type edited successfully!');
                                 //location.reload();
                                 success_align();

@@ -71,12 +71,23 @@ if(isset($_POST['category_update'])){
     $sport = new categoryfunction();
     $sport->categoryname = $_POST['category_name'];
     $sport->categoryid = $_POST['category_id'];
-    if($sport->categoryupdatefunction()){
-      echo $_POST['category_name'].'-'.$_POST['category_id'];
-    }else{
-      echo "error";
-    }
-
+	$check_query = "select * from wc_categories where categories_id = '".$_POST['category_id']."' ";
+	$row = mysql_query($check_query) or die(mysql_error());
+    $data = mysql_fetch_array($row);
+	if($data['categories_name'] == $_POST['category_name']){
+		echo "edit";
+	}else {
+		$check_query1 = "select * from wc_categories where categories_name = '".$_POST['category_name']."'";
+		if(!mysql_num_rows(mysql_query($check_query1))){
+			$sql = "update wc_categories set categories_name='".$_POST['category_name']."',categories_status='1' where categories_id ='".$_POST['category_id']."' ";
+            mysql_query($sql) or die("update:".mysql_error());
+			echo "edit";
+		}else{
+			echo "exist";
+		}
+	}
+    
+   
 }
 if(isset($_POST['category_del'])){
     $sport = new categoryfunction();
