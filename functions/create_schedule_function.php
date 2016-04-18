@@ -161,11 +161,17 @@
 			$createscheduleFunction = new createscheduleFunction();
 			$createscheduleFunction->createscheduleid=$_POST['check_scheduleid'];
  			$createscheduleFunction->createschedulename=$_POST['check_createschedulename'];
-			$createschedulename_update = $createscheduleFunction->createschedulenameUpdate();
-			if($createschedulename_update){
-				echo "success#Schedule name edited successfully!#".$_POST['check_createschedulename'];
-			}else{
-				echo "failure#Schedule name not edited successfully!";
+ 			$createschedulename = $createscheduleFunction->isScheduleExist();
+ 			if(!$createschedulename){
+				$createschedulename_update = $createscheduleFunction->createschedulenameUpdate();
+				if($createschedulename_update){
+					echo "success#Schedule name edited successfully!#".$_POST['check_createschedulename'];
+				}else{
+					echo "failure#Schedule name not edited successfully!";
+				}
+			}
+			else {
+				echo "failure#Schedule name already exists!";
 			}
 		}
 	  }
