@@ -59,7 +59,7 @@
 		//Check whether the athlete already exists
 		public function isAthleteExist(){
 			// $qr = mysql_query("SELECT * FROM wc_athlete WHERE athlete_name = '".$this->athletename."' AND athlete_dob = '".$this->athletedob."' AND athlete_gender = '".$this->athletegender."' AND athlete_mobile = '".$this->athletemobile."'");
-			$qr = mysql_query("SELECT * FROM wc_athlete WHERE athlete_dob = '".$this->athletedob."' AND athlete_mobile = '".$this->athletemobile."'");
+			$qr = mysql_query("SELECT * FROM wc_athlete WHERE athlete_dob = '".$this->athletedob."' AND athlete_mobile = '".$this->athletemobile."' AND athlete_id NOT IN ('".$this->athleteid."')");
 			$row = mysql_num_rows($qr);
 			if($row > 0){
 				return true;
@@ -100,7 +100,7 @@
 				}
 			}
 			else{
-				echo "failure#Athlete already Exists";
+				echo "failure#Athlete already Exists!";
 			}
 
 		}
@@ -160,13 +160,18 @@
 
 	    	// $edit_data = mysql_fetch_array($athletesFunction->selectData());
 	    	// $athletesFunction->$athletestatesname = $edit_data['states_name'];
-
-			$athletesupdate = $athletesFunction->athleteUpdate();
-			if($athletesupdate){
-				// echo "success#Record Updated";
-				echo "success#Athlete edited successfully!#".$_POST['edit_athlete_id']."#".$_POST['edit_athlete_name'].'#'.$_POST['edit_athlete_gender']."#".$athletesFunction->athletedob."#".$_POST['edit_athlete_address'];
-			}else{
-				echo "failure#Athlete not edited successfully!";
+	    	$athletes = $athletesFunction->isAthleteExist();
+			if (!$athletes){
+				$athletesupdate = $athletesFunction->athleteUpdate();
+				if($athletesupdate){
+					// echo "success#Record Updated";
+					echo "success#Athlete edited successfully!#".$_POST['edit_athlete_id']."#".$_POST['edit_athlete_name'].'#'.$_POST['edit_athlete_gender']."#".$athletesFunction->athletedob."#".$_POST['edit_athlete_address'];
+				}else{
+					echo "failure#Athlete not edited successfully!";
+				}
+			}
+			else{
+				echo "failure#Athlete already Exists!";
 			}
 		}
         if(isset($_GET['get_ath'])){

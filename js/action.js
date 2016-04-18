@@ -111,6 +111,7 @@
                   dob = obj[i].athlete_dob.split('-');
                   $('[name=edit_athlete_id]').val(obj[i].athlete_id);
                   $('[name=edit_athlete_name]').val(obj[i].athlete_name);
+                  // $('[name=dateday]').find("option[value="+dob[2]+"]").attr("selected","selected");
                   $('[name=dateday]').find("option[value="+dob[2]+"]").attr("selected","selected");
                   $('[name=datemonth]').find("option[value="+dob[1]+"]").attr("selected","selected");
                   $('[name=dateyear]').find("option[value="+dob[0]+"]").attr("selected","selected");
@@ -122,6 +123,7 @@
                   $('[name=edit_athlete_taluka]').val(obj[i].athlete_taluka);
                   $('[name=edit_athlete_sports]').find("option:contains("+obj[i].athletesports_name+")").attr("selected","selected");
                 });
+                $('#day2,#month2,#year2').val('');
                 // $('.popup_fade').show();
                 // athletes_center_align();
                 // $('.athletes_div, .close_btn').show();
@@ -150,6 +152,7 @@
                   $('[name=edit_schedule_seconds]').find("option:contains("+time[2]+")").attr("selected","selected");
                   $('[name=edit_schedule_venue]').val(obj[i].createschedule_venue);
                 });
+                $('#day,#month,#year').val('');                
                 $('.popup_fade').hide();
                 // createschedule_center_align();
                 $('.createschedule_div, .close_btn').show();
@@ -241,6 +244,24 @@
             });
         }
     }
+
+    // function sortDropDownListByText() {
+    //   // Loop for each select element on the page.
+    //   $("select").each(function() {
+    //       // alert($(this).find("option:first").attr("selected", true).text());
+    //       // Keep track of the selected option.
+    //       var selectedValue = $(this).val();
+          
+    //       if(selectedValue!='')
+    //       // Sort all the options by text. I could easily sort these by val.
+    //       $(this).html($("option", $(this)).sort(function(a, b) {
+    //           return a.text.toLowerCase() == b.text.toLowerCase() ? 0 : a.text.toLowerCase() < b.text.toLowerCase() ? -1 : 1
+    //       }));
+   
+    //       // Select one option.
+    //       $(this).val(selectedValue);
+    //   });
+    // }
 
     $(window).resize(function () {
         package_menu();
@@ -346,15 +367,10 @@
     
 
     $(document).ready(function () {
+
+      // sortDropDownListByText();
 	  
       package_menu();
-
-      $('.add_athletes_act,.edit_athletes_act').on('click', function(){
-         $('.day, .month, .year').attr('data-validation', 'required');
-         $('.day, .month, .year').attr('data-validation-error-msg', 'Please select Date');
-          date_check1();
-      });
-
       $('#test_form .parameter_btn').click(function(e) {
           e.preventDefault();  
           var submitOK = true;
@@ -2788,7 +2804,10 @@
             if($(this).val().trim() == "") {
               res = false;
             }
-          });         
+          });
+           if($('.athlete_date_pic').next('span').hasClass('help-block form-error')){             
+            res = false;         
+          }         
           if(res){                     
               var form_data = $('[name=athletes_form]').serialize();
               $.ajax({
@@ -2843,6 +2862,9 @@
               res = false;
             }
           });
+          if($('.athlete_date_pic3').next('span').hasClass('help-block form-error')){             
+            res = false;         
+          }   
           if(res){
               var form_data = $(this).serialize();
                 $.ajax({
@@ -2890,8 +2912,7 @@
               // alert('false  comes');
             }
           });
-          if($('.create_date').next('span').hasClass('help-block form-error')){ 
-            
+          if($('.create_date').next('span').hasClass('help-block form-error')){             
             res = false;         
           }
           if(res){
@@ -2968,6 +2989,9 @@
                 res = false;
               }
             });
+            if($('.create_date1').next('span').hasClass('help-block form-error')){             
+              res = false;         
+            } 
             if(res){
                 var form_data = $(this).serialize();
                     $.ajax({
@@ -3148,6 +3172,7 @@
               var res = true;
               $(this).parents('.edit_parameter_type').find('input[type="text"],textarea,select').each(function() {
                 if($(this).val().trim() == "") {
+                  $(this).next().addClass('help-block form-error');
                   res = false;
                   //alert(res);
                   //alert('parameter_type false');
@@ -3155,7 +3180,7 @@
               });
 
               if(res){
-                  //alert($(this).parents('edit_parameter_type').html());
+                  $(this).next().removeClass('help-block form-error');
                   var form_data = $(this).parents('.edit_parameter_type').serialize();
                   //alert(form_data);
                   $.ajax({
@@ -3304,6 +3329,10 @@
         });
        $(document).on('click',".reset_form_param_unit", function(){     
            $('[name="parameter_unit"]').next().removeClass('custom_error');    
+        });
+
+        $(document).on('click',".reset_form_param", function(){     
+           $('[name="edit_parameter_type"]').next().removeClass('help-block form-error');    
         });
 
     //ASSIGN SCHEDULE

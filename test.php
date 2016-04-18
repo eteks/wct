@@ -296,7 +296,7 @@ if (isset($_GET['insert_new'])) {
 										<div class="parameter_holder">
 											<div class="form-group" style="padding: 0;">
 												<label class="popup_label">Enter Parameter Name</label>
-												<input type="text" class="adjust_width test_parameter_name_update" name="parameter_name1" data-validation-error-msg="Please enter the Parameter Name" data-validation="required" style="width:490px !important;height: 30px;">
+												<input type="text" class="adjust_width test_parameter_name_update" name="parameter_name1" data-validation-error-msg="Please enter the Parameter Name" data-validation="required" style="width:497px !important;height: 30px;">
 
 											</div>
 											<div class="form-group col-md-12 test_percentage parameter_type_parent">

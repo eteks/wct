@@ -27,7 +27,7 @@
 
 		public function resultassignscheduleSelect(){
 			$res = mysql_query("SELECT DISTINCT createschedule_id,createschedule_name FROM wc_assignschedule as asch INNER JOIN wc_createschedule cs
-				 ON asch.assigncreateschedule_id = cs.createschedule_id")or die(mysql_error());
+				 ON asch.assigncreateschedule_id = cs.createschedule_id ORDER BY cs.createschedule_name ASC")or die(mysql_error());
 			return $res;
 		}
 

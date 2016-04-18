@@ -91,7 +91,7 @@
 					<div class="form-group range_holder col-md-12">
 						<div class="clone_content" id="range_counter1">
 						  <label for="range" class="range_label">Ranges <span class="range_note">(Note:<span class="range_notes"></span>)</span></label><br>
-						  	<div class="form-group col-md-10">
+						  	<div class="form-group col-md-10 range__box">
 								  <div class="col-md-4 range-box1">
 								  	<input type="text" class="form-control classic range_align  r_strt" id="strt1" name="range_start1" autocomplete="off" placeholder="Start">
 								    <span class="hided">Please enter Range Start</span>
