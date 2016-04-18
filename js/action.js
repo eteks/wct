@@ -245,6 +245,24 @@
         }
     }
 
+    // function sortDropDownListByText() {
+    //   // Loop for each select element on the page.
+    //   $("select").each(function() {
+    //       // alert($(this).find("option:first").attr("selected", true).text());
+    //       // Keep track of the selected option.
+    //       var selectedValue = $(this).val();
+          
+    //       if(selectedValue!='')
+    //       // Sort all the options by text. I could easily sort these by val.
+    //       $(this).html($("option", $(this)).sort(function(a, b) {
+    //           return a.text.toLowerCase() == b.text.toLowerCase() ? 0 : a.text.toLowerCase() < b.text.toLowerCase() ? -1 : 1
+    //       }));
+   
+    //       // Select one option.
+    //       $(this).val(selectedValue);
+    //   });
+    // }
+
     $(window).resize(function () {
         package_menu();
       });
@@ -349,6 +367,8 @@
     
 
     $(document).ready(function () {
+
+      // sortDropDownListByText();
 	  
       package_menu();
       $('#test_form .parameter_btn').click(function(e) {

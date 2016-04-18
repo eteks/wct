@@ -9,7 +9,7 @@ class testbatteryfunction{
     public $testbatterycreateddate;
 
     public function testbatterySelect(){
-      $res = mysql_query("SELECT * FROM wc_testbattery where testbattery_status='1'")or die(mysql_error());
+      $res = mysql_query("SELECT * FROM wc_testbattery where testbattery_status='1' ORDER BY testbattery_name ASC")or die(mysql_error());
       return $res;
     }
     public function testbatterynamefunction(){
@@ -97,7 +97,7 @@ class testbatteryfunction{
         else{ return false; }
       }
       public function istestbatteryExist(){
-        $qr = mysql_query("SELECT * FROM wc_testbattery WHERE testbattery_name = '".$this->testbatteryname."'");
+        $qr = mysql_query("SELECT * FROM wc_testbattery WHERE testbattery_name = '".$this->testbatteryname."' AND testbattery_id NOT IN ('".$this->testbatteryid."')");
         $row = mysql_num_rows($qr);
         if($row > 0){
           return true;
@@ -320,13 +320,13 @@ if(isset($_GET['find_test_battery_sports'])){
         if(!$testbattery){
           $testbatteryupdate = $testbatteryFunction->testbatterynameUpdate();
           if($testbatteryupdate){
-            echo "success#Testbattery Updated#".$_POST['edit_testbattery_id']."#".$_POST['edit_testbattery_name'];
+            echo "success#Test Battery Name edited successfully!#".$_POST['edit_testbattery_id']."#".$_POST['edit_testbattery_name'];
           }else{
-            echo "failure#Testbattery Not Updated";
+            echo "failure#Test Battery Name not edited successfully!";
           }
         }
         else {
-          echo "failure#Testbattery Already Exist";
+          echo "failure#Test Battery Name already exists!";
         }
     }
 	if(isset($_GET['check_validation'])){

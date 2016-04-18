@@ -75,13 +75,13 @@ include('configu.php');
 		//Fetch Category by selected testbattery id
 		public function categoryselect(){
 			$res = mysql_query("SELECT categories_id, categories_name FROM wc_categories as c INNER JOIN wc_testbattery_category_attribute as tbca ON
-				c.categories_id = tbca.testbattery_category_id WHERE tbca.testbattery_id='".$this->rangetestbatteryid."'")or die(mysql_error());
+				c.categories_id = tbca.testbattery_category_id WHERE tbca.testbattery_id='".$this->rangetestbatteryid."' ORDER BY c.categories_name ASC")or die(mysql_error());
 			return $res;
 		}
 		//Fetch Test by selected testbattery id
 		public function testselect(){
 			$res = mysql_query("SELECT test_id, test_name FROM wc_test as t INNER JOIN wc_testbattery_test_attribute as tbta ON
-				t.test_id = tbta.testbattery_test_id WHERE tbta.testbattery_id='".$this->rangetestbatteryid."'")or die(mysql_error());
+				t.test_id = tbta.testbattery_test_id WHERE tbta.testbattery_id='".$this->rangetestbatteryid."' ORDER BY t.test_name ASC")or die(mysql_error());
 			return $res;
 		}
 		public function isParameterExist(){
