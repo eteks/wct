@@ -649,7 +649,7 @@ select {
     font-family: Montserrat;
     height: 34px;
     position: relative;
-    right: 6px;
+    right: 0px;
     width: 130px !important;
 }
 .ranges_btn{
@@ -2279,7 +2279,7 @@ td {
 }
 #test_updation_form .form-error{
 	float:left;
-	left: 10px;
+	left: 4px;
     position: relative;
 }
 .edit_range_form_id .custom_error{
@@ -2292,4 +2292,8 @@ td {
 }
 #test_battery_update_form .form-error{
 	float:left;
+}
+.range__box{
+    position: relative;
+    right: 10px;
 }

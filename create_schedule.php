@@ -61,13 +61,20 @@
 					<div class="form-group create_date">
 					  <label for="date" class="date_cre"  style="">Select Date</label>
 				    	<!-- <input class="date_pick" type="text"> -->
-				    	  
-				    	  <select name="dateday" id="day" class="day classic" data-validation-error-msg="Please select Date" data-validation="required"></select>
-				    	  <select name="datemonth" id="month" class="month classic" data-validation-error-msg="Please select Date" data-validation="required"></select>
-  						  <select name="dateyear" id="year" class="year classic" data-validation-error-msg="Please select Date" data-validation="required"></select>
+				    	<div class="date-dropdowns"> 
+					    	<select name="dateday" id="day" class="day classic" data-validation-error-msg="Please select Date" data-validation="required">
+					    	  	<option value="">Day</option>
+				    	    </select>
+				    	    <select name="datemonth" id="month" class="month classic" data-validation-error-msg="Please select Date" data-validation="required">
+					    	  	<option value="">Month</option>
+			    	  		</select>
+								<select name="dateyear" id="year" class="year classic" data-validation-error-msg="Please select Date" data-validation="required">
+								  	<option value="">Year</option>
+						    </select>
+					    </div>
 				    	  
 					</div>
-					<span class="hided">Please Choose valid Date</span>
+					<span class="hided">Please select valid Date</span>
 					<div class="form-group nm">
 					  <label for="date" class="" style="">Select Time</label>
 					  	<div class="form-group fl">
@@ -374,16 +381,22 @@
 												  </select>
 												</div>
 
-												<div class="form-group align-day align-day-popup fl create_date">
+												<div class="form-group align-day align-day-popup fl create_date1">
 												  <label for="date" class="popup_label">Select date</label>
 												  <input class="popup_date_pick" type="hidden">
 												  <div class="date-dropdowns">
-										    	  	<select name="dateday" id="day1" class="day classic" data-validation-error-msg="Please select Date" data-validation="required"></select>
-										    	  	<select name="datemonth" id="month1" class="month classic" data-validation-error-msg="Please select Date" data-validation="required"></select>
-						  						  	<select name="dateyear" id="year1" class="year classic" data-validation-error-msg="Please select Date" data-validation="required"></select>
+										    	  	<select name="dateday" id="day1" class="day classic" data-validation-error-msg="Please select Date" data-validation="required">
+										    	  		<option value="">Day</option>
+										    	  	</select>
+										    	  	<select name="datemonth" id="month1" class="month classic" data-validation-error-msg="Please select Date" data-validation="required">
+										    	  		<option value="">Month</option>
+										    	  	</select>
+						  						  	<select name="dateyear" id="year1" class="year classic" data-validation-error-msg="Please select Date" data-validation="required">
+						  						  		<option value="">Year</option>
+						  						  	</select>
 													</div>
 												</div>
-												<span class="hided">Please Choose valid Date</span>
+												<span class="hided">Please select valid Date</span>
 												<div class="form-group nm fl">
 												  <label for="date" class="popup_label">Select Time</label>
 												  	<div class="form-group fl">
