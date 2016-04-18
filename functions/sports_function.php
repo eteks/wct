@@ -26,12 +26,20 @@ class sportsfunction{
         $check_query = "select * from wc_sports where sports_id = '".$this->sportsid."' ";
 		$row = mysql_query($check_query) or die(mysql_error());
         $data = mysql_fetch_array($row);
-        if($data['sports_name'] != $this->sportsname ){
-        	return false;
+		
+		
+		
+        if($data['sports_name'] == $this->sportsname ){
+        	return true;
         }else{
-            $sql = "update wc_sports set sports_name='".$this->sportsname."',sports_status='1' where sports_id ='".$this->sportsid."' ";
-            mysql_query($sql) or die("update:".mysql_error());
-            return true;
+        	$check_query1 = "select * from wc_sports where sports_name = '".$this->sportsname."' ";
+			if(!mysql_num_rows(mysql_query($check_query1))){
+            	$sql = "update wc_sports set sports_name='".$this->sportsname."',sports_status='1' where sports_id ='".$this->sportsid."' ";
+            	mysql_query($sql) or die("update:".mysql_error());
+            	return true;
+			}else{
+				return false;
+			}
         }
     }
     public function sportsdeletefunction(){
