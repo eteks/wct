@@ -65,7 +65,7 @@
 		}
 		//Check whether the schedule name already exists
 		public function isScheduleExist(){
-			$qr = mysql_query("SELECT * FROM wc_createschedule WHERE createschedule_name = '".$this->createschedulename."'");
+			$qr = mysql_query("SELECT * FROM wc_createschedule WHERE createschedule_name = '".$this->createschedulename."' AND createschedule_id NOT IN ('".$this->createscheduleid."')");
 			$row = mysql_num_rows($qr);
 			if($row > 0){
 				return true;
