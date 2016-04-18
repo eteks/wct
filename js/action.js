@@ -251,7 +251,7 @@
    
           // Sort all the options by text. I could easily sort these by val.
           $(this).html($("option", $(this)).sort(function(a, b) {
-              return a.text == b.text ? 0 : a.text < b.text ? -1 : 1
+              return a.text.toLowerCase() == b.text.toLowerCase() ? 0 : a.text.toLowerCase() < b.text.toLowerCase() ? -1 : 1
           }));
    
           // Select one option.
