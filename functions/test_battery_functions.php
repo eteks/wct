@@ -9,7 +9,7 @@ class testbatteryfunction{
     public $testbatterycreateddate;
 
     public function testbatterySelect(){
-      $res = mysql_query("SELECT * FROM wc_testbattery where testbattery_status='1'")or die(mysql_error());
+      $res = mysql_query("SELECT * FROM wc_testbattery where testbattery_status='1' ORDER BY testbattery_name ASC")or die(mysql_error());
       return $res;
     }
     public function testbatterynamefunction(){
