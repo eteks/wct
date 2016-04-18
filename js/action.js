@@ -949,6 +949,13 @@
 				           $('.popup_fade').show();
 				           document.body.style.overflow = 'hidden';
                       }
+                      else if(data.trim() == 'exist'){
+                      	   success_align();
+				           $('.success_msg span').html('Test Battery Name already exists!');
+				           $('.success_msg').show();
+				           $('.popup_fade').show();
+				           document.body.style.overflow = 'hidden';
+                      }
                    }
               });
           }

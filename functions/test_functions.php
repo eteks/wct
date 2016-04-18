@@ -247,12 +247,19 @@ class testfunction{
         $test_id = $_POST['test_id'];
         $test_name = $_POST['test_name'];
         if(isset($test_id)&&isset($test_name)){
-        	$check_query = "select * from wc_test  where test_name = '".$_POST['test_name']."'";
-        	if(!mysql_num_rows(mysql_query($check_query))){
-	            $sql = mysql_query("update wc_test set test_name = '".$test_name."' where test_id = '".$test_id."'");
-	            echo "succeed";
-			}else{
-				echo "exists";
+        	$check_query = "select * from wc_test  where test_id = '".$_POST['test_id']."'";
+        	$row = mysql_query($check_query) or die(mysql_error());
+        	$data = mysql_fetch_array($row);
+			if($data['test_name'] == $_POST['test_name'] ){
+        		 echo "succeed";
+        	}else{
+        		$check_query1 = "select * from wc_test  where test_name = '".$_POST['test_name']."'";
+        		if(!mysql_num_rows(mysql_query($check_query1))){
+	            	$sql = mysql_query("update wc_test set test_name = '".$test_name."' where test_id = '".$test_id."'");
+	           		echo "succeed";
+				}else{
+					echo "exists";
+				}
 			}
         }
     }
