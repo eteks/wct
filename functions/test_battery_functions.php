@@ -251,10 +251,21 @@ if(isset($_GET['testbattery_name_update'])){
     include ("../dbconnect.php");
     $testbattery_id = $_POST['test_battery_id'];
     $testbattery_name = $_POST['test_battery_name'];
-    if(isset($testbattery_id)&&isset($testbattery_name)){
-        $sql = mysql_query("update wc_testbattery set testbattery_name = '".$testbattery_name."' where testbattery_id = '".$testbattery_id."'");
-        echo "succeed";
-    }
+	$check_query = "select * from wc_testbattery where testbattery_id = '".$_POST['test_battery_id']."' ";
+	$row = mysql_query($check_query) or die(mysql_error());
+    $data = mysql_fetch_array($row);
+    if($data['testbattery_name'] == $_POST['test_battery_name'] ){
+    	echo "succeed";
+    }else{
+    	$check_query1 = "select * from wc_testbattery where testbattery_name = '".$_POST['test_battery_name']."' ";
+    	if(!mysql_num_rows(mysql_query($check_query1))){
+        	$sql = mysql_query("update wc_testbattery set testbattery_name = '".$testbattery_name."' where testbattery_id = '".$testbattery_id."'");
+        	echo "succeed";
+    	}
+		else{
+			echo "exist";
+		}
+	}
 }
 if(isset($_GET['delete_test_battery_name'])){
     include ("../dbconnect.php");
