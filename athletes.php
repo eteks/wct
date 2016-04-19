@@ -49,26 +49,27 @@
 				<form name="athletes_form" id="athlete_form">
 					<div class="form-group">
 						<label>Name of Athlete</label>
-						<input type="text" class="adjust_width" name="athlete_name" autocomplete="off" data-validation-error-msg="Please enter Name of athlete" data-validation="required">
+						<input type="text" class="adjust_width" name="athlete_name" autocomplete="off" data-validation-error-msg="Please enter name of Athlete" data-validation="required">
 					</div>
-					<div class="form-group athlete_date_pic">
+					<div class="form-group athlete_date_pic nm">
 					  <label for="date" class="">Date Of Birth</label>
 					<!--   <input class="athlete_date_pick" type="text" id="date_drop">
 					  <span class="hided">Please select valid Date</span> -->
  						<div class="date-dropdowns">
-				    	  	<select name="dateday" id="day2" class="day classic" data-validation-error-msg="Please select Date" data-validation="required">
+				    	  	<select name="dateday" id="day1" class="day day1 classic">
 				    	  		<option value="">Day</option>
 				    	  	</select>
-				    	  	<select name="datemonth" id="month2" class="month classic" data-validation-error-msg="Please select Date" data-validation="required">
+				    	  	<select name="datemonth" id="month1" class="month month1 classic">
 				    	  		<option value="">Month</option>
 				    	  	</select>
-  						  	<select name="dateyear" id="year2" class="year classic" data-validation-error-msg="Please select Date" data-validation="required">
+  						  	<select name="dateyear" id="year1" class="year year1 classic">
   						  		<option value="">Year</option>
-  						  	</select>
+  						  	</select>  				
 						</div>				
 					</div>
+					<span class="hided">Please select Date</span>
 					<span class="hided">Please select valid Date</span>
-					<div class="form-group">
+					<div class="form-group" style="margin-top:15px;">
       					<label>Mobile Number</label>
       					<input type="text" id="athletes_mobile1" class="adjust_width" name="athlete_mobile" autocomplete="off" data-validation-error-msg="Please enter valid Mobile no.(with 10 digits)" data-validation="length" data-validation-length="10"  maxlength="10">
      				</div>
@@ -130,7 +131,7 @@
 					<div class="col-md-9 schedule_btn">
 						<!-- <button type="button" class="btn btn-primary align_right clear add_athletes_act">Submit</button> -->
 						<input type="submit" class="btn btn-primary test-submit clear add_athletes_act" value="Save">
-						<input type="reset" class="btn btn-primary clear reset_form" value="Cancel">
+						<input type="reset" class="btn btn-primary clear reset_form reset_form_athlete" value="Cancel">
 					</div>
 				</form>
 				</div>
@@ -243,26 +244,27 @@
 						          		<input type="hidden" class="statesid" name="edit_athlete_id" value="">
 						          		<input type="hidden" class="edit_athlete_name" name="edit_athlete_name" value="">
 										
-										<div class="form-group align-day align-day-popup col-md-10 athlete_date_pic3">
+										<div class="form-group align-day align-day-popup col-md-10 athlete_date_pic nm">
 										  <label for="date" class="popup_label" style="text-align:center;">Date Of Birth</label>										
 										 <!--  	<input class="popup_athlete_datepick" type="text">
 										 	<span class="hided">Please select valid Date</span> -->
 									 		<div class="date-dropdowns">
-									    	  	<select name="dateday" id="day3" class="day classic" data-validation-error-msg="Please select Date" data-validation="required">
+									    	  	<select name="dateday" class="day day1 classic">
 									    	  		<option value="">Day</option>
 									    	  	</select>
-									    	  	<select name="datemonth" id="month3" class="month classic" data-validation-error-msg="Please select Date" data-validation="required">
+									    	  	<select name="datemonth" class="month month1 classic">
 									    	  		<option value="">Month</option>
 									    	  	</select>
-											  	<select name="dateyear" id="year3" class="year classic" data-validation-error-msg="Please select Date" data-validation="required">
+											  	<select name="dateyear" class="year year1 classic">
 											  		<option value="">Year</option>
 											  	</select>
 											</div>										
 										</div>
-										<span class="hided">Please select valid Date</span>
-										<div class="form-group col-md-10">
+										<span class="hided" style="margin-left:15px;">Please select Date</span>
+										<span class="hided" style="margin-left:15px;">Please select valid Date</span>
+										<div class="form-group col-md-10" style="margin-top:15px;">
 					      					<label class="popup_label">Mobile Number</label>
-					      					<input id="ahtlete_mobile" type="text" value="" class="adjust_width box-width box-width-athlete" name="edit_athlete_mobile" autocomplete="off" data-validation-error-msg="Please enter the value that must contain 10 numbers" data-validation="length" data-validation-length="10">
+					      					<input id="ahtlete_mobile" type="text" value="" class="adjust_width box-width box-width-athlete" name="edit_athlete_mobile" autocomplete="off" data-validation-error-msg="Please enter valid Mobile no.(with 10 digits)" data-validation="length" data-validation-length="10">
 					     				</div>
 										<div class="form-group col-md-10">
 											  <label for="sel1" class="popup_label">Gender</label>
@@ -316,7 +318,7 @@
 										<div class="col-md-10 schedule_btn">
 											
 											<input type="submit" class="btn btn-primary test-submit clear edit_athletes_act" value="Save">
-											<input type="reset" class="btn btn-primary clear reset_form" value="Cancel">
+											<input type="reset" class="btn btn-primary clear reset_form reset_form_athlete" value="Cancel">
 										</div>
 									</form>
 				          		  </div>

@@ -283,7 +283,7 @@ if(isset($_GET['update_success'])){
 
 								<div class="col-md-9 align_right schedule_btn">
 						
-			  					<input type="submit" value="Save" class="btn btn-primary test-submit schedule_submit clear">
+			  					<input type="submit" value="Save" class="btn btn-primary schedule_submit test-submit clear">
 			  					<input type="reset" class="btn btn-primary clear reset_form" value="Cancel">
 								</div>
 							</form>

@@ -55,7 +55,7 @@ include('configu.php');
 		}
 		// To select set of record by matching state id
 		public function dsitrictstateselectRecord(){
-			$res = mysql_query("SELECT * FROM wc_district WHERE districtstates_id='".$this->statesid."'")or die(mysql_error());
+			$res = mysql_query("SELECT * FROM wc_district WHERE districtstates_id='".$this->statesid."' ORDER BY district_name ASC")or die(mysql_error());
 			return $res;
 		}
 		public function districtsearchSelect(){
