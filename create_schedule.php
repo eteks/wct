@@ -60,8 +60,8 @@
 					</div>
 					<div class="form-group create_date nm">
 					  <label for="date" class="date_cre"  style="">Select Date</label>
-				    	<!-- <input class="date_pick" type="text"> -->
-				    	<div class="date-dropdowns"> 
+				    	<input class="date_pick" type="text">
+				    	<!-- <div class="date-dropdowns"> 
 					    	<select name="dateday" id="day" class="day day_sch classic">
 					    	  	<option value="">Day</option>
 				    	    </select>
@@ -71,10 +71,10 @@
 								<select name="dateyear" id="year" class="year year_sch classic">
 								  	<option value="">Year</option>
 						    </select>
-					    </div>
+					    </div> -->
 				    	  
 					</div>
-					<span class="hided">Please select Date</span>
+					<span class="hided empty_check">Please select Date</span>
 					<span class="hided">Please select valid Date</span>
 					<div class="form-group" style="margin-top:15px;">
 					  <label for="date" class="" style="">Select Time</label>
@@ -385,7 +385,7 @@
 												<div class="form-group align-day align-day-popup fl create_date nm">
 												  <label for="date" class="popup_label">Select date</label>
 												  <input class="popup_date_pick" type="hidden">
-												  <div class="date-dropdowns">
+												  <!-- <div class="date-dropdowns">
 										    	  	<select name="dateday" class="day day_sch classic">
 										    	  		<option value="">Day</option>
 										    	  	</select>
@@ -395,9 +395,9 @@
 						  						  	<select name="dateyear" class="year year_sch classic">
 						  						  		<option value="">Year</option>
 						  						  	</select>
-													</div>
+													</div> -->
 												</div>
-												<span class="hided">Please select Date</span>
+												<span class="hided empty_check">Please select Date</span>
 												<span class="hided">Please select valid Date</span>
 												<div class="form-group fl" style="margin-top:15px;">
 												  <label for="date" class="popup_label">Select Time</label>

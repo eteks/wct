@@ -46,16 +46,16 @@
 		<div class="col-xs-12 col-md-12">
 			<!-- <div class="col-md-4 hidden-xs"></div> -->
 			<div class="col-xs-12 col-md-7 align_margin">
-				<form name="athletes_form" id="athlete_form">
+				<form name="athletes_form" id="athlete_form" class="athletes_form">
 					<div class="form-group">
 						<label>Name of Athlete</label>
 						<input type="text" class="adjust_width" name="athlete_name" autocomplete="off" data-validation-error-msg="Please enter name of Athlete" data-validation="required">
 					</div>
 					<div class="form-group athlete_date_pic nm">
 					  <label for="date" class="">Date Of Birth</label>
-					<!--   <input class="athlete_date_pick" type="text" id="date_drop">
-					  <span class="hided">Please select valid Date</span> -->
- 						<div class="date-dropdowns">
+					  <input class="athlete_date_pick" type="text" id="date_drop">
+					  <span class="hided">Please select valid Date</span>
+ 						<!-- <div class="date-dropdowns">
 				    	  	<select name="dateday" id="day1" class="day day1 classic">
 				    	  		<option value="">Day</option>
 				    	  	</select>
@@ -65,9 +65,9 @@
   						  	<select name="dateyear" id="year1" class="year year1 classic">
   						  		<option value="">Year</option>
   						  	</select>  				
-						</div>				
+						</div>	 -->			
 					</div>
-					<span class="hided">Please select Date</span>
+					<span class="hided empty_check">Please select Date</span>
 					<span class="hided">Please select valid Date</span>
 					<div class="form-group" style="margin-top:15px;">
       					<label>Mobile Number</label>
@@ -246,9 +246,9 @@
 										
 										<div class="form-group align-day align-day-popup col-md-10 athlete_date_pic nm">
 										  <label for="date" class="popup_label" style="text-align:center;">Date Of Birth</label>										
-										 <!--  	<input class="popup_athlete_datepick" type="text">
-										 	<span class="hided">Please select valid Date</span> -->
-									 		<div class="date-dropdowns">
+										  	<input class="popup_athlete_datepick" type="text">
+										 	<span class="hided">Please select valid Date</span>
+									 		<!-- <div class="date-dropdowns">
 									    	  	<select name="dateday" class="day day1 classic">
 									    	  		<option value="">Day</option>
 									    	  	</select>
@@ -258,9 +258,9 @@
 											  	<select name="dateyear" class="year year1 classic">
 											  		<option value="">Year</option>
 											  	</select>
-											</div>										
+											</div>		 -->								
 										</div>
-										<span class="hided" style="margin-left:15px;">Please select Date</span>
+										<span class="hided empty_check" style="margin-left:15px;">Please select Date</span>
 										<span class="hided" style="margin-left:15px;">Please select valid Date</span>
 										<div class="form-group col-md-10" style="margin-top:15px;">
 					      					<label class="popup_label">Mobile Number</label>
