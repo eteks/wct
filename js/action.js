@@ -2697,9 +2697,9 @@
 
         var dist_id = 1;
         $('.district_add').on('click',function(e){
-            if($('.district_clone_content:last').find('.districts').val() == ''){
-              e.preventDefault();
-              $('.district_clone_content:last').children().find('input[type="text"]').siblings('.hided').addClass('custom_error');
+            if($('.district_clone_content:last').children().find('.districts').val() == ''){
+              e.preventDefault();             
+              $('.district_clone_content:last').children().find('.districts').siblings('.hided').addClass('custom_error');
             }
             else{
               if($('.district_clone_content:last').find('input').val() !== ''){
@@ -3386,7 +3386,7 @@
     //ASSIGN SCHEDULE
 
       $('#assignschedule_form').submit(function(e){
-        e.preventDefault();
+        e.preventDefault();        
          $('#combobox').next().next().removeClass('custom_error');           
         var res = true;
         $('input[type="text"],textarea,select',this).each(function() {
