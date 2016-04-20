@@ -404,8 +404,21 @@
           //   return false;
           // }
         });
+  
+       // $('.clone_content:last').children().find('.parameter_type').change(function(){
+       //  if($('.clone_content:last').children().find('.parameter_type').find("option:selected").val() != ''){
+       //    alert('come'+$('.clone_content:last').children().find('.parameter_type').find("option:selected").val());
+       //    $('.clone_content:last').children().find('.parameter_type').next().removeClass('custom_error');
+       //  }
+       // });          
+          
+               
+       $(document).delegate('.schedule_test select, input[type="text"]','change', function(){            
+                if($(this).val() != ''){
+                    $(this).next().removeClass('custom_error');
+                }             
+       });
 
-     
       $('.edit_item,.save_item,.delete_item,.edit_time,.save_time,.delete_time').hide();
       $('.test_search').keyup(function() {
             // $('.test-list').empty();
@@ -5480,5 +5493,7 @@ $(document).on('blur','.enter_result',function(e){
             $(".popup_hidden").removeClass("reverse");
         }
     });
+
+
 	
 	
