@@ -285,6 +285,7 @@
                         main.parents('.assign_clone_content').find('.mobile').val('');
                       success_align();
 			           $('.success_msg span').html('Schedule already exists!');
+			           $('.success_msg input').removeClass('alert_btn').addClass('alert_btn_without_refresh');
 			           $('.success_msg').show();
 			           $('.popup_fade').show();
                     }
@@ -327,8 +328,9 @@
                         $('option:selected',main_content).removeAttr('selected');
                         main_content.find('.dob').val('');
                         main_content.find('.mobile').val('');
-                               success_align();
+                        success_align();
 			           $('.success_msg span').html('Schedule already exists!');
+			           $('.success_msg input').removeClass('alert_btn').addClass('alert_btn_without_refresh');
 			           $('.success_msg').show();
 			           $('.popup_fade').show();
 			           document.body.style.overflow = 'hidden';
