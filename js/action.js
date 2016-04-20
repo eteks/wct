@@ -2581,14 +2581,14 @@
 
         var test_id = 1;  
            $(document).on('click','.edit_assign_schedule_add_btn',function(e){            
-            if($('.assign_clone_content_edit:last').children().find('#bibo').val() == '' || $('.assign_clone_content_edit:last').children().find(' #athlete_sel').val() == ''){   
+            if($(this).parents('.popup-edit').find('.assign_clone_content_edit:last').children().find('#bibo').val() == '' || $(this).parents('.popup-edit').find('.assign_clone_content_edit:last').children().find(' #athlete_sel').val() == ''){   
               e.preventDefault();          
-              $('.assign_clone_content_edit:last').children().find('#bibo').next().addClass('custom_error');
-              $('.assign_clone_content_edit:last').children().find('#athlete_sel').next().addClass('custom_error');                      
+              $(this).parents('.popup-edit').find('.assign_clone_content_edit:last').children().find('#bibo').next().addClass('custom_error');
+              $(this).parents('.popup-edit').find('.assign_clone_content_edit:last').children().find('#athlete_sel').next().addClass('custom_error');                      
             }           
             else{
-              $('.assign_clone_content_edit:last').children().find('#bibo').next().removeClass('custom_error');
-              $('.assign_clone_content_edit:last').children().find('#athlete_sel').next().removeClass('custom_error');
+              $(this).parents('.popup-edit').find('.assign_clone_content_edit:last').children().find('#bibo').next().removeClass('custom_error');
+              $(this).parents('.popup-edit').find('.assign_clone_content_edit:last').children().find('#athlete_sel').next().removeClass('custom_error');
               newElement($('.assign_clone_content_edit:last'));
            }
            return false;     
@@ -2657,21 +2657,24 @@
                }
            });
        });
-
-         $('.schedule_submit').on('click',function(e){         
-          var res = true;         
-            if($('.assign_clone_content_edit:last').children().find('#bibo').val().trim() == "" || $('.assign_clone_content_edit:last').children().find('#athlete_sel').val() == '') {
+   
+        $(document).on('submit', '#edit_assign_schedule_form', function(e){         
+          var res = true;
+          $('#athlete_sel, #bibo',this).each(function() {
+            if($(this).val().trim() == "") {
+              $(this).next().addClass('custom_error');
               e.preventDefault();
-             $('.assign_clone_content_edit:last').children().find('#bibo').next('span').addClass('custom_error');
-             $('.assign_clone_content_edit:last').children().find('#athlete_sel').next('span').addClass('custom_error');
-             res = false;             
-            }       
-          if(res){
-            $('.assign_clone_content_edit:last').children().find('#bibo').next('span').removeClass('custom_error');
-            $('.assign_clone_content_edit:last').children().find('#athlete_sel').next('span').removeClass('custom_error');
-            return true;
-          }
+              res = false;
+            }
+            else if($(this).val().trim() != ''){
+               $(this).next().removeClass('custom_error');
+            }           
+          });                   
+          if(res){             
+              $('#edit_assign_schedule_form').submit();
+            }
         });
+
         // var dist_id = 1;
         // $('.district_add').on('click',function(e){
         //     if($('.district_clone_content:last').find('input').val() == ''){
@@ -3386,12 +3389,17 @@
         var res = true;
         $('input[type="text"],textarea,select',this).each(function() {
           if($(this).val().trim() == "") {
-            $('#bib').next().addClass('custom_error');
+            $('.assign_clone_content:last').children().find('#bib').next().addClass('custom_error');
+            $('.assign_clone_content:last').children().find('#bib').next().addClass('custom_error');
             res = false;
+          }
+          else{
+            $('.assign_clone_content:last').children().find('#bib').next().addClass('custom_error');
+              $('.assign_clone_content:last').children().find('#bib').next().removeClass('custom_error'); 
           }
         });	
         if(res){
-          $('#bib').next().removeClass('custom_error');         
+          // $('#bib').next().removeClass('custom_error');         
             var form_data = $('#assignschedule_form').serialize();
            //alert(form_data);
             $.ajax({
