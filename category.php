@@ -65,7 +65,7 @@ $obj = new categoryfunction();
 										<form name="category_update" class="category_update_form">
 											<div class="align_margin">
 												<label>Enter name of the Category</label><br>
-												<input type="text" class="sportsname category_update_name" name="category_name" autocomplete="off" data-validation-error-msg="Please enter the Category Name" data-validation="required">
+												<input type="text" class="sportsname category_update_name" name="category_name" autocomplete="off" data-validation-error-msg="Please enter name of Category" data-validation="required">
 												<input type="hidden" class="category_update_id" name="category_id">
 												<input type="hidden" name="category_update" value="1">
 											</div><!--align_margin-->
