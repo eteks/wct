@@ -933,7 +933,7 @@
 		               $('.popup_fade').show();
 		               document.body.style.overflow = 'hidden';
                   }else{
-                  		success_align();
+                  	   success_align();
 		               $('.success_msg span').html('Parameter Type already exists!');
 		               $('.success_msg').show();
 		               $('.popup_fade').show();
@@ -1123,7 +1123,16 @@
                data:{'id':sche_id},
                cache: false,
                success: function(data) {
-                    $('.assignsche_cate').empty().append("<option value=''>Select Category Name</option>"+data);
+               		if(data){
+                    	$('.assignsche_cate').empty().append("<option value=''>Select Category Name</option>"+data);
+                  }else{
+                  	success_align();
+		            $('.success_msg span').html('Range not assigned to related test battery!');
+		            // $('.success_msg input').removeClass('alert_btn').addClass('alert_btn_without_refresh');
+		            $('.success_msg').show();
+		            $('.popup_fade').show();
+                  }
+                  
               }
            });
       });

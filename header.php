@@ -92,6 +92,7 @@
         </ul>
       </div>
     </div><!--menu_list-->
+    <?php } ?>
     <div class="popup_fade cancel_btn"></div> 
 		 
 		 	<div class="success_msg">
@@ -102,4 +103,4 @@
 		 	</div><!--success_msg-->
 		
 
-<?php } ?>
+

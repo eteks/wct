@@ -177,13 +177,18 @@ if(isset($_GET['paramstype_name_update'])){
 		$check_query = "select * from wc_parametertype where parametertype_id = '".$_POST['params_id']."' ";
 		$row = mysql_query($check_query) or die(mysql_error());
         $data = mysql_fetch_array($row);
-		if($data['parametertype_name'] != $params_name){
-			echo 'exist';
+		if($data['parametertype_name'] == $_POST['params_name']){
+			echo 'succeed';
 		}
 		else {
-	        $sql = mysql_query("update wc_parametertype set parametertype_name = '".$params_name."' where parametertype_id = '".$params_id."'");
-            echo "succeed";
-	   
+			$check_query1 = "select * from wc_parametertype where parametertype_name = '".$_POST['params_name']."' ";
+			if(!mysql_num_rows(mysql_query($check_query1))){
+				 $sql = "update wc_parametertype set parametertype_name = '".$_POST['params_name']."' where parametertype_id ='".$_POST['params_id']."'";
+	        	mysql_query($sql) or die("delete".mysql_error());
+				echo "succeed";
+			}else{
+				echo "exist";
+			}
 		}
         // if(isset($params_id)&&isset($params_name)){
             // $sql = mysql_query("update wc_parametertype set parametertype_name = '".$params_name."' where parametertype_id = '".$params_id."'");
