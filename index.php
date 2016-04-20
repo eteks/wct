@@ -14,7 +14,7 @@
 		   header("location:sports.php");
 		} else {
 			// Login Failed
-			echo "<script>alert('Emailid / Password Not Match')</script>";
+			echo "<script>alert('Email id / Password not match')</script>";
 		}
 	}
 
