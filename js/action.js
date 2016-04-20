@@ -1501,11 +1501,19 @@
                cache: false,
                success: function(data) {
                 var obj = JSON.parse(data);
-                var options = '<option value="">District</option>';
+                if(obj.length!=0){
+                  var options = '<option value="">District</option>';
                   $.each(obj, function(i){
                     options += '<option value="'+obj[i].district_id+'">'+obj[i].district_name+'</option>';
                   });
                   $('.athlete_district_act').html(options);
+                }
+                else{
+                  success_align();
+                  $('.success_msg span').html('No District added for '+selected_state);
+                  $('.success_msg').show();
+                  $('.popup_fade').show();
+                }       
                }
            });
        });
@@ -2824,14 +2832,21 @@
           var res = true;
           $('input[type="text"],select',this).each(function() {
             if($(this).val().trim() == "") {
-              $('.athlete_date_pic').next('span').addClass('help-block form-error');
-              $('.athlete_date_pic').next().next('span').removeClass('help-block form-error');
+              $(this).parents('form').find('.athlete_date_pic').next('span').addClass('help-block form-error');
+              $(this).parents('form').find('.athlete_date_pic').next().next('span').removeClass('help-block form-error');
               res = false;
             }
           });
-           if($('.athlete_date_pic').next('span').hasClass('help-block form-error')){
-           $('.day1,.month1,.year1').css({'border-color': '#b94a48'});            
-            res = false;         
+           if($(this).find('.athlete_date_pic').next('span').hasClass('help-block form-error')){
+            $(this).find('.athlete_date_pic .classic').each(function(){
+              if ($(this).val() == ''){
+                $(this).css({'border-color': '#b94a48'}); 
+                $('.date-dropdowns').next('span').removeClass('help-block form-error').addClass('hided');                
+                res = false;        
+              }
+            });
+           // $('.day1,.month1,.year1').css({'border-color': '#b94a48'});            
+            // res = false;         
           }         
           if(res){                     
               var form_data = $('[name=athletes_form]').serialize();
@@ -2884,16 +2899,22 @@
           var res = true;
           $('input[type="text"],select',this).each(function() {
             if($(this).val().trim() == "") {
-              $('.athlete_date_pic').next('span').addClass('help-block form-error');
-              $('.athlete_date_pic').next().next('span').removeClass('help-block form-error');
+              $(this).parents('form').find('.athlete_date_pic').next('span').addClass('help-block form-error');
+              $(this).parents('form').find('.athlete_date_pic').next().next('span').removeClass('help-block form-error');
               res = false;
             }
           });
-          if($('.athlete_date_pic').next('span').hasClass('help-block form-error')){
-            $('.day1,.month1,.year1').css({'border-color': '#b94a48'}); 
-            $('.date-dropdowns').next().removeClass('help-block form-error').addClass('hided');             
-            res = false;         
-          }   
+          if($(this).find('.athlete_date_pic').next('span').hasClass('help-block form-error')){
+            $(this).find('.athlete_date_pic .classic').each(function(){
+              if ($(this).val() == ''){
+                $(this).css({'border-color': '#b94a48'}); 
+                $('.date-dropdowns').next('span').removeClass('help-block form-error').addClass('hided');                
+                res = false;        
+              }
+            });
+           // $('.day1,.month1,.year1').css({'border-color': '#b94a48'});            
+            // res = false;         
+          }             
           if(res){
               var form_data = $(this).serialize();
                 $.ajax({
@@ -2937,16 +2958,20 @@
           var res = true;
           $('input[type="text"],select',this).each(function() {
             if($(this).val().trim() == ""){
-              $('.create_date').next('span').addClass('help-block form-error');
-              $('.create_date').next().next('span').removeClass('help-block form-error');
+              $(this).parents('form').find('.create_date').next('span').addClass('help-block form-error');
+              $(this).parents('form').find('.create_date').next().next('span').removeClass('help-block form-error');
               res = false;
               // alert('false  comes');
             }
           });
-          if($('.create_date').next('span').hasClass('help-block form-error')){
-            $('.day,.month,.year').css({'border-color': '#b94a48'}); 
-            $('.date-dropdowns').next('span').removeClass('help-block form-error').addClass('hided');                
-            res = false;         
+          if($(this).find('.create_date').next('span').hasClass('help-block form-error')){
+            $(this).find('.create_date .classic').each(function(){
+              if ($(this).val() == ''){
+                $(this).css({'border-color': '#b94a48'}); 
+                $('.date-dropdowns').next('span').removeClass('help-block form-error').addClass('hided');                
+                res = false;        
+              }
+            });   
           }
           if(res){
              var form_data = $(this).serialize();
@@ -3019,15 +3044,24 @@
             var res = true;
             $('input[type="text"],textarea,select',this).each(function() {
               if($(this).val().trim() == "") {
-                $('.create_date').next('span').addClass('help-block form-error');
-                $('.create_date').next().next('span').removeClass('help-block form-error');
+                $(this).parents('form').find('.create_date').next('span').addClass('help-block form-error');
+                $(this).parents('form').find('.create_date').next().next('span').removeClass('help-block form-error');
                 res = false;
               }
             });
-            if($('.create_date').next('span').hasClass('help-block form-error')){
-              $('.day,.month,.year').css({'border-color': '#b94a48'});              
-              res = false;         
-            } 
+            // if($('.create_date').next('span').hasClass('help-block form-error')){
+            //   $('.day,.month,.year').css({'border-color': '#b94a48'});              
+            //   res = false;         
+            // } 
+            if($(this).find('.create_date').next('span').hasClass('help-block form-error')){
+              $(this).find('.create_date .classic').each(function(){
+                if ($(this).val() == ''){
+                  $(this).css({'border-color': '#b94a48'}); 
+                  $('.date-dropdowns').next('span').removeClass('help-block form-error').addClass('hided');                
+                  res = false;        
+                }
+              });   
+            }
             if(res){
                 var form_data = $(this).serialize();
                     $.ajax({
@@ -5151,7 +5185,7 @@ $(document).on('blur','.enter_result',function(e){
                 //alert("Testbattery Deleted");
                 //location.reload();
                 success_align();
-	     	  	$('.success_msg span').html('Testbattery Deleted');
+	     	  	$('.success_msg span').html('Test Battery Name deleted successfully!');
 	     	  	 if($('.success_msg input').hasClass('alert_btn_without_refresh')){
                        		$('.success_msg input').removeClass('alert_btn_without_refresh').addClass('alert_btn');
                        	}
@@ -5404,6 +5438,31 @@ $(document).on('blur','.enter_result',function(e){
 			$(this).parents('.checkbox').find('.report_checkbox_name').prop( "checked", false );
 		}
 	});
+
+    $(document).on('change','.day,.month,.year', function(event) {
+        selected_class = $(this).attr("class").split(' ')[0];
+        if(selected_class == "year" && $(this).parents('form').hasClass('athletes_form')){
+          var d = new Date();   
+          if($(this).val() == d.getFullYear()){
+            $(this).val('');
+          }
+        }
+        if($(this).find('option:selected').val() == ''){
+          $(this).css({'border-color': '#b94a48'});
+          $(this).parents('.create_date,.athlete_date_pic').siblings('.empty_check').show();
+        }
+        else{
+          $(this).css({'border-color': '#ccc'});       
+          $(this).parents('.create_date,.athlete_date_pic').siblings('.empty_check').hide();
+        }
+        $(this).parents('.date-dropdowns').find('.classic').each(function(){
+          current_class = $(this).attr("class").split(' ')[0];
+          if(current_class!=selected_class && $(this).find('option:selected').val() == ''){
+              $(this).css({'border-color': '#b94a48'});
+              $(this).parents('.form-group').siblings('.empty_check').show();
+          }
+        });
+    });
         
         //********* end *********
     });

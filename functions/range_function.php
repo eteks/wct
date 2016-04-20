@@ -146,7 +146,7 @@ include('configu.php');
 		else{
 			// echo "failure#Already Assigned Range for this parameter";
 			//newly changed
-			echo "failure#Ranges already exist!";
+			echo "failure#Ranges already exists!";
 		}
 	}
 	// For display edit data

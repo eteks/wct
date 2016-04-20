@@ -100,7 +100,7 @@
 				}
 			}
 			else{
-				echo "failure#Athlete already Exists!";
+				echo "failure#Athlete already exists!";
 			}
 
 		}
