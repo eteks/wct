@@ -756,6 +756,8 @@
                    	}else{
                    		 $('.edit_test_battery').removeClass('hided');
              			$('.edit_test_battery').next().removeClass('hided');
+             			$('.popup-edit .restrict').remove();
+             			$('.popup-edit .restrict_del').remove();
                    	}
                    }
               });
@@ -817,6 +819,7 @@
                  }
             });
         }else{
+        	
         	$('.edit_test_battery').addClass('hided');
             $('.edit_test_battery').next().addClass('hided');
             $('.popup-edit .restrict').remove();
@@ -900,7 +903,7 @@
           }else{
               //alert('Invalid test name');
               success_align();
-               $('.success_msg span').html('Invalid test name');
+               $('.success_msg span').html('Invalid Test name');
                $('.success_msg').show();
                $('.popup_fade').show();
                document.body.style.overflow = 'hidden';
