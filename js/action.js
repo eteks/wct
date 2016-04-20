@@ -2839,13 +2839,19 @@
         $('#athlete_form').submit(function(e){
          e.preventDefault();
           var res = true;
-          $('input[type="text"],select',this).each(function() {
+          $('input[type="text"],select,textarea',this).each(function() {
             if($(this).val().trim() == "") {
-              $('.athlete_date_pic').next('span').addClass('help-block form-error');
-              $('.athlete_date_pic').next().next('span').removeClass('help-block form-error');
+              // $('.athlete_date_pic').next('span').addClass('help-block form-error');
+              // $('.athlete_date_pic').next().next('span').removeClass('help-block form-error');
               res = false;
             }
           });
+            
+          if($('.athlete_date_pic select').val().trim() == "") {
+            $('.athlete_date_pic').next('span').addClass('help-block form-error');
+            $('.athlete_date_pic').next().next('span').removeClass('help-block form-error');
+          }
+           
            if($('.athlete_date_pic').next('span').hasClass('help-block form-error')){
            $('.day1,.month1,.year1').css({'border-color': '#b94a48'});            
             res = false;         
