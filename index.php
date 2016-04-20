@@ -13,8 +13,20 @@
 			// Login Success
 		   header("location:sports.php");
 		} else {
-			// Login Failed
-			echo "<script>alert('Emailid / Password Not Match')</script>";
+?>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				var height=$('.success_msg').height();
+          		var width=$('.success_msg').width();
+         		$('.success_msg').css({'margin-top': -height / 2 + "px", 'margin-left': -width / 2 + "px"});
+         		$('.success_msg input').removeClass('alert_btn').addClass('alert_btn_without_refresh');
+				$('.success_msg span').html('Emailid / Password Not Match');
+				$('.success_msg').show();
+				$('.popup_fade').show();
+			});
+		</script>
+
+<?php
 		}
 	}
 
