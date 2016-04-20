@@ -371,7 +371,7 @@
 								          				
 												<div class="form-group fl">
 												  <label for="battey_name" class="popup_label">Select Test Battery Name</label>
-												  <select class="form-control classic adjust_width box-width width-assign" id="battey_name" name="edit_schedule_testbattery" data-validation-error-msg="Please Select Test Battery Name" data-validation="required">
+												  <select class="form-control classic adjust_width box-width width-assign" id="battey_name" name="edit_schedule_testbattery" data-validation-error-msg="Please select Test Battery Name" data-validation="required">
 												  	<option value="">Select Test Battery Name</option>
 												   <?php
 								                        $tb_query = $testbattery->testbatterySelect();
