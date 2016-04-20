@@ -109,7 +109,7 @@ if(isset($_GET['update_success'])){
 						      	</div>
 						      	<div class="form-group col-md-5">
 						      		<input type="text" class="form-control date_assign athlete_bib" id="bib" placeholder="BIB NO" name="athlete_bib1" >
-						      		 <span class="hided">Please enter Bib No</span><br>
+						      		 <span class="hided">Please enter BIB number</span><br>
 								</div>
 						    </div>
 						</div>
@@ -263,7 +263,7 @@ if(isset($_GET['update_success'])){
 										      	</div>
 										      	<div class="col-md-8">
 										      		<input type="text" class="form-control bib_popup athlete_bib popup_bib fl bib_update"  placeholder="BIB NO" name="athlete_bib[]" autocomplete="off" id="bibo">
-										      		<span class="hided">Please enter BIBO number</span><br>
+										      		<span class="hided">Please enter BIB number</span><br>
 												</div>
 												
 												
@@ -281,10 +281,9 @@ if(isset($_GET['update_success'])){
 								</div>
 								<input type="hidden" name="assing_schedule_update" value="1" />
 
-								<div class="col-md-9 align_right schedule_btn">
-						
-			  					<input type="submit" value="Save" class="btn btn-primary schedule_submit test-submit clear">
-			  					<input type="reset" class="btn btn-primary clear reset_form" value="Cancel">
+								<div class="col-md-9 align_right schedule_btn">						
+			  					<input type="submit" value="Save" class="btn btn-primary test-submit clear">
+			  					<input type="reset" class="btn btn-primary clear reset_form reset_form_edit_schedule" value="Cancel">
 								</div>
 							</form>
 						</div>
