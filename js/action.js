@@ -2671,12 +2671,11 @@
         // });        
 
         $('.reset_form_edit_schedule').click(function(){   
-          $("#bibo").next('span').removeClass('custom_error');          
-           $(".assign_clone_content_edit").each(function() {
-               if($('.assign_clone_content_edit').length !=1){
-                   $('.assign_clone_content_edit:last').remove();
-               }
-           });
+          $(this).parents('#edit_assign_schedule_form').find('.clone_schedule_update_content .assign_clone_content_edit').each(function() {
+          	if($(this).parents('#edit_assign_schedule_form').find('.clone_schedule_update_content .assign_clone_content_edit').length !=1){
+          		$(this).parents('#edit_assign_schedule_form').find('.clone_schedule_update_content .assign_clone_content_edit:last').remove();  
+          	}
+          });    
        });
         
        
