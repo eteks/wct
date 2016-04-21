@@ -478,6 +478,8 @@
 
                 // If the date is invalid, empty the hidden field to prevent invalid submissions
                 if (invalidDate) {
+                    this.css({'border-color': '#b94a48'});
+                    this.parents('.form-group').siblings('.empty_check').show();
                     this.internals.objectRefs.hiddenField.val("");
                 }
             }

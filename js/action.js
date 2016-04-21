@@ -112,9 +112,9 @@
                   $('[name=edit_athlete_id]').val(obj[i].athlete_id);
                   $('[name=edit_athlete_name]').val(obj[i].athlete_name);
                   // $('[name=dateday]').find("option[value="+dob[2]+"]").attr("selected","selected");
-                  $('[name=dateday]').find("option[value="+dob[2]+"]").attr("selected","selected");
-                  $('[name=datemonth]').find("option[value="+dob[1]+"]").attr("selected","selected");
-                  $('[name=dateyear]').find("option[value="+dob[0]+"]").attr("selected","selected");
+                  $(el).parents('.popup-edit').find('[name=dateday]').find("option[value="+dob[2]+"]").attr("selected","selected");
+                  $(el).parents('.popup-edit').find('[name=datemonth]').find("option[value="+dob[1]+"]").attr("selected","selected");
+                  $(el).parents('.popup-edit').find('[name=dateyear]').find("option[value="+dob[0]+"]").attr("selected","selected");
                   $('[name=edit_athlete_mobile]').val(obj[i].athlete_mobile);
                   $('[name=edit_athlete_gender]').find("option:contains("+obj[i].athlete_gender+")").attr("selected","selected");
                   $('[name=edit_athlete_state]').find("option:contains("+obj[i].athletestates_name+")").attr("selected","selected");
@@ -123,7 +123,7 @@
                   $('[name=edit_athlete_taluka]').val(obj[i].athlete_taluka);
                   $('[name=edit_athlete_sports]').find("option:contains("+obj[i].athletesports_name+")").attr("selected","selected");
                 });
-                $('#day1,#month1,#year1').val('');
+                // $('#day1,#month1,#year1').val('');
                 // $('.popup_fade').show();
                 // athletes_center_align();
                 // $('.athletes_div, .close_btn').show();
