@@ -76,7 +76,7 @@
 					</div>
 					<span class="hided empty_check">Please select Date</span>
 					<span class="hided">Please select valid Date</span>
-					<div class="form-group" style="margin-top:15px;">
+					<div class="form-group col-md-12 np" style="margin-top:15px;">
 					  <label for="date" class="" style="">Select Time</label>
 					  	<div class="form-group fl">
 							<select class="form-control classic adjust_tiny fl" id="hour" name="schedule_hour" data-validation-error-msg="Please select Hour" data-validation="required">

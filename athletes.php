@@ -69,7 +69,7 @@
 					</div>
 					<span class="hided empty_check">Please select Date</span>
 					<span class="hided">Please select valid Date</span>
-					<div class="form-group" style="margin-top:15px;">
+					<div class="form-group col-md-12 np" style="margin-top:15px;">
       					<label>Mobile Number</label>
       					<input type="text" id="athletes_mobile1" class="adjust_width" name="athlete_mobile" autocomplete="off" data-validation-error-msg="Please enter valid Mobile no.(with 10 digits)" data-validation="length" data-validation-length="10"  maxlength="10">
      				</div>
