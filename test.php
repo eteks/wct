@@ -43,7 +43,7 @@ if (isset($_GET['param_name_exists'])) {
 	echo "<script>
 	$(document).ready(function () {
 		success_align();
-		$('.success_msg span').html('Already exists!');
+		$('.success_msg span').html('already exists!');
 		$('.success_msg input').removeClass('alert_btn').addClass('alert_btn_without_refresh');
        	$('.success_msg').show();
       	$('.popup_fade').show();
@@ -83,6 +83,19 @@ if (isset($_GET['insert_new'])) {
 	}
 
 }
+if (isset($_GET['test_name_exists'])) {
+	echo "<script>
+	$(document).ready(function () {
+		success_align();
+		$('.success_msg span').html('already exists!');
+		$('.success_msg input').removeClass('alert_btn').addClass('alert_btn_without_refresh');
+       	$('.success_msg').show();
+      	$('.popup_fade').show();
+      	document.body.style.overflow = 'hidden';
+    	});
+	    //alert('Test parameter edited successfully!');
+	    var url ='" . $url . "'; window.location = url ;</script>";
+}
 ?>
 <style type="text/css">
 	thead, tbody tr {
@@ -115,7 +128,7 @@ if (isset($_GET['insert_new'])) {
 				<form id="test_form" name="test_form_act" action="functions/test_functions.php" method="post">
 					<div class="form-group">
 						<label>Enter name of Test</label><br>
-						<input type="text" class="adjust_width" name="test_name" autocomplete="off">
+						<input type="text" class="adjust_width" id="test_name" name="test_name" autocomplete="off">
 						<span class="category_text">Please enter name of Test</span>
 					</div>
 					<div class="parameter_holder1">

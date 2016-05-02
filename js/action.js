@@ -284,7 +284,7 @@
                         main.parents('.assign_clone_content').find('.dob').val('');
                         main.parents('.assign_clone_content').find('.mobile').val('');
                       success_align();
-			           $('.success_msg span').html('Schedule already exists!');
+			           $('.success_msg span').html('Athlete already exists!');
 			           $('.success_msg input').removeClass('alert_btn').addClass('alert_btn_without_refresh');
 			           $('.success_msg').show();
 			           $('.popup_fade').show();
@@ -303,7 +303,7 @@
             $(this).parents('.assign_clone_content').find('.mobile').val('');
             //alert($(this).parents('.assign_clone_content').find('date_assign dob').val('').html());
              success_align();
-               $('.success_msg span').html('Already Exists!');
+               $('.success_msg span').html('Athlete already exists!');
                $('.success_msg').show();
                $('.popup_fade').show();
                document.body.style.overflow = 'hidden';
@@ -324,7 +324,7 @@
                cache: false,
                success: function(data) {
                     if(data == 'error'){
-                        //alert('This athelete already assigned another category!');
+                        // alert('This athelete already assigned another category!');
                         $('option:selected',main_content).removeAttr('selected');
                         main_content.find('.dob').val('');
                         main_content.find('.mobile').val('');
@@ -351,7 +351,7 @@
             $(this).parents('.assign_clone_content').find('.mobile').val('');
             //alert($(this).parents('.assign_clone_content').find('date_assign dob').val('').html());
             success_align();
-           $('.success_msg span').html('Already Exists!');
+           $('.success_msg span').html('Athlete already exists!');
            $('.success_msg').show();
            $('.popup_fade').show();
            document.body.style.overflow = 'hidden';
@@ -1356,27 +1356,29 @@
                   }
                });
         });
-        $(document).on('change','.parameter_type_add',function(){
-            var parameter_type_count = 0;
-            var parametet_type = $(this).val();
-            $('#test_form .parameter_type_add').each(function(index) {
-                if($(this).val() == parametet_type){
-                    parameter_type_count++;
-                }
-            });
-            //alert(parameter_type_count);
-            if(parameter_type_count == 2){
-                //alert('already exist!');
-                success_align();
-	           $('.success_msg span').html('already exist!');
-	           $('.success_msg input').removeClass('alert_btn').addClass('alert_btn_without_refresh');
-	           $('.success_msg').show();
-	           $('.popup_fade').show();
-	           document.body.style.overflow = 'hidden';
-                $(this).prop('selectedIndex',0);
-                $(this).parents('.clone_content').find('.paremeter_unit_add').empty().append('<option>UNIT</option>');
-            }
-        });
+
+    //restrict same parameter type in test
+        // $(document).on('change','.parameter_type_add',function(){
+        //     var parameter_type_count = 0;
+        //     var parametet_type = $(this).val();
+        //     $('#test_form .parameter_type_add').each(function(index) {
+        //         if($(this).val() == parametet_type){
+        //             parameter_type_count++;
+        //         }
+        //     });
+        //     //alert(parameter_type_count);
+        //     if(parameter_type_count == 2){
+        //         //alert('already exist!');
+        //         success_align();
+	       //     $('.success_msg span').html('already exist!');
+	       //     $('.success_msg input').removeClass('alert_btn').addClass('alert_btn_without_refresh');
+	       //     $('.success_msg').show();
+	       //     $('.popup_fade').show();
+	       //     document.body.style.overflow = 'hidden';
+        //         $(this).prop('selectedIndex',0);
+        //         $(this).parents('.clone_content').find('.paremeter_unit_add').empty().append('<option>UNIT</option>');
+        //     }
+        // });
 
         $(document).on('change','.parameter_type_update',function(){
             var test_id = $(this).parents('#test_updation_form').find('.test_update_id').val();
@@ -1393,7 +1395,7 @@
                     if(data.trim() == 'error'){
                         //alert('already exist!');
                         success_align();
-			            $('.success_msg span').html('already exist!');
+			            $('.success_msg span').html('already exists!');
 			            $('.success_msg input').removeClass('alert_btn').addClass('alert_btn_without_refresh');
 			            $('.success_msg').show();
 			            $('.popup_fade').show();
@@ -1617,7 +1619,7 @@
                    if(html=='error'){
                      //alert('Sports already exist!');
                      success_align();
-	             	    $('.success_msg span').html('Sport already exist!');
+	             	    $('.success_msg span').html('Sport already exists!');
 	             	    $('.success_msg input').removeClass('alert_btn').addClass('alert_btn_without_refresh');
 	                    $('.success_msg').show();
 	                    $('.popup_fade').show();
@@ -1689,7 +1691,12 @@
                    }
                    else{
                     // $('.add_states_error').text(result_split[1]).show();
-                    alert(result_split[1]);
+                    //alert(result_split[1]);
+                        success_align();
+                        $('.success_msg span').html(result_split[1]);
+                        $('.success_msg').show();
+                        $('.popup_fade').show();
+                        document.body.style.overflow = 'hidden';
                        }
                    }
                })
@@ -2367,7 +2374,7 @@
                    if(html=='error'){
                      //alert('Category already exist!');
                      success_align();
-                 	   $('.success_msg span').html('Category already exist!');
+                 	   $('.success_msg span').html('Category already exists!');
                  	   $('.success_msg input').removeClass('alert_btn').addClass('alert_btn_without_refresh');
 	                   $('.success_msg').show();
 	                   $('.popup_fade').show();
@@ -2468,7 +2475,7 @@
                       return false;  
                }
           });
-          $('.clone_content:last').children().find('input[type="text"],select').each(function() {
+        $('.clone_content:last').children().find('input[type="text"],select').each(function() {
              if ($(this).val() == ""){
                       $(this).next().addClass('custom_error');                      
                       var cntrl=$('.clone_content:last').children().find('> select');
@@ -2482,8 +2489,8 @@
                             $(cntrl).next().removeClass('custom_error');
                       });                     
                }
-          });
-          if (submitOK) {
+        });   
+        if (submitOK) {
                 $(this).next().removeClass('custom_error');              
                 $('#test_form').submit();
           }
@@ -3479,7 +3486,7 @@
                    }else if(html=='error'){
                        //alert('Schedule already exist!');
                        success_align();
-	             	   $('.success_msg span').html('Schedule already exist!');
+	             	   $('.success_msg span').html('Schedule already exists!');
 	             	   
                        	$('.success_msg input').removeClass('alert_btn').addClass('alert_btn_without_refresh');
                        

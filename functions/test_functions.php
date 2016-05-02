@@ -20,13 +20,13 @@ class testfunction{
     }
 
     public function testnameinsertfunction(){
-        $check_query = "select * from wc_test where test_name = '".$this->testname."' ";
+        $check_query = "select * from wc_test where test_name = '".$this->testname."'";
         if(!mysql_num_rows(mysql_query($check_query))){
           $sql = "insert into wc_test (test_name,test_status) values ('".$this->testname."','1') ";
           mysql_query($sql) or die("insert:".mysql_error());
           return true;
         }else{
-          return false;
+          header('Location:../test.php?test_name_exists=true');
         }
 
     }
@@ -110,26 +110,27 @@ class testfunction{
             }
             //header('Location:../test.php?insert=true');
            header('Location:../test.php?insert_new=true&params='.$exist); 
-        }else {
-            $row = mysql_fetch_array(mysql_query("select test_id from wc_test where test_name ='$testname'"));
-			$exist = '';
-            for($i=1;$i<=$counter;$i++){
-                $test_id = $row['test_id'];
-                $parameter = $_POST["parameter_name".$i.""];
-                $type = $_POST["type".$i.""];
-                $unit = $_POST["unit".$i.""];
-                $format =  $_POST["format".$i.""];
-				//$check_query_param = "select * from wc_test_attribute where test_id = '$test_id' and test_parameter_type ='$type'";
-				$check_query_param_name = "select * from wc_test_attribute where test_id = '$test_id' and test_parameter_name ='$parameter'";
-				if(!mysql_num_rows(mysql_query($check_query_param_name))){
-                	$sql = "insert into wc_test_attribute (test_id,test_parameter_name,test_parameter_type,test_parameter_unit,test_parameter_format,test_attribute_status)values('$test_id','$parameter','$type','$unit','$format','1')";
-                	mysql_query($sql) or die(mysql_error());	
-				}else{
-					$exist .= $parameter.',';
-				}
-            }
-			header('Location:../test.php?insert_new=true&params='.$exist);  
         }
+   //      else {
+   //          $row = mysql_fetch_array(mysql_query("select test_id from wc_test where test_name ='$testname'"));
+			// $exist = '';
+   //          for($i=1;$i<=$counter;$i++){
+   //              $test_id = $row['test_id'];
+   //              $parameter = $_POST["parameter_name".$i.""];
+   //              $type = $_POST["type".$i.""];
+   //              $unit = $_POST["unit".$i.""];
+   //              $format =  $_POST["format".$i.""];
+			// 	//$check_query_param = "select * from wc_test_attribute where test_id = '$test_id' and test_parameter_type ='$type'";
+			// 	$check_query_param_name = "select * from wc_test_attribute where test_id = '$test_id' and test_parameter_name ='$parameter'";
+			// 	if(!mysql_num_rows(mysql_query($check_query_param_name))){
+   //              	$sql = "insert into wc_test_attribute (test_id,test_parameter_name,test_parameter_type,test_parameter_unit,test_parameter_format,test_attribute_status)values('$test_id','$parameter','$type','$unit','$format','1')";
+   //              	mysql_query($sql) or die(mysql_error());	
+			// 	}else{
+			// 		$exist .= $parameter.',';
+			// 	}
+   //          }
+			// header('Location:../test.php?insert_new=true&params='.$exist);  
+   //      }
     }
     if(isset($_POST['parameter_update'])){
         include ("../dbconnect.php");

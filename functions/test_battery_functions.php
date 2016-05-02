@@ -24,7 +24,7 @@ class testbatteryfunction{
     public function testbatteryinsertfunction(){
         $check_query = "select * from wc_testbattery where testbattery_name = '".$this->testbatteryname."' ";
         if(!mysql_num_rows(mysql_query($check_query))){
-          $sql = "insert into wc_testbattery (testbattery_name,testbattery_status) values ('".$this->testbatteryname."','1') ";
+          $sql = "insert into wc_testbattery (testbattery_name,testbattery_status) values ('".$this->testbatteryname."','1') ";          
           mysql_query($sql) or die("insert:".mysql_error());
           return true;
         }else{
