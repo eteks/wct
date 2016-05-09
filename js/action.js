@@ -303,7 +303,7 @@
             $(this).parents('.assign_clone_content').find('.mobile').val('');
             //alert($(this).parents('.assign_clone_content').find('date_assign dob').val('').html());
              success_align();
-               $('.success_msg span').html('Athlete already exists!');
+               $('.success_msg span').html('Schedule already exists!');
                $('.success_msg').show();
                $('.popup_fade').show();
                document.body.style.overflow = 'hidden';
@@ -764,10 +764,10 @@
              			
              			$('.popup-edit').append('<span class="restrict">\
 				    			<i class="fa fa-pencil-square-o">\
-					    			<div class="restrict_tooltip">Mapping has been already done.Edit or Delete not possible.</div>\
+					    			<div class="restrict_tooltip">Mapping has been done. Edit or Delete is not Possible.</div>\
 								</i>\
 							</span>\
-					    	<span class="restrict_del"><i class="fa fa-trash-o"><div class="restrict_tooltip">Mapping has been already done.Edit or Delete not possible.</div></i></span>');
+					    	<span class="restrict_del"><i class="fa fa-trash-o"><div class="restrict_tooltip">Mapping has been done. Edit or Delete is not Possible.</div></i></span>');
                    	}else{
                    		 $('.edit_test_battery').removeClass('hided');
              			$('.edit_test_battery').next().removeClass('hided');
@@ -5462,10 +5462,8 @@ $(document).on('blur','.enter_result',function(e){
         if(j=='2'){
            
             success_align();
-	     	  	$('.success_msg span').html('Bib No. already assigned!');
-	     	  	
-           		$('.success_msg input').removeClass('alert_btn').addClass('alert_btn_without_refresh');
-                 
+	     	  	$('.success_msg span').html('Bib No. already assigned!');	     	  	
+           		$('.success_msg input').removeClass('alert_btn').addClass('alert_btn_without_refresh');                 
 	          	$('.success_msg').show();
 	          	$('.popup_fade').show();
 	          	document.body.style.overflow = 'hidden';

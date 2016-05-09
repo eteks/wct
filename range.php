@@ -157,7 +157,7 @@
 										$check_in_createschedule = mysql_query("SELECT * FROM wc_createschedule WHERE createscheduletestbattery_id='".$row['testbattery_id']."'")or die(mysql_error());
 										if(mysql_num_rows($check_in_createschedule)>0){ ?>	
 											<i class="fa fa-floppy-o save_item save_state"></i>
-											<i class="fa fa-pencil-square-o side_restrict"><div class="side_restrict_tooltip">Mapping has been already done.Edit or Delete not possible.</div></i>
+											<i class="fa fa-pencil-square-o side_restrict"><div class="side_restrict_tooltip">Mapping has been done. Edit or Delete is not Possible.</div></i>
 											<i class="fa fa-trash-o side_restrict" style="float: none;"></i>
 										<?php } else{?>	
 											<i class="fa fa-floppy-o save_item save-testbattery"></i>
@@ -217,12 +217,12 @@
 								if(mysql_num_rows($check_in_result)>0){ ?>
 					        		<span class="restrict">
 								        	<i class="fa fa-pencil-square-o">
-								        	<div class="restrict_tooltip">Mapping has been already done.Edit or Delete not possible.</div>
+								        	<div class="restrict_tooltip">Mapping has been done. Edit or Delete is not Possible.</div>
 								        	</i>
 							        	</span>
 							        	<span class="restrict_del">
 								        	<i class="fa fa-trash-o"> 
-								        	<div class="restrict_tooltip">Mapping has been already done.Edit or Delete not possible.</div>
+								        	<div class="restrict_tooltip">Mapping has been done. Edit or Delete is not Possible.</div>
 								        	</i>
 							        	</span>
 						        <?php } else{?>

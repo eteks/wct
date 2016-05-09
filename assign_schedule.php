@@ -203,10 +203,10 @@ if(isset($_GET['update_success'])){
 		        		<?php }else{?>
 				    		<span class="restrict">
 				    			<i class="fa fa-pencil-square-o">
-					    			<div class="restrict_tooltip">Mapping has been already done.Edit or Delete not possible.</div>
+					    			<div class="restrict_tooltip">Mapping has been done. Edit or Delete is not Possible.</div>
 								</i>
 							</span>
-					    	<span class="restrict_del"><i class="fa fa-trash-o"><div class="restrict_tooltip">Mapping has been already done.Edit or Delete not possible.</div></i></span>
+					    	<span class="restrict_del"><i class="fa fa-trash-o"><div class="restrict_tooltip">Mapping has been done. Edit or Delete is not Possible.</div></i></span>
 					    	<?php } ?>
 						<div class="assign-schedule-popup popup_hidden">
 			          		<code class="close_btn cancel_btn"> </code>
